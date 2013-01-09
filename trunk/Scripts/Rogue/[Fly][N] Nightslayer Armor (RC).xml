@@ -1,0 +1,114 @@
+<HBProfile creator="EchoTiger" version="1.0">
+	<Name>Nightslayer Armor (Recolor) Farm</Name>
+	
+	<MinLevel>60</MinLevel>
+	<MaxLevel>92</MaxLevel>
+   
+	<MinDurability>0.001</MinDurability>
+	<MinFreeBagSlots>1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>True</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+    </AvoidMobs>
+
+	<ProtectedItems>
+		<Item Name="Savage Mask of the Lynx Lord" Entry="27938" />
+		<Item Name="Sun-Gilded Shouldercaps" Entry="27995" />
+		<Item Name="Chestguard of the Prowler" Entry="27461" />
+		<Item Name="Balt of the Raven Lord" Entry="32769" />
+		<Item Name="Mennu's Scaled Leggings" Entry="27545" />
+		<Item Name="Silent-Strider Kneeboots" Entry="27467" />
+		<Item Name="Predatory Gloves" Entry="27825" />
+	</ProtectedItems>
+	
+	<Blackspots></Blackspots>
+	
+	<QuestOrder>
+		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Nightslayer Armor (RC) Farm.\nThis profile will grind through every dungeon that drops the set pieces.\n\nEnsure that your bags are clean before starting!\n\n*Note* The bot will only loot mobs that drop the set pieces unless you change the LootMobs setting inside the profile." />
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+		<!-- Sets Dungeon Difficult to Heroic -->
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+		<!-- This code checks if the character is in Eastern Kingdoms, if so, it goes to the portal in the Mage District  -->
+		<If Condition="(Me.IsAlliance) &amp;&amp; (Me.MapId == 0)">
+			<CustomBehavior File="FlyTo" DestName="Mage Tower" X="-8999.616" Y="862.2393" Z="129.4042" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="-9005.53" Y="869.2928" Z="129.693" />
+			<CustomBehavior File="InteractWith" MobId="195141" ObjectType="GameObject" X="9007.58" Y="871.8698" Z="129.6922" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" DestName="Outland Portal" X="-11897.69" Y="-3206.117" Z="-14.68643" />
+			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+		<!-- This code checks if the character is in Kalimdor, if so, it goes to the portal in Orgrimmar -->
+		<If Condition="(Me.IsHorde) &amp;&amp; (Me.MapId == 1)">
+			<CustomBehavior File="FlyTo" DestName="Underground Portal" X="1748.539" Y="-4212.131" Z="48.02327" />
+			<RunTo X="1783.884" Y="-4232.059" Z="40.51676" />
+			<RunTo X="1743.324" Y="-4258.181" Z="25.44608" />
+			<RunTo X="1732.297" Y="-4278.206" Z="17.66895" />
+			<RunTo X="1744.604" Y="-4300.797" Z="13.82069" />
+			<RunTo X="1764.898" Y="-4308.886" Z="6.258134" />
+			<RunTo X="1780.943" Y="-4294.353" Z="6.237029" />
+			<RunTo X="1801.448" Y="-4334.859" Z="-11.19072" />
+			<RunTo X="1770.239" Y="-4326.302" Z="-8.284097" />
+			<CustomBehavior File="InteractWith" MobId="195142" ObjectType="GameObject" X="1768.45" Y="-4325.86" Z="-8.3711" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" DestName="Outland Portal" X="-11897.69" Y="-3206.117" Z="-14.68643" />
+			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+		<!-- This code checks to see if the player is located in Outlands.  If so, it shall proceed to the instances. -->
+		<If Condition="Me.MapId == 530">
+			<CustomBehavior File="FlyTo" DestName="Hellfire Ramps" X="-360.4703" Y="3016.986" Z="40.87082" />
+			<CustomBehavior File="FlyTo" DestName="Hellfire Ramps Land" X="-354.3885" Y="3062.629" Z="-15.18049" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="-364.6200" Y="3082.285" Z="-14.72307" />
+			<CustomBehavior File="MyCTM" X="-364.6200" Y="3082.285" Z="-14.68000" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+		<If Condition="Me.MapId == 543">
+			<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
+			<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
+			<RunTo X="-1253.268" Y="1641.106" Z="68.18011" />
+			<RunTo X="-1242.841" Y="1568.055" Z="68.41733" />
+			<RunTo X="-1256.832" Y="1549.067" Z="68.56508" />
+			<RunTo X="-1299.145" Y="1548.212" Z="68.61219" />
+			<RunTo X="-1299.145" Y="1548.212" Z="68.61219" />
+			<RunTo X="-1250.403" Y="1445.356" Z="68.60188" />
+			<RunTo X="-1199.574" Y="1453.654" Z="68.49496" />
+			<RunTo X="-1175.996" Y="1461.565" Z="68.43477" />
+			<RunTo X="-1167.597" Y="1522.459" Z="68.43015" />
+			<RunTo X="-1208.409" Y="1542.063" Z="68.5266" />
+			<RunTo X="-1224.057" Y="1528.672" Z="68.53191" />
+			<RunTo X="-1237.193" Y="1540.824" Z="90.30915" />
+			<RunTo X="-1240.113" Y="1564.89" Z="91.09522" />
+			<RunTo X="-1291.361" Y="1616.14" Z="91.76259" />
+			<RunTo X="-1270.469" Y="1641.569" Z="91.62456" />
+			<RunTo X="-1122.161" Y="1718.566" Z="89.35185" />
+			<RunTo X="-1153.609" Y="1697.059" Z="91.13847" />
+			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+			<CustomBehavior File="WaitTimer" WaitTime="3000" />
+			<RunTo X="-1156.011" Y="1698.251" Z="91.18531" />
+			<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+			<RunTo X="-1293.461" Y="1618.374" Z="91.75332" />
+			<RunTo X="-1324.726" Y="1626.981" Z="88.76289" />
+			<CustomBehavior File="MyCTM" X="-1340.299" Y="1653.485" Z="68.89768" />
+			<RunTo X="-1355.375" Y="1639.065" Z="68.24535" />
+			<CustomBehavior File="MyCTM" X="-1357.292" Y="1633.615" Z="68.4899" />
+		</If>
+	</QuestOrder>
+</HBProfile>
