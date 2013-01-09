@@ -37,7 +37,7 @@
 	
 	<Blackspots></Blackspots>
 	
-	<QuestOrder>
+	<QuestOrder IgnoreCheckpoints = "False">
 		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Nightslayer Armor (RC) Farm.\nThis profile will grind through every dungeon that drops the set pieces.\n\nEnsure that your bags are clean before starting!\n\n*Note* The bot will only loot mobs that drop the set pieces unless you change the LootMobs setting inside the profile." />
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 		<!-- Sets Dungeon Difficult to Heroic -->
@@ -70,8 +70,6 @@
 			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
-		<!-- This code checks to see if the player is located in Outlands.  If so, it shall proceed to the instances. -->
-		<If Condition="Me.MapId == 530">
 			<CustomBehavior File="FlyTo" DestName="Hellfire Ramps" X="-360.4703" Y="3016.986" Z="40.87082" />
 			<CustomBehavior File="FlyTo" DestName="Hellfire Ramps Land" X="-354.3885" Y="3062.629" Z="-15.18049" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
@@ -79,9 +77,8 @@
 			<RunTo X="-364.6200" Y="3082.285" Z="-14.72307" />
 			<CustomBehavior File="MyCTM" X="-364.6200" Y="3082.285" Z="-14.68000" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		</If>
 		<!-- This will guide the bot to the boss and attempt to dodge patrols -->
-		<If Condition="Me.MapId == 543" &amp;&amp; "Me.MapId == 467">
+		<If Condition="Me.MapId == 543">
 			<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
 			<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
 			<RunTo X="-1253.268" Y="1641.106" Z="68.18011" />
@@ -114,7 +111,7 @@
 			<RunTo X="-1355.375" Y="1639.065" Z="68.24535" />
 			<CustomBehavior File="MyCTM" X="-1357.292" Y="1633.615" Z="68.4899" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			<!-- Go to Zangarmarsh for the next piece, or check to see if user is in Zangar. -->
+			<!-- Go to Zangarmarsh for the next piece. -->
 			<CustomBehavior File="FlyTo" X="-341.3863" Y="3008.325" Z="21.04916" />
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="-228.6308" Y="5325.063" Z="158.0343" />
 			<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="494.2378" Y="6437.375" Z="80.23679" />
