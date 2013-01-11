@@ -71,139 +71,155 @@
 			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
-		<If Condition="(!HasItem(27467)) || (!HasItem(27461))">
-			<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-360.4703" Y="3016.986" Z="40.87082" />
-			<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-354.3885" Y="3062.629" Z="-15.18049" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<CustomBehavior File="RunMacro" Macro="/dismount" />
-			<RunTo X="-364.6200" Y="3082.285" Z="-14.72307" />
-			<CustomBehavior File="MyCTM" X="-364.6200" Y="3082.285" Z="-14.68000" />
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		<!-- This will guide the bot to the boss and attempt to dodge patrols -->
-			<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
-			<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
-			<RunTo X="-1253.268" Y="1641.106" Z="68.18011" />
-			<RunTo X="-1242.841" Y="1568.055" Z="68.41733" />
-			<RunTo X="-1256.832" Y="1549.067" Z="68.56508" />
-			<RunTo X="-1299.145" Y="1548.212" Z="68.61219" />
-			<RunTo X="-1299.145" Y="1548.212" Z="68.61219" />
-			<RunTo X="-1250.403" Y="1445.356" Z="68.60188" />
-			<RunTo X="-1199.574" Y="1453.654" Z="68.49496" />
-			<RunTo X="-1175.996" Y="1461.565" Z="68.43477" />
-			<RunTo X="-1167.597" Y="1522.459" Z="68.43015" />
-			<RunTo X="-1208.409" Y="1542.063" Z="68.5266" />
-			<RunTo X="-1224.057" Y="1528.672" Z="68.53191" />
-			<RunTo X="-1237.193" Y="1540.824" Z="90.30915" />
-			<RunTo X="-1240.113" Y="1564.89" Z="91.09522" />
-			<RunTo X="-1291.361" Y="1616.14" Z="91.76259" />
-		<If Condition="(!HasItem(27467))">
-			<RunTo X="-1122.161" Y="1718.566" Z="89.35185" />
-			<RunTo X="-1153.609" Y="1697.059" Z="91.13847" />
-			<!-- This reactivates the loot so the bot will loot the boss -->
-			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-			<CustomBehavior File="WaitTimer" WaitTime="3000" />
-			<RunTo X="-1156.011" Y="1698.251" Z="91.18531" />
-			<!-- This deactivates the loot so the bot will not loot trash -->
-			<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-			<RunTo X="-1293.461" Y="1618.374" Z="91.75332" />
+<!-- Go to Hellfire Ramparts if required item(s) isn't detected. -->
+		<If Condition="(!HasItem(27467)) || (!HasItem(27461)) &amp;&amp; (!Me.MapId == 3483)" >
+			<CustomBehavior File="FlyTo" DestName="Hellfire Peninsula" X="-360.4703" Y="3016.986" Z="40.87082" />
 		</If>
-		<If Condition="(!HasItem(27461))">
-			<RunTo X="-1383.39" Y="1711.82" Z="82.71" />
-			<RunTo X="-1411.422" Y="1742.829" Z="80.89876" />
-			<CustomBehavior File="WaitTimer" WaitTime="5000" />
-			<RunTo X="-1429.336" Y="1771.657" Z="82.02303" />
-			<CustomBehavior File="InteractWith" MobId="185169" ObjectType="GameObject" X="-1429.81" Y="1772.916" Z="82.0765" />
-			<CustomBehavior File="WaitTimer" WaitTime="1200" />
-			<CustomBehavior File="RunMacro" Macro="/click StaticPopup1Button1" />
-			<CustomBehavior File="WaitTimer" WaitTime="1200" />
-			<CustomBehavior File="RunMacro" Macro="/script CloseLoot()" />
-			<CustomBehavior File="WaitTimer" WaitTime="1200" />
-			<CustomBehavior File="InteractWith" MobId="185169" ObjectType="GameObject" X="-1429.81" Y="1772.916" Z="82.0765" />
-			<CustomBehavior File="WaitTimer" WaitTime="1200" />
-			<CustomBehavior File="RunMacro" Macro="/click StaticPopup1Button1" />
-			<CustomBehavior File="WaitTimer" WaitTime="1200" />
-			<CustomBehavior File="RunMacro" Macro="/script CloseLoot()" />
-			<CustomBehavior File="WaitTimer" WaitTime="1200" />
-			<CustomBehavior File="InteractWith" MobId="185169" ObjectType="GameObject" X="-1429.81" Y="1772.916" Z="82.0765" />
-			<CustomBehavior File="WaitTimer" WaitTime="1200" />
-			<CustomBehavior File="RunMacro" Macro="/click StaticPopup1Button1" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<CustomBehavior File="RunMacro" Macro="/script CloseLoot()" />
-			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="The script to loot all of the contents of the chest hasn't been implemented yet.  Be sure to loot everything!" />
-			<RunTo X="-1291.361" Y="1616.14" Z="91.76259" />
-		</If>
-			<!-- This will jump down the broken ledge to get back to the instance -->
-			<RunTo X="-1270.469" Y="1641.569" Z="91.62456" />
-			<CustomBehavior File="MyCTM" X="-1340.299" Y="1653.485" Z="68.89768" />
-			<RunTo X="-1355.375" Y="1639.065" Z="68.24535" />
-			<CustomBehavior File="MyCTM" X="-1357.292" Y="1633.615" Z="68.4899" />
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		</If>
-		<If Condition="!HasItem(27938)">
-			<!-- Go to Zangarmarsh for the next piece. -->
+			<If Condition="(!HasItem(27467)) || (!HasItem(27461))">
+				<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-354.3885" Y="3062.629" Z="-15.18049" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<RunTo X="-364.6200" Y="3082.285" Z="-14.72307" />
+				<CustomBehavior File="MyCTM" X="-364.6200" Y="3082.285" Z="-14.68000" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<!-- This will guide the bot to the boss and attempt to dodge patrols -->
+				<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
+				<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
+				<RunTo X="-1253.268" Y="1641.106" Z="68.18011" />
+				<RunTo X="-1242.841" Y="1568.055" Z="68.41733" />
+				<RunTo X="-1256.832" Y="1549.067" Z="68.56508" />
+				<RunTo X="-1299.145" Y="1548.212" Z="68.61219" />
+				<RunTo X="-1299.145" Y="1548.212" Z="68.61219" />
+				<RunTo X="-1250.403" Y="1445.356" Z="68.60188" />
+				<RunTo X="-1199.574" Y="1453.654" Z="68.49496" />
+				<RunTo X="-1175.996" Y="1461.565" Z="68.43477" />
+				<RunTo X="-1167.597" Y="1522.459" Z="68.43015" />
+				<RunTo X="-1208.409" Y="1542.063" Z="68.5266" />
+				<RunTo X="-1224.057" Y="1528.672" Z="68.53191" />
+				<RunTo X="-1237.193" Y="1540.824" Z="90.30915" />
+				<RunTo X="-1240.113" Y="1564.89" Z="91.09522" />
+				<RunTo X="-1291.361" Y="1616.14" Z="91.76259" />
+			</If>
+			<If Condition="(!HasItem(27467))" >
+				<RunTo X="-1122.161" Y="1718.566" Z="89.35185" />
+				<RunTo X="-1153.609" Y="1697.059" Z="91.13847" />
+				<!-- This reactivates the loot so the bot will loot the boss -->
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<CustomBehavior File="WaitTimer" WaitTime="3000" />
+				<RunTo X="-1156.011" Y="1698.251" Z="91.18531" />
+				<!-- This deactivates the loot so the bot will not loot trash -->
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<RunTo X="-1300.935" Y="1625.185" Z="91.75221" />
+			</If>
+			<If Condition="(!HasItem(27461))" >
+				<RunTo X="-1383.39" Y="1711.82" Z="82.71" />
+				<CustomBehavior File="MyCTM" X="-1407.269" Y="1739.846" Z="81.12672" />
+				<CustomBehavior File="RunMacro" Macro="/cleartarget" />
+				<CustomBehavior File="RunMacro" Macro="/target Vazruden" />
+				<CustomBehavior File="RunMacro" Macro="/cast Auto Attack" />
+				<RunTo X="-1411.422" Y="1742.829" Z="80.89876" />
+				<RunTo X="-1429.336" Y="1771.657" Z="82.02303" />
+				<CustomBehavior File="WaitTimer" WaitTime="7000" />
+				<CustomBehavior File="InteractWith" MobId="185169" ObjectType="GameObject" X="-1429.81" Y="1772.916" Z="82.0765" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				<CustomBehavior File="RunMacro" Macro="/click StaticPopup1Button1" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				<CustomBehavior File="RunMacro" Macro="/script CloseLoot()" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				<CustomBehavior File="InteractWith" MobId="185169" ObjectType="GameObject" X="-1429.81" Y="1772.916" Z="82.0765" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				<CustomBehavior File="RunMacro" Macro="/click StaticPopup1Button1" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				<CustomBehavior File="RunMacro" Macro="/script CloseLoot()" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				<CustomBehavior File="InteractWith" MobId="185169" ObjectType="GameObject" X="-1429.81" Y="1772.916" Z="82.0765" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				<CustomBehavior File="RunMacro" Macro="/click StaticPopup1Button1" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				<CustomBehavior File="RunMacro" Macro="/script CloseLoot()" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				<CustomBehavior File="InteractWith" MobId="185169" ObjectType="GameObject" NumOfTimes="1" X="-1429.81" Y="1772.916" Z="82.0765" />
+				<CustomBehavior File="RunMacro" Macro="/click StaticPopup1Button1" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="RunMacro" Macro="/script CloseLoot()" />
+				<RunTo X="-1300.935" Y="1625.185" Z="91.75221" />
+			</If>
+	<!-- This will jump down the broken ledge to get back to the instance -->
+				<RunTo X="-1317.614" Y="1636.576" Z="91.73563" />
+				<CustomBehavior File="MyCTM" X="-1345.156" Y="1652.946" Z="68.86689" />
+				<RunTo X="-1355.375" Y="1639.065" Z="68.24535" />
+				<CustomBehavior File="MyCTM" X="-1357.292" Y="1633.615" Z="68.4899" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+<!-- Go to Zangarmarsh if item isn't detected. -->
+		<If Condition="!HasItem(27938) &amp;&amp; (!Me.MapId == 3521)">
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="-228.6308" Y="5325.063" Z="158.0343" />
-			<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="473.398" Y="6892.172" Z="63.8242" />
-			<!-- Will need to be tested, going through the pipe -->
-			<CustomBehavior File="MyCTM" X="556.8849" Y="6938.702" Z="19.20102" />
-			<CustomBehavior File="RunMacro" Macro="/dismount" />
-			<CustomBehavior File="MyCTM" X="577.375" Y="6939.144" Z="-38.14312" />
-			<CustomBehavior File="MyCTM" X="597.3696" Y="6923.526" Z="-45.01696" />
-			<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
-			<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
-			<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
-			<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
-			<CustomBehavior File="MyCTM" X="731.085" Y="6866.436" Z="-70.52903" />
-			<CustomBehavior File="MyCTM" X="754.3677" Y="6770.396" Z="-65.59264" />
-			<RunTo X="781.1432" Y="6747.905" Z="-72.5396" />
-			<CustomBehavior File="MyCTM" X="781.7943" Y="6649.561" Z="-72.53793" />
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			<RunTo X="74.3205" Y="-62.86559" Z="-2.753865" />
-			<RunTo X="46.93045" Y="-121.97" Z="-2.851113" />
-			<RunTo X="47.28218" Y="-194.077" Z="-4.22888" />
-			<RunTo X="-76.89607" Y="-278.2396" Z="-1.619523" />
-			<RunTo X="-122.073" Y="-282.3225" Z="6.271142" />
-			<RunTo X="-101.8154" Y="-254.886" Z="24.32912" />
-			<RunTo X="-95.01563" Y="-263.9842" Z="23.98776" />
-			<RunTo X="-117.3544" Y="-365.8348" Z="35.32572" />
-			<RunTo X="-58.72932" Y="-388.5687" Z="30.90822" />
-			<RunTo X="-31.57599" Y="-384.7308" Z="31.97776" />
-			<RunTo X="46.76313" Y="-291.0521" Z="32.83704" />
-			<RunTo X="87.42576" Y="-388.6358" Z="34.0257" />
-			<RunTo X="162.8169" Y="-425.9188" Z="48.11162" />
-			<RunTo X="209.8031" Y="-367.5474" Z="49.70535" />
-			<RunTo X="245.4268" Y="-365.8524" Z="72.27544" />
-			<RunTo X="242.3125" Y="-376.4637" Z="72.51189" />
-			<RunTo X="175.2617" Y="-426.5081" Z="72.55132" />
-			<RunTo X="158.2252" Y="-462.6603" Z="73.7402" />
-			<RunTo X="212.3602" Y="-479.1052" Z="80.47321" />
-			<RunTo X="279.0387" Y="-457.858" Z="81.37157" />
-			<CustomBehavior File="MyCTM" X="334.2325" Y="-477.0282" Z="51.55323" />
-			<CustomBehavior File="MyCTM" X="349.4786" Y="-476.0028" Z="24.29998" />
-			<RunTo X="356.7759" Y="-417.639" Z="45.49258" />
-			<RunTo X="332.5125" Y="-389.0698" Z="44.27592" />
-			<RunTo X="277.5221" Y="-295.5943" Z="20.38326" />
-			<RunTo X="250.0804" Y="-133.0348" Z="28.63717" />
-			<RunTo X="286.3204" Y="-121.2733" Z="29.76845" />
-			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-			<CustomBehavior File="WaitTimer" WaitTime="3000" />
-			<RunTo X="226.8955" Y="-131.1897" Z="25.85031" />
-			<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-			<RunTo X="161.1626" Y="-115.5492" Z="25.28924" />
-			<RunTo X="163.8996" Y="-64.53114" Z="26.93091" />
-			<RunTo X="217.4948" Y="-34.10898" Z="27.56066" />
-			<RunTo X="208.2217" Y="7.880863" Z="27.56066" />
-			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-			<RunTo X="144.1615" Y="14.31324" Z="26.79157" />
-			<CustomBehavior File="RunMacro" Macro="/target The Black Stalker" />
-			<CustomBehavior File="RunMacro" Macro="/cast Auto Attack" />
-			<CustomBehavior File="WaitTimer" WaitTime="3000" />
-			<CustomBehavior File="WaitTimer" WaitTime="3000" />
-			<RunTo X="119.6024" Y="-7.177326" Z="27.56252" />
-			<RunTo X="42.48723" Y="-20.90343" Z="19.18319" />
-			<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-			<CustomBehavior File="MyCTM" X="24.33603" Y="-33.4031" Z="-2.749343" />
-			<RunTo X="5.769754" Y="-14.70335" Z="-2.753463" />
-			<CustomBehavior File="MyCTM" X="5.769754" Y="-16.50335" Z="-2.753463" />
 		</If>
+			<If Condition="!HasItem(27938)">
+				<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="473.398" Y="6892.172" Z="63.8242" />
+	<!-- Will need to be tested, going through the pipe -->
+				<CustomBehavior File="MyCTM" X="556.8849" Y="6938.702" Z="19.20102" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<CustomBehavior File="MyCTM" X="577.375" Y="6939.144" Z="-38.14312" />
+				<CustomBehavior File="MyCTM" X="597.3696" Y="6923.526" Z="-45.01696" />
+				<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
+				<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
+				<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
+				<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
+				<CustomBehavior File="MyCTM" X="731.085" Y="6866.436" Z="-70.52903" />
+				<CustomBehavior File="MyCTM" X="754.3677" Y="6770.396" Z="-65.59264" />
+				<RunTo X="781.1285" Y="6747.361" Z="-72.5371" />
+				<CustomBehavior File="MyCTM" X="781.1285" Y="6845.067" Z="-72.5371" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+				<!--  Underbog Instance -->
+				<If Condition="(Me.MapId == 3716)">
+				<RunTo X="74.3205" Y="-62.86559" Z="-2.753865" />
+				<RunTo X="46.93045" Y="-121.97" Z="-2.851113" />
+				<RunTo X="47.28218" Y="-194.077" Z="-4.22888" />
+				<RunTo X="-76.89607" Y="-278.2396" Z="-1.619523" />
+				<RunTo X="-122.073" Y="-282.3225" Z="6.271142" />
+				<RunTo X="-101.8154" Y="-254.886" Z="24.32912" />
+				<RunTo X="-95.01563" Y="-263.9842" Z="23.98776" />
+				<RunTo X="-117.3544" Y="-365.8348" Z="35.32572" />
+				<RunTo X="-58.72932" Y="-388.5687" Z="30.90822" />
+				<RunTo X="-31.57599" Y="-384.7308" Z="31.97776" />
+				<RunTo X="46.76313" Y="-291.0521" Z="32.83704" />
+				<RunTo X="87.42576" Y="-388.6358" Z="34.0257" />
+				<RunTo X="162.8169" Y="-425.9188" Z="48.11162" />
+				<RunTo X="209.8031" Y="-367.5474" Z="49.70535" />
+				<RunTo X="245.4268" Y="-365.8524" Z="72.27544" />
+				<RunTo X="242.3125" Y="-376.4637" Z="72.51189" />
+				<RunTo X="175.2617" Y="-426.5081" Z="72.55132" />
+				<RunTo X="158.2252" Y="-462.6603" Z="73.7402" />
+				<RunTo X="212.3602" Y="-479.1052" Z="80.47321" />
+				<RunTo X="279.0387" Y="-457.858" Z="81.37157" />
+				<CustomBehavior File="MyCTM" X="334.2325" Y="-477.0282" Z="51.55323" />
+				<CustomBehavior File="MyCTM" X="349.4786" Y="-476.0028" Z="24.29998" />
+				<RunTo X="356.7759" Y="-417.639" Z="45.49258" />
+				<RunTo X="332.5125" Y="-389.0698" Z="44.27592" />
+				<RunTo X="277.5221" Y="-295.5943" Z="20.38326" />
+				<RunTo X="250.0804" Y="-133.0348" Z="28.63717" />
+				<RunTo X="286.3204" Y="-121.2733" Z="29.76845" />
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<CustomBehavior File="WaitTimer" WaitTime="3000" />
+				<RunTo X="226.8955" Y="-131.1897" Z="25.85031" />
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<RunTo X="161.1626" Y="-115.5492" Z="25.28924" />
+				<RunTo X="163.8996" Y="-64.53114" Z="26.93091" />
+				<RunTo X="217.4948" Y="-34.10898" Z="27.56066" />
+				<RunTo X="208.2217" Y="7.880863" Z="27.56066" />
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<RunTo X="144.1615" Y="14.31324" Z="26.79157" />
+				<CustomBehavior File="RunMacro" Macro="/target The Black Stalker" />
+				<CustomBehavior File="RunMacro" Macro="/cast Auto Attack" />
+				<CustomBehavior File="WaitTimer" WaitTime="3000" />
+				<CustomBehavior File="WaitTimer" WaitTime="3000" />
+				<RunTo X="119.6024" Y="-7.177326" Z="27.56252" />
+				<RunTo X="42.48723" Y="-20.90343" Z="19.18319" />
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<CustomBehavior File="MyCTM" X="24.33603" Y="-33.4031" Z="-2.749343" />
+				<RunTo X="5.769754" Y="-14.70335" Z="-2.753463" />
+				<CustomBehavior File="MyCTM" X="5.769754" Y="-16.50335" Z="-2.753463" />
+			</If>
 	</QuestOrder>
 </HBProfile>
