@@ -1,0 +1,13 @@
+<HBProfile creator="EchoTiger" version="1.0">
+	<Name>Nightslayer Armor (RC) HEROIC Drops</Name>
+	
+	<QuestOrder>
+		<If Condition="(!HasItem(27938)) || (!HasItem(27461)) || (!HasItem(32769)) || (!HasItem(27545)) ||  (!HasItem(27467)) || (!HasItem(27825))" >
+			<CustomBehavior File="LoadProfile" ProfileName="Scripts\[HD] Nightslayer Armor (RC)" />
+		<ElseIf Condition="(!HasItem(27995))" >
+			<CustomBehavior File="LoadProfile" ProfileName="Scripts\[ND] Nightslayer ARmor(RC)" />
+			</ElseIf>
+		</If>
+	<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="15" ExpiryTime="30" ExpiryAction="InputEnabled_Continue" Text="If you're seeing this message, that means that every item this profile farms is already in your inventory already.\n If you'd like to re-farm, simply put the items you want to re-farm into your bank so the bot cannot detect them." />
+</QuestOrder>
+</HBProfile>
