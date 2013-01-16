@@ -45,10 +45,40 @@
 		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-		<If Condition="!HasItem(27824)">
+<!-- Eastern Kingdoms to Outlands  -->
+		<If Condition="(Me.IsAlliance) &amp;&amp; (Me.MapId == 0)">
+			<CustomBehavior File="FlyTo" DestName="Mage Tower" X="-8999.616" Y="862.2393" Z="129.4042" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="-9005.53" Y="869.2928" Z="129.693" />
+			<CustomBehavior File="InteractWith" MobId="195141" ObjectType="GameObject" X="9007.58" Y="871.8698" Z="129.6922" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" DestName="Outland Portal" X="-11897.69" Y="-3206.117" Z="-14.68643" />
+			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+<!-- Kalimdor to Outlands -->
+		<If Condition="(Me.IsHorde) &amp;&amp; (Me.MapId == 1)">
+			<CustomBehavior File="FlyTo" DestName="Underground Portal" X="1748.539" Y="-4212.131" Z="48.02327" />
+			<RunTo X="1783.884" Y="-4232.059" Z="40.51676" />
+			<RunTo X="1743.324" Y="-4258.181" Z="25.44608" />
+			<RunTo X="1732.297" Y="-4278.206" Z="17.66895" />
+			<RunTo X="1744.604" Y="-4300.797" Z="13.82069" />
+			<RunTo X="1764.898" Y="-4308.886" Z="6.258134" />
+			<RunTo X="1780.943" Y="-4294.353" Z="6.237029" />
+			<RunTo X="1801.448" Y="-4334.859" Z="-11.19072" />
+			<RunTo X="1770.239" Y="-4326.302" Z="-8.284097" />
+			<CustomBehavior File="WaitTimer" WaitTime="7000" />
+			<CustomBehavior File="InteractWith" MobId="195142" ObjectType="Gameobject" X="1768.45" Y="-4325.86" Z="-8.3711" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" DestName="Outland Portal" X="-11897.69" Y="-3206.117" Z="-14.68643" />
+			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+<!-- First Piece -->
+		<If Condition="!HasItem(27902)">
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 		</If>
-			<If Condition="!HasItem(27824) &amp;&amp; (Me.ZoneId == 3519)">
+			<If Condition="!HasItem(27902) &amp;&amp; (Me.ZoneId == 3519)">
 				<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3479.899" Y="4944.022" Z="-72.31544" />
 				<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3554.982" Y="4943.268" Z="-101.3959" />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
@@ -125,7 +155,7 @@
 				<CustomBehavior File="MyCTM" X="-3652.338" Y="4943.424" Z="-101.0486" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			<!--Leave after item is obtained -->
-				<If Condition="Has.Item(27902)">
+				<If Condition="HasItem(27902)">
 					<RunTo X="-3558.559" Y="4943.185" Z="-101.0486" />
 					<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" X="-3556.407" Y="4943.071" Z="-101.1189" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
@@ -133,19 +163,21 @@
 					<CustomBehavior File="FlyTo" X="-3224.711" Y="4939.002" Z="172.7665" />	
 				</If>
 			</While>
-		<If Condition="!Has.Item(28374) || !Has.Item(28317)">
-			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3125.266" Y="1679.692" Z="537.3467" />
+		<!-- Second Piece -->
+		<If Condition="!HasItem(28374) || !HasItem(28317)">
+			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
 		</If>
-		<If Condition="!HasItem(27824)">
-			<CustomBehavior File="FlyTo" DestName="The Arcatraz" X="3290.639" Y="1386.475" Z="506.3315" />
-		</If>
-			<While Condition="!Has.Item(27824)">
-				<RunTo X="3310.815" Y="1334.649" Z="505.5603" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<CustomBehavior File="WaitTime" WaitTimer="1000" />
+		<If Condition="!HasItem(28374)" >
+			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
+			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="MyCTM" X="3308.015" Y="1343.598" Z="505.5602" />
+			<While Condition="!HasItem(28374)">
+				<CustomBehavior File="MyCTM" X="3310.815" Y="1334.649" Z="505.5603" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<CustomBehavior File="InteractWith" MobId="184320" ObjectType="GameObject" X="3311.218" Y="1333.716" Z="506.5972" />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<RunTo X="3312.246" Y="1331" Z="505.5586" />
+				<CustomBehavior File="MyCTM" X="3312.246" Y="1331" Z="505.5586" />
 				<CustomBehavior File="MyCTM" X="3313.291" Y="1326.334" Z="505.5586" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<RunTo X="42.13171" Y="0.04346484" Z="-0.5121495" />
@@ -164,7 +196,7 @@
 				<RunTo X="254.7623" Y="-126.6565" Z="-10.12196" />
 				<RunTo X="280.1921" Y="-120.3836" Z="-10.12196" />
 				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-				<RunTo X="-159.372" Y="-263.716" Z="17.0859" />
+				<RunTo X="269.1254" Y="-113.7357" Z="-10.1228" />
 				<CustomBehavior File="WaitTimer" WaitTime="5000" />
 				<RunTo X="272.531" Y="-120.4023" Z="-10.12318" />
 				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
@@ -182,19 +214,24 @@
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
-				<CustomBehavior File="WaitTimer" WaitTime="30000" />
-				<CustomBehavior File="InteractWith" MobId="184320" ObjectType="GameObject" X="3311.218" Y="1333.716" Z="506.5972" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="WaitTimer" WaitTime="300000" />
+				<If Condition="HasItem(28374) &amp;&amp; !HasItem(28317)">
+					<CustomBehavior File="MyCTM" X="3286.609" Y="1396.927" Z="502.4123" />
+					<CustomBehavior File="FlyTo" X="3302.249" Y="1401.441" Z="549.3893" />
+					<CustomBehavior File="MyCTM" DestName="TheBotanica" X="3363.319" Y="1453.657" Z="331.8578" />
+				</If>
 			</While>
-		<If Condition="!HasItem(28317)">
-			<CustomBehavior File="FlyTo" DestName="The Botanica" X="3385.058" Y="1475.748" Z="180.5975" />
-			<RunTo X="3405.936" Y="1489.141" Z="182.837" />
-			<CustomBehavior File="RunMacro" Macro="/dismount" />
-			<RunTo X="3414.166" Y="1482.765" Z="182.837" />
-			<CustomBehavior File="MyCTM" X="3417.561" Y="1480.895" Z="182.837" />
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
-			<While Condition="!Has.Item(28317)" >
+	<!-- Second -->
+		<If Condition="!HasItem(28317)" >
+			<CustomBehavior File="MyCTM" DestName="The Botanica" X="3282.688" Y="1593.681" Z="215.7932" />
+			<CustomBehavior File="MyCTM" DestName="The Botanica" X="3379.306" Y="1509.884" Z="180.0212" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="MyCTM" X="3405.936" Y="1489.141" Z="182.837" />
+			<CustomBehavior File="MyCTM" X="3413.664" Y="1482.84" Z="182.8369" />
+			<CustomBehavior File="MyCTM" X="3416.938" Y="1480.998" Z="182.8368" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<While Condition="!HasItem(28317)" >
 				<RunTo X="2.533957" Y="9.224449" Z="-1.575816" />
 				<RunTo X="-1.047988" Y="41.41841" Z="-5.663148" />
 				<RunTo X="-0.7909028" Y="142.3757" Z="-5.540251" />
@@ -242,7 +279,7 @@
 				<RunTo X="-1.828528" Y="27.93352" Z="-5.763819" />
 				<RunTo X="16.14104" Y="-3.695587" Z="-1.069623" />
 				<RunTo X="45.74797" Y="-33.98659" Z="-1.098728" />
-				<CusomtBehavior File="MyCTM" X="48.53382" Y="-36.81382" Z="-1.098728" />
+				<CustomBehavior File="MyCTM" X="48.53382" Y="-36.81382" Z="-1.098728" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
@@ -251,7 +288,8 @@
 				<CustomBehavior File="MyCTM" X="3417.561" Y="1480.895" Z="182.837" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</While>
-		<If Condition="Has.Item(28374) &amp;&amp; Has.Item(28317) &amp;&amp; Has.Item(27902)" >
+		</If>
+		<If Condition="HasItem(28374) &amp;&amp; HasItem(28317) &amp;&amp; HasItem(27902)" >
 			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="All normal difficulty items have been obtained!\nIf you still require some of the heroic items, you can re-run the [HD] profile inside of the Scripts folder.\n Or, you can just run the Netherwind profile outside of the script folder." />
 		</If>
 		</QuestOrder>
