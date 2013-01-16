@@ -1,7 +1,7 @@
 <HBProfile creator="EchoTiger" version="1.0">
-	<Name>Netherwind Regalia Mog-Farm</Name>
+<Name>[HD] Netherwind Regalia (RC)</Name>
 	
-	<MinLevel>60</MinLevel>c 
+	<MinLevel>60</MinLevel>
 	<MaxLevel>92</MaxLevel>
    
 	<MinDurability>0.001</MinDurability>
@@ -42,7 +42,8 @@
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Red" />
 		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Red" />
-
+<!-- Enable Loot -->
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 <!-- Sets Dungeon Difficulty to Heroic -->
 		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
 <!-- Eastern Kingdoms to Outlands  -->
@@ -113,6 +114,7 @@
 			<RunTo X="-1355.375" Y="1639.065" Z="68.24535" />
 			<CustomBehavior File="MyCTM" X="-1357.292" Y="1633.615" Z="68.4899" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
 <!-- Go to Zangarmarsh if item(s) aren't detected. -->
 		<If Condition="!HasItem(27668)">
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="511.3972" Y="6927.3" Z="256.1042" />

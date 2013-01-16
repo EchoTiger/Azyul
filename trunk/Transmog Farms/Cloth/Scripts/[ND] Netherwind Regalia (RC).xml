@@ -1,5 +1,5 @@
 <HBProfile creator="EchoTiger" version="1.0">
-	<Name>Netherwind Regalia Mog-Farm</Name>
+<Name>[ND] Netherwind Regalia (RC)</Name>
 	
 	<MinLevel>60</MinLevel>c 
 	<MaxLevel>92</MaxLevel>
@@ -41,6 +41,8 @@
 	<QuestOrder IgnoreCheckpoints = "False">
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Red" />
+<!-- Enable Loot -->
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 		<If Condition="!HasItem(27824)">
