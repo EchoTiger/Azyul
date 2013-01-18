@@ -242,7 +242,8 @@
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</While>
 		</If>
-	<If Condition="HasItem(27790) &amp;&amp; HasItem(27897)" >
+	<If Condition="HasItem(27790) &amp;&amp; HasItem(27897) &amp;&amp; !HasItem(28221)" >
+			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
 			<CustomBehavior File="Message" Text="NOTE: The bot will now leave Outlands to go to Old Hillsbrad for the boots." LogColor="Red" />
 <!-- Leaves Outlands -->
 		<If Condition="(Me.MapId == 466)">
@@ -307,29 +308,23 @@
 			<CustomBehavior File="MyCTM" X="-8344.256" Y="-4058.107" Z="-207.9396" />
 			<CustomBehavior File="MyCTM" X="-8330.626" Y="-4053.500" Z="-207.6859" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		<!-- Inside inside -->
+		<!-- Inside Instance -->
 			<RunTo X="2711.404" Y="1319.536" Z="14.05317" />
 			<RunTo X="2595.088" Y="1220.342" Z="16.10495" />
 			<RunTo X="2423.943" Y="1248.542" Z="59.53191" />
 			<RunTo X="2381.745" Y="1182.629" Z="66.72906" />
-			<RunTo X="2241.757" Y="965.6864" Z="54.49939" />
-			<RunTo X="2285.54" Y="829.4135" Z="54.61941" />
-			<RunTo X="2186.432" Y="681.6431" Z="34.40773" />
-			<RunTo X="2157.858" Y="560.961" Z="48.27604" />
-			<RunTo X="2041.791" Y="266.6445" Z="62.84593" />
-			<RunTo X="2088.952" Y="206.1359" Z="64.88351" />
-			<RunTo X="2145.624" Y="165.9546" Z="64.93779" />
-			<RunTo X="2143.526" Y="124.2644" Z="75.91357" />
-			<RunTo X="2165.625" Y="135.9956" Z="85.02505" />
-			<RunTo X="2173.112" Y="150.0587" Z="87.90491" />
-			<RunTo X="2208.735" Y="128.784" Z="87.95646" />
-			<RunTo X="2197.541" Y="109.3174" Z="89.45539" />
-			<RunTo X="2207.818" Y="102.8077" Z="89.45539" />
-			<RunTo X="2215.96" Y="117.0947" Z="89.4548" />
-			<RunTo X="2232.325" Y="108.0293" Z="82.6636" />
-			<RunTo X="2234.879" Y="112.7691" Z="82.30142" />
-			<RunTo X="2230.741" Y="117.2191" Z="82.29063" />
-
+			<RunTo X="2376.687" Y="1179.388" Z="65.63735" />
+			<CustomBehavior File="InteractWith" MobId="18723" X="2376.687" Y="1179.388" Z="65.63735" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" NumOfTimes="1" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/script CloseGossip()" WaitTime="1000" />
+			<RunTo X="2382.525" Y="1171.903" Z="66.57331" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="InteractWith" MobId="18725" X="2382.525" Y="1171.903" Z="66.57331" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" NumOfTimes="1" />
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="You must complete the rest of this instance manually.\nGo into the houses, look for barrels, rightclick them. There's 5 houses and 5 barrels.\nOnce you're done, go to the castle in the middle, then go into the basement.\nOnce you're in the basement, talk to Thrall and escrot him.\nA developmental script is being wrote for this, it can be found in the XML TESTING folder. " />
 		</If>
 	</If>
 	</QuestOrder>
