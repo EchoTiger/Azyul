@@ -71,7 +71,7 @@
 			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
-		<!-- This code checks to see if the player is located in Outlands.  If so, it shall proceed to the instances. -->
+<!-- Check item and go to spot if it isn't detected -->
 		<If Condition="!HasItem(27912)">
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 			<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3479.899" Y="4944.022" Z="-72.31544" />
@@ -159,13 +159,8 @@
 				<CustomBehavior File="FlyTo" X="-3224.711" Y="4939.002" Z="172.7665" />	
 			</If>
 			</While>
-	<!--Fly to Zangarmarsh if item isn't detected -->
-		<If Condition="!HasItem(27806)  &amp;&amp; (!Me.ZoneId == 3521)" >
-			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="511.3972" Y="6927.3" Z="256.1042" />
-			<CustomBehavior File="FlyTo" DestName="Into the drink!!" X="473.400" Y="6892.175" Z="63.8240" />
-		</If>
-	<!-- Navigate into Coilfang if already in Zangarmarsh -->
-		<If Condition="!HasItem(27806) &amp;&amp; (Me.ZoneId == 3521)" >
+	<!-- If item is required - go to Zangarmarsh+Navigate through Coilfang -->
+		<If Condition="!HasItem(27806)" >
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh-HIGH POINT" X="511.3972" Y="6927.3" Z="256.1042" />
 			<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="473.400" Y="6892.175" Z="63.8240" />
 			<CustomBehavior File="MyCTM" X="556.8849" Y="6938.702" Z="19.20102" />
