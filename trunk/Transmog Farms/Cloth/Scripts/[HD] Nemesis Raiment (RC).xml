@@ -102,7 +102,7 @@
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</ElseIf>
 		</If>
-	<!--  Underbog Instance -->
+	<!--  Underbog Instance (Helment) -->
 			<If Condition="(Me.ZoneId == 3716)">
 				<RunTo X="74.3205" Y="-62.86559" Z="-2.753865" />
 				<RunTo X="46.93045" Y="-121.97" Z="-2.851113" />
@@ -158,7 +158,11 @@
 				<CustomBehavior File="MyCTM" X="530.261" Y="6910.107" Z="30.74072" />
 				<CustomBehavior File="FlyTo" X="421.8152" Y="6827.062" Z="141.7544" />
 			</If>
-	<!-- Mana-Tombs -->
+<!-- Go To: Terokkar Forest - Ring of Observance HIGH-SPOT Checkpoint -->
+		<If Condition="!HasItem(27821)">
+			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
+		</If>
+	<!-- Mana-Tombs (Boots) -->
 			<If Condition="!HasItem(27821)">
 				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3334.946" Y="4967.088" Z="-33.90321" />
 				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3233.358" Y="4942.496" Z="-97.42279" />
@@ -229,9 +233,6 @@
 					<RunTo X="-3234.764" Y="4942.444" Z="-101.3949" />
 					<CustomBehavior File="FlyTo" X="-3303.953" Y="4945.778" Z="-19.80702" />
 				</If>
-		<If Condition="!HasItem(27493)">
-			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
-		</If>
 	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="In development." />
 	</QuestOrder>
 </HBProfile>

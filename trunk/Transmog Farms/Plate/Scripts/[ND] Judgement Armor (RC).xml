@@ -74,7 +74,8 @@
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 		<!-- This code checks to see if the player is located in Outlands.  If so, it shall proceed to the instances. -->
-		<If Condition="!HasItem(27897)">
+	<!-- Navigation to Ring of Observance -->
+		<If Condition="!HasItem(27897)"> <!-- Chest -->
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 			<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3479.899" Y="4944.022" Z="-72.31544" />
 			<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3554.982" Y="4943.268" Z="-101.3959" />
@@ -86,6 +87,7 @@
 			<CustomBehavior File="MyCTM" X="-3652.338" Y="4943.424" Z="-101.0486" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
+		<!-- Chest Farm -->
 			<While Condition="!HasItem(27897)">
 				<RunTo X="-30.91919" Y="-0.2588556" Z="-1.12795" />
 				<RunTo X="-37.51418" Y="-10.6444" Z="-1.129536" />
@@ -114,7 +116,7 @@
 				<RunTo X="-379.2192" Y="-258.3485" Z="12.68749" />
 				<RunTo X="-367.7552" Y="-266.0674" Z="12.68749" />
 				<RunTo X="-355.5928" Y="-266.6315" Z="12.68749" />
-			<!-- Blackheart the Inciter -->
+			<!-- Blackheart the Inciter, required to kill to open doors -->
 				<RunTo X="-323.4356" Y="-263.7251" Z="12.6847" />
 				<CustomBehavior File="WaitTimer" WaitTime="10000" />
 				<RunTo X="-289.3597" Y="-263.7968" Z="12.68329" />
@@ -122,7 +124,7 @@
 				<RunTo X="-264.1591" Y="-250.5724" Z="12.11186" />
 				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
 				<RunTo X="-235.3362" Y="-253.0171" Z="17.08637" />
-			<!-- Grandmaster Vorpil -->
+			<!-- Grandmaster Vorpil, Chest Drop -->
 				<RunTo X="-252.5054" Y="-263.2067" Z="17.0864" />
 				<CustomBehavior File="WaitTimer" WaitTime="5000" />
 				<RunTo X="-257.2099" Y="-263.6413" Z="17.0864" />
@@ -147,7 +149,7 @@
 				<RunTo X="-3647.243" Y="4943.371" Z="-101.0486" />
 				<CustomBehavior File="MyCTM" X="-3652.338" Y="4943.424" Z="-101.0486" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			<!--Leave after item is obtained -->
+			<!--Leave after Chest is obtained -->
 			<If Condition="HasItem(27897)">
 				<RunTo X="-3558.559" Y="4943.185" Z="-101.0486" />
 				<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" X="-3556.407" Y="4943.071" Z="-101.1189" />
@@ -156,7 +158,7 @@
 				<CustomBehavior File="FlyTo" X="-3224.711" Y="4939.002" Z="172.7665" />	
 			</If>
 			</While>
-		<If Condition="!HasItem(27790)" >
+		<If Condition="!HasItem(27790)" > <!-- Helmet -->
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh-HIGH POINT" X="511.3972" Y="6927.3" Z="256.1042" />
 			<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="473.400" Y="6892.175" Z="63.8240" />
 			<CustomBehavior File="MyCTM" X="556.8849" Y="6938.702" Z="19.20102" />
@@ -173,7 +175,8 @@
 			<CustomBehavior File="MyCTM" X="817.9991" Y="6942.93" Z="-80.62702" />
 			<CustomBehavior File="MyCTM" X="818.2396" Y="6950.100" Z="-80.61687" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			<While Condition="!HasItem(27790)" >
+		<!--Helmet Farm -->
+			<While Condition="!HasItem(27790)" > <!--Helmet -->
 				<RunTo X="0.1361017" Y="5.8794" Z="-4.141092" />
 				<RunTo X="-7.036127" Y="-21.77518" Z="-6.840569" />
 				<RunTo X="-2.268512" Y="-64.00349" Z="-19.92402" />
@@ -245,6 +248,7 @@
 	<If Condition="HasItem(27790) &amp;&amp; HasItem(27897) &amp;&amp; !HasItem(28221)" >
 			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
 			<CustomBehavior File="Message" Text="NOTE: The bot will now leave Outlands to go to Old Hillsbrad for the boots." LogColor="Red" />
+<!-- Navigational Script Block to go to Old Hillsbrad -->
 <!-- Leaves Outlands -->
 		<If Condition="(Me.MapId == 466)">
 			<CustomBehavior File="FlyTo" DestName="Leaving Outlands" X="-232.59" Y="1266.096" Z="386.9434" />
@@ -325,6 +329,7 @@
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" NumOfTimes="1" />
 			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="You must complete the rest of this instance manually.\nGo into the houses, look for barrels, rightclick them. There's 5 houses and 5 barrels.\nOnce you're done, go to the castle in the middle, then go into the basement.\nOnce you're in the basement, talk to Thrall and escrot him.\nA developmental script is being wrote for this, it can be found in the XML TESTING folder. " />
+		<!-- Check the XML TESTING folder -->
 		</If>
 	</If>
 	</QuestOrder>

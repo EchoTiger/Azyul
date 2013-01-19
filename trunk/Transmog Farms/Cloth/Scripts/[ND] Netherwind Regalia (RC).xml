@@ -1,7 +1,7 @@
 <HBProfile creator="EchoTiger" version="1.0">
 <Name>[ND] Netherwind Regalia (RC)</Name>
 	
-	<MinLevel>60</MinLevel>c 
+	<MinLevel>60</MinLevel>
 	<MaxLevel>92</MaxLevel>
    
 	<MinDurability>0.001</MinDurability>
@@ -74,10 +74,11 @@
 			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
-<!-- First Piece -->
+	<!-- Goto Ring of Observance to farm boots -->
 		<If Condition="!HasItem(27902)">
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 		</If>
+		<!-- Go to Shadow Labyrinth from Ring of Observance Checkpoint -->
 			<If Condition="!HasItem(27902) &amp;&amp; (Me.ZoneId == 3519)">
 				<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3479.899" Y="4944.022" Z="-72.31544" />
 				<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3554.982" Y="4943.268" Z="-101.3959" />
@@ -89,6 +90,7 @@
 				<CustomBehavior File="MyCTM" X="-3652.338" Y="4943.424" Z="-101.0486" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
+		<!-- Repeatedly run instance until Boots are obtained -->
 			<While Condition="!HasItem(27902)">
 				<RunTo X="-30.91919" Y="-0.2588556" Z="-1.12795" />
 				<RunTo X="-37.51418" Y="-10.6444" Z="-1.129536" />
@@ -155,7 +157,7 @@
 				<RunTo X="-3647.243" Y="4943.371" Z="-101.0486" />
 				<CustomBehavior File="MyCTM" X="-3652.338" Y="4943.424" Z="-101.0486" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			<!--Leave after item is obtained -->
+		<!--Leave after item is obtained -->
 			<If Condition="HasItem(27902)">
 				<RunTo X="-3558.559" Y="4943.185" Z="-101.0486" />
 				<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" X="-3556.407" Y="4943.071" Z="-101.1189" />
@@ -164,10 +166,11 @@
 				<CustomBehavior File="FlyTo" X="-3224.711" Y="4939.002" Z="172.7665" />	
 			</If>
 			</While>
-		<!-- Second Piece -->
+	<!-- Go to Tempest Keep Checkpoint if items are needed -->
 		<If Condition="!HasItem(28374) || !HasItem(28317)">
 			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
 		</If>
+	<!-- Shoulder Farm -->
 		<If Condition="!HasItem(28374)" >
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
@@ -223,7 +226,7 @@
 				</If>
 			</While>
 		</If>
-	<!-- Second -->
+	<!-- Glove Farm -->
 		<If Condition="!HasItem(28317)" >
 			<CustomBehavior File="MyCTM" DestName="The Botanica" X="3282.688" Y="1593.681" Z="215.7932" />
 			<CustomBehavior File="MyCTM" DestName="The Botanica" X="3379.306" Y="1509.884" Z="180.0212" />
@@ -290,6 +293,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</While>
 		</If>
+<!-- Complete! -->
 		<If Condition="HasItem(28374) &amp;&amp; HasItem(28317) &amp;&amp; HasItem(27902)" >
 			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="All normal difficulty items have been obtained!\nIf you still require some of the heroic items, you can re-run the [HD] profile inside of the Scripts folder.\n Or, you can just run the Netherwind profile outside of the script folder." />
 		</If>
