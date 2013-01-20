@@ -76,7 +76,7 @@
 		</If>
 	<!--Sethekk Halls-->
 		<If Condition="!HasItem(27919)" > <!--Boots-->
-			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
+			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />b
 			<CustomBehavior File="MyCTM" X="-3361.667" Y="4793.479" Z="-101.3955" />
 			<CustomBehavior File="MyCTM" X="-3362.443" Y="4779.643" Z="-101.3952" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
@@ -127,11 +127,11 @@
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
 			<CustomBehavior File="WaitTimer" WaitTime="300000" />
+			<If Condition="HasItem(27919)">
+				<RunTo X="-3361.623" Y="4753.329" Z="-101.3959" />
+				<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
+			</If>
 		</While>
-		<If Condition="HasItem(27919)">
-			<RunTo X="-3361.623" Y="4753.329" Z="-101.3959" />
-			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
-		</If>
 	<!-- Go to Tempest Keep Checkpoint if items are needed -->
 		<If Condition="!HasItem(28304) || !HasItem(28250)">
 			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
@@ -209,7 +209,7 @@
 			    	<CustomBehavior File="MyCTM" X="2896.612" Y="1577.101" Z="248.8645" />
 			    	<CustomBehavior File="MyCTM" X="2867.058" Y="1550.627" Z="252.1589" />
 			    	<CustomBehavior File="RunMacro" Macro="/dismount" />
-			    	<CustomBehavior File="MyCTM" X="2858.469" Y="1542.129" Z="252.1589" />
+			    	<CustomBehavior File="MyCTM" X="2861.285" Y="1544.854" Z="251.5551" />
 			    	<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			    </If>
 			</While>
@@ -223,7 +223,7 @@
 	    	<CustomBehavior File="MyCTM" X="2867.058" Y="1550.627" Z="252.1589" />
 	    	<CustomBehavior File="RunMacro" Macro="/dismount" />
 	    	<While Condition="!HasItem(28250)" >
-	    		<CustomBehavior File="MyCTM" X="2858.469" Y="1542.129" Z="252.1589" />
+	    		<CustomBehavior File="MyCTM" X="2861.285" Y="1544.854" Z="251.5551" />
 	    		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			    <RunTo X="-11.6340" Y="0.3015" Z="-1.8136"  />
 			    <RunTo X="4.0430" Y="12.7978" Z="-1.8136"  />
