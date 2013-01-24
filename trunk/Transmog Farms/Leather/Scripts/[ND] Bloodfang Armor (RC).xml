@@ -1,0 +1,173 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>[ND] Bloodfang Armor (RC)</Name>
+	
+	<MinLevel>60</MinLevel>
+	<MaxLevel>92</MaxLevel>
+   
+	<MinDurability>0.001</MinDurability>
+	<MinFreeBagSlots>1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>True</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+    </AvoidMobs>
+
+	<ProtectedItems>
+		<Item Name="Cowl of the Guiltless" Entry="28206" />
+		<Item Name="Mantle of the Unforgiven" Entry="27831" />
+		<Item Name="Chestguard of No Remorse" Entry="27787" />
+		<Item Name="Gloves of the Unbound" Entry="28396" />
+		<Item Name="Liar's Cord" Entry="28214" />
+		<Item Name="Leggings of the Unrepentant" Entry="27867" />
+		<Item Name="Boots of the Unjust" Entry="27867" />
+	</ProtectedItems>
+	
+	<Blackspots></Blackspots>
+
+	<QuestOrder IgnoreCheckpoints = "False">
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Red" />
+		<!-- Enable Loot -->
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+<!-- Eastern Kingdoms to Outlands  -->
+		<If Condition="(Me.IsAlliance) &amp;&amp; (Me.MapId == 0)">
+			<CustomBehavior File="FlyTo" DestName="Mage Tower" X="-8999.616" Y="862.2393" Z="129.4042" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="-9005.53" Y="869.2928" Z="129.693" />
+			<CustomBehavior File="InteractWith" MobId="195141" ObjectType="GameObject" X="9007.58" Y="871.8698" Z="129.6922" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" DestName="Outland Portal" X="-11897.69" Y="-3206.117" Z="-14.68643" />
+			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+<!-- Kalimdor to Outlands -->
+		<If Condition="(Me.IsHorde) &amp;&amp; (Me.MapId == 1)">
+			<CustomBehavior File="FlyTo" DestName="Underground Portal" X="1748.539" Y="-4212.131" Z="48.02327" />
+			<RunTo X="1783.884" Y="-4232.059" Z="40.51676" />
+			<RunTo X="1743.324" Y="-4258.181" Z="25.44608" />
+			<RunTo X="1732.297" Y="-4278.206" Z="17.66895" />
+			<RunTo X="1744.604" Y="-4300.797" Z="13.82069" />
+			<RunTo X="1764.898" Y="-4308.886" Z="6.258134" />
+			<RunTo X="1780.943" Y="-4294.353" Z="6.237029" />
+			<RunTo X="1801.448" Y="-4334.859" Z="-11.19072" />
+			<RunTo X="1770.239" Y="-4326.302" Z="-8.284097" />
+			<CustomBehavior File="WaitTimer" WaitTime="7000" />
+			<CustomBehavior File="InteractWith" MobId="195142" ObjectType="Gameobject" X="1768.45" Y="-4325.86" Z="-8.3711" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" DestName="Outland Portal" X="-11897.69" Y="-3206.117" Z="-14.68643" />
+			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+<!-- Begin Normal Farms -->
+		<If Condition="!HasItem(27787)" > <!-- Chest -->
+			<CustomBehavior File="FlyTo" DestName="Zangarmarsh-HIGH POINT" X="511.3972" Y="6927.3" Z="256.1042" />
+			<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="473.400" Y="6892.175" Z="63.8240" />
+			<CustomBehavior File="MyCTM" X="556.8849" Y="6938.702" Z="19.20102" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="MyCTM" X="577.375" Y="6939.144" Z="-38.14312" />
+			<CustomBehavior File="MyCTM" X="597.3696" Y="6923.526" Z="-45.01696" />
+			<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
+			<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
+			<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
+			<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
+			<CustomBehavior File="MyCTM" X="731.085" Y="6866.436" Z="-70.52903" />
+			<CustomBehavior File="MyCTM" X="739.475" Y="6899.836" Z="-65.54513" />
+			<CustomBehavior File="MyCTM" X="818.925" Y="6938.217" Z="-80.51434" />
+			<CustomBehavior File="MyCTM" X="817.9991" Y="6942.93" Z="-80.62702" />
+			<While Condition="!HasItem(27787)" > <!--Chest, Steamvaults -->
+				<CustomBehavior File="MyCTM" X="818.2396" Y="6950.100" Z="-80.61687" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<RunTo X="0.1361017" Y="5.8794" Z="-4.141092" />
+				<RunTo X="-7.036127" Y="-21.77518" Z="-6.840569" />
+				<RunTo X="-2.268512" Y="-64.00349" Z="-19.92402" />
+				<RunTo X="-8.963749" Y="-75.63184" Z="-19.92402" />
+				<RunTo X="1.521014" Y="-99.39371" Z="-22.5123" />
+				<RunTo X="27.78422" Y="-140.8521" Z="-22.44012" />
+				<RunTo X="20.31867" Y="-173.5927" Z="-22.35283" />
+				<RunTo X="34.52975" Y="-212.5906" Z="-22.61285" />
+				<RunTo X="4.144973" Y="-252.6403" Z="-22.46307" />
+				<RunTo X="39.03321" Y="-298.1796" Z="-10.25186" />
+				<RunTo X="58.51269" Y="-312.2123" Z="-7.870883" />
+				<RunTo X="88.90981" Y="-316.0824" Z="-7.870883" />
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="10" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<RunTo X="96.93484" Y="-316.4183" Z="-7.870883" />
+				<CustomBehavior File="WaitTimer" WaitTime="2000" />
+				<RunTo X="88.90981" Y="-316.0824" Z="-7.870883" />
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<RunTo X="58.51269" Y="-312.2123" Z="-7.870883" />
+				<RunTo X="39.03321" Y="-298.1796" Z="-10.25186" />
+				<RunTo X="4.144973" Y="-252.6403" Z="-22.46307" />
+				<RunTo X="34.52975" Y="-212.5906" Z="-22.61285" />
+				<RunTo X="20.31867" Y="-173.5927" Z="-22.35283" />
+				<RunTo X="27.78422" Y="-140.8521" Z="-22.44012" />
+				<RunTo X="1.521014" Y="-99.39371" Z="-22.5123" />
+				<RunTo X="-8.963749" Y="-75.63184" Z="-19.92402" />
+				<RunTo X="-2.268512" Y="-64.00349" Z="-19.92402" />
+				<RunTo X="-7.036127" Y="-21.77518" Z="-6.840569" />
+				<RunTo X="-4.542119" Y="-20.20668" Z="-6.227839" />
+				<RunTo X="0.6478462" Y="3.404262" Z="-4.082549" />
+				<RunTo X="-18.17694" Y="5.697254" Z="-4.29908" />
+				<CustomBehavior File="MyCTM" X="-26.23148" Y="6.622708" Z="-4.242221" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="WaitTimer" WaitTime="300000" />
+			</While>
+			<!-- Navigating out of Coilfang -->
+				<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
+				<CustomBehavior File="MyCTM" X="655.8704" Y="6865.183" Z="-83.67981" />
+				<CustomBehavior File="MyCTM" X="632.2728" Y="6871.266" Z="-75.63762" />
+				<CustomBehavior File="MyCTM" X="619.5461" Y="6887.241" Z="-64.32347" />
+				<CustomBehavior File="MyCTM" X="607.8958" Y="6898.224" Z="-49.47136" />
+				<CustomBehavior File="MyCTM" X="594.9378" Y="6930.458" Z="-41.49766" />
+				<CustomBehavior File="MyCTM" X="567.3137" Y="6945.225" Z="-28.22179" />
+				<CustomBehavior File="MyCTM" X="540.6658" Y="6924.646" Z="22.10633" />
+				<CustomBehavior File="MyCTM" X="530.261" Y="6910.107" Z="30.74072" />
+				<CustomBehavior File="FlyTo" X="421.8152" Y="6827.062" Z="141.7544" />
+			</If>
+	<!-- Go to Tempest Keep Checkpoint if items are needed -->
+		<If Condition="!HasItem(28396)">
+			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
+		</If>
+	<!-- Glove Farm -->
+		<If Condition="!HasItem(28396)" >
+			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
+			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="MyCTM" X="3308.015" Y="1343.598" Z="505.5602" />
+			<While Condition="!HasItem(28396)">
+				<CustomBehavior File="MyCTM" X="3310.815" Y="1334.649" Z="505.5603" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="InteractWith" MobId="184320" ObjectType="GameObject" X="3311.218" Y="1333.716" Z="506.5972" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="MyCTM" X="3312.246" Y="1331" Z="505.5586" />
+				<CustomBehavior File="MyCTM" X="3313.291" Y="1326.334" Z="505.5586" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exlamation" SoundCueInterval="1" Text="In development." />
+			</While>
+
+
+		<If Condition="HasItem(27787) &amp;&amp; HasItem(28396)" >
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="All normal difficulty items have been obtained!\nIf you still require some of the heroic items, you can re-run the [HD] profile inside of the Scripts folder.\n Or, you can just run the Auto-Loader profile outside of the script folder." />
+		</If>
+		<If Condition="!HasItem(28206)" >
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="One item have not been farmed: Cowl of the Guiltless. \n\nThe instances that these items drop in require further script.  You must farm them on your own until I can obtain a custom script for these instances." />
+		</If>
+	</QuestOrder>
+</HBProfile>
