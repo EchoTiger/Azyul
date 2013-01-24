@@ -164,12 +164,12 @@
 		    <RunTo X="-70.6427" Y="137.5523" Z="0.0072"  />
 		    <RunTo X="-71.6068" Y="158.0363" Z="0.0072"  />
 		    <RunTo X="-85.8350" Y="172.7780" Z="0.0115"  />
-			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenRunTos="False" LogoutForInactivity="False" />
+			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
 		    <RunTo X="-106.3167" Y="172.5898" Z="0.0092"  />
 		    <RunTo X="-126.7855" Y="173.2980" Z="0.0100"  />
 		    <RunTo X="-144.2886" Y="172.9094" Z="1.6853"  />
 		    <RunTo X="-141.5640" Y="181.8320" Z="0.0153"  />
-			<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenRunTos="False" LogoutForInactivity="False" />
+			<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 		    <RunTo X="-106.5446" Y="172.7270" Z="0.0097"  />
 		    <RunTo X="-86.5180" Y="171.5989" Z="0.0097"  />
 		    <RunTo X="-71.7597" Y="157.4071" Z="0.0079"  />
@@ -235,7 +235,7 @@
 			    <RunTo X="141.2507" Y="26.1819" Z="0.0000"  />
 			    <RunTo X="139.1305" Y="5.7296" Z="0.0000"  />
 			    <RunTo X="158.6696" Y="0.4603" Z="0.0000"  />
-		    	<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="15" KillBetweenRunTos="False" LogoutForInactivity="False" />
+		    	<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="15" KillBetweenHotspots="False" LogoutForInactivity="False" />
 			    <RunTo X="178.9685" Y="3.7420" Z="0.0000"  />
 			    <RunTo X="197.0667" Y="12.0158" Z="-2.1921"  />
 			    <RunTo X="216.8571" Y="17.5164" Z="-2.1921"  />
@@ -249,7 +249,7 @@
 			    <RunTo X="207.7369" Y="-4.7334" Z="-2.1921"  />
 			    <RunTo X="210.5689" Y="15.3427" Z="-2.1921"  />
 			    <RunTo X="191.7930" Y="7.5772" Z="-0.5276"  />
-		    	<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenRunTos="False" LogoutForInactivity="False" />
+		    	<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 			    <RunTo X="172.0627" Y="2.5594" Z="0.0000"  />
 			    <RunTo X="151.7850" Y="-1.7280" Z="0.0000"  />
 			    <RunTo X="138.8268" Y="14.6037" Z="0.0000"  />
@@ -278,6 +278,8 @@
 		</If>
 		<If Condition="HasItem(28255) &amp;&amp; HasItem(27783) &amp;&amp; HasItem(27914)" >
 			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="All normal difficulty items have been obtained!\nIf you still require some of the heroic items, you can re-run the [HD] profile inside of the Scripts folder.\n Or, you can just run the Auto-Loader profile outside of the script folder." />
+		</If>
+		<If Condition="!HasItem(28214) || !HasItem(28220)" >
 			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exlamation" SoundCueInterval="1" Text="Two items have not been farmed: Moon-Crown Antlers  and Starry Robes of the Crescent.\n\nThe instances that these items drop in require further script.  You must farm them on your own until I can obtain a custom script for these instances." />
 		</If>
 	</QuestOrder>
