@@ -1,0 +1,131 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>[HD] Nightslayer Armor (RC)</Name>
+	
+	<MinLevel>60</MinLevel>
+	<MaxLevel>92</MaxLevel>
+   
+	<MinDurability>0.001</MinDurability>
+	<MinFreeBagSlots>1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>True</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+    </AvoidMobs>
+
+	<ProtectedItems>
+		<Item Name="Moon-Crown Antlers" Entry="28220" />
+		<Item Name="Lunar-Claw Pauldrons" Entry="28255" />
+		<Item Name="Starry Robes of the Crescent" Entry="27818" />
+		<Item Name="Moonrage Girdle" Entry="27783" />
+		<Item Name="Moonstrider Boots" Entry="27914" />
+		<Item Name="Grips of the Lunar Eclipse" Entry="28214" />
+	</ProtectedItems>
+	
+	<Blackspots></Blackspots>
+	
+	<QuestOrder IgnoreCheckpoints = "False">
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Red" />
+		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Red" />
+<!-- Enable Loot -->
+<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+<!-- Sets Dungeon Difficulty to Heroic -->
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+<!-- Eastern Kingdoms to Outlands  -->
+		<If Condition="(Me.IsAlliance) &amp;&amp; (Me.MapId == 0)">
+			<CustomBehavior File="FlyTo" DestName="Mage Tower" X="-8999.616" Y="862.2393" Z="129.4042" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="-9005.53" Y="869.2928" Z="129.693" />
+			<CustomBehavior File="InteractWith" MobId="195141" ObjectType="GameObject" X="9007.58" Y="871.8698" Z="129.6922" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" DestName="Outland Portal" X="-11897.69" Y="-3206.117" Z="-14.68643" />
+			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+<!-- Kalimdor to Outlands -->
+		<If Condition="(Me.IsHorde) &amp;&amp; (Me.MapId == 1)">
+			<CustomBehavior File="FlyTo" DestName="Underground Portal" X="1748.539" Y="-4212.131" Z="48.02327" />
+			<RunTo X="1783.884" Y="-4232.059" Z="40.51676" />
+			<RunTo X="1743.324" Y="-4258.181" Z="25.44608" />
+			<RunTo X="1732.297" Y="-4278.206" Z="17.66895" />
+			<RunTo X="1744.604" Y="-4300.797" Z="13.82069" />
+			<RunTo X="1764.898" Y="-4308.886" Z="6.258134" />
+			<RunTo X="1780.943" Y="-4294.353" Z="6.237029" />
+			<RunTo X="1801.448" Y="-4334.859" Z="-11.19072" />
+			<RunTo X="1770.239" Y="-4326.302" Z="-8.284097" />
+			<CustomBehavior File="WaitTimer" WaitTime="7000" />
+			<CustomBehavior File="InteractWith" MobId="195142" ObjectType="Gameobject" X="1768.45" Y="-4325.86" Z="-8.3711" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" DestName="Outland Portal" X="-11897.69" Y="-3206.117" Z="-14.68643" />
+			<CustomBehavior File="MyCTM" X="-11909.99" Y="-3207.015" Z="-14.80655" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+<!-- Go To: Terokkar Forest - Ring of Observance HIGH-SPOT Checkpoint -->
+		<If Condition="!HasItem(27818)">
+			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
+		</If>
+	<!-- Mana-Tombs (Robe) -->
+			<If Condition="!HasItem(27824)">
+				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3334.946" Y="4967.088" Z="-33.90321" />
+				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3233.358" Y="4942.496" Z="-97.42279" />
+				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3166.641" Y="4942.829" Z="-101.0465" />
+				<RunTo X="-3086.819" Y="4950.906" Z="-100.9696" />
+				<RunTo X="-3080.302" Y="4943.274" Z="-101.0471" />
+				<CustomBehavior File="MyCTM" X="-3070" Y="4943.274" Z="-101.0471" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+				<If Condition="(Me.ZoneId == 3792)">
+				    <Hotspot X="-28.4065" Y="2.1931" Z="-0.9543"  />
+				    <Hotspot X="-50.5803" Y="-0.2514" Z="-0.9459"  />
+				    <Hotspot X="-65.6778" Y="-14.1470" Z="-0.9465"  />
+				    <Hotspot X="-68.2430" Y="-34.6207" Z="-0.9540"  />
+				    <Hotspot X="-66.6648" Y="-54.5625" Z="-0.5769"  />
+				    <Hotspot X="-73.5416" Y="-66.9011" Z="-0.8246"  />
+				    <Hotspot X="-85.5435" Y="-62.5010" Z="-0.9206"  />
+				    <Hotspot X="-95.8921" Y="-59.8559" Z="-0.8102"  />
+				    <Hotspot X="-98.6740" Y="-77.9908" Z="-1.3716"  />
+				    <Hotspot X="-103.9110" Y="-97.7224" Z="-0.8064"  />
+				    <Hotspot X="-103.4908" Y="-98.4092" Z="-0.8464"  />
+				    <Hotspot X="-103.4908" Y="-98.4092" Z="-0.8464"  />
+				    <Hotspot X="-85.4879" Y="-89.9432" Z="-2.0042"  />
+				    <Hotspot X="-67.2580" Y="-78.8640" Z="-2.1129"  />
+				    <Hotspot X="-47.0136" Y="-80.1990" Z="-2.3028"  />
+				    <Hotspot X="-39.1022" Y="-95.9831" Z="-0.8223"  />
+				    <Hotspot X="-44.5189" Y="-87.8984" Z="-2.1842"  />
+			    	<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="15" KillBetweenRunTos="False" LogoutForInactivity="False" />
+				    <Hotspot X="-66.9016" Y="-74.7042" Z="-0.8119"  />
+				    <Hotspot X="-70.6258" Y="-95.5500" Z="-1.8228"  />
+			    	<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenRunTos="False" LogoutForInactivity="False" />
+				    <Hotspot X="-69.3732" Y="-115.7012" Z="-0.8714"  />
+				    <Hotspot X="-69.1811" Y="-119.7377" Z="-1.2144"  />
+				    <Hotspot X="-68.3137" Y="-95.5309" Z="-1.4986"  />
+				    <Hotspot X="-68.3628" Y="-75.2449" Z="-0.9266"  />
+				    <Hotspot X="-67.7237" Y="-54.6604" Z="-0.8798"  />
+				    <Hotspot X="-66.6547" Y="-34.2172" Z="-0.9529"  />
+				    <Hotspot X="-64.5887" Y="-13.4367" Z="-0.9458"  />
+				    <Hotspot X="-48.6035" Y="-0.9104" Z="-0.9499"  />
+				    <Hotspot X="-28.3185" Y="-1.4989" Z="-0.9533"  />
+				    <Hotspot X="-8.1720" Y="-1.6236" Z="-0.9533"  />
+					<CustomBehavior File="MyCTM" X="7.8000" Y="0.8978755" Z="-0.9541188" />
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<RunTo X="-3234.764" Y="4942.444" Z="-101.3949" />
+					<CustomBehavior File="FlyTo" X="-3303.953" Y="4945.778" Z="-19.80702" />
+				</If>
+		</If>
+		<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Aqua" />
+		<CustomBehavior File="LoadProfile" ProfileName="[ND] Stormrage Raiment (RC)" />
+	</QuestOrder>
+</HBProfile>
