@@ -45,11 +45,14 @@
 	<Blackspot X="-2734.754" Y="-5017.247" Z="24.29678" Radius="6.815754" /> // Big Tree on Hill
 	<Blackspot X="-2798.004" Y="-4984.718" Z="57.66114" Radius="8.988581" />
 </Blackspots>
+
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 	
 
 	<QuestOrder>
 	
 		<If Condition="IsAchievementCompleted(7523) || IsAchievementCompleted(7524)">
+			<CustomBehavior File="Message" Text="Moving to talk to Zidormi.  If you have completed Theramore scenario, bot will phase map back to old Theramore.  If you have already phased, you may need to stop and run bot twice, to toggle setting.  If you have never completed scenario, bot will stop at Zidormi briefly, and continue as normal." LogColor="Lime" />
 			<CustomBehavior File="FlyTo" DestName="Zidormi" X="-3766.99" Y="-3910.53" Z="11.58" />
 			<CustomBehavior File="InteractWith" MobId="63546" ObjectType="Npc" X="-3766.99" Y="-3910.53" Z="11.58" />
 			<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="1" WaitTime="1000" />
