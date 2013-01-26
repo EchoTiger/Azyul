@@ -1,0 +1,101 @@
+<HBProfile>
+<Name>Mjj23's Arcaz Island Transmog Grind</Name>
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Felwood
+// Farm mobs: Timbermaw
+// Grind Speed: 200 mobs/h (with 90 mage)
+// Grind what? Jade Plate
+///////////////////////////////////////////////////////////////////////
+
+<MinLevel>54</MinLevel>
+<MaxLevel>91</MaxLevel>
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<ProtectedItems>
+		<Item Name = "Jade Greaves" Entry = "14913"/>
+		<Item Name = "Jade Epaulets" Entry = "14921"/>
+		<Item Name = "Jade Gauntlets" Entry = "14917"/>
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Ciana" Entry="48577" Type="Repair" X="6086.02" Y="-817.925" Z="414.802" />
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="6076.33" Y="-888.965" Z="411.797" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		</AvoidMobs>
+
+
+<Blackspots>
+	
+</Blackspots>
+	
+
+	<QuestOrder>
+	
+
+		<While Condition="true">
+				<If Condition="Me.MapId == 1" >
+						<CustomBehavior File="Message" Text="Moving to Timbermaw Hold Farm Location" LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Timbermaw Hold" X="6589.816" Y="-1899.906" Z="543.7785" />
+						<CustomBehavior File="WaitTimer" WaitTime="6000" />
+						<CustomBehavior File="ForcedDismount" />
+		
+		
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Jade Grind Part I</Name>
+					<Factions>82</Factions>
+					<TargetMinLevel>54</TargetMinLevel>
+					<TargetMaxLevel>62</TargetMaxLevel>
+					<Hotspots>
+						<Hotspot X="6589.816" Y="-1899.906" Z="543.7785" />
+						<Hotspot X="6621.846" Y="-1942.316" Z="549.7465" />
+						<Hotspot X="6622.596" Y="-1978.382" Z="551.3301" />
+						<Hotspot X="6665.77" Y="-1957.346" Z="550.831" />
+						<Hotspot X="6695.985" Y="-1969.059" Z="554.2421" />
+						<Hotspot X="6701.482" Y="-1988.665" Z="560.9294" />
+						<Hotspot X="6735.481" Y="-1961.286" Z="550.8043" />
+						<Hotspot X="6788.327" Y="-1955.508" Z="551.463" />
+						<Hotspot X="6789.993" Y="-2001.875" Z="565.8234" />
+						<Hotspot X="6823.133" Y="-1966.335" Z="551.6033" />
+						<Hotspot X="6847.614" Y="-1887.245" Z="550.7531" />
+						<Hotspot X="6801.666" Y="-1857.128" Z="550.9204" />
+						<Hotspot X="6891.198" Y="-1815.981" Z="568.6233" />
+						<Hotspot X="6756.993" Y="-1880.003" Z="550.6758" />
+						<Hotspot X="6715.344" Y="-1892.505" Z="549.2213" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="Me.FreeBagSlots &lt;= 6 || (Me.HasItem(14913) &amp;&amp; Me.HasItem(14921) &amp;&amp; Me.HasItem(14917))"/>
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+					<CustomBehavior File="Message" Text="Moving to Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="6076.33" Y="-888.965" Z="411.797" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+		
+        </While>    
+				
+	</QuestOrder>
+
+</HBProfile>
