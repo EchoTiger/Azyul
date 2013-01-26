@@ -4,7 +4,7 @@
 <MinFreeBagSlots>1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////
 // Profile Maker: Mjj23
-// Farm zone(s): Alcaz Island, Winterspring 
+// Farm zone(s): Alcaz Island, Winterspring, Silithus
 // Farm mobs: Elite Hydra, Minion of Dr. Weavil, Rabid Shardtooth Bear
 // Grind Speed: 200 mobs/h (with 90 mage)
 // Grind what? Glorious Plate
@@ -28,11 +28,13 @@
 	<Vendors>
 		<Vendor Name="Razbo Rustgear" Entry="23571" Type="Repair" X="-4603.661" Y="-3210.939" Z="34.92498" />
 		<Vendor Name="Wixxrak" Entry="11184" Type="Repair" X="6733.39" Y="-4699.038" Z="721.37" />
+		<Vendor Name="Vargus" Entry="15176" Type="Repair" X="-6860.931" Y="753.0439" Z="42.47256" />
 	</Vendors>
 
 	<Mailboxes>
 		<Mailbox X="-4598.088" Y="-3181.409" Z="34.91448" />
 		<Mailbox X="6705.105" Y="-4667.351" Z="721.2368" />
+		<Mailbox X="-6838.888" Y="735.251" Z="42.2317" /> 
 	</Mailboxes>
 
 
@@ -55,7 +57,7 @@
 	<!-- Note: Until I can find a way to reliably check Theramore phasing, profile MUST be started in Dustwallow to work properly -->
 	
 		<If Condition="(IsAchievementCompleted(7523) || IsAchievementCompleted(7524)) &amp;&amp; (Me.ZoneId == 15)">
-			<CustomBehavior File="Message" Text="Moving to talk to Zidormi.  If you have completed Theramore scenario, bot will phase map back to old Theramore.  If you have already phased, you may need to stop and run bot twice, to toggle setting.  If you have never completed scenario, bot will stop at Zidormi briefly, and continue as normal." LogColor="Lime" />
+			<CustomBehavior File="Message" Text="Flying to talk to Zidormi.  If you have completed Theramore scenario, bot will phase map back to old Theramore.  If you have already phased, you may need to stop and run bot twice, to toggle setting.  If you have never completed scenario, bot will stop at Zidormi briefly, and continue as normal." LogColor="Lime" />
 			<CustomBehavior File="FlyTo" DestName="Zidormi" X="-3766.99" Y="-3910.53" Z="11.58" />
 			<CustomBehavior File="InteractWith" MobId="63546" ObjectType="Npc" X="-3766.99" Y="-3910.53" Z="11.58" />
 			<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="1" WaitTime="1000" />
@@ -65,13 +67,13 @@
 				
 		<While Condition="(Me.MapId == 1)">
 				<If Condition="(Me.MapId == 1) &amp;&amp; (Me.ZoneId == 15)" >
-						<CustomBehavior File="Message" Text="Moving to Alcaz Island Farm Location" LogColor="Lime" />
+						<CustomBehavior File="Message" Text="Flying to Alcaz Island Farm Location.  Farming for: Helm/Chest/Legs" LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Alcaz Island" X="-2703.286" Y="-4685.863" Z="10.16349" />
 						<CustomBehavior File="ForcedDismount" />
 			
 			<SetGrindArea>
 				<GrindArea>
-					<Name>Alcaz Island Grind</Name>
+					<Name>Alcaz Island Grind (Helm, Breastplate, Legs</Name>
 					<Factions>74 14</Factions>
 					<TargetMinLevel>54</TargetMinLevel>
 					<TargetMaxLevel>62</TargetMaxLevel>
@@ -115,29 +117,34 @@
 			
 			<GrindTo Condition="Me.FreeBagSlots &lt;= 70" />
 			
-			<!-- Random Chance of Moving to Winterspring, If not Mail/Vendor from Winterspring-->
+			<!-- Random Chance of Moving to Winterspring or Silithus, If not Mail/Vendor from Dustwallow Marsh-->
 			<!-- Note: GrindTo Free bag slots can be changed, but should ALWAYS match Me.FreeBagSlots in IF condition below -->
 			<!-- "Chance" can also be changed, as the percent chance of move ocurring-->
 			
 			<If Condition="Chance(25) &amp;&amp; (Me.ZoneId == 15)">
-					<CustomBehavior File="Message" Text="Moving to Winterspring Farm Location" LogColor="Lime" />
+					<CustomBehavior File="Message" Text="Flying to Winterspring Farm Location. Farming for: Helm/Chest/Legs" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" X="5287.306" Y="-4387.221" Z="877.8645" />
 			</If>
 			
+			<If Condition="Chance(25) &amp;&amp; (Me.ZoneId == 618)">
+					<CustomBehavior File="Message" Text="Flying to Silithus Island Farm Location.  Farming for: Boots/Shoulders" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="-7891.313" Y="733.6312" Z="-26.87126" />
+			</If>
+			
 			<If Condition="(Me.FreeBagSlots &lt;= 70) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; (Me.ZoneId == 15))" >
-					<CustomBehavior File="Message" Text="Moving to Dustwallow Mailbox" LogColor="Lime" />
+					<CustomBehavior File="Message" Text="Flying to Dustwallow Mailbox" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" X="-4598.088" Y="-3181.409" Z="34.91448" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>	
 			
 		
-			<ElseIf Condition="(Me.MapId == 1) &amp;&amp; (Me.ZoneId != 15)">
+			<ElseIf Condition="(Me.MapId == 1) &amp;&amp; (Me.ZoneId == 618)">
 					<CustomBehavior File="FlyTo" X="5287.306" Y="-4387.221" Z="877.8645" />
 					<CustomBehavior File="ForcedDismount" />
 			
 			<SetGrindArea>
 				<GrindArea>
-					<Name>Winterspring Grind</Name>
+					<Name>Winterspring Grind (Helm, Breastplate, Legs)</Name>
 					<Factions>16</Factions>
 					<TargetMinLevel>54</TargetMinLevel>
 					<TargetMaxLevel>62</TargetMaxLevel>
@@ -185,17 +192,22 @@
 			</SetGrindArea>
 			<GrindTo Condition="Me.FreeBagSlots &lt;= 70" />
 			
-			<!-- Random Chance of Moving to Alcaz Island, If not Mail/Vendor from Winterspring-->
+			<!-- Random Chance of Moving to Alcaz Island or Silithus, If not Mail/Vendor from Winterspring-->
 			<!-- Note: GrindTo Free bag slots can be changed, but should ALWAYS match Me.FreeBagSlots in IF condition below -->
 			<!-- "Chance" can also be changed, as the percent chance of move ocurring-->
 			
 			<If Condition="Chance(25) &amp;&amp; (Me.ZoneId == 618)">
-					<CustomBehavior File="Message" Text="Flying to Alcaz Island Farm Location" LogColor="Lime" />
+					<CustomBehavior File="Message" Text="Flying to Alcaz Island Farm Location.  Farming for: Helm/Chest/Legs" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" X="-2703.286" Y="-4685.863" Z="10.16349" />
 			</If>
 			
+			<If Condition="Chance(25) &amp;&amp; (Me.ZoneId == 618)">
+					<CustomBehavior File="Message" Text="Flying to Silithus Island Farm Location.  Farming for: Boots/Shoulders" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="-7891.313" Y="733.6312" Z="-26.87126" />
+			</If>
+			
 			<If Condition="(Me.FreeBagSlots &lt;= 70) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; (Me.ZoneId == 618))" >
-					<CustomBehavior File="Message" Text="Moving to Winterspring Mailbox" LogColor="Lime" />
+					<CustomBehavior File="Message" Text="Flying to Winterspring Mailbox" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" X="6705.105" Y="-4667.351" Z="721.2368" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>	
@@ -203,6 +215,57 @@
 			
 			</ElseIf>
 			
+			<ElseIf Condition="(Me.MapId == 1) &amp;&amp; (Me.ZoneId == 1377)">
+					<CustomBehavior File="FlyTo" X="5287.306" Y="-4387.221" Z="877.8645" />
+					<CustomBehavior File="ForcedDismount" />
+			
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Silithus Grind (Boots, Shoulders)</Name>
+					<Factions>310 311</Factions>
+					<TargetMinLevel>54</TargetMinLevel>
+					<TargetMaxLevel>62</TargetMaxLevel>
+					<Hotspots>
+						<Hotspot X="-7891.313" Y="733.6312" Z="-26.87126" />
+						<Hotspot X="-7759.247" Y="722.6305" Z="-34.83002" />
+						<Hotspot X="-7691.076" Y="677.6386" Z="-49.59098" />
+						<Hotspot X="-7614.703" Y="657.1177" Z="-46.82822" />
+						<Hotspot X="-7600.563" Y="622.5038" Z="-42.98196" />
+						<Hotspot X="-7664.257" Y="549.4442" Z="-43.70428" />
+						<Hotspot X="-7623.552" Y="459.0954" Z="-48.76233" />
+						<Hotspot X="-7770.062" Y="426.6943" Z="-34.93748" />
+						<Hotspot X="-7953.283" Y="436.0781" Z="-30.84744" />
+						<Hotspot X="-8038.813" Y="527.8234" Z="-11.2953" />
+						<Hotspot X="-8052.576" Y="603.2959" Z="-17.39823" />
+						<Hotspot X="-7970.731" Y="665.2415" Z="-22.71717" />
+						<Hotspot X="-7873.684" Y="694.0967" Z="-27.20204" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="Me.FreeBagSlots &lt;= 70" />
+			
+			<!-- Random Chance of Moving to Alcaz Island or Winterspring, If not Mail/Vendor from Silithus-->
+			<!-- Note: GrindTo Free bag slots can be changed, but should ALWAYS match Me.FreeBagSlots in IF condition below -->
+			<!-- "Chance" can also be changed, as the percent chance of move ocurring-->
+			
+			<If Condition="Chance(25) &amp;&amp; (Me.ZoneId == 1377)">
+					<CustomBehavior File="Message" Text="Flying to Alcaz Island Farm Location.  Farming for: Helm/Chest/Legs" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="-2703.286" Y="-4685.863" Z="10.16349" />
+			</If>
+			
+			<If Condition="Chance(25) &amp;&amp; (Me.ZoneId == 1377)">
+					<CustomBehavior File="Message" Text="Flying to Winterspring Farm Location. Farming for: Helm/Chest/Legs" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="5287.306" Y="-4387.221" Z="877.8645" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 70) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; (Me.ZoneId == 618))" >
+					<CustomBehavior File="Message" Text="Fying to Silithus Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="-6838.888" Y="735.251" Z="42.2317" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>	
+			
+			
+			</ElseIf>
 			</If>
         </While>
 				
