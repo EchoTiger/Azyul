@@ -53,7 +53,7 @@
 	
 
 		<While Condition="true">
-				<If Condition="Me.MapId == 1" >
+				<If Condition="Me.MapId == 1 &amp;&amp; (!Me.HasItem(14913) &amp;&amp; !Me.HasItem(14921) &amp;&amp; !Me.HasItem(14917))" >
 						<CustomBehavior File="Message" Text="Moving to Timbermaw Hold Farm Location" LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Timbermaw Hold" X="6589.816" Y="-1899.906" Z="543.7785" />
 						<CustomBehavior File="WaitTimer" WaitTime="6000" />
@@ -85,7 +85,7 @@
 					</Hotspots>
 				</GrindArea>
 			</SetGrindArea>
-			<GrindTo Condition="Me.FreeBagSlots &lt;= 6 || (Me.HasItem(14913) &amp;&amp; Me.HasItem(14921) &amp;&amp; Me.HasItem(14917))"/>
+			<GrindTo Condition="Me.FreeBagSlots &lt;= 6"/>
 			</If>
 			
 			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
