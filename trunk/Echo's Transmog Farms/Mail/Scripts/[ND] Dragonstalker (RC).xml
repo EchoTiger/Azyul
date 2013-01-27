@@ -38,7 +38,7 @@
 	<Blackspots></Blackspots>
 	
 <QuestOrder>
-		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenRunTos="False" LogoutForInactivity="False" />
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Red" />
 <!-- Enable Loot -->
 		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
@@ -98,12 +98,12 @@
 		    <RunTo X="-70.6427" Y="137.5523" Z="0.0072"  />
 		    <RunTo X="-71.6068" Y="158.0363" Z="0.0072"  />
 		    <RunTo X="-85.8350" Y="172.7780" Z="0.0115"  />
-			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenRunTos="False" LogoutForInactivity="False" />
+			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
 		    <RunTo X="-106.3167" Y="172.5898" Z="0.0092"  />
 		    <RunTo X="-126.7855" Y="173.2980" Z="0.0100"  />
 		    <RunTo X="-144.2886" Y="172.9094" Z="1.6853"  />
 		    <RunTo X="-141.5640" Y="181.8320" Z="0.0153"  />
-			<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenRunTos="False" LogoutForInactivity="False" />
+			<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 		    <RunTo X="-106.5446" Y="172.7270" Z="0.0097"  />
 		    <RunTo X="-86.5180" Y="171.5989" Z="0.0097"  />
 		    <RunTo X="-71.7597" Y="157.4071" Z="0.0079"  />
@@ -173,9 +173,11 @@
 			    <RunTo X="-138.7915" Y="-5.9658" Z="8.0731"  />
 			    <RunTo X="-154.4859" Y="-3.5867" Z="8.0731"  />
 			    <RunTo X="-168.9090" Y="0.5326" Z="8.0731"  />
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
 			    <RunTo X="-157.1356" Y="-7.1143" Z="8.0731"  />
 			    <RunTo X="-156.5259" Y="16.7951" Z="8.0731"  />
 			    <RunTo X="-156.5259" Y="16.7951" Z="8.0731"  />
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
 			    <RunTo X="-151.1544" Y="-2.5975" Z="8.0731"  />
 			    <RunTo X="-146.4327" Y="-22.2687" Z="8.0731"  />
 			    <RunTo X="-145.3656" Y="-42.6217" Z="8.0731"  />
@@ -200,7 +202,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
-				<CustomBehavior File="WaitTimer" WaitTime="300000" />
+				<CustomBehavior File="WaitTimer" WaitTime="360000" />
 				<RunTo X="-3647.243" Y="4943.371" Z="-101.0486" />
 			<!--Leave after Helmet is obtained -->
 			<If Condition="HasItem(27888)">
