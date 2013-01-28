@@ -309,7 +309,9 @@
 					<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
 				    <CustomBehavior File="WaitTimer" WaitTime="300000" />
-					<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
+				    <If Condition="HasItem(27542)" >
+				    	<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
+				    </If>
 				</While>
 			</If>		
 	<!-- Go to Slavepens if item is needed -->
@@ -390,6 +392,9 @@
 					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 					<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
 		 		    <CustomBehavior File="WaitTimer" WaitTime="300000" />
+				    <If Condition="HasItem(24363)" >
+				    	<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
+				    </If>
 		 		</While>
 			</If>
 	<If Condition="HasItem(24463) &amp;&amp; HasItem(24091) &amp;&amp; HasItem(24363) &amp;&amp; HasItem(24456) &amp;&amp; HasItem(24064) &amp;&amp; HasItem(24387)">
