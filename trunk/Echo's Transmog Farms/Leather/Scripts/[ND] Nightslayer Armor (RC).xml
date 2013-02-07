@@ -45,6 +45,8 @@
 <!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
 		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+	<If Condition="!HasItem(27995)">
+		<CustomBehavior File="Message" Text="Going to Caverns of Time for the Shoulders." LogColor="DarkBlue" />
 <!-- Leaves Outlands -->
 		<If Condition="(Me.MapId == 466)">
 			<CustomBehavior File="FlyTo" DestName="Leaving Outlands" X="-232.59" Y="1266.096" Z="386.9434" />
@@ -89,6 +91,7 @@
 		</If>
 <!-- This is for the shoulders -->
 		<If Condition="Me.ZoneId == 440">
+			<CustomBehavior File="Message" Text="Going to The Black Morass for the Shoulders." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" X="-8173.311" Y="-4723.936" Z="31.71398" />
 			<CustomBehavior File="FlyTo" X="-8163.811" Y="-4829.636" Z="42.03972" />
 			<CustomBehavior File="MyCTM" X="-8180.302" Y="-4873.598" Z="38.93711" />
@@ -109,7 +112,7 @@
 			<CustomBehavior File="MyCTM" X="-8771.876" Y="-4167.72" Z="-210.2355" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="At the moment, this dungeon does not have a script wrote for it.\n\nYou must complete it manually until I can write one out." />
-
 		</If>
+	</If>
 	</QuestOrder>
 </HBProfile>

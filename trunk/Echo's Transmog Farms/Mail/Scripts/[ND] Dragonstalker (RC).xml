@@ -39,7 +39,7 @@
 	
 <QuestOrder>
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Red" />
+		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Lime" />
 <!-- Enable Loot -->
 		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
@@ -75,6 +75,7 @@
 <!-- Check item and go to spot if it isn't detected -->
 	<!--Sethekk Halls-->
 		<If Condition="!HasItem(27915)" > <!--Boots-->
+			<CustomBehavior File="Message" Text="Going to Ring of Observance for the Boots." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 			<CustomBehavior File="MyCTM" X="-3361.667" Y="4793.479" Z="-101.3955" />
 			<CustomBehavior File="MyCTM" X="-3362.443" Y="4779.643" Z="-101.3952" />
@@ -82,6 +83,7 @@
 			<CustomBehavior File="MyCTM" X="-3362.086" Y="4660.304" Z="-101.0487" />
 		</If>
 		<While Condition="!HasItem(27915)" >
+			<CustomBehavior File="Message" Text="Running Sethekk Halls to get the Boots." LogColor="DarkBlue" />
 			<CustomBehavior File="MyCTM" X="-3361.756" Y="4652.740" Z="-101.0487" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		    <RunTo X="23.2821" Y="-0.2094" Z="0.0058"  />
@@ -123,8 +125,14 @@
 		    <RunTo X="-4.0278" Y="1.5065" Z="0.0057"  />
 		    <CustomBehavior File="MyCTM" X="-9.150306" Y="-0.02197785" Z="0.007470994" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<If Condition="HasItem(27915)">
+				<CustomBehavior File="Message" Text="Boots obtained! Continuing instance runs." LogColor="Azure" />
+			</If>
+			<If Condition="!HasItem(27915)">
+				<CustomBehavior File="Message" Text="Boots weren't obtained. We will run the instance again." LogColor="Red" />
+			</If>
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-			<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+			<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 			<CustomBehavior File="WaitTimer" WaitTime="450000" />
 			<If Condition="HasItem(27915)">
 				<RunTo X="-3361.623" Y="4753.329" Z="-101.3959" />
@@ -134,6 +142,7 @@
 
 	<!-- Navigation to Ring of Observance -->
 		<If Condition="!HasItem(27888)"> <!-- Helmet -->
+			<CustomBehavior File="Message" Text="Going to Shadow Labyrinth for the Helmet." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 			<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3479.899" Y="4944.022" Z="-72.31544" />
 			<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3554.982" Y="4943.268" Z="-101.3959" />
@@ -144,6 +153,7 @@
 			<RunTo X="-3647.243" Y="4943.371" Z="-101.0486" />
 		</If>
 			<While Condition="!HasItem(27888)" >
+				<CustomBehavior File="Message" Text="Running Shadow Labyrinth to get the Helemet." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="-3652.338" Y="4943.424" Z="-101.0486" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			    <RunTo X="-27.2131" Y="-0.1202" Z="-1.1279"  />
@@ -204,8 +214,14 @@
 			    <RunTo X="-6.7717" Y="1.8839" Z="-1.1295"  />
 				<CustomBehavior File="MyCTM" X="9.52786" Y="-1.860063" Z="-1.128255" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(27888)">
+					<CustomBehavior File="Message" Text="Helmet obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27888)">
+					<CustomBehavior File="Message" Text="Helmet wasn't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="400000" />
 				<RunTo X="-3647.243" Y="4943.371" Z="-101.0486" />
 			<!--Leave after Helmet is obtained -->
@@ -219,7 +235,7 @@
 			</While>
 	<If Condition="HasItem(27915) &amp;&amp; HasItem(27888) &amp;&amp; !HasItem(28219) || !HasItem(28344)" >
 			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
-			<CustomBehavior File="Message" Text="NOTE: The bot will now leave Outlands to go to Old Hillsbrad for the pants and shoulders." LogColor="Red" />
+			<CustomBehavior File="Message" Text="NOTE: The bot will now leave Outlands to go to Old Hillsbrad for the pants and shoulders." LogColor="Coral" />
 <!-- Navigational Script Block to go to Old Hillsbrad -->
 <!-- Leaves Outlands -->
 		<If Condition="(Me.MapId == 530)">

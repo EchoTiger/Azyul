@@ -38,7 +38,7 @@
 	
 	<QuestOrder>
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-		<CustomBehavior File="Message" Text="Every item for this set drops in normal dungeons." LogColor="Aqua" />
+		<CustomBehavior File="Message" Text="Every item for this set drops in normal dungeons." LogColor="Lime" />
 		<!-- Enable Loot -->
 		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 <!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
@@ -74,7 +74,8 @@
 		</If>
 		<!-- This code checks to see if the player is located in Outlands.  If so, it shall proceed to the instances. -->
 <!-- Hellfire Ramparts -->
-		<If Condition="(!HasItem(24091)) || (!HasItem(24064))" >
+		<If Condition="(!HasItem(24091)) || (!HasItem(24064))" > <!--Belt and Boots-->
+			<CustomBehavior File="Message" Text="Running Hellfire Ramparts to get the Belt and Boots." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Hellfire Peninsula" X="-360.4703" Y="3016.986" Z="40.87082" />
 			<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-354.3885" Y="3062.629" Z="-15.18049" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
@@ -103,14 +104,22 @@
 				<If Condition="(!HasItem(24091))" >
 					<RunTo X="-1122.161" Y="1718.566" Z="89.35185" />
 					<RunTo X="-1153.609" Y="1697.059" Z="91.13847" />
+					<CustomBehavior File="Message" Text="Killing Omar the Unscarred to get the Belt." LogColor="DarkBlue" />
 					<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 					<CustomBehavior File="WaitTimer" WaitTime="3000" />
 					<RunTo X="-1110.267" Y="1728.176" Z="89.71658" />
 					<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 					<RunTo X="-1300.935" Y="1625.185" Z="91.75221" />
+					<If Condition="HasItem(24091)">
+						<CustomBehavior File="Message" Text="Belt obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(24091)">
+						<CustomBehavior File="Message" Text="Belt not obtained. Continuing instance runs." LogColor="Red" />
+					</If>
 				</If>
 			<!-- Vazruden/Nazan - Boots --> 
 				<If Condition="(!HasItem(24064))" >
+					<CustomBehavior File="Message" Text="Killing Nazan/Vazruden to get the Belt." LogColor="DarkBlue" />
 					<RunTo X="-1383.39" Y="1711.82" Z="82.71" />
 					<CustomBehavior File="MyCTM" X="-1407.269" Y="1739.846" Z="81.12672" />
 					<CustomBehavior File="WaitTimer" WaitTime= "2000" />
@@ -133,25 +142,39 @@
 					<CustomBehavior File="RunMacro" Macro="/script CloseLoot()" />
 					<CustomBehavior File="WaitTimer" WaitTime="1200" />
 					<RunTo X="-1300.935" Y="1625.185" Z="91.75221" />
+					<If Condition="HasItem(24064)">
+						<CustomBehavior File="Message" Text="Boots obtained!" LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(24064)">
+						<CustomBehavior File="Message" Text="Boots not obtained." LogColor="Red" />
+					</If>
 				</If>
 				<RunTo X="-1317.614" Y="1636.576" Z="91.73563" />
 				<CustomBehavior File="MyCTM" X="-1345.156" Y="1652.946" Z="68.86689" />
 				<RunTo X="-1355.375" Y="1639.065" Z="68.24535" />
 				<CustomBehavior File="MyCTM" X="-1357.292" Y="1633.615" Z="68.4899" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="(HasItem(24091)) || (HasItem(24064))" > 
+					<CustomBehavior File="Message" Text="All items obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="(!HasItem(24091)) || (!HasItem(24064))" > 
+					<CustomBehavior File="Message" Text="And item wasn't obtained. We will run this instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 			    <CustomBehavior File="WaitTimer" WaitTime="300000" />
 			</While>
 		</If>
 	<!-- Go to Bloodfurnace if needed -->
 		<If Condition="(!HasItem(24387))" > <!--Gloves -->
+			<CustomBehavior File="Message" Text="Going to Bloodfurnace for the Gloves." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Hellfire Peninsula" X="-360.4703" Y="3016.986" Z="40.87082" />
 			<CustomBehavior File="FlyTo" DestName="Blood Furnace" X="-297.714" Y="3154.765" Z="31.6093" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
 			<RunTo X="-302.6942" Y="3162.56" Z="31.71767" />
 			<While Condition="(!HasItem(24387))" >
+				<CustomBehavior File="Message" Text="Running Bloodfurnace for the Gloves." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="-306.759" Y="3168.439" Z="29.92186" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			    <RunTo X="-5.0751" Y="-0.0700" Z="-44.0144"  />
@@ -224,18 +247,26 @@
 			    <RunTo X="-3.4287" Y="7.2746" Z="-44.5419"  />
 			    <CustomBehavior File="MyCTM" X="-0" Y="25.56831" Z="-44.79747" />
 			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(24387)">
+					<CustomBehavior File="Message" Text="Gloves obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(24387)">
+					<CustomBehavior File="Message" Text="Gloves weren't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 			    <RunTo X="-297.3476" Y="3152.207" Z="31.6893" />
-			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 			    <CustomBehavior File="WaitTimer" WaitTime="300000" />
 			</While>
 		</If>
 <!-- Go to Zangarmarsh if item(s) aren't detected. -->
 		<If Condition="!HasItem(24463) || !HasItem(24456) || !HasItem(24363)"> <!-- Shoulder, Legs and Chest -->
+			<CustomBehavior File="Message" Text="Going to Zangarmarsh to get the Shoulders, Legs and Chest." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="511.3972" Y="6927.3" Z="256.1042" />
 			<CustomBehavior File="FlyTo" DestName="Into the drink!!" X="473.400" Y="6892.175" Z="63.8240" />
 		<!-- Navigate into Coilfang -->
 			<If Condition="(Me.ZoneId == 3521)">
+				<CustomBehavior File="Message" Text="Going to Zangarmarsh to get the Shoulders, Legs and Chest." LogColor="DarkBlue" />
 				<CustomBehavior File="FlyTo" DestName="Zangarmarsh-HIGH POINT" X="511.3972" Y="6927.3" Z="256.1042" />
 				<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="473.400" Y="6892.175" Z="63.8240" />
 				<CustomBehavior File="MyCTM" X="556.8849" Y="6938.702" Z="19.20102" />
@@ -251,10 +282,12 @@
 		</If>
 <!-- Go to Underbog if item is needed -->
 			<If Condition="!HasItem(24463)">
+				<CustomBehavior File="Message" Text="Going to Underbog to get Shoulders." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="754.3677" Y="6770.396" Z="-65.59264" />
 				<RunTo X="780.15" Y="6747.573" Z="-72.53754" />	
 		<!--  Underbog Instance (Shoulder) -->
 				<While Condition="(!HasItem(24463))">
+					<CustomBehavior File="Message" Text="Running Underbog to get Shoulders." LogColor="DarkBlue" />
 					<CustomBehavior File="MyCTM" X="781.2729" Y="6743.500" Z="-72.53828" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
 					<RunTo X="74.3205" Y="-62.86559" Z="-2.753865" />
@@ -305,8 +338,14 @@
 					<CustomBehavior File="MyCTM" X="5.769754" Y="-16.50335" Z="-2.753463" />
 					<CustomBehavior File="MyCTM" X="4.015000" Y="-10.20000" Z="-2.750623" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<If Condition="HasItem(24463)">
+						<CustomBehavior File="Message" Text="Shoulders obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(24463)">
+						<CustomBehavior File="Message" Text="Shoulders weren't obtained. We will run the instance again." LogColor="Red" />
+					</If>
 					<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 				    <CustomBehavior File="WaitTimer" WaitTime="300000" />
 				    <If Condition="HasItem(27542)" >
 				    	<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
@@ -315,6 +354,7 @@
 			</If>		
 	<!-- Go to Slavepens if item is needed -->
 			<If Condition="!HasItem(24363)"> <!-- Chest -->
+				<CustomBehavior File="Message" Text="Going to Slavepens for the Chest." LogColor="DarkBlue" />
 				<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
 				<RunTo X="736.5326" Y="6914.593" Z="-65.34555" />
 				<RunTo X="718.8387" Y="6945.226" Z="-68.22695" />
@@ -322,6 +362,7 @@
 				<RunTo X="739.0041" Y="7016.778" Z="-71.61855" />
 	<!-- Slavepens instance, Chest -->
 				<While Condition="(!HasItem(24363))">
+				<CustomBehavior File="Message" Text="Running Slavepens for the Chest." LogColor="DarkBlue" />
 					<CustomBehavior File="MyCTM" X="741.1000" Y="7015.931" Z="-71.77438" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
 					<RunTo X="120.1809" Y="-96.50285" Z="-1.590539" />
@@ -388,8 +429,14 @@
 					<RunTo X="125.409" Y="-122.3724" Z="-1.046495" />
 					<CustomBehavior File="MyCTM" X="117.4674" Y="-138.1203" Z="0.24311" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<If Condition="HasItem(24363)">
+						<CustomBehavior File="Message" Text="Chest obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(24363)">
+						<CustomBehavior File="Message" Text="Chest weren't obtained. We will run the instance again." LogColor="Red" />
+					</If>
 					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-					<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+					<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 		 		    <CustomBehavior File="WaitTimer" WaitTime="300000" />
 				    <If Condition="HasItem(24363)" >
 				    	<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />

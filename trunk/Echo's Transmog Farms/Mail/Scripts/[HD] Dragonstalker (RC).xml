@@ -39,8 +39,8 @@
 	
 	<QuestOrder>
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Red" />
-		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Red" />
+		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Lime" />
+		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Lime" />
 		<!-- Enable Loot -->
 		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 		<!-- Sets Dungeon Difficult to Heroic -->
@@ -77,6 +77,7 @@
 
 <!-- Go to Zangarmarsh if item(s) aren't detected. -->
 		<If Condition="!HasItem(27745) || !HasItem(27541)"> <!-- Gloves and Belt -->
+			<CustomBehavior File="Message" Text="Going to Zangarmarsh to get the Gloves and Belt." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="511.3972" Y="6927.3" Z="256.1042" />
 			<CustomBehavior File="FlyTo" DestName="Into the drink!!" X="473.400" Y="6892.175" Z="63.8240" />
 	<!-- Navigate into Coilfang -->
@@ -91,6 +92,7 @@
 			<CustomBehavior File="MyCTM" X="731.085" Y="6866.436" Z="-70.52903" />
 <!-- Go to Underbog if item is needed -->
 			<If Condition="!HasItem(27745)"> <!--Gloves -->
+				<CustomBehavior File="Message" Text="Running Underbog to get the Gloves" LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="754.3677" Y="6770.396" Z="-65.59264" />
 				<RunTo X="780.15" Y="6747.573" Z="-72.53754" />
 				<CustomBehavior File="MyCTM" X="781.2729" Y="6743.500" Z="-72.53828" />
@@ -122,12 +124,19 @@
 					<CustomBehavior File="MyCTM" X="5.769754" Y="-16.50335" Z="-2.753463" />
 					<CustomBehavior File="MyCTM" X="4.015000" Y="-10.20000" Z="-2.750623" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+					<If Condition="HasItem(27745)">
+						<CustomBehavior File="Message" Text="Gloves obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(27745)">
+						<CustomBehavior File="Message" Text="Gloves not obtained. Continuing instance runs." LogColor="Red" />
+					</If>
+				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 				    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 				</If>
 			</If>
 	<!-- Go to Slavepens if item is needed -->
 			<If Condition="!HasItem(27541)"> <!-- Belt -->
+				<CustomBehavior File="Message" Text="Running Slavepens to get the Belt." LogColor="DarkBlue" />
 				<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
 				<RunTo X="736.5326" Y="6914.593" Z="-65.34555" />
 				<RunTo X="718.8387" Y="6945.226" Z="-68.22695" />
@@ -168,7 +177,13 @@
 					<RunTo X="125.409" Y="-122.3724" Z="-1.046495" />
 					<CustomBehavior File="MyCTM" X="117.4674" Y="-138.1203" Z="0.24311" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+					<If Condition="HasItem(27541)">
+						<CustomBehavior File="Message" Text="Belt obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(27541)">
+						<CustomBehavior File="Message" Text="Belt not obtained. Continuing instance runs." LogColor="Red" />
+					</If>
+				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 				    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 				</If>
 			</If>
@@ -186,8 +201,10 @@
 		</If>
 <!-- Go To: Terokkar Forest - Ring of Observance HIGH-SPOT Checkpoint -->
 		<If Condition="!HasItem(27823)">
+			<CustomBehavior File="Message" Text="Going to Ring of Observance to get the Chest." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 	<!-- Mana-Tombs (Chest) -->
+			<CustomBehavior File="Message" Text="Running Mana-Tombs to get the Chest." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3334.946" Y="4967.088" Z="-33.90321" />
 			<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3233.358" Y="4942.496" Z="-97.42279" />
 			<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3166.641" Y="4942.829" Z="-101.0465" />
@@ -254,15 +271,21 @@
 				<RunTo X="5.59486" Y="0.8978755" Z="-0.9541188" />
 				<CustomBehavior File="MyCTM" X="7.8000" Y="0.8978755" Z="-0.9541188" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+				<If Condition="HasItem(27823)">
+					<CustomBehavior File="Message" Text="Chest obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27823)">
+					<CustomBehavior File="Message" Text="Chest not obtained. Continuing instance runs." LogColor="Red" />
+				</If>
+			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 			    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 				<RunTo X="-3234.764" Y="4942.444" Z="-101.3949" />
 				<CustomBehavior File="FlyTo" X="-3303.953" Y="4945.778" Z="-19.80702" />
 			</If>
 		</If>
 <!-- The pants and shoulders drop in Caverns of Time, to save time we will wait later to go there. -->
-		<CustomBehavior File="Message" Text="Pants and Shoulders will be farmed later." LogColor="Red" />
-		<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Aqua" />
+		<CustomBehavior File="Message" Text="Pants and Shoulders will be farmed later." LogColor="Coral" />
+		<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Lime" />
 		<CustomBehavior File="LoadProfile" ProfileName="[ND] Dragonstalker (RC)" />
 	</QuestOrder>
 </HBProfile>

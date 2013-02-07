@@ -37,8 +37,8 @@
 	
 	<QuestOrder IgnoreCheckpoints = "False">
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenRunTos="False" LogoutForInactivity="False" />
-		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Red" />
-		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Red" />
+		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Lime" />
+		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Lime" />
 <!-- Enable Loot -->
 <CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 <!-- Sets Dungeon Difficulty to Heroic -->
@@ -74,10 +74,12 @@
 		</If>
 <!-- Go To: Terokkar Forest - Ring of Observance HIGH-SPOT Checkpoint -->
 		<If Condition="!HasItem(27818)">
+			<CustomBehavior File="Message" Text="Going to Ring of Observance for the Robes." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 		</If>
 	<!-- Mana-Tombs (Robe) -->
 			<If Condition="!HasItem(27824)">
+				<CustomBehavior File="Message" Text="Going to Mana-Tombs for the Robes." LogColor="DarkBlue" />
 				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3334.946" Y="4967.088" Z="-33.90321" />
 				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3233.358" Y="4942.496" Z="-97.42279" />
 				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3166.641" Y="4942.829" Z="-101.0465" />
@@ -120,12 +122,18 @@
 				    <RunTo X="-8.1720" Y="-1.6236" Z="-0.9533"  />
 					<CustomBehavior File="MyCTM" X="7.8000" Y="0.8978755" Z="-0.9541188" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+					<If Condition="HasItem(27824)">
+						<CustomBehavior File="Message" Text="Robe obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(27824)">
+						<CustomBehavior File="Message" Text="Robe not obtained. Continuing instance runs." LogColor="Red" />
+					</If>
+				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 				    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 					<RunTo X="-3234.764" Y="4942.444" Z="-101.3949" />
 					<CustomBehavior File="FlyTo" X="-3303.953" Y="4945.778" Z="-19.80702" />
 				</If>
-		<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Aqua" />
+		<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Lime" />
 		<CustomBehavior File="LoadProfile" ProfileName="[ND] Stormrage Raiment (RC)" />
 	</QuestOrder>
 </HBProfile>

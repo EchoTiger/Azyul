@@ -72,6 +72,7 @@
 		</If>
 <!-- Go to Zangarmarsh if item(s) aren't detected. -->
 		<If Condition="!HasItem(27672)"> <!--Belt -->
+			<CustomBehavior File="Message" Text="Going to Zangarmarsh to get the Belt" LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="511.3972" Y="6927.3" Z="256.1042" />
 			<CustomBehavior File="FlyTo" DestName="Into the drink!!" X="473.400" Y="6892.175" Z="63.8240" />
 	<!-- Navigate into Coilfang -->
@@ -94,6 +95,7 @@
 				<CustomBehavior File="MyCTM" X="741.1000" Y="7015.931" Z="-71.77438" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<If Condition="(Me.ZoneId == 3717)">
+					<CustomBehavior File="Message" Text="Running Slavepens to get the Belt" LogColor="DarkBlue" />
 					<RunTo X="120.1809" Y="-96.50285" Z="-1.590539" />
 					<RunTo X="-86.56674" Y="-2.280397" Z="-7.141338" />
 					<RunTo X="-117.5197" Y="-17.0272" Z="-8.251738" />
@@ -157,7 +159,13 @@
 					<RunTo X="125.409" Y="-122.3724" Z="-1.046495" />
 					<CustomBehavior File="MyCTM" X="117.4674" Y="-138.1203" Z="0.24311" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+					<If Condition="HasItem(27672)">
+						<CustomBehavior File="Message" Text="Shoulders obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(27672)">
+						<CustomBehavior File="Message" Text="Shoulders weren't obtained. We will run the instance again." LogColor="Red" />
+					</If>
+				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 				    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 				</If>
 			</If>
@@ -175,9 +183,21 @@
 		</If>
 <!-- Go To: Terokkar Forest - Ring of Observance HIGH-SPOT Checkpoint -->
 		<If Condition="!HasItem(27847) || !HasItem(27813)">
+			<CustomBehavior File="Message" Text="Going to Ring of Observance to get the Shoulder and Boots." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
+	<!-- Mana-Tombs (Boots) -->
+			<If Condition="!HasItem(27813)">
+				<CustomBehavior File="Message" Text="Running Mana-Tombs to get the Boots" LogColor="DarkBlue" />
+				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3334.946" Y="4967.088" Z="-33.90321" />
+				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3233.358" Y="4942.496" Z="-97.42279" />
+				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3166.641" Y="4942.829" Z="-101.0465" />
+				<RunTo X="-3086.819" Y="4950.906" Z="-100.9696" />
+				<RunTo X="-3080.302" Y="4943.274" Z="-101.0471" />
+				<CustomBehavior File="MyCTM" X="-3070" Y="4943.274" Z="-101.0471" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		<!-- Mana Tombs - Pandemonius - Boots -->
 				<If Condition="(Me.ZoneId == 3792)">
+					<CustomBehavior File="Message" Text="Running Mana-Tombs to get the Boots." LogColor="DarkBlue" />
 				    <RunTo X="-28.4065" Y="2.1931" Z="-0.9543"  />
 				    <RunTo X="-50.5803" Y="-0.2514" Z="-0.9459"  />
 				    <RunTo X="-65.6778" Y="-14.1470" Z="-0.9465"  />
@@ -211,13 +231,21 @@
 				    <RunTo X="-8.1720" Y="-1.6236" Z="-0.9533"  />
 					<CustomBehavior File="MyCTM" X="7.8000" Y="0.8978755" Z="-0.9541188" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+					<If Condition="HasItem(27813)">
+						<CustomBehavior File="Message" Text="Boots obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(27813)">
+						<CustomBehavior File="Message" Text="Boots weren't obtained. We will run the instance again." LogColor="Red" />
+					</If>
+				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 				    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 					<RunTo X="-3234.764" Y="4942.444" Z="-101.3949" />
 					<CustomBehavior File="FlyTo" X="-3303.953" Y="4945.778" Z="-19.80702" />
 				</If>
+			</If>
 		<!-- Auchenai Crypts - Shirrak the Dead Watcher - Shoulder -->
 				<If Condition="!HasItem(27847)">
+					<CustomBehavior File="Message" Text="Running Auchenai Crypts to get the Shoulder." LogColor="DarkBlue" />
 					<CustomBehavior File="MyCTM" X="-3362.1" Y="5135.099" Z="-101.3956" />
 					<CustomBehavior File="MyCTM" X="-3361.986" Y="5227.993" Z="-101.0481" />
 					<CustomBehavior File="MyCTM" X="-3362.05" Y="5232.822" Z="-101.0479" />
@@ -308,14 +336,20 @@
 					    <RunTo X="-22.9458" Y="0.1580" Z="-0.1218"  />
 					    <CustomBehavior File="MyCTM" X="-28.73179" Y="0.08934584" Z="-0.1205667" />
 					    <CustomBehavior File="WaitTimer" WaitTime="15000" />
-					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+						<If Condition="HasItem(27847)">
+							<CustomBehavior File="Message" Text="Shoulder obtained! Continuing instance runs." LogColor="Azure" />
+						</If>
+						<If Condition="!HasItem(27847)">
+							<CustomBehavior File="Message" Text="Shoulder not obtained. Continuing instance runs." LogColor="Red" />
+						</If>
+					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 					    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 					    <RunTo X="-3361.8" Y="5135.414" Z="-101.3957" />
 					    <CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.963" Y="4997.414" Z="-46.46374" />
 					</If>
 				</If>
 		</If>
-	<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Aqua" />
+	<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Lime" />
 	<CustomBehavior File="LoadProfile" ProfileName="[ND] Battlegear of Wrath (RC)" />
 	</QuestOrder>
 </HBProfile>

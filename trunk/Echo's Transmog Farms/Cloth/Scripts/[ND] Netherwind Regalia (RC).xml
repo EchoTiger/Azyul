@@ -40,7 +40,7 @@
 	
 	<QuestOrder IgnoreCheckpoints = "False">
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Red" />
+		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Lime" />
 <!-- Enable Loot -->
 		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
@@ -76,6 +76,7 @@
 		</If>
 	<!-- Goto Ring of Observance to farm boots -->
 		<If Condition="!HasItem(27902)">
+			<CustomBehavior File="Message" Text="Going to Ring of Observance Boots." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 		</If>
 		<!-- Go to Shadow Labyrinth from Ring of Observance Checkpoint -->
@@ -92,6 +93,7 @@
 			</If>
 		<!-- Repeatedly run instance until Boots are obtained -->
 			<While Condition="!HasItem(27902)">
+				<CustomBehavior File="Message" Text="Running Shadow Labyrinth to get boots." LogColor="DarkBlue" />
 				<RunTo X="-30.91919" Y="-0.2588556" Z="-1.12795" />
 				<RunTo X="-37.51418" Y="-10.6444" Z="-1.129536" />
 				<RunTo X="-35.40944" Y="-59.95869" Z="-1.129536" />
@@ -152,13 +154,17 @@
 				<CustomBehavior File="MyCTM" X="9.52786" Y="-1.860063" Z="-1.128255" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="300000" />
 				<RunTo X="-3647.243" Y="4943.371" Z="-101.0486" />
 				<CustomBehavior File="MyCTM" X="-3652.338" Y="4943.424" Z="-101.0486" />
+				<If Condition="!HasItem(27902)">
+					<CustomBehavior File="Message" Text="Boots not obtained. We will run the instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		<!--Leave after item is obtained -->
 			<If Condition="HasItem(27902)">
+				<CustomBehavior File="Message" Text="Boots obtained! Continuing instance runs." LogColor="Azure" />
 				<RunTo X="-3558.559" Y="4943.185" Z="-101.0486" />
 				<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" X="-3556.407" Y="4943.071" Z="-101.1189" />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
@@ -168,15 +174,18 @@
 			</While>
 	<!-- Go to Tempest Keep Checkpoint if items are needed -->
 		<If Condition="!HasItem(28374) || !HasItem(28317)">
+			<CustomBehavior File="Message" Text="Going to Tempest Keep for the Shoulder and Gloves." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
 		</If>
 	<!-- Shoulder Farm -->
 		<If Condition="!HasItem(28374)" >
+			<CustomBehavior File="Message" Text="Going to The Arcatraz to get boots." LogColor="DarkBlue" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
 			<CustomBehavior File="MyCTM" X="3308.015" Y="1343.598" Z="505.5602" />
 			<While Condition="!HasItem(28374)">
+				<CustomBehavior File="Message" Text="Running The Arcatraz to get shoulders." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="3310.815" Y="1334.649" Z="505.5603" />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<CustomBehavior File="InteractWith" MobId="184320" ObjectType="GameObject" X="3311.218" Y="1333.716" Z="506.5972" />
@@ -216,8 +225,14 @@
 				<RunTo X="-1.886995" Y="-0.2410166" Z="-0.2066709" />
 				<CustomBehavior File="MyCTM" X="-6" Y="-0.2163787" Z="-0.2066709" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(28374)">
+					<CustomBehavior File="Message" Text="Shoulders obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(28374)">
+					<CustomBehavior File="Message" Text="Shoulders weren't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="300000" />
 				<If Condition="HasItem(28374) &amp;&amp; !HasItem(28317)">
 					<CustomBehavior File="MyCTM" X="3286.609" Y="1396.927" Z="502.4123" />
@@ -228,6 +243,7 @@
 		</If>
 	<!-- Glove Farm -->
 		<If Condition="!HasItem(28317)" >
+			<CustomBehavior File="Message" Text="Going to The Botanica to get gloves." LogColor="DarkBlue" />
 			<CustomBehavior File="MyCTM" DestName="The Botanica" X="3282.688" Y="1593.681" Z="215.7932" />
 			<CustomBehavior File="MyCTM" DestName="The Botanica" X="3379.306" Y="1509.884" Z="180.0212" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
@@ -236,6 +252,7 @@
 			<CustomBehavior File="MyCTM" X="3416.938" Y="1480.998" Z="182.8368" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			<While Condition="!HasItem(28317)" >
+				<CustomBehavior File="Message" Text="Running The Botanica to get gloves." LogColor="DarkBlue" />
 				<RunTo X="2.533957" Y="9.224449" Z="-1.575816" />
 				<RunTo X="-1.047988" Y="41.41841" Z="-5.663148" />
 				<RunTo X="-0.7909028" Y="142.3757" Z="-5.540251" />
@@ -285,8 +302,14 @@
 				<RunTo X="45.74797" Y="-33.98659" Z="-1.098728" />
 				<CustomBehavior File="MyCTM" X="48.53382" Y="-36.81382" Z="-1.098728" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(28317)">
+					<CustomBehavior File="Message" Text="Gloves obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(28317)">
+					<CustomBehavior File="Message" Text="Gloves weren't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="300000" />
 				<RunTo X="3414.166" Y="1482.765" Z="182.837" />
 				<CustomBehavior File="MyCTM" X="3417.561" Y="1480.895" Z="182.837" />

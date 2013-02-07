@@ -76,6 +76,7 @@
 		</If>
 <!-- Begin Normal Farms -->
 		<If Condition="!HasItem(27787)" > <!-- Chest -->
+			<CustomBehavior File="Message" Text="Going to Zangarmarsh to get the Chest" LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh-HIGH POINT" X="511.3972" Y="6927.3" Z="256.1042" />
 			<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="473.400" Y="6892.175" Z="63.8240" />
 			<CustomBehavior File="MyCTM" X="556.8849" Y="6938.702" Z="19.20102" />
@@ -91,6 +92,7 @@
 			<CustomBehavior File="MyCTM" X="818.925" Y="6938.217" Z="-80.51434" />
 			<CustomBehavior File="MyCTM" X="817.9991" Y="6942.93" Z="-80.62702" />
 			<While Condition="!HasItem(27787)" > <!--Chest, Steamvaults -->
+				<CustomBehavior File="Message" Text="Running Steamvaults to get the Chest." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="818.2396" Y="6950.100" Z="-80.61687" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<RunTo X="0.1361017" Y="5.8794" Z="-4.141092" />
@@ -125,8 +127,14 @@
 				<RunTo X="-18.17694" Y="5.697254" Z="-4.29908" />
 				<CustomBehavior File="MyCTM" X="-26.23148" Y="6.622708" Z="-4.242221" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(27787)">
+					<CustomBehavior File="Message" Text="Chest obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27787)">
+					<CustomBehavior File="Message" Text="Chest wasn't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="390000" />
 			</While>
 			<!-- Navigating out of Coilfang -->
@@ -143,10 +151,12 @@
 			</If>
 	<!-- Go to Tempest Keep Checkpoint if items are needed -->
 		<If Condition="!HasItem(28396)">
+			<CustomBehavior File="Message" Text="Going to Tempest Keep for the Gloves." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
 		</If>
 	<!-- Glove Farm -->
 		<If Condition="!HasItem(28396)" >
+			<CustomBehavior File="Message" Text="Running The Arcatraz for the Gloves." LogColor="DarkBlue" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
@@ -258,8 +268,14 @@
 			    <RunTo X="4.6637" Y="-0.5936" Z="-0.2069"  />
 				<CustomBehavior File="MyCTM" X="-6" Y="-0.2163787" Z="-0.2066709" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(28396)">
+					<CustomBehavior File="Message" Text="Gloves obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(28396)">
+					<CustomBehavior File="Message" Text="Gloves not obtained. Continuing instance runs." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="300000" />
 			</While>
 		</If>
@@ -267,7 +283,7 @@
 			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="All normal difficulty items have been obtained!\nIf you still require some of the heroic items, you can re-run the [HD] profile inside of the Scripts folder.\n Or, you can just run the Auto-Loader profile outside of the script folder." />
 		</If>
 		<If Condition="!HasItem(28206)" >
-			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="One item have not been farmed: Cowl of the Guiltless. \n\nThe instances that these items drop in require further script.  You must farm them on your own until I can obtain a custom script for these instances." />
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="One item has not been farmed: Cowl of the Guiltless. \n\nThe instances that these items drop in require further script.  You must farm them on your own until I can obtain a custom script for these instances." />
 		</If>
 	</QuestOrder>
 </HBProfile>

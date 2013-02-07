@@ -38,8 +38,8 @@
 	
 	<QuestOrder IgnoreCheckpoints = "False">
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Red" />
-		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Red" />
+		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Lime" />
+		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Lime" />
 <!-- Enable Loot -->
 		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 <!-- Sets Dungeon Difficulty to Heroic -->
@@ -75,6 +75,7 @@
 		</If>
 <!-- Go to Zangarmarsh if item(s) aren't detected. -->
 		<If Condition="!HasItem(27781)">
+			<CustomBehavior File="Message" Text="Going to Zangarmarsh for the Helmet." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="511.3972" Y="6927.3" Z="256.1042" />
 			<CustomBehavior File="FlyTo" DestName="Into the drink!!" X="473.400" Y="6892.175" Z="63.8240" />
 		</If>
@@ -102,7 +103,8 @@
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</ElseIf>
 		</If>
-	<!--  Underbog Instance (Helment) -->
+	<!--  Underbog Instance (Helmet) -->
+			<CustomBehavior File="Message" Text="Running Underbog to get the Helmet" LogColor="DarkBlue" />
 			<If Condition="(Me.ZoneId == 3716)">
 				<RunTo X="74.3205" Y="-62.86559" Z="-2.753865" />
 				<RunTo X="46.93045" Y="-121.97" Z="-2.851113" />
@@ -147,7 +149,13 @@
 				<CustomBehavior File="MyCTM" X="5.769754" Y="-16.50335" Z="-2.753463" />
 				<CustomBehavior File="MyCTM" X="4.015000" Y="-10.20000" Z="-2.750623" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+				<If Condition="HasItem(27781)">
+					<CustomBehavior File="Message" Text="Helmet obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27781)">
+					<CustomBehavior File="Message" Text="Helmet not obtained. Continuing instance runs." LogColor="Red" />
+				</If>
+			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 			    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 				<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
 				<CustomBehavior File="MyCTM" X="655.8704" Y="6865.183" Z="-83.67981" />
@@ -162,6 +170,7 @@
 			</If>
 <!-- Go To: Terokkar Forest - Ring of Observance HIGH-SPOT Checkpoint -->
 		<If Condition="!HasItem(27821)">
+			<CustomBehavior File="Message" Text="Going to Ring of Observance for the Boots." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 		</If>
 	<!-- Mana-Tombs (Boots) -->
@@ -174,6 +183,7 @@
 				<CustomBehavior File="MyCTM" X="-3070" Y="4943.274" Z="-101.0471" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
+			<CustomBehavior File="Message" Text="Running Mana-Tombs to get the Boots" LogColor="DarkBlue" />
 				<If Condition="(Me.ZoneId == 3792)">
 					<RunTo X="-49.06805" Y="0.4708931" Z="-0.9517158" />
 					<RunTo X="-66.02092" Y="-18.24154" Z="-0.9511402" />
@@ -232,7 +242,13 @@
 					<RunTo X="5.59486" Y="0.8978755" Z="-0.9541188" />
 					<CustomBehavior File="MyCTM" X="7.8000" Y="0.8978755" Z="-0.9541188" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+					<If Condition="HasItem(27821)">
+						<CustomBehavior File="Message" Text="Boots obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(27821)">
+						<CustomBehavior File="Message" Text="Boots not obtained. Continuing instance runs." LogColor="Red" />
+					</If>
+				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 				    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 					<RunTo X="-3234.764" Y="4942.444" Z="-101.3949" />
 					<CustomBehavior File="FlyTo" X="-3303.953" Y="4945.778" Z="-19.80702" />

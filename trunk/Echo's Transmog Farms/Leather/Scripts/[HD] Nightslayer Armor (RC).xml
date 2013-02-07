@@ -39,8 +39,8 @@
 	
 	<QuestOrder IgnoreCheckpoints = "False">
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Red" />
-		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Red" />
+		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Lime" />
+		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Lime" />
 <!-- Enable Loot -->
 <CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 <!-- Sets Dungeon Difficulty to Heroic -->
@@ -76,6 +76,7 @@
 		</If>
 <!-- Hellfire Ramparts -->
 		<If Condition="(!HasItem(27467)) || (!HasItem(27461))" > <!--Boots and Chest -->
+			<CustomBehavior File="Message" Text="Running Hellfire to get the Boots and Chest." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Hellfire Peninsula" X="-360.4703" Y="3016.986" Z="40.87082" />
 			<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-354.3885" Y="3062.629" Z="-15.18049" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
@@ -108,6 +109,12 @@
 				<RunTo X="-1110.267" Y="1728.176" Z="89.71658" />
 				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 				<RunTo X="-1300.935" Y="1625.185" Z="91.75221" />
+				<If Condition="HasItem(27467)">
+					<CustomBehavior File="Message" Text="Boots obtained!" LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27467)">
+					<CustomBehavior File="Message" Text="Boots not obtained." LogColor="Red" />
+				</If>
 			</If>
 		<!-- Vazruden/Nazan - Chest --> 
 			<If Condition="(!HasItem(27461))" >
@@ -139,17 +146,24 @@
 				<CustomBehavior File="RunMacro" Macro="/script CloseLoot()" />
 				<CustomBehavior File="WaitTimer" WaitTime="1200" />
 				<RunTo X="-1300.935" Y="1625.185" Z="91.75221" />
+				<If Condition="HasItem(27461)">
+					<CustomBehavior File="Message" Text="Chest obtained!" LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27461)">
+					<CustomBehavior File="Message" Text="Chest not obtained." LogColor="Red" />
+				</If>
 			</If>
 			<RunTo X="-1317.614" Y="1636.576" Z="91.73563" />
 			<CustomBehavior File="MyCTM" X="-1345.156" Y="1652.946" Z="68.86689" />
 			<RunTo X="-1355.375" Y="1639.065" Z="68.24535" />
 			<CustomBehavior File="MyCTM" X="-1357.292" Y="1633.615" Z="68.4899" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+		    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 		    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 		</If>
 <!-- Go to Zangarmarsh if item(s) aren't detected. -->
 		<If Condition="!HasItem(27938) || !HasItem(27545)"> <!--Helmet and Legs -->
+			<CustomBehavior File="Message" Text="Going to Zangarmarsh for the Helmet and Legs." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="511.3972" Y="6927.3" Z="256.1042" />
 			<CustomBehavior File="FlyTo" DestName="Into the drink!!" X="473.400" Y="6892.175" Z="63.8240" />
 		</If>
@@ -173,9 +187,9 @@
 			<RunTo X="780.15" Y="6747.573" Z="-72.53754" />
 			<CustomBehavior File="MyCTM" X="781.2729" Y="6743.500" Z="-72.53828" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		</If>
 	<!--  Underbog Instance (Helmet) -->
 			<If Condition="(Me.ZoneId == 3716)">
+				<CustomBehavior File="Message" Text="Running Ungerbog for the Helmet." LogColor="DarkBlue" />
 				<RunTo X="74.3205" Y="-62.86559" Z="-2.753865" />
 				<RunTo X="46.93045" Y="-121.97" Z="-2.851113" />
 				<RunTo X="47.28218" Y="-194.077" Z="-4.22888" />
@@ -219,20 +233,27 @@
 				<CustomBehavior File="MyCTM" X="5.769754" Y="-16.50335" Z="-2.753463" />
 				<CustomBehavior File="MyCTM" X="4.015000" Y="-10.20000" Z="-2.750623" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+				<If Condition="HasItem(27938)">
+					<CustomBehavior File="Message" Text="Helmet obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27936)">
+					<CustomBehavior File="Message" Text="Helmet not obtained. Continuing instance runs." LogColor="Red" />
+				</If>
+			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 			    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 			</If>
+		</If>
 	<!-- Go to Slavepens if item is needed -->
-			<If Condition="!HasItem(27545)">
-				<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
-				<RunTo X="736.5326" Y="6914.593" Z="-65.34555" />
-				<RunTo X="718.8387" Y="6945.226" Z="-68.22695" />
-				<RunTo X="717.5242" Y="7008.884" Z="-74.78161" />
-				<RunTo X="739.0041" Y="7016.778" Z="-71.61855" />
-				<CustomBehavior File="MyCTM" X="741.1000" Y="7015.931" Z="-71.77438" />
-				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			</If>
-	<!-- Slavepens instance (Legs) -->
+		<If Condition="!HasItem(27545)">
+			<CustomBehavior File="Message" Text="Running Slavepens for the Legs." LogColor="DarkBlue" />
+			<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
+			<RunTo X="736.5326" Y="6914.593" Z="-65.34555" />
+			<RunTo X="718.8387" Y="6945.226" Z="-68.22695" />
+			<RunTo X="717.5242" Y="7008.884" Z="-74.78161" />
+			<RunTo X="739.0041" Y="7016.778" Z="-71.61855" />
+			<CustomBehavior File="MyCTM" X="741.1000" Y="7015.931" Z="-71.77438" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<!-- Slavepens instance (Legs) -->
 			<If Condition="(Me.ZoneId == 3717)">
 				<RunTo X="120.1809" Y="-96.50285" Z="-1.590539" />
 				<RunTo X="-86.56674" Y="-2.280397" Z="-7.141338" />
@@ -266,27 +287,36 @@
 				<RunTo X="125.409" Y="-122.3724" Z="-1.046495" />
 				<CustomBehavior File="MyCTM" X="117.4674" Y="-138.1203" Z="0.24311" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
+				<If Condition="HasItem(27545)">
+					<CustomBehavior File="Message" Text="Legs obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27545)">
+					<CustomBehavior File="Message" Text="Legs not obtained. Continuing instance runs." LogColor="Red" />
+				</If>
+			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 			    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 			</If>
+		</If>
 	<!-- Navigating out of Coilfang -->
-				<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
-				<CustomBehavior File="MyCTM" X="655.8704" Y="6865.183" Z="-83.67981" />
-				<CustomBehavior File="MyCTM" X="632.2728" Y="6871.266" Z="-75.63762" />
-				<CustomBehavior File="MyCTM" X="619.5461" Y="6887.241" Z="-64.32347" />
-				<CustomBehavior File="MyCTM" X="607.8958" Y="6898.224" Z="-49.47136" />
-				<CustomBehavior File="MyCTM" X="594.9378" Y="6930.458" Z="-41.49766" />
-				<CustomBehavior File="MyCTM" X="567.3137" Y="6945.225" Z="-28.22179" />
-				<CustomBehavior File="MyCTM" X="540.6658" Y="6924.646" Z="22.10633" />
-				<CustomBehavior File="MyCTM" X="530.261" Y="6910.107" Z="30.74072" />
-				<CustomBehavior File="FlyTo" X="421.8152" Y="6827.062" Z="141.7544" />
+			<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
+			<CustomBehavior File="MyCTM" X="655.8704" Y="6865.183" Z="-83.67981" />
+			<CustomBehavior File="MyCTM" X="632.2728" Y="6871.266" Z="-75.63762" />
+			<CustomBehavior File="MyCTM" X="619.5461" Y="6887.241" Z="-64.32347" />
+			<CustomBehavior File="MyCTM" X="607.8958" Y="6898.224" Z="-49.47136" />
+			<CustomBehavior File="MyCTM" X="594.9378" Y="6930.458" Z="-41.49766" />
+			<CustomBehavior File="MyCTM" X="567.3137" Y="6945.225" Z="-28.22179" />
+			<CustomBehavior File="MyCTM" X="540.6658" Y="6924.646" Z="22.10633" />
+			<CustomBehavior File="MyCTM" X="530.261" Y="6910.107" Z="30.74072" />
+			<CustomBehavior File="FlyTo" X="421.8152" Y="6827.062" Z="141.7544" />
 		</If>
 <!-- Ring of Observance HIGH-SPOT Navigation -->
 		<If Condition="!HasItem(27825) || !HasItem(32769)"> <!--Gloves and Belt -->
+			<CustomBehavior File="Message" Text="Going to Ring of Observance for the Gloves and Belt." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
 		</If>
 	<!-- Mana-Tombs (Gloves) -->
 			<If Condition="!HasItem(27825)">
+				<CustomBehavior File="Message" Text="Going to Mana-Tombs to get the Gloves." LogColor="DarkBlue" />
 				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3334.946" Y="4967.088" Z="-33.90321" />
 				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3233.358" Y="4942.496" Z="-97.42279" />
 				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3166.641" Y="4942.829" Z="-101.0465" />
@@ -294,7 +324,6 @@
 				<RunTo X="-3080.302" Y="4943.274" Z="-101.0471" />
 				<CustomBehavior File="MyCTM" X="-3070" Y="4943.274" Z="-101.0471" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			</If>
 				<If Condition="(Me.ZoneId == 3792)">
 					<RunTo X="-49.06805" Y="0.4708931" Z="-0.9517158" />
 					<RunTo X="-66.02092" Y="-18.24154" Z="-0.9511402" />
@@ -353,73 +382,87 @@
 					<RunTo X="5.59486" Y="0.8978755" Z="-0.9541188" />
 					<CustomBehavior File="MyCTM" X="7.8000" Y="0.8978755" Z="-0.9541188" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
-			    <CustomBehavior File="WaitTimer" WaitTime="150000" />
+					<If Condition="HasItem(27825)">
+						<CustomBehavior File="Message" Text="Gloves obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(27825)">
+						<CustomBehavior File="Message" Text="Gloves not obtained. Continuing instance runs." LogColor="Red" />
+					</If>
+				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+				    <CustomBehavior File="WaitTimer" WaitTime="150000" />
 					<RunTo X="-3234.764" Y="4942.444" Z="-101.3949" />
 					<CustomBehavior File="FlyTo" X="-3303.953" Y="4945.778" Z="-19.80702" />
 				</If>
+			</If>
 	<!-- Sethekk Halls (Belt) -->
 				<If Condition="!HasItem(32769)">
+					<CustomBehavior File="Message" Text="Going to Sethekk Halls to get the Belt." LogColor="DarkBlue" />
 					<CustomBehavior File="FlyTo" DestName="Sethekk Halls" X="-3359.548" Y="4855.078" Z="-83.6778" />
 					<CustomBehavior File="FlyTo" DestName="Sethekk Halls" X="-3361.613" Y="4747.041" Z="-101.0479" />
 					<RunTo X="-3361.596" Y="4658.154" Z="-101.0489" />
 					<CustomBehavior File="MyCTM" X="-3361.596" Y="4653.00" Z="-101.0489" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<If Condition="(Me.ZoneId == 3791)">
+						<RunTo X="41.26119" Y="0.8646942" Z="0.005874268" />
+						<RunTo X="41.53473" Y="84.33508" Z="-0.3304407" />
+						<RunTo X="-2.823331" Y="97.46173" Z="0.007205334" />
+						<RunTo X="-34.70389" Y="101.0624" Z="0.007205334" />
+						<RunTo X="-39.35664" Y="102.5458" Z="0.007205334" />
+						<CustomBehavior File="MyCTM" X="-47.45729" Y="118.4541" Z="0.007205334" />
+						<CustomBehavior File="MyCTM" X="-52.46022" Y="117.0722" Z="0.007205334" />
+						<CustomBehavior File="MyCTM" X="-54.60545" Y="124.3057" Z="0.007199959" />
+						<CustomBehavior File="MyCTM" X="-71.12375" Y="130.4929" Z="0.007199959" />
+						<CustomBehavior File="MyCTM" X="-80.00062" Y="163.8224" Z="0.01292837" />
+						<RunTo X="-89.14588" Y="172.8515" Z="0.01017372" />
+						<RunTo X="-102.8024" Y="173.7196" Z="0.009212025" />
+						<RunTo X="-121.0681" Y="165.4998" Z="-0.007084608" />
+						<CustomBehavior File="MyCTM" X="-143.4901" Y="152.937" Z="-0.03125314" />
+						<CustomBehavior File="MyCTM" X="-178.8468" Y="173.7101" Z="0.009358956" />
+						<RunTo X="-204.7934" Y="173.1215" Z="0.009489457" />
+						<RunTo X="-271.9312" Y="176.8177" Z="0.03516929" />
+						<RunTo X="-271.0353" Y="143.7536" Z="13.56728" />
+						<RunTo X="-212.6762" Y="144.374" Z="26.76376" />
+						<RunTo X="-213.4339" Y="205.7328" Z="26.72274" />
+						<RunTo X="-242.1771" Y="209.0105" Z="26.80351" />
+						<RunTo X="-243.974" Y="281.5336" Z="27.39513" />
+						<CustomBehavior File="MyCTM" X="-234.4152" Y="299.3854" Z="26.73054" />
+						<RunTo X="-222.3786" Y="317.7699" Z="26.90449" />
+						<RunTo X="-214.989" Y="316.9932" Z="30.47373" />
+						<RunTo X="-218.3323" Y="310.0389" Z="36.54922" />
+						<CustomBehavior File="MyCTM" X="-192.3041" Y="299.1064" Z="26.65425" />
+						<RunTo X="-172.421" Y="303.7297" Z="26.733" />
+						<CustomBehavior File="MyCTM" X="-161.9289" Y="288.0521" Z="26.73255" />
+						<RunTo X="-139.8225" Y="286.7852" Z="26.73113" />
+						<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" />
+						<RunTo X="-112.9592" Y="287.1975" Z="26.63113" />
+						<RunTo X="-89.24591" Y="287.9723" Z="26.48315" />
+						<CustomBehavior File="WaitTimer" WaitTime="5000" />
+						<RunTo X="-92.60774" Y="289.2093" Z="26.48321" />
+						<CustomBehavior File="WaitTimer" WaitTime="3000" />
+						<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" />
+						<RunTo X="-91.70893" Y="300.9056" Z="26.48321" />
+						<RunTo X="-22.86932" Y="283.8476" Z="26.73143" />
+						<RunTo X="-10.71296" Y="286.3596" Z="26.73143" />
+						<RunTo X="43.84939" Y="286.804" Z="25.01365" />
+						<CustomBehavior File="WaitTimer" WaitTime="5000" />
+						<RunTo X="44.58648" Y="134.9807" Z="0.008487508" />
+						<RunTo X="63.92692" Y="97.99913" Z="0.1025789" />
+						<RunTo X="40.82194" Y="87.09062" Z="0.149187" />
+						<RunTo X="41.78611" Y="2.573891" Z="0.007269994" />
+						<RunTo X="-7.335547" Y="0.4294231" Z="0.006018087" />
+						<CustomBehavior File="MyCTM" X="-9.5" Y="-0.02800646" Z="0.006027797" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<If Condition="HasItem(32769)">
+							<CustomBehavior File="Message" Text="Belt obtained! Continuing instance runs." LogColor="Azure" />
+						</If>
+						<If Condition="!HasItem(32769)">
+							<CustomBehavior File="Message" Text="Belt not obtained. Continuing instance runs." LogColor="Red" />
+						</If>
+					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+					    <CustomBehavior File="WaitTimer" WaitTime="150000" />
+					</If>
 				</If>
-				<If Condition="(Me.ZoneId == 3791)">
-					<RunTo X="41.26119" Y="0.8646942" Z="0.005874268" />
-					<RunTo X="41.53473" Y="84.33508" Z="-0.3304407" />
-					<RunTo X="-2.823331" Y="97.46173" Z="0.007205334" />
-					<RunTo X="-34.70389" Y="101.0624" Z="0.007205334" />
-					<RunTo X="-39.35664" Y="102.5458" Z="0.007205334" />
-					<CustomBehavior File="MyCTM" X="-47.45729" Y="118.4541" Z="0.007205334" />
-					<CustomBehavior File="MyCTM" X="-52.46022" Y="117.0722" Z="0.007205334" />
-					<CustomBehavior File="MyCTM" X="-54.60545" Y="124.3057" Z="0.007199959" />
-					<CustomBehavior File="MyCTM" X="-71.12375" Y="130.4929" Z="0.007199959" />
-					<CustomBehavior File="MyCTM" X="-80.00062" Y="163.8224" Z="0.01292837" />
-					<RunTo X="-89.14588" Y="172.8515" Z="0.01017372" />
-					<RunTo X="-102.8024" Y="173.7196" Z="0.009212025" />
-					<RunTo X="-121.0681" Y="165.4998" Z="-0.007084608" />
-					<CustomBehavior File="MyCTM" X="-143.4901" Y="152.937" Z="-0.03125314" />
-					<CustomBehavior File="MyCTM" X="-178.8468" Y="173.7101" Z="0.009358956" />
-					<RunTo X="-204.7934" Y="173.1215" Z="0.009489457" />
-					<RunTo X="-271.9312" Y="176.8177" Z="0.03516929" />
-					<RunTo X="-271.0353" Y="143.7536" Z="13.56728" />
-					<RunTo X="-212.6762" Y="144.374" Z="26.76376" />
-					<RunTo X="-213.4339" Y="205.7328" Z="26.72274" />
-					<RunTo X="-242.1771" Y="209.0105" Z="26.80351" />
-					<RunTo X="-243.974" Y="281.5336" Z="27.39513" />
-					<CustomBehavior File="MyCTM" X="-234.4152" Y="299.3854" Z="26.73054" />
-					<RunTo X="-222.3786" Y="317.7699" Z="26.90449" />
-					<RunTo X="-214.989" Y="316.9932" Z="30.47373" />
-					<RunTo X="-218.3323" Y="310.0389" Z="36.54922" />
-					<CustomBehavior File="MyCTM" X="-192.3041" Y="299.1064" Z="26.65425" />
-					<RunTo X="-172.421" Y="303.7297" Z="26.733" />
-					<CustomBehavior File="MyCTM" X="-161.9289" Y="288.0521" Z="26.73255" />
-					<RunTo X="-139.8225" Y="286.7852" Z="26.73113" />
-					<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" />
-					<RunTo X="-112.9592" Y="287.1975" Z="26.63113" />
-					<RunTo X="-89.24591" Y="287.9723" Z="26.48315" />
-					<CustomBehavior File="WaitTimer" WaitTime="5000" />
-					<RunTo X="-92.60774" Y="289.2093" Z="26.48321" />
-					<CustomBehavior File="WaitTimer" WaitTime="3000" />
-					<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" />
-					<RunTo X="-91.70893" Y="300.9056" Z="26.48321" />
-					<RunTo X="-22.86932" Y="283.8476" Z="26.73143" />
-					<RunTo X="-10.71296" Y="286.3596" Z="26.73143" />
-					<RunTo X="43.84939" Y="286.804" Z="25.01365" />
-					<CustomBehavior File="WaitTimer" WaitTime="5000" />
-					<RunTo X="44.58648" Y="134.9807" Z="0.008487508" />
-					<RunTo X="63.92692" Y="97.99913" Z="0.1025789" />
-					<RunTo X="40.82194" Y="87.09062" Z="0.149187" />
-					<RunTo X="41.78611" Y="2.573891" Z="0.007269994" />
-					<RunTo X="-7.335547" Y="0.4294231" Z="0.006018087" />
-					<CustomBehavior File="MyCTM" X="-9.5" Y="-0.02800646" Z="0.006027797" />
-					<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Red" />
-				    <CustomBehavior File="WaitTimer" WaitTime="150000" />
-				</If>
-		<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Aqua" />
+		<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Lime" />
 		<CustomBehavior File="LoadProfile" ProfileName="[ND] Nightslayer Armor (RC)" />
 	</QuestOrder>
 </HBProfile>

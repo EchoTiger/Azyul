@@ -40,7 +40,7 @@
 	
 	<QuestOrder>
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Aqua" />
+		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Lime" />
 		<!-- Enable Loot -->
 		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 <!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
@@ -75,8 +75,9 @@
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 		<!-- This code checks to see if the player is located in Outlands.  If so, it shall proceed to the instances. -->
-	<!-- The Shattered Halls :: Grand Warlock Nethekurse Boots :: Warchief Kargath Bladefist Legs -->
+	<!-- The Shattered Halls :: Grand Warlock Nethekurse Helmet :: Warchief Kargath Bladefist Legs -->
 		<If Condition="!HasItem(27520) || !HasItem(27527)">
+			<CustomBehavior File="Message" Text="Going to Hellfire Peninsula to get the Boots and Legs." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="Hellfire Peninsula" X="-299.5369" Y="3010.067" Z="3.056178" />
 			<CustomBehavior File="FlyTo" DestName="The Shattered Halls" X="-297.5326" Y="3003.031" Z="-0.05146646" />
 			<CustomBehavior File="FlyTo" DestName="The Shattered Halls" X="-305.8824" Y="3054.935" Z="-2.584884" />
@@ -85,6 +86,7 @@
 			<CustomBehavior File="InteractWith" MobId="184912" ObjectType="Gameobject" X="-309.6581" Y="3078.957" Z="-3.545551" />
 			<CustomBehavior File="MyCTM" X="-310.555" Y="3084.961" Z="-3.796206" />
 			<While Condition="!HasItem(27520) || !HasItem(27527)">
+				<CustomBehavior File="Message" Text="Running Shattered Halls to get the Boots and Legs." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="-309.9687" Y="3089.200" Z="-4.015895" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			    <RunTo X="-36.4153" Y="-10.5299" Z="-13.6108"  />
@@ -123,7 +125,8 @@
 			    <RunTo X="182.6928" Y="217.3337" Z="-20.8372"  />
 			    <RunTo X="177.2825" Y="241.6641" Z="-14.1047"  />
 			    <RunTo X="178.9595" Y="262.1808" Z="-13.1570"  />
-			<!--Grand Warlock Nethekurse, boots-->
+			<!--Grand Warlock Nethekurse, Helmet-->
+				<CustomBehavior File="Message" Text="Killing Grand Warlock Nethekurse for the helmet." LogColor="DarkBlue" />
 			    <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
 			    <RunTo X="179.2139" Y="268.3985" Z="-13.1384"  />
 			    <RunTo X="178.7941" Y="288.6699" Z="-8.1864"  />
@@ -131,6 +134,12 @@
 			    <RunTo X="187.5329" Y="291.6043" Z="-8.1776"  />
 			    <RunTo X="169.6324" Y="290.6906" Z="-8.1783"  />
 			    <CustomBehavior File="UserSettings" LootMobs="False" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<If Condition="HasItem(27520)">
+					<CustomBehavior File="Message" Text="Helmet obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27520)">
+					<CustomBehavior File="Message" Text="Helmet wasn't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 			    <RunTo X="177.6508" Y="268.0311" Z="-13.1347"  />
 			    <RunTo X="198.5170" Y="266.9645" Z="-13.1752"  />
 			    <RunTo X="218.7922" Y="265.8294" Z="-13.2225"  />
@@ -181,11 +190,18 @@
 			    <RunTo X="285.4971" Y="-84.4632" Z="2.0230"  />
 			    <RunTo X="265.3549" Y="-84.0876" Z="3.4308"  />
 			<!--Warchief Kargath Bladefist, legs -->
+				<CustomBehavior File="Message" Text="Killing Kargath Bladefist to get the Legs." LogColor="DarkBlue" />
 			    <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
 			    <RunTo X="245.4026" Y="-83.9450" Z="4.9386"  />
 			    <RunTo X="230.4750" Y="-83.5183" Z="4.9386"  />
 			    <RunTo X="257.4003" Y="-84.4040" Z="4.4544"  />
 			    <CustomBehavior File="UserSettings" LootMobs="False" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<If Condition="HasItem(27527)">
+					<CustomBehavior File="Message" Text="Legs obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27527)">
+					<CustomBehavior File="Message" Text="Legs wasn't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 			    <RunTo X="265.7290" Y="-84.9095" Z="3.3830"  />
 			    <RunTo X="285.7472" Y="-86.1244" Z="2.0166"  />
 			    <RunTo X="305.8352" Y="-87.3435" Z="1.9298"  />
@@ -260,8 +276,14 @@
 			    <RunTo X="-42.1118" Y="-24.1516" Z="-13.6126"  />
 				<CustomBehavior File="MyCTM" X="-42.1995" Y="-29.20666" Z="-13.51132" />
 			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(27520) || HasItem(27527)">
+					<CustomBehavior File="Message" Text="All items obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27520) || !HasItem(27527)">
+					<CustomBehavior File="Message" Text="An item wasn't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="300000" />
 			</While>
 			<If Condition="HasItem(27520) &amp;&amp; HasItem(27527)">
@@ -273,17 +295,18 @@
 		</If>
 	<!--Go to Tempest Keep, Gloves and Chest -->
 		<If Condition="!HasItem(28390) || !HasItem(28262)">
+			<CustomBehavior File="Message" Text="Going to Tempest Keep for the Gloves and Chest." LogColor="DarkBlue" />
 			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
 		</If>
-
-
 	<!-- The Arcatraz, Gloves -->
 		<If Condition="!HasItem(28390)" >
+			<CustomBehavior File="Message" Text="Going to The Arcatraz to get the Gloves." LogColor="DarkBlue" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
 			<CustomBehavior File="MyCTM" X="3308.015" Y="1343.598" Z="505.5602" />
 			<While Condition="!HasItem(28390)">
+				<CustomBehavior File="Message" Text="Running The Arcatraz to get the Gloves." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="3310.815" Y="1334.649" Z="505.5603" />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<CustomBehavior File="InteractWith" MobId="184320" ObjectType="GameObject" X="3311.218" Y="1333.716" Z="506.5972" />
@@ -389,8 +412,14 @@
 			    <RunTo X="4.6637" Y="-0.5936" Z="-0.2069"  />
 				<CustomBehavior File="MyCTM" X="-6" Y="-0.2163787" Z="-0.2066709" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(28390)">
+					<CustomBehavior File="Message" Text="Gloves obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(28390)">
+					<CustomBehavior File="Message" Text="Gloves weren't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="300000" />
 				<If Condition="HasItem(28390)">
 					<CustomBehavior File="MyCTM" X="3286.609" Y="1396.927" Z="502.4123" />
@@ -400,6 +429,7 @@
 		</If>
 <!-- The Mechanar, Chest -->
 		<If Condition="!HasItem(28262)">
+			<CustomBehavior File="Message" Text="Going to The Mechanar for the Chest." LogColor="DarkBlue" />
 			<CustomBehavior File="MyCTM" X="3138.49" Y="1659.895" Z="218.2768" />
 	    	<CustomBehavior File="MyCTM" X="3354.86" Y="1526.915" Z="179.6884" />
 	    	<CustomBehavior File="FlyTo" X="3338.867" Y="1539.518" Z="204.9442" />
@@ -408,6 +438,7 @@
 	    	<CustomBehavior File="MyCTM" X="2867.058" Y="1550.627" Z="252.1589" />
 	    	<CustomBehavior File="RunMacro" Macro="/dismount" />
 	    	<While Condition="!HasItem(28262)" >
+				<CustomBehavior File="Message" Text="Running The Mechanar for the Chest." LogColor="DarkBlue" />
 	    		<CustomBehavior File="MyCTM" X="2860.685" Y="1544.054" Z="251.5551" />
 	    		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			    <RunTo X="-9.4684" Y="7.7338" Z="-1.8136"  />
@@ -492,8 +523,14 @@
 			    <RunTo X="-20.1912" Y="0.5594" Z="-1.8136"  />
 				<CustomBehavior File="MyCTM" X="-39.30587" Y="0.1639981" Z="-2.129546" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(28262)">
+					<CustomBehavior File="Message" Text="Chest obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(28262)">
+					<CustomBehavior File="Message" Text="Chest wasn't obtained. We will run the instance again." LogColor="Red" />
+				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Red" />
+				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="300000" />
 	    	</While>
 	   	</If>
