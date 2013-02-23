@@ -1,13 +1,13 @@
 <HBProfile>
-<Name>Mjj23's Lightning Halls Endless Farm</Name>
+<Name>Mjj23's Dire Maul North Endless Farm</Name>
 <MinDurability>0.3</MinDurability>
 <MinFreeBagSlots>1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////
 // Profile Maker: Mjj23
-// Farm zone: Lightning Halls
+// Farm zone: Dire Maul (North)
 // Farm mobs: All
 // Grind Speed: N/A
-// Grind what? Book of Glyph Mastery
+// Grind what? Saltstone Plate/Various Transmog
 ///////////////////////////////////////////////////////////////////////
 
 <MinLevel>54</MinLevel>
@@ -20,39 +20,43 @@
 <MailPurple>True</MailPurple>
 
 <SellGrey>True</SellGrey>
-<SellWhite>False</SellWhite>
-<SellGreen>True</SellGreen>
-<SellBlue>False</SellBlue>
-<SellPurple>True</SellPurple>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
 
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
-	
 	<ProtectedItems>
-		<Item Name = "Book of Glyph Mastery" Entry = "45912"/>
+		<Item Name = "Tyrant's Chestpiece" Entry = "14835"/>
+		<Item Name = "Tyrant's Breastplate" Entry = "14840"/>
 		
 	</ProtectedItems>
 		
 	<Vendors>
-		<Vendor Name="Xark Bolthammer" Entry="29907" Type="Repair" X="6097.559" Y="-1071.257" Z="404.4123" />
-	
+		<Vendor Name="Afran" Entry="40967" Type="Repair" X="-3183.528" Y="1878.203" Z="48.42564" /> <!-- Alliance -->
+		<Vendor Name="Cawind Trueaim" Entry="9548" Type="Repair" X="-4484.554" Y="233.5269" Z="48.3927" /> <!-- Horde -->
 	</Vendors>
 
 	<Mailboxes>
-		<Mailbox X="6129.264" Y="-1070.096" Z="402.8487" />
+		<Mailbox X="-3198.365" Y="1898.748" Z="49.33393" /> <!-- Alliance -->
+		<Mailbox X="-4404.685" Y="238.3757" Z="26.78822" /> <!-- Horde -->
 	</Mailboxes>
 
 
 		<AvoidMobs>
 		<Mob Name="Summon Enabler Stalker" Entry="53488" />
-		<Mob Name="Ionar Invis Stalker" Entry="28947" />
+		<Mob Name="Gordok Spirit" Entry="11446" />
 		</AvoidMobs>
 
 
 <Blackspots>
+	<Blackspot X="1485.6520" Y="807.7772" Z="8.8910" Radius="5" />
 </Blackspots>
 	
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 
 	<QuestOrder>
+	
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -72,7 +76,7 @@
 		A monkey can do it.
 		******************************
 		Add MapId for farming location, the id you enter here is where you want to go.-->
-		<While Condition="!(Me.MapId == 571)" >
+		<While Condition="!(Me.MapId == 1)" >
 			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" 
 			Text="Do not stop the bot, i will take you where you want to go, just sit back and relax." Title="WARNING" />	
 			<If Condition="Me.IsAlliance" >
@@ -149,7 +153,7 @@
 					*********End OBS********
 					-->	
 					
-					<If condition="true"><!-- If Set true will go to Northrend -->
+					<If condition="false"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Vikingland." LogColor="Lime" />
 					
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
@@ -185,7 +189,7 @@
 					</While>
 					</If>
 					
-					<If condition="false"> <!-- If Set true will go to Kalimdor -->
+					<If condition="true"> <!-- If Set true will go to Kalimdor -->
 					<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
 					
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
@@ -299,7 +303,7 @@
 					*********End OBS********
 					-->	
 					<!-- -->
-					<If condition="true"><!-- If Set true will go to Northrend -->
+					<If condition="false"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Northrend." LogColor="Lime" />
 					
 						<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
@@ -392,96 +396,154 @@
 		Big thanks to Kick for this.
 		--> 
 		
-	<!-- Travel to Halls of Lightning --> 
-	
-		<While Condition="(Me.MapId == 571)" >
+		<!-- Travel to Halls of Lightning --> 
 		
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Lightning Halls Location." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Lightning Halls" X="9182.586" Y="-1384.403" Z="1110.212" />
-						<CustomBehavior File="MyCTM" X="9186.586" Y="-1387.403" Z="1110.212" />
+		<While Condition="(Me.MapId == 1)" >
+		
+						<CustomBehavior File="Message" Text="Moving to Dire Maul (North) Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Dire Maul (North)" X="-3519.844" Y="1098.864" Z="161.026" />
+						<CustomBehavior File="MyCTM" X="-3519.844" Y="1094.864" Z="161.026" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
-	<!-- Begin Instance Grind -->
-	
-		<While Condition="(Me.ZoneId == 4272)" >
 		
+		<!-- Begin Instance Grind -->	
+		<While Condition="(Me.ZoneId == 2557)" >
+		
+		<While Condition="Me.Location.Distance(new WoWPoint(284.575, 36.7755, -2.763682)) &lt; 100" >
+
 			<ClearGrindArea />
 			<SetGrindArea>
 				<GrindArea>
-					<Name>Halls of Lightning Farm</Name>
-					<Factions>16</Factions>
-					<TargetMinLevel>70</TargetMinLevel>
-					<TargetMaxLevel>90</TargetMaxLevel>
+					<Name>Dire Maul (North) Farm Part I</Name>
+					<Factions>45 14</Factions>
+					<TargetMinLevel>30</TargetMinLevel>
+					<TargetMaxLevel>60</TargetMaxLevel>
+					
 					<Hotspots>
-						<Hotspot X="1331.41" Y="241.904" Z="52.5046" />
-						<Hotspot X="1331.042" Y="153.3352" Z="53.70412" />
-						<Hotspot X="1330.133" Y="95.47552" Z="40.18038" />
-						<Hotspot X="1364.566" Y="65.7281" Z="45.42077" />
-						<Hotspot X="1399.437" Y="40.82257" Z="50.03807" />
-						<Hotspot X="1333.073" Y="-24.80598" Z="40.18056" />
-						<Hotspot X="1260.652" Y="-31.90574" Z="33.50578" />
-						<Hotspot X="1265.863" Y="27.78261" Z="33.50589" />
-						<Hotspot X="1263.105" Y="103.3367" Z="33.50557" />
-						<Hotspot X="1332.052" Y="-114.8633" Z="23.22721" />
-						<Hotspot X="1331.588" Y="-207.4474" Z="26.29488" />
-						<Hotspot X="1304.165" Y="-239.9187" Z="37.77722" />
-						<Hotspot X="1361.045" Y="-241.6672" Z="37.80771" />
-						<Hotspot X="1354.248" Y="-202.3448" Z="52.05176" />
-						<Hotspot X="1365.719" Y="-184.8502" Z="52.02693" />
-						<Hotspot X="1366.239" Y="-138.3138" Z="54.4791" />
-						<Hotspot X="1349.699" Y="-127.3159" Z="55.4082" />
-						<Hotspot X="1336.888" Y="-111.0993" Z="56.71799" />
-						<Hotspot X="1290.314" Y="-163.9517" Z="52.02126" />
-						<Hotspot X="1177.633" Y="-163.3553" Z="51.85962" />
-						<Hotspot X="1178.115" Y="-244.0952" Z="52.35454" />
-						<Hotspot X="1113.873" Y="-261.6343" Z="56.87389" />
-						<Hotspot X="1082.26" Y="-261.7102" Z="61.2057" />
-						<Hotspot X="1074.36" Y="-211.9142" Z="61.18813" />
-						<Hotspot X="1087.912" Y="-171.2412" Z="56.64423" />
-						<Hotspot X="1059.132" Y="-171.241" Z="56.63383" />
-						<Hotspot X="1043.89" Y="-112.2614" Z="61.26159" />
-						<Hotspot X="1094.842" Y="-132.3199" Z="61.23455" />
-						<Hotspot X="1112.258" Y="-115.9588" Z="61.26813" />
-						<Hotspot X="1074.115" Y="-104.8638" Z="56.74244" />
-						<Hotspot X="1074.333" Y="-41.89523" Z="61.19118" />
-						<Hotspot X="1055.469" Y="-7.604881" Z="61.19657" />
-						<Hotspot X="1076.501" Y="8.918731" Z="53.37794" />
-						<Hotspot X="1089.102" Y="57.0286" Z="53.4199" />
-						<Hotspot X="1182.373" Y="33.89881" Z="60.72845" />
-						<Hotspot X="1315.17" Y="202.5152" Z="52.81069" />
-		</Hotspots>
+						<Hotspot X="259.7697" Y="-31.65197" Z="-2.5596" />
+						<Hotspot X="295.1591" Y="-68.91334" Z="-3.886934" />
+						<Hotspot X="352.2098" Y="-107.4893" Z="-3.886914" />
+						<Hotspot X="467.0609" Y="-64.8165" Z="-3.886914" />
+						<Hotspot X="464.4155" Y="0.5903826" Z="-3.907092" />
+						<Hotspot X="407.5555" Y="25.23149" Z="-25.43948" />
+						<Hotspot X="358.5423" Y="30.26973" Z="-24.93585" />
+						<Hotspot X="357.6159" Y="-57.33456" Z="-25.96548" />
+						<Hotspot X="411.8119" Y="-48.66768" Z="-23.15144" />
+						<Hotspot X="377.4171" Y="-12.89994" Z="-25.18369" /> <!-- Kill 1st Boss -->
+						<Hotspot X="412.14" Y="-1.868421" Z="-24.62733" />
+						<Hotspot X="468.8189" Y="10.48983" Z="-3.915042" />
+						<Hotspot X="470.7666" Y="63.42831" Z="-3.886911" />
+						<Hotspot X="489.7404" Y="96.21218" Z="-2.581882" /> <!-- Kill 2nd Boss -->
+						<Hotspot X="396.7097" Y="106.1529" Z="-3.886382" />
+						<Hotspot X="383.5477" Y="137.7518" Z="-2.403335" />
+						<Hotspot X="407.9969" Y="176.8091" Z="2.852952" />
+						<Hotspot X="443.7772" Y="135.6291" Z="-2.584653" />
+						<Hotspot X="482.5298" Y="174.8879" Z="2.852973" />
+						<Hotspot X="474.7742" Y="252.6805" Z="3.659423" />
+						<Hotspot X="481.986" Y="317.993" Z="2.852417" />
+						<Hotspot X="445.9945" Y="349.4344" Z="2.852417" />
+						<Hotspot X="406.618" Y="334.8925" Z="2.850941" />
+						<Hotspot X="387.0246" Y="314.8111" Z="11.22241" />
+						<Hotspot X="383.0612" Y="259.9407" Z="11.43955" /> <!-- Begin Kill 3rd Boss -->
+						<Hotspot X="339.3554" Y="210.1805" Z="11.20366" />
+						<Hotspot X="382.3431" Y="200.9193" Z="11.21689" />
+						<Hotspot X="385.8849" Y="253.5398" Z="11.43954" />
+						<Hotspot X="325.7581" Y="299.0823" Z="11.20399" />
+						<Hotspot X="441.4382" Y="300.9695" Z="11.20338" />
+						<Hotspot X="388.1885" Y="257.6944" Z="11.43957" />
+						<Hotspot X="420.9334" Y="202.4041" Z="11.21093" />
+						<Hotspot X="384.8456" Y="313.1972" Z="11.22001" /> <!-- End Kill 3rd Boss -->
+						<Hotspot X="383.5557" Y="369.3245" Z="-0.1871943" />
+					</Hotspots>
 				</GrindArea>
 			</SetGrindArea>
-			<GrindTo Condition="Me.Location.Distance(new WoWPoint(1315.17, 202.5152, 52.81069)) &lt; 1" />
-			
+			<GrindTo Condition="Me.Location.Distance(new WoWPoint(383.5557, 369.3245, -0.1871943)) &lt; 2" />
 			<ClearGrindArea />
-	<!-- End Instance Grind -->
-	
-	<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->
-	
-			<If Condition="(Me.ZoneId == 4272)" >
+			</While>
+			<CustomBehavior File="InteractWith" MobId="177219" ObjectType="GameObject" X="385.3268" Y="374.2315" Z="-0.1840135" /> <!-- Open Door -->
+			
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Dire Maul (North) Farm Part II</Name>
+					<Factions>45 14</Factions>
+					<TargetMinLevel>30</TargetMinLevel>
+					<TargetMaxLevel>60</TargetMaxLevel>
+					
+					<Hotspots>
+						<Hotspot X="385.4897" Y="394.073" Z="-1.67664" />
+						<Hotspot X="383.9091" Y="462.8903" Z="-7.232197" />
+						<Hotspot X="420.3491" Y="540.4078" Z="-18.34318" />
+						<Hotspot X="478.0688" Y="542.9188" Z="-25.36841" />
+						<Hotspot X="580.9041" Y="545.3105" Z="-25.39972" /> <!-- Kill 4th Boss -->
+						<Hotspot X="530.5211" Y="584.3451" Z="-25.40266" />
+						<Hotspot X="569.2982" Y="601.7975" Z="-4.754638" />
+						<Hotspot X="581.075" Y="569.9071" Z="-4.754638" />
+						<Hotspot X="484.3763" Y="562.8719" Z="27.91177" />
+						<Hotspot X="486.0189" Y="528.3035" Z="27.91302" />
+						<Hotspot X="490.7765" Y="518.1264" Z="29.46263" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="Me.Location.Distance(new WoWPoint(490.7765, 518.1264, 29.46263)) &lt; 2" />
+			<ClearGrindArea />
+			
+			<CustomBehavior File="InteractWith" MobId="177217" ObjectType="GameObject" X="491.2043" Y="515.1331" Z="29.46753" /> <!-- Open Inner Door -->
+			
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Dire Maul (North) Farm Part III</Name>
+					<Factions>45 14</Factions>
+					<TargetMinLevel>30</TargetMinLevel>
+					<TargetMaxLevel>60</TargetMaxLevel>
+					
+					<Hotspots>
+						<Hotspot X="491.522" Y="497.2397" Z="29.46263" />
+						<Hotspot X="563.5868" Y="480.7864" Z="29.46277" />
+						<Hotspot X="621.4722" Y="481.5169" Z="29.46277" /> <!-- Kill 5th Boss -->
+						<Hotspot X="666.9857" Y="466.5146" Z="29.45624" />
+						<Hotspot X="683.8406" Y="503.2158" Z="29.46092" />
+						<Hotspot X="720.4388" Y="488.9828" Z="28.17859" />
+						<Hotspot X="740.0137" Y="434.5104" Z="28.18003" />
+						<Hotspot X="827.6661" Y="484.6625" Z="37.31861" /> <!-- Kill Last Boss -->
+						<Hotspot X="284.575" Y="36.7755" Z="-2.763682" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="Me.Location.Distance(new WoWPoint(284.575, 36.7755, -2.763682)) &lt; 2" />
+			<ClearGrindArea />
+			
+		<!-- End Instance Grind -->
+			
+			<If Condition="(Me.ZoneId == 2557)" >
 					<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
-					<RunTo X="1330.933" Y="270.6876" Z="53.39822" />
-					<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />
+					<RunTo X="255.522" Y="-15.48237" Z="-2.560003"  />
+					<CustomBehavior File="MyCTM" X="255.5269" Y="-11.92353" Z="-2.560003" />
 					<CustomBehavior File="WaitTimer" WaitTime="300000" />
 					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			</If>
 			
+		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
 			<If Condition="(HasSpell(61447) || (HasSpell(61425))" >
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
 			
-			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0)" >
-					<CustomBehavior File="Message" Text="Moving to Storm Peaks Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="6129.264" Y="-1070.096" Z="402.8487" />
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Feralas Alliance Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Feralas" X="-3198.365" Y="1898.748" Z="49.33393" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
-	<!-- End bag check -->
-	
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Feralas Horde Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Feralas" X="-4404.685" Y="238.3757" Z="26.78822" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+		<!-- End bag check -->
+			
+			
 			</While>
+			
 			</While>
-				
 				
 	</QuestOrder>
 
