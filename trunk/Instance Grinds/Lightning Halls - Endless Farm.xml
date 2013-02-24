@@ -21,9 +21,9 @@
 
 <SellGrey>True</SellGrey>
 <SellWhite>False</SellWhite>
-<SellGreen>True</SellGreen>
+<SellGreen>False</SellGreen>
 <SellBlue>False</SellBlue>
-<SellPurple>True</SellPurple>
+<SellPurple>False</SellPurple>
 
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
 	
@@ -402,18 +402,11 @@
 						<CustomBehavior File="MyCTM" X="9186.586" Y="-1387.403" Z="1110.212" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
+						
 	<!-- Begin Instance Grind -->
 	
 		<While Condition="(Me.ZoneId == 4272)" >
 		
-			<ClearGrindArea />
-			<SetGrindArea>
-				<GrindArea>
-					<Name>Halls of Lightning Farm</Name>
-					<Factions>16</Factions>
-					<TargetMinLevel>70</TargetMinLevel>
-					<TargetMaxLevel>90</TargetMaxLevel>
-					<Hotspots>
 						<Hotspot X="1331.41" Y="241.904" Z="52.5046" />
 						<Hotspot X="1331.042" Y="153.3352" Z="53.70412" />
 						<Hotspot X="1330.133" Y="95.47552" Z="40.18038" />
@@ -450,25 +443,16 @@
 						<Hotspot X="1089.102" Y="57.0286" Z="53.4199" />
 						<Hotspot X="1182.373" Y="33.89881" Z="60.72845" />
 						<Hotspot X="1315.17" Y="202.5152" Z="52.81069" />
-		</Hotspots>
-				</GrindArea>
-			</SetGrindArea>
-			<GrindTo Condition="Me.Location.Distance(new WoWPoint(1315.17, 202.5152, 52.81069)) &lt; 1" />
-			
-			<ClearGrindArea />
-	<!-- End Instance Grind -->
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						<RunTo X="1330.933" Y="270.6876" Z="53.39822" />
+						<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />
+						<CustomBehavior File="WaitTimer" WaitTime="300000" />
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<!-- End Instance Grind -->
 	
 	<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->
-	
-			<If Condition="(Me.ZoneId == 4272)" >
-					<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
-					<RunTo X="1330.933" Y="270.6876" Z="53.39822" />
-					<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />
-					<CustomBehavior File="WaitTimer" WaitTime="300000" />
-					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-			</If>
 			
-			<If Condition="(HasSpell(61447) || (HasSpell(61425))" >
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
 			
