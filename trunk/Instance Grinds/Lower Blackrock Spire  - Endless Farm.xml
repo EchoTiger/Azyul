@@ -1,0 +1,523 @@
+<HBProfile>
+<Name>Mjj23's Lower Blackrock Spire Endless Farm</Name>
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Lower Blackrock Spire
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Large Brilliant Shards/Recipes/Transmog
+///////////////////////////////////////////////////////////////////////
+
+<MinLevel>54</MinLevel>
+<MaxLevel>91</MaxLevel>
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Fergus Gravelsmash" Entry="47937" Type="Repair" X="-7093.68" Y="-1268.31" Z="270.485" />
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-7112.238" Y="-1199.937" Z="306.9844" /> <!-- Iron Summit -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+
+	<QuestOrder>
+		 <!-- Transporter -->
+		 
+		<!-- Transport script, pre made for all purposes. -->
+		<!-- Use this if you want, but give credit. -->
+		<!--
+		Id
+		0 = Eastern Kingdoms
+		1 = Kalimdor
+		530 = Outland 
+		646 = Deepholm
+		571 = Northrend 
+		870 = Pandaland
+		******************************
+		Important, you might need to edit where the profile will take you.
+		Search for "Ally Going to!!!" and read how to edit that part.
+		Also search for "Horde Going to!!!" and edit that part.
+		A monkey can do it.
+		******************************
+		Add MapId for farming location, the id you enter here is where you want to go.-->
+		<While Condition="!(Me.MapId == 0)" >
+			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" 
+			Text="Do not stop the bot, i will take you where you want to go, just sit back and relax." Title="WARNING" />	
+			<If Condition="Me.IsAlliance" >
+			<!-- Outland move to and use portal in shat -->
+				<If Condition="Me.MapId == 530" >
+				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="-248.064" Y="930.2079" Z="84.37978" DestName="BC Portal" />
+					<CustomBehavior File="MyCTM" X="-247.1655" Y="897.484" Z="84.3497" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000"/>
+					<While Condition="Me.MapId == 530" >
+						<CustomBehavior File="MyCTM" X="-245.7161" Y="896.1308" Z="84.3497" />
+						<CustomBehavior File="WaitTimer" WaitTime="5000"/>
+					</While>
+					<CustomBehavior File="WaitTimer" WaitTime="10000"/>
+				</If>
+				<!-- Northrend, go home from borean -->
+				<If Condition="Me.MapId == 571" >
+				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+					<If Condition="(HasSpell(54197))">
+						<CustomBehavior File="FlyTo" DestName="fly my minions fly" X="2236.118" Y="5145.615" Z="5.346904"  />
+					</If>
+					<CustomBehavior File="UseTransport" TransportId="190536"    
+									WaitAtX="2234.375" WaitAtY="5132.568" WaitAtZ="5.343217" 
+									TransportStartX="2218.391" TransportStartY="5119.589" TransportStartZ="0.04" 
+									StandOnX="2223.174" StandOnY="5118.869" StandOnZ="9.43335"
+									TransportEndX="-8288.816" TransportEndY="1424.703" TransportEndZ="0.04" 
+									GetOffX="-8300.08" GetOffY="1405.158" GetOffZ="4.422395" />
+				</If>
+				<!-- Kalimdor boat from Ratchet. -->
+				<If Condition="Me.MapId == 1" >
+				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="-996.8669" Y="-3826.07" Z="5.536246" />
+					</If>
+					<If Condition="!SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<RunTo X="-996.8669" Y="-3826.07" Z="5.536246" />
+					</If>
+					<CustomBehavior File="UseTransport" TransportId="20808"
+									WaitAtX="-996.8669" WaitAtY="-3826.07" WaitAtZ="5.536246" 
+									TransportStartX="-1005.613" TransportStartY="-3841.648" TransportStartZ="0.01553879"
+									StandOnX="-997.3311" StandOnY="-3836.707" StandOnZ="6.030852"
+									TransportEndX="-14277.75" TransportEndY="582.8661" TransportEndZ="0.03330701"
+									GetOffX="-14280.88" GetOffY="566.6268" GetOffZ="6.979454" />
+				</If>
+				<!-- Deepholm, Taking portal. -->
+				<If Condition="Me.MapId == 646" >
+				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
+					<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
+					<RunTo X="973.6232" Y="570.9096" Z="-46.0024" />
+					<CustomBehavior File="InteractWith" MobId="205272" ObjectType="Gameobject" Range="4" X="973.6232" Y="570.9096" Z="-46.0024" />
+					<CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
+				</If>
+				<!-- Pandaland, Taking portal. -->
+				<If Condition="Me.MapId == 870" >
+				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="-311.6545" Y="-1776.63" Z="62.67051" />
+					<RunTo X="-311.6545" Y="-1776.63" Z="62.67051" />
+					<CustomBehavior File="InteractWith" MobId="210805" ObjectType="Gameobject" Range="4" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+				</If>
+				<!-- Homeland, Ally Eastern Kingdom -->
+				<If Condition="Me.MapId == 0" >
+					<!--
+					"Ally going to!!!"
+					*********OBS*********
+					Set true will go there.
+					Northrend
+					Outland
+					Kalimdor
+					Pandaland
+					Set true only on one, the rest should be false.
+					Set all false if your farming map is Eastern Kingdom.
+					*********End OBS********
+					-->	
+					
+					<If condition="false"><!-- If Set true will go to Northrend -->
+					<CustomBehavior File="Message" Text="Going to Vikingland." LogColor="Lime" />
+					
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="-8300.08" Y="1405.158" Z="4.422395" />
+					</If>
+					<CustomBehavior File="UseTransport" TransportId="190536" 
+									WaitAtX="-8300.08" WaitAtY="1405.158" WaitAtZ="4.422395"
+									GetOffX="2234.375" GetOffY="5132.568" GetOffZ="5.343217"
+									StandOnX="-8293.091" StandOnY="1421.008" StandOnZ="9.480089"
+									TransportStartX="-8288.816" TransportStartY="1424.703" TransportStartZ="0.04" 
+									TransportEndX="2218.391" TransportEndY="5119.589" TransportEndZ="0.04" />	
+					<CustomBehavior File="WaitTimer" WaitTime="5000" />
+					</If>
+					
+					<If condition="false"><!-- If Set true will go to Outland -->
+					<CustomBehavior File="Message" Text="Going to Outland." LogColor="Lime" />
+					
+					<While Condition="Me.MapId == 0" >
+						<If Condition="Me.MapId == 0" >
+								<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+									<CustomBehavior File="FlyTo" X="-11895.44" Y="-3206.936" Z="-14.64132" />
+								</If>
+								<RunTo X="-11895.44" Y="-3206.936" Z="-14.64132" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</If>
+							<If Condition="Me.MapId == 0" >
+								<CustomBehavior File="MyCTM" X="-11908.09" Y="-3208.854" Z="-14.83002" />
+								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+							</If>
+							<If Condition="Me.MapId == 0" >
+								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+							</If>
+					</While>
+					</If>
+					
+					<If condition="false"> <!-- If Set true will go to Kalimdor -->
+					<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+					
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="-14288.29" Y="549.3284" Z="8.689642" />
+					</If>
+					<If Condition="!SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<Runto X="-14288.29" Y="549.3284" Z="8.689642" />
+					</If>
+					<CustomBehavior File="ForcedDismount" />
+					<!-- BB dock to Ratchet -->
+					<CustomBehavior File="UseTransport" TransportId="20808"
+									WaitAtX="-14280.88" WaitAtY="566.6268" WaitAtZ="6.979454" 
+									TransportStartX="-14277.75" TransportStartY="582.8661" TransportStartZ="0.01553879"
+									StandOnX="-14270.46" StandOnY="579.9881" StandOnZ="6.088587"
+									TransportEndX="-1005.613" TransportEndY="-3841.648" TransportEndZ="0.03330701"
+									GetOffX="-996.8669" GetOffY="-3826.07" GetOffZ="5.536246" />
+					</If>
+					
+					<If condition="false"><!-- If Set true will go to Pandaland -->
+					<CustomBehavior File="Message" Text="Going to Pandaland." LogColor="Lime" />
+					
+					<CustomBehavior File="FlyTo" X="-8200.323" Y="527.858" Z="116.7516"  />
+					<CustomBehavior File="InteractWith" MobId="215457" ObjectType="Gameobject" Range="4" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+					<!-- Going to Pandaland Stop -->
+					</If>	
+					
+					<!-- No profiles in deepholm-->
+						
+				</If>
+			</If>
+			<!-- Horde part -->
+			<If Condition="Me.IsHorde" >
+				<!-- Outland move to and use portal in shat -->
+				<If Condition="Me.MapId == 530" >
+				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+					<While Condition="Me.MapId == 530" >
+						<CustomBehavior File="FlyTo" DestName="Org portal" X="-1956.413" Y="5383.551" Z="-12.42774" />
+						<CustomBehavior File="ForcedDismount" />
+
+						<RunTo X="-1898.169" Y="5395.958" Z="-12.42774" />
+						<CustomBehavior File="InteractWith" MobId="183323" ObjectType="Gameobject" Range="4" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" GoalText="Waiting for zone {TimeRemaining}" />
+					</While>
+					<RunTo X="1896.122" Y="-4489.93" Z="23.84045" />
+					<CustomBehavior File="FlyTo" X="1882.573" Y="-4548.733" Z="110.4602" />
+				</If>
+				<!-- Northrend, go home from borean -->
+				<If Condition="Me.MapId == 571" >
+				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+					<If Condition="(HasSpell(54197))">
+						<CustomBehavior File="FlyTo" DestName="Borean Tundra" X="2708.396" Y="6066.991" Z="109.617" />
+						<CustomBehavior File="FlyTo" DestName="Warsong Hold, BT" X="2740.837" Y="6097.529" Z="76.88604" />
+					</If>
+					<CustomBehavior File="Message" Text="Running to Borean Zepp to Org" LogColor="Cornflowerblue" />
+					<RunTo X="2829.74" Y="6179.48" Z="121.9793" />
+					<CustomBehavior File="Message" Text="Waiting for Borean Zepp to Org - don't interact!" LogColor="Orange" />
+					<CustomBehavior File="UseTransport" TransportId="186238"
+									WaitAtX="2836.831" WaitAtY="6185.15" WaitAtZ="121.9923" 
+									TransportStartX="2837.908" TransportStartY="6187.443" TransportStartZ="140.1648" 
+									StandOnX="2844.171" StandOnY="6191.577" StandOnZ="122.3017" 
+									TransportEndX="1775.066" TransportEndY="-4299.745" TransportEndZ="151.0326" 
+									GetOffX="1763.203" GetOffY="-4284.529" GetOffZ="133.1072" />
+				</If>
+				<!-- From Eastern Kingdom going home -->
+				<If Condition="Me.MapId == 0" >
+				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="2039.925" Y="273.7229" Z="142.3792" />
+						<CustomBehavior File="FlyTo" X="2067.174" Y="284.9927" Z="97.03151" />
+					</If>
+					<RunTo X="2070.155" Y="289.2588" Z="97.0315" />
+					<CustomBehavior File="UseTransport"
+									TransportId="164871"
+									WaitAtX="2070.155" WaitAtY="289.2588" WaitAtZ="97.0315" 
+									TransportStartX="2062.376" TransportStartY="292.998" TransportStartZ="114.973"
+									TransportEndX="1833.509" TransportEndY="-4391.543" TransportEndZ="152.7679"
+									StandOnX="2067.979" StandOnY="295.2747" StandOnZ="97.23677" 
+									GetOffX="1840.225" GetOffY="-4390.912" GetOffZ="135.2337" />
+				</If>
+				<!-- Deepholm, Taking portal. -->
+				<If Condition="Me.MapId == 646" >
+				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
+					<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
+					<RunTo X="990.1199" Y="457.7099" Z="-44.2598" />
+					<CustomBehavior File="InteractWith" MobId="205273" ObjectType="Gameobject" Range="4" X="990.1199" Y="457.7099" Z="-44.2598" />
+					<CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
+				</If>
+				<!-- Pandaland, Taking portal. -->
+				<If Condition="Me.MapId == 870" >
+				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+				
+					<CustomBehavior File="FlyTo" X="2924.921" Y="-510.5903" Z="268.8555" />
+					<RunTo X="2924.921" Y="-510.5903" Z="268.8555" />
+					<CustomBehavior File="InteractWith" MobId="210804" ObjectType="Gameobject" Range="4" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+				</If>
+				<!-- Homeland, Horde Kalimdor -->
+				<If Condition="Me.MapId == 1" >
+					<!--
+					"Horde Going to!!!"
+					*********OBS*********
+					Set true will go there.
+					Northrend
+					Outland
+					Eastern Kingdom
+					Pandaland
+					Set true only on one, the rest should be false.
+					Set all false if your farming map is Kalimdor.
+					*********End OBS********
+					-->	
+					<!-- -->
+					<If condition="false"><!-- If Set true will go to Northrend -->
+					<CustomBehavior File="Message" Text="Going to Northrend." LogColor="Lime" />
+					
+						<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+							<CustomBehavior File="FlyTo" X="1736.402" Y="-4283.072" Z="190.7621" />
+							<CustomBehavior File="FlyTo" X="1754.089" Y="-4278.742" Z="133.0416" />
+							<CustomBehavior File="ForcedDismount" />
+						</If>
+						<RunTo X="1763.389" Y="-4283.858" Z="133.1073" />
+						
+						<CustomBehavior File="Message" Text="Waiting for Org Zepp to Borean - don't interact!" LogColor="Orange" />
+				
+						<CustomBehavior File="UseTransport" TransportId="186238"
+										WaitAtX="1763.066" WaitAtY="-4284.396" WaitAtZ="133.1081" 
+										TransportStartX="1775.066" TransportStartY="-4299.745" TransportStartZ="151.0326" 
+										StandOnX="1770.22" StandOnY="-4292.056" StandOnZ="133.1872" 
+										TransportEndX="2837.908" TransportEndY="6187.443" TransportEndZ="140.1648" 
+										GetOffX="2836.831" GetOffY="6185.15" GetOffZ="121.9923" />
+						<RunTo X="2740.837" Y="6097.529" Z="76.88604" />
+					</If>
+					
+					<If condition="false"><!-- If Set true will go to Outland -->
+					<CustomBehavior File="Message" Text="On out way to Outland." LogColor="Lime" />
+					<CustomBehavior File="Message" Text="Going by boat in Ratchet." LogColor="Lime" />
+					
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="-996.8669" Y="-3826.07" Z="5.536246" />
+					</If>
+					<If Condition="!SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<RunTo X="-996.8669" Y="-3826.07" Z="5.536246" />
+					</If>
+					<CustomBehavior File="UseTransport" TransportId="20808"
+									WaitAtX="-996.8669" WaitAtY="-3826.07" WaitAtZ="5.536246" 
+									TransportStartX="-1005.613" TransportStartY="-3841.648" TransportStartZ="0.01553879"
+									StandOnX="-997.3311" StandOnY="-3836.707" StandOnZ="6.030852"
+									TransportEndX="-14277.75" TransportEndY="582.8661" TransportEndZ="0.03330701"
+									GetOffX="-14280.88" GetOffY="566.6268" GetOffZ="6.979454" />
+									<!-- Should now be in Eastern Kingdom -->
+						<While Condition="Me.MapId == 0" >
+							<If Condition="Me.MapId == 0" >
+								<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+									<CustomBehavior File="FlyTo" X="-11895.44" Y="-3206.936" Z="-14.64132" />
+								</If>
+								<RunTo X="-11895.44" Y="-3206.936" Z="-14.64132" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</If>
+							<If Condition="Me.MapId == 0" >
+								<CustomBehavior File="MyCTM" X="-11908.09" Y="-3208.854" Z="-14.83002" />
+								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+							</If>
+							<If Condition="Me.MapId == 0" >
+								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+							</If>
+						</While>
+					</If>
+					
+					<If condition="true"><!-- If Set true will go to Eastern Kingdom -->
+					<CustomBehavior File="Message" Text="Going to Eastern Kingdom." LogColor="Lime" />
+					
+						<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+							<CustomBehavior File="FlyTo" X="1836.794" Y="-4383.654" Z="206.7829" />
+							<CustomBehavior File="FlyTo" X="1848.44" Y="-4398.829" Z="135.1602" />
+							<CustomBehavior File="ForcedDismount" />
+						</If>
+						<RunTo X="1840.468" Y="-4392.099" Z="135.2326" />
+						<CustomBehavior File="UseTransport" TransportId="164871"
+										WaitAtX="1838.676" WaitAtY="-4387.965" WaitAtZ="135.2332"
+										TransportStartX="1833.509" TransportStartY="-4391.543" TransportStartZ="152.7679"
+										TransportEndX="2062.376" TransportEndY="292.998" TransportEndZ="114.973"
+										StandOnX="1834.961" StandOnY="-4385.694" StandOnZ="135.0334" 
+										GetOffX="2066.773" GetOffY="288.873" GetOffZ="97.03159" />
+					</If>
+					
+					<If condition="false"><!-- If Set true will go to Pandaland -->
+					<CustomBehavior File="Message" Text="Going to Pandaland." LogColor="Lime" />
+					
+						<CustomBehavior File="FlyTo" X="2012.948" Y="-4698.641" Z="28.60529" />
+						<CustomBehavior File="InteractWith" MobId="215424" ObjectType="Gameobject" Range="4" />
+						<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+						
+					</If>	
+					
+					<!-- No profiles in deepholm-->
+						
+				</If>
+			</If>
+		</While>
+		<!-- 
+		End transport script credit to Bengan. 
+		With use of Kicks go to profiles.
+		Big thanks to Kick for this.
+		--> 
+		
+	<!-- Travel to Blackrock Mountain --> 
+	
+		<While Condition="(Me.MapId == 0)" >
+			
+			<!-- Navigation to deal with being inside mountain -->
+			
+			<If Condition="Me.Location.Distance(new WoWPoint(-7533.004, -1228.654, 285.7321)) &gt; 10" >
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+						<CustomBehavior File="Message" Text="Moving to Lower Blackrock Spire Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7843.759" Y="-1140.536" Z="208.2344" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7794.918" Y="-1134.368" Z="214.8472" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7745.932" Y="-1117.598" Z="215.0841" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7710.015" Y="-1086.716" Z="217.7014" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7689.18" Y="-1091.725" Z="217.4671" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7537.032" Y="-1206.015" Z="294.143" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7533.004" Y="-1213.508" Z="285.4092" />
+						<CustomBehavior File="ForcedDismount" />
+			</If>
+						<RunTo X="-7525.331" Y="-1228.654" Z="285.7321" />
+						<CustomBehavior File="MyCTM" X="-7523.937" Y="-1233.463" Z="285.7379" /> <!-- Enters instance if not already inside -->
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						
+	<!-- Begin Instance Grind -->
+		<While Condition="(Me.ZoneId == 1583)" >
+		
+						<RunTo X="78.3534" Y="-230.145" Z="50.20138" />
+						<RunTo X="92.06746" Y="-277.085" Z="60.59741" />
+						<RunTo X="72.45925" Y="-277.3184" Z="60.62326" />
+						<RunTo X="67.30666" Y="-316.8887" Z="65.46349" />
+						<RunTo X="81.34548" Y="-319.8718" Z="55.78053" />
+						<RunTo X="103.6877" Y="-310.4364" Z="53.91888" />
+						<RunTo X="105.8557" Y="-326.9674" Z="53.91915" />
+						<RunTo X="82.98757" Y="-354.3782" Z="60.70204" />
+						<RunTo X="57.08778" Y="-311.0986" Z="53.91863" />
+						<RunTo X="47.56035" Y="-260.798" Z="65.3494" />
+						<RunTo X="13.07125" Y="-260.489" Z="65.34661" />
+						<RunTo X="19.91747" Y="-321.4225" Z="48.86771" />
+						<RunTo X="35.89954" Y="-398.6806" Z="48.66474" />
+						<RunTo X="66.35777" Y="-437.8861" Z="41.58094" />
+						<RunTo X="54.58681" Y="-459.7733" Z="24.42554" />
+						<RunTo X="56.99454" Y="-505.8832" Z="29.19505" />
+						<RunTo X="57.48524" Y="-562.578" Z="30.58922" />
+						<RunTo X="-35.76619" Y="-584.1786" Z="29.19088" />
+						<RunTo X="-34.04535" Y="-563.9985" Z="29.19088" />
+						<RunTo X="-65.74818" Y="-533.8641" Z="29.19088" />
+						<RunTo X="-37.56787" Y="-501.0093" Z="29.15779" />
+						<RunTo X="-36.75502" Y="-408.9257" Z="31.56449" />
+						<RunTo X="-35.52452" Y="-371.4105" Z="31.61827" />
+						<RunTo X="-25.36402" Y="-346.8853" Z="31.61827" />
+						<RunTo X="-46.95684" Y="-325.2504" Z="42.8935" />
+						<RunTo X="-26.73856" Y="-305.4387" Z="31.61661" /> <!-- High Lord Omokk -->
+						<RunTo X="-0.2307441" Y="-522.6486" Z="29.27687" />
+						<RunTo X="-50.31767" Y="-452.1209" Z="16.40199" />
+						<RunTo X="-51.08762" Y="-486.3429" Z="16.25525" />
+						<RunTo X="-116.8228" Y="-481.8478" Z="24.52526" />
+						<RunTo X="-38.46026" Y="-547.6671" Z="16.12449" />
+						<RunTo X="-34.8586" Y="-485.2154" Z="-18.78623" />
+						<RunTo X="-44.24519" Y="-523.9489" Z="-18.81132" />
+						<RunTo X="-17.8281" Y="-556.5281" Z="-18.77751" />
+						<RunTo X="-71.86403" Y="-576.1794" Z="-18.85627" />
+						<RunTo X="-59.59029" Y="-456.9776" Z="-18.64425" />
+						<RunTo X="-12.69461" Y="-457.6503" Z="-18.64425" /> <!-- War Master Voone -->
+						<RunTo X="19.22284" Y="-578.5579" Z="-18.60154" />
+						<RunTo X="27.14918" Y="-552.9596" Z="-18.60154" /> <!-- Make sure bot gets through small gap -->
+						<RunTo X="28.88027" Y="-532.0402" Z="-18.60154" />
+						<RunTo X="22.79866" Y="-511.7235" Z="-18.58941" /> <!-- Done -->
+						<RunTo X="26.66781" Y="-476.5891" Z="-18.52622" />
+						<RunTo X="-23.04701" Y="-412.7581" Z="-18.93495" />
+						<RunTo X="-39.68845" Y="-422.2999" Z="-18.93495" />
+						<RunTo X="-81.45041" Y="-451.6027" Z="-18.93495" />
+						<RunTo X="-98.99741" Y="-436.5693" Z="-18.93495" />
+						<RunTo X="-112.1312" Y="-481.3074" Z="-18.45637" />
+						<RunTo X="-138.3517" Y="-508.6295" Z="-18.45641" />
+						<RunTo X="-155.4883" Y="-499.9082" Z="-18.45638" />
+						<RunTo X="-111.8702" Y="-548.5732" Z="2.40712" /> <!-- Mother Smolderweb -->
+						<RunTo X="-138.386" Y="-484.0776" Z="11.5647" /> <!-- Stop for rare spawn Crystal Fang -->
+						<RunTo X="-89.35365" Y="-401.4827" Z="37.52789" />
+						<RunTo X="-41.53049" Y="-373.0183" Z="50.41431" />
+						<RunTo X="-18.54184" Y="-388.2628" Z="48.69742" />
+						<RunTo X="-166.7009" Y="-368.441" Z="64.40096" />
+						<RunTo X="-169.8849" Y="-456.0733" Z="87.39027" />
+						<RunTo X="-201.2407" Y="-456.0627" Z="87.39027" />
+						<RunTo X="-196.6066" Y="-472.6129" Z="87.39027" /> <!-- Quartermaster Zigris -->
+						<RunTo X="-206.3342" Y="-481.851" Z="87.39027" />
+						<RunTo X="-192.1593" Y="-325.3607" Z="64.42539" /> <!-- Halcyon -->
+						<RunTo X="-175.9525" Y="-325.7746" Z="64.40189" /> <!-- Gizrul the Slavener -->
+						<RunTo X="-122.8303" Y="-349.9557" Z="70.95246" />
+						<RunTo X="-121.4249" Y="-298.1371" Z="70.95246" />
+						<RunTo X="-48.92275" Y="-301.5529" Z="70.94068" />
+						<RunTo X="-53.17622" Y="-427.7367" Z="77.75019" />
+						<RunTo X="-55.41947" Y="-481.798" Z="77.91508" />
+						<RunTo X="-80.53194" Y="-521.5865" Z="82.43058" />
+						<RunTo X="-24.96272" Y="-486.8489" Z="90.63306" /> <!-- Overlord Wyrmthalak -->
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						<RunTo X="77.66439" Y="-223.971" Z="49.84536" />
+						<CustomBehavior File="MyCTM" X="77.66439" Y="-221.971" Z="49.84536"   />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<!-- End Instance Grind -->
+	
+	<!-- Checks if bags are full -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Iron Summit Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7485.027" Y="-1072.944" Z="265.4049" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7444.863" Y="-1060.7" Z="269.4856" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7367.443" Y="-1098.339" Z="277.8398" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Iron Summit Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7485.027" Y="-1072.944" Z="265.4049" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7444.863" Y="-1060.7" Z="269.4856" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7367.443" Y="-1098.339" Z="277.8398" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+	<!-- End bag check -->
+	
+			</While>
+			</While>
+				
+				
+	</QuestOrder>
+
+</HBProfile>
