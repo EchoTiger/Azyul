@@ -1,13 +1,13 @@
-﻿<HBProfile>
-<Name>Mjj23's Gnomeregan Endless Farm</Name>
+<HBProfile>
+<Name>Mjj23's Undead Stratholme Endless Farm</Name>
 <MinDurability>0.3</MinDurability>
 <MinFreeBagSlots>1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////
 // Profile Maker: Mjj23
-// Farm zone: Gnomeregan
+// Farm zone: Undead Stratholme
 // Farm mobs: All
 // Grind Speed: N/A
-// Grind what? Large Brilliant Shards/Recipes/Transmog
+// Grind what? Baron Rivendare's Mount/Some Transmog
 ///////////////////////////////////////////////////////////////////////
 
 <MinLevel>54</MinLevel>
@@ -28,17 +28,19 @@
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
 	
 	<ProtectedItems>
-		
+		<Item Name = "Righteous Orb" Entry = "12811"/>
+		<Item Name = "Plans: Heartseeker" Entry = "12839"/>
+		<Item Name = "Recipe: Flask of Distilled Wisdom" Entry = "13520"/>
+		<Item Name = "Pattern: Truefaith Vestments" Entry = "14512"/>
 	</ProtectedItems>
 		
 	<Vendors>
-		<Vendor Name="Fergus Gravelsmash" Entry="47937" Type="Repair" X="-7093.68" Y="-1268.31" Z="270.485" />
-		<Vendor Name="Vallo Shinesteel" Entry="42626" Type="Repair" X="-5166.412" Y="470.7014" Z="389.8933" />
+		<Vendor Name="Kathryn Humphries" Entry="47149" Type="Repair" X="2252.36" Y="-4456.02" Z="114.2962" />
+	
 	</Vendors>
 
 	<Mailboxes>
-		<Mailbox X="-5201.3" Y="515.7118" Z="387.329" /> <!-- New Tinkertown -->
-		<Mailbox X="-7112.238" Y="-1199.937" Z="306.9844" /> <!-- Iron Summit -->
+		<Mailbox X="2290.59" Y="-5321.227" Z="90.1806" /> <!-- Alliance Mailbox -->
 	</Mailboxes>
 
 
@@ -49,8 +51,6 @@
 
 <Blackspots>
 </Blackspots>
-
-<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 	
 
 	<QuestOrder>
@@ -393,91 +393,101 @@
 		Big thanks to Kick for this.
 		--> 
 		
-	<!-- Travel to Gnomeregan --> 
+	<!-- Travel to Stratholme --> 
 	
 		<While Condition="(Me.MapId == 0)" >
-			
-			<!-- Navigation to deal with being Gnomergan -->
-			<If Condition="Me.Location.Distance(new WoWPoint(-5144.55, 895.2514, 287.3937)) &gt; 10" >
-						<CustomBehavior File="Message" Text="Moving to Gnomeregan Location." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Gnomeregan" X="-5184.12" Y="594.8023" Z="407.3157" />
+		
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+						<CustomBehavior File="Message" Text="Moving to Undead Stratholme Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Stratholme" X="3163.623" Y="-4039.049" Z="104.4434"  />
+						<RunTo X="3181.775" Y="-4039.192" Z="107.0278" />
+						<CustomBehavior File="InteractWith" MobId="175369" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens outer gate -->
+						<RunTo X="3232.494" Y="-4046.767" Z="108.4352" />
+						<CustomBehavior File="MyCTM" X="3238.13" Y="-4057.148" Z="110.4538" /> <!-- Enters instance if not already inside -->
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
-						<RunTo X="-5178.035" Y="662.6082" Z="388.3063" />
-						<CustomBehavior File="UseTransport" TransportId="205079"
-										WaitAtX="-5178.035" WaitAtY="662.6082" WaitAtZ="388.3063" 
-										TransportStartX="-5177.976" TransportStartY="673.805" TransportStartZ="389.5476" 
-										StandOnX="-5178.463" StandOnY="671.2391" StandOnZ="388.3029"
-										TransportEndX="-5177.976" TransportEndY="673.805" TransportEndZ="289.4656" 
-										GetOffX="-5175.537" GetOffY="692.3316" GetOffZ="288.0852" />
-						<RunTo X="-5173.387" Y="725.5969" Z="287.3965" />
-						<RunTo X="-5121.412" Y="762.1619" Z="287.3596" />
-						<RunTo X="-5144.55" Y="895.2514" Z="287.3937" />
-			</If>
-						<CustomBehavior File="MyCTM" X="-5149.55" Y="900.2514" Z="287.3937" /> <!-- Enters instance if not already inside -->
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 721)" >
-						<RunTo X="-394.8961" Y="51.38895" Z="-154.7998" />
-						<RunTo X="-489.0648" Y="55.94126" Z="-156.9971" />
-						<RunTo X="-513.6445" Y="-135.4224" Z="-152.4943" /> <!-- Move to interact with Blastmaster Emi Shortfuse -->
-						<CustomBehavior File="InteractWith" MobId="7998" ObjectType="Npc" X="-514.9355" Y="-138.5439" Z="-152.4822" />
-						<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="1" WaitTime="1000" />
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<CustomBehavior File="EscortGroup" EscortNpcId="7998" EscortCompleteWhen="DestinationReached" EscortMaxFightDistance="5" EscortMaxFollowDistance="3" EscortCompleteMaxRange="5" EscortCompleteX="-519.9" EscortCompleteY="-124.8" EscortCompleteZ="-156.11" />
-						<CustomBehavior File="WaitTimer" WaitTime="5000" />
-						<CustomBehavior File="InteractWith" MobId="6215" ObjectType="Npc" X="-510.4263" Y="-95.52067" Z="-151.7399" CollectionDistance="20" /> <!-- Pull Chomper -->
-						<CustomBehavior File="WaitTimer" WaitTime="10000" />
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="40" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<RunTo X="-517.7697" Y="-96.80093" Z="-153.7347" />
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						<RunTo X="-489.856" Y="157.8495" Z="-154.7118" />
-						<RunTo X="-571.3484" Y="136.7419" Z="-202.1431" />
-						<RunTo X="-512.9192" Y="107.1735" Z="-207.7262" />
-						<RunTo X="-440.6621" Y="93.53091" Z="-210.4391" />
-						<CustomBehavior File="InteractWith" MobId="7079" ObjectType="Npc" X="-440.6621" Y="93.53091" Z="-210.4391" CollectionDistance="100" /> <!-- Pull Viscous Fallout -->
-						<RunTo X="-439.4128" Y="253.7545" Z="-211.5361" />
-						<RunTo X="-534.6802" Y="406.7967" Z="-230.6004" />
-						<RunTo X="-530.7069" Y="590.7743" Z="-230.6004" />
-						<RunTo X="-551.9714" Y="497.5627" Z="-216.81" />
-						<CustomBehavior File="InteractWith" MobId="6235" ObjectType="Npc" X="-551.9714" Y="497.5627" Z="-216.81" CollectionDistance="100" /> <!-- Pull Electocutioner 6000 --> 
-						<RunTo X="-630.0443" Y="439.1196" Z="-230.6014" />
-						<RunTo X="-678.2404" Y="403.0165" Z="-273.0628" />
-						<RunTo X="-762.3365" Y="410.7962" Z="-272.5801" />
-						<RunTo X="-892.1783" Y="367.8465" Z="-272.5956" /> <!-- Pull Crowd Pummeler 9-60 -->
-						<RunTo X="-777.2832" Y="284.9013" Z="-272.5977" />
-						<RunTo X="-759.5101" Y="261.8127" Z="-273.08" />
-						
-						<RunTo X="-799.4478" Y="313.1307" Z="-272.5949" /> <!-- Get on elevator -->
-						<CustomBehavior File="UseTransport" TransportId="85556"
-										WaitAtX="-799.4478" WaitAtY="313.1307" WaitAtZ="-272.5949"
-										TransportStartX="-806.8865" TransportStartY="323.9631" TransportStartZ="-271.6593" 
-										StandOnX="-805.5513" StandOnY="321.0675" StandOnZ="-272.6255"
-										TransportEndX="-806.8865" TransportEndY="323.9631" TransportEndZ="-316.1599" 
-										GetOffX="-814.9398" GetOffY="333.7852" GetOffZ="-316.8647" />
-						<RunTo X="-623.9236" Y="693.184" Z="-327.055" /> <!-- Get off elevator -->
-						<CustomBehavior File="InteractWith" MobId="142207" ObjectType="GameObject" X="-618.6084" Y="691.1178" Z="-327.0491" /> <!-- Open Final Chamber door -->
-						<RunTo X="-534.517" Y="671.218" Z="-325.2682" /> <!-- Pull Mekingeer Thermaplugg -->
-						<RunTo X="-814.9398" Y="333.7852" Z="-316.8647" /> <!-- Get on elevator -->
-						<CustomBehavior File="UseTransport" TransportId="85556"
-										WaitAtX="-814.9398" WaitAtY="333.7852" WaitAtZ="-316.8647"
-										TransportStartX="-806.8865" TransportStartY="323.9631" TransportStartZ="-316.1599" 
-										StandOnX="-805.5513" StandOnY="321.0675" StandOnZ="-316.8647"
-										TransportEndX="-806.8865" TransportEndY="323.9631" TransportEndZ="-271.6593"
-										GetOffX="-799.4478" GetOffY="313.1307" GetOffZ="-272.5949" />
-						<RunTo X="-760.7458" Y="263.9556" Z="-273.0796" /> <!-- Get off elevator -->
-						<CustomBehavior File="InteractWith" MobId="90858" ObjectType="GameObject" X="-758.5375" Y="260.386" Z="-273.0493" /> <!-- Open Workshop door -->
-						<RunTo X="-733.4819" Y="2.512882" Z="-249.0421" />
-						<CustomBehavior File="MyCTM" X="-726.3634" Y="2.68129" Z="-248.05" />
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-						</While>
-						
+		<While Condition="(Me.ZoneId == 2017)" >
+		
+						<RunTo X="3620.905" Y="-3643.969" Z="138.5107" />
+				<CustomBehavior File="InteractWith" MobId="175368" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens Service Entrance Gate -->
+				<RunTo X="3628.094" Y="-3616.009" Z="138.5294" /> 
+				<RunTo X="3697.076" Y="-3608.039" Z="139.1798" /> 
+				<RunTo X="3723.209" Y="-3599.898" Z="142.3176" />
+				<CustomBehavior File="InteractWith" MobId="175357" ObjectType="GameObject" X="3727.291" Y="-3599.083" Z="142.2195" /> <!-- Opens outer Gauntlet Gate -->
+				<RunTo X="3780.469" Y="-3586.975" Z="143.4685" />
+				<CustomBehavior File="InteractWith" MobId="175356" ObjectType="GameObject" X="3782.581" Y="-3590.479" Z="143.9872" /> <!-- Opens inner Gauntlet Gate -->
+				<RunTo X="3811.637" Y="-3629.727" Z="145.2022" />
+				<RunTo X="3821.36" Y="-3663.251" Z="146.2873" />
+				<RunTo X="3857.579" Y="-3697.58" Z="141.5179" />
+				<CustomBehavior File="MyCTM" X="3855.675" Y="-3713.93" Z="148.0915" /> <!-- Runs up to Baroness Anastari -->
+				<RunTo X="3848.21" Y="-3738.704" Z="148.0915" /> <!-- Clears zig -->
+				<RunTo X="3840.049" Y="-3745.865" Z="145.0919" />
+				<RunTo X="3847.57" Y="-3748.703" Z="147.9356" />
+				<RunTo X="3853.916" Y="-3754.272" Z="145.092" />
+				<CustomBehavior File="WaitTimer" WaitTime="5000" />
+				<RunTo X="3855.379" Y="-3715.927" Z="148.0915" />
+				<CustomBehavior File="MyCTM" X="3858.463" Y="-3700.423" Z="141.371" /> <!-- Runs down the stairs -->
+				<RunTo X="3965.459" Y="-3641.128" Z="133.0263" />
+				<RunTo X="4001.289" Y="-3621.316" Z="128.9867" />	
+				<RunTo X="4018.849" Y="-3634.164" Z="129.3408" />
+				<CustomBehavior File="MyCTM" X="4034.087" Y="-3646.371" Z="135.6547" /> <!-- Runs up stairs to Maleki the Pallid -->
+				<RunTo X="4049.775" Y="-3660.464" Z="135.6547" /> <!-- Clears zig -->
+				<RunTo X="4051.854" Y="-3672.935" Z="132.6555" />
+				<RunTo X="4056.692" Y="-3666.079" Z="135.6539" />
+				<RunTo X="4066.532" Y="-3665.225" Z="132.6552" />
+				<CustomBehavior File="WaitTimer" WaitTime="5000" />
+				<RunTo X="4032.234" Y="-3644.591" Z="135.6543" />
+				<CustomBehavior File="MyCTM" X="4020.657" Y="-3634.702" Z="129.1915" /> <!-- Runs down the stairs -->			
+				<RunTo X="3935.349" Y="-3552.166" Z="133.3721" />
+				<RunTo X="3919.345" Y="-3547.448" Z="134.3568" />
+				<CustomBehavior File="WaitTimer" WaitTime="5000" /> <!-- Lets bugs appear -->
+				<RunTo X="3864.253" Y="-3544.628" Z="137.4695" />
+				<CustomBehavior File="MyCTM" X="3856.256" Y="-3530.979" Z="144.2112" /> <!-- Runs up to Nerub'enkan -->
+				<RunTo X="3845.139" Y="-3509.279" Z="144.2097" /> <!-- Clears zig -->
+				<RunTo X="3847.245" Y="-3496.566" Z="141.2104" />
+				<RunTo X="3840.052" Y="-3499.939" Z="144.2101" />
+				<RunTo X="3831.428" Y="-3498.313" Z="141.2103" />
+				<CustomBehavior File="WaitTimer" WaitTime="5000" />
+				<RunTo X="3855.388" Y="-3529.955" Z="144.2099" />
+				<CustomBehavior File="MyCTM" X="3862.307" Y="-3542.963" Z="137.4648" /> <!-- Runs down the stairs -->
+				<RunTo X="3864.253" Y="-3544.628" Z="137.4695" />
+				<RunTo X="3919.345" Y="-3547.448" Z="134.3568" />
+				<!-- /working -->
+				<RunTo X="4039.645" Y="-3460.916" Z="121.1395" />
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />			
+				<CustomBehavior File="RunMacro" Macro="/target Patchwerk Golem" />
+				<While Condition="Me.CurrentTarget.IsAlive" >
+					<CustomBehavior File="InteractWith"  MobId="10416" ObjectType="Npc" X="4012.281" Y="-3432.146" Z="119.8165" CollectionDistance="200" MobState="Alive" />
+					<CustomBehavior File="RunMacro" Macro="/target Bile Spewer" />
+				</While>
+				<CustomBehavior File="RunMacro" Macro="/target Venom Belcher" />
+				<While Condition="Me.CurrentTarget.IsAlive" >
+					<CustomBehavior File="InteractWith"  MobId="10417" ObjectType="Npc" X="4012.281" Y="-3432.146" Z="119.8165" CollectionDistance="200" MobState="Alive" />
+					<CustomBehavior File="RunMacro" Macro="/target Bile Spewer" />
+				</While>
+				<RunTo X="4033.9" Y="-3415.152" Z="116.0432" /> <!-- Stands in front of slaughterhouse (all aboms should be dead by now, maybe Ramstein -->
+				<CustomBehavior File="WaitTimer" WaitTime="60000" /> <!-- Waits for 60 seconds for non-elite mobs to aggro and Black Guards to aggro -->
+				<RunTo X="4028.688" Y="-3445.299" Z="119.9031" />
+				<RunTo X="4033.056" Y="-3381.161" Z="119.7503" /> <!-- Stands just inside slaughterhouse (all aboms, Ramstein and non elites should be dead -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" /> <!-- Waits for 15 seconds Black Guards to aggro second chance-->
+				<RunTo X="4035.776" Y="-3337.501" Z="115.0593" />
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
+				<RunTo X="4033.019" Y="-3350.322" Z="115.0589" />
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="15" KillBetweenHotspots="True" LogoutForInactivity="False" />			
+				<RunTo X="4034.089" Y="-3511.909" Z="121.6081" /> <!-- Runs back to entrance -->
+				<RunTo X="3974.685" Y="-3632.997" Z="130.399" />
+				<RunTo X="3857.579" Y="-3697.58" Z="141.5179" />
+				<RunTo X="3821.36" Y="-3663.251" Z="146.2873" />
+				<RunTo X="3811.637" Y="-3629.727" Z="145.2022" />
+				<RunTo X="3778.431" Y="-3581.24" Z="142.5621" />
+				<RunTo X="3629.422" Y="-3641.041" Z="138.493" />
+				<CustomBehavior File="InteractWith" MobId="175368" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens Service Entrance Gate -->		
+				<RunTo X="3590.763" Y="-3643.248" Z="138.4904" />
+				<CustomBehavior File="MyCTM" X="3587.691" Y="-3638.193" Z="138.4724" /> <!-- Exits instance portal -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />	
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />  <!-- Resets instance -->
 						<!-- End Instance Grind -->
-						
-						<RunTo X="-4916.505" Y="784.7211" Z="276.1931" />
-						<CustomBehavior File="InteractWith" MobId="205077" ObjectType="GameObject" X="-4917.348" Y="782.4108" Z="276.2286" />
-						<RunTo X="-4916.002" Y="776.4885" Z="276.2001" />
 	
 	<!-- Checks if bags are full -->	
 			<If Condition="HasSpell(61447) || HasSpell(61425)" >
@@ -485,37 +495,20 @@
 			</If>
 			
 			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
-					<CustomBehavior File="Message" Text="Moving to New TinkertownMailbox" LogColor="Lime" />
-					<CustomBehavior File="UseTransport" TransportId="205079"
-										WaitAtX="-5177.019" WaitAtY="681.9368" WaitAtZ="287.7952"
-										TransportStartX="-5177.976" TransportStartY="673.805" TransportStartZ="289.4656" 
-										StandOnX="-5178.463" StandOnY="671.2391" StandOnZ="288.2211"
-										TransportEndX="-5177.976" TransportEndY="673.805" TransportEndZ="389.5476" 
-										GetOffX="-5178.035" GetOffY="662.6082" GetOffZ="388.3063" />
-					<RunTo X="-5185.35" Y="588.926" Z="405.4305" />
-					<CustomBehavior File="FlyTo" DestName="New Tinkertown" X="-5199.398" Y="514.522" Z="387.4294" />
+					<CustomBehavior File="Message" Text="Moving to Light's Hope Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="2290.59" Y="-5321.227" Z="90.1806" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
 			
 			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
-					<CustomBehavior File="Message" Text="Moving to Iron Summit Mailbox" LogColor="Lime" />
-					<CustomBehavior File="UseTransport" TransportId="205079"
-										WaitAtX="-5177.019" WaitAtY="681.9368" WaitAtZ="287.7952"
-										TransportStartX="-5177.976" TransportStartY="673.805" TransportStartZ="289.4656" 
-										StandOnX="-5178.463" StandOnY="671.2391" StandOnZ="288.2211"
-										TransportEndX="-5177.976" TransportEndY="673.805" TransportEndZ="389.5476" 
-										GetOffX="-5178.035" GetOffY="662.6082" GetOffZ="388.3063" />
-					<RunTo X="-5185.35" Y="588.926" Z="405.4305" />
-					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
+					<CustomBehavior File="Message" Text="Moving to Light's Hope Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="2290.59" Y="-5321.227" Z="90.1806" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-			<If Condition="Me.Location.Distance(new WoWPoint(-4917.348, 782.4108, 276.2286)) &lt; 10" >
-			<RunTo X="-5144.55" Y="895.2514" Z="287.3937" />
 			</If>
 			
 	<!-- End bag check -->
 	
+			</While>
 			</While>
 				
 				
