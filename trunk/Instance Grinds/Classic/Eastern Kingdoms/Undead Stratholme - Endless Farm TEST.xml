@@ -397,19 +397,22 @@
 	
 		<While Condition="(Me.MapId == 0)" >
 		
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+		<If Condition="Me.Location.Distance(new WoWPoint(3232.494, -4046.767, 108.4352)) &gt; 10" >
+		
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
 						<CustomBehavior File="Message" Text="Moving to Undead Stratholme Location." LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Stratholme" X="3163.623" Y="-4039.049" Z="104.4434"  />
 						<RunTo X="3181.775" Y="-4039.192" Z="107.0278" />
 						<CustomBehavior File="InteractWith" MobId="175369" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens outer gate -->
 						<RunTo X="3232.494" Y="-4046.767" Z="108.4352" />
+		</If>
 						<CustomBehavior File="MyCTM" X="3238.13" Y="-4057.148" Z="110.4538" /> <!-- Enters instance if not already inside -->
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
 	<!-- Begin Instance Grind -->
 		<While Condition="(Me.ZoneId == 2017)" >
 		
-						<RunTo X="3620.905" Y="-3643.969" Z="138.5107" />
+				<RunTo X="3620.905" Y="-3643.969" Z="138.5107" />
 				<CustomBehavior File="InteractWith" MobId="175368" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens Service Entrance Gate -->
 				<RunTo X="3628.094" Y="-3616.009" Z="138.5294" /> 
 				<RunTo X="3697.076" Y="-3608.039" Z="139.1798" /> 
@@ -453,28 +456,33 @@
 				<CustomBehavior File="MyCTM" X="3862.307" Y="-3542.963" Z="137.4648" /> <!-- Runs down the stairs -->
 				<RunTo X="3864.253" Y="-3544.628" Z="137.4695" />
 				<RunTo X="3919.345" Y="-3547.448" Z="134.3568" />
-				<!-- /working -->
-				<RunTo X="4039.645" Y="-3460.916" Z="121.1395" />
-				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />			
-				<CustomBehavior File="RunMacro" Macro="/target Patchwerk Golem" />
-				<While Condition="Me.CurrentTarget.IsAlive" >
-					<CustomBehavior File="InteractWith"  MobId="10416" ObjectType="Npc" X="4012.281" Y="-3432.146" Z="119.8165" CollectionDistance="200" MobState="Alive" />
-					<CustomBehavior File="RunMacro" Macro="/target Bile Spewer" />
+				<RunTo X="4036.993" Y="-3471.139" Z="121.7402" />
+				
+				<!-- Begin Logic to pull Abominations 100% of time -->
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />			
+				<CustomBehavior File="RunMacro" NumOfTimes="2" Macro="/target Bile Spewer" />
+				<While Condition="Me.CurrentTarget != null &amp;&amp; Me.CurrentTarget.IsAlive" >
+					<CustomBehavior File="RunMacro" NumOfTimes="2" Macro="/target Bile Spewer" />
+					<CustomBehavior File="InteractWith"  MobId1="10416" MobId2="10417" ObjectType="Npc" X="4012.281" Y="-3432.146" Z="119.8165" CollectionDistance="200" MobState="Alive" />
+					<CustomBehavior File="RunMacro" NumOfTimes="2" Macro="/target Bile Spewer" />
 				</While>
-				<CustomBehavior File="RunMacro" Macro="/target Venom Belcher" />
-				<While Condition="Me.CurrentTarget.IsAlive" >
-					<CustomBehavior File="InteractWith"  MobId="10417" ObjectType="Npc" X="4012.281" Y="-3432.146" Z="119.8165" CollectionDistance="200" MobState="Alive" />
-					<CustomBehavior File="RunMacro" Macro="/target Bile Spewer" />
+				<CustomBehavior File="RunMacro" NumOfTimes="2" Macro="/target Venom Belcher" />
+				<While Condition="Me.CurrentTarget != null &amp;&amp; Me.CurrentTarget.IsAlive" >
+					<CustomBehavior File="RunMacro" NumOfTimes="2" Macro="/target Venom Belcher" />
+					<CustomBehavior File="InteractWith"  MobId1="10417" MobId2="10416" ObjectType="Npc" X="4012.281" Y="-3432.146" Z="119.8165" CollectionDistance="200" MobState="Alive" />
+					<CustomBehavior File="RunMacro" NumOfTimes="2" Macro="/target Venom Belcher" />
 				</While>
-				<RunTo X="4033.9" Y="-3415.152" Z="116.0432" /> <!-- Stands in front of slaughterhouse (all aboms should be dead by now, maybe Ramstein -->
-				<CustomBehavior File="WaitTimer" WaitTime="60000" /> <!-- Waits for 60 seconds for non-elite mobs to aggro and Black Guards to aggro -->
+				<!-- End Logic for Abominations -->
+				
+				<CustomBehavior File="InteractWith"  MobId="10439" ObjectType="Npc" X="4012.281" Y="-3432.146" Z="119.8165" CollectionDistance="200" /> <!-- Pull Rammstein -->
+				<CustomBehavior File="InteractWith"  MobId="10394" ObjectType="Npc" X="4012.281" Y="-3432.146" Z="119.8165" CollectionDistance="200" /> <!-- Pull Blackguard Sentry -->
 				<RunTo X="4028.688" Y="-3445.299" Z="119.9031" />
-				<RunTo X="4033.056" Y="-3381.161" Z="119.7503" /> <!-- Stands just inside slaughterhouse (all aboms, Ramstein and non elites should be dead -->
-				<CustomBehavior File="WaitTimer" WaitTime="15000" /> <!-- Waits for 15 seconds Black Guards to aggro second chance-->
+				<RunTo X="4033.056" Y="-3381.161" Z="119.7503" />
 				<RunTo X="4035.776" Y="-3337.501" Z="115.0593" />
 				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
 				<RunTo X="4033.019" Y="-3350.322" Z="115.0589" />
-				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="15" KillBetweenHotspots="True" LogoutForInactivity="False" />			
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="15" KillBetweenHotspots="True" LogoutForInactivity="False" />	
+				<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
 				<RunTo X="4034.089" Y="-3511.909" Z="121.6081" /> <!-- Runs back to entrance -->
 				<RunTo X="3974.685" Y="-3632.997" Z="130.399" />
 				<RunTo X="3857.579" Y="-3697.58" Z="141.5179" />
@@ -495,12 +503,16 @@
 			</If>
 			
 			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<RunTo X="3187.95" Y="-4039.241" Z="107.9912" />
+					<CustomBehavior File="InteractWith" MobId="175369" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" />
 					<CustomBehavior File="Message" Text="Moving to Light's Hope Mailbox" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="2290.59" Y="-5321.227" Z="90.1806" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
 			
 			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<RunTo X="3187.95" Y="-4039.241" Z="107.9912" />
+					<CustomBehavior File="InteractWith" MobId="175369" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" />
 					<CustomBehavior File="Message" Text="Moving to Light's Hope Mailbox" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="2290.59" Y="-5321.227" Z="90.1806" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
