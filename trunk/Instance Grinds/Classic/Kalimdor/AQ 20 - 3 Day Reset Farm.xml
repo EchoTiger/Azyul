@@ -473,8 +473,17 @@
 		
 		<!-- Hearth out because we're done! -->
 				<While Condition="(Me.ZoneId == 3429)" >
+				
+				<If Condition="HasItem(6948) >
 						<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />
 						<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+				</If>
+				
+				<If Condition="HasItem(64488)" >
+						<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="1000" />
+						<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+				</If>
+						
 				</While>
 				
 				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="AQ 20 Run Complete!\nDid You Get Lucky?" />
