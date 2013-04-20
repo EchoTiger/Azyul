@@ -1,13 +1,13 @@
-﻿<HBProfile>
-<Name>Frostfever's Endless Shadow Labyrinth Farm</Name>
+<HBProfile>
+<Name>Frostfever's Endless Steamvaults Farm</Name>
 <MinDurability>0.3</MinDurability>
 <MinFreeBagSlots>1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
-// Farm zone: Shadow Labyrinth
+// Farm zone: The Steamvaults
 // Farm mobs: All
 // Grind Speed: N/A
-// Grind what? Rep: Lower City Rep
+// Grind what? Rep: 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 <MinLevel>54</MinLevel>
@@ -39,13 +39,12 @@
 	</ProtectedItems>
 		
 	<Vendors>
-			<Vendor Name="Aaron Hollman" Entry="19662" Type="Repair" X="-2101.853" Y="5298.756" Z="-37.32356" />	
+			<Vendor Name="Loolruna" Entry="19694" Type="Repair" X="252.2793" Y="6030.792" Z="131.596" />
 	</Vendors>
 
 	<Mailboxes>
-		<Mailbox X="-1897.948" Y="5158.581" Z="-40.23168" />
-
-
+		<Mailbox X="288.0347" Y="6082.499" Z="131.5507" />
+		
 	</Mailboxes>
 
 
@@ -399,104 +398,149 @@
 		Big thanks to Kick for this.
 		--> 
 
-		<While Condition="(Me.MapId == 530)" >
 		
-			<If Condition="Me.Location.Distance(new WoWPoint(-3651.335, 4943.071, -102.0909)) &gt; 200" >
 		
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Shadow Labyrinth." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3475.315" Y="4942.875" Z="-101.3955" />
-						<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" WaitTime="0" X="-3556.407" Y="4943.071" Z="-101.1189" />						
-						<RunTo X="-3651.335" Y="4943.071" Z="-102.0909" /><!-- Enters instance if not already inside -->
-			</If>
-						<CustomBehavior File="MyCTM" X="-3651.335" Y="4943.071" Z="-102.0909" /> <!-- Enters instance if not already inside -->
+		
+			<While Condition="(Me.MapId == 530)" >	
+				    <If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+				
+					    <CustomBehavior File="Message" Text="Moving to Cenarion Refuge's Mailbox" LogColor="Lime" />						
+						<CustomBehavior File="FlyTo" X="288.0347" Y="6082.499" Z="131.5507" />
+						<CustomBehavior File="ForcedDismount" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />					
+					</If>
+			
+					<If Condition="Me.Location.Distance(new WoWPoint(818.3801, 6948.0156, -79.5789)) &gt; 100" >		
+						<CustomBehavior File="Message" Text="Going to Zangarmarsh to get the Belt." LogColor="DarkBlue" />
+						<CustomBehavior File="FlyTo" DestName="Zangarmarsh-HIGH POINT" X="511.3972" Y="6927.3" Z="256.1042" />
+						<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="473.400" Y="6892.175" Z="63.8240" />
+						<CustomBehavior File="MyCTM" X="556.8849" Y="6938.702" Z="19.20102" />
+						<CustomBehavior File="RunMacro" Macro="/dismount" />
+						<CustomBehavior File="MyCTM" X="577.375" Y="6939.144" Z="-38.14312" />
+						<CustomBehavior File="MyCTM" X="597.3696" Y="6923.526" Z="-45.01696" />
+						<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
+						<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
+						<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
+						<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
+						<CustomBehavior File="MyCTM" X="731.085" Y="6866.436" Z="-70.52903" />
+						<CustomBehavior File="MyCTM" X="739.475" Y="6899.836" Z="-65.54513" />
+						<CustomBehavior File="MyCTM" X="818.925" Y="6938.217" Z="-80.51434" />
+						<CustomBehavior File="MyCTM" X="816.8091" Y="6949.15" Z="-80.53702" />
+					</If>
+					
+						<CustomBehavior File="MyCTM" X="816.8091" Y="6949.15" Z="-80.53702" />	 <!-- Enters instance if not already inside -->
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
-				
-	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 3789)" >	
-		
-			<RunTo X="-85.25266" Y="11.53679" Z="-1.129517" />
-			<RunTo X="-60.40287" Y="-26.07899" Z="-1.129615" />
-			<RunTo X="-44.90869" Y="-34.46481" Z="-1.129615" />
-			<RunTo X="-77.47419" Y="-40.39509" Z="-1.129905" />
-			<RunTo X="-35.72696" Y="-79.37662" Z="-1.130015" />
-			<RunTo X="-53.6929" Y="-83.88326" Z="-1.129321" />
-			<RunTo X="-71.29203" Y="-77.70186" Z="-1.129321" />
-			<RunTo X="-84.52249" Y="-91.41886" Z="-1.12968" />
-			<RunTo X="-155.9508" Y="-90.59187" Z="8.072736" />
-			<RunTo X="-166.541" Y="-79.80924" Z="8.072736" />
-			<RunTo X="-158.2389" Y="-64.31098" Z="8.071728" />
-			<RunTo X="-144.5629" Y="-77.74079" Z="8.068306" />
-			<RunTo X="-150.8039" Y="-21.7719" Z="8.071868" />
-			<RunTo X="-140.1217" Y="-6.401989" Z="8.071868" />
-			<RunTo X="-167.2283" Y="-1.147267" Z="8.071868" />
-			<RunTo X="-157.0241" Y="-6.560795" Z="8.072991" />
-			<RunTo X="-167.1883" Y="-13.20597" Z="8.072991" />
-			<RunTo X="-254.2549" Y="-25.73967" Z="8.100221" />
-			<RunTo X="-264.6995" Y="-0.539649" Z="8.073388" />
-			<RunTo X="-276.339" Y="18.99645" Z="8.073024" />
-			<RunTo X="-256.0537" Y="-45.10243" Z="8.073911" />
-			<RunTo X="-265.4892" Y="-77.14941" Z="8.07285" />
-			<RunTo X="-283.956" Y="-98.68896" Z="8.072923" />
-			<RunTo X="-296.2988" Y="-42.51506" Z="8.072977" />
-			<RunTo X="-329.2647" Y="-40.10936" Z="12.68885" />
-			<RunTo X="-321.4034" Y="-49.29906" Z="12.68886" />
-			<RunTo X="-321.5511" Y="-25.30865" Z="12.68886" />
-			<RunTo X="-318.9004" Y="-38.11809" Z="12.68886" />
-			<RunTo X="-335.0815" Y="-38.87413" Z="12.68886" />
-			<RunTo X="-438.6219" Y="-113.2279" Z="15.55152" />
-			<RunTo X="-437.1325" Y="-175.0891" Z="12.94783" />
-			<RunTo X="-452.5694" Y="-181.4838" Z="12.68925" />
-			<RunTo X="-414.348" Y="-192.0573" Z="15.24065" />
-			<RunTo X="-433.3222" Y="-250.7952" Z="12.68923" />
-			<RunTo X="-405.3764" Y="-265.3998" Z="12.68707" />
-			<RunTo X="-357.9266" Y="-265.7768" Z="12.68748" />
-			<RunTo X="-332.1758" Y="-280.4101" Z="17.59496" />
-			<RunTo X="-338.4132" Y="-251.766" Z="14.65349" />
-			<RunTo X="-325.6822" Y="-261.3641" Z="12.68552" />
-			<RunTo X="-298.1479" Y="-279.2211" Z="15.82214" />
-			<RunTo X="-292.3126" Y="-248.9461" Z="15.54536" />
-			<RunTo X="-274.8957" Y="-256.1982" Z="12.68228" />
-			<RunTo X="-255.0735" Y="-261.8339" Z="17.08633" />
-			<RunTo X="-158.9943" Y="-325.8101" Z="17.0852" />
-			<RunTo X="-157.2417" Y="-461.8734" Z="17.07814" />
-			<RunTo X="-156.7423" Y="-487.2384" Z="15.78182" /> <!-- Kills Murmur -->
-			<RunTo X="-8.511789" Y="-0.1070375" Z="-1.12795" /> <!-- Runs back to entrance -->
-			
-			<CustomBehavior File="MyCTM" X="9.246022" Y="-0.1667493" Z="-2.135784" /> <!-- Exits via the instance portal -->
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			
-			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> <!-- Resets instances -->
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficulty(1)" /> <!-- Sets dungeons back to "regular" mode for farming, in case it was on Heroic for the last run -->
-			
-					<!-- End Instance Grind -->
-	
-	<!-- Checks if bags are full -->	
-			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+						
+		<While Condition="(Me.ZoneId == 3715)" >	
+						
+						<RunTo X="-5.058281" Y="-20.64389" Z="-6.376707" /> 
+						<RunTo X="-6.822076" Y="-132.9655" Z="-21.63359" />
+						<RunTo X="-40.37414" Y="-109.6275" Z="-22.0399" />
+						<RunTo X="60.66743" Y="-130.911" Z="-22.73433" />
+						<RunTo X="69.28743" Y="-149.6075" Z="-19.54336" />
+						<RunTo X="32.28209" Y="-159.7217" Z="-22.54711" />
+						<RunTo X="55.49663" Y="-199.8993" Z="-22.61326" />
+						<RunTo X="37.33028" Y="-236.461" Z="-22.66976" />
+						<RunTo X="2.25783" Y="-253.6572" Z="-21.875" />
+						<RunTo X="86.19595" Y="-316.0505" Z="-7.870904" /> <!-- Pulls Hydromancer Thespia -->
+						<CustomBehavior File="WaitTimer" WaitTime="5000" />
+						<RunTo X="96.25743" Y="-316.4628" Z="-7.870904" />
+						<CustomBehavior File="WaitTimer" WaitTime="5000" />
+						<CustomBehavior File="UseGameObject" ObjectId="184125" NumOfTimes="1" X="98.81569" Y="-316.3364" Z="-6.683962" /> <!-- Interacts with object behind Thespia -->
+						<CustomBehavior File="WaitTimer" WaitTime="5000" />			
+						<RunTo X="43.43725" Y="-301.6651" Z="-9.444839" />
+						<RunTo X="13.89986" Y="-211.3092" Z="-22.42477" />
+						<RunTo X="-17.34958" Y="-185.7775" Z="-22.16425" />
+						<RunTo X="-39.3792" Y="-207.8234" Z="-18.31094" />
+						<RunTo X="-50.85733" Y="-216.6728" Z="-18.60893" />
+						<RunTo X="-78.00423" Y="-233.6544" Z="-19.07354" />
+						<RunTo X="-90.07612" Y="-276.6331" Z="-7.767313" />
+						<RunTo X="-90.53283" Y="-302.9036" Z="-7.767313" />
+						<RunTo X="-58.21149" Y="-327.3359" Z="-7.767313" />
+						<RunTo X="-107.3796" Y="-335.5386" Z="-7.680521" />
+						<RunTo X="-159.9124" Y="-285.0613" Z="-8.131578" />
+						<RunTo X="-232.6062" Y="-238.6266" Z="-7.930344" />
+						<RunTo X="-293.4943" Y="-148.8831" Z="-7.948668" />
+						<RunTo X="-297.9891" Y="-119.6468" Z="-7.942001" />
+						<RunTo X="-327.1491" Y="-124.3638" Z="-8.176801" /> <!-- Attacks Mekgineer Steamrigger -->
+						<CustomBehavior File="WaitTimer" WaitTime="5000" />
+						<RunTo X="-326.9749" Y="-116.2054" Z="-7.870165" />
+						<CustomBehavior File="UseGameObject" ObjectId="184126" NumOfTimes="1" X="-332.35" Y="-117.1587" Z="-6.707662" /> <!-- Interacts with object behind Steamrigger -->
+						
+						<RunTo X="-250.6937" Y="-179.302" Z="-6.746215" />
+						<RunTo X="-96.56015" Y="-407.9301" Z="-7.774409" />
+						<RunTo X="-93.44286" Y="-464.0006" Z="7.82168" />
+						<RunTo X="-112.0207" Y="-499.9792" Z="8.219294" />
+						<RunTo X="-80.84348" Y="-500.6314" Z="8.270562" />
+						<RunTo X="-95.34022" Y="-551.0969" Z="8.186971" /> <!-- Attacks Warlord Kalithresh -->
+						
+						<RunTo X="-88.35796" Y="-275.7006" Z="-7.768714" /> <!-- Heads back to the entrance -->
+						<RunTo X="-61.37548" Y="-148.7661" Z="-19.92307" />
+						<RunTo X="-7.975143" Y="-87.38731" Z="-20.25814" />
+						
+						<RunTo X="-11.18451" Y="2.236851" Z="-4.036157" />
+						
+						<CustomBehavior File="MyCTM" X="-24.79363" Y="3.62258" Z="-2.843968" /> <!-- Exit through the instance portal -->
+
+						<CustomBehavior File="WaitTimer" WaitTime="20000" />
+
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficulty(1)" /> <!-- sets dungeons back to "regular" mode for farming, in case it was on Heroic for the last run -->
+
+						
+					<If Condition="(HasSpell(61447)) || (HasSpell(61425))" >
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
 			
 			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
-					<RunTo X="-3559.281" Y="4942.689" Z="-101.0483" />
-					<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" WaitTime="0" X="-3556.407" Y="4943.071" Z="-101.1189" />
-					<RunTo X="-3548.595" Y="4942.983" Z="-101.3943" />
-					<CustomBehavior File="Message" Text="Moving to Shattrath Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2941.882" Y="5132.688" Z="26.42101" />
-					<CustomBehavior File="MyCTM" X="-2568.40" Y="5204.11" Z="26.08" />	
-					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-1897.948" Y="5158.581" Z="-40.23168" />					
+					<CustomBehavior File="Message" Text="Moving to Cenarion Refuge's Mailbox" LogColor="Lime" />
+						<CustomBehavior File="MyCTM" X="655.8704" Y="6865.183" Z="-83.67981" />
+						<CustomBehavior File="MyCTM" X="632.2728" Y="6871.266" Z="-75.63762" />
+						<CustomBehavior File="MyCTM" X="619.5461" Y="6887.241" Z="-64.32347" />
+						<CustomBehavior File="MyCTM" X="607.8958" Y="6898.224" Z="-49.47136" />
+						<CustomBehavior File="MyCTM" X="594.9378" Y="6930.458" Z="-41.49766" />
+						<CustomBehavior File="MyCTM" X="567.3137" Y="6945.225" Z="-28.22179" />
+						<CustomBehavior File="MyCTM" X="540.6658" Y="6924.646" Z="22.10633" />
+						<CustomBehavior File="MyCTM" X="530.261" Y="6910.107" Z="30.74072" />
+						<CustomBehavior File="FlyTo" X="421.8152" Y="6827.062" Z="141.7544" />
+						<CustomBehavior File="ForcedDismount" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />					
+			</If>
+					<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Cenarion Refuge's Mailbox" LogColor="Lime" />
+					<CustomBehavior File="MyCTM" X="655.8704" Y="6865.183" Z="-83.67981" />
+					<CustomBehavior File="MyCTM" X="632.2728" Y="6871.266" Z="-75.63762" />
+					<CustomBehavior File="MyCTM" X="619.5461" Y="6887.241" Z="-64.32347" />
+					<CustomBehavior File="MyCTM" X="607.8958" Y="6898.224" Z="-49.47136" />
+					<CustomBehavior File="MyCTM" X="594.9378" Y="6930.458" Z="-41.49766" />
+					<CustomBehavior File="MyCTM" X="567.3137" Y="6945.225" Z="-28.22179" />
+					<CustomBehavior File="MyCTM" X="540.6658" Y="6924.646" Z="22.10633" />
+					<CustomBehavior File="MyCTM" X="530.261" Y="6910.107" Z="30.74072" />
+					<CustomBehavior File="FlyTo" X="421.8152" Y="6827.062" Z="141.7544" />
+					<CustomBehavior File="FlyTo" DestName="Telredor" X="288.0347" Y="6082.499" Z="131.5507" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
+					<CustomBehavior File="InteractWith" MobId="184912" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" />
+					<CustomBehavior File="Message" Text="Moving to Thrallmar's Mailbox" LogColor="Lime" />
+					<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />
+					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="172.726" Y="2623.055" Z="863836" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>			
 
 			
-	<!-- End bag check -->
-
-			</While>
-			</While>
-		
-				
-				
+		</While>
+		</While>
+			
+	
+	
 	</QuestOrder>
 
 </HBProfile>
+
+						
+						
+						

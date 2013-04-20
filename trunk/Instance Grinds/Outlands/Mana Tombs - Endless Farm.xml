@@ -400,8 +400,17 @@
 		--> 
 
 			<While Condition="(Me.MapId == 530)" >
+			
+					<If Condition="(Me.FreeBagSlots &lt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+					<RunTo X="-3296.058" Y="4942.13" Z="-100.4274" />
+					<CustomBehavior File="Message" Text="Moving to Shattrath Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2941.882" Y="5132.688" Z="26.42101" />
+					<CustomBehavior File="MyCTM" X="-2568.40" Y="5204.11" Z="26.08" />	
+					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-1897.948" Y="5158.581" Z="-40.23168" />					
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
 		
-				<If Condition="Me.Location.Distance(new WoWPoint(-3296.058, 4942.13, -100.4274)) &gt; 250" >
+				<If Condition="Me.Location.Distance(new WoWPoint(-3072.97, 4943.093, -102.0555)) &gt; 250" >
 		
 						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
 						<CustomBehavior File="Message" Text="Moving to Mana Tombs." LogColor="Lime" />
@@ -468,7 +477,7 @@
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
 			
-			<If Condition="(Me.FreeBagSlots &lt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0)" >
 					<RunTo X="-3296.058" Y="4942.13" Z="-100.4274" />
 					<CustomBehavior File="Message" Text="Moving to Shattrath Mailbox" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2941.882" Y="5132.688" Z="26.42101" />

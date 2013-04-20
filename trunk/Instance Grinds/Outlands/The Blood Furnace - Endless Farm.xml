@@ -1,13 +1,13 @@
-﻿<HBProfile>
-<Name>Frostfever's Endless Shadow Labyrinth Farm</Name>
+<HBProfile>
+<Name>Frostfever's Endless Shattered Halls Farm</Name>
 <MinDurability>0.3</MinDurability>
 <MinFreeBagSlots>1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
-// Farm zone: Shadow Labyrinth
+// Farm zone: Shattered Halls
 // Farm mobs: All
 // Grind Speed: N/A
-// Grind what? Rep: Lower City Rep
+// Grind what? Rep: Honor Hold Rep
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 <MinLevel>54</MinLevel>
@@ -22,7 +22,7 @@
 <SellGrey>True</SellGrey>
 <SellWhite>False</SellWhite>
 <SellGreen>False</SellGreen>
-<SellBlue>False</SellBlue>
+<SellBlue>True</SellBlue>
 <SellPurple>False</SellPurple>
 
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
@@ -39,13 +39,13 @@
 	</ProtectedItems>
 		
 	<Vendors>
-			<Vendor Name="Aaron Hollman" Entry="19662" Type="Repair" X="-2101.853" Y="5298.756" Z="-37.32356" />	
+		<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
+		<Vendor Name="Supply Officer Isabel" Entry="19315" Type="Repair" X="-18.83" Y="2140.58" Z="114.07" />		
 	</Vendors>
 
 	<Mailboxes>
-		<Mailbox X="-1897.948" Y="5158.581" Z="-40.23168" />
-
-
+		<Mailbox X="-707.0386" Y="2700.07" Z="94.45774" />
+		<Mailbox X="172.726" Y="2623.055" Z="863836" />
 	</Mailboxes>
 
 
@@ -401,76 +401,72 @@
 
 		<While Condition="(Me.MapId == 530)" >
 		
-			<If Condition="Me.Location.Distance(new WoWPoint(-3651.335, 4943.071, -102.0909)) &gt; 200" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-305.55, 3167.44, 30.22)) &gt; 15" >
 		
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Shadow Labyrinth." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3475.315" Y="4942.875" Z="-101.3955" />
-						<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" WaitTime="0" X="-3556.407" Y="4943.071" Z="-101.1189" />						
-						<RunTo X="-3651.335" Y="4943.071" Z="-102.0909" /><!-- Enters instance if not already inside -->
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenRunTos="True" LogoutForInactivity="False" />
+						<CustomBehavior File="Message" Text="Moving to Undead Shattered Halls." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-272.2083" Y="3114.613" Z="31.36712" />
+						<RunTo X="-307.55" Y="3167.44" Z="30.22" /><!-- Enters instance if not already inside -->
 			</If>
-						<CustomBehavior File="MyCTM" X="-3651.335" Y="4943.071" Z="-102.0909" /> <!-- Enters instance if not already inside -->
+						<CustomBehavior File="MyCTM" X="-307.55" Y="3167.44" Z="30.22" /> <!-- Enters instance if not already inside -->
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
 				
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 3789)" >	
+		<While Condition="(Me.ZoneId == 3713)" >	
+
+					<RunTo X="-2.7378" Y="19.8424" Z="-44.7973"  />
+					<RunTo X="6.5729" Y="-53.1395" Z="-41.3403"  />
+					<RunTo X="-12.0365" Y="-82.6148" Z="-41.3348"  />
+					<RunTo X="26.6086" Y="-85.0423" Z="-41.1520"  />
+					<RunTo X="49.4181" Y="-92.1502" Z="-40.2538"  />
+					<RunTo X="193.1923" Y="-91.4202" Z="9.6116"  />
+					<RunTo X="226.2120" Y="-71.8887" Z="9.6186"  />
+					<RunTo X="226.3313" Y="-98.7988" Z="9.6175"  />
+					<RunTo X="243.4249" Y="-69.2302" Z="9.6181"  />
+					<RunTo X="247.9132" Y="-28.5470" Z="6.9527"  />
+					<RunTo X="313.9966" Y="10.8903" Z="9.6167"  />
+					<RunTo X="329.6500" Y="29.9482" Z="9.6204"  />
+					<RunTo X="313.0209" Y="69.5790" Z="9.6156"  />
+					<RunTo X="350.0067" Y="68.8997" Z="9.6187"  />
+					<RunTo X="312.6703" Y="98.0912" Z="9.6183"  />
+					<RunTo X="339.5060" Y="98.7678" Z="9.6183"  />
+					<RunTo X="328.6922" Y="130.0471" Z="9.6166"  />
+					<RunTo X="318.4547" Y="184.1546" Z="9.6149"  />
+					<RunTo X="348.1801" Y="193.1998" Z="9.6064"  />
+					<RunTo X="434.4225" Y="191.7949" Z="9.6058"  />
+					<RunTo X="461.2196" Y="170.1924" Z="9.6135"  />
+					<RunTo X="448.7272" Y="102.2875" Z="9.6153"  />
+					<RunTo X="481.5595" Y="96.0595" Z="9.6222"  />
+					<RunTo X="468.4370" Y="62.0829" Z="9.6106"  />
+					<RunTo X="441.7766" Y="62.2117" Z="9.6096"  />
+					<RunTo X="456.2785" Y="61.8393" Z="9.6138"  />
+					<CustomBehavior File="InteractWith" MobId="181982" ObjectType="GameObject" WaitTime="0" X="456.085" Y="60.34" Z="9.47" />
+					<RunTo X="478.3699" Y="73.7993" Z="9.6181"  />
+					<RunTo X="454.5829" Y="52.4552" Z="9.6180"  />
+					<RunTo X="455.1309" Y="10.6221" Z="9.5483"  />
+					<RunTo X="488.6636" Y="7.9079" Z="9.5462"  />
+					<RunTo X="470.7940" Y="-22.2413" Z="9.5495"  />
+					<RunTo X="486.7489" Y="-66.6498" Z="9.5460"  />
+					<RunTo X="462.9890" Y="-61.6081" Z="9.5467"  />
+					<RunTo X="457.6347" Y="-88.1734" Z="9.5915"  />
+					<RunTo X="415.0618" Y="-70.2243" Z="9.6176"  />
+					<RunTo X="429.3263" Y="-94.1003" Z="9.6214"  />
+					<RunTo X="413.5654" Y="-91.8421" Z="9.6247"  />
+					<RunTo X="402.8492" Y="-144.5712" Z="-4.7953"  />
+					<RunTo X="351.6836" Y="-175.1246" Z="-25.5259"  />
+					<RunTo X="328.3218" Y="-190.4908" Z="-25.5081"  />
+					<RunTo X="317.7902" Y="-173.1652" Z="-25.5080"  />
+					<RunTo X="343.3569" Y="-104.3798" Z="-24.6489"  />
+					<RunTo X="259.2075" Y="-127.7233" Z="-26.1556"  />
+					<RunTo X="103.4703" Y="-143.3634" Z="-57.2124"  />
+					<RunTo X="-2.9521" Y="-134.0961" Z="-45.6803"  />
+					<RunTo X="-1.4279" Y="25.9991" Z="-44.7859"  />
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> <!-- resets instances -->
+					<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficulty(1)" /> <!-- take instances off Heroic mode for more farming -->
 		
-			<RunTo X="-85.25266" Y="11.53679" Z="-1.129517" />
-			<RunTo X="-60.40287" Y="-26.07899" Z="-1.129615" />
-			<RunTo X="-44.90869" Y="-34.46481" Z="-1.129615" />
-			<RunTo X="-77.47419" Y="-40.39509" Z="-1.129905" />
-			<RunTo X="-35.72696" Y="-79.37662" Z="-1.130015" />
-			<RunTo X="-53.6929" Y="-83.88326" Z="-1.129321" />
-			<RunTo X="-71.29203" Y="-77.70186" Z="-1.129321" />
-			<RunTo X="-84.52249" Y="-91.41886" Z="-1.12968" />
-			<RunTo X="-155.9508" Y="-90.59187" Z="8.072736" />
-			<RunTo X="-166.541" Y="-79.80924" Z="8.072736" />
-			<RunTo X="-158.2389" Y="-64.31098" Z="8.071728" />
-			<RunTo X="-144.5629" Y="-77.74079" Z="8.068306" />
-			<RunTo X="-150.8039" Y="-21.7719" Z="8.071868" />
-			<RunTo X="-140.1217" Y="-6.401989" Z="8.071868" />
-			<RunTo X="-167.2283" Y="-1.147267" Z="8.071868" />
-			<RunTo X="-157.0241" Y="-6.560795" Z="8.072991" />
-			<RunTo X="-167.1883" Y="-13.20597" Z="8.072991" />
-			<RunTo X="-254.2549" Y="-25.73967" Z="8.100221" />
-			<RunTo X="-264.6995" Y="-0.539649" Z="8.073388" />
-			<RunTo X="-276.339" Y="18.99645" Z="8.073024" />
-			<RunTo X="-256.0537" Y="-45.10243" Z="8.073911" />
-			<RunTo X="-265.4892" Y="-77.14941" Z="8.07285" />
-			<RunTo X="-283.956" Y="-98.68896" Z="8.072923" />
-			<RunTo X="-296.2988" Y="-42.51506" Z="8.072977" />
-			<RunTo X="-329.2647" Y="-40.10936" Z="12.68885" />
-			<RunTo X="-321.4034" Y="-49.29906" Z="12.68886" />
-			<RunTo X="-321.5511" Y="-25.30865" Z="12.68886" />
-			<RunTo X="-318.9004" Y="-38.11809" Z="12.68886" />
-			<RunTo X="-335.0815" Y="-38.87413" Z="12.68886" />
-			<RunTo X="-438.6219" Y="-113.2279" Z="15.55152" />
-			<RunTo X="-437.1325" Y="-175.0891" Z="12.94783" />
-			<RunTo X="-452.5694" Y="-181.4838" Z="12.68925" />
-			<RunTo X="-414.348" Y="-192.0573" Z="15.24065" />
-			<RunTo X="-433.3222" Y="-250.7952" Z="12.68923" />
-			<RunTo X="-405.3764" Y="-265.3998" Z="12.68707" />
-			<RunTo X="-357.9266" Y="-265.7768" Z="12.68748" />
-			<RunTo X="-332.1758" Y="-280.4101" Z="17.59496" />
-			<RunTo X="-338.4132" Y="-251.766" Z="14.65349" />
-			<RunTo X="-325.6822" Y="-261.3641" Z="12.68552" />
-			<RunTo X="-298.1479" Y="-279.2211" Z="15.82214" />
-			<RunTo X="-292.3126" Y="-248.9461" Z="15.54536" />
-			<RunTo X="-274.8957" Y="-256.1982" Z="12.68228" />
-			<RunTo X="-255.0735" Y="-261.8339" Z="17.08633" />
-			<RunTo X="-158.9943" Y="-325.8101" Z="17.0852" />
-			<RunTo X="-157.2417" Y="-461.8734" Z="17.07814" />
-			<RunTo X="-156.7423" Y="-487.2384" Z="15.78182" /> <!-- Kills Murmur -->
-			<RunTo X="-8.511789" Y="-0.1070375" Z="-1.12795" /> <!-- Runs back to entrance -->
-			
-			<CustomBehavior File="MyCTM" X="9.246022" Y="-0.1667493" Z="-2.135784" /> <!-- Exits via the instance portal -->
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			
-			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> <!-- Resets instances -->
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficulty(1)" /> <!-- Sets dungeons back to "regular" mode for farming, in case it was on Heroic for the last run -->
-			
+
 					<!-- End Instance Grind -->
 	
 	<!-- Checks if bags are full -->	
@@ -478,17 +474,17 @@
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
 			
-			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
-					<RunTo X="-3559.281" Y="4942.689" Z="-101.0483" />
-					<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" WaitTime="0" X="-3556.407" Y="4943.071" Z="-101.1189" />
-					<RunTo X="-3548.595" Y="4942.983" Z="-101.3943" />
-					<CustomBehavior File="Message" Text="Moving to Shattrath Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2941.882" Y="5132.688" Z="26.42101" />
-					<CustomBehavior File="MyCTM" X="-2568.40" Y="5204.11" Z="26.08" />	
-					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-1897.948" Y="5158.581" Z="-40.23168" />					
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Honor Holds Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="-706.55" Y="2700.24" Z="94.53" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
-
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Thrallmar's Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="172.726" Y="2623.055" Z="863836" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
 			
 	<!-- End bag check -->
 
