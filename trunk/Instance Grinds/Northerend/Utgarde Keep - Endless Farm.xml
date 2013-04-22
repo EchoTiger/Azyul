@@ -598,14 +598,14 @@
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
 					<!--Instance Coordnation Complete -->
 					<!-- Min Forced Execution if required. -->
-					<If Condition="(Me.FreeBagSlots &gt;= 11) || (Me.LowestDurabilityPercent &lt; 20.1)" >
+					<If Condition="(Me.FreeBagSlots &gt;= 11) || (Me.LowestDurabilityPercent &gt; .21)" >
 					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 						<CustomBehavior File="WaitTimer" WaitTime="120000" />
 					</If>
 					<!--  Below and above will be ignored if Min is met.
 					If after forced execution is complete and more bagspace is required
 					code will be executed -->
-					<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+					<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt; .20)" >
 						<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 						<RunTo X="1099.184" Y="-4904.298" Z="41.2481" />
 						<CustomBehavior File="FlyTo" X="967.9332" Y="-4959.149" Z="117.8148" />
@@ -613,7 +613,7 @@
 						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						<!-- 5 and 20 is the demands set by the Min -->
-						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &lt; 20.0)" >
+						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; .20)" >
 								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
 								<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
 								<CustomBehavior File="FlyTo" DestName="Utgarde Keep" X="1007.938" Y="-4927.901" Z="62.48038" />
