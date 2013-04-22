@@ -598,7 +598,7 @@
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
 					<!--Instance Coordnation Complete -->
 					<!-- Min Forced Execution if required. -->
-					<If Condition="(Me.FreeBagSlots &gt;= 11) || (Me.LowestDurabilityPercent &gt; .21)" >
+					<If Condition="(Me.FreeBagSlots &gt;= 11) &amp;&amp; (Me.LowestDurabilityPercent &gt; .21)" >
 					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 						<CustomBehavior File="WaitTimer" WaitTime="120000" />
 					</If>
