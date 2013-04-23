@@ -519,6 +519,28 @@
 			    <RunTo X="578.2748" Y="-327.8182" Z="110.1424"  />
 			    <CustomBehavior File="MyCTM" X="590.7843" Y="-328.0943" Z="110.1454"  />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+
+
+					<!-- DEVELOPER'S NOTES
+
+						Below are vendor execution codes. 
+						If the player has a Traveler's Mammoth and is under 5 bag slots, the bot will sell using it.
+						The reason it sells using it is because the <MinDurability> routine was activated.  No code is required to tell the bot to do this.
+						The bot will ONLY use the Traveler's Mammoth IF the global detection code tells it to.  
+						Regular <CODE>  will not work.
+
+						If the player does not own a Traveler's Mammoth, it will be forced to sell when there's 10 slots or less left.
+						The reason why it's 10 is because the global activation script will tell the bot to generate its own path to the vendors.. which can cause loads of problems.
+
+
+						At this point in the code, the bot will sell using the Traveler's Mammoth if the player has 4 or less slots.  Then the wait timer will be activated.
+						The wait timer will only be activated if the bot did NOT go to town. There's no point in waiting if the bot already spent 2+ minutes going to the town. :3
+
+					-->
+
+
+
+
 				<If Condition="(Me.FreeBagSlots &gt;= 10) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
 				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 					<CustomBehavior File="WaitTimer" WaitTime="120000" />
@@ -527,10 +549,9 @@
 				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 					<CustomBehavior File="WaitTimer" WaitTime="120000" />
 				</If>
+				
 
-					<!--  Below and above will be ignored if Min is met.
-					If after forced execution is complete and more bagspace is required
-					code will be executed -->
+			<!-- Force town sell if player does not have Mammoth -->
 				<If Condition="(Me.FreeBagSlots &lt; 10) || (Me.LowestDurabilityPercent &lt; .20) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
 					<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" DestName="Kamagua" X="736.4531" Y="-2919.483" Z="7.2804" />
@@ -551,7 +572,9 @@
 							<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 					</If>
 				</If>
-			<!-- Will attempt to mail if selling at mammoth didn't free up enough space. -->
+
+
+				<!-- Force town mail if selling at mammoth didn't free up enough space. -->
 				<If Condition="(Me.FreeBagSlots &lt; 5) || (Me.LowestDurabilityPercent &lt; .20) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
 					<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" DestName="Kamagua" X="736.4531" Y="-2919.483" Z="7.2804" />
