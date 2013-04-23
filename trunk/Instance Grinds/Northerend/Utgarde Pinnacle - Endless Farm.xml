@@ -544,11 +544,11 @@
 
 
 
-				<If Condition="(Me.FreeBagSlots &ge; 10) &amp;&amp; (Me.LowestDurabilityPercent &ge; .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
+				<If Condition="(Me.FreeBagSlots &gt;= 10) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
 				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 					<CustomBehavior File="WaitTimer" WaitTime="120000" />
 				</If>
-				<If Condition="(Me.FreeBagSlots &ge; 5) &amp;&amp; (Me.LowestDurabilityPercent &ge; .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
+				<If Condition="(Me.FreeBagSlots &gt;= 5) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
 				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 					<CustomBehavior File="WaitTimer" WaitTime="120000" />
 				</If>
@@ -561,7 +561,7 @@
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 					<!-- 5 and 20 is the demands set by the Min -->
-					<If Condition="(Me.FreeBagSlots &ge; 5) || (Me.LowestDurabilityPercent &ge; .21)" >
+					<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= .21)" >
 							<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
 							<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
 							<CustomBehavior File="FlyTo" DestName="Utgarde Pinnacle" X="1317.418" Y="-4713.524" Z="253.851" />
@@ -584,7 +584,7 @@
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 					<!-- 5 and 20 is the demands set by the Min -->
-					<If Condition="(Me.FreeBagSlots &ge; 5) || (Me.LowestDurabilityPercent &gt; .20)" >
+					<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= .20)" >
 							<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
 							<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
 							<CustomBehavior File="FlyTo" DestName="Utgarde Pinnacle" X="1317.418" Y="-4713.524" Z="253.851" />
