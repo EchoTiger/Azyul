@@ -598,14 +598,19 @@
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
 					<!--Instance Coordnation Complete -->
 					<!-- Min Forced Execution if required. -->
-					<If Condition="(Me.FreeBagSlots &gt;= 11) &amp;&amp; (Me.LowestDurabilityPercent &gt; .21)" >
+					<If Condition="(Me.FreeBagSlots &gt;= 10) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
+					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+						<CustomBehavior File="WaitTimer" WaitTime="120000" />
+					</If>
+					<If Condition="(Me.FreeBagSlots &gt;= 5) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
 					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 						<CustomBehavior File="WaitTimer" WaitTime="120000" />
 					</If>
 					<!--  Below and above will be ignored if Min is met.
 					If after forced execution is complete and more bagspace is required
 					code will be executed -->
-					<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt; .20)" >
+					<If Condition="(Me.FreeBagSlots &lt; 10) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
+						<CustomBehavior File="Message" Text="No Traveler's Mammoth Detected." LogColor="Red" />
 						<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 						<RunTo X="1099.184" Y="-4904.298" Z="41.2481" />
 						<CustomBehavior File="FlyTo" X="967.9332" Y="-4959.149" Z="117.8148" />
@@ -613,7 +618,7 @@
 						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						<!-- 5 and 20 is the demands set by the Min -->
-						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; .20)" >
+						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= .20)" >
 								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
 								<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
 								<CustomBehavior File="FlyTo" DestName="Utgarde Keep" X="1007.938" Y="-4927.901" Z="62.48038" />
@@ -621,6 +626,29 @@
 								<CustomBehavior File="MyCTM" X="1220.531" Y="-4864.734" Z="41.24817" />
 								<!-- Infront of Instance Portal -->
 								<CustomBehavior File="Message" Text="Starting Endless Farm - Utgarde Keep" LogColor="Lime" />
+								<!-- Enable Loot -->
+								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+								<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+								<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+						</If>
+					</If>
+				<!-- Will attempt to mail if selling at mammoth didn't free up enough space. -->
+					<If Condition="(Me.FreeBagSlots &lt; 5) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
+						<CustomBehavior File="Message" Text="Not enough room after Mammoth Vendor!" LogColor="Red" />
+						<CustomBehavior File="Message" Text="Going to town so the bot can mail." LogColor="Red" />
+						<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Kamagua" X="736.4531" Y="-2919.483" Z="7.2804" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<!-- 5 and 20 is the demands set by the Min -->
+						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= .21)" >
+								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
+								<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
+								<CustomBehavior File="FlyTo" DestName="Utgarde Pinnacle" X="1317.418" Y="-4713.524" Z="253.851" />
+								<CustomBehavior File="FlyTo" X="1244.616" Y="-4857.312" Z="217.2103" />
+								<!-- Infront of Instance Portal -->
+								<CustomBehavior File="Message" Text="Starting Endless Farm - Utgarde Pinnacle" LogColor="Lime" />
 								<!-- Enable Loot -->
 								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
