@@ -496,6 +496,14 @@
 					<RunTo X="2713.448" Y="1329.169" Z="15.53902" />
 					<RunTo X="2747.031" Y="1305.154" Z="14.04021" />
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
+					<If Condition="(Me.FreeBagSlots &gt;= 10) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
+					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+						<CustomBehavior File="WaitTimer" WaitTime="150000" />
+					</If>
+					<If Condition="(Me.FreeBagSlots &gt;= 5) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
+					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+						<CustomBehavior File="WaitTimer" WaitTime="150000" />
+					</If>
 					<CustomBehavior File="MyCTM" X="2762.624" Y="1295.292" Z="13.55656" /> <!-- Exit through the instance portal -->
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />					
 					
@@ -518,18 +526,6 @@
 						The wait timer will only be activated if the bot did NOT go to town. There's no point in waiting if the bot already spent 2+ minutes going to the town. :3
 
 					-->
-
-
-
-
-					<If Condition="(Me.FreeBagSlots &gt;= 10) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
-					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-					</If>
-					<If Condition="(Me.FreeBagSlots &gt;= 5) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
-					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-					</If>
 
 
 

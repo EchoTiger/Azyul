@@ -446,8 +446,6 @@
 					<RunTo X="-16.49" Y="-300.4625" Z="2.166786" />
 					<RunTo X="82.48742" Y="-330.3853" Z="3.035571" />
 				<!-- Mennu the Betrayer, Belt -->
-					<CustomBehavior File="Message" Text="Killing Mennu the Betrayer for the Belt." LogColor="DarkBlue" />
-					<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 					<RunTo X="56.01927" Y="-377.8787" Z="3.035571" />
 					<RunTo X="72.49582" Y="-380.3081" Z="7.151225" />
 					<RunTo X="117.5062" Y="-380.2865" Z="29.06756" />
@@ -483,18 +481,9 @@
 					<RunTo X="-207.9585" Y="-719.6288" Z="36.75572" />
 					<RunTo X="-205.9143" Y="-704.9301" Z="37.10201" />
 				<!--Quagmirran-->
-					<CustomBehavior File="Message" Text="Killing Quagmiran for the Shoulders." LogColor="DarkBlue" />
-					<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" KillBetweenHotspots="False" LogoutForInactivity="False" />
 					<RunTo X="-289.9835" Y="-664.2767" Z="10.02171" />
 					<RunTo X="-199.9805" Y="-709.3547" Z="37.89244" />
 					<RunTo X="-191.2722" Y="-715.4332" Z="37.89233" />
-					<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-					<If Condition="HasItem(24366)">
-						<CustomBehavior File="Message" Text="Shoulders obtained!" LogColor="Azure" />
-					</If>
-					<If Condition="!HasItem(24366)">
-						<CustomBehavior File="Message" Text="Shoulders weren't obtained." LogColor="Red" />
-					</If>
 					<RunTo X="-115.3678" Y="-754.8348" Z="37.45081" />
 					<RunTo X="-82.20103" Y="-724.9862" Z="36.77231" />
 					<RunTo X="-99.61683" Y="-630.7914" Z="18.68803" />
@@ -514,35 +503,19 @@
 					<RunTo X="42.58582" Y="-65.8911" Z="-2.593443" />
 					<RunTo X="124.7998" Y="-99.77832" Z="-1.590545" />
 					<RunTo X="125.409" Y="-122.3724" Z="-1.046495" />
+					
+					<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+					<CustomBehavior File="WaitTimer" WaitTime="120000" />	
+
 					<CustomBehavior File="MyCTM" X="117.4674" Y="-138.1203" Z="0.24311" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
-					<If Condition="(HasItem(24360)) || (HasItem(24366))">
-						<CustomBehavior File="Message" Text="All items obtained! Continuing instance runs." LogColor="Azure" />
-					</If>
-					<If Condition="(!HasItem(24360)) || (!HasItem(24366))">
-						<CustomBehavior File="Message" Text="An item wasn't obtained. We will run the instance again." LogColor="Red" />
-					</If>
 					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-					<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
-					<CustomBehavior File="WaitTimer" WaitTime="300000" />
 
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+			
 				
 				<CustomBehavior File="MyCTM" X="4.015000" Y="-10.20000" Z="-2.750623" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				 <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-				<CustomBehavior File="WaitTimer" WaitTime="120000" />
+
 				
 				
 				
