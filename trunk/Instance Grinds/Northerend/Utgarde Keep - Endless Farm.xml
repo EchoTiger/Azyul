@@ -594,6 +594,16 @@
 				    <RunTo X="164.0682" Y="-102.6380" Z="12.5508"  />
 				    <RunTo X="163.4886" Y="-101.1277" Z="12.5508"  />
 				    <RunTo X="159.1815" Y="-83.9812" Z="12.5512"  />
+
+					<If Condition="(Me.FreeBagSlots &gt;= 10) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
+					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+						<CustomBehavior File="WaitTimer" WaitTime="120000" />
+					</If>
+					<If Condition="(Me.FreeBagSlots &gt;= 5) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
+					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+						<CustomBehavior File="WaitTimer" WaitTime="120000" />
+					</If>
+
 					<CustomBehavior File="MyCTM" X="146.4876" Y="-88.77183" Z="12.55122" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
 					<!--Instance Coordnation Complete -->
@@ -621,14 +631,7 @@
 
 
 
-					<If Condition="(Me.FreeBagSlots &gt;= 10) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
-					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="120000" />
-					</If>
-					<If Condition="(Me.FreeBagSlots &gt;= 5) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
-					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="120000" />
-					</If>
+
 
 
 
