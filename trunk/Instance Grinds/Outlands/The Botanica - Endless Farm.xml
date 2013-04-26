@@ -622,8 +622,7 @@
 
 
 				<!-- Force town sell if player does not have Mammoth -->
-					<If Condition="(Me.FreeBagSlots &lt; 10) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
-						<CustomBehavior File="Message" Text="No Traveler's Mammoth Detected." LogColor="Red" />
+					<If Condition="(Me.FreeBagSlots &lt; 10) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
 						<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
 						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
@@ -644,7 +643,7 @@
 				
 
 				<!-- Force town mail if selling at mammoth didn't free up enough space. -->
-					<If Condition="(Me.FreeBagSlots &lt; 5) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
+					<If Condition="(Me.FreeBagSlots &lt; 5) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
 						<CustomBehavior File="Message" Text="Going to town so the bot can mail." LogColor="Red" />
 						<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
