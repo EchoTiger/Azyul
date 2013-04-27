@@ -398,32 +398,40 @@
 		--> 
 
 		
-		
-		
-			<While Condition="(Me.MapId == 530)" >	
-		
-			<If Condition="Me.Location.Distance(new WoWPoint(3086.6145, 1365.5248, 184.1301)) &gt; 300" >
-		
-			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
 
-			<CustomBehavior File="Message" Text="Going to Tempest Keep for the Shoulder and Gloves." LogColor="DarkBlue" />
+
+<If Condition="Me.Location.Distance(new WoWPoint(3086.6145, 1365.5248, 184.1301)) &gt; 30" >
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
+	<!-- Start GOTO dungeon code -->
+	<CustomBehavior File="Message" Text="Very far Away" LogColor="Coral" />
+	<CustomBehavior File="FlyTo" DestName="the Long way to Netherstorm" X="3124.004" Y="2386.716" Z="200.9901" />
 			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
-			<CustomBehavior File="Message" Text="Going to The Arcatraz to get boots." LogColor="DarkBlue" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3129.077" Y="1580.786" Z="249.9725" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3098.596" Y="1517.308" Z="190.3002" />
 			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3086.6145" Y="1365.5248" Z="184.1301" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
-			
-			</If>
-
+	<!-- Infront of Instance Portal -->
+	<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
+	<!-- Enable Loot -->
+	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+	<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+	<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+</If>
 		
-				<CustomBehavior File="Message" Text="Running The Arcatraz to get shoulders." LogColor="DarkBlue" />
-				<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3086.6145" Y="1365.5248" Z="184.1301" />
+		
+
+<!--CHOP CHOP -->
+<While Condition="true">
+	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+			<!--Start Endless Cycle -->
+				<CustomBehavior File="Message" Text="Close Enough" LogColor="Coral" />
+				<CustomBehavior File="MyCTM" X="3086.6145" Y="1365.5248" Z="184.1301" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 
 	<!-- Begin Instance Grind -->
 	
-		<While Condition="(Me.ZoneId == 3845)" >		
+		<If Condition="(Me.ZoneId == 3845)" >		
 
 			<RunTo X="58.0452" Y="-0.1422" Z="-2.4296"  />
 			<RunTo X="113.6455" Y="-1.5770" Z="-2.3182"  />
@@ -478,39 +486,65 @@
 			<RunTo X="1.4544" Y="-1.1396" Z="-2.4293"  />
 			<CustomBehavior File="MyCTM" X="-16.9592" Y="-0.8995" Z="-2.4297" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		
-	
-		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> <!-- resets instances -->
-		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficulty(1)" /> <!-- take instances off Heroic mode for more farming -->
 
-					<!-- End Instance Grind -->
-	
-	<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->
-			
-			<If Condition="(HasSpell(61447)) || (HasSpell(61425))" >
-					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
-					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Area 52" X="3054.635" Y="3687.431" Z="142.5689" />
-					<CustomBehavior File="ForcedDismount" />
-					<RunTo X="3063.329" Y="3675.826" Z="142.5299" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-					<CustomBehavior File="FlyTo" DestName="to The Botanica" X="3404.883" Y="1490.038" Z="182.8367" />
-					<CustomBehavior File="MyCTM" X="3418.804" Y="1479.68" Z="182.8372" />
-					
-			</If>
-	<!-- End bag check -->
 
-			</While>
-			</While>
-		
+
+							<!-- Force town sell if player does not have Mammoth -->
+					<If Condition="(Me.FreeBagSlots &lt; 10) || (Me.LowestDurabilityPercent &lt; 20.0) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
+						<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<!-- 5 and 20 is the demands set by the Min -->
+						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= 21.0)" >
+								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
+								<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
+								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3129.077" Y="1580.786" Z="249.9725" />
+								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3098.596" Y="1517.308" Z="190.3002" />
+								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3086.6145" Y="1365.5248" Z="184.1301" />
+								<!-- Infront of Instance Portal -->
+								<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
+								<!-- Enable Loot -->
+								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+								<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+								<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+						</If>
+					</If>
 				
-				
-	</QuestOrder>
 
+				<!-- Force town mail if selling at mammoth didn't free up enough space. -->
+					<If Condition="(Me.FreeBagSlots &lt; 5) || (Me.LowestDurabilityPercent &lt; 20.0) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
+						<CustomBehavior File="Message" Text="Going to town so the bot can mail." LogColor="Red" />
+						<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<!-- 5 and 20 is the demands set by the Min -->
+						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= 21.0)" >
+								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
+								<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
+								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3129.077" Y="1580.786" Z="249.9725" />
+								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3098.596" Y="1517.308" Z="190.3002" />
+								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3086.6145" Y="1365.5248" Z="184.1301" />
+								<!-- Infront of Instance Portal -->
+								<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
+								<!-- Enable Loot -->
+								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+								<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+								<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+						</If>
+					</If>
+				</If>
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 			
+	</While>
+</While>
+</QuestOrder>
 </HBProfile>
+
+					
+
 
 
 

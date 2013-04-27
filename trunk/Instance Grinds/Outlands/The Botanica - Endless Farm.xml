@@ -39,9 +39,9 @@
 	</ProtectedItems>
 		
 <Vendors>
-	<Vendor Name="Drix Blackwrench" Entry="32641" Type="Repair"  X="769.9571" Y="-2938.768" Z="7.330936" />
-	<Vendor Name="Gnimo" Entry="32639" Type="Repair"  X="769.9571" Y="-2938.768" Z="7.330936" />
-	<Vendor Name="Blazzle" Entry="28344" Type="Repair" X="3060.962" Y="3676.073" Z="142.7287" />
+	<Vendor Name="Drix Blackwrench" Entry="32641" Type="Repair"  X="3392.407" Y="1498.79" Z="179.5544" />
+	<Vendor Name="Gnimo" Entry="32639" Type="Repair"  X="3392.407" Y="1498.79" Z="179.5544" />
+	<Vendor Name="Blazzle" Entry="28344" Type="Repair" X="3061.354" Y="3676.583" Z="142.7605" />
 </Vendors>
 
 	<Mailboxes>
@@ -437,16 +437,18 @@
 					<RunTo X="164.0088" Y="407.8838" Z="-5.387991" />
 					<RunTo X="165.8688" Y="408.4173" Z="-5.387991" />
 					<RunTo X="166.4935" Y="499.9875" Z="-1.891605" />
-					<RunTo X="120.7647" Y="453.1569" Z="-5.01751" /> <!-- kill High Botanist Freywinn -->
+					<RunTo X="120.7647" Y="453.1569" Z="-5.01751" />
+					<RunTo X="114.9886" Y="456.6149" Z="-4.931391" /> <!-- kill High Botanist Freywinn -->
 					<RunTo X="161.7261" Y="510.0246" Z="-2.625809" />
-					<RunTo X="116.361" Y="456.5712" Z="-4.98452" />
 					<RunTo X="-15.0342" Y="483.1732" Z="-5.464687" />
 					<RunTo X="-9.771675" Y="504.1366" Z="-5.315729" />
+					<RunTo X="-18.05144" Y="501.5491" Z="-5.335183" />
 					<RunTo X="25.00879" Y="555.4556" Z="-18.23889" />
-					<RunTo X="-21.4265" Y="561.6292" Z="-18.08312" />
+					<RunTo X="-22.01841" Y="569.5125" Z="-18.01796" />
+					<RunTo X="22.35209" Y="572.3463" Z="-17.99013" />
 
 					<!-- MyCTM to ensure that the user is facing the boss before executing the code. -->
-					<CustomBehavior File="MyCTM" X="20.52757" Y="587.039" Z="-17.77548" />
+					<CustomBehavior File="MyCTM" X="21.15398" Y="585.7794" Z="-17.79499" />
 
 					<CustomBehavior File="RunMacro" Macro="/target Thorngrin" />
 
@@ -467,7 +469,7 @@
 					<CustomBehavior File="RunMacro" Macro="/cast Bane of Agony" />
 					</If>			
 					<If Condition="Me.Class == WoWClass.Shaman" >
-					<CustomBehavior File="RunMacro" Macro="/cast Lightning Bolt" />
+					<CustomBehavior File="RunMacro" Macro="/cast Earth Shock" />
 					</If>			
 					<If Condition="Me.Class == WoWClass.Priest" >
 					<CustomBehavior File="RunMacro" Macro="/cast Smite" />
@@ -500,10 +502,12 @@
 					<RunTo X="-157.9084" Y="500.3953" Z="-17.82353" />
 					<RunTo X="-155.0671" Y="404.3895" Z="-17.69265" />
 					<RunTo X="-174.3915" Y="394.3166" Z="-17.69199" />
+					<RunTo X="-172.0701" Y="408.8129" Z="-17.69436" />
 					<RunTo X="-161.4402" Y="373.0435" Z="-17.70004" />	
 					<RunTo X="-193.972" Y="373.1224" Z="-14.94756" />
 
 					<!-- MyCTM toward Laj to ensure that the user is facing him. -->
+					<CustomBehavior File="RunMacro" Macro="/target Laj" />
 					<CustomBehavior File="MyCTM" X="-195.4163" Y="374.0051" Z="-14.84835" />
 					<CustomBehavior File="WaitTimer" WaitTime="2000" />
 					<CustomBehavior File="RunMacro" Macro="/target Laj" />
@@ -518,7 +522,7 @@
 					<CustomBehavior File="RunMacro" Macro="/cast Bane of Agony" />
 					</If>			
 					<If Condition="Me.Class == WoWClass.Shaman" >
-					<CustomBehavior File="RunMacro" Macro="/cast Lightning Bolt" />
+					<CustomBehavior File="RunMacro" Macro="/cast Earth Shock" />
 					</If>			
 					<If Condition="Me.Class == WoWClass.Priest" >
 					<CustomBehavior File="RunMacro" Macro="/cast Smite" />
@@ -584,7 +588,7 @@
 					<RunTo X="9.72675" Y="370.9396" Z="-27.11316" />
 					<RunTo X="73.01514" Y="393.9115" Z="-27.97716" /> <!-- kill Warp Splinter -->
 					<CustomBehavior File="WaitTimer" WaitTime="10000" /> <!-- change this to more -->
-					<RunTo X="160.8934" Y="392.7429" Z="-35.00000" /> <!-- exit instance through end portal -->
+					<RunTo X="161.4034" Y="392.7429" Z="-35.25000" /> <!-- exit instance through end portal -->
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />	
 
 					<!--Instance Coordnation Complete -->
@@ -609,60 +613,15 @@
 
 					-->
 
-
-
-
-					<If Condition="(Me.FreeBagSlots &gt;= 10) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
-					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />						
-					</If>
-					<If Condition="(Me.FreeBagSlots &gt;= 5) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
-					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-					</If>
-
-
-
-				<!-- Force town sell if player does not have Mammoth -->
-					<If Condition="(Me.FreeBagSlots &lt; 10) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
-						<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
-						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
-						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<!-- 5 and 20 is the demands set by the Min -->
-						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= .20)" >
-								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
-								<CustomBehavior File="FlyTo" DestName="The Botanica" X="3404.883" Y="1490.038" Z="182.8367" />
-								<!-- Infront of Instance Portal -->
-								<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
-								<!-- Enable Loot -->
-								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
-								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
-								<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
-								<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-						</If>
-					</If>
-				
-
-				<!-- Force town mail if selling at mammoth didn't free up enough space. -->
-					<If Condition="(Me.FreeBagSlots &lt; 5) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
-						<CustomBehavior File="Message" Text="Going to town so the bot can mail." LogColor="Red" />
-						<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
-						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
-						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<!-- 5 and 20 is the demands set by the Min -->
-						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= .21)" >
-								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
-								<CustomBehavior File="FlyTo" DestName="The Botanica" X="3404.883" Y="1490.038" Z="182.8367" />
-								<!-- Infront of Instance Portal -->
-								<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
-								<!-- Enable Loot -->
-								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
-								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
-								<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
-								<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-						</If>
-					</If>
-				</If>
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
+					<RunTo X="3392.407" Y="1498.79" Z="179.5544" />
+					<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="3060.962" Y="3676.073" Z="142.7287" />
+					<CustomBehavior File="ForcedDismount" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+					<CustomBehavior File="FlyTo" DestName="The Botanica" X="3404.883" Y="1490.038" Z="182.8367" />
+				</If>				
+			</If>
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 			
 	</While>
 </While>
