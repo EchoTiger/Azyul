@@ -1,13 +1,13 @@
 <HBProfile>
-<Name>Frostfever's Endless Botanica Farm</Name>
+<Name>Frostfever's Endless Temptest Keep</Name>
 <MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>1</MinFreeBagSlots>
+<MinFreeBagSlots>5</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
-// Farm zone: The Botanica
+// Farm zone: Temptest Keep
 // Farm mobs: All
 // Grind Speed: N/A
-// Grind what? Rep: The Shatar Rep
+// Grind what? Patterns
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 <MinLevel>54</MinLevel>
@@ -22,7 +22,7 @@
 <SellGrey>True</SellGrey>
 <SellWhite>False</SellWhite>
 <SellGreen>False</SellGreen>
-<SellBlue>True</SellBlue>
+<SellBlue>False</SellBlue>
 <SellPurple>False</SellPurple>
 
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
@@ -405,13 +405,13 @@
 	<!-- Start GOTO dungeon code -->
 	<CustomBehavior File="Message" Text="Very far Away" LogColor="Coral" />
 	<CustomBehavior File="FlyTo" DestName="the Long way to Netherstorm" X="3124.004" Y="2386.716" Z="200.9901" />
-			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
-			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3129.077" Y="1580.786" Z="249.9725" />
-			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3098.596" Y="1517.308" Z="190.3002" />
-			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3086.6145" Y="1365.5248" Z="184.1301" />
-			<CustomBehavior File="RunMacro" Macro="/dismount" />
+
+	<CustomBehavior File="FlyTo" DestName="Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
+	<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3129.077" Y="1580.786" Z="249.9725" />
+	<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3098.596" Y="1517.308" Z="190.3002" />
+	<CustomBehavior File="RunMacro" Macro="/dismount" />
 	<!-- Infront of Instance Portal -->
-	<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
+	<CustomBehavior File="Message" Text="Starting Endless Farm - Tempest Keep" LogColor="Lime" />
 	<!-- Enable Loot -->
 	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 	<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
@@ -426,13 +426,12 @@
 	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
 			<!--Start Endless Cycle -->
 				<CustomBehavior File="Message" Text="Close Enough" LogColor="Coral" />
-				<CustomBehavior File="MyCTM" X="3086.6145" Y="1365.5248" Z="184.1301" />
+				<CustomBehavior File="MyCTM" X="3087.0145" Y="1366.0248" Z="184.1301" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 
 	<!-- Begin Instance Grind -->
 	
 		<If Condition="(Me.ZoneId == 3845)" >		
-
 			<RunTo X="58.0452" Y="-0.1422" Z="-2.4296"  />
 			<RunTo X="113.6455" Y="-1.5770" Z="-2.3182"  />
 			<RunTo X="192.9297" Y="-1.1964" Z="-2.4298"  />
@@ -487,56 +486,18 @@
 			<CustomBehavior File="MyCTM" X="-16.9592" Y="-0.8995" Z="-2.4297" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 
-
-
-							<!-- Force town sell if player does not have Mammoth -->
-					<If Condition="(Me.FreeBagSlots &lt; 10) || (Me.LowestDurabilityPercent &lt; 20.0) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
-						<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
-						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
-						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<!-- 5 and 20 is the demands set by the Min -->
-						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= 21.0)" >
-								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
-								<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
-								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3129.077" Y="1580.786" Z="249.9725" />
-								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3098.596" Y="1517.308" Z="190.3002" />
-								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3086.6145" Y="1365.5248" Z="184.1301" />
-								<!-- Infront of Instance Portal -->
-								<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
-								<!-- Enable Loot -->
-								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
-								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
-								<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
-								<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-						</If>
-					</If>
-				
-
-				<!-- Force town mail if selling at mammoth didn't free up enough space. -->
-					<If Condition="(Me.FreeBagSlots &lt; 5) || (Me.LowestDurabilityPercent &lt; 20.0) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
-						<CustomBehavior File="Message" Text="Going to town so the bot can mail." LogColor="Red" />
-						<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
-						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
-						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<!-- 5 and 20 is the demands set by the Min -->
-						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= 21.0)" >
-								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
-								<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
-								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3129.077" Y="1580.786" Z="249.9725" />
-								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3098.596" Y="1517.308" Z="190.3002" />
-								<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3086.6145" Y="1365.5248" Z="184.1301" />
-								<!-- Infront of Instance Portal -->
-								<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
-								<!-- Enable Loot -->
-								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
-								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
-								<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
-								<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-						</If>
-					</If>
-				</If>
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt;= 20.0)" >
+					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="3060.962" Y="3676.073" Z="142.7287" />
+					<CustomBehavior File="ForcedDismount" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+					<CustomBehavior File="FlyTo" DestName="Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
+					<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3129.077" Y="1580.786" Z="249.9725" />
+					<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3098.596" Y="1517.308" Z="190.3002" />
+					<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3086.6145" Y="1365.5248" Z="184.1301" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+				</If>				
+			</If>
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 			
 	</While>
 </While>

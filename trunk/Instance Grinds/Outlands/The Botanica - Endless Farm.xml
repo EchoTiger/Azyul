@@ -478,7 +478,7 @@
 					<CustomBehavior File="RunMacro" Macro="/cast Death Grip" />
 					</If>			
 					<If Condition="Me.Class == WoWClass.Warrior" >
-					<CustomBehavior File="RunMacro" Macro="/cast Shoot" />
+					<CustomBehavior File="RunMacro" Macro="/cast Throw" />
 					</If>			
 					<If Condition="Me.Class == WoWClass.Rogue" >
 					<CustomBehavior File="RunMacro" Macro="/cast Throw" />
@@ -613,11 +613,10 @@
 
 					-->
 
-			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt;= 20.0)" >
 					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
-					<RunTo X="3392.407" Y="1498.79" Z="179.5544" />
-					<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="3060.962" Y="3676.073" Z="142.7287" />
-					<CustomBehavior File="ForcedDismount" />
+					<CustomBehavior File="FlyTo" DestName="Area 52" X= "3057.448" Y="3652.736" Z="164.0399" />
+					<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 					<CustomBehavior File="FlyTo" DestName="The Botanica" X="3404.883" Y="1490.038" Z="182.8367" />
 				</If>				

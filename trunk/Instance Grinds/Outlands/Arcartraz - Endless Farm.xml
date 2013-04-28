@@ -1,10 +1,10 @@
 <HBProfile>
-<Name>Frostfever's Endless Botanica Farm</Name>
+<Name>Frostfever's Endless Arcatraz Farm</Name>
 <MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>1</MinFreeBagSlots>
+<MinFreeBagSlots>5</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
-// Farm zone: The Botanica
+// Farm zone: The Arcatraz
 // Farm mobs: All
 // Grind Speed: N/A
 // Grind what? Rep: The Shatar Rep
@@ -22,7 +22,7 @@
 <SellGrey>True</SellGrey>
 <SellWhite>False</SellWhite>
 <SellGreen>False</SellGreen>
-<SellBlue>True</SellBlue>
+<SellBlue>False</SellBlue>
 <SellPurple>False</SellPurple>
 
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
@@ -397,35 +397,44 @@
 		Big thanks to Kick for this.
 		--> 
 
-		
-		
-		
-			<While Condition="(Me.MapId == 530)" >	
-		
-			<If Condition="Me.Location.Distance(new WoWPoint(3313.6040, 1329.0752, 505.5586)) &gt; 300" >
-		
-			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<If Condition="Me.Location.Distance(new WoWPoint(3313.6040, 1329.0752, 505.5586)) &gt; 30" >
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
+	<!-- Start GOTO dungeon code -->
+	<CustomBehavior File="Message" Text="Very far Away" LogColor="Coral" />
+	<CustomBehavior File="FlyTo" DestName="the Long way to Netherstorm" X="3124.004" Y="2386.716" Z="200.9901" />
 
-			<CustomBehavior File="Message" Text="Going to Tempest Keep." LogColor="DarkBlue" />
-			<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
-			<CustomBehavior File="Message" Text="Going to The Arcatraz." LogColor="DarkBlue" />
-			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
-			<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
-			<CustomBehavior File="RunMacro" Macro="/dismount" />
-			
-			</If>
-
+	<CustomBehavior File="Message" Text="The Arcatraz." LogColor="DarkBlue" />
+	<CustomBehavior File="FlyTo" DestName="The Arcatraz" X="3160.741" Y="1702.501" Z="138.615" />
+	<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
+	<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
+	<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<!-- Infront of Instance Portal -->
+	<CustomBehavior File="Message" Text="Starting Endless Farm - Tempest Keep" LogColor="Lime" />
+	<!-- Enable Loot -->
+	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+	<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+	<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+</If>
 		
+		
+
+<!--CHOP CHOP -->
+<While Condition="true">
+	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+			<!--Start Endless Cycle -->
 				<CustomBehavior File="Message" Text="Running The Arcatraz." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="3310.815" Y="1334.649" Z="505.5603" />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<CustomBehavior File="UseGameObject" QuestId="0" ObjectId="184320" NumOfTimes="1" X="3311.218" Y="1333.716" Z="506.5972" />
-				<CustomBehavior File="MyCTM" X="3313.291" Y="1326.334" Z="505.5586" />
+				<CustomBehavior File="MyCTM" X="3313.691" Y="1325.834" Z="505.5586" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 
 	<!-- Begin Instance Grind -->
 	
-		<While Condition="(Me.ZoneId == 3848)" >		
+		<If Condition="(Me.ZoneId == 3848)" >
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="25" KillBetweenHotspots="True" LogoutForInactivity="False" />						
 
     <RunTo X="39.7576" Y="-0.2278" Z="-0.3821"  />
     <RunTo X="74.4517" Y="18.2987" Z="-10.1739"  />
@@ -498,43 +507,22 @@
     <RunTo X="74.4517" Y="18.2987" Z="-10.1739"  />
     <RunTo X="39.7576" Y="-0.2278" Z="-0.3821"  />
 	<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-	<CustomBehavior File="WaitTimer" WaitTime="240000" />
 	<RunTo X="-4.36" Y="-0.1717" Z="-0.2068"  />
 	<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		
-	
-		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> <!-- resets instances -->
-		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficulty(1)" /> <!-- take instances off Heroic mode for more farming -->
 
-					<!-- End Instance Grind -->
-	
-	<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->
-			
-			<If Condition="(HasSpell(61447)) || (HasSpell(61425))" >
-					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+				<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt;= 20.0)" >
 					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Area 52" X="3054.635" Y="3687.431" Z="142.5689" />
-					<CustomBehavior File="ForcedDismount" />
-					<RunTo X="3063.329" Y="3675.826" Z="142.5299" />
+					<RunTo X="3303.082" Y="1354.658" Z="502.2849" />
+					<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="3060.962" Y="3676.073" Z="142.7287" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-					<CustomBehavior File="FlyTo" DestName="to The Botanica" X="3404.883" Y="1490.038" Z="182.8367" />
-					<CustomBehavior File="MyCTM" X="3418.804" Y="1479.68" Z="182.8372" />
-					
+					<CustomBehavior File="FlyTo" DestName="The Arcatraz" X="3160.741" Y="1702.501" Z="138.615" />
+					<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
+					<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+				</If>				
 			</If>
-	<!-- End bag check -->
-
-			</While>
-			</While>
-		
-				
-				
-	</QuestOrder>
-
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 			
+	</While>
+</While>
+</QuestOrder>
 </HBProfile>
-
-
-
-
