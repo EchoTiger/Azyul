@@ -426,7 +426,7 @@
 
 <!--CHOP CHOP -->
 <While Condition="true" >
-	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
 			<!--Start Endless Cycle -->
 				<CustomBehavior File="MyCTM" X="1236.456" Y="-4859.878" Z="41.24817" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -595,13 +595,12 @@
 				    <RunTo X="163.4886" Y="-101.1277" Z="12.5508"  />
 				    <RunTo X="159.1815" Y="-83.9812" Z="12.5512"  />
 
-					<If Condition="(Me.FreeBagSlots &gt;= 10) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
+					<If Condition="(Me.FreeBagSlots &gt;= 11)" >
 					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 						<CustomBehavior File="WaitTimer" WaitTime="120000" />
 					</If>
-					<If Condition="(Me.FreeBagSlots &gt;= 5) &amp;&amp; (Me.LowestDurabilityPercent &gt;= .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
-					    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="120000" />
+					<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+					    <CustomBehavior File="Message" Text="Since we're going to town, we will not wait for overloads." LogColor="Coral" />
 					</If>
 
 					<CustomBehavior File="MyCTM" X="146.4876" Y="-88.77183" Z="12.55122" />
@@ -609,43 +608,15 @@
 					<!--Instance Coordnation Complete -->
 
 
-					<!-- DEVELOPER'S NOTES
-
-						Below are vendor execution codes. 
-						If the player has a Traveler's Mammoth and is under 5 bag slots, the bot will sell using it.
-						If the player still has under 5 bag slots after selling via Mammoth, it will go to town and run a mail code.
-						The reason it sells via Mammoth using it is because the <MinDurability> or <MinFreeBagSpace> routine was activated.  No code is required to tell the bot to do this.
-						The bot will ONLY use the Traveler's Mammoth IF the global detection code tells it to.  
-						Regular <CODE>  will not work.
-
-						If the player does not own a Traveler's Mammoth, it will be forced to sell when there's 10 slots or less left.
-						The reason why it's 10 is because the global activation script will tell the bot to generate its own path to the vendors.. which can cause loads of problems.
-
-
-						At this exact point in the code, the bot will sell using the Traveler's Mammoth if the player has 4 or less slots.  Then the wait timer will be activated.
-						
-						The wait timer will only be activated if the bot did NOT go to town. There's no point in waiting if the bot already spent 2+ minutes going to the town. :3
-
-					-->
-
-
-
-
-
-
-
-
 				<!-- Force town sell if player does not have Mammoth -->
-					<If Condition="(Me.FreeBagSlots &lt; 10) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; !HasSpell(61425) || !HasSpell(61447)" >
-						<CustomBehavior File="Message" Text="No Traveler's Mammoth Detected." LogColor="Red" />
+					<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 						<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 						<RunTo X="1099.184" Y="-4904.298" Z="41.2481" />
 						<CustomBehavior File="FlyTo" X="967.9332" Y="-4959.149" Z="117.8148" />
 						<CustomBehavior File="FlyTo" DestName="Kamagua" X="736.4531" Y="-2919.483" Z="7.2804" />
 						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<!-- 5 and 20 is the demands set by the Min -->
-						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= .20)" >
+						<If Condition="(Me.FreeBagSlots &gt;= 5)" >
 								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
 								<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
 								<CustomBehavior File="FlyTo" DestName="Utgarde Keep" X="1007.938" Y="-4927.901" Z="62.48038" />
@@ -653,30 +624,6 @@
 								<CustomBehavior File="MyCTM" X="1220.531" Y="-4864.734" Z="41.24817" />
 								<!-- Infront of Instance Portal -->
 								<CustomBehavior File="Message" Text="Starting Endless Farm - Utgarde Keep" LogColor="Lime" />
-								<!-- Enable Loot -->
-								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
-								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
-								<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
-								<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-						</If>
-					</If>
-
-
-				<!-- Force town mail if selling at mammoth didn't free up enough space. -->
-					<If Condition="(Me.FreeBagSlots &lt; 5) || (Me.LowestDurabilityPercent &lt; .21) &amp;&amp; HasSpell(61425) || HasSpell(61447)" >
-						<CustomBehavior File="Message" Text="Going to town so the bot can mail." LogColor="Red" />
-						<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Kamagua" X="736.4531" Y="-2919.483" Z="7.2804" />
-						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
-						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<!-- 5 and 20 is the demands set by the Min -->
-						<If Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt;= .21)" >
-								<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
-								<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
-								<CustomBehavior File="FlyTo" DestName="Utgarde Pinnacle" X="1317.418" Y="-4713.524" Z="253.851" />
-								<CustomBehavior File="FlyTo" X="1244.616" Y="-4857.312" Z="217.2103" />
-								<!-- Infront of Instance Portal -->
-								<CustomBehavior File="Message" Text="Starting Endless Farm - Utgarde Pinnacle" LogColor="Lime" />
 								<!-- Enable Loot -->
 								<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 								<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
