@@ -432,7 +432,7 @@
 
 
 
-<!-- TRANSPORTATION SCRIPT ENDS HERE,  PUT YOUR CODE BELOW --> 
+<!-- TRANSPORTATION SCRIPT ENDED --> 
 
 <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 
@@ -449,6 +449,7 @@
 		<RunTo X="3675.155" Y="2169.013" Z="35.89685" />
 	</If>
 	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<RunTo X="3712.866" Y="2153.353" Z="37.28278" />
 		<CustomBehavior File="MyCTM" X="3669.872" Y="2173.606" Z="36.12575" />
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		<!--Instance Navigation Start -->
@@ -518,12 +519,12 @@
 		    <RunTo X="451.8059" Y="73.1473" Z="244.1699"  />
 		    <RunTo X="433.0435" Y="66.3812" Z="245.8080"  />
 		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're goin to town, the overload timer will be reduced." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="78000" />
+		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
 		    </If>
 		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\n" LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="120000" />
+		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
 		    </If>
 
 		    <RunTo X="414.7944" Y="58.4100" Z="248.4192"  />
@@ -531,7 +532,6 @@
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 		    <RunTo X="3766.764" Y="2059.474" Z="19.73799" />
 		    <RunTo X="3773.85" Y="2135.026" Z="32.66523" />
-		    <RunTo X="3712.866" Y="2153.353" Z="37.28278" />
 		</If>
 		<!--Instance Coordnation Complete -->
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
