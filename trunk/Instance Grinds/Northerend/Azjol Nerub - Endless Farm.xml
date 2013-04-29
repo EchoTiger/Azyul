@@ -515,8 +515,17 @@
 		    <RunTo X="507.4486" Y="85.9244" Z="223.5107"  />
 		    <RunTo X="489.6379" Y="83.8981" Z="232.8162"  />
 		    <RunTo X="470.6259" Y="80.7312" Z="239.9843"  />
-		    <RunTo X="451.8059" Y="73.1473" Z="244.1699"  />b
+		    <RunTo X="451.8059" Y="73.1473" Z="244.1699"  />
 		    <RunTo X="433.0435" Y="66.3812" Z="245.8080"  />
+		    <If Condition="Me.FreeBagSlots &lt;= 10" >
+		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're goin to town, the overload timer will be reduced." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="78000" />
+		    </If>
+		    <If Condition="Me.FreeBagSlots &gt;= 11" >
+		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\n" LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="120000" />
+		    </If>
+
 		    <RunTo X="414.7944" Y="58.4100" Z="248.4192"  />
 		    <CustomBehavior File="MyCTM" X="406.6079" Y="54.98227" Z="251.8432" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
