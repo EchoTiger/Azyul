@@ -551,17 +551,26 @@
 		<If Condition="Me.IsAlliance">
 			<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
 			<CustomBehavior File="FlyTo" X="3493.006" Y="2001.989" Z="65.05994" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="3514.716" Y="2000.593" Z="64.89097" />
 			<SetVendor>
 				<Vendors>
 					<Vendor Name="Sentinel Amberline" Entry="27055" Type="Repair" X="3514.701" Y="1999.156" Z="64.8862" />
 				</Vendors>
 			</SetVendor>
 			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<ClearVendor />
+			<RunTo X="3476.981" Y="2004.02" Z="64.86568" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" />
 		</If>
 		<If Condition="Me.IsHorde" >
 			<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
 			<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
+			<CustomBehavior File="FlyTo" X="3845.488" Y="1572.724" Z="86.69903" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
 			<SetVendor>
 				<Vendor>
 					<Vendor Name="Siegesmith Gulda" Entry="27019" Type="Repair" X="3845.488" Y="1572.724" Z="86.69914" />
@@ -569,6 +578,9 @@
 			</SetVendor>
 			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
 			<ClearVendor />
+			<RunTo X="3825.224" Y="1533.922" Z="89.72506" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<CustomBehavior File="FlyTo" X="3766.959" Y="1540.819" Z="189.2775" />
 		</If>
 	</If>
