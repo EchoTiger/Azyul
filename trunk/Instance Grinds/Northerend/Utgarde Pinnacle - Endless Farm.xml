@@ -484,6 +484,7 @@
 			    <RunTo X="300.3060" Y="-452.0946" Z="104.7349"  />
 			    <RunTo X="310.6154" Y="-469.5724" Z="104.7145"  />
 			    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
+			    <CustomBehavior File="RunMacro" Macro="/cleartarget\n/target Grauf\n/focus\n/cleartarget" />
 			    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
 			    <!-- Working on Alternative.  If you set NumOfTimes to 3 on Harpoons, sometimes it will get it down in one pass -->
 			    <CustomBehavior File="Message" Text="\nYou may want to help the bot at this part." LogColor="Red" />
@@ -491,18 +492,17 @@
 					<While Condition="(Me.Combat) &amp;&amp; (!HasItem(37372))">
 						<CustomBehavior File="UserSettings" PullDistance="25" />
 						<CustomBehavior File="NoCombatMoveTo" X="477.2179" Y="-504.6097" Z="104.7244" />
-						<CustomBehavior File="InteractWith" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
+						<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
 					</While>
 					<While Condition="(Me.Combat) &amp;&amp; (HasItem(37372))" >
-						<CustomBehavior File="NoCombatMoveTo" X="485.5264" Y="-523.3635" Z="104.7237" />
 						<CustomBehavior File="UserSettings" PullDistance="1" />
-						<CustomBehavior File="RunMacro" Macro="/target Grauf" />
-						<If Condition="(Me.Combat) &amp;&amp; (Me.CurrentTarget.Entry == 26893) &amp;&amp; (Me.CurrentTarget.Distance &lt;= 45) &amp;&amp; (HasItem(37372))" >
-							<!-- I would NoCombat these to make sure the bot shoots in time, but it causes too many problems -->
- 							<CustomBehavior File="InteractWith" IgnoreCombat="true" MobId="192176" X="488.826" Y="-517.7053" Z="105.8771" />
+						<CustomBehavior File="NoCombatMoveTo" X="485.5264" Y="-523.3635" Z="104.7237" />
+						<If Condition="(Me.Combat) &amp;&amp; (Me.FocusedUnit.Entry == 26893) &amp;&amp; (Me.FocusedUnit.Distance &lt;= 45) &amp;&amp; (HasItem(37372))" >
+ 							<CustomBehavior File="InteractWith" IgnoreCombat="true" Range="3" MobId="192176" X="488.826" Y="-517.7053" Z="105.8771" />
+ 							<CustomBehavior File="InteractWith" IgnoreCombat="true" Range="2" MobId="192177" X="482.5192" Y="-523.8806" Z="104.7226" />
 						</If>
 					</While>
-				</While>				
+				</While>			
 				<CustomBehavior File="UserSettings" PullDistance="25" />
 			    <RunTo X="477.9704" Y="-458.6498" Z="104.7143"  />
 			    <RunTo X="470.4081" Y="-430.8740" Z="93.9027"  />
