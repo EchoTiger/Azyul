@@ -450,7 +450,7 @@
 		<CustomBehavior File="WaitTimer" WaitTime="1000" />
 		<CustomBehavior File="RunMacro" Macro="/dismount" />
 	</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 11" >
+	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
 		<RunTo X="6959.573" Y="-4412.701" Z="448.1979" />
 		<CustomBehavior File="MyCTM" X="6972.984" Y="-4399.451" Z="441.5758" />
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -541,7 +541,7 @@
 		</SetVendor>
 		<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
 		<CustomBehavior File="WaitTimer" WaitTime="1000" />
-		<Clearvendor />
+		<ClearVendor />
 		<RunTo X="5780.233" Y="-3568.455" Z="386.5152" />
 		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 			<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
@@ -553,7 +553,7 @@
 			<CustomBehavior File="ForceSetVendor" DoMail="True" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<RunTo X="5502.937" Y="-2641.314" Z="303.9546" />
-			<CustomBehavior Fly="FlyTo" X="5599.888" Y="-2891.674" Z="485.6808" />
+			<CustomBehavior File="FlyTo" X="5599.888" Y="-2891.674" Z="485.6808" />
 		</If>
 		<CustomBehavior File="FlyTo" X="6002.019" Y="-3651.332" Z="491.8026" />
 	</If>
