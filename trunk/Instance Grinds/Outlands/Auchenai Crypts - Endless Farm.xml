@@ -1,7 +1,6 @@
 <HBProfile>
 <Name>Frostfever's Endless Auchenai Crypts Endless Farm</Name>
-<MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>1</MinFreeBagSlots>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
 // Farm zone: Auchenai Crypts
@@ -44,8 +43,6 @@
 
 	<Mailboxes>
 		<Mailbox X="-1897.948" Y="5158.581" Z="-40.23168" />
-
-
 	</Mailboxes>
 
 
@@ -400,6 +397,8 @@
 		--> 
 
 			<While Condition="(Me.MapId == 530)" >
+
+
 		
 				<If Condition="Me.Location.Distance(new WoWPoint(-3364.696, 5049.265, -101.3954)) &gt; 175" >
 		
@@ -407,14 +406,24 @@
 						<CustomBehavior File="Message" Text="Moving to Auchenai Crypts." LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Auchenai Crypts" X="-3364.696" Y="5049.265" Z="-101.3954" />
 						<CustomBehavior File="ForcedDismount" />
-		</If>
+						</If>
+						<If Condition="(Me.FreeBagSlots &lt;= 5)" >
+						<RunTo X="-3364.696" Y="5049.265" Z="-101.3954" />
+						<CustomBehavior File="Message" Text="Moving to Sell/Mail/Repair." LogColor="Lime" />		
+						<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2941.882" Y="5132.688" Z="26.42101" />
+						<CustomBehavior File="MyCTM" X="-2568.40" Y="5204.11" Z="26.08" />	
+						<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2101.853" Y="5298.756" Z="-37.32356" />					
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+						</If>
+						<If Condition="Me.Location.Distance(new WoWPoint(-3364.696, 5049.265, -101.3954)) &lt; 30" >
+						<CustomBehavior File="Message" Text="Entering Auchenai Crypts." LogColor="Lime" />
 						<CustomBehavior File="MyCTM" X="-3361.55" Y="5233.022" Z="-101.0479" /> <!-- Enters instance if not already inside -->
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						</If>
 				
 				
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 3790)" >	
-		
+		<If Condition="(Me.ZoneId == 3790)" >	
 						<RunTo X="42.2244" Y="-0.3532" Z="-0.1446"  />
 						<RunTo X="89.0872" Y="-39.2904" Z="4.2624"  />
 						<RunTo X="117.6980" Y="-2.0173" Z="-0.0406"  />
@@ -460,41 +469,50 @@
 						<RunTo X="267.5647" Y="30.4093" Z="13.4406"  />
 						<RunTo X="267.1111" Y="-8.6791" Z="-0.0553"  />
 						<RunTo X="-18.1111" Y="0.1491" Z="-0.0553"  />
-						<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="201000" />	
-						<RunTo X="-28.7760" Y="0.5069" Z="-0.1212"  />
- 
-	
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			
-			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> <!-- Resets instances -->
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficulty(1)" /> <!-- Sets dungeons back to "regular" mode for farming, in case it was on Heroic for the last run -->
-			
-					<!-- End Instance Grind -->
-	
-	<!-- Checks if bags are full -->	
-			<If Condition="HasSpell(61447) || HasSpell(61425)" >
-					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
-					<RunTo X="-3364.696" Y="5049.265" Z="-101.3954" />
-					<CustomBehavior File="Message" Text="Moving to Shattrath Mailbox" LogColor="Lime" />
+		    <If Condition="Me.FreeBagSlots &lt;= 10" >
+		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
+		    </If>
+		    <If Condition="Me.FreeBagSlots &gt;= 11" >
+		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
+		    </If>
+
+			<CustomBehavior File="MyCTM" X="-28.7760" Y="0.5069" Z="-0.1212"  /> <!--Exits Instance -->
+		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!--Instance Coordnation Complete -->
+	</While>
+
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+						<CustomBehavior File="ForcedMount" MountType="Flying" />
+		<!-- Navigation Code -->	
+					<RunTo X="-3364.696" Y="5049.265" Z="-101.3954" />		
 					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2941.882" Y="5132.688" Z="26.42101" />
 					<CustomBehavior File="MyCTM" X="-2568.40" Y="5204.11" Z="26.08" />	
-					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-1897.948" Y="5158.581" Z="-40.23168" />					
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
+					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2101.853" Y="5298.756" Z="-37.32356" />		 <!-- Fly to Vendor -->
+		<!-- Navigation Code -->
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Aaron Hollman" Entry="19662" Type="Repair" X="-2101.853" Y="5298.756" Z="-37.32356" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<RunTo X="-1897.948" Y="5158.581" Z="-40.23168" /> <!-- Mailbox -->
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+		</If>
+	
+<!-- Return Code-->
+					<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
+					<CustomBehavior File="Message" Text="Going to The Mechanar." LogColor="Blue" />
+					<CustomBehavior File="MyCTM" X="3138.49" Y="1659.895" Z="218.2768" />
+					<CustomBehavior File="MyCTM" X="2931.581" Y="1608.024" Z="266.4759" />
+					<CustomBehavior File="MyCTM" X="2896.612" Y="1577.101" Z="248.8645" />
+					<CustomBehavior File="MyCTM" X="2867.058" Y="1550.627" Z="252.1589" />
+					
 
-			
-	<!-- End bag check -->
-
-			</While>
-			</While>
-		
-				
-				
-	</QuestOrder>
-
+</QuestOrder>
 </HBProfile>
