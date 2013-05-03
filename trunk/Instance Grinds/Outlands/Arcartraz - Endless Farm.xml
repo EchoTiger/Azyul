@@ -1,7 +1,6 @@
 <HBProfile>
 <Name>Frostfever's Endless Arcatraz Farm</Name>
-<MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>5</MinFreeBagSlots>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
 // Farm zone: The Arcatraz
@@ -427,7 +426,7 @@
 				<CustomBehavior File="Message" Text="Running The Arcatraz." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="3310.815" Y="1334.649" Z="505.5603" />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="UseGameObject" QuestId="0" ObjectId="184320" NumOfTimes="1" X="3311.218" Y="1333.716" Z="506.5972" />
+				<CustomBehavior File="UseGameObject" ObjectId="184320" NumOfTimes="1" X="3311.218" Y="1333.716" Z="506.5972" />
 				<CustomBehavior File="MyCTM" X="3313.691" Y="1325.834" Z="505.5586" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 
@@ -477,8 +476,8 @@
     <RunTo X="453.6260" Y="-130.8550" Z="43.1001"  />
     <RunTo X="433.9301" Y="-115.1900" Z="43.1001"  />
     <RunTo X="433.3458" Y="-152.8000" Z="43.1006"  />
-    <RunTo X="446.1626" Y="-168.6746" Z="43.0489"  />
-	<CustomBehavior File="WaitTimer" WaitTime="180000" />
+    <RunTo X="450.7288" Y="-164.2617" Z="43.07447" />
+	<CustomBehavior File="WaitTimer" WaitTime="240000" />
     <RunTo X="433.3458" Y="-152.8000" Z="43.1006"  />
     <RunTo X="433.9301" Y="-115.1900" Z="43.1001"  />
     <RunTo X="453.6260" Y="-130.8550" Z="43.1001"  />
@@ -506,23 +505,44 @@
     <RunTo X="112.1930" Y="-0.8140" Z="-10.1582"  />
     <RunTo X="74.4517" Y="18.2987" Z="-10.1739"  />
     <RunTo X="39.7576" Y="-0.2278" Z="-0.3821"  />
-	<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-	<RunTo X="-4.36" Y="-0.1717" Z="-0.2068"  />
-	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		    <If Condition="Me.FreeBagSlots &lt;= 10" >
+		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
+		    </If>
+		    <If Condition="Me.FreeBagSlots &gt;= 11" >
+		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
+		    </If>
 
-				<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt;= 20.0)" >
-					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
-					<RunTo X="3303.082" Y="1354.658" Z="502.2849" />
-					<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="3060.962" Y="3676.073" Z="142.7287" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			<CustomBehavior File="MyCTM" X="-4.87" Y="-0.7917" Z="-0.2051"  /> <!--Exits Instance -->
+		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!--Instance Coordnation Complete -->
+	</While>
+
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+						<CustomBehavior File="ForcedMount" MountType="Flying" />
+		<!-- Navigation Code -->				
+						<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="3060.962" Y="3676.073" Z="142.7287" />	 <!-- Fly to Vendor -->
+		<!-- Navigation Code -->
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Blazzle" Entry="28344" Type="Repair" X="3060.962" Y="3676.073" Z="142.7287" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<RunTo X="3054.635" Y="3687.431" Z="142.5689" /> <!-- Mailbox -->
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+		</If>
+	
+<!-- Return Code-->
 					<CustomBehavior File="FlyTo" DestName="The Arcatraz" X="3160.741" Y="1702.501" Z="138.615" />
 					<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3072.856" Y="1494.191" Z="651.7913" />
 					<CustomBehavior File="MyCTM" DestName="The Arcatraz" X="3302.33" Y="1340.869" Z="506.3995" />
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
-				</If>				
-			</If>
-		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 			
-	</While>
 </While>
 </QuestOrder>
 </HBProfile>

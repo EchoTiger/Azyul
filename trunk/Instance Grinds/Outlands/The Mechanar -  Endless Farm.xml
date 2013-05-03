@@ -1,7 +1,6 @@
 <HBProfile>
 <Name>Frostfever's Endless Botanica Farm</Name>
-<MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>5</MinFreeBagSlots>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
 // Farm zone: The Mechanar
@@ -514,28 +513,47 @@
 				<RunTo X="139.054" Y="19.261" Z="24.874" />
 				<RunTo X="137.585" Y="145.238" Z="25.578" /> <!-- Boss: Patheleon the Calculator 19220 -->
 				<RunTo X="81.48" Y="149.298" Z="25.581" /> <!-- Just before rear exit portal -->
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
-				<CustomBehavior File="WaitTimer" WaitTime="60000" />
-				<CustomBehavior File="MyCTM" X="72.820" Y="149.613" Z="25.581" /> <!-- Go through the exit instance portal -->
-				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-					<!-- End Instance Grind -->
+		    <If Condition="Me.FreeBagSlots &lt;= 10" >
+		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
+		    </If>
+		    <If Condition="Me.FreeBagSlots &gt;= 11" >
+		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
+		    </If>
 
-				<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt;= 20.0)" >
-					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Area 52" X= "3057.448" Y="3652.736" Z="164.0399" />
-					<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			<CustomBehavior File="MyCTM" X="72.820" Y="149.613" Z="25.581" /> <!--Exits Instance -->
+		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!--Instance Coordnation Complete -->
+	</While>
+
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+						<CustomBehavior File="ForcedMount" MountType="Flying" />
+		<!-- Navigation Code -->	
+		<CustomBehavior File="FlyTo" DestName="Area 52" X= "3057.448" Y="3652.736" Z="164.0399" />			
+		<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />	 <!-- Fly to Vendor -->
+		<!-- Navigation Code -->
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Blazzle" Entry="28344" Type="Repair" X="3060.962" Y="3676.073" Z="142.7287" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<RunTo X="3054.635" Y="3687.431" Z="142.5689" /> <!-- Mailbox -->
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+		</If>
+	
+<!-- Return Code-->
 					<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
 					<CustomBehavior File="Message" Text="Going to The Mechanar." LogColor="Blue" />
 					<CustomBehavior File="MyCTM" X="3138.49" Y="1659.895" Z="218.2768" />
 					<CustomBehavior File="MyCTM" X="2931.581" Y="1608.024" Z="266.4759" />
 					<CustomBehavior File="MyCTM" X="2896.612" Y="1577.101" Z="248.8645" />
 					<CustomBehavior File="MyCTM" X="2867.058" Y="1550.627" Z="252.1589" />
-					<CustomBehavior File="RunMacro" Macro="/dismount" />
-				</If>				
-			</If>
-		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 			
-	</While>
 </While>
 </QuestOrder>
 </HBProfile>

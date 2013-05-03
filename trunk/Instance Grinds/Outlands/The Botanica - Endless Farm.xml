@@ -1,7 +1,6 @@
 <HBProfile>
 <Name>Frostfever's Endless Botanica Farm</Name>
-<MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>5</MinFreeBagSlots>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
 // Farm zone: The Botanica
@@ -588,41 +587,44 @@
 					<RunTo X="9.72675" Y="370.9396" Z="-27.11316" />
 					<RunTo X="73.01514" Y="393.9115" Z="-27.97716" /> <!-- kill Warp Splinter -->
 					<CustomBehavior File="WaitTimer" WaitTime="10000" /> <!-- change this to more -->
-					<RunTo X="161.4034" Y="392.7429" Z="-35.25000" /> <!-- exit instance through end portal -->
-					<CustomBehavior File="WaitTimer" WaitTime="15000" />	
+		    <If Condition="Me.FreeBagSlots &lt;= 10" >
+		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
+		    </If>
+		    <If Condition="Me.FreeBagSlots &gt;= 11" >
+		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
+		    </If>
 
-					<!--Instance Coordnation Complete -->
-
-
-					<!-- DEVELOPER'S NOTES
-
-						Below are vendor execution codes. 
-						If the player has a Traveler's Mammoth and is under 5 bag slots, the bot will sell using it.
-						If the player still has under 5 bag slots after selling via Mammoth, it will go to town and run a mail code.
-						The reason it sells via Mammoth using it is because the <MinDurability> or <MinFreeBagSpace> routine was activated.  No code is required to tell the bot to do this.
-						The bot will ONLY use the Traveler's Mammoth IF the global detection code tells it to.  
-						Regular <CODE>  will not work.
-
-						If the player does not own a Traveler's Mammoth, it will be forced to sell when there's 10 slots or less left.
-						The reason why it's 10 is because the global activation script will tell the bot to generate its own path to the vendors.. which can cause loads of problems.
-
-
-						At this exact point in the code, the bot will sell using the Traveler's Mammoth if the player has 4 or less slots.  Then the wait timer will be activated.
-						
-						The wait timer will only be activated if the bot did NOT go to town. There's no point in waiting if the bot already spent 2+ minutes going to the town. :3
-
-					-->
-
-			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt;= 20.0)" >
-					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Area 52" X= "3057.448" Y="3652.736" Z="164.0399" />
-					<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-					<CustomBehavior File="FlyTo" DestName="The Botanica" X="3404.883" Y="1490.038" Z="182.8367" />
-				</If>				
-			</If>
-		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 			
+			<CustomBehavior File="MyCTM" X="161.4034" Y="392.7429" Z="-35.25000" /> <!--Exits Instance -->
+		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!--Instance Coordnation Complete -->
 	</While>
+
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+						<CustomBehavior File="ForcedMount" MountType="Flying" />
+		<!-- Navigation Code -->	
+		<CustomBehavior File="FlyTo" DestName="Area 52" X= "3057.448" Y="3652.736" Z="164.0399" />			
+		<CustomBehavior File="FlyTo" DestName="Area 52" X="3060.962" Y="3676.073" Z="142.7287" />	 <!-- Fly to Vendor -->
+		<!-- Navigation Code -->
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Blazzle" Entry="28344" Type="Repair" X="3060.962" Y="3676.073" Z="142.7287" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<RunTo X="3054.635" Y="3687.431" Z="142.5689" /> <!-- Mailbox -->
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+		</If>
+	
+<!-- Return Code-->
+					<CustomBehavior File="FlyTo" DestName="The Botanica" X="3404.883" Y="1490.038" Z="182.8367" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
 </While>
 </QuestOrder>
 </HBProfile>
+
