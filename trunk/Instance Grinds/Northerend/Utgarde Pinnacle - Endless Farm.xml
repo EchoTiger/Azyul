@@ -492,29 +492,31 @@
 				</If>
 			    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
 			    <CustomBehavior File="Message" Text="\nI think I got this!" LogColor="Red" />
-				<While Condition="(Me.FocusedUnit.Entry == 26893)">
-					<While Condition="(!HasItem(37372)) &amp;&amp; (Me.FocusedUnit != null)">
+				<While Condition="(Me.FocusedUnit != null)">
+					<While Condition="(Me.FocusedUnit != null) &amp;&amp; (!HasItem(37372))">
 						<CustomBehavior File="UserSettings" PullDistance="25" />
 						<CustomBehavior File="NoCombatMoveTo" X="477.2179" Y="-504.6097" Z="104.7244" />
 						<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" Range="30" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
 					</While>
-					<While Condition="(HasItem(37372)) &amp;&amp; (Me.FocusedUnit != null)" >
+					<While Condition="(Me.FocusedUnit != null) &amp;&amp; (HasItem(37372))" >
 						<CustomBehavior File="UserSettings" PullDistance="1" />
-						<If Condition="(Me.FocusedUnit != null) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 8)" >
- 							<CustomBehavior File="InteractWith" NumOfTimes="1" MobId1="192176" MobId2="192177" Range="6" X="485.5264" Y="-523.3635" Z="104.7237" />
+						<If Condition="(Me.FocusedUnit != null) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 15)" >
+ 							<CustomBehavior File="InteractWith" MobId1="192176" MobId2="192177" Range="6" X="485.5264" Y="-523.3635" Z="104.7237" />
 						</If>
-						<If Condition="(Me.FocusedUnit != null) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt;= 15)" >
+						<If Condition="(Me.FocusedUnit != null) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 15)" >
 							<CustomBehavior File="InteractWith" WaitForNpcs="false" Range="20" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
 						</If>
 					</While>
-				</While>				
+				</While>
+				<If Condition="(HasItem(37372)) &amp;&amp; (Me.FocusedUnit = null)" >
+					<CustomBehavior File="Message" Text="\nLook's like we're finished!\nThrowing away extra harpoons." LogColor="Green" />
+					<CustomBehavior File="DeleteItems" Ids="37372" />
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</If>				
 				<CustomBehavior File="UserSettings" PullDistance="25" />
+			    <RunTo X="470.4081" Y="-430.8740" Z="93.9027"  />
 			    <RunTo X="477.9704" Y="-458.6498" Z="104.7143"  />
 			    <RunTo X="470.4081" Y="-430.8740" Z="93.9027"  />
-				<CustomBehavior File="UserSettings" PullDistance="25" />
-			    <RunTo X="477.9704" Y="-458.6498" Z="104.7143"  />
-			    <RunTo X="470.4081" Y="-430.8740" Z="93.9027"  />
-
 			    <RunTo X="478.3047" Y="-412.6139" Z="89.8860"  />
 			    <RunTo X="486.8378" Y="-419.0454" Z="90.0581"  />
 			    <RunTo X="491.4851" Y="-437.2505" Z="80.4329"  />
