@@ -400,14 +400,14 @@
 						<CustomBehavior File="Message" Text="Moving to Shattered Halls." LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-304.4271" Y="3042.285" Z="-4.291873" />
 						<RunTo X="-309.4185" Y="3077.94" Z="-3.641188" />
-						<CustomBehavior File="InteractWith" MobId="184912" ObjectType="Gameobject" X="-309.6581" Y="3078.957" Z="-3.545551" /> <!-- Opens outer gate -->
-						<CustomBehavior File="MyCTM" X="-309.7790" Y="3088.4685" Z="-4.0337" />
+						<CustomBehavior File="UseGameObject" ObjectId="184912" NumOfTimes="1" X="-309.6581" Y="3078.957" Z="-3.545551"/> <!-- Opens outer gate -->
+						<CustomBehavior File="MyCTM" X="-311.2249" Y="3084.268" Z="-3.766969" />
 						</If>
 						<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 							<If Condition="Me.IsAlliance">
-								<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
-								<CustomBehavior File="InteractWith" MobId="184912" ObjectType="Gameobject" X="-309.6581" Y="3078.957" Z="-3.545551" />
-								<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />
+								<RunTo X="-310.7388" Y="3080.65" Z="-3.655783" />
+								<CustomBehavior File="UseGameObject" ObjectId="184912" NumOfTimes="1" X="-309.6581" Y="3078.957" Z="-3.545551"/>
+								<CustomBehavior File="MyCTM" X="-307.6745" Y="3069.46" Z="-3.328826" />
 								<CustomBehavior File="FlyTo" X="-710.32" Y="2650.58" Z="91.01" />
 								<CustomBehavior File="WaitTimer" WaitTime="1000" />
 								<CustomBehavior File="RunMacro" Macro="/dismount" />
@@ -422,14 +422,16 @@
 								<CustomBehavior File="WaitTimer" WaitTime="1000" />
 								<ClearVendor />
 								<RunTo X="-707.0386" Y="2700.07" Z="94.45774" />
+								<CustomBehavior File="RunMacro" Macro="/dismount" />
 								<CustomBehavior File="ForceSetVendor" DoMail="True" />
 
 							</If>
 							<!-- Need To Fix this -->
 							<If Condition="Me.IsHorde" >
 								<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
-								<CustomBehavior File="InteractWith" MobId="184912" ObjectType="Gameobject" X="-309.6581" Y="3078.957" Z="-3.545551" />
-								<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />				
+								<CustomBehavior File="UseGameObject" ObjectId="184912" NumOfTimes="1" X="-309.6581" Y="3078.957" Z="-3.545551"/>
+								<CustomBehavior File="MyCTM" X="-307.6745" Y="3069.46" Z="-3.328826" />
+								<RunTo X="-307.6745" Y="3069.46" Z="-3.328826" />				
 								<CustomBehavior File="FlyTo" X="172.726" Y="2623.055" Z="863836" />
 								<CustomBehavior File="WaitTimer" WaitTime="1000" />
 								<CustomBehavior File="RunMacro" Macro="/dismount" />
@@ -447,9 +449,7 @@
 							</If>
 						</If>
 							<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-							<CustomBehavior File="Message" Text="Entering Shattered halls." LogColor="Lime" />
-							<CustomBehavior File="MyCTM" X="-311.361" Y="3088.479" Z="-3.947" />
-							<CustomBehavior File="MyCTM" X="-309.7790" Y="3088.4685" Z="-4.0337" /><!-- Enters instance if not already inside -->
+							<CustomBehavior File="MyCTM" X="-309.7790" Y="3088.4685" Z="-4.0337" />
 							<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				
 	<!-- Begin Instance Grind -->
@@ -492,8 +492,8 @@
 			<RunTo X="294.0529" Y="315.8261" Z="1.917071" />
 			<RunTo X="78.80196" Y="259.3479" Z="-13.20326" />
 			<RunTo X="-40.44186" Y="-16.16117" Z="-14.04955" />
-					<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-					<CustomBehavior File="WaitTimer" WaitTime="60000" />	
+		
+				
 
 		    <If Condition="Me.FreeBagSlots &lt;= 10" >
 		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
@@ -519,9 +519,10 @@
 <!-- Force town sell. -->
 		<If Condition="Me.IsAlliance">
 			<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
-			<CustomBehavior File="InteractWith" MobId="184912" ObjectType="Gameobject" X="-309.6581" Y="3078.957" Z="-3.545551" />
+			<CustomBehavior File="UseGameObject" ObjectId="184912" NumOfTimes="1" X="-309.6581" Y="3078.957" Z="-3.545551"/>"
 			<CustomBehavior File="Message" Text="Moving to Honor Holds Mailbox" LogColor="Lime" />
-			<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />
+			<CustomBehavior File="MyCTM" X="-307.6745" Y="3069.46" Z="-3.328826" />
+			<RunTo X="-307.6745" Y="3069.46" Z="-3.328826" />
 			<CustomBehavior File="FlyTo" X="-710.32" Y="2650.58" Z="91.01" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
@@ -535,14 +536,16 @@
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<ClearVendor />
 			<RunTo X="-707.0386" Y="2700.07" Z="94.45774" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
 			<CustomBehavior File="ForceSetVendor" DoMail="True" />
 		</If>
 		<!-- Need To Fix this -->
 		<If Condition="Me.IsHorde" >
 			<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
-			<CustomBehavior File="InteractWith" MobId="184912" ObjectType="Gameobject" X="-309.6581" Y="3078.957" Z="-3.545551" />
+			<CustomBehavior File="UseGameObject" ObjectId="184912" NumOfTimes="1" X="-309.6581" Y="3078.957" Z="-3.545551"/>"
 			<CustomBehavior File="Message" Text="Moving to Honor Holds Mailbox" LogColor="Lime" />
-			<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />
+			<CustomBehavior File="MyCTM" X="-307.6745" Y="3069.46" Z="-3.328826" />
+			<RunTo X="-307.6745" Y="3069.46" Z="-3.328826" />
 			<CustomBehavior File="FlyTo" X="172.726" Y="2623.055" Z="863836" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />

@@ -38,9 +38,6 @@
 		
 	</ProtectedItems>
 		
-	<Vendors>
-		<Vendor Name="Smith Hauthaa" Entry="25046" Type="Repair" X="12664.15" Y="-6984.873" Z="14.54689" />
-	</Vendors>
 
 	<Mailboxes>
 		<Mailbox X="12792.35" Y="-6967.269" Z="15.45416" />
@@ -404,26 +401,25 @@
 			</If>
 		</While>
 	
-			<While Condition="Me.MapId != 585">
-				<If Condition="Me.Location.Distance(new WoWPoint(12884.97, -7333.749, 65.48833)) &gt; 10" >	
-					<CustomBehavior File="ForcedMount" MountType="Ground" />
-					<CustomBehavior File="MyCTM" X="12743.08" Y="-6948.081" Z="13.40375" />
-					<CustomBehavior File="MyCTM" X="12714.79" Y="-7044.312" Z="19.34387" />
-					<CustomBehavior File="MyCTM" X="12740.85" Y="-7196.603" Z="6.975547" />
-					<CustomBehavior File="MyCTM" X="12819.75" Y="-7234.132" Z="32.16183" />
-					<CustomBehavior File="MyCTM" X="12891.53" Y="-7306.203" Z="65.52151" />
-					<CustomBehavior File="MyCTM" X="12880.39" Y="-7341.651" Z="67.38147" />
-					</If>
+			<While Condition="true">
+				<If Condition="Me.Location.Distance(new WoWPoint(12884.97, -7333.749, 65.48833)) &gt; 10" >		
+							<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+							<CustomBehavior File="Message" Text="Moving to Auchenai Crypts." LogColor="Lime" />
+							<CustomBehavior File="ForcedMount" MountType="Ground" />
+							<CustomBehavior File="MyCTM" X="12743.08" Y="-6948.081" Z="13.40375" />
+							<CustomBehavior File="MyCTM" X="12714.79" Y="-7044.312" Z="19.34387" />
+							<CustomBehavior File="MyCTM" X="12740.85" Y="-7196.603" Z="6.975547" />
+							<CustomBehavior File="MyCTM" X="12819.75" Y="-7234.132" Z="32.16183" />
+							<CustomBehavior File="MyCTM" X="12891.53" Y="-7306.203" Z="65.52151" />
+							<CustomBehavior File="MyCTM" X="12880.39" Y="-7341.651" Z="67.38147" />
+							</If>
 					<CustomBehavior File="MyCTM" X="12880.39" Y="-7341.651" Z="67.38147" /> <!-- Enters instance if not already inside -->
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
 					<CustomBehavior File="ForcedDismount" />
 
 				<!-- Begin Instance Grind -->
 		<While Condition="(Me.ZoneId == 4131)" >
-
-
-			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="15" KillBetweenHotspots="True" LogoutForInactivity="False" />
-			
+			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="15" KillBetweenHotspots="True" LogoutForInactivity="False" />		
 			<RunTo X="124.7295" Y="-9.763638" Z="-2.813337" />
 			<RunTo X="123.6144" Y="15.55122" Z="-2.805324" />
 			<RunTo X="244.7749" Y="-0.02897095" Z="1.826468" />
@@ -444,14 +440,8 @@
 			<RunTo X="149.5225" Y="137.1584" Z="-14.38122" /> <!--kills group immediately before Kael'thas (his speech starts when they die) -->
 			<RunTo X="149.38" Y="187.67" Z="-16.73" /> <!-- Runs to Kael'thas -->
 			<CustomBehavior File="WaitTimer" WaitTime="45000" /> <!-- wait 45 seconds for speech + a little more -->
-			
-			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="15" KillBetweenHotspots="True" LogoutForInactivity="False" /> <!-- turns loot on just for Kael -->
-			<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
-			<CustomBehavior File="WaitTimer" WaitTime="240000" />
 			<CustomBehavior File="InteractWith" MobId="188173" ObjectType="GameObject" X="152.1315" Y="204.0669" Z="-11.95795" /> <!-- activates teleporter behind Kael -->
-			
-			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficulty(1)" /> <!-- sets dungeons back to "regular" mode for farming, in case it was on Heroic for the last run -->	
+			<CustomBehavior File="WaitTimer" WaitTime="15000" /> <!-- wait 45 seconds for speech + a little more -->
 		    <CustomBehavior File="MyCTM" X="12927.31" Y="-6871.626" Z="7.496085" />
 			<CustomBehavior File="ForcedMount" MountType="Ground" />
 
@@ -459,36 +449,32 @@
 			<CustomBehavior File="MyCTM" X="12856.87" Y="-6902.823" Z="9.687179" />
 			<CustomBehavior File="WaitTimer" WaitTime="130000" />	
 			<CustomBehavior File="MyCTM" X="12743.08" Y="-6948.081" Z="13.40375" />
-		
-
-
-					<!-- End Instance Grind -->
-	
-	<!-- Checks if bags are full -->	
-			<If Condition="HasSpell(61447) || HasSpell(61425)" >
-					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+</While>	
 			
-			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 					<CustomBehavior File="Message" Text="Moving to IoQ Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="12792.35" Y="-6967.269" Z="15.45416" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+					    <CustomBehavior File="MyCTM" X="12737.0771" Y="-6950.0908" Z="13.9526"  />
+				    <CustomBehavior File="MyCTM" X="12713.2588" Y="-6956.7363" Z="16.4909"  />
+				    <CustomBehavior File="MyCTM" X="12682.4873" Y="-6988.8604" Z="15.3755"  />
+				    <CustomBehavior File="MyCTM" X="12664.4492" Y="-6984.6499" Z="14.5438"  />
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Smith Hauthaa" Entry="25046" Type="Repair" X="12664.15" Y="-6984.873" Z="14.54689" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+				    <CustomBehavior File="MyCTM" X="12684.3105" Y="-6988.7593" Z="15.2453"  />
+				    <CustomBehavior File="MyCTM" X="12712.9775" Y="-6968.8330" Z="17.2083"  />
+				    <CustomBehavior File="MyCTM" X="12791.1816" Y="-6967.0723" Z="15.3999"  />
+				    <CustomBehavior File="ForceSetVendor" DoMail="True" />
+				    <CustomBehavior File="MyCTM" X="12751.4072" Y="-6933.5044" Z="12.2472"  />
+					
 			</If>
 			
-			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
-					<CustomBehavior File="Message" Text="Moving to Thrallmar's Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="12792.35" Y="-6967.269" Z="15.45416" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-	<!-- End bag check -->
-
-			</While>
-			</While>
-			
-		
-				
-				
-	</QuestOrder>
-
-</HBProfile>						
+					
+</While>
+</QuestOrder>
+</HBProfile>					
