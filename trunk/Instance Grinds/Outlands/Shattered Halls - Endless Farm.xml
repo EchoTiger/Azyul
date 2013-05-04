@@ -1,7 +1,6 @@
 <HBProfile>
 <Name>Frostfever's Endless Shattered Halls Farm</Name>
-<MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>1</MinFreeBagSlots>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
 // Farm zone: Shattered Halls
@@ -38,10 +37,6 @@
 		
 	</ProtectedItems>
 		
-	<Vendors>
-		<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
-		<Vendor Name="Supply Officer Isabel" Entry="19315" Type="Repair" X="-18.83" Y="2140.58" Z="114.07" />		
-	</Vendors>
 
 	<Mailboxes>
 		<Mailbox X="-707.0386" Y="2700.07" Z="94.45774" />
@@ -399,22 +394,66 @@
 		Big thanks to Kick for this.
 		--> 
 
-		<While Condition="(Me.MapId == 530)" >
-		
-		<If Condition="Me.Location.Distance(new WoWPoint(-310.361, 3087.479, -3.947)) &gt; 10" >
-		
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Undead Shattered Halls." LogColor="Lime" />
+<While Condition="true" >
+						<If Condition="Me.Location.Distance(new WoWPoint(-310.361, 3087.479, -3.947)) &gt; 15" >
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+						<CustomBehavior File="Message" Text="Moving to Shattered Halls." LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-304.4271" Y="3042.285" Z="-4.291873" />
 						<RunTo X="-309.4185" Y="3077.94" Z="-3.641188" />
-						<CustomBehavior File="InteractWith" MobId="184912" ObjectType="GameObject" WaitTime="0" X="-309.658" Y="3078.957" Z="-3.544" /> <!-- Opens outer gate -->
+						<CustomBehavior File="InteractWith" ObjectType="GameObject" MobId="184912" NumOfTimes="1" X="309.658" Y="3078.957" Z="-3.5455" /> <!-- Opens outer gate -->
 						<RunTo X="-311.361" Y="3088.479" Z="-3.947" />
-		</If>
-						<CustomBehavior File="MyCTM" X="-311.361" Y="3088.479" Z="-3.947" /> <!-- Enters instance if not already inside -->
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						<CustomBehavior File="ForcedDismount" />
+						</If>
+						<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+							<If Condition="Me.IsAlliance">
+								<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
+								<CustomBehavior File="UseGameObject" ObjectId="184912" NumOfTimes="1" X="309.658" Y="3078.957" Z="-3.5455" />
+								<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />
+								<CustomBehavior File="FlyTo" X="-710.32" Y="2650.58" Z="91.01" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+								<CustomBehavior File="RunMacro" Macro="/dismount" />
+								<RunTo X="-717.32" Y="2607.58" Z="91.01" />
+								<SetVendor>
+									<Vendors>
+										<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
+									</Vendors>
+								</SetVendor>
+								<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
+								<CustomBehavior File="ForcedDismount" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+								<ClearVendor />
+								<RunTo X="-707.0386" Y="2700.07" Z="94.45774" />
+								<CustomBehavior File="ForceSetVendor" DoMail="True" />
+
+							</If>
+							<!-- Need To Fix this -->
+							<If Condition="Me.IsHorde" >
+								<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
+								<CustomBehavior File="UseGameObject" ObjectId="184912" NumOfTimes="1" X="309.658" Y="3078.957" Z="-3.5455" />
+								<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />				
+								<CustomBehavior File="FlyTo" X="172.726" Y="2623.055" Z="863836" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+								<CustomBehavior File="RunMacro" Macro="/dismount" />
+								<SetVendor>
+									<Vendor>
+										<Vendor Name="Reagan Mancuso" Entry="22225" Type="Repair" X="179.7871" Y="2605.4" Z="87.28392"/>
+									</Vendor>
+								</SetVendor>
+								<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
+								<ClearVendor />
+								<RunTo X="172.726" Y="2623.055" Z="863836" />
+								<CustomBehavior File="ForceSetVendor" DoMail="True" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+
+							</If>
+						</If>
+							<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+							<CustomBehavior File="Message" Text="Entering Shattered halls." LogColor="Lime" />
+							<CustomBehavior File="MyCTM" X="-311.361" Y="3088.479" Z="-3.947" />
+							<CustomBehavior File="MyCTM" X="-309.7790" Y="3088.4685" Z="-4.0337" /><!-- Enters instance if not already inside -->
+							<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 3714)" >	
+				<While Condition="(Me.ZoneId == 3714)" >	
 
 			<RunTo X="-21.81126" Y="-0.1822658" Z="-13.14891" />
 			<RunTo X="81.27979" Y="72.23833" Z="-13.22183" />
@@ -453,52 +492,78 @@
 			<RunTo X="294.0529" Y="315.8261" Z="1.917071" />
 			<RunTo X="78.80196" Y="259.3479" Z="-13.20326" />
 			<RunTo X="-40.44186" Y="-16.16117" Z="-14.04955" />
-			<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
-			<CustomBehavior File="WaitTimer" WaitTime="240000" />
-			<CustomBehavior File="MyCTM" X="-42.05046" Y="-28.50664" Z="-13.89623" /> <!-- go through the instance portal -->
-		
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />		
-		
-	
-		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> <!-- resets instances -->
-		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficulty(1)" /> <!-- take instances off Heroic mode for more farming -->
-		
+					<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+					<CustomBehavior File="WaitTimer" WaitTime="240000" />	
 
+		    <If Condition="Me.FreeBagSlots &lt;= 10" >
+		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		    </If>
+		    <If Condition="Me.FreeBagSlots &gt;= 11" >
+		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
+		    </If>
+
+		    <CustomBehavior File="MyCTM" X="-42.05046" Y="-28.50664" Z="-13.89623" />
+		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+		
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+	</While>
 					<!-- End Instance Grind -->
 	
 	<!-- Checks if bags are full -->	
-			<If Condition="HasSpell(61447) || HasSpell(61425)" >
-					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
-					<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
-					<CustomBehavior File="InteractWith" MobId="184912" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" />
-					<CustomBehavior File="Message" Text="Moving to Honor Holds Mailbox" LogColor="Lime" />
-					<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />
-					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="-706.55" Y="2700.24" Z="94.53" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
-					<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
-					<CustomBehavior File="InteractWith" MobId="184912" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" />
-					<CustomBehavior File="Message" Text="Moving to Thrallmar's Mailbox" LogColor="Lime" />
-					<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />
-					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="172.726" Y="2623.055" Z="863836" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-	<!-- End bag check -->
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+<!-- Force town sell. -->
+<!-- Insert Nav Code. -->
+<!-- Force town sell. -->
+		<If Condition="Me.IsAlliance">
+			<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
+			<CustomBehavior File="UseGameObject" ObjectId="184912" NumOfTimes="1" X="309.658" Y="3078.957" Z="-3.5455" />
+			<CustomBehavior File="Message" Text="Moving to Honor Holds Mailbox" LogColor="Lime" />
+			<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />
+			<CustomBehavior File="FlyTo" X="-710.32" Y="2650.58" Z="91.01" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="-717.32" Y="2607.58" Z="91.01" />
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<RunTo X="-707.0386" Y="2700.07" Z="94.45774" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" />
+		</If>
+		<!-- Need To Fix this -->
+		<If Condition="Me.IsHorde" >
+			<RunTo X="-310.2206" Y="3079.935" Z="-3.628234" />
+			<CustomBehavior File="UseGameObject" ObjectId="184912" NumOfTimes="1" X="309.658" Y="3078.957" Z="-3.5455" />
+			<CustomBehavior File="Message" Text="Moving to Honor Holds Mailbox" LogColor="Lime" />
+			<RunTo X="-303.3569" Y="3043.016" Z="-4.339943" />
+			<CustomBehavior File="FlyTo" X="172.726" Y="2623.055" Z="863836" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<SetVendor>
+				<Vendor>
+					<Vendor Name="Reagan Mancuso" Entry="22225" Type="Repair" X="179.7871" Y="2605.4" Z="87.28392"/>
+				</Vendor>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
+			<ClearVendor />
+			<RunTo X="172.726" Y="2623.055" Z="863836" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 
-			</While>
-			</While>
-		
-				
-				
-	</QuestOrder>
-
+		</If>
+	</If>
+			<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-362.5798" Y="3074.1" Z="-15.07973" />
+</While>
+</QuestOrder>
 </HBProfile>
+
 
 
 
