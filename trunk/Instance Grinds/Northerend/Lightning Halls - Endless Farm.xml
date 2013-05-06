@@ -51,8 +51,8 @@
 <Blackspots>
 </Blackspots>
 	
-
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 602)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -391,10 +391,11 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
+</If>
 		
 	<!-- Travel to Halls of Lightning --> 
-	
-		<While Condition="(Me.MapId == 571)" >
+<While Condition="true" >
+		<While Condition="!(Me.MapId == 602)" >
 		
 						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
 						<CustomBehavior File="Message" Text="Moving to Lightning Halls Location." LogColor="Lime" />
@@ -402,10 +403,11 @@
 						<CustomBehavior File="MyCTM" X="9186.586" Y="-1387.403" Z="1110.212" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
+		</While>
 						
 	<!-- Begin Instance Grind -->
 	
-		<While Condition="(Me.ZoneId == 4272)" >
+		<While Condition="(Me.MapId == 602)" >
 		
 						<RunTo X="1331.41" Y="241.904" Z="52.5046" />
 						<RunTo X="1331.042" Y="153.3352" Z="53.70412" />
@@ -449,6 +451,7 @@
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 						<!-- End Instance Grind -->
+		</While>
 	
 	<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->
 			
@@ -456,7 +459,7 @@
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
 			
-			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &lt; .20)" >
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 					<CustomBehavior File="Message" Text="Moving to Storm Peaks Mailbox" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="8440.736" Y="-329.4271" Z="906.5062" />
 					<CustomBehavior File="ForcedDismount" />
@@ -464,11 +467,9 @@
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
 	<!-- End bag check -->
-	
-			</While>
-			</While>
 				
-				
-	</QuestOrder>
+</While>
+
+</QuestOrder>
 
 </HBProfile>

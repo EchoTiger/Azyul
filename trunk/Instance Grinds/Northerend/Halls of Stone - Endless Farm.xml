@@ -45,7 +45,8 @@
 
 
 <!--TRANSPORTATION SCRIPT STARTS HERE. YOU MUST MARK TRUE/FALSE ON WHERE YOU WANT THE BOT TO GO -->
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 599)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -65,7 +66,7 @@
 		A monkey can do it.
 		******************************
 		Add MapId for farming location, the id you enter here is where you want to go.-->
-		<While Condition="!(Me.MapId == 571)" >
+		<While Condition="!(Me.MapId == 599)" >
 			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" Text="Do not stop the bot, I will take you where you need to go, just sit back and relax." Title="WARNING" />	
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
@@ -424,19 +425,23 @@
 
 <!-- END OF COLD WEATHER FLYING CHECK -->
 
-
+</If>
 
 
 <!-- CHOP CHOP :3 -->
 <While Condition="true" >
-	<If Condition="Me.Location.Distance(new WoWPoint(8923.021, -997.2937, 1039.452)) &gt;= 50" >	
-		<CustomBehavior File="Message" Text="Navigating to Halls of Stone" LogColor="Lime" />		
-		<CustomBehavior File="FlyTo" X="8913.02" Y="-1138.348" Z="1128.47" />
-		<CustomBehavior File="FlyTo" X="8921.829" Y="-1009.225" Z="1039.561" />
+	<If Condition="!(Me.MapId == 599)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(8923.021, -997.2937, 1039.452)) &gt;= 50" >	
+			<CustomBehavior File="Message" Text="Navigating to Halls of Stone" LogColor="Lime" />		
+			<CustomBehavior File="FlyTo" X="8913.02" Y="-1138.348" Z="1128.47" />
+			<CustomBehavior File="FlyTo" X="8921.829" Y="-1009.225" Z="1039.561" />
+		</If>
 	</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; .20)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
+	<If Condition="!(Me.MapId == 599)" >
 		<CustomBehavior File="MyCTM" X="8922.668" Y="-964.756" Z="1039.151" />
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	</If>
 		<!--Instance Navigation Start -->
 		<If Condition="(Me.MapId == 599)" >
 		    <RunTo X="1153.1573" Y="779.6904" Z="195.0447"  />

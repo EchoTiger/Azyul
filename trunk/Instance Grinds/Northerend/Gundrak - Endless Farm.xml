@@ -51,6 +51,7 @@
 
 <!--TRANSPORTATION SCRIPT STARTS HERE. YOU MUST MARK TRUE/FALSE ON WHERE YOU WANT THE BOT TO GO -->
 <QuestOrder>
+<If Condition="!(Me.MapId == 604)" >
 
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
 
@@ -434,27 +435,27 @@
 
 <!-- END OF COLD WEATHER FLYING CHECK -->
 
-<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
-
-<If Condition="Me.ZoneID == 3537" >  <!-- Avoid flying over Wintergrasp -->
-	<CustomBehavior File="Message" Text="Heading to Zul'Drak." LogColor="Green" />
-	<CustomBehavior File="FlyTo" X="3333.868" Y="2896.821" Z="214.484" />
-	<CustomBehavior File="FlyTo" X="3934.838" Y="1587.278" Z="414.1879" />
 </If>
+
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 
 <!-- CHOP CHOP D: -->
 <While Condition="true" >
-	<If Condition="Me.Location.Distance(new WoWPoint(6938.205, 4434.209, 478.6274)) &gt; 50 " >
-		<CustomBehavior File="Message" Text="Heading to instance." LogColor="Green" />
-		<CustomBehavior File="FlyTo" X="6869.925" Y="-4472.948" Z="511.2688" />
-		<CustomBehavior File="FlyTo" X="6954.726" Y="-4416.813" Z="450.0275" />
-		<CustomBehavior File="WaitTimer" WaitTime="1000" />
-		<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<If Condition="!(Me.MapId == 604)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(6938.205, 4434.209, 478.6274)) &gt; 50 " >
+			<CustomBehavior File="Message" Text="Heading to instance." LogColor="Green" />
+			<CustomBehavior File="FlyTo" X="6869.925" Y="-4472.948" Z="511.2688" />
+			<CustomBehavior File="FlyTo" X="6954.726" Y="-4416.813" Z="450.0275" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+		</If>
 	</If>
 	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
-		<RunTo X="6959.573" Y="-4412.701" Z="448.1979" />
-		<CustomBehavior File="MyCTM" X="6972.984" Y="-4399.451" Z="441.5758" />
-		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<If Condition="!(Me.MapId == 604)" >
+			<RunTo X="6959.573" Y="-4412.701" Z="448.1979" />
+			<CustomBehavior File="MyCTM" X="6972.984" Y="-4399.451" Z="441.5758" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
 		<If Condition="(Me.MapId == 604)" >
 		    <RunTo X="1865.3114" Y="633.0428" Z="176.6703"  />
 		    <RunTo X="1861.1146" Y="641.9940" Z="176.6773"  />

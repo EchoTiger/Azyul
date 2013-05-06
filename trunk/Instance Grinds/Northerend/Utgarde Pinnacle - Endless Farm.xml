@@ -50,6 +50,8 @@
 
 
 <QuestOrder>
+<If Condition="!(Me.MapId == 575)" >
+
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="25" />
 
 	<!-- Begin universal transportation script -->
@@ -411,26 +413,32 @@
 
 <!-- END OF COLD WEATHER FLYING CHECK -->
 
-<!-- Start GOTO dungeon code -->
-<CustomBehavior File="FlyTo" X="1317.418" Y="-4713.524" Z="253.851" />
-<CustomBehavior File="FlyTo" X="1244.616" Y="-4857.312" Z="217.2103" />
-<!-- Infront of Instance Portal -->
-<CustomBehavior File="Message" Text="Starting Endless Farm - Utgarde Pinnacle" LogColor="Lime" />
-<!-- Enable Loot -->
-<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
-<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
-<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
-<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-<CustomBehavior File="RunMacro" Macro="/dismount" />
-<CustomBehavior File="WaitTimer" WaitTime="1000" />
+</If>
+
+<If Condition="!(Me.MapId == 575)" >
+	<!-- Start GOTO dungeon code -->
+	<CustomBehavior File="FlyTo" X="1317.418" Y="-4713.524" Z="253.851" />
+	<CustomBehavior File="FlyTo" X="1244.616" Y="-4857.312" Z="217.2103" />
+	<!-- Infront of Instance Portal -->
+	<CustomBehavior File="Message" Text="Starting Endless Farm - Utgarde Pinnacle" LogColor="Lime" />
+	<!-- Enable Loot -->
+	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+	<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+	<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+	<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<CustomBehavior File="WaitTimer" WaitTime="1000" />
+</If>
 <!--CHOP CHOP -->
 <While Condition="true" >
 	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<If Condition="!(Me.MapId == 575)" >
 			<!--Start Endless Cycle -->
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
 			<CustomBehavior File="MyCTM" X="1231.992" Y="-4860.223" Z="218.2878" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
 			<!--Instance Navigation Start -->
 			<If Condition="Me.MapId == 575" >
 			    <RunTo X="549.7104" Y="-327.2530" Z="110.2379"  />

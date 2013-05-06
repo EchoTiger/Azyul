@@ -51,6 +51,7 @@
 <QuestOrder>
 
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
+<If Condition="!(Me.MapId == 601)" >
 
 
 		 <!-- Transporter -->
@@ -434,6 +435,7 @@
 
 
 <!-- TRANSPORTATION SCRIPT ENDED --> 
+</If>
 
 <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 
@@ -441,102 +443,106 @@
 
 <!-- CHOP CHOP :3 -->
 <While Condition="true" >
-	<If Condition="Me.Location.Distance(new WoWPoint(3700.083, 2147.2, 35.71764)) &gt; 50" >	
-		<CustomBehavior File="Message" Text="Heading to instance." LogColor="Green" />
-		<CustomBehavior File="FlyTo" X="3694.782" Y="2294.216" Z="224.947" />
-		<CustomBehavior File="FlyTo" X="3721.947" Y="2145.785" Z="52.86993" />
-		<RunTo X="3751.606" Y="2130.644" Z="46.54139" />
-		<RunTo X="3709.008" Y="2151.853" Z="37.00673" />
-		<RunTo X="3685.623" Y="2158.252" Z="35.63464" />
-		<RunTo X="3675.155" Y="2169.013" Z="35.89685" />
-	</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
-		<RunTo X="3712.866" Y="2153.353" Z="37.28278" />
-		<CustomBehavior File="MyCTM" X="3669.872" Y="2173.606" Z="36.12575" />
-		<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		<!--Instance Navigation Start -->
-		<If Condition="(Me.MapId == 601)" >
-			<RunTo X="428.5663" Y="780.7168" Z="827.6713"  />
-		    <RunTo X="444.0355" Y="767.7618" Z="826.9639"  />
-		    <RunTo X="463.8311" Y="761.7424" Z="824.7721"  />
-		    <RunTo X="482.4370" Y="754.9510" Z="819.2500"  />
-		    <RunTo X="500.7241" Y="751.6653" Z="811.1658"  />
-		    <RunTo X="518.2510" Y="748.5969" Z="801.3613"  />
-		    <RunTo X="534.8285" Y="745.0001" Z="790.5307"  />
-		    <RunTo X="549.1150" Y="735.8333" Z="779.3959"  />
-		    <RunTo X="547.0705" Y="715.5085" Z="777.0356"  />
-		    <RunTo X="538.6087" Y="697.2474" Z="776.0874"  />
-		    <RunTo X="544.3956" Y="667.7176" Z="776.0850"  />
-		    <RunTo X="528.3886" Y="678.6911" Z="775.4945"  />
-		    <RunTo X="515.8797" Y="676.6035" Z="775.5803"  />
-		    <RunTo X="512.6600" Y="666.1078" Z="776.1969"  />
-		    <RunTo X="528.4169" Y="646.2326" Z="777.3544"  />
-		    <RunTo X="531.1284" Y="625.2935" Z="777.9830"  />
-		    <RunTo X="530.3196" Y="604.2771" Z="777.1855"  />
-		    <RunTo X="530.1583" Y="583.8600" Z="777.3795"  />
-		    <RunTo X="530.3677" Y="563.3098" Z="774.2613"  />
-		    <RunTo X="530.5639" Y="544.0608" Z="768.4487"  />
-		    <RunTo X="530.3518" Y="524.8898" Z="759.9888"  />
-		    <RunTo X="528.7585" Y="505.8367" Z="753.7916"  />
-		    <RunTo X="508.4296" Y="507.1982" Z="752.5303"  />
-		    <RunTo X="514.6765" Y="523.4576" Z="741.1215"  />
-		    <RunTo X="525.2872" Y="539.1042" Z="733.3212"  />
-		    <RunTo X="515.7372" Y="559.0057" Z="733.8358" />
-		    <RunTo X="541.2039" Y="546.3113" Z="733.0687" />
-		    <RunTo X="526.6932" Y="535.936" Z="733.8383" />
-			<CustomBehavior File="InteractWith" MobId="28921" WaitForNpcs="False" MobState="DontCare" CollectionDistance="100" X="614.71" Y="519.3101" Z="695.1095" />
-		    <RunTo X="520.0724" Y="545.1875" Z="674.1614"  />
-		    <CustomBehavior File="MyCTM" X="512.4189" Y="557.3249" Z="658.9557"  />
-		    <CustomBehavior File="MyCTM" X="524.3297" Y="548.7174" Z="646.3345"  />
-		    <CustomBehavior File="MyCTM" X="535.3492" Y="551.5630" Z="286.9726"  />
-		    <CustomBehavior File="MyCTM" X="549.0095" Y="530.584" Z="286.9726" />
-		    <CustomBehavior File="MyCTM"  X="546.7491" Y="495.0945" Z="288.9747"  />
-		    <RunTo X="547.3272" Y="485.6886" Z="289.1728"  />
-		    <RunTo X="548.1017" Y="465.1288" Z="288.5458"  />
-		    <RunTo X="548.8513" Y="445.2307" Z="285.7787"  />
-		    <RunTo X="549.6254" Y="424.6783" Z="284.7231"  />
-		    <RunTo X="549.4631" Y="404.3943" Z="282.6187"  />
-		    <RunTo X="549.0913" Y="389.7614" Z="267.7963"  />
-		    <RunTo X="549.2463" Y="375.3979" Z="253.0775"  />
-		    <RunTo X="553.3583" Y="359.9054" Z="240.8203"  />
-		    <RunTo X="558.1514" Y="340.1115" Z="240.8206"  />
-		    <RunTo X="555.2137" Y="320.5610" Z="236.2611"  />
-		    <RunTo X="552.5179" Y="301.3907" Z="229.7981"  />
-		    <RunTo X="550.9799" Y="282.0468" Z="224.8030"  />
-		    <RunTo X="550.8550" Y="275.8217" Z="223.8891"  />
-		    <RunTo X="550.6963" Y="261.2466" Z="223.8288"  />
-		    <RunTo X="550.6375" Y="246.6672" Z="223.4417"  />
-		    <RunTo X="551.1693" Y="225.0480" Z="222.2803"  />
-		    <RunTo X="550.5639" Y="207.2521" Z="212.1517"  />
-		    <RunTo X="549.8104" Y="188.7644" Z="203.1190"  />
-		    <RunTo X="549.0439" Y="169.9612" Z="196.3163"  />
-		    <RunTo X="547.8722" Y="149.9718" Z="196.5944"  />
-		    <RunTo X="546.6649" Y="129.7137" Z="197.5043"  />
-		    <RunTo X="548.3115" Y="109.3181" Z="195.4857"  />
-		    <RunTo X="542.7203" Y="90.6547" Z="201.7420"  />
-		    <RunTo X="524.9915" Y="87.9203" Z="212.7722"  />
-		    <RunTo X="507.4486" Y="85.9244" Z="223.5107"  />
-		    <RunTo X="489.6379" Y="83.8981" Z="232.8162"  />
-		    <RunTo X="470.6259" Y="80.7312" Z="239.9843"  />
-		    <RunTo X="451.8059" Y="73.1473" Z="244.1699"  />
-		    <RunTo X="433.0435" Y="66.3812" Z="245.8080"  />
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
-		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
-		    </If>
-
-		    <RunTo X="414.7944" Y="58.4100" Z="248.4192"  />
-		    <CustomBehavior File="MyCTM" X="406.6079" Y="54.98227" Z="251.8432" />
-		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
-		    <RunTo X="3766.764" Y="2059.474" Z="19.73799" />
-		    <RunTo X="3773.85" Y="2135.026" Z="32.66523" />
+	<If Condition="!(Me.MapId == 601)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(3700.083, 2147.2, 35.71764)) &gt; 50" >	
+			<CustomBehavior File="Message" Text="Heading to instance." LogColor="Green" />
+			<CustomBehavior File="FlyTo" X="3694.782" Y="2294.216" Z="224.947" />
+			<CustomBehavior File="FlyTo" X="3721.947" Y="2145.785" Z="52.86993" />
+			<RunTo X="3751.606" Y="2130.644" Z="46.54139" />
+			<RunTo X="3709.008" Y="2151.853" Z="37.00673" />
+			<RunTo X="3685.623" Y="2158.252" Z="35.63464" />
+			<RunTo X="3675.155" Y="2169.013" Z="35.89685" />
 		</If>
-		<!--Instance Coordnation Complete -->
-		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+	</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+			<If Condition="!(Me.MapId == 601)" >
+				<RunTo X="3712.866" Y="2153.353" Z="37.28278" />
+				<CustomBehavior File="MyCTM" X="3669.872" Y="2173.606" Z="36.12575" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<!--Instance Navigation Start -->
+			<If Condition="(Me.MapId == 601)" >
+				<RunTo X="428.5663" Y="780.7168" Z="827.6713"  />
+			    <RunTo X="444.0355" Y="767.7618" Z="826.9639"  />
+			    <RunTo X="463.8311" Y="761.7424" Z="824.7721"  />
+			    <RunTo X="482.4370" Y="754.9510" Z="819.2500"  />
+			    <RunTo X="500.7241" Y="751.6653" Z="811.1658"  />
+			    <RunTo X="518.2510" Y="748.5969" Z="801.3613"  />
+			    <RunTo X="534.8285" Y="745.0001" Z="790.5307"  />
+			    <RunTo X="549.1150" Y="735.8333" Z="779.3959"  />
+			    <RunTo X="547.0705" Y="715.5085" Z="777.0356"  />
+			    <RunTo X="538.6087" Y="697.2474" Z="776.0874"  />
+			    <RunTo X="544.3956" Y="667.7176" Z="776.0850"  />
+			    <RunTo X="528.3886" Y="678.6911" Z="775.4945"  />
+			    <RunTo X="515.8797" Y="676.6035" Z="775.5803"  />
+			    <RunTo X="512.6600" Y="666.1078" Z="776.1969"  />
+			    <RunTo X="528.4169" Y="646.2326" Z="777.3544"  />
+			    <RunTo X="531.1284" Y="625.2935" Z="777.9830"  />
+			    <RunTo X="530.3196" Y="604.2771" Z="777.1855"  />
+			    <RunTo X="530.1583" Y="583.8600" Z="777.3795"  />
+			    <RunTo X="530.3677" Y="563.3098" Z="774.2613"  />
+			    <RunTo X="530.5639" Y="544.0608" Z="768.4487"  />
+			    <RunTo X="530.3518" Y="524.8898" Z="759.9888"  />
+			    <RunTo X="528.7585" Y="505.8367" Z="753.7916"  />
+			    <RunTo X="508.4296" Y="507.1982" Z="752.5303"  />
+			    <RunTo X="514.6765" Y="523.4576" Z="741.1215"  />
+			    <RunTo X="525.2872" Y="539.1042" Z="733.3212"  />
+			    <RunTo X="515.7372" Y="559.0057" Z="733.8358" />
+			    <RunTo X="541.2039" Y="546.3113" Z="733.0687" />
+			    <RunTo X="526.6932" Y="535.936" Z="733.8383" />
+				<CustomBehavior File="InteractWith" MobId="28921" WaitForNpcs="False" MobState="DontCare" CollectionDistance="100" X="614.71" Y="519.3101" Z="695.1095" />
+			    <RunTo X="520.0724" Y="545.1875" Z="674.1614"  />
+			    <CustomBehavior File="MyCTM" X="512.4189" Y="557.3249" Z="658.9557"  />
+			    <CustomBehavior File="MyCTM" X="524.3297" Y="548.7174" Z="646.3345"  />
+			    <CustomBehavior File="MyCTM" X="535.3492" Y="551.5630" Z="286.9726"  />
+			    <CustomBehavior File="MyCTM" X="549.0095" Y="530.584" Z="286.9726" />
+			    <CustomBehavior File="MyCTM"  X="546.7491" Y="495.0945" Z="288.9747"  />
+			    <RunTo X="547.3272" Y="485.6886" Z="289.1728"  />
+			    <RunTo X="548.1017" Y="465.1288" Z="288.5458"  />
+			    <RunTo X="548.8513" Y="445.2307" Z="285.7787"  />
+			    <RunTo X="549.6254" Y="424.6783" Z="284.7231"  />
+			    <RunTo X="549.4631" Y="404.3943" Z="282.6187"  />
+			    <RunTo X="549.0913" Y="389.7614" Z="267.7963"  />
+			    <RunTo X="549.2463" Y="375.3979" Z="253.0775"  />
+			    <RunTo X="553.3583" Y="359.9054" Z="240.8203"  />
+			    <RunTo X="558.1514" Y="340.1115" Z="240.8206"  />
+			    <RunTo X="555.2137" Y="320.5610" Z="236.2611"  />
+			    <RunTo X="552.5179" Y="301.3907" Z="229.7981"  />
+			    <RunTo X="550.9799" Y="282.0468" Z="224.8030"  />
+			    <RunTo X="550.8550" Y="275.8217" Z="223.8891"  />
+			    <RunTo X="550.6963" Y="261.2466" Z="223.8288"  />
+			    <RunTo X="550.6375" Y="246.6672" Z="223.4417"  />
+			    <RunTo X="551.1693" Y="225.0480" Z="222.2803"  />
+			    <RunTo X="550.5639" Y="207.2521" Z="212.1517"  />
+			    <RunTo X="549.8104" Y="188.7644" Z="203.1190"  />
+			    <RunTo X="549.0439" Y="169.9612" Z="196.3163"  />
+			    <RunTo X="547.8722" Y="149.9718" Z="196.5944"  />
+			    <RunTo X="546.6649" Y="129.7137" Z="197.5043"  />
+			    <RunTo X="548.3115" Y="109.3181" Z="195.4857"  />
+			    <RunTo X="542.7203" Y="90.6547" Z="201.7420"  />
+			    <RunTo X="524.9915" Y="87.9203" Z="212.7722"  />
+			    <RunTo X="507.4486" Y="85.9244" Z="223.5107"  />
+			    <RunTo X="489.6379" Y="83.8981" Z="232.8162"  />
+			    <RunTo X="470.6259" Y="80.7312" Z="239.9843"  />
+			    <RunTo X="451.8059" Y="73.1473" Z="244.1699"  />
+			    <RunTo X="433.0435" Y="66.3812" Z="245.8080"  />
+			    <If Condition="Me.FreeBagSlots &lt;= 10" >
+			    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
+			    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
+			    </If>
+			    <If Condition="Me.FreeBagSlots &gt;= 11" >
+			    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+			    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
+			    </If>
+
+			    <RunTo X="414.7944" Y="58.4100" Z="248.4192"  />
+			    <CustomBehavior File="MyCTM" X="406.6079" Y="54.98227" Z="251.8432" />
+			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			    <RunTo X="3766.764" Y="2059.474" Z="19.73799" />
+			    <RunTo X="3773.85" Y="2135.026" Z="32.66523" />
+			</If>
+			<!--Instance Coordnation Complete -->
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 	</While>
 				<!-- Force town sell. -->
 	<If Condition="(Me.FreeBagSlots &lt;= 10)" >

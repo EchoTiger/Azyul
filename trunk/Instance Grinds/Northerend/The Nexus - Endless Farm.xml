@@ -52,6 +52,7 @@
 
 <!--TRANSPORTATION SCRIPT STARTS HERE. YOU MUST MARK TRUE/FALSE ON WHERE YOU WANT THE BOT TO GO -->
 <QuestOrder>
+<If Condition="!(Me.MapId == 576)" >
 
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
 
@@ -434,12 +435,13 @@
 </If>
 
 <!-- END OF COLD WEATHER FLYING CHECK -->
-
+</If>
 
 <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 
 <!-- CHOP CHOP :D -->
 <While Condition="true" >
+<If Condition="!(Me.MapId == 576)" >
 	<If Condition="Me.Location.Distance(new WoWPoint(3843.809, 6980.912, 86.65029)) &gt; 100" >
 		<CustomBehavior File="Message" Text="Heading to Instance." LogColor="Green" />
 		<CustomBehavior File="FlyTo" X="3752.128" Y="6946.389" Z="158.0456" />
@@ -448,10 +450,13 @@
 		<CustomBehavior File="MyCTM" X="3884.149" Y="6984.979" Z="72.9556" />
 		<CustomBehavior File="RunMacro" Macro="/dismount" />
 	</If>
+</If>
 	<While Condition="(Me.FreeBagSlots &gt;= 11)">
-		<RunTo X="3894.839" Y="6985.287" Z="69.4888" />
-		<CustomBehavior File="MyCTM" X="3902.133" Y="6985.737" Z="69.4888" />
-		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<If Condition="!(Me.MapId == 576)" >
+			<RunTo X="3894.839" Y="6985.287" Z="69.4888" />
+			<CustomBehavior File="MyCTM" X="3902.133" Y="6985.737" Z="69.4888" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
 		<!-- Instance Navigation Start -->
 		<If Condition="(Me.MapId == 576)" >
 		    <RunTo X="190.3818" Y="-4.8830" Z="-16.6367"  />
