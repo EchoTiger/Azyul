@@ -60,7 +60,7 @@
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 
 	<QuestOrder>
-	
+<If Condition="!(Me.MapId == 560)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -402,7 +402,7 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-		
+</If>
 		<!-- Travel to Escape from Dumholde --> 
 		
 <!-- Start GOTO dungeon code -->
@@ -411,69 +411,72 @@
 
 
 <While Condition="true" >
-	<If Condition="Me.Location.Distance(new WoWPoint(-8767.0029, -4165.9390, -210.1310)) &gt; 30" >
-<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />		
+	<If Condition="!(Me.MapId == 560)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(-8767.0029, -4165.9390, -210.1310)) &gt; 30" >
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />		
 
-<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8175.918" Y="-4707.365" Z="48.94663" />
-<CustomBehavior File="MyCTM" X="-8175.043" Y="-4720.596" Z="44.30181" />
-<CustomBehavior File="MyCTM" X="-8175.128" Y="-4888.313" Z="40.85376" />
-<CustomBehavior File="MyCTM" X="-8087.97" Y="-4880.237" Z="19.51904" />
-<CustomBehavior File="MyCTM" X="-8098.259" Y="-4838.029" Z="-3.988078" />
-<CustomBehavior File="MyCTM" X="-8153.634" Y="-4874.076" Z="-22.69484" />
-<CustomBehavior File="MyCTM" X="-8112.598" Y="-4918.717" Z="-37.85519" />
-<CustomBehavior File="MyCTM" X="-8066.892" Y="-4880.462" Z="-46.35584" />
-<CustomBehavior File="MyCTM" X="-8068.639" Y="-4826.196" Z="-57.45797" />
-<CustomBehavior File="MyCTM" X="-8192.012" Y="-4556.838" Z="-111.1804" />
-<CustomBehavior File="MyCTM" X="-8518.979" Y="-4651.938" Z="-190.6948" />
-<CustomBehavior File="MyCTM" X="-8488.631" Y="-4361.657" Z="-175.1971" />
-<CustomBehavior File="MyCTM" X="-8659.717" Y="-4264.146" Z="-190.3277" />
-<CustomBehavior File="MyCTM" X="-8752.916" Y="-4204.811" Z="-209.4982" />
-<CustomBehavior File="RunMacro" Macro="/dismount" />
-</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+			<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8175.918" Y="-4707.365" Z="48.94663" />
+			<CustomBehavior File="MyCTM" X="-8175.043" Y="-4720.596" Z="44.30181" />
+			<CustomBehavior File="MyCTM" X="-8175.128" Y="-4888.313" Z="40.85376" />
+			<CustomBehavior File="MyCTM" X="-8087.97" Y="-4880.237" Z="19.51904" />
+			<CustomBehavior File="MyCTM" X="-8098.259" Y="-4838.029" Z="-3.988078" />
+			<CustomBehavior File="MyCTM" X="-8153.634" Y="-4874.076" Z="-22.69484" />
+			<CustomBehavior File="MyCTM" X="-8112.598" Y="-4918.717" Z="-37.85519" />
+			<CustomBehavior File="MyCTM" X="-8066.892" Y="-4880.462" Z="-46.35584" />
+			<CustomBehavior File="MyCTM" X="-8068.639" Y="-4826.196" Z="-57.45797" />
+			<CustomBehavior File="MyCTM" X="-8192.012" Y="-4556.838" Z="-111.1804" />
+			<CustomBehavior File="MyCTM" X="-8518.979" Y="-4651.938" Z="-190.6948" />
+			<CustomBehavior File="MyCTM" X="-8488.631" Y="-4361.657" Z="-175.1971" />
+			<CustomBehavior File="MyCTM" X="-8659.717" Y="-4264.146" Z="-190.3277" />
+			<CustomBehavior File="MyCTM" X="-8752.916" Y="-4204.811" Z="-209.4982" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+		</If>
+	</If>
+	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
+		<If Condition="!(Me.MapId == 560)" >
 				<CustomBehavior File="MyCTM" X="-8767.0029" Y="-4165.9390" Z="-210.1310" />  <!-- moves into instance portal if not already inside -->
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
 				<!--Instance Navigation Start -->
-				<If Condition="(Me.ZoneId == 2366)" >
-
-					    <RunTo X="-1500.8127" Y="7096.6104" Z="32.7551"  />
-					    <RunTo X="-1546.8252" Y="7111.7993" Z="32.5227"  />
-					    <CustomBehavior File="InteractWith" MobId="20201" GossipOptions="1" X="-1547.062" Y="7113.633" Z="32.7361" />
-					    <RunTo X="-1635.1172" Y="7113.7925" Z="23.5024"  />
-					    <RunTo X="-1775.9202" Y="7141.4917" Z="18.5920"  />
-					    <RunTo X="-1928.8865" Y="7106.8267" Z="17.4756"  />
-					    <RunTo X="-2013.1619" Y="7120.2080" Z="22.6511"  />
-					    <RunTo X="-1997.402" Y="7094.309" Z="17.48149" />
-					    <CustomBehavior File="WaitTimer" WaitTime="6000" />
+		<If Condition="!(Me.MapId == 560)" >
+		    <RunTo X="-1500.8127" Y="7096.6104" Z="32.7551"  />
+		    <RunTo X="-1546.8252" Y="7111.7993" Z="32.5227"  />
+		    <CustomBehavior File="InteractWith" MobId="20201" GossipOptions="1" X="-1547.062" Y="7113.633" Z="32.7361" />
+		    <RunTo X="-1635.1172" Y="7113.7925" Z="23.5024"  />
+		    <RunTo X="-1775.9202" Y="7141.4917" Z="18.5920"  />
+		    <RunTo X="-1928.8865" Y="7106.8267" Z="17.4756"  />
+		    <RunTo X="-2013.1619" Y="7120.2080" Z="22.6511"  />
+		    <RunTo X="-1997.402" Y="7094.309" Z="17.48149" />
+		    <CustomBehavior File="WaitTimer" WaitTime="6000" />
 					
 
-						<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 						
-						<While Condition="(Me.CurrentTarget == null) || (Me.CurrentTarget.Entry != 17881) || ((Me.CurrentTarget.Entry == 17881) &amp;&amp; (Me.CurrentTarget.IsAlive))" >
-					    <CustomBehavior File="InteractWith" MobId1="21104" MobId2="21140" MobId3="21148" MobId4="17839" MobId5="17879" MobId6="17880" MobId7="17881" MobId8="17835" MobId9="17892" MobId10="18994" MobId11="18995" MobId12="21818" MobId13="21139" MobId14="21136" MobId15="21138" MobId16="21137" FactionId="1720" ObjectType="Npc" NumOfTimes="1" X="-1997.402" Y="7094.309" Z="17.48149" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" KeepTargetSelected="True" >
-							<HuntingGrounds>
-								<Hotspot X="-2014.887" Y="7113.619" Z="22.43938" />
-								<Hotspot X="-1984.18" Y="7039.782" Z="18.95009" />
-								<Hotspot X="-1959.393" Y="7173.198" Z="21.94992" />
-							</HuntingGrounds>
-						</CustomBehavior>
-						<CustomBehavior File="RunMacro" Macro="/target Aeonus" />
-						</While>
+			<While Condition="(Me.CurrentTarget == null) || (Me.CurrentTarget.Entry != 17881) || ((Me.CurrentTarget.Entry == 17881) &amp;&amp; (Me.CurrentTarget.IsAlive))" >
+		    <CustomBehavior File="InteractWith" MobId1="21104" MobId2="21140" MobId3="21148" MobId4="17839" MobId5="17879" MobId6="17880" MobId7="17881" MobId8="17835" MobId9="17892" MobId10="18994" MobId11="18995" MobId12="21818" MobId13="21139" MobId14="21136" MobId15="21138" MobId16="21137" FactionId="1720" ObjectType="Npc" NumOfTimes="1" X="-1997.402" Y="7094.309" Z="17.48149" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" KeepTargetSelected="True" >
+				<HuntingGrounds>
+					<Hotspot X="-2014.887" Y="7113.619" Z="22.43938" />
+					<Hotspot X="-1984.18" Y="7039.782" Z="18.95009" />
+					<Hotspot X="-1959.393" Y="7173.198" Z="21.94992" />
+				</HuntingGrounds>
+			</CustomBehavior>
+			<CustomBehavior File="RunMacro" Macro="/target Aeonus" />
+			</While>
 
-						<RunTo X="-1832.4247" Y="7122.1929" Z="17.5981"  />
-					    <RunTo X="-1740.9796" Y="7149.8579" Z="21.9178"  />
-					    <RunTo X="-1637.8198" Y="7104.7666" Z="22.6479"  />
-					    <RunTo X="-1508.5219" Y="7102.5801" Z="32.8156"  />
-					    <RunTo X="-1500.5530" Y="7047.7622" Z="32.8794"  />
-					    <RunTo X="-1500.1003" Y="7040.0908" Z="33.0374"  />
-					    <CustomBehavior File="RunMacro" Macro="/dismount" />
-
+			<RunTo X="-1832.4247" Y="7122.1929" Z="17.5981"  />
+		    <RunTo X="-1740.9796" Y="7149.8579" Z="21.9178"  />
+		    <RunTo X="-1637.8198" Y="7104.7666" Z="22.6479"  />
+		    <RunTo X="-1508.5219" Y="7102.5801" Z="32.8156"  />
+		    <RunTo X="-1500.5530" Y="7047.7622" Z="32.8794"  />
+		    <RunTo X="-1500.1003" Y="7040.0908" Z="33.0374"  />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
 		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
+		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
 		    </If>
 		    <If Condition="Me.FreeBagSlots &gt;= 11" >
 		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
 		    </If>
 
 			<CustomBehavior File="MyCTM" X="-1494.671" Y="7028.2757" Z="32.8237" />

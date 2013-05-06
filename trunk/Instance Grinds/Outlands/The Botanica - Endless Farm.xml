@@ -56,9 +56,11 @@
 <Blackspots>
 </Blackspots>
 	
-	<Factions>16</Factions>
+<Factions>16</Factions>
 	
 <QuestOrder>
+<If Condition="!(Me.MapId == 553)" >
+
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -397,32 +399,37 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-
-<If Condition="Me.Location.Distance(new WoWPoint(3418.804, 1479.68, 182.8372)) &gt; 30" >				
-	<!-- Start GOTO dungeon code -->
-	<CustomBehavior File="Message" Text="Very far Away" LogColor="Coral" />
-	<CustomBehavior File="FlyTo" DestName="the Long way to Netherstorm" X="3124.004" Y="2386.716" Z="200.9901" />
-	<CustomBehavior File="FlyTo" X="3404.883" Y="1490.038" Z="182.8367" />
-	<!-- Infront of Instance Portal -->
-	<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
-	<!-- Enable Loot -->
-	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
-	<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
-	<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
-	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 </If>
-		
+
+<If Condition="!(Me.MapId == 553)" >
+	<If Condition="Me.Location.Distance(new WoWPoint(3418.804, 1479.68, 182.8372)) &gt; 30" >				
+		<!-- Start GOTO dungeon code -->
+		<CustomBehavior File="Message" Text="Very far Away" LogColor="Coral" />
+		<CustomBehavior File="FlyTo" DestName="the Long way to Netherstorm" X="3124.004" Y="2386.716" Z="200.9901" />
+		<CustomBehavior File="FlyTo" X="3404.883" Y="1490.038" Z="182.8367" />
+		<!-- Infront of Instance Portal -->
+		<CustomBehavior File="Message" Text="Starting Endless Farm - The Botanica" LogColor="Lime" />
+		<!-- Enable Loot -->
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+		<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+	</If>
+</If>
+			
 		
 
 <!--CHOP CHOP -->
 <While Condition="true">
-	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
 			<!--Start Endless Cycle -->
+		<If Condition="!(Me.MapId == 553)" >
 				<CustomBehavior File="Message" Text="Super Close" LogColor="Coral" />
 				<CustomBehavior File="MyCTM" X="3418.804" Y="1479.68" Z="182.8372" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
 				<!--Instance Navigation Start -->
-				<If Condition="(Me.ZoneId == 3847)" >
+				<If Condition="(Me.MapId == 553)" >
 					<RunTo X="-0.8635136" Y="159.6901" Z="-5.539908" />
 					<RunTo X="-13.72336" Y="197.2156" Z="-5.540327" />
 					<RunTo X="14.00014" Y="196.6116" Z="-5.540327" />
@@ -587,13 +594,14 @@
 					<RunTo X="9.72675" Y="370.9396" Z="-27.11316" />
 					<RunTo X="73.01514" Y="393.9115" Z="-27.97716" /> <!-- kill Warp Splinter -->
 					<CustomBehavior File="WaitTimer" WaitTime="10000" /> <!-- change this to more -->
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
-		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
-		    </If>
+				    <If Condition="Me.FreeBagSlots &lt;= 10" >
+				    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
+				    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
+				    </If>
+				    <If Condition="Me.FreeBagSlots &gt;= 11" >
+				    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+				    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
+				    </If>
 
 			<CustomBehavior File="MyCTM" X="161.4034" Y="392.7429" Z="-35.25000" /> <!--Exits Instance -->
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />

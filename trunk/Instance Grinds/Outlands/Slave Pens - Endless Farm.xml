@@ -49,9 +49,10 @@
 <Blackspots>
 </Blackspots>
 	
-	<Factions>16</Factions>
+<Factions>16</Factions>
 	
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 547)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -390,8 +391,10 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
+</If>
 
 <While Condition="true" >
+	<If Condition="!(Me.MapId == 547)" >
 							<If Condition="Me.Location.Distance(new WoWPoint(741.1000, 7015.3018, -71.3278)) &gt; 100" >	
 							<CustomBehavior File="FlyTo" DestName="Zangarmarsh-HIGH POINT" X="511.3972" Y="6927.3" Z="256.1042" />
 							<CustomBehavior File="FlyTo" DestName="Serpent Lake" X="473.400" Y="6892.175" Z="63.8240" />
@@ -406,7 +409,7 @@
 							<CustomBehavior File="MyCTM" X="731.085" Y="6866.436" Z="-70.52903" />
 							<CustomBehavior File="MyCTM" X="710.6816" Y="6916.9570" Z="-67.3406"  />
 							<CustomBehavior File="MyCTM" X="727.0912" Y="7014.3018" Z="-71.3278"  />
-							<CustomBehavior File="Message" Text="Starting Endless Farm - Utgarde Keep" LogColor="Lime" />
+							<CustomBehavior File="Message" Text="Entering Slave Pens." LogColor="Lime" />
 							<!-- Enable Loot -->
 							<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 							</If>
@@ -492,9 +495,9 @@
 							<CustomBehavior File="Message" Text="Entering Auchenai Crypts." LogColor="Lime" />
 							<CustomBehavior File="MyCTM" X="741.1000" Y="7015.931" Z="-71.77438" /><!-- Enters instance if not already inside -->
 							<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				
+	</If>
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 3717)">
+		<While Condition="(Me.MapId == 547)">
 					<RunTo X="120.1809" Y="-96.50285" Z="-1.590539" />
 					<RunTo X="-86.56674" Y="-2.280397" Z="-7.141338" />
 					<RunTo X="-117.5197" Y="-17.0272" Z="-8.251738" />
@@ -566,18 +569,16 @@
 					<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 					<CustomBehavior File="WaitTimer" WaitTime="240000" />	
 
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
-		    </If>
-
+			    <If Condition="Me.FreeBagSlots &lt;= 10" >
+			    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
+			    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
+			    </If>
+			    <If Condition="Me.FreeBagSlots &gt;= 11" >
+			    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+			   	 	<CustomBehavior File="WaitTimer" WaitTime="189000" />
+			    </If>
 		    <CustomBehavior File="MyCTM" X="117.4674" Y="-138.1203" Z="0.24311" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
-		
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 	</While>
 					<!-- End Instance Grind -->

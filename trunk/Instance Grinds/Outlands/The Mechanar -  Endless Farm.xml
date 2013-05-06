@@ -54,9 +54,10 @@
 <Blackspots>
 </Blackspots>
 	
-	<Factions>16</Factions>
+<Factions>16</Factions>
 	
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 554)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -396,43 +397,45 @@
 		Big thanks to Kick for this.
 		--> 
 
-
-
-<If Condition="Me.Location.Distance(new WoWPoint(2860.685, 1544.054, 251.5551)) &gt; 30" >
-<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
-	<!-- Start GOTO dungeon code -->
-	<CustomBehavior File="Message" Text="Very far Away" LogColor="Coral" />
-	<CustomBehavior File="FlyTo" DestName="the Long way to Netherstorm" X="3124.004" Y="2386.716" Z="200.9901" />
-
-	<CustomBehavior File="Message" Text="Going to Tempest Keep." LogColor="Blue" />
-	<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
-	<CustomBehavior File="Message" Text="Going to The Mechanar." LogColor="Blue" />
-	<CustomBehavior File="MyCTM" X="3138.49" Y="1659.895" Z="218.2768" />
-	<CustomBehavior File="MyCTM" X="2931.581" Y="1608.024" Z="266.4759" />
-	<CustomBehavior File="MyCTM" X="2896.612" Y="1577.101" Z="248.8645" />
-	<CustomBehavior File="MyCTM" X="2867.058" Y="1550.627" Z="252.1589" />
-	<CustomBehavior File="RunMacro" Macro="/dismount" />
-	<!-- Infront of Instance Portal -->
-	<CustomBehavior File="Message" Text="Starting Endless Farm - The Mechanar" LogColor="Lime" />
-	<!-- Enable Loot -->
-	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
-	<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
-	<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
-	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 </If>
-		
+<If Condition="!(Me.MapId == 554)" >
+	<If Condition="Me.Location.Distance(new WoWPoint(2860.685, 1544.054, 251.5551)) &gt; 30" >
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
+		<!-- Start GOTO dungeon code -->
+		<CustomBehavior File="Message" Text="Very far Away" LogColor="Coral" />
+		<CustomBehavior File="FlyTo" DestName="the Long way to Netherstorm" X="3124.004" Y="2386.716" Z="200.9901" />
+
+		<CustomBehavior File="Message" Text="Going to Tempest Keep." LogColor="Blue" />
+		<CustomBehavior File="FlyTo" DestName="The Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
+		<CustomBehavior File="Message" Text="Going to The Mechanar." LogColor="Blue" />
+		<CustomBehavior File="MyCTM" X="3138.49" Y="1659.895" Z="218.2768" />
+		<CustomBehavior File="MyCTM" X="2931.581" Y="1608.024" Z="266.4759" />
+		<CustomBehavior File="MyCTM" X="2896.612" Y="1577.101" Z="248.8645" />
+		<CustomBehavior File="MyCTM" X="2867.058" Y="1550.627" Z="252.1589" />
+		<CustomBehavior File="RunMacro" Macro="/dismount" />
+		<!-- Infront of Instance Portal -->
+		<CustomBehavior File="Message" Text="Starting Endless Farm - The Mechanar" LogColor="Lime" />
+		<!-- Enable Loot -->
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+		<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+	</If>
+</If>
 		
 
 <!--CHOP CHOP -->
 <While Condition="true">
-	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
 			<!--Start Endless Cycle -->
+			<If Condition="!(Me.MapId == 554)" >
 				<CustomBehavior File="Message" Text="Close Enough" LogColor="Coral" />
 				<CustomBehavior File="MyCTM" X="2860.685" Y="1544.054" Z="251.5551" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
 	<!-- Begin Instance Grind -->
 	
-		<If Condition="(Me.ZoneId == 3849)" >		
+		<If Condition="(Me.MapId == 554)" >		
 
 			    <RunTo X="-9.4684" Y="7.7338" Z="-1.8136"  />
 			    <RunTo X="8.9596" Y="16.3103" Z="-1.8136"  />
@@ -513,13 +516,14 @@
 				<RunTo X="139.054" Y="19.261" Z="24.874" />
 				<RunTo X="137.585" Y="145.238" Z="25.578" /> <!-- Boss: Patheleon the Calculator 19220 -->
 				<RunTo X="81.48" Y="149.298" Z="25.581" /> <!-- Just before rear exit portal -->
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
-		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
-		    </If>
+			    <If Condition="Me.FreeBagSlots &lt;= 10" >
+			    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
+			    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
+			    </If>
+			    <If Condition="Me.FreeBagSlots &gt;= 11" >
+			    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+			    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
+			    </If>
 
 			<CustomBehavior File="MyCTM" X="72.820" Y="149.613" Z="25.581" /> <!--Exits Instance -->
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />

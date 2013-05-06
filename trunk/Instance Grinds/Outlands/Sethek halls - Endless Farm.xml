@@ -56,9 +56,10 @@
 <Blackspots>
 </Blackspots>
 	
-	<Factions>16</Factions>
+<Factions>16</Factions>
 	
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 556)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -397,32 +398,34 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-
+</If>
 		<!-- Nav to Dungeon -->
-			<While Condition="true" >
-						<If Condition="Me.Location.Distance(new WoWPoint(-3361.55, 5233.022, -101.0479)) &gt; 650" >	
-							<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Sethek halls" LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Auchenai Crypts" X="-3361.603" Y="4835.645" Z="-101.3953" />
-							<CustomBehavior File="ForcedDismount" />
-						</If>
-						<If Condition="(Me.FreeBagSlots &lt;= 10)" >
-							<RunTo X="-3361.603" Y="4835.645" Z="-101.3953" />
-							<CustomBehavior File="Message" Text="Moving to Sell/Mail/Repair." LogColor="Lime" />		
-							<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2941.882" Y="5132.688" Z="26.42101" />
-							<CustomBehavior File="MyCTM" X="-2568.40" Y="5204.11" Z="26.08" />	
-							<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2101.853" Y="5298.756" Z="-37.32356" />					
-							<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-							<CustomBehavior File="FlyTo" X="-2568.40" Y="5204.11" Z="26.08" />	
-							<CustomBehavior File="FlyTo" X="-3361.603" Y="4835.645" Z="-101.3953" />
-						</If>
-							<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-							<CustomBehavior File="Message" Text="Entering Auchenai Crypts." LogColor="Lime" />
-							<CustomBehavior File="MyCTM" X="-3362.136" Y="4653.269" Z="-101.048" /> <!-- Enters instance if not already inside -->
-							<CustomBehavior File="WaitTimer" WaitTime="15000" />
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 556)" >
+				<If Condition="Me.Location.Distance(new WoWPoint(-3361.55, 5233.022, -101.0479)) &gt; 650" >	
+					<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+					<CustomBehavior File="Message" Text="Moving to Sethek Halls" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Sethekk Halls" X="-3361.603" Y="4835.645" Z="-101.3953" />
+					<CustomBehavior File="ForcedDismount" />
+				</If>
+				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+					<RunTo X="-3361.603" Y="4835.645" Z="-101.3953" />
+					<CustomBehavior File="Message" Text="Moving to Sell/Mail/Repair." LogColor="Lime" />		
+					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2941.882" Y="5132.688" Z="26.42101" />
+					<CustomBehavior File="MyCTM" X="-2568.40" Y="5204.11" Z="26.08" />	
+					<CustomBehavior File="FlyTo" DestName="Shattrath" X="-2101.853" Y="5298.756" Z="-37.32356" />					
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+					<CustomBehavior File="FlyTo" X="-2568.40" Y="5204.11" Z="26.08" />	
+					<CustomBehavior File="FlyTo" X="-3361.603" Y="4835.645" Z="-101.3953" />
+				</If>
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+					<CustomBehavior File="Message" Text="Entering Sethekk Halls." LogColor="Lime" />
+					<CustomBehavior File="MyCTM" X="-3362.136" Y="4653.269" Z="-101.048" /> <!-- Enters instance if not already inside -->
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	</If>
 <!-- Nav to Dungeon -->			
 	<!-- Begin Instance Grind -->
-			<While Condition="(Me.ZoneId == 3791)" >		
+		<While Condition="(Me.MapId == 556)" >		
 			<RunTo X="44.9300" Y="1.8154" Z="0.0065"  />
 			<RunTo X="45.7942" Y="53.6182" Z="0.0065"  />
 			<RunTo X="57.9984" Y="81.9699" Z="0.1334"  />
@@ -474,19 +477,19 @@
 			<RunTo X="-70.7082" Y="105.9132" Z="1.6817"  />
 			<RunTo X="43.8704" Y="94.6477" Z="0.1508"  />
 			<RunTo X="35.8853" Y="1.6593" Z="0.0074"  />
-		    			<If Condition="Me.FreeBagSlots &lt;= 10" >
-		    				<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
-		    			</If>
-		    			<If Condition="Me.FreeBagSlots &gt;= 11" >
-		    				<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    				<CustomBehavior File="WaitTimer" WaitTime="30000" />
-		    			</If>
-							<CustomBehavior File="MyCTM" X="-8.5659" Y="-0.0090" Z="0.0060" /> <!--Exits Instance -->
-						    <CustomBehavior File="WaitTimer" WaitTime="15000" />
-							<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-						
+		    <If Condition="Me.FreeBagSlots &lt;= 10" >
+		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
+		    </If>
+		    <If Condition="Me.FreeBagSlots &gt;= 11" >
+		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+		    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
+		    </If>
+			<CustomBehavior File="MyCTM" X="-8.5659" Y="-0.0090" Z="0.0060" /> <!--Exits Instance -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 				
 		<!--Instance Coordnation Complete -->
-			</While>
+		</While>
 
 	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />

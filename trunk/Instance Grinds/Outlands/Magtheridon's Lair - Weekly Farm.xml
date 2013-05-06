@@ -1,7 +1,6 @@
 <HBProfile>
 <Name>Mjj23's Magtheridon's Lair Weekly Farm</Name>
-<MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>1</MinFreeBagSlots>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////
 // Profile Maker: Mjj23
 // Farm zone: Magtheridon's Lair
@@ -51,7 +50,8 @@
 </Blackspots>
 	
 
-	<QuestOrder>
+<QuestOrder>
+	<If Condition="!(Me.MapId == 544)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -390,48 +390,41 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
+</If>
 		
 	<!-- Travel to Magtheridon's Lair --> 
-	
-		<While Condition="(Me.MapId == 530)" >
-			
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Magtheridon's Lair Location." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Magtheridon's Lair" X="-352.7142" Y="3158.335" Z="-99.74287" />
-						<CustomBehavior File="ForcedDismount" />
-						<RunTo X="-312.3775" Y="3087.163" Z="-116.5222" />
-						<CustomBehavior File="MyCTM" X="-312.3775" Y="3081.163" Z="-116.5222" /> <!-- Enters instance if not already inside -->
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						
+<While Condition="!(Me.MapId == 544)" >
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+	<CustomBehavior File="Message" Text="Moving to Magtheridon's Lair Location." LogColor="Lime" />
+	<CustomBehavior File="FlyTo" DestName="Magtheridon's Lair" X="-352.7142" Y="3158.335" Z="-99.74287" />
+	<CustomBehavior File="ForcedDismount" />
+	<RunTo X="-312.3775" Y="3087.163" Z="-116.5222" />
+	<CustomBehavior File="MyCTM" X="-312.3775" Y="3081.163" Z="-116.5222" /> <!-- Enters instance if not already inside -->
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />		
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 3836)" >
-						<RunTo X="188.3688" Y="38.62973" Z="67.95306" />
-						<RunTo X="38.17402" Y="1.638315" Z="45.05407" />
-						<RunTo X="2.207058" Y="66.70269" Z="22.79284" />
-						<RunTo X="-80.49361" Y="1.807161" Z="-0.4057165" />
-						<CustomBehavior File="InteractWith" MobId="17256" ObjectType="Npc" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" X="-55.68913" Y="2.17024" Z="0.6309446" /> <!-- Pull Hellfire Channelers  and Magtheridon -->
-						<!-- End Instance Grind -->
-	
+<While Condition="(Me.MapId == 544)" >
+	<RunTo X="188.3688" Y="38.62973" Z="67.95306" />
+	<RunTo X="38.17402" Y="1.638315" Z="45.05407" />
+	<RunTo X="2.207058" Y="66.70269" Z="22.79284" />
+	<RunTo X="-80.49361" Y="1.807161" Z="-0.4057165" />
+	<CustomBehavior File="InteractWith" MobId="17256" ObjectType="Npc" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" X="-55.68913" Y="2.17024" Z="0.6309446" /> <!-- Pull Hellfire Channelers  and Magtheridon -->
+<!-- End Instance Grind -->
 	<!-- Hearth out because we're done! -->
-				<While Condition="(Me.ZoneId == 3836)" >
-				<If Condition="HasItem(6948)" >
-						<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />
-						<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
-				</If>
-				
-				<If Condition="HasItem(64488)" >
-						<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="1000" />
-						<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
-				</If>
-				
-				</While>
-	
-			</While>
-			</While>
-			
-			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Magtheridon's Lair Run Complete!\nDid You Get Lucky?" />
-				
-				
-	</QuestOrder>
+	<While Condition="(Me.ZoneId == 3836)" >
+	<If Condition="HasItem(6948)" >
+		<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />
+		<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+	</If>		
+	<If Condition="HasItem(64488)" >
+	<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="1000" />
+	<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+	</If>	
+	</While>	
+</While>
+</While>		
 
+<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Magtheridon's Lair Run Complete!\nDid You Get Lucky?" />
+				
+				
+</QuestOrder>
 </HBProfile>

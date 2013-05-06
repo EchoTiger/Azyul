@@ -55,8 +55,8 @@
 	
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 
-	<QuestOrder>
-	
+<QuestOrder>
+<If Condition="!(Me.MapId == 560)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -400,33 +400,37 @@
 		--> 
 		
 		<!-- Travel to Escape from Dumholde --> 
-		
+</If>
+
 <!-- Start GOTO dungeon code -->
 <While Condition="true" >
-	<If Condition="Me.Location.Distance(new WoWPoint(-8332.700, -4055.250, -207.750)) &gt; 30" >
-<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />		
-<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8175.918" Y="-4707.365" Z="48.94663" />
-<CustomBehavior File="MyCTM" X="-8175.043" Y="-4720.596" Z="44.30181" />
-<CustomBehavior File="MyCTM" X="-8175.128" Y="-4888.313" Z="40.85376" />
-<CustomBehavior File="MyCTM" X="-8087.97" Y="-4880.237" Z="19.51904" />
-<CustomBehavior File="MyCTM" X="-8098.259" Y="-4838.029" Z="-3.988078" />
-<CustomBehavior File="MyCTM" X="-8153.634" Y="-4874.076" Z="-22.69484" />
-<CustomBehavior File="MyCTM" X="-8112.598" Y="-4918.717" Z="-37.85519" />
-<CustomBehavior File="MyCTM" X="-8066.892" Y="-4880.462" Z="-46.35584" />
-<CustomBehavior File="MyCTM" X="-8068.639" Y="-4826.196" Z="-57.45797" />
-<CustomBehavior File="MyCTM" X="-8192.012" Y="-4556.838" Z="-111.1804" />
-<CustomBehavior File="MyCTM" X="-8518.979" Y="-4651.938" Z="-190.6948" />
-<CustomBehavior File="MyCTM" X="-8488.631" Y="-4361.657" Z="-175.1971" />
-<CustomBehavior File="MyCTM" X="-8432.015" Y="-4082.925" Z="-190.8014" />
-<CustomBehavior File="MyCTM" X="-8352.21" Y="-4059.143" Z="-208.0818" />
-<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<If Condition="!(Me.MapId == 560)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(-8332.700, -4055.250, -207.750)) &gt; 30" >
+			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />		
+			<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8175.918" Y="-4707.365" Z="48.94663" />
+			<CustomBehavior File="MyCTM" X="-8175.043" Y="-4720.596" Z="44.30181" />
+			<CustomBehavior File="MyCTM" X="-8175.128" Y="-4888.313" Z="40.85376" />
+			<CustomBehavior File="MyCTM" X="-8087.97" Y="-4880.237" Z="19.51904" />
+			<CustomBehavior File="MyCTM" X="-8098.259" Y="-4838.029" Z="-3.988078" />
+			<CustomBehavior File="MyCTM" X="-8153.634" Y="-4874.076" Z="-22.69484" />
+			<CustomBehavior File="MyCTM" X="-8112.598" Y="-4918.717" Z="-37.85519" />
+			<CustomBehavior File="MyCTM" X="-8066.892" Y="-4880.462" Z="-46.35584" />
+			<CustomBehavior File="MyCTM" X="-8068.639" Y="-4826.196" Z="-57.45797" />
+			<CustomBehavior File="MyCTM" X="-8192.012" Y="-4556.838" Z="-111.1804" />
+			<CustomBehavior File="MyCTM" X="-8518.979" Y="-4651.938" Z="-190.6948" />
+			<CustomBehavior File="MyCTM" X="-8488.631" Y="-4361.657" Z="-175.1971" />
+			<CustomBehavior File="MyCTM" X="-8432.015" Y="-4082.925" Z="-190.8014" />
+			<CustomBehavior File="MyCTM" X="-8352.21" Y="-4059.143" Z="-208.0818" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+		</If>
 	</If>
-
-	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
+			<If Condition="!(Me.MapId == 560)" >
 				<CustomBehavior File="MyCTM" X="-8332.700" Y="-4055.250" Z="-207.750" />  <!-- moves into instance portal if not already inside -->
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
 				<!--Instance Navigation Start -->
-				<If Condition="(Me.ZoneId == 2367)" >
+			<If Condition="(Me.MapId == 560)" >
 					<RunTo X="2393.646" Y="1203.664" Z="66.35605" />
 					<RunTo X="2375.554" Y="1178.651" Z="65.38145" />
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
@@ -487,8 +491,6 @@
 					<CustomBehavior File="WaitTimer" WaitTime="20000" />	
 					<RunTo X="2635.069" Y="673.2795" Z="54.46049" />				
 					<CustomBehavior File="WaitTimer" WaitTime="30000" />					
-	   
-
 					
 					<RunTo X="2630.55" Y="731.1841" Z="57.10218" />
 					<RunTo X="2447.886" Y="851.7122" Z="61.11203" />
@@ -499,48 +501,48 @@
 					<RunTo X="2747.031" Y="1305.154" Z="14.04021" />
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
 
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
-		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
-		    </If>
+				    <If Condition="Me.FreeBagSlots &lt;= 10" >
+				    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
+				    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
+				   </If>
+		   		<If Condition="Me.FreeBagSlots &gt;= 11" >
+		 		   	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
+		 		   	<CustomBehavior File="WaitTimer" WaitTime="300000" />
+				</If>
 
-			<CustomBehavior File="MyCTM" X="2762.624" Y="1295.292" Z="13.55656" />
-		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
-			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-		</If>
+					<CustomBehavior File="MyCTM" X="2762.624" Y="1295.292" Z="13.55656" />
+				    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			</If>
 		<!--Instance Coordnation Complete -->
 	</While>
 
 	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
-						<CustomBehavior File="ForcedMount" MountType="Flying" />
-						<CustomBehavior File="MyCTM" X="-8440.5986" Y="-4095.0354" Z="-181.6675"  />
-						<CustomBehavior File="MyCTM" X="-8543.5576" Y="-4333.4116" Z="-181.0570"  />
-						<CustomBehavior File="MyCTM" X="-8505.4590" Y="-4678.6484" Z="-179.2077"  />
-						<CustomBehavior File="MyCTM" X="-8212.0020" Y="-4567.1948" Z="-125.8105"  />
-						<CustomBehavior File="MyCTM" X="-8075.8569" Y="-4782.0283" Z="-78.6867"  />
-						<CustomBehavior File="MyCTM" X="-8090.1841" Y="-4913.8018" Z="-41.3302"  />
-						<CustomBehavior File="MyCTM" X="-8150.6406" Y="-4891.4385" Z="-27.1502"  />
-						<CustomBehavior File="MyCTM" X="-8114.2412" Y="-4830.5107" Z="-6.6260"  />
-						<CustomBehavior File="MyCTM" X="-8073.6382" Y="-4877.5894" Z="13.4246"  />
-						<CustomBehavior File="MyCTM" X="-8166.2295" Y="-4899.8926" Z="33.6649"  />							
-						<CustomBehavior File="MyCTM" X="-8175.8115" Y="-4711.5195" Z="54.0525"  />
-						<CustomBehavior File="FlyTo" DestName="Gazgetzan" X="-7232.01" Y="-3751.71" Z="9.092834" />	
-
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Krinkle Goodsteel" Entry="5411" Type="Repair" X="-7232.01" Y="-3751.71" Z="9.092834" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<ClearVendor />
-			<RunTo X="-7080.707" Y="-3850.493" Z="9.774841" />
-			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
-		</If>
+		<CustomBehavior File="ForcedMount" MountType="Flying" />
+		<CustomBehavior File="MyCTM" X="-8440.5986" Y="-4095.0354" Z="-181.6675"  />
+		<CustomBehavior File="MyCTM" X="-8543.5576" Y="-4333.4116" Z="-181.0570"  />
+		<CustomBehavior File="MyCTM" X="-8505.4590" Y="-4678.6484" Z="-179.2077"  />
+		<CustomBehavior File="MyCTM" X="-8212.0020" Y="-4567.1948" Z="-125.8105"  />
+		<CustomBehavior File="MyCTM" X="-8075.8569" Y="-4782.0283" Z="-78.6867"  />
+		<CustomBehavior File="MyCTM" X="-8090.1841" Y="-4913.8018" Z="-41.3302"  />
+		<CustomBehavior File="MyCTM" X="-8150.6406" Y="-4891.4385" Z="-27.1502"  />
+		<CustomBehavior File="MyCTM" X="-8114.2412" Y="-4830.5107" Z="-6.6260"  />
+		<CustomBehavior File="MyCTM" X="-8073.6382" Y="-4877.5894" Z="13.4246"  />
+		<CustomBehavior File="MyCTM" X="-8166.2295" Y="-4899.8926" Z="33.6649"  />							
+		<CustomBehavior File="MyCTM" X="-8175.8115" Y="-4711.5195" Z="54.0525"  />
+		<CustomBehavior File="FlyTo" DestName="Gazgetzan" X="-7232.01" Y="-3751.71" Z="9.092834" />	
+		<SetVendor>
+			<Vendors>
+				<Vendor Name="Krinkle Goodsteel" Entry="5411" Type="Repair" X="-7232.01" Y="-3751.71" Z="9.092834" />
+			</Vendors>
+		</SetVendor>
+		<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<ClearVendor />
+		<RunTo X="-7080.707" Y="-3850.493" Z="9.774841" />
+		<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+	</If>
 	<RunTo X="-7099.36" Y="-3848.29" Z="8.869291" />
 </While>
 </QuestOrder>

@@ -55,6 +55,7 @@
 	<Factions>16</Factions>
 	
 	<QuestOrder>
+<If Condition="!(Me.MapId == 543)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -393,58 +394,26 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
+</If>
 
 <While Condition="true" >
-						<If Condition="Me.Location.Distance(new WoWPoint(-365.5185, 3082.94, 14.648)) &gt; 10" >
-							<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
-							<CustomBehavior File="Message" Text="Moving to The Instance." LogColor="Lime" />
-							<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-362.5798" Y="3074.1" Z="-15.07973" />
-							<CustomBehavior File="ForcedDismount" />
-						</If>
-						<If Condition="(Me.FreeBagSlots &lt;= 10)" >
-							<If Condition="Me.IsAlliance">
-								<CustomBehavior File="FlyTo" X="-710.32" Y="2650.58" Z="91.01" />
-								<CustomBehavior File="WaitTimer" WaitTime="1000" />
-								<CustomBehavior File="RunMacro" Macro="/dismount" />
-								<RunTo X="-717.32" Y="2607.58" Z="91.01" />
-								<SetVendor>
-									<Vendors>
-										<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
-									</Vendors>
-								</SetVendor>
-								<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
-								<CustomBehavior File="ForcedDismount" />
-								<CustomBehavior File="WaitTimer" WaitTime="1000" />
-								<ClearVendor />
-								<RunTo X="-707.0386" Y="2700.07" Z="94.45774" />
-								<CustomBehavior File="ForceSetVendor" DoMail="True" />
-								<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-362.5798" Y="3074.1" Z="-15.07973" />
-							</If>
-							<!-- Need To Fix this -->
-							<If Condition="Me.IsHorde" >
-								<CustomBehavior File="FlyTo" X="172.726" Y="2623.055" Z="863836" />
-								<CustomBehavior File="WaitTimer" WaitTime="1000" />
-								<CustomBehavior File="RunMacro" Macro="/dismount" />
-								<SetVendor>
-									<Vendor>
-										<Vendor Name="Reagan Mancuso" Entry="22225" Type="Repair" X="179.7871" Y="2605.4" Z="87.28392"/>
-									</Vendor>
-								</SetVendor>
-								<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
-								<ClearVendor />
-								<RunTo X="172.726" Y="2623.055" Z="863836" />
-								<CustomBehavior File="ForceSetVendor" DoMail="True" />
-								<CustomBehavior File="WaitTimer" WaitTime="1000" />
-								<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-362.5798" Y="3074.1" Z="-15.07973" />
-							</If>
-						</If>
-							<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-							<CustomBehavior File="Message" Text="Entering Hellfire Ramparts." LogColor="Lime" />
-							<CustomBehavior File="MyCTM" X="-365.5185" Y="3082.94" Z="-14.648" /> <!-- Enters instance if not already inside -->
-							<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				
+	<If Condition="!(Me.MapId == 543)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(-365.5185, 3082.94, 14.648)) &gt; 10" >
+			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+			<CustomBehavior File="Message" Text="Moving to The Instance." LogColor="Lime" />
+			<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-362.5798" Y="3074.1" Z="-15.07973" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
+	</If>
+	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<If Condition="!(Me.MapId == 543)" >	
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			<CustomBehavior File="Message" Text="Entering Hellfire Ramparts." LogColor="Lime" />
+			<CustomBehavior File="MyCTM" X="-365.5185" Y="3082.94" Z="-14.648" /> <!-- Enters instance if not already inside -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 3562)" >	
+		<If Condition="(Me.MapId == 543)" >
 			<RunTo X="-1329.1674" Y="1664.3109" Z="68.7497"  />
 			<RunTo X="-1286.9285" Y="1672.9517" Z="68.7530"  />
 			<RunTo X="-1270.9171" Y="1653.1740" Z="69.1243"  />
@@ -508,13 +477,11 @@
 		
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 	</While>
-					<!-- End Instance Grind -->
+	<!-- End Instance Grind -->
 	
 	<!-- Checks if bags are full -->	
 	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
-<!-- Force town sell. -->
-<!-- Insert Nav Code. -->
 <!-- Force town sell. -->
 		<If Condition="Me.IsAlliance">
 			<CustomBehavior File="FlyTo" X="-710.32" Y="2650.58" Z="91.01" />
