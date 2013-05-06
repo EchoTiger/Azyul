@@ -51,7 +51,9 @@
 </Blackspots>
 	
 
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 33)" >
+
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -390,9 +392,10 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-		
+</If>
 	<!-- Travel to Shadowfang Keep --> 
-	
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 33)" >
 		<While Condition="(Me.MapId == 0)" >
 			
 						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
@@ -402,9 +405,10 @@
 						<RunTo X="-233.6329" Y="1564.978" Z="76.88455" />
 						<CustomBehavior File="MyCTM" X="-232.8982" Y="1572.929" Z="76.8845" /> <!-- Enters instance if not already inside -->
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						
+		</While>
+	</If>				
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 209)" >
+		<While Condition="(Me.MapId == 33)" >
 						<RunTo X="-202.0162" Y="2100.212" Z="76.89195" />
 						<RunTo X="-191.0653" Y="2134.664" Z="81.50048" />
 						<RunTo X="-208.6492" Y="2141.418" Z="90.6277" />
@@ -480,10 +484,8 @@
 			
 	<!-- End bag check -->
 	
-			</While>
-			</While>
+</While>
 				
-				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

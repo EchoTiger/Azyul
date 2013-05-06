@@ -55,7 +55,9 @@
 </Blackspots>
 	
 
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 329)" >
+
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -394,9 +396,10 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-		
+</If>
 	<!-- Travel to Stratholme --> 
-	
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 329)" >
 		<While Condition="(Me.MapId == 0)" >
 		
 		<If Condition="Me.Location.Distance(new WoWPoint(3232.494, -4046.767, 108.4352)) &gt; 10" >
@@ -411,8 +414,10 @@
 						<CustomBehavior File="MyCTM" X="3238.13" Y="-4057.148" Z="110.4538" /> <!-- Enters instance if not already inside -->
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 2017)" >
+		<While Condition="(Me.MapId == 329)" >
 		
 				<RunTo X="3620.905" Y="-3643.969" Z="138.5107" />
 				<CustomBehavior File="InteractWith" MobId="175368" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens Service Entrance Gate -->
@@ -489,7 +494,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />	
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />  <!-- Resets instance -->
 						<!-- End Instance Grind -->
-	
+		</While>
 	<!-- Checks if bags are full -->	
 			<If Condition="HasSpell(61447) || HasSpell(61425)" >
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
@@ -513,10 +518,8 @@
 			
 	<!-- End bag check -->
 	
-			</While>
-			</While>
+</While>
 				
-				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

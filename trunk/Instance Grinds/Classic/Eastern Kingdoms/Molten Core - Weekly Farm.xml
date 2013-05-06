@@ -49,7 +49,9 @@
 </Blackspots>
 	
 
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 409)" >
+
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -390,7 +392,8 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-	
+</If>
+<If Condition="!(Me.MapId == 409)" >
 		<While Condition="(Me.MapId == 0)" >
 		
 		<!-- Enable Loot -->
@@ -416,7 +419,8 @@
 						<CustomBehavior File="Misc\RunLua" Lua="AcceptQuest()" WaitTime="100" />
 			</If>
 			<!-- Begin Molten Core Attunement -->
-			
+</If>
+<If Condition="!(Me.MapId == 409)" >
 			<If Condition="HasQuest(7848) &amp;&amp; !IsQuestCompleted(7848)" >
 						<RunTo X="-7178.522" Y="-924.8549" Z="166.7823" />
 						<CustomBehavior File="MyCTM" X="-7178.522" Y="-926.8549" Z="166.7823" /> <!-- Enters instance if not already inside -->
@@ -475,10 +479,10 @@
 						<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
-			
+</If>
 			<!-- Molten Core Instance Farm -->
 			
-			<If Condition="(Me.ZoneId == 2717)" >
+			<If Condition="(Me.MapId == 409)" >
 			
 						<RunTo X="1090.535" Y="-474.5745" Z="-107.2641" />
 						<RunTo X="1128.429" Y="-541.4446" Z="-107.4853" />
@@ -535,6 +539,6 @@
 		
 				
 				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

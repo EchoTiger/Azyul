@@ -51,7 +51,8 @@
 </Blackspots>
 	
 
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 189)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -391,8 +392,10 @@
 		Big thanks to Kick for this.
 		--> 
 		
-	<!-- Travel to Shadowfang Keep --> 
-	
+</If>
+	<!-- Travel to Scarlet Halls --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 189)" >
 		<While Condition="(Me.MapId == 0)" >
 			
 						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
@@ -402,9 +405,10 @@
 						<RunTo X="2912.714" Y="-802.7842" Z="160.333" />
 						<CustomBehavior File="MyCTM" X="2918.915" Y="-801.9002" Z="160.333" /> <!-- Enters instance if not already inside -->
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						
+		</While>
+	</If>				
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 6109)" >
+		<While Condition="(Me.MapId == 189)" >
 						<RunTo X="1124.644" Y="512.467" Z="0.989549" />
 						<RunTo X="1106.242" Y="544.0167" Z="0.0500363" />
 						<RunTo X="1140.303" Y="557.7011" Z="0.265174" />
@@ -469,10 +473,8 @@
 			
 	<!-- End bag check -->
 	
-			</While>
-			</While>
+</While>				
 				
-				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

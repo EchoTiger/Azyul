@@ -51,10 +51,11 @@
 	<Blackspot X="1485.6520" Y="807.7772" Z="8.8910" Radius="5" />
 </Blackspots>
 	
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 
-	<QuestOrder>
-	
+<QuestOrder>
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<If Condition="!(Me.MapId == 209)" >	
+
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -393,9 +394,10 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-		
-		<!-- Travel to Halls of Lightning --> 
-		
+</If>
+		<!-- Travel to Zul'Darrak --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 209)" >	
 		<While Condition="(Me.MapId == 1)" >
 		
 						<CustomBehavior File="Message" Text="Moving to Zul'Farrak Location." LogColor="Lime" />
@@ -403,9 +405,10 @@
 						<CustomBehavior File="MyCTM" X="-6788.347" Y="-2891.102" Z="8.883102" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
-		
+		</While>
+	</If>
 		<!-- Begin Instance Grind -->	
-		<While Condition="(Me.ZoneId == 1176)" >
+		<While Condition="(Me.MapId == 209)" >
 					
 						<RunTo X="1250.8098" Y="846.5090" Z="9.0183"  />
 						<RunTo X="1294.3468" Y="818.1006" Z="9.7063"  />
@@ -470,10 +473,9 @@
 			</If>
 		<!-- End bag check -->
 			
-			</While>
 			
-			</While>
+</While>
 				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

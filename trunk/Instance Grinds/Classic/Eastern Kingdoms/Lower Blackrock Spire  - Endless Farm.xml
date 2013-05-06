@@ -48,8 +48,9 @@
 <Blackspots>
 </Blackspots>
 	
+<QuestOrder>
+<If Condition="!(Me.MapId == 229)" >
 
-	<QuestOrder>
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -388,9 +389,10 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-		
+</If>		
 	<!-- Travel to Blackrock Mountain --> 
-	
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 229)" >
 		<While Condition="(Me.MapId == 0)" >
 			
 			<!-- Navigation to deal with being inside mountain -->
@@ -410,9 +412,10 @@
 						<RunTo X="-7525.331" Y="-1228.654" Z="285.7321" />
 						<CustomBehavior File="MyCTM" X="-7523.937" Y="-1233.463" Z="285.7379" /> <!-- Enters instance if not already inside -->
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						
+		</While>
+	</If>
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 1583)" >
+		<While Condition="(Me.MapId == 229)" >
 		
 						<RunTo X="78.3534" Y="-230.145" Z="50.20138" />
 						<RunTo X="92.06746" Y="-277.085" Z="60.59741" />
@@ -490,7 +493,7 @@
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 						<!-- End Instance Grind -->
-	
+		</While>
 	<!-- Checks if bags are full -->	
 			<If Condition="HasSpell(61447) || HasSpell(61425)" >
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
@@ -516,10 +519,9 @@
 			
 	<!-- End bag check -->
 	
-			</While>
-			</While>
+</While>
 				
 				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

@@ -49,10 +49,11 @@
 	<Blackspot X="1485.6520" Y="807.7772" Z="8.8910" Radius="5" />
 </Blackspots>
 	
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 
-	<QuestOrder>
-	
+<QuestOrder>
+<If Condition="!(Me.MapId == 509)" >	
+
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -391,9 +392,9 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-		
+</If>		
 		<!-- Travel to AQ 20 --> 
-		
+	<If Condition="!(Me.MapId == 509)" >	
 		<While Condition="(Me.MapId == 1)" >
 		
 						<CustomBehavior File="Message" Text="Moving to Ahn'Quiraj Location." LogColor="Lime" />
@@ -401,9 +402,10 @@
 						<CustomBehavior File="MyCTM" X="-8436.53" Y="1519.17" Z="31.907" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
-		
+		</While>
+	</If>
 		<!-- Begin Instance Grind -->	
-		<While Condition="(Me.ZoneId == 3429)" >
+		<While Condition="(Me.MapId == 509)" >
 		
 					<RunTo X="-8442.494" Y="1517.209" Z="31.91632" />
 					<RunTo X="-8508.545" Y="1530.383" Z="31.96552" />
@@ -470,7 +472,7 @@
 		
 		<CustomBehavior File="InteractWith"  MobId="15370" ObjectType="Npc" NumOfTimes="1" X="-9274.294" Y="1255.956" Z="-63.75863" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" /> <!-- Pull Buru the Gorger -->
 					
-		
+		</While>
 		<!-- Hearth out because we're done! -->
 				<While Condition="(Me.ZoneId == 3429)" >
 				
@@ -488,10 +490,8 @@
 				
 				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="AQ 20 Run Complete!\nDid You Get Lucky?" />
 			
-			</While>
 			
-			</While>
 				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

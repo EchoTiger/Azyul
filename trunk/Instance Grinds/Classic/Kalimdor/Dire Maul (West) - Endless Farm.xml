@@ -55,10 +55,9 @@
 	<Blackspot X="78.55539" Y="737.4548" Z="-23.90022" Radius="7.83217" />
 </Blackspots>
 	
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
-
-	<QuestOrder>
-	
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<QuestOrder>
+<If Condition="!(Me.MapId == 429)" >	
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -399,7 +398,10 @@
 		--> 
 		
 		<!-- Travel to Halls of Lightning --> 
-		
+</If>
+<While Condition="true" >	
+	<If Condition="!(Me.MapId == 429)" >	
+
 		<While Condition="(Me.MapId == 1)" >
 		
 						<CustomBehavior File="Message" Text="Moving to Dire Maul (West) Location." LogColor="Lime" />
@@ -408,9 +410,10 @@
 						<CustomBehavior File="MyCTM" X="-3759.301" Y="1249.58" Z="160.2727" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
-		
+		</While>
+	</If>
 		<!-- Begin Instance Grind -->	
-		<While Condition="(Me.ZoneId == 2557)" >
+		<While Condition="(Me.MapId == 429)" >
 		
 						<RunTo X="33.1083" Y="158.977" Z="-3.47126" />
 						<RunTo X="133.3874" Y="202.3625" Z="-4.985773" />
@@ -500,7 +503,7 @@
 						<CustomBehavior File="MyCTM" X="27.681" Y="159.7841" Z="-3.472685" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-			
+		</While>	
 		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
 			<If Condition="(HasSpell(61447) || (HasSpell(61425))" >
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
@@ -520,10 +523,8 @@
 		<!-- End bag check -->
 			
 			
-			</While>
-			
-			</While>
+</While>
 				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

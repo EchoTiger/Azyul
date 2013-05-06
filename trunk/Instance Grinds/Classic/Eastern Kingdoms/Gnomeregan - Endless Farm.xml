@@ -50,7 +50,8 @@
 <CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 	
 
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 90)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -389,9 +390,10 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-		
+</If>
 	<!-- Travel to Gnomeregan --> 
-	
+<If Condition="!(Me.MapId == 90)" >
+
 		<While Condition="(Me.MapId == 0)" >
 			
 			<!-- Navigation to deal with being Gnomergan for Alliance -->
@@ -426,9 +428,9 @@
 				<CustomBehavior File="MyCTM" X="-12413.36" Y="237.4414" Z="1.803225" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
-
+</If>
  	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 721)" >
+		<While Condition="(Me.MapId == 90)" >
 						<RunTo X="-394.8961" Y="51.38895" Z="-154.7998" />
 						<RunTo X="-489.0648" Y="55.94126" Z="-156.9971" />
 						<RunTo X="-513.6445" Y="-135.4224" Z="-152.4943" /> <!-- Move to interact with Blastmaster Emi Shortfuse -->
@@ -541,6 +543,6 @@
 		</While>
 				
 				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

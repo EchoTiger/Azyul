@@ -53,10 +53,11 @@
 	<Blackspot X="1485.6520" Y="807.7772" Z="8.8910" Radius="5" />
 </Blackspots>
 	
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 
-	<QuestOrder>
-	
+<QuestOrder>
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<If Condition="!(Me.MapId == 429)" >
+
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -396,19 +397,21 @@
 		Big thanks to Kick for this.
 		--> 
 		
-		<!-- Travel to Halls of Lightning --> 
-		
-		<While Condition="(Me.MapId == 1)" >
+		<!-- Travel to Dire Maul (North) --> 
+</If>
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 429)" >
+ 		<While Condition="(Me.MapId == 1)" >
 		
 						<CustomBehavior File="Message" Text="Moving to Dire Maul (North) Location." LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Dire Maul (North)" X="-3519.844" Y="1098.864" Z="161.026" />
 						<CustomBehavior File="MyCTM" X="-3519.844" Y="1094.864" Z="161.026" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="ForcedDismount" />
-		
+		</While>
+	</If>
 		<!-- Begin Instance Grind -->	
-		<While Condition="(Me.ZoneId == 2557)" >
-		
+		<While Condition="(Me.MapId == 429)" >
 						<RunTo X="259.7697" Y="-31.65197" Z="-2.5596" />
 						<RunTo X="295.1591" Y="-68.91334" Z="-3.886934" />
 						<RunTo X="352.2098" Y="-107.4893" Z="-3.886914" />
@@ -472,7 +475,7 @@
 						<CustomBehavior File="MyCTM" X="255.5269" Y="-11.92353" Z="-2.560003" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-			
+		</While>	
 		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
 			<If Condition="(HasSpell(61447) || (HasSpell(61425))" >
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
@@ -492,10 +495,9 @@
 		<!-- End bag check -->
 			
 			
-			</While>
 			
-			</While>
+</While>
 				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>

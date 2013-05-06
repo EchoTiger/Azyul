@@ -51,7 +51,9 @@
 </Blackspots>
 	
 
-	<QuestOrder>
+<QuestOrder>
+<If Condition="!(Me.MapId == 189)" >
+
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -390,52 +392,54 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-		
-	<!-- Travel to Shadowfang Keep --> 
-	
-		<While Condition="(Me.MapId == 0)" >
-			
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Scarlet Monastery Location." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Scarlet Monastery" X="2820.969" Y="-699.184" Z="137.4398" />
-						<CustomBehavior File="ForcedDismount" />
-						<RunTo X="2871.466" Y="-820.1647" Z="160.3326" />
-						<CustomBehavior File="MyCTM" X="2865.655" Y="-821.7447" Z="160.3326" /> <!-- Enters instance if not already inside -->
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						
-	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 6052)" >
-						<RunTo X="820.743" Y="607.8125" Z="13.63888" />
-						<RunTo X="838.5411" Y="558.5486" Z="12.81223" />
-						<RunTo X="851.7104" Y="553.1015" Z="13.4873" />
-						<CustomBehavior File="InteractWith" MobId="59163" ObjectType="Npc" X="864.9913" Y="537.9496" Z="12.90997" CollectionDistance="200" /> <!-- Pick up Shield -->
-						<CustomBehavior File="RunLikeHell" NumOfTimes="1" UseCTM="True" >
-						<Hotspot X="934.9882" Y="535.9525" Z="12.90587" />
-						</CustomBehavior>
-						<RunTo X="985.7662" Y="535.8728" Z="13.48854" />
-						<RunTo X="986.7923" Y="515.2928" Z="13.48854" />
-						<RunTo X="1008.277" Y="514.0673" Z="12.90636" /> <!-- Pull Houndmaster Braun -->
-						<RunTo X="1070.534" Y="505.3835" Z="2.822071" />
-						<RunTo X="1072.327" Y="485.5903" Z="2.806516" />
-						<RunTo X="1096.851" Y="475.2554" Z="2.821958" />
-						<RunTo X="1127.028" Y="468.46" Z="2.822089" />
-						<RunTo X="1123.749" Y="444.9704" Z="2.822262" />
-						<RunTo X="1205.758" Y="444.3151" Z="0.9877673" /> <!-- Pull Armsmaster Harlan -->
-						<RunTo X="1168.716" Y="505.654" Z="12.81847" />
-						<RunTo X="1189.809" Y="515.6321" Z="12.82621" />
-						<RunTo X="1189.144" Y="540.1186" Z="12.81575" />
-						<RunTo X="1229.409" Y="550.1929" Z="12.79413" />
-						<RunTo X="1251.247" Y="549.4538" Z="12.7911" />
-						<RunTo X="1303.794" Y="549.7339" Z="12.80463" />
-						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
-						<RunTo X="820.743" Y="607.8125" Z="13.63888" />
-						<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="180000" />
-						<CustomBehavior File="MyCTM" X="820.2064" Y="617.4401" Z="13.51544" />   />
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-						<!-- End Instance Grind -->
-	
+</If>
+	<!-- Travel to Scarlet Halls --> 
+<While Condition="true" />
+	<If Condition="!(Me.MapId == 189)" >
+			<While Condition="(Me.MapId == 0)" >
+				
+							<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+							<CustomBehavior File="Message" Text="Moving to Scarlet Monastery Location." LogColor="Lime" />
+							<CustomBehavior File="FlyTo" DestName="Scarlet Monastery" X="2820.969" Y="-699.184" Z="137.4398" />
+							<CustomBehavior File="ForcedDismount" />
+							<RunTo X="2871.466" Y="-820.1647" Z="160.3326" />
+							<CustomBehavior File="MyCTM" X="2865.655" Y="-821.7447" Z="160.3326" /> <!-- Enters instance if not already inside -->
+							<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</While>
+	</If>
+		<!-- Begin Instance Grind -->
+	<While Condition="(Me.MapId == 189)" >
+							<RunTo X="820.743" Y="607.8125" Z="13.63888" />
+							<RunTo X="838.5411" Y="558.5486" Z="12.81223" />
+							<RunTo X="851.7104" Y="553.1015" Z="13.4873" />
+							<CustomBehavior File="InteractWith" MobId="59163" ObjectType="Npc" X="864.9913" Y="537.9496" Z="12.90997" CollectionDistance="200" /> <!-- Pick up Shield -->
+							<CustomBehavior File="RunLikeHell" NumOfTimes="1" UseCTM="True" >
+							<Hotspot X="934.9882" Y="535.9525" Z="12.90587" />
+							</CustomBehavior>
+							<RunTo X="985.7662" Y="535.8728" Z="13.48854" />
+							<RunTo X="986.7923" Y="515.2928" Z="13.48854" />
+							<RunTo X="1008.277" Y="514.0673" Z="12.90636" /> <!-- Pull Houndmaster Braun -->
+							<RunTo X="1070.534" Y="505.3835" Z="2.822071" />
+							<RunTo X="1072.327" Y="485.5903" Z="2.806516" />
+							<RunTo X="1096.851" Y="475.2554" Z="2.821958" />
+							<RunTo X="1127.028" Y="468.46" Z="2.822089" />
+							<RunTo X="1123.749" Y="444.9704" Z="2.822262" />
+							<RunTo X="1205.758" Y="444.3151" Z="0.9877673" /> <!-- Pull Armsmaster Harlan -->
+							<RunTo X="1168.716" Y="505.654" Z="12.81847" />
+							<RunTo X="1189.809" Y="515.6321" Z="12.82621" />
+							<RunTo X="1189.144" Y="540.1186" Z="12.81575" />
+							<RunTo X="1229.409" Y="550.1929" Z="12.79413" />
+							<RunTo X="1251.247" Y="549.4538" Z="12.7911" />
+							<RunTo X="1303.794" Y="549.7339" Z="12.80463" />
+							<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+							<RunTo X="820.743" Y="607.8125" Z="13.63888" />
+							<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
+							<CustomBehavior File="WaitTimer" WaitTime="180000" />
+							<CustomBehavior File="MyCTM" X="820.2064" Y="617.4401" Z="13.51544" />   />
+							<CustomBehavior File="WaitTimer" WaitTime="15000" />
+							<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+							<!-- End Instance Grind -->
+	</While>
 	<!-- Checks if bags are full -->	
 			<If Condition="HasSpell(61447) || HasSpell(61425)" >
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
@@ -457,10 +461,9 @@
 			
 	<!-- End bag check -->
 	
-			</While>
-			</While>
+</While>
 				
 				
-	</QuestOrder>
+</QuestOrder>
 
 </HBProfile>
