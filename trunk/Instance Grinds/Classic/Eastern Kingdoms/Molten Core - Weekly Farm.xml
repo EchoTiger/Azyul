@@ -71,7 +71,6 @@
 		A monkey can do it.
 		******************************
 		Add MapId for farming location, the id you enter here is where you want to go.-->
-		<While Condition ="!(Me.MapId == 2717)" >
 		<While Condition="!(Me.MapId == 0)" >
 			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" 
 			Text="Do not stop the bot, i will take you where you want to go, just sit back and relax." Title="WARNING" />	
@@ -419,6 +418,7 @@
 						<CustomBehavior File="Misc\RunLua" Lua="AcceptQuest()" WaitTime="100" />
 			</If>
 			<!-- Begin Molten Core Attunement -->
+		</While>
 </If>
 <If Condition="!(Me.MapId == 409)" >
 			<If Condition="HasQuest(7848) &amp;&amp; !IsQuestCompleted(7848)" >
@@ -533,11 +533,6 @@
 				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Molten Core Run Complete!\nDid You Get Lucky?" />
 				</If>
 						
-			
-			</While>
-			</While>
-		
-				
 				
 </QuestOrder>
 
