@@ -454,29 +454,24 @@
 		</If>
 		<If Condition="(Me.MapId == 608)" >
 			<RunTo X="1829.354" Y="800.0579" Z="44.36008" />
-			<CustomBehavior File="WaitTimer" WaitTime="30000" />
-			<CustomBehavior File="RunMacro" Macro="/cleartarget\n/target Lieutenant Sinclari\n/focus\n/cleartarget" />
+			<CustomBehavior File="InteractWith" MobId="30658" NumOfTimes="1" GossipOptions="1, 1" X="1830.95" Y="799.463" Z="44.33492" />
 			<CustomBehavior File="WaitTimer" WaitTime="1500" />
-			<While Condition="(Me.FocusedUnit != null) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(1816.19, 804.06, 44.3)) &lt;= 4)" >
-			    <CustomBehavior File="InteractWith" MobId1="31007" MobId2="30918" MobId3="30663" MobId4="30666" MobId5="31008" MobId6="30961" MobId7="30661" MobId8="30664" MobId9="31010" MobId10="30963" MobId11="30668" MobId12="31079" MobId13="30667" MobId14="30962" MobId15="30662" MobId16="31009" MobId17="32191" MobId18="30892" MobId19="30660" MobId20="30893" MobId21="30695" MobId22="31134" FactionId="1720" ObjectType="Npc" NumOfTimes="1" X="1900.566" Y="814.2643" Z="38.70609" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" KeepTargetSelected="True" >
+		<While Condition="(Me.CurrentTarget == null) || (Me.CurrentTarget.Entry != 31134) || ((Me.CurrentTarget.Entry == 31134) &amp;&amp; (Me.CurrentTarget.IsAlive))" >
+			    <CustomBehavior File="InteractWith" MobId1="31007" MobId2="30918" MobId3="30663" MobId4="30666" MobId5="31008" MobId6="30961" MobId7="30661" MobId8="30664" MobId9="31010" MobId10="30963" MobId11="30668" MobId12="31079" MobId13="30667" MobId14="30962" MobId15="30662" MobId16="31009" MobId17="32191" MobId18="30892" MobId19="30660" MobId20="30893" MobId21="30695" MobId22="31134" X="1900.566" Y="814.2643" Z="38.70609" KeepTargetSelected="True" CollectionDistance="200" MobState="Alive" WaitForNpcs="false" >
 					<HuntingGrounds>
-						<Hotspot X="1896.037" Y="803.8868" Z="38.49569" />
+						<Hotspot X="1891.312" Y="770.0576" Z="43.01162" />
+						<Hotspot X="1891.312" Y="770.0576" Z="43.01162" />
 					</HuntingGrounds>
 				</CustomBehavior>
+				<CustomBehavior File="RunMacro" Macro="/target Cyanigosa" />
 			</While>
 			<RunTo X="1890.757" Y="801.1738" Z="38.41982" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" />
 			<RunTo X="1831.91" Y="803.9288" Z="44.3189" />
 			<RunTo X="1810.338" Y="803.8205" Z="44.36394" />
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
-		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
-		    </If>
 		    <CustomBehavior File="MyCTM" X="1799.551" Y="803.848" Z="44.36394" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 		</If>
 	</While>
 		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
