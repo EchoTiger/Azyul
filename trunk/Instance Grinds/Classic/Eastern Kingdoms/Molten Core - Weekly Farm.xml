@@ -393,7 +393,7 @@
 		--> 
 </If>
 <If Condition="!(Me.MapId == 409)" >
-		<While Condition="(Me.MapId == 0)" >
+		<If Condition="(Me.MapId == 0)" >
 		
 		<!-- Enable Loot -->
 		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
@@ -418,7 +418,7 @@
 						<CustomBehavior File="Misc\RunLua" Lua="AcceptQuest()" WaitTime="100" />
 			</If>
 			<!-- Begin Molten Core Attunement -->
-		</While>
+		</If>
 </If>
 <If Condition="!(Me.MapId == 409)" >
 			<If Condition="HasQuest(7848) &amp;&amp; !IsQuestCompleted(7848)" >
