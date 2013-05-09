@@ -403,11 +403,12 @@
 <!-- Nav to Dungeon -->
 <While Condition="true" >
 		<If Condition="!(Me.MapId == 555)" >
-			<If Condition="Me.Location.Distance(new WoWPoint(-3651.335, 4943.071, -102.0909)) &gt; 200" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-3651.335, 4943.071, -102.0909)) &gt; 50" >
 				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
-				<CustomBehavior File="Message" Text="Moving to Shadow Labyrinth." LogColor="Lime" />
-				<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3475.315" Y="4942.875" Z="-101.3955" />
-				<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" WaitTime="0" X="-3556.407" Y="4943.071" Z="-101.1189" />				
+				<CustomBehavior File="Message" Text="Moving to Shadow Labyrinth Area." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3482.706" Y="4942.984" Z="-101.3959" />
+				<RunTo X="-3555.221" Y="4943.601" Z="-101.3954" />
+				<CustomBehavior File="InteractWith" MobId="183294" ObjectType="GameObject" WaitTime="0" X="-3556.407" Y="4943.071" Z="-101.1189" />			
 				<RunTo X="-3651.335" Y="4943.071" Z="-102.0909" /><!-- Enters instance if not already inside -->
 				<CustomBehavior File="ForcedDismount" />
 			</If>
@@ -428,7 +429,7 @@
 				<RunTo X="-3600.335" Y="4943.071" Z="-102.0909" /><!-- Enters instance if not already inside -->
 			</If>		
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-			<CustomBehavior File="Message" Text="Entering Auchenai Crypts." LogColor="Lime" />
+			<CustomBehavior File="Message" Text="Entering Auchenai Crypts Directly." LogColor="Lime" />
 			<CustomBehavior File="MyCTM" X="-3651.335" Y="4943.071" Z="-102.0909" /> <!-- Enters instance if not already inside -->
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
@@ -450,8 +451,7 @@
 			<RunTo X="-150.8039" Y="-21.7719" Z="8.071868" />
 			<RunTo X="-140.1217" Y="-6.401989" Z="8.071868" />
 			<RunTo X="-167.2283" Y="-1.147267" Z="8.071868" />
-			<RunTo X="-157.0241" Y="-6.560795" Z="8.072991" />
-			<RunTo X="-167.1883" Y="-13.20597" Z="8.072991" />
+			<CustomBehavior File="InteractWith" MobId="18731" ObjectType="NPC" WaitTime="0" X="-156.2924" Y="21.05757" Z="8.073071" />
 			<RunTo X="-254.2549" Y="-25.73967" Z="8.100221" />
 			<RunTo X="-264.6995" Y="-0.539649" Z="8.073388" />
 			<RunTo X="-276.339" Y="18.99645" Z="8.073024" />
