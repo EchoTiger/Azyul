@@ -3,10 +3,10 @@
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
-// Farm zone: The Blood Furnace
+// Farm zone: Salve Pens
 // Farm mobs: All
 // Grind Speed: N/A
-// Grind what? Rep: Honor Hold Rep
+// Grind what? Rep: 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 <MinLevel>54</MinLevel>
@@ -492,7 +492,7 @@
 							</If>
 						</If>
 							<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-							<CustomBehavior File="Message" Text="Entering Auchenai Crypts." LogColor="Lime" />
+							<CustomBehavior File="Message" Text="Entering Slave Pens." LogColor="Lime" />
 							<CustomBehavior File="MyCTM" X="741.1000" Y="7015.931" Z="-71.77438" /><!-- Enters instance if not already inside -->
 							<CustomBehavior File="WaitTimer" WaitTime="15000" />
 	</If>
@@ -545,6 +545,7 @@
 					<RunTo X="-205.9143" Y="-704.9301" Z="37.10201" />
 				<!--Quagmirran-->
 					<RunTo X="-289.9835" Y="-664.2767" Z="10.02171" />
+					<CustomBehavior File="InteractWith" MobId="17942" ObjectType="NPC" MobState="Dead" WaitTime="0" X="-229.4388" Y="-690.1699" Z="29.29811" />	
 					<RunTo X="-199.9805" Y="-709.3547" Z="37.89244" />
 					<RunTo X="-191.2722" Y="-715.4332" Z="37.89233" />
 					<RunTo X="-115.3678" Y="-754.8348" Z="37.45081" />
@@ -590,7 +591,9 @@
 <!-- Insert Nav Code. -->
 <!-- Force town sell. -->
 									<If Condition="Me.IsAlliance">
-								<CustomBehavior File="Message" Text="Moving to Cenarion Refuge's Mailbox" LogColor="Lime" />
+									<CustomBehavior File="Message" Text="Moving to Cenarion Refuge's Mailbox" LogColor="Lime" />
+									<CustomBehavior File="MyCTM" X="724.5302" Y="7012.56" Z="-72.2262" />
+									<CustomBehavior File="MyCTM" X="716.4602" Y="6916.927" Z="-66.80879" />
 									<CustomBehavior File="MyCTM" X="655.8704" Y="6865.183" Z="-83.67981" />
 									<CustomBehavior File="MyCTM" X="632.2728" Y="6871.266" Z="-75.63762" />
 									<CustomBehavior File="MyCTM" X="619.5461" Y="6887.241" Z="-64.32347" />
@@ -616,6 +619,8 @@
 		</If>
 		<!-- Need To Fix this -->
 		<If Condition="Me.IsHorde" >
+									<CustomBehavior File="MyCTM" X="724.5302" Y="7012.56" Z="-72.2262" />
+									<CustomBehavior File="MyCTM" X="716.4602" Y="6916.927" Z="-66.80879" />
 									<CustomBehavior File="MyCTM" X="655.8704" Y="6865.183" Z="-83.67981" />
 									<CustomBehavior File="MyCTM" X="632.2728" Y="6871.266" Z="-75.63762" />
 									<CustomBehavior File="MyCTM" X="619.5461" Y="6887.241" Z="-64.32347" />
