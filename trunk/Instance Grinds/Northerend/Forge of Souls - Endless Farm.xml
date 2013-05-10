@@ -513,11 +513,22 @@
 			<If Condition="((HasQuest(24499)) &amp;&amp; (IsQuestCompleted(24499)))" >
 				<CustomBehavior File="WaitTimer" WaitTime="12000" />
 				<TurnIn QuestName="Echoes of Tortured Souls" QuestId="24499" TurnInName="Lady Jaina Proudmoore" TurnInId="38160" X="5660.412" Y="2504.816" Z="708.8298" />
-
+				<PickUp QuestName="Pit of Saron" QuestId="24683" GiverName="Lady Jaina Proudmoore" GiverId="38160" X="5660.412" Y="2504.816" Z="708.8298" />
 			</If>
 			<If Condition="((HasQuest(24511)) &amp;&amp; (IsQuestCompleted(24511)))" >
 				<CustomBehavior File="WaitTimer" WaitTime="12000" />
 				<TurnIn QuestName="Echoes of Tortured Souls" QuestId="24511" TurnInName="Lady Sylvanas Windrunner" TurnInId="37596" X="5660.412" Y="2504.816" Z="708.8298" />
+				<PickUp QuestName="Pit of Saron" QuestId="24628" GiverName="Lady Sylvanas Windrunner" GiverId="38161" X="5660.412" Y="2504.816" Z="708.8298" />
+			</If>
+			<If Condition="Me.IsAlliance" >
+				<If Condition="((!HasQuest(24683)) &amp;&amp; (!IsQuestCompleted(24683)))" >
+				<PickUp QuestName="Pit of Saron" QuestId="24683" GiverName="Lady Jaina Proudmoore" GiverId="38160" X="5660.412" Y="2504.816" Z="708.8298" />
+				</If>
+			</If>
+			<If Condition="Me.IsHorde" >
+				<If Condition="((!HasQuest(24628)) &amp;&amp; (!IsQuestCompleted(24511)))" >
+				<PickUp QuestName="Pit of Saron" QuestId="24628" GiverName="Lady Sylvanas Windrunner" GiverId="38161" X="5660.412" Y="2504.816" Z="708.8298" />
+				</If>
 			</If>
 			<RunTo X="5592.671" Y="2417.322" Z="705.8525" />
 			<RunTo X="5477.925" Y="2496.133" Z="705.9745" />
