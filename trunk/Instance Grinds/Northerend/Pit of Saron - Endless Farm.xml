@@ -451,7 +451,6 @@
 <!-- CHOP CHOP :D -->
 <While Condition="true" >
 	<If Condition="!(Me.MapId == 658)" >
-
 		<If Condition="Me.Location.Distance(new WoWPoint(5634.798, 2045.548, 798.2698)) &gt; 300" >
 			<CustomBehavior File="FlyTo" X="5770.986" Y="2326.418" Z="850.9347" />
 			<CustomBehavior File="FlyTo" X="5698.327" Y="2260.403" Z="804.2882" />
@@ -465,6 +464,8 @@
 			<If Condition="!(Me.MapId == 658)" >
 				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 				<RunTo X="5587.691" Y="2005.754" Z="798.0637" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
@@ -505,20 +506,20 @@
 			    <CustomBehavior File="MyCTM"  X="529.9023" Y="138.4991" Z="528.9505"  />
 			    <RunTo X="540.3359" Y="118.4916" Z="510.0761"  /> 
 			    <If Condition="(!IsQuestCompleted(24498)) &amp;&amp; Me.IsAlliance" >
-			      <!--Q5v--><CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3"  CollectionDistance="20" MobId="202168" X="552.3743" Y="76.53979" Z="525.4404" />
+			      <!--Q5v--><CustomBehavior File="InteractWith" Range="2" WaitForNpcs="false" NumOfTimes="3" Range="20" MobId="202168" X="551.1284" Y="80.01721" Z="525.5676" />
 			    </If>
 			    <If Condition="(!IsQuestCompleted(24507)) &amp;&amp; Me.IsHorde" >
-			      <!--Q5v--><CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3"  CollectionDistance="20" MobId="202168" X="552.3743" Y="76.53979" Z="525.4404" />
+			      <!--Q5v--><CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" Range="20" MobId="202168" X="551.1284" Y="80.01721" Z="525.5676" />
 			    </If>
 			    <RunTo X="555.1575" Y="74.4293" Z="525.1965"  />
-			    <CustomBehavior File="MyCTM" X="569.9951" Y="61.1021" Z="525.1926"  />
-			    <CustomBehavior File="MyCTM" X="590.6357" Y="42.6545" Z="521.4177" />
-			    <CustomBehavior File="MyCTM" X="594.5737" Y="5.076859" Z="512.5858" />
+			    <CustomBehavior File="MyCTM"  X="569.9951" Y="61.1021" Z="525.1926"  />
+			    <RunTo X="578.3290" Y="46.9066" Z="521.4176"  />
+			    <CustomBehavior File="MyCTM"  X="585.4250" Y="36.4805" Z="521.4176"  />
 			    <If Condition="(!IsQuestCompleted(24498)) &amp;&amp; Me.IsAlliance" >
-			    	<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="7" CollectionDistance="55" MobId="202168" X="593.8246" Y="2.071562" Z="512.5859" />
+			      <!--Q9v--><CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="7" Range="55" MobId="202168" X="593.4335" Y="2.246984" Z="512.5865" />
 			    </If>
 			    <If Condition="(!IsQuestCompleted(24507)) &amp;&amp; Me.IsHorde" >
-			    	<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="7" CollectionDistance="55" MobId="202168" X="593.8246" Y="2.071562" Z="512.5859" />
+			      <!--Q9v--><CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="7" Range="55" MobId="202168" X="593.4335" Y="2.246984" Z="512.5865" />
 			    </If>
 			    <CustomBehavior File="MyCTM" X="592.3906" Y="17.1549" Z="512.5720"  />
 			    <RunTo X="624.9542" Y="6.3761" Z="513.7393"  />
@@ -526,22 +527,22 @@
 			    <RunTo X="635.7433" Y="-23.7387" Z="513.7417"  />
 			    <RunTo X="655.3684" Y="-69.0287" Z="513.7417"  />
 			    <If Condition="(!IsQuestCompleted(24498)) &amp;&amp; Me.IsAlliance" >
-			      <!--Q14v--><CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="5" CollectionDistance="50" MobId="202168" X="644.1721" Y="-85.59489" Z="512.8027" />
+			      <!--Q14v--><CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="5" Range="50" MobId="202168" X="593.4335" Y="2.246984" Z="512.5865" />
 			    </If>
 			    <If Condition="(!IsQuestCompleted(24507)) &amp;&amp; Me.IsHorde" >
-			      <!--Q14v--><CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="5" CollectionDistance="50" MobId="202168" X="644.1721" Y="-85.59489" Z="512.8027" />
+			      <!--Q14v--><CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="5" Range="50" MobId="202168" X="593.4335" Y="2.246984" Z="512.5865" />
 			    </If>
 			    <RunTo X="641.3870" Y="-69.5214" Z="513.7543"  />
 			    <RunTo X="692.7523" Y="-113.7768" Z="513.8766"  />
-			    <!-- Boss16v--><CustomBehavior File="InteractWith" MobState="DontCare" WaitForNpcs="false" NumOfTimes="1" CollectionDistance="100" MobId="36494" X="694.1741" Y="-219.1252" Z="526.7153" />
+			    <!-- Boss16v--><CustomBehavior File="InteractWith" MobState="Dontcare" NumOfTimes="1" Range="100" MobId="36494" X="694.1741" Y="-219.1252" Z="526.7153" />
 			    <RunTo X="695.4683" Y="-158.8001" Z="528.0613"  />
 			    <If Condition="((HasQuest(24498)) &amp;&amp; (IsQuestCompleted(24498)))" >
-			      <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			      <CustomBehavior File="WaitTimer" WaitTime="5000" />
 			      <TurnIn QuestName="The Path to the Citadel" QuestId="24498" TurnInName="Martin Victus" TurnInId="37591" X="693.5434" Y="-165.7882" Z="527.3246" />
 			      <PickUp QuestName="Deliverance from the Pit" QuestId="24710" GiverName="Martin Victus" GiverId="37591" X="693.5434" Y="-165.7882" Z="527.3246" />
 			    </If>
 			    <If Condition="((HasQuest(24507)) &amp;&amp; (IsQuestCompleted(24507)))" >
-			      <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			      <CustomBehavior File="WaitTimer" WaitTime="5000" />
 			      <TurnIn QuestName="The Path to the Citadel" QuestId="24507" TurnInName="Gorkun Ironskull" TurnInId="37592" X="693.5434" Y="-165.7882" Z="527.3246" />
 			      <PickUp QuestName="Deliverance from the Pit" QuestId="24712" GiverName="Gorkun Ironskull" GiverId="37592" X="693.5434" Y="-165.7882" Z="527.3246" />
 			    </If>
