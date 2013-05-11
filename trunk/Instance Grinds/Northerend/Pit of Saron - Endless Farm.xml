@@ -445,8 +445,7 @@
 	<!-- END OF COLD WEATHER FLYING CHECK -->
 </If>
 
-<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
-<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+
 
 
 <!-- CHOP CHOP :D -->
@@ -463,6 +462,9 @@
 		</If>
 		<While Condition="(Me.FreeBagSlots &gt;= 11)" >
 			<If Condition="!(Me.MapId == 658)" >
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 				<RunTo X="5587.691" Y="2005.754" Z="798.0637" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
