@@ -398,19 +398,21 @@
 
 	<!-- Travel to Halls of Lightning --> 
 <While Condition="true" >
-		<While Condition="!(Me.MapId == 602)" >
-		
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Lightning Halls Location." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Lightning Halls" X="9182.586" Y="-1384.403" Z="1110.212" />
-						<CustomBehavior File="MyCTM" X="9186.586" Y="-1387.403" Z="1110.212" />
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						<CustomBehavior File="ForcedDismount" />
-		</While>
+		<If Condition="!(Me.MapId == 602)" >
+			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
+			<CustomBehavior File="Message" Text="Moving to Lightning Halls Location." LogColor="Lime" />
+			<CustomBehavior File="FlyTo" DestName="Lightning Halls" X="9182.586" Y="-1384.403" Z="1110.212" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
 						
 	<!-- Begin Instance Grind -->
-	
-		<While Condition="(Me.MapId == 602)" >
+	<While Condition="Me.FreeBagSlots &gt;= 10)" >
+					<If Condition="!(Me.MapId == 602)">
+						<RunTo X="9182.586" Y="-1384.403" Z="1110.212" />
+						<CustomBehavior File="MyCTM" X="9186.586" Y="-1387.403" Z="1110.212" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					</If>
+		<If Condition="(Me.MapId == 602)" >
 		
 						<RunTo X="1331.41" Y="241.904" Z="52.5046" />
 						<RunTo X="1331.042" Y="153.3352" Z="53.70412" />
@@ -461,38 +463,39 @@
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 						<!-- End Instance Grind -->
-		</While>
+		</If>
+	</While>
 			<!-- Force town sell. -->
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+		<CustomBehavior File="FlyTo" X="8911.244" Y="-1288.584" Z="1063.501" />
+		<CustomBehavior File="FlyTo" X="8897.434" Y="-1347.713" Z="1031.36" />
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<CustomBehavior File="RunMacro" Macro="/dismount" />
+		<RunTo X="8891.013" Y="-1359.756" Z="1033.76" />
+		<SetVendor>
+			<Vendors>
+				<Vendor Name="Chester Copperpot" Entry="32477" Type="Food" X="8893.612" Y="-1361.069" Z="1033.906" />
+			</Vendors>
+		</SetVendor>
+		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<ClearVendor />
+		<RunTo X="8900.253" Y="-1344.676" Z="1029.835" />
 		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
-			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
-			<CustomBehavior File="FlyTo" X="8911.244" Y="-1288.584" Z="1063.501" />
-			<CustomBehavior File="FlyTo" X="8897.434" Y="-1347.713" Z="1031.36" />
+			<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+			<CustomBehavior File="FlyTo" X="8838.542" Y="-1240.169" Z="1072.359" />
+			<CustomBehavior File="FlyTo" X="8549.084" Y="-397.8126" Z="1038.629" />
+			<CustomBehavior File="FlyTo" X="8452.892" Y="-331.8914" Z="906.7128" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
-			<RunTo X="8891.013" Y="-1359.756" Z="1033.76" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Chester Copperpot" Entry="32477" Type="Food" X="8893.612" Y="-1361.069" Z="1033.906" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
+			<RunTo X="8442.646" Y="-329.5482" Z="906.6082" />
+			<CustomBehavior File="ForceSetVendor" DoMail="Mail" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<ClearVendor />
-			<RunTo X="8900.253" Y="-1344.676" Z="1029.835" />
-			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
-				<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
-				<CustomBehavior File="FlyTo" X="8838.542" Y="-1240.169" Z="1072.359" />
-				<CustomBehavior File="FlyTo" X="8549.084" Y="-397.8126" Z="1038.629" />
-				<CustomBehavior File="FlyTo" X="8452.892" Y="-331.8914" Z="906.7128" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<RunTo X="8442.646" Y="-329.5482" Z="906.6082" />
-				<CustomBehavior File="ForceSetVendor" DoMail="Mail" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="FlyTo" X="8549.319" Y="-282.6343" Z="926.7976" />
-				<CustomBehavior File="FlyTo" X="8607.005" Y="-458.6642" Z="1092.152" />
-			</If>
+			<CustomBehavior File="FlyTo" X="8549.319" Y="-282.6343" Z="926.7976" />
+			<CustomBehavior File="FlyTo" X="8607.005" Y="-458.6642" Z="1092.152" />
 		</If>
+	</If>
 </While>
 
 </QuestOrder>
