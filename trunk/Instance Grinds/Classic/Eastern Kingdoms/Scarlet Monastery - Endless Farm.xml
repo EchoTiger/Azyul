@@ -51,7 +51,7 @@
 	
 
 <QuestOrder>
-<If Condition="!(Me.MapId == 189)" >
+<If Condition="!(Me.ZoneId == 6109)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -394,7 +394,7 @@
 </If>
 	<!-- Travel to Scarlet Halls --> 
 <While Condition="true" >
-	<If Condition="!(Me.MapId == 189)" >
+	<If Condition="!(Me.ZoneId == 6109)" >
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 		<CustomBehavior File="Message" Text="Moving to Scarlet Monastery Location." LogColor="Lime" />
 		<CustomBehavior File="FlyTo" DestName="Scarlet Monastery" X="2820.969" Y="-699.184" Z="137.4398" />
@@ -404,7 +404,7 @@
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 	</If>				
 	<!-- Begin Instance Grind -->
-	<If Condition="(Me.MapId == 189)" >
+	<If Condition="(Me.ZoneId == 6109)" >
 		<RunTo X="1124.644" Y="512.467" Z="0.989549" />
 		<RunTo X="1106.242" Y="544.0167" Z="0.0500363" />
 		<RunTo X="1140.303" Y="557.7011" Z="0.265174" />
