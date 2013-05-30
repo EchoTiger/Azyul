@@ -442,7 +442,7 @@
                 </If>
 				
 				<If Condition="HasQuestAvailable(17613) &amp;&amp; !HasQuest(9826) &amp;&amp; !IsQuestCompleted(9826)" > <!-- Pickup Quest "Contact from Dalaran" from Archamage Alturus -->
-					<PickUp QuestName="Restless Activity" QuestId="9826" GiverName="Archmage Alturus" GiverId="17613" />
+					<PickUp QuestName="Contact from Dalaran" QuestId="9826" GiverName="Archmage Alturus" GiverId="17613" />
 				</If>
 				
 				<If Condition="HasQuest(9826) &amp;&amp; IsQuestCompleted(9826) ">
@@ -476,6 +476,12 @@
 					
 					<CustomBehavior File="FlyTo" DestName="Karazan" X="-11125.32" Y="-2016.662" Z="47.15016" />
 				</If>
+				<If Condition="HasQuestAvailable(17613) &amp;&amp; !HasQuest(9630) &amp;&amp; !IsQuestCompleted(9630) " > <!-- Picks up Quest "Medivh journal" from Archmage Alturus -->
+					<CustomBehavior File="InteractWith" MobId="17613" NumOfTimes="1" WaitTime="1000" />
+					<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+					<CustomBehavior File="Misc\RunLua" Lua="AcceptQuest()" WaitTime="100" />
+				</If>
+				
 
                 <If Condition="HasQuest(9645) &amp;&amp; !IsQuestCompleted(9645)" >
                     <CustomBehavior File="FlyTo" DestName="Karazan" X="-11024.93" Y="-2014.663" Z="95.00907" />
