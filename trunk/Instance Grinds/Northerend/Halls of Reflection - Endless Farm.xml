@@ -37,6 +37,7 @@
 </Vendors>
 
 <Mailboxes>
+<Mailbox X="5800.739" Y="731.1019" Z="640.4297" />
 </Mailboxes>
 
 <AvoidMobs>
@@ -475,34 +476,34 @@
 			<CustomBehavior File="WaitTimer" WaitTime="7000" />
 	<!-- Quest checks -->
 			<If Condition="Me.IsAlliance" >
-				<If Condition="((!HasQuest(24711)) &amp;&amp; (!IsQuestCompleted(24711)))" >
-					<PickUp QuestName="Frostmourne" QuestId="24711" GiverName="Lady Jaina Proudmoore" GiverId="37221" X="5265.89" Y="1952.98" Z="707.6962" />
+				<If Condition="((HasQuest(24711)) &amp;&amp; (IsQuestCompleted(24711)))" >
+					<TurnIn QuestName="Frostmourne" QuestId="24711" TurnInName="Lady Jaina Proudmoore" TurnInId="37221" X="5265.89" Y="1952.98" Z="707.6962" />
 				</If>
 			</If>
 			<If Condition="Me.IsHorde" >
-				<If Condition="((!HasQuest(24713)) &amp;&amp; (!IsQuestCompleted(24713)))" >
-					<PickUp QuestName="Frostmourne" QuestId="24713" GiverName="Lady Sylvanas Windrunner" GiverId="37223" X="5265.89" Y="1952.98" Z="707.6962" />
+				<If Condition="((HasQuest(24713)) &amp;&amp; (IsQuestCompleted(24713)))" >
+					<TurnIn QuestName="Frostmourne" QuestId="24713" TurnInName="Lady Sylvanas Windrunner" TurnInId="37223" X="5265.89" Y="1952.98" Z="707.6962" />
 				</If>
 			</If>
 	<!-- Quest checks End -->
 			<If Condition="Me.IsAlliance" >
-				<If Condition="(!IsQuestCompleted(24711))" >
+				<If Condition="(!IsQuestCompleted(24500))" >
 					<CustomBehavior File="InteractWith" MobId="37221" GossipOptions="1" X="5265.89" Y="1952.98" Z="707.6962" />
 					<CustomBehavior File="WaitTimer" WaitTime="215000" />
 				</If>
-				<If Condition="(IsQuestCompleted(24711))" >
+				<If Condition="(IsQuestCompleted(24500))" >
 					<CustomBehavior File="InteractWith" MobId="37221" GossipOptions="2" X="5265.89" Y="1952.98" Z="707.6962" />
-					<CustomBehavior File="WaitTimer" WaitTime="38000" />
+					<CustomBehavior File="WaitTimer" WaitTime="33000" />
 				</If>
 			</If>
 			<If Condition="Me.IsHorde" >
-				<If Condition="(!IsQuestCompleted(24713))" >
+				<If Condition="(!IsQuestCompleted(24802))" >
 					<CustomBehavior File="InteractWith" MobId="37223" GossipOptions="1" X="5265.89" Y="1952.98" Z="707.6962" />
 					<CustomBehavior File="WaitTimer" WaitTime="215000" />
 				</If>
-				<If Condition="(IsQuestCompleted(24713))" >
+				<If Condition="(IsQuestCompleted(24802))" >
 					<CustomBehavior File="InteractWith" MobId="37223" GossipOptions="2" X="5265.89" Y="1952.98" Z="707.6962" />
-					<CustomBehavior File="WaitTimer" WaitTime="38000" />
+					<CustomBehavior File="WaitTimer" WaitTime="33000" />
 				</If>
 			</If>
 			<RunTo X="5289.021" Y="1995.134" Z="707.6958" />
@@ -520,14 +521,23 @@
 			<RunTo X="5548.845" Y="2257.097" Z="733.0116" />
 			<CustomBehavior File="WaitTimer" WaitTime="10000" />
 			<RunTo X="5577.362" Y="2235.457" Z="733.0135" />
-			<If Condition="Me.IsAlliance" >
-				<CustomBehavior File="InteractWith" MobId="36955" GossipOptions="1" X="5577.04" Y="2235.75" Z="733.0127" />
-				<CustomBehavior File="Escort" MobId="36955" EscortUntil="DestinationReached"  X="5577.04" Y="2235.75" Z="733.0127" EscortDestX="5255.84" EscortDestY="1668.89" EscortDestZ="784.3005" />
-			</If>
-			<If Condition="Me.IsHorde" >
-				<CustomBehavior File="InteractWith" MobId="37554" GossipOptions="1" X="5577.04" Y="2235.75" Z="733.0127" />
-				<CustomBehavior File="Escort" MobId="37554" EscortUntil="DestinationReached"  X="5577.04" Y="2235.75" Z="733.0127" EscortDestX="5255.84" EscortDestY="1668.89" EscortDestZ="784.3005" />
-			</If>
+			<CustomBehavior File="WaitTimer" WaitTime="2000" />
+
+
+		<!-- Lich King Encounter -->
+		
+		<If Condition="Me.IsAlliance" >
+			<CustomBehavior File="InteractWith" MobId="36955" GossipOptions="1" X="5577.04" Y="2235.75" Z="733.0127" />
+			<CustomBehavior File="EncounterUtility" BossId="36954" AddId1="37069" AddId2="36940" AddId3="36941" AuraId="69857" FollowMobId1="36955" />
+		</If>
+		
+		<If Condition="Me.IsHorde" >
+			<CustomBehavior File="InteractWith" MobId="37554" GossipOptions="1" X="5577.04" Y="2235.75" Z="733.0127" />
+			<CustomBehavior File="EncounterUtility" BossId="36954" AddId1="37069" AddId2="36940" AddId3="36941" AuraId="69857" FollowMobId1="37554" />
+		</If>
+		
+		<!-- End Lich King Encounter -->
+		
 			<CustomBehavior File="WaitTimer" WaitTime="60000" />
 			<RunTo X="5263.513" Y="1679.327" Z="784.3005" />
 			<RunTo X="5236.862" Y="1650.364" Z="784.3007" />
@@ -559,7 +569,8 @@
 		<CustomBehavior File="FlyTo" X="5799.46" Y="728.1071" Z="666.0384" />
 		<CustomBehavior File="FlyTo" X="5784.907" Y="693.1074" Z="647.0889" />
 		<CustomBehavior File="RunMacro" Macro="/dismount" />
-		<RunTo X="5797.44" Y="688.0638" Z="649.4007" />
+		<CustomBehavior File="MyCTM" X="5792.684" Y="686.665" Z="647.0988" />
+		<CustomBehavior File="MyCTM" X="5797.183" Y="688.9267" Z="648.1799" />
 		<SetVendor>
 			<Vendors>
 				<Vendor Name="Rueben Lauren" Entry="35496" Type="Repair" X="5798.024" Y="689.6007" Z="647.0987" />
@@ -567,18 +578,13 @@
 		</SetVendor>
 		<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
 		<CustomBehavior File="WaitTimer" WaitTime="1000" />
-		<ClearVendor />
 		<RunTo X="5788.56" Y="689.9357" Z="647.0991" />
-		<RunTo X="5800.723" Y="730.2005" Z="640.4465" />
-		<SetMailbox>
-			<Mailboxes>
-				<Mailbox X="5800.739" Y="731.1019" Z="640.4297" />
-			</Mailboxes>
-		</SetMailbox>
+		<RunTo X="5800.739" Y="731.1019" Z="640.4297" />
 		<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
 		<CustomBehavior File="WaitTimer" WaitTime="1000" />
 		<CustomBehavior File="FlyTo" X="5777.883" Y="697.1115" Z="732.1843" />
 		<CustomBehavior File="FlyTo" X="5686.838" Y="905.868" Z="712.2202" />
+		<ClearVendor />
 	</If>
 </While>
 </QuestOrder>
