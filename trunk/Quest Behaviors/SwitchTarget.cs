@@ -140,7 +140,7 @@ namespace Honorbuddy.Quest_Behaviors.SwitchTarget
 
         public bool IsMobDead()
         {
-            var interestingmobs = ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Entry == BossId && !u.IsDead).OrderBy(
+            var interestingmobs = ObjectManager.GetObjectsOfType<WoWUnit>().Where(u => u.Entry == BossId && !u.IsDead && !u.IsFriendly).OrderBy(
                         u => u.Distance).FirstOrDefault();
             return interestingmobs == null;
         }
