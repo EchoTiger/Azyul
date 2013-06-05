@@ -1454,8 +1454,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                 // Once out of combat, we can re-evaluate whether this was a good choice or not.w
                 && ((InteractByGossipOptions.Length <= 0) || wowUnit.Combat || wowUnit.CanGossip)
                 && ((AuraIdsOnMob.Length <= 0) || wowUnit.GetAllAuras().Any(a => AuraIdsOnMob.Contains(a.SpellId)))
-                && ((AuraIdsMissingFromMob.Length <= 0) || !wowUnit.GetAllAuras().Any(a => AuraIdsMissingFromMob.Contains(a.SpellId)))
-                && IsMob_StateTypeMatch(wowObject, mobState, MobHpPercentLeft);
+                && ((AuraIdsMissingFromMob.Length <= 0) || !wowUnit.GetAllAuras().Any(a => AuraIdsMissingFromMob.Contains(a.SpellId)));
         }
 
         
@@ -1521,12 +1520,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
             if (IgnoreMobsInBlackspots && Targeting.IsTooNearBlackspot(ProfileManager.CurrentProfile.Blackspots, wowObject.Location))
                 { reasons.Add(string.Format("InBlackspot(object @{0})", wowObject.Location)); }
 
-            if (IsInCompetition(wowObject))
-            {
-                reasons.Add(string.Format("InCompetition({0} players within {1:F1})",
-                    FindPlayersNearby(wowObject.Location, NonCompeteDistance).Count(),
-                    NonCompeteDistance));
-            }
+           
 
             WoWUnit wowUnit = wowObject.ToUnit();
             if (wowUnit != null)
@@ -1555,12 +1549,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                         ));
                 }
 
-                if (!IsMob_StateTypeMatch(wowUnit, MobState, MobHpPercentLeft))
-                {
-                    reasons.Add(MobState == MobStateType.BelowHp
-                        ? string.Format("!{0}({1}%)", MobState, MobHpPercentLeft)
-                        : string.Format("!{0}", MobState));
-                }
+                
             }
 
             return string.Format("{0} [{1}]", wowObject.Name, string.Join(",", reasons));
