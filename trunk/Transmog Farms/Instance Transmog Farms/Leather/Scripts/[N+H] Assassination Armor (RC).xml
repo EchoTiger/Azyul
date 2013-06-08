@@ -58,7 +58,7 @@
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />	
 
 	<If Condition="(!HasItem(28414)) || (!HasItem(28204)) || (!HasItem(29248)) || (!HasItem(27776)) || (!HasItem(27908)) " > <!--Head, Chest, Feet, Shoulders, Legs -->
-		<CustomBehavior File="Message" Text="Chest, Head or Feet missing." LogColor="Green" />
+		<CustomBehavior File="Message" Text="Chest, Head, Feet, Shoulder or Legs missing.\nStarting Outlands Farm." LogColor="Green" />
 
 		<If Condition="!(Me.MapId == 571) &amp;&amp; !(Me.MapId == 530)" >
 			<If Condition="Me.IsAlliance" >
@@ -658,6 +658,8 @@
 			</If>
 		</If>
 			<If Condition="(!HasItem(27776)) || (!HasItem(27908))" > <!--Shoulders, Legs -->
+			<CustomBehavior File="Message" Text="Shoulders or Legs missing.\nHeading to Ring of Observance hub." LogColor="Green" />
+
 				<If Condition="Me.Location.Distance(new WoWPoint(3272.297, 4678.323, 103.5689)) &gt;= 500" >
 					<CustomBehavior File="FlyTo" X="-3272.297" Y="4678.323" Z="103.5689" />
 					<CustomBehavior File="FlyTo" X="-3369.276" Y="4950.699" Z="-37.78986" />
@@ -761,7 +763,7 @@
 					<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" />
 					<CustomBehavior File="FlyTo" X="-3361.786" Y="4779.147" Z="-101.3958" />
 					<RunTo X="-3362.211" Y="4687.456" Z="-101.0496" />
-					<While Condition="(!HasItem(27776)" > <!-- Shoulder Loop Start -->
+					<While Condition="(!HasItem(27776))" > <!-- Shoulder Loop Start -->
 						<RunTo X="-3361.933" Y="4669.278" Z="-101.0489" />
 						<CustomBehavior File="MyCTM" X="-3361.963" Y="4653.548" Z="-101.0489" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -808,7 +810,7 @@
 					    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 					    <If Condition="(!HasItem(27776))" > <!-- Shoulders  -->
 					    	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
-					    	<CustomBehavior File="Message" Text="The Shoulders did not drop, running Shadow Labs again." LogColor="Green" />
+					    	<CustomBehavior File="Message" Text="The Shoulders did not drop, running Sethekk Halls again." LogColor="Green" />
 					    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
 			    			<CustomBehavior File="WaitTimer" WaitTime="210000" />
 						</If>
@@ -819,7 +821,6 @@
 						    <CustomBehavior File="FlyTo"  X="-3370.421" Y="4938.443" Z="-51.903" />
 						</If>
 					</While>
-				<CustomBehavior File="MyCTM" X="-3067.277" Y="5067.527" Z="43.02345" />
 			</If>
 		</If>
 	</If>
