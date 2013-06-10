@@ -69,7 +69,7 @@
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 
 <QuestOrder>
-<If Condition="!(Me.MapId == 560)" >
+<If Condition="!(Me.MapId == 733)" >
 		 <!-- Transporter -->
 		 
 		<!-- Transport script, pre made for all purposes. -->
@@ -89,6 +89,7 @@
 		A monkey can do it.
 		******************************
 		Add MapId for farming location, the id you enter here is where you want to go.-->
+		<If Condition="!Me.MapId == 161" >
 		<While Condition="!(Me.MapId == 1)" >
 			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" 
 			Text="Do not stop the bot, i will take you where you want to go, just sit back and relax." Title="WARNING" />
@@ -412,6 +413,7 @@
 		Big thanks to Kick for this.
 		--> 
 </If>
+</If>
 		<!-- Travel to Escape from Dumholde --> 
 		
 <!-- Start GOTO dungeon code -->
@@ -420,8 +422,8 @@
 
 
 <While Condition="true" >
-	<If Condition="!(Me.MapId == 560)" >
-		<If Condition="Me.Location.Distance(new WoWPoint(-8767.0029, -4165.9390, -210.1310)) &gt; 30" >
+	<If Condition="!(Me.MapId == 733)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(-8767.0029, -4165.9390, -210.1310)) &gt; 150" >
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />		
 
 			<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8175.918" Y="-4707.365" Z="48.94663" />
@@ -442,12 +444,12 @@
 		</If>
 	</If>
 	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
-		<If Condition="!(Me.MapId == 560)" >
+		<If Condition="!(Me.MapId == 733)" >
+			<RunTo X="-8758.719" Y="-4193.282" Z="-209.501" />
 				<CustomBehavior File="MyCTM" X="-8767.0029" Y="-4165.9390" Z="-210.1310" />  <!-- moves into instance portal if not already inside -->
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 				<!--Instance Navigation Start -->
-		<If Condition="!(Me.MapId == 560)" >
 		    <RunTo X="-1500.8127" Y="7096.6104" Z="32.7551"  />
 		    <RunTo X="-1546.8252" Y="7111.7993" Z="32.5227"  />
 		    <CustomBehavior File="InteractWith" MobId="20201" GossipOptions="1" X="-1547.062" Y="7113.633" Z="32.7361" />
@@ -460,18 +462,9 @@
 					
 
 			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
-						
-			<While Condition="(Me.CurrentTarget == null) || (Me.CurrentTarget.Entry != 17881) || ((Me.CurrentTarget.Entry == 17881) &amp;&amp; (Me.CurrentTarget.IsAlive))" >
-		    <CustomBehavior File="InteractWith" MobId1="21104" MobId2="21140" MobId3="21148" MobId4="17839" MobId5="17879" MobId6="17880" MobId7="17881" MobId8="17835" MobId9="17892" MobId10="18994" MobId11="18995" MobId12="21818" MobId13="21139" MobId14="21136" MobId15="21138" MobId16="21137" FactionId="1720" ObjectType="Npc" NumOfTimes="1" X="-1997.402" Y="7094.309" Z="17.48149" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" KeepTargetSelected="True" >
-				<HuntingGrounds>
-					<Hotspot X="-2014.887" Y="7113.619" Z="22.43938" />
-					<Hotspot X="-1984.18" Y="7039.782" Z="18.95009" />
-					<Hotspot X="-1959.393" Y="7173.198" Z="21.94992" />
-				</HuntingGrounds>
-			</CustomBehavior>
-			<CustomBehavior File="RunMacro" Macro="/target Aeonus" />
-			</While>
-
+			<CustomBehavior File="Aeonus" BossId="17881" AddId1="21104" AddId2="21140" AddId3="21148" AddId4="17389" AddId5="17879" AddId6="17880" AddId7="17835" AddId8="17892" AddId9="18994" AddId10="18995" AddId11="21818" AddId12="21139" AddId13="21136" AddId14="21138" AddId15="21137" />
+			
+			
 			<RunTo X="-1832.4247" Y="7122.1929" Z="17.5981"  />
 		    <RunTo X="-1740.9796" Y="7149.8579" Z="21.9178"  />
 		    <RunTo X="-1637.8198" Y="7104.7666" Z="22.6479"  />
@@ -491,7 +484,6 @@
 			<CustomBehavior File="MyCTM" X="-1494.671" Y="7028.2757" Z="32.8237" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-		</If>
 		<!--Instance Coordnation Complete -->
 	</While>
 

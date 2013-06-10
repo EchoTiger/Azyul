@@ -1,5 +1,5 @@
 // Behavior originally contributed by Natfoth.
-//
+// Modified By mjj23 in order to use ranged pet abilities, specifically for Chess Event in Karazhan.
 // DOCUMENTATION:
 //     http://www.thebuddyforum.com/mediawiki/index.php?title=Honorbuddy_Custom_Behavior:_WaitTimer
 //

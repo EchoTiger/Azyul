@@ -169,15 +169,21 @@ namespace Honorbuddy.Quest_Behaviors.KaelThas
         }
 
         private bool NetherMove()
-       
-        
-        {foreach (WoWUnit NetherVapor in NetherVapors)
-            {if(NetherVapor.Location.Distance(StyxWoW.Me.Location) < 5)
+        {
+            foreach (WoWUnit NetherVapor in NetherVapors)
             {
-                Navigator.MoveTo(WoWMathHelper.CalculatePointFrom(StyxWoW.Me.Location, NetherVapor.Location, 20f)); 
-                return true; }
+                if (NetherVapor.Location.Distance(StyxWoW.Me.Location) < 5)
+                {
+                    WoWMovement.ClickToMove(WoWMathHelper.CalculatePointFrom(StyxWoW.Me.Location, NetherVapor.Location, 20f));
+                    return true;
+                }
+                if (Boss.Location.Distance(StyxWoW.Me.Location) > 3)
+                {
+                    WoWMovement.ClickToMove(Boss.Location);
+                    return true;
+                }
             }
-        return false;
+            return false;
         }
 
 
@@ -381,9 +387,11 @@ namespace Honorbuddy.Quest_Behaviors.KaelThas
 
 
                     new Decorator(r => !Me.GotTarget || Me.CurrentTarget != Boss, new Action(r => Boss.Target())),
-                    new Decorator(r => NetherVapors != null, new Action(delegate{NetherMove();
-                                        return RunStatus.Success;
-                                        })),
+                    new Decorator(r => !NetherVapors.Any(), new Action(delegate
+                {
+                    NetherMove();
+                    return RunStatus.Success;
+                })),
                     DoDps
 
 
