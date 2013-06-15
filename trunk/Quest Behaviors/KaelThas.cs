@@ -387,7 +387,7 @@ namespace Honorbuddy.Quest_Behaviors.KaelThas
 
 
                     new Decorator(r => !Me.GotTarget || Me.CurrentTarget != Boss, new Action(r => Boss.Target())),
-                    new Decorator(r => !NetherVapors.Any(), new Action(delegate
+                    new Decorator(r => NetherVapors.Any(), new Action(delegate
                 {
                     NetherMove();
                     return RunStatus.Success;

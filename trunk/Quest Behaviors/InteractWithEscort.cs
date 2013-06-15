@@ -472,7 +472,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                 // * The Honorbuddy core was changed, and the behavior wasn't adjusted for the new changes.
                 // In any case, we pinpoint the source of the problem area here, and hopefully it
                 // can be quickly resolved.
-                LogError("[MAINTENANCE PROBLEM]: " + except.Message
+                QBCLog.Error("[MAINTENANCE PROBLEM]: " + except.Message
                         + "\nFROM HERE:\n"
                         + except.StackTrace + "\n");
                 IsAttributeProblem = true;
@@ -567,9 +567,9 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                 return
                     string.Format("Interacting {0} {1}",
                         ((InteractByUsingItemId > 0)
-                            ? string.Format("by using {0} on", GetItemNameFromId(InteractByUsingItemId))
+                            ? string.Format("by using {0} on", Utility.GetItemNameFromId(InteractByUsingItemId))
                             : "with"),
-                        string.Join(", ", MobIds.Select(m => GetObjectNameFromId(m)).Distinct()));
+                        string.Join(", ", MobIds.Select(m => Utility.GetObjectNameFromId(m)).Distinct()));
             }
         }
         private int GossipPageIndex { get; set; }
@@ -674,8 +674,8 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                         new Action(context =>
                         {
                             TreeRoot.StatusText = string.Format("Completing {0} wait of {1}",
-                                PrettyTime(TimeSpan.FromSeconds((int)_waitTimerAfterInteracting.TimeLeft.TotalSeconds)),
-                                PrettyTime(_waitTimerAfterInteracting.WaitTime));
+                                Utility.PrettyTime(TimeSpan.FromSeconds((int)_waitTimerAfterInteracting.TimeLeft.TotalSeconds)),
+                                Utility.PrettyTime(_waitTimerAfterInteracting.WaitTime));
                         })),
 
                     // Counter is used to determine 'done'...
@@ -688,32 +688,23 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                     new Decorator(context => IsDone,
                         new Action(context => { BehaviorDone(); })),
 
-                    // If WoWclient has not placed items in our bag, wait for it...
-                    // If it doesn't show up in a reasonable time, we're done.
-                    new Decorator(context => (InteractByUsingItemId > 0) && !IsViable(ItemToUse),
+                                        // If WoWclient has not placed items in our bag, wait for it...
+                    // NB: This clumsiness is because Honorbuddy can launch and start using the behavior before the pokey
+                    // WoWclient manages to put the item into our bag after accepting a quest.  This delay waits
+                    // for the item to show up, if its going to.
+                    new Decorator(context => (InteractByUsingItemId > 0) && !Query.IsViable(ItemToUse),
                         new PrioritySelector(
-                            new Decorator(context => _waitTimerForItemToAppear.IsFinished,
-                                new Action(context =>
-                                {
-                                    LogProfileError(BuildMessageWithContext(Element,
-                                        "Unable to locate {0} in our bags--terminating behavior.",
-                                        GetItemNameFromId(InteractByUsingItemId)));
-                                    BehaviorDone();                                    
-                                })),
-                            new Decorator(context => ItemToUse == null,
-                                new Action(context =>
-                                {
-                                    TreeRoot.StatusText = string.Format("Waiting {0} for {1} to arrive in our bags.",
-                                        PrettyTime(_waitTimerForItemToAppear.WaitTime),
-                                        GetItemNameFromId(InteractByUsingItemId));
-                                    ItemToUse = Me.CarriedItems.FirstOrDefault(i => (i.Entry == InteractByUsingItemId));
-                                }))
+                            UtilityBehaviorPS_WaitForInventoryItem(context => InteractByUsingItemId),
+                            new Action(context =>
+                            {
+                                ItemToUse = Me.CarriedItems.FirstOrDefault(i => (i.Entry == InteractByUsingItemId));
+                            })
                         )),
                         
                     // If we've an alive target to make dead, go make it so...
-                    new Decorator(context => IsViable(SelectedAliveTarget) && SelectedAliveTarget.IsAlive,
+                    new Decorator(context => Query.IsViable(SelectedAliveTarget) && SelectedAliveTarget.IsAlive,
                         new Sequence(
-                            new Action(context => { LogInfo("Going after 'alive' {0} to make it 'dead'", SelectedAliveTarget.Name); }),
+                            new Action(context => { QBCLog.Info("Going after 'alive' {0} to make it 'dead'", SelectedAliveTarget.Name); }),
                             UtilityBehaviorPS_SpankMob(context => SelectedAliveTarget))),
 
                     // If interact target no longer meets qualifications, try to find another...
@@ -744,25 +735,26 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                             // No mobs in immediate vicinity...
                             // NB: if the terminateBehaviorIfNoTargetsProvider argument evaluates to 'true', calling
                             // this sub-behavior will terminate the overall behavior.
-                            new Decorator(context => !IsViable(SelectedInteractTarget),
+                            new Decorator(context => !Query.IsViable(SelectedInteractTarget),
                                 UtilityBehaviorPS_NoMobsAtCurrentWaypoint(
                                     context => HuntingGrounds,
                                     context => !WaitForNpcs,
-                                    context => MobIds.Select(m => GetObjectNameFromId(m)).Distinct(),
+                                    context => MobIds.Select(m => Utility.GetObjectNameFromId(m)).Distinct(),
                                     context => Debug_BuildExclusions()))
                         )),
 
-                    #region Deal with mob we've selected for interaction...
-                    new Decorator(context => IsViableForInteracting(SelectedInteractTarget),
+#region Deal with mob we've selected for interaction...
+                    new Decorator(context => Query.IsViableForInteracting(SelectedInteractTarget, IgnoreMobsInBlackspots, NonCompeteDistance),
                         new PrioritySelector(
                             // Place upper bound on time allowed to reach destination...
                             new Decorator(context => _timerToReachDestination == null,
                                 new Action(context =>
                                 {
-                                    _timerToReachDestination = new WaitTimer(CalculateMaxTimeToDestination(SelectedInteractTarget.Location));
+                                    _timerToReachDestination = new WaitTimer(Utility.CalculateMaxTimeToDestination(SelectedInteractTarget.Location));
                                     _timerToReachDestination.Reset();
                                     return RunStatus.Failure; // fall through
                                 })),
+
 
                             
 
@@ -785,7 +777,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                             // go find a new target...
                             // NB: This mostly happens when NPCs close the gossip dialog on their end and walk away
                             // or despawn, or outright go 'non viable' after the chat.
-                            new Decorator(context => !IsViableForInteracting(SelectedInteractTarget),
+                            new Decorator(context => !Query.IsViableForInteracting(SelectedInteractTarget, IgnoreMobsInBlackspots, NonCompeteDistance),
                                 new ActionAlwaysSucceed()),
 
                             #region Interact with, or use item on, selected target...
@@ -797,7 +789,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                 new Action(context =>
                                 {
                                     WoWUnit wowUnit = SelectedInteractTarget.ToUnit();
-                                    if ((wowUnit != null) && ((wowUnit.Distance < RangeMax) || IsInLineOfSight(wowUnit)))
+                                    if ((wowUnit != null) && ((wowUnit.Distance < RangeMax) || Query.IsInLineOfSight(wowUnit)))
                                         { wowUnit.Target(); }
                                     else if (Me.CurrentTarget != null)
                                         { Me.ClearTarget(); }
@@ -814,7 +806,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                 {
                                     TreeRoot.StatusText = string.Format("Waiting for {0} cooldown ({1} remaining)",
                                         ItemToUse.Name,
-                                        PrettyTime(TimeSpan.FromSeconds((int)ItemToUse.CooldownTimeLeft.TotalSeconds)));
+                                        Utility.PrettyTime(TimeSpan.FromSeconds((int)ItemToUse.CooldownTimeLeft.TotalSeconds)));
                                 })),
 
                             new Sequence(
@@ -825,8 +817,8 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                     {
                                         var blacklistTime = TimeSpan.FromSeconds(180);
 
-                                        LogWarning("Exceeded our maximum count({0}) at attempted interactions--blacklisting {1} for {2}",
-                                            AttemptCountMax, SelectedInteractTarget.SafeName(), PrettyTime(blacklistTime));
+                                        QBCLog.Warning("Exceeded our maximum count({0}) at attempted interactions--blacklisting {1} for {2}",
+                                            AttemptCountMax, SelectedInteractTarget.SafeName(), Utility.PrettyTime(blacklistTime));
                                         BlacklistInteractTarget(SelectedInteractTarget);
                                         return RunStatus.Failure;
                                     }
@@ -845,7 +837,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                 // Record usage...
                                 new Action(context =>
                                 {
-                                    LogDeveloperInfo("{0} {1}",
+                                    QBCLog.DeveloperInfo("{0} {1}",
                                         ((ItemToUse != null)
                                             ? string.Format("Used {0}({1}) on", ItemToUse.Name, ItemToUse.Entry)
                                             : "Interacted with"),
@@ -923,7 +915,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                 new PrioritySelector(
                     new Decorator(context => IsDistanceGainNeeded(SelectedInteractTarget),
                         UtilityBehaviorPS_MoveTo(
-                            context => GetPointToGainDistance(SelectedInteractTarget, RangeMin),
+                            context => Utility.GetPointToGainDistance(SelectedInteractTarget, RangeMin),
                             context => string.Format("gain distance from {0} (id:{1}, dist:{2:F1}/{3:F1})",
                                 GetName(SelectedInteractTarget),
                                 SelectedInteractTarget.Entry,
@@ -957,7 +949,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                                         GetName(SelectedInteractTarget),
                                                         SelectedInteractTarget.Entry,
                                                         SelectedInteractTarget.Distance,
-                                                        IsInLineOfSight(SelectedInteractTarget) ? "" : ", noLoS"))
+                                                        Query.IsInLineOfSight(SelectedInteractTarget) ? "" : ", noLoS"))
                         )),
 
                     // If we expect to gossip, and mob in combat and offers no gossip, help mob...
@@ -991,7 +983,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                         ++Counter;
 
                         // Some mobs go non-viable immediately after interacting with them...
-                        if (IsViable(SelectedInteractTarget))
+                        if (Query.IsViable(SelectedInteractTarget))
                         {
                             BlacklistInteractTarget(SelectedInteractTarget);
                             if (IsClearTargetNeeded(SelectedInteractTarget))
@@ -1004,7 +996,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                 // Some mobs go non-viable immediately after interacting with them...
                 // For instance, interacting with mobs that give you automatic taxi rides.
                 // We must guard against trying to interact with them further.
-                new Decorator(context => !IsViable(SelectedInteractTarget),
+                new Decorator(context => !Query.IsViable(SelectedInteractTarget),
                     new Action(context => { SelectedInteractTarget = null; }))
                 );
         }
@@ -1045,7 +1037,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                             }
                                             catch (InvalidOperationException)
                                             {
-                                                LogError(
+                                                QBCLog.Error(
                                                     "{0} is not offering gossip option {1} on page {2}."
                                                     + "  Did competing player alter NPC state?"
                                                     + "  Did you stop/start Honorbuddy?"
@@ -1060,7 +1052,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                             }
 
                                             // Log the gossip option we're about to take...
-                                            LogDeveloperInfo("Selecting Gossip Option({0}) on page {1}: \"{2}\"",
+                                            QBCLog.DeveloperInfo("Selecting Gossip Option({0}) on page {1}: \"{2}\"",
                                                 gossipEntry.Index +1, GossipPageIndex +1, gossipEntry.Text);
 
                                             // If Innkeeper 'binding option', arrange to confirm ensuing popup...
@@ -1079,7 +1071,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                             // and the NPC doesn't want to gossip any more.
                                             if (GossipPageIndex >= InteractByGossipOptions.Length)
                                             {
-                                                LogDeveloperInfo("Gossip with {0} complete.", GetName(SelectedInteractTarget));
+                                                QBCLog.DeveloperInfo("Gossip with {0} complete.", GetName(SelectedInteractTarget));
 
                                                 // NB: Some merchants require that we gossip with them before purchase.
                                                 // If the caller has also specified a "buy item", then we're not done yet.
@@ -1091,12 +1083,12 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                                 }
                                             }
                                         }),
-                                        new WaitContinue(Delay_AfterInteraction, context => !GossipFrame.Instance.IsVisible, new ActionAlwaysSucceed())
+                                        new WaitContinue(Delay.AfterInteraction, context => !GossipFrame.Instance.IsVisible, new ActionAlwaysSucceed())
                                     ),
 
                                     // If the NPC pops down the dialog for us, or goes non-viable after gossip...
                                     // Go ahead and blacklist it, so we don't try to interact again.
-                                    new DecoratorContinue(context => !GossipFrame.Instance.IsVisible || !IsViable(SelectedInteractTarget),
+                                    new DecoratorContinue(context => !GossipFrame.Instance.IsVisible || !Query.IsViable(SelectedInteractTarget),
                                         new Action(context =>
                                         {
                                             TreeRoot.StatusText = string.Format("Gossip with {0} complete.", GetName(SelectedInteractTarget));
@@ -1111,10 +1103,10 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
 
                             // Only a problem if Gossip frame, and not also another frame type...
                             new DecoratorContinue(context => (InteractByGossipOptions.Length <= 0) && GossipFrame.Instance.IsVisible && !IsMultipleFramesVisible(),
-                                new Action(context => { LogWarning("[PROFILE ERROR]: Gossip frame not expected--ignoring."); })),
+                                new Action(context => { QBCLog.Warning("[PROFILE ERROR]: Gossip frame not expected--ignoring."); })),
 
                             // Wait, not WaitContinue, because we want to 'fall through' when delay is complete...
-                            new Wait(Delay_AfterInteraction, context => false, new ActionAlwaysFail())
+                            new Wait(Delay.AfterInteraction, context => false, new ActionAlwaysFail())
                         )),
 
                     // Tell user if he is now bound to a new location...
@@ -1122,7 +1114,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                         new Wait(TimeSpan.FromSeconds(10),
                             context => BindingEventState == BindingEventStateType.BindingEventFired,
                             new Sequence(
-                                new WaitContinue(Delay_AfterInteraction, context => false, new ActionAlwaysSucceed()),
+                                new WaitContinue(Delay.AfterInteraction, context => false, new ActionAlwaysSucceed()),
                                 new Action(context =>
                                 {
                                     Lua.DoString("ConfirmBinder(); StaticPopup_Hide('CONFIRM_BINDER')");
@@ -1134,8 +1126,8 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                 {
                                     var boundLocation = Lua.GetReturnVal<string>("return GetBindLocation()", 0);
 
-                                    LogInfo("You are now bound at {0} Inn in {1}({2})",
-                                        (IsViable(SelectedInteractTarget) ? GetName(SelectedInteractTarget) : "the"),
+                                    QBCLog.Info("You are now bound at {0} Inn in {1}({2})",
+                                        (Query.IsViable(SelectedInteractTarget) ? GetName(SelectedInteractTarget) : "the"),
                                         boundLocation,
                                         Me.HearthstoneAreaId);
 
@@ -1163,7 +1155,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                             return RunStatus.Failure; // fall through
                         }),
                         // Wait, not WaitContinue, because we want to 'fall through' when delay is complete...
-                        new Wait(Delay_AfterInteraction, context => false, new ActionAlwaysFail())
+                        new Wait(Delay.AfterInteraction, context => false, new ActionAlwaysFail())
                     ));
         }
 
@@ -1186,29 +1178,29 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                 {
                                     if (InteractByBuyingItemId > 0)
                                     {
-                                        LogProfileError("{0} does not appear to carry ItemId({1})--abandoning transaction.",
+                                        QBCLog.ProfileError("{0} does not appear to carry ItemId({1})--abandoning transaction.",
                                             GetName(SelectedInteractTarget), InteractByBuyingItemId);
                                     }
                                     else
                                     {
-                                        LogProfileError("{0} does not have an item to sell in slot #{1}--abandoning transaction.",
+                                        QBCLog.ProfileError("{0} does not have an item to sell in slot #{1}--abandoning transaction.",
                                             GetName(SelectedInteractTarget), InteractByBuyingItemInSlotNum);
                                     }
                                 }
                                 else if ((item.BuyPrice * (ulong)BuyItemCount) > Me.Copper)
                                 {
-                                    LogProfileError("Toon does not have enough money to purchase {0} (qty: {1})"
+                                    QBCLog.ProfileError("Toon does not have enough money to purchase {0} (qty: {1})"
                                         + "--(requires: {2}, have: {3})--abandoning transaction.",
-                                        item.Name, BuyItemCount, PrettyMoney(item.BuyPrice * (ulong)BuyItemCount), PrettyMoney(Me.Copper));
+                                        item.Name, BuyItemCount, Utility.PrettyMoney(item.BuyPrice * (ulong)BuyItemCount), Utility.PrettyMoney(Me.Copper));
                                 }
                                 else if ((item.NumAvailable != /*unlimited*/-1) && (item.NumAvailable < BuyItemCount))
                                 {
-                                    LogProfileError("{0} only has {1} units of {2} (we need {3})--abandoning transaction.",
+                                    QBCLog.ProfileError("{0} only has {1} units of {2} (we need {3})--abandoning transaction.",
                                         GetName(SelectedInteractTarget), item.NumAvailable, item.Name, BuyItemCount);
                                 }
                                 else
                                 {
-                                    LogInfo("Buying {0} (qty: {1}) from {2}", item.Name, BuyItemCount, GetName(SelectedInteractTarget));
+                                    QBCLog.Info("Buying {0} (qty: {1}) from {2}", item.Name, BuyItemCount, GetName(SelectedInteractTarget));
                                     MerchantFrame.Instance.BuyItem(item.Index, BuyItemCount);
                                 }
                                 // NB: We do not blacklist merchants.
@@ -1216,11 +1208,11 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                             }
 
                             else if (!IsMultipleFramesVisible())
-                                { LogWarning("[PROFILE ERROR] Merchant frame not expected--ignoring."); }
+                                { QBCLog.Warning("[PROFILE ERROR] Merchant frame not expected--ignoring."); }
                         }),
 
                         // Wait, not WaitContinue, because we want to 'fall through' when delay is complete...
-                        new Wait(Delay_AfterInteraction, context => false, new ActionAlwaysFail())
+                        new Wait(Delay.AfterInteraction, context => false, new ActionAlwaysFail())
                     ));
         }
 
@@ -1240,7 +1232,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                             
                         // If the NPC pops down the dialog for us, or goes non-viable after gossip...
                         // Go ahead and blacklist it, so we don't try to interact again.
-                        new DecoratorContinue(context => !QuestFrame.Instance.IsVisible || !IsViable(SelectedInteractTarget),
+                        new DecoratorContinue(context => !QuestFrame.Instance.IsVisible || !Query.IsViable(SelectedInteractTarget),
                             new Action(context =>
                             {
                                 TreeRoot.StatusText = string.Format("Quest accept from {0} complete.", GetName(SelectedInteractTarget));
@@ -1257,7 +1249,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                         new DecoratorContinue(context => InteractByQuestFrameAction == QuestFrameDisposition.TerminateBehavior && !IsMultipleFramesVisible(),
                             new Action(context =>
                             {
-                                LogDeveloperInfo("Behavior Done--due to {0} providing a quest frame, and InteractByQuestFrameDisposition=TerminateBehavior",
+                                QBCLog.DeveloperInfo("Behavior Done--due to {0} providing a quest frame, and InteractByQuestFrameDisposition=TerminateBehavior",
                                     GetName(SelectedInteractTarget));
                                 CloseOpenFrames(true);
                                 BehaviorDone();
@@ -1265,7 +1257,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                         new DecoratorContinue(context => InteractByQuestFrameAction == QuestFrameDisposition.TerminateProfile && !IsMultipleFramesVisible(),
                             new Action(context =>
                             {
-                                LogProfileError("{0} provided an unexpected Quest frame--terminating profile."
+                                QBCLog.ProfileError("{0} provided an unexpected Quest frame--terminating profile."
                                     + "  Please provide an appropriate InteractByQuestFrameDisposition attribute to instruct"
                                     + " the behavior how to handle this situation.",
                                     GetName(SelectedInteractTarget));
@@ -1274,7 +1266,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                             })),
 
                         // Wait, not WaitContinue, because we want to 'fall through' when delay is complete...
-                        new Wait(Delay_AfterInteraction, context => false, new ActionAlwaysFail())
+                        new Wait(Delay.AfterInteraction, context => false, new ActionAlwaysFail())
                     ));
         }
         #endregion
@@ -1287,14 +1279,14 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
             // An example: We gossip with an NPC that results in a forced taxi ride.  Honorbuddy suspends
             // this behavior while the taxi ride is in progress, and when we land, the selectedTarget
             // is no longer viable to blacklist.
-            if (!IsViable(selectedTarget))
+            if (!Query.IsViable(selectedTarget))
                 { return TimeSpan.Zero; }
 
             WoWUnit wowUnit = selectedTarget.ToUnit();
-            bool isShortBlacklist = (wowUnit != null) && IsSharedWorldResource(wowUnit);
+            bool isShortBlacklist = (wowUnit != null) && Query.IsSharedWorldResource(wowUnit);
             TimeSpan blacklistDuration = TimeSpan.FromSeconds(isShortBlacklist ? 30 : 180);
 
-            BlacklistForInteracting(selectedTarget, blacklistDuration);
+            Query.BlacklistForInteracting(selectedTarget, blacklistDuration);
             return blacklistDuration;
         }
 
@@ -1310,11 +1302,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                 if (QuestFrame.Instance.IsVisible)
                     { QuestFrame.Instance.Close(); }
                 if (TaxiFrame.Instance.IsVisible)
-                {
-                    // HBCORE BUG: TaxiFrame does not have a close method
-                    // new Action(context => { TaxiFrame.Instance.Close(); }),
-                    LogError("Unable to close Taxi Frame");
-                }
+                    { TaxiFrame.Instance.Close(); }
                 if (TrainerFrame.Instance.IsVisible)
                     { TrainerFrame.Instance.Close(); }
             }
@@ -1343,7 +1331,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
             var entities = 
                 from wowObject in ObjectManager.GetObjectsOfType<WoWObject>(true, false)
                 where
-                    IsViable(wowObject)
+                    Query.IsViable(wowObject)
                     && isInterestingToUs(wowObject)
                     && (wowObject.DistanceSqr < collectionDistanceSqr)
                     && IsInteractNeeded(wowObject, mobState)
@@ -1371,7 +1359,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
         /// </summary>
         private string GetName(WoWObject target)
         {
-            return IsViable(target) ? target.Name
+            return Query.IsViable(target) ? target.Name
                        : (target == SelectedInteractTarget) ? "selected target"
                        : (target.ToUnit() != null) ? "unit"
                        : "object";
@@ -1400,11 +1388,11 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
 
         private bool IsDistanceCloseNeeded(WoWObject wowObject)
         {
-            double targetDistance = MovementObserver.Location.Distance(wowObject.Location);
+            double targetDistance = Utility.MovementObserver.Location.Distance(wowObject.Location);
 
             bool canInteract =
                 (ItemToUse != null)
-                ? (targetDistance <= RangeMax) && (IgnoreLoSToTarget || IsInLineOfSight(wowObject))    // Items need LoS to use
+                ? (targetDistance <= RangeMax) && (IgnoreLoSToTarget || Query.IsInLineOfSight(wowObject))    // Items need LoS to use
                 : (targetDistance <= RangeMax);     // Interactions just require being within range
 
             return !canInteract;
@@ -1413,7 +1401,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
 
         private bool IsDistanceGainNeeded(WoWObject wowObject)
         {
-            double targetDistance = MovementObserver.Location.Distance(wowObject.Location);
+            double targetDistance = Utility.MovementObserver.Location.Distance(wowObject.Location);
 
             return targetDistance < RangeMin;
         }
@@ -1439,7 +1427,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
             if (wowObject == null)
                 { return false; }
 
-            bool isViableForInteracting = IsViableForInteracting(wowObject);
+            bool isViableForInteracting = Query.IsViableForInteracting(wowObject, IgnoreMobsInBlackspots, NonCompeteDistance);
             WoWUnit wowUnit = wowObject.ToUnit();
 
             // We're done, if not a WoWUnit...
@@ -1478,7 +1466,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
             IEnumerable<WoWObject> interactCandidates =
                 from wowObject in ObjectManager.GetObjectsOfType<WoWObject>(true)
                 where
-                    IsViable(wowObject)
+                    Query.IsViable(wowObject)
                     && MobIds.Contains((int)wowObject.Entry)
                 select wowObject;
 
@@ -1505,7 +1493,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
         {
             var reasons = new List<string>();
 
-            if (!IsViable(wowObject))
+            if (!Query.IsViable(wowObject))
                 { return "[NotViable]"; }
 
             if (wowObject.Distance > CollectionDistance)
@@ -1514,7 +1502,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
             if ((MovementBy == MovementByType.NavigatorOnly) && !Navigator.CanNavigateFully(Me.Location, wowObject.Location))
                 { reasons.Add("NotMeshNavigable"); }
 
-            if (IsBlacklistedForInteraction(wowObject))
+            if (Query.IsBlacklistedForInteraction(wowObject))
                 { reasons.Add("Blacklisted"); }
 
             if (IgnoreMobsInBlackspots && Targeting.IsTooNearBlackspot(ProfileManager.CurrentProfile.Blackspots, wowObject.Location))
