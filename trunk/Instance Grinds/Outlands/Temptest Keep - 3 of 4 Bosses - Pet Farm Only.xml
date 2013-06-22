@@ -1,5 +1,5 @@
 <HBProfile>
-<Name>Frostfever's Endless Temptest Keep</Name>
+<Name>Frostfever's Temptest Keep</Name>
 <MinDurability>0.3</MinDurability>
 <MinFreeBagSlots>5</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -438,6 +438,27 @@
 			<RunTo X="273.4905" Y="-0.9902" Z="-2.3906"  />
 			<RunTo X="283.9447" Y="50.2369" Z="2.4045"  />
 			<RunTo X="369.4104" Y="83.5109" Z="19.8939"  />
+			<RunTo X="337.1489" Y="60.94683" Z="18.00825" />    
+			<CustomBehavior File="SwitchTarget" BossId="19514" />	<!--Pull A'lar-->
+			
+			<RunTo X="332.3732" Y="-0.7445555" Z="-2.389467" />
+			
+			<!-- <CustomBehavior File="GetOutOfGroundEffectAndAuras" 
+					StartNpcIdN="19514" 
+					EventCompleteWhen="SpecificMobsDead" 
+					EventCompleteDeadMobIds="19514" 
+					MoveOutOfGroundEffectAuraId1="20602" >
+			  <Safespots>
+				<Hotspot X="341.524" Y="30.75543" Z="-2.388173" />
+				<Hotspot X="366.6827" Y="14.13559" Z="-2.38926" />
+				<Hotspot X="373.5355" Y="-15.0625" Z="-2.388959" />
+				<Hotspot X="348.0477" Y="-34.61012" Z="-2.388913" />
+				<Hotspot X="307.4803" Y="-26.44571" Z="-2.388913" />
+				<Hotspot X="295.641" Y="11.35724" Z="-2.388913" />
+				<Hotspot X="332.3732" Y="-0.7445555" Z="-2.389467" />
+          </Safespots>
+      </CustomBehavior> -->
+			
 			<RunTo X="410.2317" Y="41.3524" Z="20.1781"  />
 			<RunTo X="487.0995" Y="87.0254" Z="20.3867"  />
 			<RunTo X="517.6785" Y="167.0776" Z="20.2457"  />
@@ -449,6 +470,9 @@
 			<RunTo X="418.7437" Y="323.1911" Z="16.0037"  />
 			<RunTo X="458.7556" Y="335.0172" Z="15.3639"  />
 			<RunTo X="477.3319" Y="389.2239" Z="15.7321"  />
+			
+			<CustomBehavior File="SwitchTarget" BossId="19516" />	<!--Pull Void Reaver-->
+			
 			<RunTo X="482.5483" Y="281.6102" Z="20.1802"  />
 			<RunTo X="513.5410" Y="218.0332" Z="20.2882"  />
 			<RunTo X="532.9162" Y="138.4957" Z="21.1098"  />
@@ -456,6 +480,13 @@
 			<RunTo X="648.9242" Y="84.7310" Z="46.8079"  />
 			<RunTo X="682.4763" Y="31.7709" Z="46.7797"  />
 			<RunTo X="719.3409" Y="41.6474" Z="46.7797"  />
+			
+			<CustomBehavior File="KaelThas" BossId="19622" AddId1="21270" AddId2="21269" AddId3="21268" AddId4="21271" AddId5="21272" AddId6="21273" AddId7="21274" 
+							ThaladredFightX="647.8159" ThaladredFightY="33.54127" ThaladredFightZ="46.77886"
+							SanguinarFightX="710.8145" SanguinarFightY="-69.7039" SanguinarFightZ="46.7789"
+							CapernianFightX="789.914" CapernianFightY="-45.44182" CapernianFightZ="46.77895"
+							TellonicusFightX="810.4791" TellonicusFightY="41.20256" TellonicusFightZ="46.77884" />
+			
 			<RunTo X="639.1072" Y="-1.7013" Z="46.7788"  />
 			<RunTo X="727.0541" Y="-40.4114" Z="46.7788"  />
 			<RunTo X="678.4929" Y="-39.3560" Z="46.7788"  />
@@ -474,6 +505,9 @@
 			<RunTo X="351.6682" Y="-322.3910" Z="22.0169"  />
 			<RunTo X="433.5537" Y="-275.4671" Z="22.0170"  />
 			<RunTo X="478.9381" Y="-295.4649" Z="20.0236"  />
+			
+			<CustomBehavior File="SwitchTarget" BossId="18805" />	<!--Pull High Astromancer Solarian-->
+		
 			<RunTo X="524.8072" Y="-212.3702" Z="20.2884"  />
 			<RunTo X="490.0634" Y="-89.4048" Z="20.3779"  />
 			<RunTo X="406.1906" Y="-42.7980" Z="20.1783"  />
@@ -486,7 +520,7 @@
 			<CustomBehavior File="MyCTM" X="-16.9592" Y="-0.8995" Z="-2.4297" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 
-			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt;= 80.0)" >
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt;= 20.0)" >
 					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="3060.962" Y="3676.073" Z="142.7287" />
 					<CustomBehavior File="ForcedDismount" />
@@ -494,9 +528,8 @@
 					<CustomBehavior File="FlyTo" DestName="Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
 					<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3129.077" Y="1580.786" Z="249.9725" />
 					<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3098.596" Y="1517.308" Z="190.3002" />
-					<CustomBehavior File="RunMacro" Macro="/dismount" />
 					<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3086.6145" Y="1365.5248" Z="184.1301" />
-					
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
 				</If>				
 			</If>
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 			
