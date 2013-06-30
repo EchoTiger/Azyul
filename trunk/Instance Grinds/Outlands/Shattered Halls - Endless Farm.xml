@@ -469,10 +469,7 @@
 			<RunTo X="122.7624" Y="248.4109" Z="-16.30161" /> <!-- falls down into sewers -->
 			<RunTo X="177.2218" Y="187.2516" Z="-32.96069" />
 			<RunTo X="165.4018" Y="264.4959" Z="-13.19619" />
-			<CustomBehavior File="InteractWith" MobId="16807" ObjectType="NPC" WaitTime="0" X="183.1553" Y="289.6352" Z="-8.186457" />
-			<RunTo X="178.0883" Y="290.4217" Z="-8.187717" /> <!-- Fix for Boss not aggroing-->
-			<RunTo X="193.2752" Y="267.7448" Z="-13.19479" /> <!-- Grand Warlock Nethekurse will auto-aggro after killing these mobs -->
-			
+			<CustomBehavior File="SwitchTarget" BossId="16807" /> <!-- Pull Grand Warlock Nethekurse -->
 			<RunTo X="241.5205" Y="272.9061" Z="-13.20756" />
 			<RunTo X="515.1786" Y="317.1761" Z="1.933324" />
 			<RunTo X="487.6143" Y="234.7653" Z="0.2535897" />
@@ -484,12 +481,14 @@
 			<RunTo X="440.7444" Y="58.98592" Z="1.927491" />
 			<RunTo X="420.1831" Y="57.78676" Z="2.281479" />
 			<RunTo X="400.8577" Y="57.87701" Z="-8.025468" />
-			<RunTo X="360.8749" Y="57.69294" Z="-7.643936" />  <!-- kills Warbring O'mrogg -->
+			
+			<CustomBehavior File="SwitchTarget" BossId="16809" />  <!-- Pull Warbringer O'mrogg -->
 			
 			<RunTo X="373.7049" Y="33.67148" Z="-7.931102" />
 			<CustomBehavior File="MyCTM" X="374.8488" Y="12.38322" Z="1.123178" /> <!-- regular bot movement often gets stuck on these stairs, but using MyCTM works -->
 			<RunTo X="284.1511" Y="-84.01473" Z="2.058319" />
-			<RunTo X="233.5126" Y="-83.9312" Z="4.938627" /> <!-- kills Warchief Kargath Bladefist -->
+			
+			<CustomBehavior File="SwitchTarget" BossId="16808" /> <!-- Pull Warchief Kargath Bladefist -->
 			
 			<RunTo X="284.1511" Y="-84.01473" Z="2.058319" /> <!-- starts running back to the entrance -->
 			<RunTo X="233.5126" Y="-83.9312" Z="4.938627" />
