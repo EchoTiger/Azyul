@@ -658,12 +658,12 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                             && !Me.IsFlying
                                             && ((ProactiveCombatStrategy == ProactiveCombatStrategyType.ClearAll)
                                                 || (ProactiveCombatStrategy == ProactiveCombatStrategyType.ClearMobsTargetingUs)),
-                       UtilityBehaviorPS_SpankMobTargetingUs(context => FindBestInteractTargets(MobState) /*excluded units*/
+                       UtilityBehaviorPS.SpankMobTargetingUs(context => FindBestInteractTargets(MobState) /*excluded units*/
                                                                         .Where(o => o.ToUnit() != null)
                                                                         .Select(o => o.ToUnit()))),
 
                     new Decorator(context => !Me.Combat,
-                        UtilityBehaviorPS_HealAndRest()),
+                        UtilityBehaviorPS.HealAndRest()),
                             
                     // Delay, if necessary...
                     // NB: We must do this prior to checking for 'behavior done'.  Otherwise, profiles
@@ -694,7 +694,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                     // for the item to show up, if its going to.
                     new Decorator(context => (InteractByUsingItemId > 0) && !Query.IsViable(ItemToUse),
                         new PrioritySelector(
-                            UtilityBehaviorPS_WaitForInventoryItem(context => InteractByUsingItemId),
+                            UtilityBehaviorPS.WaitForInventoryItem(context => InteractByUsingItemId),
                             new Action(context =>
                             {
                                 ItemToUse = Me.CarriedItems.FirstOrDefault(i => (i.Entry == InteractByUsingItemId));
@@ -705,7 +705,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                     new Decorator(context => Query.IsViable(SelectedAliveTarget) && SelectedAliveTarget.IsAlive,
                         new Sequence(
                             new Action(context => { QBCLog.Info("Going after 'alive' {0} to make it 'dead'", SelectedAliveTarget.Name); }),
-                            UtilityBehaviorPS_SpankMob(context => SelectedAliveTarget))),
+                            UtilityBehaviorPS.SpankMob(context => SelectedAliveTarget))),
 
                     // If interact target no longer meets qualifications, try to find another...
                     new Decorator(context => !IsInteractNeeded(SelectedInteractTarget, MobState),
@@ -736,7 +736,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                             // NB: if the terminateBehaviorIfNoTargetsProvider argument evaluates to 'true', calling
                             // this sub-behavior will terminate the overall behavior.
                             new Decorator(context => !Query.IsViable(SelectedInteractTarget),
-                                UtilityBehaviorPS_NoMobsAtCurrentWaypoint(
+                                UtilityBehaviorPS.NoMobsAtCurrentWaypoint(
                                     context => HuntingGrounds,
                                     context => !WaitForNpcs,
                                     context => MobIds.Select(m => Utility.GetObjectNameFromId(m)).Distinct(),
@@ -763,7 +763,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                                     && !Me.IsFlying
                                                     && ((ProactiveCombatStrategy == ProactiveCombatStrategyType.ClearAll)
                                                         || (ProactiveCombatStrategy == ProactiveCombatStrategyType.ClearMobsThatWillAggro)),
-                                UtilityBehaviorPS_SpankMobWithinAggroRange(context => SelectedInteractTarget.Location,
+                                UtilityBehaviorPS.SpankMobWithinAggroRange(context => SelectedInteractTarget.Location,
                                                                            context => SelectedInteractTarget.InteractRange,
                                                                            () => MobIds /*excluded mobs*/)),
 
@@ -914,7 +914,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
             return
                 new PrioritySelector(
                     new Decorator(context => IsDistanceGainNeeded(SelectedInteractTarget),
-                        UtilityBehaviorPS_MoveTo(
+                        UtilityBehaviorPS.MoveTo(
                             context => Utility.GetPointToGainDistance(SelectedInteractTarget, RangeMin),
                             context => string.Format("gain distance from {0} (id:{1}, dist:{2:F1}/{3:F1})",
                                 GetName(SelectedInteractTarget),
@@ -943,7 +943,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                     BehaviorDone();
                                 })),
 
-                            UtilityBehaviorPS_MoveTo(
+                            UtilityBehaviorPS.MoveTo(
                                 context => SelectedInteractTarget.Location,
                                 context => string.Format("interact with {0} (id: {1}, dist: {2:F1}{3})",
                                                         GetName(SelectedInteractTarget),
@@ -957,12 +957,12 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                     new Decorator(context => (InteractByGossipOptions.Length > 0)
                                                 && (SelectedInteractTarget.ToUnit() != null)
                                                 && (SelectedInteractTarget.ToUnit().Combat),
-                        UtilityBehaviorPS_SpankMob(context => SelectedInteractTarget.ToUnit().CurrentTarget)),
+                        UtilityBehaviorPS.SpankMob(context => SelectedInteractTarget.ToUnit().CurrentTarget)),
 
                     // Prep to interact...
-                    UtilityBehaviorPS_MoveStop(),
-                    UtilityBehaviorPS_ExecuteMountStrategy(context => PreInteractMountStrategy),
-                    UtilityBehaviorPS_FaceMob(context => SelectedInteractTarget)          
+                    UtilityBehaviorPS.MoveStop(),
+                    UtilityBehaviorPS.ExecuteMountStrategy(context => PreInteractMountStrategy),
+                    UtilityBehaviorPS.FaceMob(context => SelectedInteractTarget)          
             );
         }
 
