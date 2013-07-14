@@ -448,7 +448,6 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
 
                 // Deprecated attributes...
                 InteractByBuyingItemInSlotNum = GetAttributeAsNullable<int>("InteractByBuyingItemInSlotNum", false, new ConstrainTo.Domain<int>(-1, 100), new [] { "BuySlot" }) ?? -1;
-                GetAttributeAsNullable<MobType>("ObjectType", false, null, new[] { "MobType" }); // Deprecated--no longer used
                 var navigationMode = GetAttributeAsNullable<NavigationModeType>("Nav", false, null, new[] { "Navigation" });
                 if (navigationMode != null)
                 {
@@ -884,7 +883,14 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
 
                                 // Interact by item use...
                                 new DecoratorContinue(context => InteractByUsingItemId > 0,
-                                    new UtilityBehaviorSeq.UseItem(context => InteractByUsingItemId, context => SelectedTarget)),
+                                    new UtilityBehaviorSeq.UseItem(
+                                        context => InteractByUsingItemId,
+                                        context => SelectedTarget,
+                                        context =>
+                                        {
+                                            BehaviorDone(string.Format("Terminating behavior due to missing {0}",
+                                                Utility.GetItemNameFromId(InteractByUsingItemId)));
+                                        })),
 
                                 // Interact by right-click...
                                 new DecoratorContinue(context => !((InteractByUsingItemId > 0) || (InteractByCastingSpellId > 0)),
@@ -1359,7 +1365,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
 
             var entities =
                 from wowObject in Query.FindMobsAndFactions(MobIds, MobIdIncludesSelf, FactionIds)
-                let objectCollectionDistance = wowObject.CollectionDistance()
+                let objectCollectionDistance = wowObject.Location.CollectionDistance()
                 where
                     Query.IsViable(wowObject)
                     && (objectCollectionDistance <= CollectionDistance)
@@ -1507,7 +1513,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
             TargetExclusionAnalysis.CheckAuras(exclusionReasons, wowObject, AuraIdsOnMob, AuraIdsMissingFromMob);
             TargetExclusionAnalysis.CheckMobState(exclusionReasons, wowObject, MobState, MobHpPercentLeft);
 
-            var objectCollectionDistance = wowObject.CollectionDistance();
+            var objectCollectionDistance = wowObject.Location.CollectionDistance();
             if (objectCollectionDistance > CollectionDistance)
                 { exclusionReasons.Add(string.Format("ExceedsCollectionDistance({0:F1}, saw {1:F1})", CollectionDistance, objectCollectionDistance)); }
 
