@@ -410,14 +410,14 @@
                   <CustomBehavior File="Message" Text="Going To Karazhan" LogColor="Green" />
                         <RunTo X="-11112.15" Y="-2005.483" Z="49.3307" />
                         <!-- Interacting with Gate outside -->
-                        <CustomBehavior File="UseGameObject" ObjectId="184164" NumOfTimes="1" X="-1113.5" Y="-2006.63" Z="49.3307" />
+                        <CustomBehavior File="InteractWith" MobId="184164" NumOfTimes="1" X="-1113.5" Y="-2006.63" Z="49.3307" />
                         <RunTo X="-11107.5" Y="-2002.63" Z="49.3307" />
                         <CustomBehavior File="WaitTimer" WaitTime="15000" />  
             </If>
             <If Condition="(Me.MapId == 532)" >
 			<!-- Interacting with Gate Inside -->
                   <CustomBehavior File="Message" Text="Going to Enter Karazhan" LogColor="Green" />
-			<CustomBehavior File="UseGameObject" ObjectId="183450" NumOfTimes="1" X="-11100.58" Y="-1997.149" Z="49.8921" />
+			<CustomBehavior File="InteractWith" MobId="183450" NumOfTimes="1" X="-11100.58" Y="-1997.149" Z="49.8921" />
 			<!-- Clearing Vendors to avoid Koren being readded every loop -->
 			<ClearVendor />
 			<!-- Adding Koren to the Vendor List if reputation is Honored or higher -->
@@ -714,7 +714,7 @@
       <If Condition="Me.FreeBagSlots &lt;= 15" >
                   <CustomBehavior File="Message" Text="\nWe are going to town and dump our bags." LogColor="Coral" />
                 </If>
-                  <CustomBehavior File="UseGameObject" ObjectId="184164" NumOfTimes="1" X="-1113.5" Y="-2006.63" Z="49.3307" />
+                  <CustomBehavior File="InteractWith" MobId="184164" NumOfTimes="1" X="-1113.5" Y="-2006.63" Z="49.3307" />
                   <CustomBehavior File="MyCTM" X="-11110" Y="-2006" Z="49.85" /> 
                   <CustomBehavior File="WaitTimer" WaitTime="15000" />
                   <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
