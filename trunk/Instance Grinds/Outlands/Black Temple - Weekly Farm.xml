@@ -402,17 +402,18 @@
 </If>
 		<!-- Nav to Dungeon -->
 
-		<If Condition="Me.Location.Distance(new WoWPoint(-3642.653, 317.6351, 34.99331)) &gt; 50" >	
-			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
-			<CustomBehavior File="Message" Text="Moving to Black Temple." LogColor="Lime" />
-			<CustomBehavior File="FlyTo" DestName="Black Temple" X="-3642.653" Y="317.6351" Z="34.99331" />
-			<CustomBehavior File="ForcedDismount" />
-		</If>
-
-		<CustomBehavior File="Message" Text="Entering Black Temple." LogColor="Lime" />
-		<CustomBehavior File="MyCTM" X="-3644.849" Y="314.2909" Z="35.52006" />
-		<CustomBehavior File="MyCTM" X="-3659.946" Y="320.5000" Z="35.47588" /> <!-- enters instance if not already inside  -->
-		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+<If Condition="!(Me.MapId == 564) &amp;&amp;Me.Location.Distance(new WoWPoint(-3642.653, 317.6351, 34.99331)) &gt; 50" >	
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+	<CustomBehavior File="Message" Text="Moving to Black Temple." LogColor="Lime" />
+	<CustomBehavior File="FlyTo" DestName="Black Temple" X="-3642.653" Y="317.6351" Z="34.99331" />
+	<CustomBehavior File="ForcedDismount" />
+</If>
+<If Condition="!(Me.MapId == 564)" >
+	<CustomBehavior File="Message" Text="Entering Black Temple." LogColor="Lime" />
+	<CustomBehavior File="MyCTM" X="-3644.849" Y="314.2909" Z="35.52006" />
+	<CustomBehavior File="MyCTM" X="-3659.946" Y="320.5000" Z="35.47588" /> <!-- enters instance if not already inside  -->
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+</If>
 	
 <!-- Nav to Dungeon -->			
 <!-- Begin Instance Grind -->
