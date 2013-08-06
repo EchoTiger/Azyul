@@ -397,23 +397,23 @@
 		
 	<!-- Travel to Stratholme --> 
 	
-		<While Condition="(Me.MapId == 0)" >
+<While Condition="true" >
 		
 		<If Condition="Me.Location.Distance(new WoWPoint(3232.494, -4046.767, 108.4352)) &gt; 10" >
-		
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Undead Stratholme Location." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Stratholme" X="3163.623" Y="-4039.049" Z="104.4434"  />
-						<RunTo X="3181.775" Y="-4039.192" Z="107.0278" />
-						<CustomBehavior File="InteractWith" MobId="175369" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens outer gate -->
-						<RunTo X="3232.494" Y="-4046.767" Z="108.4352" />
-						<CustomBehavior File="ForcedDismount" />
+			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />
+			<CustomBehavior File="Message" Text="Moving to Undead Stratholme Location." LogColor="Lime" />
+			<CustomBehavior File="FlyTo" DestName="Stratholme" X="3169.979" Y="-4039.419" Z="105.028" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="MyCTM" X="3183.827" Y="-4038.913" Z="107.9916" />
+			<CustomBehavior File="InteractWith" MobId="175369" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens outer gate -->
+			<CustomBehavior File="MyCTM" X="3228.217" Y="-4037.266" Z="108.4234" />
+			<CustomBehavior File="MyCTM" X="3232.877" Y="-4048.029" Z="108.4386" />
+
 		</If>
-						<CustomBehavior File="MyCTM" X="3238.13" Y="-4057.148" Z="110.4538" /> <!-- Enters instance if not already inside -->
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<CustomBehavior File="MyCTM" X="3238.13" Y="-4057.148" Z="110.4538" /> <!-- Enters instance if not already inside -->
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 	<!-- Begin Instance Grind -->
 		<While Condition="(Me.ZoneId == 2017)" >
-		
 				<RunTo X="3620.905" Y="-3643.969" Z="138.5107" />
 				<CustomBehavior File="InteractWith" MobId="175368" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens Service Entrance Gate -->
 				<RunTo X="3628.094" Y="-3616.009" Z="138.5294" /> 
@@ -485,7 +485,8 @@
 				<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
 				<CustomBehavior File="WaitTimer" WaitTime="180000" />
 				<CustomBehavior File="MyCTM" X="3587.691" Y="-3638.193" Z="138.4724" /> <!-- Exits instance portal -->
-				<CustomBehavior File="WaitTimer" WaitTime="15000" />	
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</While>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />  <!-- Resets instance -->
 						<!-- End Instance Grind -->
 	
@@ -513,9 +514,6 @@
 	<!-- End bag check -->
 	
 			</While>
-			</While>
-				
-				
+						
 	</QuestOrder>
-
 </HBProfile>
