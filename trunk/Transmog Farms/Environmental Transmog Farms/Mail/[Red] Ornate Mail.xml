@@ -428,7 +428,8 @@
 			</Hotspots>
 		</GrindArea>
 	</SetGrindArea>
-	<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) &amp;&amp; Me.IsAlliance" GoalText="Moving to sell or repair." />
+	<GrindTo Condition="(Me.FreeBagSlots &lt;= 6)" />
+	<If Condition="Me.IsAlliance" >
 		<CustomBehavior File="FlyTo" X="-11774.62" Y="-3221.023" Z="12.95492" />
 		<CustomBehavior File="FlyTo" X="-11806.64" Y="-3224.286" Z="-30.58852" />
 		<CustomBehavior File="ForcedDismount" />
@@ -440,7 +441,8 @@
 		<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
 		<ClearVendor />
 		<CustomBehavior File="FlyTo" X="-12053.8" Y="-3805.67" Z="20.42023" />
-	<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) &amp;&amp; Me.IsHorde" GoalText="Moving to sell or repair." />
+	</If>
+	<If Condition="Me.IsHorde" >
 		<CustomBehavior File="FlyTo" X="-11774.62" Y="-3221.023" Z="12.95492" />
 		<CustomBehavior File="FlyTo" X="-11783.56" Y="-3171.962" Z="-29.11077" />
 		<CustomBehavior File="ForcedDismount" />
@@ -452,6 +454,7 @@
 		<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
 		<ClearVendor />
 		<CustomBehavior File="FlyTo" X="-12053.8" Y="-3805.67" Z="20.42023" />
+	</If>
 </While>
 
 
