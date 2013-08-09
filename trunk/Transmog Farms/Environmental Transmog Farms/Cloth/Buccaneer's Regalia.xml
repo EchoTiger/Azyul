@@ -430,39 +430,40 @@
 				</Hotspots>
 			</GrindArea>
 		</SetGrindArea>
-		<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) &amp;&amp; Me.IsAlliance" GoalText="Moving to sell and repair." />
-			<CustomBehavior File="Message" Text="Moving to sell and repair." LogColor="Lime" />
-			<CustomBehavior File="FlyTo" X="-10979.56" Y="-176.4285" Z="102.6337" />
-			<CustomBehavior File="FlyTo" X="-10661.45" Y="-1155.178" Z="59.21758" />
-			<CustomBehavior File="FlyTo" X="-10606.28" Y="-1156.525" Z="29.87168" />
-			<CustomBehavior File="ForcedDismount" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Gavin Gnarltree" Entry="225" Type="Repair" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoRepair="true" DoSell="true" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<ClearVendor />
-			<CustomBehavior File="FlyTo" X="-10632.99" Y="-1148.343" Z="40.99533" />
-			<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
-			<CustomBehavior File="FlyTo" X="-10970.49" Y="-262.8875" Z="20.95861" />
-		<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) &amp;&amp; Me.IsHorde" GoalText="Moving to sell." />
-			<CustomBehavior File="Message" Text="Moving to sell." LogColor="Lime" />
-			<CustomBehavior File="FlyTo" X="-10979.56" Y="-176.4285" Z="102.6337" />
-			<CustomBehavior File="FlyTo" X="-10074.3" Y="-1373.596" Z="30.33298" />
-			<CustomBehavior File="ForcedDismount" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Kzixx" Entry="3134" Type="Repair" X="-10072.49" Y="-1375.859" Z="30.13093" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoRepair="false" DoSell="true" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<ClearVendor />
-			<CustomBehavior File="FlyTo" X="-10632.99" Y="-1148.343" Z="40.99533" />
-			<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
-			<CustomBehavior File="FlyTo" X="-10970.49" Y="-262.8875" Z="20.95861" />
+		<GrindTo Condition="(Me.FreeBagSlots &lt;= 6)" />
+			<If Condition="Me.IsAlliance" >
+				<CustomBehavior File="Message" Text="Moving to sell and repair." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" X="-10979.56" Y="-176.4285" Z="102.6337" />
+				<CustomBehavior File="FlyTo" X="-10661.45" Y="-1155.178" Z="59.21758" />
+				<CustomBehavior File="FlyTo" X="-10606.28" Y="-1156.525" Z="29.87168" />
+				<CustomBehavior File="ForcedDismount" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Gavin Gnarltree" Entry="225" Type="Repair" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoRepair="true" DoSell="true" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<ClearVendor />
+				<CustomBehavior File="FlyTo" X="-10632.99" Y="-1148.343" Z="40.99533" />
+				<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
+			</If>
+			<If Condition="Me.IsHorde" >
+				<CustomBehavior File="Message" Text="Moving to sell." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" X="-10979.56" Y="-176.4285" Z="102.6337" />
+				<CustomBehavior File="FlyTo" X="-10074.3" Y="-1373.596" Z="30.33298" />
+				<CustomBehavior File="ForcedDismount" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Kzixx" Entry="3134" Type="Repair" X="-10072.49" Y="-1375.859" Z="30.13093" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoRepair="false" DoSell="true" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<ClearVendor />
+				<CustomBehavior File="FlyTo" X="-10632.99" Y="-1148.343" Z="40.99533" />
+				<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
+			</If>
 	</If>
 <!--END-->
 
@@ -494,37 +495,38 @@
 				</Hotspots>
 			</GrindArea>
 		</SetGrindArea>
-		<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) &amp;&amp; Me.IsAlliance" GoalText="Moving to sell and repair." />
-			<CustomBehavior File="Message" Text="Moving to sell and repair." LogColor="Lime" />
-			<CustomBehavior File="FlyTo" X="-10806.34" Y="-1286.173" Z="127.4832" />
-			<CustomBehavior File="FlyTo" X="-10661.45" Y="-1155.178" Z="59.21758" />
-			<CustomBehavior File="FlyTo" X="-10606.28" Y="-1156.525" Z="29.87168" />
-			<CustomBehavior File="ForcedDismount" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Gavin Gnarltree" Entry="225" Type="Repair" X="-10596.89" Y="-1154.147" Z="30.06044" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoRepair="true" DoSell="true" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<ClearVendor />
-			<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
-			<CustomBehavior File="FlyTo" X="-10735.19" Y="-1300.327" Z="48.8654" />
-		<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) &amp;&amp; Me.IsHorde" GoalText="Moving to sell." />
-			<CustomBehavior File="Message" Text="Moving to sell." LogColor="Lime" />
-			<CustomBehavior File="FlyTo" X="-10806.34" Y="-1286.173" Z="127.4832" />
-			<CustomBehavior File="FlyTo" X="-10074.3" Y="-1373.596" Z="30.33298" />
-			<CustomBehavior File="ForcedDismount" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Kzixx" Entry="3134" Type="Repair" X="-10072.49" Y="-1375.859" Z="30.13093" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoRepair="false" DoSell="true" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<ClearVendor />
-			<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
-			<CustomBehavior File="FlyTo" X="-10735.19" Y="-1300.327" Z="48.8654" />
+		<GrindTo Condition="(Me.FreeBagSlots &lt;= 6)" />
+			<If Condition="Me.IsAlliance">
+				<CustomBehavior File="Message" Text="Moving to sell and repair." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" X="-10806.34" Y="-1286.173" Z="127.4832" />
+				<CustomBehavior File="FlyTo" X="-10661.45" Y="-1155.178" Z="59.21758" />
+				<CustomBehavior File="FlyTo" X="-10606.28" Y="-1156.525" Z="29.87168" />
+				<CustomBehavior File="ForcedDismount" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Gavin Gnarltree" Entry="225" Type="Repair" X="-10596.89" Y="-1154.147" Z="30.06044" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoRepair="true" DoSell="true" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<ClearVendor />
+				<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
+			</If>
+			<If Condition="Me.IsHorde" >
+				<CustomBehavior File="Message" Text="Moving to sell." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" X="-10806.34" Y="-1286.173" Z="127.4832" />
+				<CustomBehavior File="FlyTo" X="-10074.3" Y="-1373.596" Z="30.33298" />
+				<CustomBehavior File="ForcedDismount" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Kzixx" Entry="3134" Type="Repair" X="-10072.49" Y="-1375.859" Z="30.13093" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoRepair="false" DoSell="true" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<ClearVendor />
+				<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
+			</If>
 	</If>
 <!--END-->
 
