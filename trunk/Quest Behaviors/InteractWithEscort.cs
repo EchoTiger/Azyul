@@ -1,4 +1,4 @@
-// Behavior originally contributed by Nesox / completely reworked by Chinajade
+﻿// Behavior originally contributed by Nesox / completely reworked by Chinajade
 //
 // LICENSE:
 // This work is licensed under the
@@ -280,13 +280,13 @@
 // BUYING AN ITEM:
 // From a simple vendor that immediately presents you with a frame of their wares:
 //      <CustomBehavior File="InteractWith" MobId="44236" InteractByBuyingItemId="2723"
-//                      X="-8365.76" Y="594.658" Z="97.00068" />
+//			X="-8365.76" Y="594.658" Z="97.00068" />
 //
 // From an Innkeeper that requires you to gossip before showing you their wares.
 // Gossip entry 2 is the "Let me browse your goods." option from Thaegra Tillstone.  (The InteractBy* options
 // are not order dependent.)
 //      <CustomBehavior File="InteractWith" MobId="44235" InteractByGossipOptions="2" InteractByBuyingItemId="4540"
-//                      X="-8365.76" Y="594.658" Z="97.00068" />
+//			X="-8365.76" Y="594.658" Z="97.00068" />
 //
 //
 // BINDING AT AN INN:
@@ -294,7 +294,7 @@
 // Dwarven District:
 //      <If Condition="Me.HearthstoneAreaId != 5150">
 //          <CustomBehavior File="InteractWith" MobId="44235" InteractByGossipOptions="1" />
-//                      X="-8365.76" Y="594.658" Z="97.00068" />
+//		        X="-8365.76" Y="594.658" Z="97.00068" />
 //      </If>
 // The only way to obtain the "area id" for the Condition is to actually set your hearthstone,
 // then use the following command with HBConsole (or Developer Tools):
@@ -314,19 +314,19 @@
 // we terminate the 'gossip' behavior (via providing the InteractByQuestFrameDisposition="TerminateBehavior"
 // attribute.
 //      <!-- A couple of states for Empoor:
-//              1. We may need to gossip, do the fight, then turn in quest
-//              2. Someone else may have started and finished the fight already, and we can
-//                      turn in quest immediately.
-//              NB: The WoWclient makes this quest appears complete, even though its not.
-//              So, we can't use the "IsQuestCompleted()" qualifier as a valid check.
-//              -->
+//      	1. We may need to gossip, do the fight, then turn in quest
+//  	   	2. Someone else may have started and finished the fight already, and we can
+//      		turn in quest immediately.
+//      	NB: The WoWclient makes this quest appears complete, even though its not.
+//      	So, we can't use the "IsQuestCompleted()" qualifier as a valid check.
+//      	-->
 //      <CustomBehavior File="InteractWith" MobId="18482" GossipOptions="1"
-//              InteractByQuestFrameDisposition="TerminateBehavior" >
-//              <HuntingGrounds>
-//                      <Hotspot Name="Tuurem" X="-2037.871" Y="4377.199" Z="1.805441" />
-//                      <Hotspot Name="Shattrath upper ring" X="-1955.325" Y="5029.867" Z="31.30444" />
-//                      <Hotspot Name="Shattrath tunnel entrance" X="-1548.137" Y="5079.232" Z="-17.91318" />
-//              </HuntingGrounds>
+//      	InteractByQuestFrameDisposition="TerminateBehavior" >
+//      	<HuntingGrounds>
+//      		<Hotspot Name="Tuurem" X="-2037.871" Y="4377.199" Z="1.805441" />
+//      		<Hotspot Name="Shattrath upper ring" X="-1955.325" Y="5029.867" Z="31.30444" />
+//      		<Hotspot Name="Shattrath tunnel entrance" X="-1548.137" Y="5079.232" Z="-17.91318" />
+//      	</HuntingGrounds>
 //      </CustomBehavior>
 //      <TurnIn QuestName="By Any Means Necessary" QuestId="9978" TurnInName="Empoor" TurnInId="18482" />
 //
@@ -869,7 +869,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                                         var blacklistTime = TimeSpan.FromSeconds(180);
 
                                         QBCLog.Warning("Exceeded our maximum count({0}) at attempted interactions--blacklisting {1} for {2}",
-                                            AttemptCountMax, SelectedTarget.SafeName(), Utility.PrettyTime(blacklistTime));
+                                            AttemptCountMax, SelectedTarget.SafeName, Utility.PrettyTime(blacklistTime));
                                         BlacklistInteractTarget(SelectedTarget);
                                         return RunStatus.Failure;
                                     }
@@ -924,7 +924,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
                 new Decorator(context => (Me.CurrentTarget != null) && !Me.CurrentTarget.Attackable,
                     new Action(context =>
                     {
-                        Query.BlacklistForCombat(Me.CurrentTarget, TimeSpan.FromSeconds(120));
+                        Me.CurrentTarget.BlacklistForCombat(TimeSpan.FromSeconds(120));
                         Me.ClearTarget();
                     })),
 
@@ -1335,7 +1335,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
             bool isShortBlacklist = (wowUnit != null) && ((wowUnit == Me) || Query.IsSharedWorldResource(wowUnit));
             TimeSpan blacklistDuration = TimeSpan.FromSeconds(isShortBlacklist ? 30 : 180);
 
-            Query.BlacklistForInteracting(selectedTarget, blacklistDuration);
+            selectedTarget.BlacklistForInteracting(blacklistDuration);
             return blacklistDuration;
         }
 
