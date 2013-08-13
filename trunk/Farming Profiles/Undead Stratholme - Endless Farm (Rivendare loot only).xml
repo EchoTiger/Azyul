@@ -414,6 +414,7 @@
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 	<!-- Begin Instance Grind -->
 		<While Condition="(Me.ZoneId == 2017)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
 				<RunTo X="3620.905" Y="-3643.969" Z="138.5107" />
 				<CustomBehavior File="InteractWith" MobId="175368" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens Service Entrance Gate -->
 				<RunTo X="3628.094" Y="-3616.009" Z="138.5294" /> 
@@ -483,8 +484,7 @@
 				<RunTo X="3629.422" Y="-3641.041" Z="138.493" />
 				<CustomBehavior File="InteractWith" MobId="175368" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens Service Entrance Gate -->		
 				<RunTo X="3590.763" Y="-3643.248" Z="138.4904" />
-				<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-				<CustomBehavior File="WaitTimer" WaitTime="180000" />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" /> 
 				<CustomBehavior File="MyCTM" X="3587.691" Y="-3638.193" Z="138.4724" /> <!-- Exits instance portal -->
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</While>

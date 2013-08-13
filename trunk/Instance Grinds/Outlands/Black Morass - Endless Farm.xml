@@ -28,7 +28,7 @@
 	<ProtectedItems>
 		<Item Name = "Pattern: Stylin' Jungle Hat" Entry = "25730"/>
 		<Item Name = "Lightning Steel Ingot" Entry = "94111"/>
-				<Item Name = "Scroll of Wisdom" Entry = "79731"/>
+		<Item Name = "Scroll of Wisdom" Entry = "79731"/>
 		<Item Name = "Silkworm Cocoon" Entry = "92960"/>	
 		<Item Name = "Facets of Research" Entry = "90395"/>	
 		<Item Name = "Facets of Research" Entry = "90397"/>
@@ -450,6 +450,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 				<!--Instance Navigation Start -->
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 		    <RunTo X="-1500.8127" Y="7096.6104" Z="32.7551"  />
 		    <RunTo X="-1546.8252" Y="7111.7993" Z="32.5227"  />
 		    <CustomBehavior File="InteractWith" MobId="20201" GossipOptions="1" X="-1547.062" Y="7113.633" Z="32.7361" />
@@ -476,11 +477,7 @@
 		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
 		    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
 		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
-		    </If>
-
+		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 			<CustomBehavior File="MyCTM" X="-1494.671" Y="7028.2757" Z="32.8237" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 

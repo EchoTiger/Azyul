@@ -417,6 +417,7 @@
 						
 	<!-- Begin Instance Grind -->
 		<While Condition="(Me.MapId == 229)" >
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 						<RunTo X="86.82022" Y="-281.9682" Z="60.63434" />
 						<RunTo X="141.4585" Y="-317.1683" Z="70.95518" />
 						<RunTo X="122.5431" Y="-296.6754" Z="70.92963" />
@@ -461,8 +462,7 @@
 						<RunTo X="33.13283" Y="-285.8595" Z="110.9477" /> <!-- Pull Drakkisath -->
 						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
 						<RunTo X="77.66439" Y="-223.971" Z="49.84536" />
-						<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="180000" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 						<CustomBehavior File="MyCTM" X="77.66439" Y="-221.971" Z="49.84536"   />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />

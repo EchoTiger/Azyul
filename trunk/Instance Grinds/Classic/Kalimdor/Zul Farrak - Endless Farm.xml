@@ -53,7 +53,6 @@
 	
 
 <QuestOrder>
-<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 <If Condition="!(Me.MapId == 209)" >	
 
 		 <!-- Transporter -->
@@ -407,7 +406,9 @@
 	</If>
 		<!-- Begin Instance Grind -->	
 		<While Condition="(Me.MapId == 209)" >
-					
+		
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 						<RunTo X="1250.8098" Y="846.5090" Z="9.0183"  />
 						<RunTo X="1294.3468" Y="818.1006" Z="9.7063"  />
 						<RunTo X="1321.0272" Y="832.7029" Z="8.9168"  />
@@ -423,37 +424,70 @@
 						<RunTo X="1621.1859" Y="864.6057" Z="10.1445"  />
 						<RunTo X="1651.6429" Y="898.7952" Z="8.8771"  />
 						<RunTo X="1654.4100" Y="931.5935" Z="8.8770"  />
-						<RunTo X="1581.1167" Y="989.5755" Z="9.2746"  />
+						<RunTo X="1581.1167" Y="989.5755" Z="9.2746"  />  
+
 						<RunTo X="1561.8914" Y="995.8893" Z="9.0801"  />
 						<RunTo X="1570.0959" Y="1012.3794" Z="8.8768"  />
 						<RunTo X="1584.4092" Y="1076.0903" Z="8.8770"  />
 						<RunTo X="1597.5734" Y="1109.7711" Z="8.8769"  />
-						<RunTo X="1629.7092" Y="1141.5284" Z="8.8770"  />
-						<RunTo X="1636.2202" Y="1160.7717" Z="8.8770"  />
-						<RunTo X="1627.9219" Y="1181.0179" Z="8.8770"  />
+						<CustomBehavior File="InteractWith" ObjectType="GameObject" MobId="141832" WaitForNpcs="false" X="1648.02" Y="1169.574" Z="8.978505" />
+						<RunTo X="1622.81" Y="1191.272" Z="8.970698" />
+						<RunTo X="1663.711" Y="1255.225" Z="10.23362" />
+						<CustomBehavior File="SwitchTarget" BossId="7273" /> <!-- Pull Gahz'rilla -->
 						<RunTo X="1690.3849" Y="1239.1527" Z="8.8866"  />
 						<RunTo X="1703.7422" Y="1199.7332" Z="9.5889"  />
 						<RunTo X="1682.3787" Y="1166.2745" Z="8.8785"  />
+						<RunTo X="1886.799" Y="1269.618" Z="41.63361" />
+						<CustomBehavior File="SwitchTarget" BossId="7274" /> <!-- Pull Executioner -->
+						<RunTo X="1879.636" Y="1296.464" Z="46.30863" />
+						<CustomBehavior File="InteractWith" MobId="141071" WaitForNpcs="False" X="1886.067" Y="1297.517" Z="48.24273" />
+		
+						<CustomBehavior File="RunMacro" Macro="/cleartarget" />
+						<CustomBehavior File="RunMacro" Macro="/target Sergeant Bly" />
+						<CustomBehavior File="RunMacro" Macro="/focus" />
+						<!-- Complete Temple Event -->
+						
+						<While Condition="(Me.FocusedUnit.Entry == 7604) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(1886.63, 1203.83, 8.88)) &gt; 15)" >
+							<CustomBehavior File="InteractWithEscort" WaitForNpcs="False"  NumOfTimes="1" MobState="Alive" MobId="7607" /> 
+							<While Condition="(Me.FocusedUnit.Distance &lt; 5) " >
+								<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="1" MobState="Alive" MobId="7788" MobId2="8876" MobId3="5649" MobId4="7789" MobId5="7268" MobId6="5648" MobId7="7246" MobId8="7787" MobId9="5650" MobId10="7247" MobId11="8877" CollectionDistance="50" />	
+							</While>	
+						</While>
+						
+						<CustomBehavior File="SwitchTarget" BossId="7796" /> <!-- Pull Nekrum Gutchewer -->
+						
+						
+						<CustomBehavior File="InteractWith" MobId="7604" GossipOptions="1" WaitForNpcs="False" /> <!-- Pull Sergeant Bly -->
+						
+						
+						<RunTo X="1857.458" Y="1145.359" Z="15.77392" />
+						<RunTo X="1745.094" Y="1039.88" Z="49.86219" />
+						<CustomBehavior File="SwitchTarget" BossId="7267" /> <!-- Pull Chief Ukorz Sandscalp -->
+						<RunTo X="1865.256" Y="1153.263" Z="12.49146" />
+						
 						<RunTo X="1833.7318" Y="1187.4781" Z="8.9878"  />
 						<RunTo X="1865.3508" Y="1178.2245" Z="8.9902"  />
 						<RunTo X="1865.9014" Y="1145.2209" Z="13.0178"  />
 						<RunTo X="1892.9172" Y="1143.1705" Z="8.9136"  />
+						<RunTo X="1906.446" Y="1014.892" Z="11.51565" />
+						<CustomBehavior File="SwitchTarget" BossId="7271" /> <!-- Pull Witch Doctor Zum'rah -->
 						<RunTo X="1910.2111" Y="1186.7925" Z="8.8783"  />
 						<RunTo X="1886.5385" Y="1281.0375" Z="42.6357"  />
 						<RunTo X="1868.5060" Y="1098.0472" Z="8.9156"  />
 						<RunTo X="1864.2316" Y="1032.6967" Z="8.8768"  />
 						<RunTo X="1860.8385" Y="972.2949" Z="9.0475"  />
 						<RunTo X="1831.0056" Y="928.5922" Z="8.8820"  />
+						<CustomBehavior File="SwitchTarget" BossId="7272" /> <!-- Pull Theka the Martyr -->
 						<RunTo X="1794.4396" Y="844.3710" Z="8.8908"  />
 						<RunTo X="1805.7704" Y="808.7660" Z="13.1289"  />
 						<RunTo X="1799.0278" Y="751.1656" Z="14.6040"  />
 						<RunTo X="1829.5947" Y="725.5672" Z="16.5102"  />
+						<CustomBehavior File="SwitchTarget" BossId="8127" /> <!-- Pull Antu'sul -->
 						<RunTo X="1812.4108" Y="686.4406" Z="14.5980"  />
 						<RunTo X="1226.841" Y="852.6934" Z="12.48615" />
 						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
 						<RunTo X="1212.67" Y="842.04" Z="8.93346" />
-						<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="180000" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 						<CustomBehavior File="MyCTM" X="1205.67" Y="842.04" Z="8.93346" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />

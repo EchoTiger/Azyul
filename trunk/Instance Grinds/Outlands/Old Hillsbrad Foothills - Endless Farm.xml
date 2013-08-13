@@ -426,6 +426,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<!--Instance Navigation Start -->
 				<If Condition="(Me.ZoneId == 2367)" >
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 					<RunTo X="2393.646" Y="1203.664" Z="66.35605" />
 					<RunTo X="2375.554" Y="1178.651" Z="65.38145" />
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
@@ -535,13 +536,7 @@
 					<RunTo X="2747.031" Y="1305.154" Z="14.04021" />
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
 
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
-		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
-		    </If>
+		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 
 			<CustomBehavior File="MyCTM" X="2762.624" Y="1295.292" Z="13.55656" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />

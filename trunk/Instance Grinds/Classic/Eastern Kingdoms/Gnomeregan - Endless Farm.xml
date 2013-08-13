@@ -435,6 +435,7 @@
 </If>
  	<!-- Begin Instance Grind -->
 		<While Condition="(Me.MapId == 90)" >
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 						<RunTo X="-394.8961" Y="51.38895" Z="-154.7998" />
 						<RunTo X="-489.0648" Y="55.94126" Z="-156.9971" />
 						<RunTo X="-513.6445" Y="-135.4224" Z="-152.4943" /> <!-- Move to interact with Blastmaster Emi Shortfuse -->
@@ -494,14 +495,7 @@
 						<CustomBehavior File="InteractWith" MobId="90858" ObjectType="GameObject" X="-758.5375" Y="260.386" Z="-273.0493" /> <!-- Open Workshop door -->
 						<RunTo X="-733.4819" Y="2.512882" Z="-249.0421" />
 			
-						<If Condition="Me.FreeBagSlots &lt;= 10" >
-							<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
-							<CustomBehavior File="WaitTimer" WaitTime="180000" />
-						</If>
-						<If Condition="Me.FreeBagSlots &gt;= 11" >
-							<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-							<CustomBehavior File="WaitTimer" WaitTime="180000" />
-						</If>
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 						
 						<RunTo X="-733.4819" Y="2.512882" Z="-249.0421" />
 						<CustomBehavior File="MyCTM" X="-726.3634" Y="2.68129" Z="-248.05" />

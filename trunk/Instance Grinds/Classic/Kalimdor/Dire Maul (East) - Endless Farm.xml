@@ -414,7 +414,8 @@
 	</If>
 		<!-- Begin Instance Grind -->	
 		<While Condition="(Me.MapId == 429)" >
-		
+						
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 						<RunTo X="55.29508" Y="-195.8813" Z="-4.146365" />
 						<RunTo X="11.51624" Y="-200.5103" Z="-4.120657" />
 						<RunTo X="-14.84623" Y="-183.4537" Z="-3.959418" />
@@ -531,7 +532,7 @@
 						<RunTo X="49.56715" Y="-789.2866" Z="-24.69777" />
 						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
 						<RunTo X="14.19493" Y="-836.8912" Z="-31.68449" />
-						<CustomBehavior File="Message" Text="LONG instance.... no wait time needed!" LogColor="Coral" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 						<CustomBehavior File="MyCTM" X="5.850695" Y="-837.098" Z="-33.04185" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />

@@ -411,7 +411,7 @@
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 					</If>
 		<If Condition="(Me.MapId == 602)" >
-
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 						<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 						<RunTo X="1331.41" Y="241.904" Z="52.5046" />
 						<RunTo X="1331.042" Y="153.3352" Z="53.70412" />
@@ -452,13 +452,7 @@
 						<RunTo X="1315.17" Y="202.5152" Z="52.81069" />
 						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
 						<RunTo X="1330.933" Y="270.6876" Z="53.39822" />
-						<If Condition="Me.FreeBagSlots &lt;= 10" >
-		    				<CustomBehavior File="Message" Text="\nSince we're going to town we will not wait to avoid overloads." LogColor="Coral" />
-		   				</If>
-		    			<If Condition="Me.FreeBagSlots &gt;= 11" >
-		    				<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    				<CustomBehavior File="WaitTimer" WaitTime="30000" />
-		    			</If>
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 						<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />

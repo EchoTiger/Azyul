@@ -412,6 +412,7 @@
 	</If>
 		<!-- Begin Instance Grind -->	
 		<While Condition="(Me.MapId == 429)" >
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 						<RunTo X="259.7697" Y="-31.65197" Z="-2.5596" />
 						<RunTo X="295.1591" Y="-68.91334" Z="-3.886934" />
 						<RunTo X="352.2098" Y="-107.4893" Z="-3.886914" />
@@ -470,8 +471,7 @@
 						<RunTo X="284.575" Y="36.7755" Z="-2.763682" />
 						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
 						<RunTo X="255.522" Y="-15.48237" Z="-2.560003"  />
-						<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="180000" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 						<CustomBehavior File="MyCTM" X="255.5269" Y="-11.92353" Z="-2.560003" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />

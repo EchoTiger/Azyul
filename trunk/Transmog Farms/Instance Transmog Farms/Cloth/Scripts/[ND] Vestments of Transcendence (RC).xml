@@ -86,6 +86,7 @@
 				<CustomBehavior File="Message" Text="Running Shadow Labyrinth to get boots." LogColor="DarkBlue" />
 				<CustomBehavior File="MyCTM" X="-3361.756" Y="4653.049" Z="-101.0487" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			    <RunTo X="23.2821" Y="-0.2094" Z="0.0058"  />
 			    <RunTo X="39.1627" Y="13.1617" Z="0.0084"  />
 			    <RunTo X="42.5479" Y="33.4023" Z="0.0084"  />
@@ -123,8 +124,7 @@
 			    <RunTo X="25.9057" Y="3.8989" Z="0.0067"  />
 			    <RunTo X="5.9584" Y="2.1280" Z="0.0053"  />
 			    <RunTo X="-4.0278" Y="1.5065" Z="0.0057"  />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
-				<CustomBehavior File="WaitTimer" WaitTime="300000" />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 			    <CustomBehavior File="MyCTM" X="-9.150306" Y="-0.02197785" Z="0.007470994" />
 			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<If Condition="HasItem(27919)">
@@ -156,6 +156,7 @@
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 			<While Condition="!HasItem(28304)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<CustomBehavior File="Message" Text="Running The Botanica to get gloves." LogColor="DarkBlue" />
 				<RunTo X="2.533957" Y="9.224449" Z="-1.575816" />
 				<RunTo X="-1.047988" Y="41.41841" Z="-5.663148" />
@@ -207,6 +208,7 @@
 			    <RunTo X="10.4380" Y="-0.3833" Z="-0.9554"  />
 			    <RunTo X="25.3934" Y="-14.2273" Z="-1.1177"  />
 			    <RunTo X="39.6339" Y="-28.5364" Z="-1.1200"  />
+			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 			    <CustomBehavior File="MyCTM" X="47.64511" Y="-36.13307" Z="-1.136961" />
 			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<If Condition="HasItem(28304)">
@@ -216,8 +218,6 @@
 					<CustomBehavior File="Message" Text="Gloves weren't obtained. We will run the instance again." LogColor="Red" />
 				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
-				<CustomBehavior File="WaitTimer" WaitTime="300000" />
 			    <If Condition="HasItem(28304) &amp;&amp; !HasItem(28250)">
 			    	<CustomBehavior File="MyCTM" X="3354.86" Y="1526.915" Z="179.6884" />
 			    	<CustomBehavior File="FlyTo" X="3338.867" Y="1539.518" Z="204.9442" />
@@ -243,6 +243,7 @@
 				<CustomBehavior File="Message" Text="Running The Mechanar to get shoulders." LogColor="DarkBlue" />
 		    	<CustomBehavior File="MyCTM" X="2861.285" Y="1544.854" Z="251.5551" />
 		    	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		    	<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			    <RunTo X="-11.6340" Y="0.3015" Z="-1.8136"  />
 			    <RunTo X="4.0430" Y="12.7978" Z="-1.8136"  />
 			    <RunTo X="18.6549" Y="26.6999" Z="0.0004"  />
@@ -284,6 +285,7 @@
 			    <RunTo X="-0.0329" Y="10.7589" Z="-1.8136"  />
 			    <RunTo X="-17.4358" Y="0.3889" Z="-1.8136"  />
 			    <RunTo X="-33.0565" Y="-0.0369" Z="-1.8136"  />
+			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="-39.30587" Y="0.1639981" Z="-2.129546" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<If Condition="HasItem(28250)">

@@ -433,6 +433,7 @@
 		</If>
 				<!--Instance Navigation Start -->
 				<If Condition="(Me.MapId == 553)" >
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 					<RunTo X="-0.8635136" Y="159.6901" Z="-5.539908" />
 					<RunTo X="-13.72336" Y="197.2156" Z="-5.540327" />
 					<RunTo X="14.00014" Y="196.6116" Z="-5.540327" />
@@ -597,14 +598,7 @@
 					<RunTo X="9.72675" Y="370.9396" Z="-27.11316" />
 					<RunTo X="73.01514" Y="393.9115" Z="-27.97716" /> <!-- kill Warp Splinter -->
 					<CustomBehavior File="WaitTimer" WaitTime="10000" /> <!-- change this to more -->
-				    <If Condition="Me.FreeBagSlots &lt;= 10" >
-				    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
-				    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
-				    </If>
-				    <If Condition="Me.FreeBagSlots &gt;= 11" >
-				    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-				    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
-				    </If>
+				    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 
 			<CustomBehavior File="MyCTM" X="161.4034" Y="392.7429" Z="-35.25000" /> <!--Exits Instance -->
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />

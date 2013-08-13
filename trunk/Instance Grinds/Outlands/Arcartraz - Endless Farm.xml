@@ -440,7 +440,7 @@
 	
 	<If Condition="(Me.MapId == 552)" >
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="25" KillBetweenHotspots="True" LogoutForInactivity="False" />						
-
+		<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 	    <RunTo X="39.7576" Y="-0.2278" Z="-0.3821"  />
 	    <RunTo X="74.4517" Y="18.2987" Z="-10.1739"  />
 	    <RunTo X="69.3894" Y="-15.7908" Z="-10.1731"  />
@@ -513,14 +513,7 @@
 	    <RunTo X="112.1930" Y="-0.8140" Z="-10.1582"  />
 	    <RunTo X="74.4517" Y="18.2987" Z="-10.1739"  />
 	    <RunTo X="39.7576" Y="-0.2278" Z="-0.3821"  />
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
-		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
-		    </If>
+		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 
 			<CustomBehavior File="MyCTM" X="-4.87" Y="-0.7917" Z="-0.2051"  /> <!--Exits Instance -->
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />

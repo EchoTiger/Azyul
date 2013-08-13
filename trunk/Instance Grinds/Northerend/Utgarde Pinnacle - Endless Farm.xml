@@ -441,6 +441,7 @@
 		</If>
 			<!--Instance Navigation Start -->
 			<If Condition="Me.MapId == 575" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			    <RunTo X="549.7104" Y="-327.2530" Z="110.2379"  />
 			    <RunTo X="519.1378" Y="-326.6814" Z="109.6088"  />
 			    <RunTo X="489.5596" Y="-326.1284" Z="104.0364"  />
@@ -545,13 +546,7 @@
 			    <RunTo X="514.6461" Y="-326.4139" Z="109.6153"  />
 			    <RunTo X="578.2748" Y="-327.8182" Z="110.1424"  />
 
-				<If Condition="(Me.FreeBagSlots &gt;= 11)" >
-				    <CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-					<CustomBehavior File="WaitTimer" WaitTime="120000" />
-				</If>
-				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
-				    <CustomBehavior File="Message" Text="Since we're going to town, we will not wait for overloads." LogColor="Coral" />
-				</If>
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 
 
 			    <CustomBehavior File="MyCTM" X="590.7843" Y="-328.0943" Z="110.1454"  />

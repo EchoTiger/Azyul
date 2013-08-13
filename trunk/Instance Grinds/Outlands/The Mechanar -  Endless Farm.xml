@@ -441,6 +441,7 @@
 	
 		<If Condition="(Me.MapId == 554)" >		
 
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			    <RunTo X="-9.4684" Y="7.7338" Z="-1.8136"  />
 			    <RunTo X="8.9596" Y="16.3103" Z="-1.8136"  />
 			    <RunTo X="22.1710" Y="0.7057" Z="0.0000"  />
@@ -520,14 +521,7 @@
 				<RunTo X="139.054" Y="19.261" Z="24.874" />
 				<RunTo X="137.585" Y="145.238" Z="25.578" /> <!-- Boss: Patheleon the Calculator 19220 -->
 				<RunTo X="81.48" Y="149.298" Z="25.581" /> <!-- Just before rear exit portal -->
-			    <If Condition="Me.FreeBagSlots &lt;= 10" >
-			    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
-			    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
-			    </If>
-			    <If Condition="Me.FreeBagSlots &gt;= 11" >
-			    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-			    	<CustomBehavior File="WaitTimer" WaitTime="189000" />
-			    </If>
+			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 
 			<CustomBehavior File="MyCTM" X="72.820" Y="149.613" Z="25.581" /> <!--Exits Instance -->
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />

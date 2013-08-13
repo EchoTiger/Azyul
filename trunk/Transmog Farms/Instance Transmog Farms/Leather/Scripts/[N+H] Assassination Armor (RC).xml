@@ -389,6 +389,7 @@
 					<CustomBehavior File="MyCTM" X="2880.527" Y="1561.961" Z="248.8882" />
 					<CustomBehavior File="MyCTM" X="2859.973" Y="1543.509" Z="252.1593" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 					<RunTo X="-6.8111" Y="0.3153" Z="-1.8124"  />
 				    <RunTo X="22.2919" Y="-30.8791" Z="0.0081"  />
 				    <RunTo X="33.1179" Y="-43.2640" Z="0.0725"  />
@@ -430,14 +431,13 @@
 				    <RunTo X="105.4084" Y="150.4805" Z="25.5808"  />
 				    <RunTo X="86.8965" Y="150.1235" Z="25.5808"  />
 					<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" />	
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				    <CustomBehavior File="MyCTM" X="72.1225" Y="150.8828" Z="25.5808"  />
 				    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 				    <CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 				    <If Condition="(!HasItem(28204))" > <!--Chest -->
 				    	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 						<CustomBehavior File="Message" Text="Chest wasn't obtained, running the dungeon again." LogColor="Green" />
-		    			<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    			<CustomBehavior File="WaitTimer" WaitTime="210000" />
 		    		</If>
 					<If Condition="(HasItem(28204))"> <!-- Chest obtained -->
 						<RunTo X="2907.73" Y="1586.777" Z="248.8637" />
@@ -460,6 +460,7 @@
 					<CustomBehavior File="UseGameObject" ObjectId="184320" X="3311.218" Y="1333.716" Z="506.5972" />
 					<CustomBehavior File="MyCTM" X="3313.311" Y="1328.449" Z="505.5585" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				   	<RunTo X="38.9332" Y="0.0080" Z="-0.3367"  />
 				    <RunTo X="47.8586" Y="19.5822" Z="-3.4854"  />
 				    <RunTo X="62.8189" Y="25.4617" Z="-10.1738"  />
@@ -536,13 +537,12 @@
 				    <RunTo X="44.6638" Y="15.3091" Z="-2.3582"  />
 				    <RunTo X="37.9611" Y="0.1839" Z="-0.2832"  />
 				    <RunTo X="17.3052" Y="0.3964" Z="-0.2068"  />
+				    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				    <CustomBehavior File="MyCTM"  X="-5.0736" Y="0.4915" Z="-0.2068"  />
 				    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 				    <If Condition="(!HasItem(29248))" > <!-- Feet HEROIC -->
 				    	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 				    	<CustomBehavior File="Message" Text="The boots did not drop. Continuing Farm." LogColor="Green" />
-				    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    			<CustomBehavior File="WaitTimer" WaitTime="210000" />
 				    </If>
 				    <If Condition="(HasItem(29248))" > <!-- Feet HEROIC obtained -->
 				    	<CustomBehavior File="Message" Text="Boots obtained. Continuing Farm." LogColor="Green" />
@@ -678,6 +678,7 @@
 						<RunTo X="-3636.021" Y="4943.178" Z="-101.0487" />
 						<CustomBehavior File="MyCTM" X="-3651.546" Y="4943.97" Z="-101.0486" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 					    <RunTo X="-29.6283" Y="0.1946" Z="-1.1279"  />
 					    <RunTo X="-38.1766" Y="-14.8337" Z="-1.1279"  />
 					    <RunTo X="-37.5342" Y="-55.7000" Z="-1.1279"  />
@@ -741,13 +742,12 @@
 					    <RunTo X="-36.1324" Y="-22.9356" Z="-1.1282"  />
 					    <RunTo X="-33.2479" Y="0.8660" Z="-1.1282"  />
 					    <RunTo X="-5.0495" Y="-0.4119" Z="-1.1282"  />
+					    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 					    <CustomBehavior File="MyCTM" X="9.0371" Y="-0.3410" Z="-1.1282"  />
 					    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 					    <If Condition="(!HasItem(27908))" > <!-- Legs  -->
 					    	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 					    	<CustomBehavior File="Message" Text="The legs did not drop, running Shadow Labs again." LogColor="Green" />
-					    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-			    			<CustomBehavior File="WaitTimer" WaitTime="210000" />
 						</If>
 						<If Condition="(HasItem(27908))" > <!-- Legs obtained -->
 						    <CustomBehavior File="Message" Text="Legs obtained." LogColor="Green" />
@@ -767,6 +767,7 @@
 						<RunTo X="-3361.933" Y="4669.278" Z="-101.0489" />
 						<CustomBehavior File="MyCTM" X="-3361.963" Y="4653.548" Z="-101.0489" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 					    <RunTo X="36.8090" Y="0.3655" Z="0.0058"  />
 					    <RunTo X="43.5356" Y="56.2435" Z="0.0075"  />
 					    <RunTo X="39.9571" Y="69.7250" Z="0.2745"  />
@@ -806,13 +807,12 @@
 					    <RunTo X="43.2483" Y="15.9190" Z="0.0083"  />
 					    <RunTo X="39.0936" Y="0.1275" Z="0.0055"  />
 					    <RunTo X="8.5932" Y="-0.1153" Z="0.0059"  />
+					    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 					    <CustomBehavior File="MyCTM" X="-8.8737" Y="0.1201" Z="0.0060"  />
 					    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 					    <If Condition="(!HasItem(27776))" > <!-- Shoulders  -->
 					    	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 					    	<CustomBehavior File="Message" Text="The Shoulders did not drop, running Sethekk Halls again." LogColor="Green" />
-					    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-			    			<CustomBehavior File="WaitTimer" WaitTime="210000" />
 						</If>
 						<If Condition="(HasItem(27776))" > <!-- Shoulders obtained -->
 						    <CustomBehavior File="Message" Text="Shoulders obtained." LogColor="Green" />

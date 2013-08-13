@@ -449,6 +449,7 @@
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 		<If Condition="(Me.MapId == 36)" >
+	<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
     <RunTo X="-26.6617" Y="-375.3206" Z="60.1523"  />
     <RunTo X="-72.3905" Y="-380.3083" Z="54.8410"  />
     <RunTo X="-102.6033" Y="-374.4580" Z="58.8886"  />
@@ -556,15 +557,7 @@
     <RunTo X="-102.6033" Y="-374.4580" Z="58.8886"  />
     <RunTo X="-72.3905" Y="-380.3083" Z="54.8410"  />
     <RunTo X="-26.6617" Y="-375.3206" Z="60.1523"  />
-	
-	<If Condition="Me.FreeBagSlots &lt;= 10" >
-			    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
-			    	<CustomBehavior File="WaitTimer" WaitTime="30000" />
-			    </If>
-			    <If Condition="Me.FreeBagSlots &gt;= 11" >
-			    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-			    	<CustomBehavior File="WaitTimer" WaitTime="60000" />
-			    </If>
+	<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 
 			     <CustomBehavior File="MyCTM" X="-14.82" Y="-388.81" Z="63.18" />
 			    <CustomBehavior File="WaitTimer" WaitTime="15000" />

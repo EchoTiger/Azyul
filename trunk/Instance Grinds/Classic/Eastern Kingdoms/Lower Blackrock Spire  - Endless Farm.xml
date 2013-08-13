@@ -416,7 +416,8 @@
 	</If>
 	<!-- Begin Instance Grind -->
 		<While Condition="(Me.MapId == 229)" >
-		
+						
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 						<RunTo X="78.3534" Y="-230.145" Z="50.20138" />
 						<RunTo X="92.06746" Y="-277.085" Z="60.59741" />
 						<RunTo X="72.45925" Y="-277.3184" Z="60.62326" />
@@ -487,11 +488,10 @@
 						<RunTo X="-24.96272" Y="-486.8489" Z="90.63306" /> <!-- Overlord Wyrmthalak -->
 						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
 						<RunTo X="77.66439" Y="-223.971" Z="49.84536" />
-						<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="180000" />
-						<CustomBehavior File="MyCTM" X="77.66439" Y="-221.971" Z="49.84536"   />
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+                        <CustomBehavior File="MyCTM" X="77.66439" Y="-221.971" Z="49.84536"   />
+                        <CustomBehavior File="WaitTimer" WaitTime="15000" />
+                        <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 						<!-- End Instance Grind -->
 		</While>
 	<!-- Checks if bags are full -->	

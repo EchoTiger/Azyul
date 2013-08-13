@@ -88,6 +88,7 @@
 		</If>
 	<!-- Shadow Labyrinth -->
 			<While Condition="!HasItem(27912)">
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<CustomBehavior File="Message" Text="Running Shadow Labyrinth for the Chest." LogColor="DarkBlue" />
 				<RunTo X="-30.91919" Y="-0.2588556" Z="-1.12795" />
 				<RunTo X="-37.51418" Y="-10.6444" Z="-1.129536" />
@@ -149,8 +150,7 @@
 				<RunTo X="-28.93177" Y="-26.49885" Z="-1.128255" />
 				<CustomBehavior File="MyCTM" X="-41.87983" Y="-14.03745" Z="-1.128255" />
 				<RunTo X="-27.52786" Y="-1.860063" Z="-1.128255" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
-				<CustomBehavior File="WaitTimer" WaitTime="300000" />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="9.52786" Y="-1.860063" Z="-1.128255" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<If Condition="HasItem(27912)">
@@ -193,6 +193,7 @@
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		<!--Steamvaults-->
 			<While Condition="!HasItem(27806)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<CustomBehavior File="Message" Text="Running Steamvaults to get the Gloves." LogColor="DarkBlue" />
 				<RunTo X="0.1361017" Y="5.8794" Z="-4.141092" />
 				<RunTo X="-7.036127" Y="-21.77518" Z="-6.840569" />
@@ -256,8 +257,7 @@
 				<RunTo X="-4.542119" Y="-20.20668" Z="-6.227839" />
 				<RunTo X="0.6478462" Y="3.404262" Z="-4.082549" />
 				<RunTo X="-18.17694" Y="5.697254" Z="-4.29908" />
-				<CustomBehavior File="Message" Text="Waiting so we do not overload the instance!" LogColor="Coral" />
-				<CustomBehavior File="WaitTimer" WaitTime="300000" />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="-26.23148" Y="6.622708" Z="-4.242221" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<If Condition="HasItem(27806)">

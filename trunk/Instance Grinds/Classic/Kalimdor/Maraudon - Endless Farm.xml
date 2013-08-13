@@ -3,7 +3,7 @@
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////
 // Profile Maker: Frostfever
-// Farm zone: Razorfen Kraul
+// Farm zone: Maraudon
 // Farm mobs: All
 // Grind Speed: N/A
 // Grind what?
@@ -397,13 +397,13 @@
 	<If Condition="!(Me.MapId == 349)" >	
 		<While Condition="(Me.MapId == 1)" >
 			<If Condition="Me.Location.Distance(new WoWPoint(-1182.8860, 2869.7612, 85.6747)) &gt; 50" >		
-						<CustomBehavior File="Message" Text="Moving to Razorfen Kraul Location." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Razorfen Kraul " X="-1040.528" Y="1667.939" Z="59.85822" />
+						<CustomBehavior File="Message" Text="Moving to Maraudon Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Maraudon" X="-1040.528" Y="1667.939" Z="59.85822" />
 						<CustomBehavior File="ForcedDismount" />
 						<RunTo X="-1046.49" Y="1681.976" Z="60.13868" />
 						<CustomBehavior File="SetHearthstone" MobId="43872" AreaId="2100" />
 						<RunTo X="-1040.528" Y="1667.939" Z="59.85822" />
-						<CustomBehavior File="FlyTo" DestName="Razorfen Kraul " X="-1420.5061" Y="2877.3914" Z="131.8798"  />
+						<CustomBehavior File="FlyTo" DestName="Maraudon" X="-1420.5061" Y="2877.3914" Z="131.8798"  />
 						<CustomBehavior File="ForcedDismount" />
 						<RunTo X="-1422.9944" Y="2924.8684" Z="136.3444"  />
 						<RunTo X="-1428.0844" Y="2984.0557" Z="133.1497"  />
@@ -433,6 +433,7 @@
 	</If>
 		<!-- Begin Instance Grind -->	
 		<While Condition="(Me.MapId == 349)" >	
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<RunTo X="770.4977" Y="-600.7321" Z="-32.5817"  />
 				<RunTo X="802.2023" Y="-586.3517" Z="-32.4332"  />
 				<RunTo X="744.7382" Y="-546.4397" Z="-33.0708"  />
@@ -528,6 +529,7 @@
 				<RunTo X="29.2548" Y="35.6209" Z="-125.8474"  />
 				<CustomBehavior File="SwitchTarget" BossId="12201" />	<!--Pull Princess Theradras-->
 				<RunTo X="32.6881" Y="-36.4735" Z="-128.1871"  />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="46.2142" Y="-71.7555" Z="-198.0918"  />
 				<RunTo X="39.3086" Y="-103.3230" Z="-198.0521"  />
 				<CustomBehavior File="SwitchTarget" BossId="13596" />	<!--Pull Rotgrip-->

@@ -1,7 +1,7 @@
 <HBProfile>
 <Name>Mjj23's Dire Maul West Endless Farm</Name>
-<MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>1</MinFreeBagSlots>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////
 // Profile Maker: Mjj23
 // Farm zone: Dire Maul (West)
@@ -414,7 +414,7 @@
 	</If>
 		<!-- Begin Instance Grind -->	
 		<While Condition="(Me.MapId == 429)" >
-		
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 						<RunTo X="33.1083" Y="158.977" Z="-3.47126" />
 						<RunTo X="133.3874" Y="202.3625" Z="-4.985773" />
 						<RunTo X="127.5726" Y="348.4698" Z="-4.985773" />
@@ -498,8 +498,7 @@
 						<RunTo X="42.97273" Y="479.3677" Z="-23.28715" />
 						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
 						<RunTo X="33.1083" Y="158.977" Z="-3.47126" />
-						<CustomBehavior File="Message" Text="Waiting to avoid instance overloads." LogColor="Coral" />
-						<CustomBehavior File="WaitTimer" WaitTime="180000" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 						<CustomBehavior File="MyCTM" X="27.681" Y="159.7841" Z="-3.472685" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />

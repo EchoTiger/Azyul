@@ -439,7 +439,7 @@
 		</If>
 <!-- Nav to Dungeon -->			
 	<While Condition="(Me.MapId == 555)" >	
-		
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			<RunTo X="-85.25266" Y="11.53679" Z="-1.129517" />
 			<RunTo X="-60.40287" Y="-26.07899" Z="-1.129615" />
 			<RunTo X="-44.90869" Y="-34.46481" Z="-1.129615" />
@@ -486,14 +486,7 @@
 			<RunTo X="-157.2417" Y="-461.8734" Z="17.07814" />
 			<RunTo X="-156.7423" Y="-487.2384" Z="15.78182" /> <!-- Kills Murmur -->
 			<RunTo X="-8.511789" Y="-0.1070375" Z="-1.12795" /> <!-- Runs back to entrance -->
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
-		    </If>
-		    <If Condition="Me.FreeBagSlots &gt;= 11" >
-		    	<CustomBehavior File="Message" Text="\nWaiting to avoid instance overloads." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="300000" />
-		    </If>
+		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 			<CustomBehavior File="MyCTM" X="9.246022" Y="-0.1667493" Z="-2.135784" /> <!--Exits Instance -->
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
