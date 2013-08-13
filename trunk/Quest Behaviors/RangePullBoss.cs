@@ -205,7 +205,7 @@ namespace Honorbuddy.Quest_Behaviors.RangePullBoss
                  case WoWClass.Druid: SpellManager.Cast("Moonfire"); break;
                  case WoWClass.Hunter: SpellManager.Cast("Serpent Sting"); break;
                  case WoWClass.Mage: SpellManager.Cast("Ice Lance"); break;
-                 case WoWClass.Monk: SpellManager.Cast("Crackling Jade Lightning"); break;
+                 case WoWClass.Monk: SpellManager.Cast("Provoke"); break;
                  case WoWClass.Paladin: SpellManager.Cast("Hand of Reckoning"); break;
                  case WoWClass.Priest: SpellManager.Cast("Smite"); break;
                  case WoWClass.Rogue: SpellManager.Cast("Throw"); break;
