@@ -397,7 +397,7 @@
 				
 		<While Condition="(Me.MapId == 1)">
 		
-	
+			<If Condition ="(Me.ZoneId == 15)" >
 			<CustomBehavior File="FlyTo" X="-3792.358" Y="-3895.982" Z="33.79902" />
 			<CustomBehavior File="RunMacro" Macro="/cleartarget\n/target Theramore Highway Guard" />
 			<If Condition="(Me.CurrentTarget == null)" >
@@ -407,10 +407,11 @@
 				<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="1" WaitTime="1000" />
 				<CustomBehavior File="WaitTimer" WaitTime="5000" />
 			</If>
+			</If>
 
 
 		
-				<If Condition="(Me.MapId == 1) &amp;&amp; (Me.ZoneId == 15)" >
+				<If Condition="(Me.ZoneId == 15)" >
 						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="75" KillBetweenHotspots="True" LogoutForInactivity="False" />
 						<CustomBehavior File="Message" Text="Flying to Alcaz Island Farm Location.  Farming for: Helm/Chest/Legs" LogColor="Lime" />
 						<CustomBehavior File="FlyTo" DestName="Alcaz Island" X="-2703.286" Y="-4685.863" Z="10.16349" />
@@ -606,7 +607,7 @@
 			</If>
 			
 			<If Condition="(Me.FreeBagSlots &lt;= 5) || (Me.LowestDurabilityPercent &lt; 20.0 &amp;&amp; (Me.ZoneId == 1377))" >
-					<CustomBehavior File="Message" Text="Fying to Silithus Mailbox" LogColor="Lime" />
+					<CustomBehavior File="Message" Text="Flying to Silithus Mailbox" LogColor="Lime" />
 					<CustomBehavior File="FlyTo" X="-6838.888" Y="735.251" Z="42.2317" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>	
