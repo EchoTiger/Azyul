@@ -1011,7 +1011,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
 
                     // Prep to interact...
                     new UtilityBehaviorPS.MoveStop(),
-                    new UtilityBehaviorPS.ExecuteMountStrategy(context => PreInteractMountStrategy, context => MaxDismountHeight),
+                    new UtilityBehaviorPS.ExecuteMountStrategy(context => PreInteractMountStrategy),
                     new ActionFail(context => { Utility.Target(SelectedTarget, true); })
             );
         }
@@ -1433,7 +1433,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
 
         private bool IsDistanceCloseNeeded(WoWObject wowObject)
         {
-            double targetDistance = Utility.MovementObserver.Location.Distance(wowObject.Location);
+            double targetDistance = WoWMovement.ActiveMover.Location.Distance(wowObject.Location);
 
             bool canInteract =
                 (ItemToUse != null)
@@ -1446,7 +1446,7 @@ namespace Honorbuddy.Quest_Behaviors.InteractWithEscort
 
         private bool IsDistanceGainNeeded(WoWObject wowObject)
         {
-            double targetDistance = Utility.MovementObserver.Location.Distance(wowObject.Location);
+            double targetDistance = WoWMovement.ActiveMover.Location.Distance(wowObject.Location);
 
             return targetDistance < RangeMin;
         }
