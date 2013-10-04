@@ -43,7 +43,7 @@
 
 <QuestOrder>
 <If Condition="(Me.MapId == 670)" >
-	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="This profile is currently not designed to be started while in the instace.  Please the instance then start the profile." />
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="This profile is currently not designed to be started while in the instace.  Please leave the instance then start the profile." />
 </If>
 
 
@@ -72,7 +72,6 @@
 		******************************
 		Add MapId for farming location, the id you enter here is where you want to go.-->
 		<While Condition="!(Me.MapId == 0)" >
-			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" Text="Do not stop the bot, I will take you where you need to go, just sit back and relax." Title="WARNING" />	
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
 				<If Condition="Me.MapId == 530" >
