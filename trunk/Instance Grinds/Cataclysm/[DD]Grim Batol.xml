@@ -413,7 +413,7 @@
 
 
 <!-- Detection Diamond Begin -->
-<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="10" ExpiryTime="25" ExpiryAction="InputEnabled_Continue" Text="You must choose your run-type.\nTo do so, walk at least 5 yards (three running steps) in the direction you wish to choose.\n\nWalk FORWARD for a GPH optimized run.\nWalk LEFT for Heroic Difficulty.\nWalk RIGHT for Normal Difficulty.\n\n\nOnce you choose something, push &quot;Continue&quot;. If nothing is chosen within 25 seconds, I will run a Normal dungeon. " />
+<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="10" ExpiryTime="25" ExpiryAction="InputEnabled_Continue" Text="You must choose your run-type.\nTo do so, walk at least 5 yards (three running steps) in the direction you wish to choose.\n\nWalk FORWARD for a Gold focused run.\nWalk LEFT for Heroic Difficulty.\nWalk RIGHT for Normal Difficulty.\n\n\nOnce you choose something, push &quot;Continue&quot;. If nothing is chosen within 25 seconds, I will run a Normal dungeon." />
 
 
 
@@ -431,7 +431,7 @@
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
 				</If>
-				<CustomBehavior File="MyCTM" X="-4058.044" Y="-3449.554" Z="281.16" />
+				<RunTo X="-4058.044" Y="-3449.554" Z="281.16" />
 				<CustomBehavior File="MyCTM" X="-4046.028" Y="-3445.125" Z="283.3516" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
@@ -594,7 +594,7 @@
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
 				</If>
-				<CustomBehavior File="MyCTM" X="-4058.044" Y="-3449.554" Z="281.16" />
+				<RunTo X="-4058.044" Y="-3449.554" Z="281.16" />
 				<CustomBehavior File="MyCTM" X="-4046.028" Y="-3445.125" Z="283.3516" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
@@ -745,7 +745,7 @@
 <!-- Gold Run Detection -->
 <If Condition="Me.Location.Distance(new WoWPoint(-4069.767, -3454.902, 279.2063)) &lt; 5">
 	<CustomBehavior File="Message" Text="GPH Optimized run-type activated.\n" LogColor="Yellow" />
-	<CustomBehavior File="Message" Text="*WARNING* This run-type contains heavy pulls. If you aren't geared you may die!" LogColor="Red" />
+	<CustomBehavior File="Message" Text="*WARNING* This run-type contains heavy pulls. If you aren't geared you may die!\nIf you see a pull that you think needs to be changed, please post it on the forums!" LogColor="Red" />
 	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
 		<While Condition="(Me.FreeBagSlots &gt;= 11)">
 			<If Condition="!(Me.MapId == 670)" >
@@ -755,7 +755,7 @@
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
 				</If>
-				<CustomBehavior File="MyCTM" X="-4058.044" Y="-3449.554" Z="281.16" />
+				<RunTo X="-4058.044" Y="-3449.554" Z="281.16" />
 				<CustomBehavior File="MyCTM" X="-4046.028" Y="-3445.125" Z="283.3516" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
