@@ -35,6 +35,7 @@
 </Mailboxes>
 
 <AvoidMobs>
+	<Mob Name="Net" Entry="42570" /> <!-- Nets holding the dragons at the start. -->
 	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
 </AvoidMobs>
 
@@ -49,28 +50,7 @@
 
 <CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the first profile to utilize the new &quot;Detection Diamond&quot; feature!\n\nThis profile is completely experimental and will most-likely be revised/re-optimized more than once. Expect a LOT of glitches/bugs and strange behavior.\n\nAt the moment, both the Heroic and GPH runs are extremely dangerous and you will most-likely die.  It is highly reccomended that you use a well geared hybrid melee class when running this proifle." />
 
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />				
-
-
-		 <!-- Transporter -->
-		 
-		<!-- Transport script, pre made for all purposes. -->
-		<!-- Use this if you want, but give credit. -->
-		<!--
-		Id
-		0 = Eastern Kingdoms
-		1 = Kalimdor
-		530 = Outland 
-		646 = Deepholm
-		571 = Northrend 
-		870 = Pandaland
-		******************************
-		Important, you might need to edit where the profile will take you.
-		Search for "Ally Going to!!!" and read how to edit that part.
-		Also search for "Horde Going to!!!" and edit that part.
-		A monkey can do it.
-		******************************
-		Add MapId for farming location, the id you enter here is where you want to go.-->
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />
 		<While Condition="!(Me.MapId == 0)" >
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
@@ -387,7 +367,7 @@
 		--> 
 
 <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
-<!-- I don't always code dungeon runs, but when I do - I use almost 1000 lines of code just for one dungeon.-->
+<!-- I don't always code dungeon runs, but when I do - I use over 1000 lines of code just for one dungeon.-->
 
 <!-- Life's a game cracka killa -->
 <If Condition="Me.Location.Distance(new WoWPoint(-4074.677, -3454.845, 277.4006)) &lt;= 30" >
@@ -397,7 +377,7 @@
 	<CustomBehavior File="MyCTM" X="-4092.025" Y="-3457.508" Z="275.3947" />
 	<CustomBehavior File="MyCTM" X="-4074.767" Y="-3454.902" Z="277.3591" />
 </If>
-<If Condition="Me.Location.Distance(new WoWPoint(-4074.677, -3454.845, 277.4006)) &gt; 100" >
+<If Condition="Me.Location.Distance(new WoWPoint(-4074.677, -3454.845, 277.4006)) &gt; 30" >
 	<CustomBehavior File="Message" Text="Heading to Instance Location." LogColor="Green" />
 	<CustomBehavior File="FlyTo" X="-4077.846" Y="-3455.929" Z="280.3766" />
 	<CustomBehavior File="WaitTimer" WaitTime="500" />
@@ -414,7 +394,6 @@
 
 <!-- Detection Diamond Begin -->
 <CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="10" ExpiryTime="25" ExpiryAction="InputEnabled_Continue" Text="You must choose your run-type. To do so, walk at least 5 yards (three running steps) in the direction you wish to choose.\n\nWalk FORWARD for a heavy-pull gold focused run.\nWalk BACKWARD for a lite-pull gold focused run.\nWalk LEFT for Heroic Difficulty.\nWalk RIGHT for Normal Difficulty.\n\nOnce you choose something, push &quot;Continue&quot;. If nothing is chosen within 25 seconds, I will run a Normal dungeon." />
-
 
 
 <!-- Heroic Detection -->
@@ -807,12 +786,11 @@
 					<Hotspot X="-570.849" Y="-503.0447" Z="276.5972" />
 				</CustomBehavior>
 
-				<RunTo X="-535.7795" Y="-480.0509" Z="276.5973" /> <!-- This pack is too risky to chain pull -->
-				
-				<RunTo X="-478.5992" Y="-528.0516" Z="271.9075" /> <!-- This pack is too risky to chain pull -->
-				<!-- Boss may aggro here -->
+				<CustomBehavior File="KillOrder" BossId="40166" AddId1="40167" X="-535.7795" Y="-480.0509" Z="276.5973" /> <!-- These mobs are hard... -->
+				<CustomBehavior File="KillOrder" BossId="40166" AddId1="40167" X="-478.5992" Y="-528.0516" Z="271.9075" /> <!-- These mobs are hard... -->
+				<!--Boss will aggro here.. which just the pull along will probably kill the character... these mobs are ridiculously harder than they should be. -->
+				<CustomBehavior File="KillOrder" BossId="40166" AddId1="40167" X="-529.1798" Y="-579.1294" Z="276.5973" /> <!-- These mobs are hard... -->
 
-				<RunTo X="-529.1798" Y="-579.1294" Z="276.5973" /> <!-- This pack is too risky to chain pull -->
 
 				<RunTo X="-566.6215" Y="-554.9785" Z="276.5972" /> <!-- Last mob in Khardros' Anvil -->
 				<RunTo X="-625.882" Y="-604.2358" Z="276.5818" />
@@ -999,9 +977,9 @@
 					
 				<RunTo X="-570.849" Y="-503.0447" Z="276.5972" />
 
-				<RunTo X="-535.7795" Y="-480.0509" Z="276.5973" /> <!-- These mobs are hard... -->
-				<RunTo X="-478.5992" Y="-528.0516" Z="271.9075" /> <!-- These mobs are hard... -->
-				<RunTo X="-529.1798" Y="-579.1294" Z="276.5973" /> <!-- These mobs are hard... -->
+				<CustomBehavior File="KillOrder" BossId="40166" AddId1="40167" X="-535.7795" Y="-480.0509" Z="276.5973" /> <!-- These mobs are hard... -->
+				<CustomBehavior File="KillOrder" BossId="40166" AddId1="40167" X="-478.5992" Y="-528.0516" Z="271.9075" /> <!-- These mobs are hard... -->
+				<CustomBehavior File="KillOrder" BossId="40166" AddId1="40167" X="-529.1798" Y="-579.1294" Z="276.5973" /> <!-- These mobs are hard... -->
 
 				<RunTo X="-566.6215" Y="-554.9785" Z="276.5972" /> <!-- Last mob in Khardros' Anvil -->
 
@@ -1019,7 +997,7 @@
 				<RunTo X="-655.5172" Y="-718.6245" Z="269.1169" />
 
 				<RunTo X="-621.9861" Y="-730.7045" Z="268.7661" /> <!--Stray mob pull -->
-				
+
 				<RunTo X="-640.6693" Y="-722.181" Z="268.7675" /> <!-- Navigate over bridge1-->
 				<RunTo X="-625.624" Y="-691.6069" Z="271.3095" /> <!-- Navigate over bridge2-->
 
