@@ -499,23 +499,30 @@
 				    <CustomBehavior File="RunMacro" Macro="/y LEEERROOOOOYYY JEENNNKIINNNS" />
 				</If>
 			    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />
 				<While Condition="(Me.FocusedUnit != null)">
 					<While Condition="(Me.FocusedUnit != null) &amp;&amp; (!HasItem(37372))">
+						<EnableBehavior Name="Combat" />
+						<EnableBehavior Name="Pull" />
 						<CustomBehavior File="UserSettings" PullDistance="25" />
 						<CustomBehavior File="NoCombatMoveTo" X="477.2179" Y="-504.6097" Z="104.7244" />
 						<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" Range="30" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
 					</While>
 					<While Condition="(Me.FocusedUnit != null) &amp;&amp; (HasItem(37372))" >
-						<CustomBehavior File="UserSettings" PullDistance="1" />
 						<If Condition="(Me.FocusedUnit != null) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 18)" >
+							<DisableBehavior Name="Combat" />
  							<CustomBehavior File="InteractWith" MobId1="192176" MobId2="192177" Range="5" X="485.5264" Y="-523.3635" Z="104.7237" />
 						</If>
 						<If Condition="(Me.FocusedUnit != null) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 25)" >
+							<EnableBehavior Name="Combat" />
+							<DisableBehavior Name="Pull" />
 							<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="1" Range="20" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
 						</If>
 					</While>
 				</While>
-				<If Condition="HasItem(37372) &amp;&amp; (Me.FocusedUnit = null)" >
+				<EnableBehavior Name="Combat" />
+				<EnableBehavior Name="Pull" />
+				<If Condition="HasItem(37372)" >
 					<CustomBehavior File="Message" Text="\nLook's like we're finished!\nThrowing away extra harpoons." LogColor="Green" />
 					<CustomBehavior File="DeleteItems" Ids="37372" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
