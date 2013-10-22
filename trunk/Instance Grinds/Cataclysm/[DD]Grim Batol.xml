@@ -393,7 +393,7 @@
 
 
 
-
+<DisableBehavior Name="Death" />
 <!-- Detection Diamond Begin -->
 <CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="10" ExpiryTime="25" ExpiryAction="InputEnabled_Continue" Text="You must choose your run-type. To do so, walk at least 5 yards (three running steps) in the direction you wish to choose.\n\nWalk FORWARD for a heavy-pull gold focused run.\nWalk BACKWARD for a lite-pull gold focused run.\nWalk LEFT for Heroic Difficulty.\nWalk RIGHT for Normal Difficulty.\n\nOnce you choose something, push &quot;Continue&quot;. If nothing is chosen within 25 seconds, I will run a Normal dungeon." />
 
@@ -580,7 +580,7 @@
 				<CustomBehavior File="MyCTM" X="-4046.028" Y="-3445.125" Z="283.3516" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
-			<If Condition="(Me.MapId == 670)" >
+			<While Condition="(Me.MapId == 670)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<RunTo X="-613.8434" Y="-230.1857" Z="276.5955"  />
 				<RunTo X="-581.2252" Y="-238.5147" Z="276.5955"  />
@@ -653,7 +653,7 @@
 				<CustomBehavior File="MyCTM" X="-627.98" Y="-175.67" Z="272.13" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-			</If>
+			</While>
 		</While>
 		<While Condition="(Me.FreeBagSlots &lt;= 10)">
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
