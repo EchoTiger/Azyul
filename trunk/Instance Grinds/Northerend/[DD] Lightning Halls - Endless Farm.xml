@@ -357,9 +357,9 @@
 			</If>
 		</While>
 </If>
-//  End transport script credit to Bengan. 
-//	With use of Kicks go to profiles.
-//	Big thanks to Kick for this.
+<!-- End transport script credit to Bengan. 
+	With use of Kicks go to profiles.
+	Big thanks to Kick for this. -->
 
 <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
@@ -373,14 +373,22 @@
 	<CustomBehavior File="FlyTo" X="9149.345" Y="-1351.977" Z="1075.505" />
 	<CustomBehavior File="RunMacro" Macro="/dismount" />
 	<CustomBehavior File="Message" Text="Setting up for Detection Diamond." LogColor="HotPink" />
-	<CustomBehavior File="MyCTM" X="9165.259" Y="-1367.11" Z="1091.923" />
+	<CustomBehavior File="MyCTM" X="9165.259" Y="-1367.11" Z="1091.923" /> //Change this to alter the default option.
 </If>
 <If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &lt; 30" >
 	<CustomBehavior File="Message" Text="Setting up for Detection Diamond." LogColor="HotPink" />
 	<RunTo X="9149.345" Y="-1351.977" Z="1075.505" />
 	<CustomBehavior File="RunMacro" Macro="/dismount" />
-	<CustomBehavior File="MyCTM" X="9165.259" Y="-1367.11" Z="1091.923" />
+	<CustomBehavior File="MyCTM" X="9165.259" Y="-1367.11" Z="1091.923" /> //Change this to alter the default option.
 </If>
+
+//Options:
+//Default: X="9165.259" Y="-1367.11" Z="1091.923"
+//Heroic: X="9170.096" Y="-1361.931" Z="1091.995"
+//Normal: X="9160.594" Y="-1372.375" Z="1091.991"
+//Lvl.90 GF: X="9169.088" Y="-1370.75" Z="1095.874"
+//Lvl85 GF: X="9160.701" Y="-1362.776" Z="1087.222"
+
 
 <CustomBehavior File="Message" Text="\n\nDetection Diamond active.\nWaiting for user response." LogColor="LightBlue" />
 <!-- Detection Diamond Begin -->
