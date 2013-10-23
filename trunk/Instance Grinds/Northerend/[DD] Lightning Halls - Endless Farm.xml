@@ -33,7 +33,6 @@
 </Vendors>
 
 <Mailboxes>
-	<Mailbox X="8440.736" Y="-329.4271" Z="906.5062" />
 </Mailboxes>
 
 <AvoidMobs>
@@ -374,17 +373,15 @@
 	<CustomBehavior File="RunMacro" Macro="/dismount" />
 	<CustomBehavior File="Message" Text="Setting up for Detection Diamond." LogColor="HotPink" />
 	<CustomBehavior File="MyCTM" X="9165.259" Y="-1367.11" Z="1091.923" />
-	<CustomBehavior File="Message" Text="\n\nDetection Diamond active.\nWaiting for user response." LogColor="LightBlue" />
 </If>
 <If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &lt; 30" >
 	<CustomBehavior File="Message" Text="Setting up for Detection Diamond." LogColor="HotPink" />
 	<RunTo X="9149.345" Y="-1351.977" Z="1075.505" />
 	<CustomBehavior File="RunMacro" Macro="/dismount" />
 	<CustomBehavior File="MyCTM" X="9165.259" Y="-1367.11" Z="1091.923" />
-	<CustomBehavior File="Message" Text="\n\nDetection Diamond active.\nWaiting for user response." LogColor="LightBlue" />
 </If>
 
-
+<CustomBehavior File="Message" Text="\n\nDetection Diamond active.\nWaiting for user response." LogColor="LightBlue" />
 <!-- Detection Diamond Begin -->
 <CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="10" ExpiryTime="25" ExpiryAction="InputEnabled_Continue" Text="You must choose your run-type. To do so, walk at least 5 yards (three running steps) in the direction you wish to choose.\n\nWalk FORWARD for a level 90 gold focused run.\nWalk BACKWARD for a level 85 gold focused run.\nWalk LEFT for Heroic Difficulty.\nWalk RIGHT for Normal Difficulty.\n\nOnce you choose something, push &quot;Continue&quot;. If nothing is chosen within 25 seconds, I will run a Normal dungeon." />
 
@@ -466,7 +463,7 @@
 				</Vendors>
 			</SetVendor>
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True"  />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<RunTo X="8900.253" Y="-1344.676" Z="1029.835" />
 			<ClearVendor />
@@ -481,12 +478,13 @@
 				<RunTo X="8442.646" Y="-329.5482" Z="906.6082" />
 				<SetVendor>
 					<Vendors>
-					<Vendor Name="Dargum Hammerdeep" Entry="29964" Type="Repair" X="8383.45" Y="-390.166" Z="903.1187" />
+						<Vendor Name="Dargum Hammerdeep" Entry="29964" Type="Repair" X="8383.45" Y="-390.166" Z="903.1187" />
 					</Vendors>
-				</SetVendor>			
-				<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="True" />
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="False" />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<CustomBehavior File="FlyTo" X="8549.319" Y="-282.6343" Z="926.7976" />
+				<ClearVendor />
 				<CustomBehavior File="FlyTo" X="8607.005" Y="-458.6642" Z="1092.152" />
 			</If>
 			
@@ -580,7 +578,7 @@
 				</Vendors>
 			</SetVendor>
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True"  />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<RunTo X="8900.253" Y="-1344.676" Z="1029.835" />
 			<ClearVendor />
@@ -745,7 +743,7 @@
 				</Vendors>
 			</SetVendor>
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True"  DoMail="False" />
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True"  />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<RunTo X="8900.253" Y="-1344.676" Z="1029.835" />
 			<ClearVendor />
@@ -941,7 +939,7 @@
 				</Vendors>
 			</SetVendor>
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True"  />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<RunTo X="8900.253" Y="-1344.676" Z="1029.835" />
 			<ClearVendor />
