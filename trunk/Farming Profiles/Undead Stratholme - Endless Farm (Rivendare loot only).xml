@@ -410,10 +410,12 @@
 			<CustomBehavior File="MyCTM" X="3232.877" Y="-4048.029" Z="108.4386" />
 
 		</If>
-		<CustomBehavior File="MyCTM" X="3238.13" Y="-4057.148" Z="110.4538" /> <!-- Enters instance if not already inside -->
-		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<If Condition="!Me.MapId == 329" >
+			<CustomBehavior File="MyCTM" X="3238.13" Y="-4057.148" Z="110.4538" /> <!-- Enters instance if not already inside -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.ZoneId == 2017)" >
+		<While Condition="(Me.MapId == 329)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
 				<RunTo X="3620.905" Y="-3643.969" Z="138.5107" />
 				<CustomBehavior File="InteractWith" MobId="175368" ObjectType="GameObject" WaitTime="0" X="3624.908" Y="-3642.163" Z="138.4451" /> <!-- Opens Service Entrance Gate -->
