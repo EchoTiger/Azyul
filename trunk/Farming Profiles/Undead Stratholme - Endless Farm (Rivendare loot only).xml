@@ -410,10 +410,16 @@
 			<CustomBehavior File="MyCTM" X="3232.877" Y="-4048.029" Z="108.4386" />
 
 		</If>
-		<If Condition="!Me.MapId == 329" >
-			<CustomBehavior File="MyCTM" X="3238.13" Y="-4057.148" Z="110.4538" /> <!-- Enters instance if not already inside -->
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-		</If>
+		<While Condition="(Me.MapId == 0)" >
+		
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+						<CustomBehavior File="Message" Text="Moving to Stratholme Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Stratholme" X="3392.69" Y="-3406.686" Z="142.2462"  />
+						<CustomBehavior File="MyCTM" X="3392.69" Y="-3397.686" Z="142.2462" /> <!-- Enters instance if not already inside -->
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
 	<!-- Begin Instance Grind -->
 		<While Condition="(Me.MapId == 329)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
