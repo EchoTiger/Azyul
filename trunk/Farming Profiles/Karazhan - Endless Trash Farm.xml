@@ -1,0 +1,770 @@
+<HBProfile>
+<Name>Frostfever's Endless Trash Farm</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Frostfever
+// Farm zone: Karazhan
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Transmog/Recipes/Rep
+///////////////////////////////////////////////////////////////////////
+
+<MinLevel>54</MinLevel>
+<MaxLevel>91</MaxLevel>
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+      <!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+      
+      <ProtectedItems>
+            
+      </ProtectedItems>
+            
+      <Vendors>
+      </Vendors>
+
+      <Mailboxes>
+            <Mailbox X="-10995.47" Y="-3389.044" Z="62.09529" /> <!-- Blasted Lands -->
+            <Mailbox X="-10461.98" Y="-3265.855" Z="20.1791" />  <!-- Swamp of Sorrow -->
+      </Mailboxes>
+
+
+            <AvoidMobs>
+            <Mob Name="Summon Enabler Stalker" Entry="53488" />
+            <Mob Name="Baroness Dorothea Millstipe" Entry="19875" />
+            <Mob Name="Baron Rafe Dreuger" Entry="19874" />
+            <Mob Name="Lady Catriona Von'Indi" Entry="19872" />
+            <Mob Name="Lady Keira Berrybuck" Entry="17007" />
+            <Mob Name="Lord Robin Daris" Entry="19876" />
+            <Mob Name="Lord Crispin Ference" Entry="19873" />
+            <Mob Name="Maiden of Virtue" Entry="16457" />
+            </AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+      
+
+<QuestOrder>
+<If Condition="!(Me.MapId == 409)" >
+
+             <!-- Transporter -->
+             
+            <!-- Transport script, pre made for all purposes. -->
+            <!-- Use this if you want, but give credit. -->
+            <!--
+            Id
+            0 = Eastern Kingdoms
+            1 = Kalimdor
+            530 = Outland 
+            646 = Deepholm
+            571 = Northrend 
+            870 = Pandaland
+            ******************************
+            Important, you might need to edit where the profile will take you.
+            Search for "Ally Going to!!!" and read how to edit that part.
+            Also search for "Horde Going to!!!" and edit that part.
+            A monkey can do it.
+            ******************************
+            Add MapId for farming location, the id you enter here is where you want to go.-->
+            <While Condition="!(Me.MapId == 0)" >
+                  <CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" 
+                  Text="Do not stop the bot, i will take you where you want to go, just sit back and relax." Title="WARNING" />     
+                  <If Condition="Me.IsAlliance" >
+                  <!-- Outland move to and use portal in shat -->
+                        <If Condition="Me.MapId == 530" >
+                        <CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+                              <CustomBehavior File="FlyTo" X="-248.064" Y="930.2079" Z="84.37978" DestName="BC Portal" />
+                              <CustomBehavior File="MyCTM" X="-247.1655" Y="897.484" Z="84.3497" />
+                              <CustomBehavior File="WaitTimer" WaitTime="5000"/>
+                              <While Condition="Me.MapId == 530" >
+                                    <CustomBehavior File="MyCTM" X="-245.7161" Y="896.1308" Z="84.3497" />
+                                    <CustomBehavior File="WaitTimer" WaitTime="5000"/>
+                              </While>
+                              <CustomBehavior File="WaitTimer" WaitTime="10000"/>
+                        </If>
+                        <!-- Northrend, go home from borean -->
+                        <If Condition="Me.MapId == 571" >
+                        <CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+                              <If Condition="(HasSpell(54197))">
+                                    <CustomBehavior File="FlyTo" DestName="fly my minions fly" X="2236.118" Y="5145.615" Z="5.346904"  />
+                              </If>
+                              <CustomBehavior File="UseTransport" TransportId="190536"    
+                                                      WaitAtX="2234.375" WaitAtY="5132.568" WaitAtZ="5.343217" 
+                                                      TransportStartX="2218.391" TransportStartY="5119.589" TransportStartZ="0.04" 
+                                                      StandOnX="2223.174" StandOnY="5118.869" StandOnZ="9.43335"
+                                                      TransportEndX="-8288.816" TransportEndY="1424.703" TransportEndZ="0.04" 
+                                                      GetOffX="-8300.08" GetOffY="1405.158" GetOffZ="4.422395" />
+                        </If>
+                        <!-- Kalimdor boat from Ratchet. -->
+                        <If Condition="Me.MapId == 1" >
+                        <CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+                              <If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                    <CustomBehavior File="FlyTo" X="-996.8669" Y="-3826.07" Z="5.536246" />
+                              </If>
+                              <If Condition="!SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                    <RunTo X="-996.8669" Y="-3826.07" Z="5.536246" />
+                              </If>
+                              <CustomBehavior File="UseTransport" TransportId="20808"
+                                                      WaitAtX="-996.8669" WaitAtY="-3826.07" WaitAtZ="5.536246" 
+                                                      TransportStartX="-1005.613" TransportStartY="-3841.648" TransportStartZ="0.01553879"
+                                                      StandOnX="-997.3311" StandOnY="-3836.707" StandOnZ="6.030852"
+                                                      TransportEndX="-14277.75" TransportEndY="582.8661" TransportEndZ="0.03330701"
+                                                      GetOffX="-14280.88" GetOffY="566.6268" GetOffZ="6.979454" />
+                        </If>
+                        <!-- Deepholm, Taking portal. -->
+                        <If Condition="Me.MapId == 646" >
+                        <CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+                              <CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
+                              <CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
+                              <RunTo X="973.6232" Y="570.9096" Z="-46.0024" />
+                              <CustomBehavior File="InteractWith" MobId="205272" ObjectType="Gameobject" Range="4" X="973.6232" Y="570.9096" Z="-46.0024" />
+                              <CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
+                        </If>
+                        <!-- Pandaland, Taking portal. -->
+                        <If Condition="Me.MapId == 870" >
+                        <CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+                              <CustomBehavior File="FlyTo" X="-311.6545" Y="-1776.63" Z="62.67051" />
+                              <RunTo X="-311.6545" Y="-1776.63" Z="62.67051" />
+                              <CustomBehavior File="InteractWith" MobId="210805" ObjectType="Gameobject" Range="4" />
+                              <CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+                        </If>
+                        <!-- Homeland, Ally Eastern Kingdom -->
+                        <If Condition="Me.MapId == 0" >
+                              <!--
+                              "Ally going to!!!"
+                              *********OBS*********
+                              Set true will go there.
+                              Northrend
+                              Outland
+                              Kalimdor
+                              Pandaland
+                              Set true only on one, the rest should be false.
+                              Set all false if your farming map is Eastern Kingdom.
+                              *********End OBS********
+                              -->   
+                              
+                              <If condition="false"><!-- If Set true will go to Northrend -->
+                              <CustomBehavior File="Message" Text="Going to Vikingland." LogColor="Lime" />
+                              
+                              <If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                    <CustomBehavior File="FlyTo" X="-8300.08" Y="1405.158" Z="4.422395" />
+                              </If>
+                              <CustomBehavior File="UseTransport" TransportId="190536" 
+                                                      WaitAtX="-8300.08" WaitAtY="1405.158" WaitAtZ="4.422395"
+                                                      GetOffX="2234.375" GetOffY="5132.568" GetOffZ="5.343217"
+                                                      StandOnX="-8293.091" StandOnY="1421.008" StandOnZ="9.480089"
+                                                      TransportStartX="-8288.816" TransportStartY="1424.703" TransportStartZ="0.04" 
+                                                      TransportEndX="2218.391" TransportEndY="5119.589" TransportEndZ="0.04" />     
+                              <CustomBehavior File="WaitTimer" WaitTime="5000" />
+                              </If>
+                              
+                              <If condition="false"><!-- If Set true will go to Outland -->
+                              <CustomBehavior File="Message" Text="Going to Outland." LogColor="Lime" />
+                              
+                              <While Condition="Me.MapId == 0" >
+                                    <If Condition="Me.MapId == 0" >
+                                                <If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                                      <CustomBehavior File="FlyTo" X="-11895.44" Y="-3206.936" Z="-14.64132" />
+                                                </If>
+                                                <RunTo X="-11895.44" Y="-3206.936" Z="-14.64132" />
+                                                <CustomBehavior File="WaitTimer" WaitTime="1000" />
+                                          </If>
+                                          <If Condition="Me.MapId == 0" >
+                                                <CustomBehavior File="MyCTM" X="-11908.09" Y="-3208.854" Z="-14.83002" />
+                                                <CustomBehavior File="WaitTimer" WaitTime="5000" />
+                                          </If>
+                                          <If Condition="Me.MapId == 0" >
+                                                <CustomBehavior File="WaitTimer" WaitTime="5000" />
+                                          </If>
+                              </While>
+                              </If>
+                              
+                              <If condition="false"> <!-- If Set true will go to Kalimdor -->
+                              <CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+                              
+                              <If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                    <CustomBehavior File="FlyTo" X="-14288.29" Y="549.3284" Z="8.689642" />
+                              </If>
+                              <If Condition="!SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                    <Runto X="-14288.29" Y="549.3284" Z="8.689642" />
+                              </If>
+                              <CustomBehavior File="ForcedDismount" />
+                              <!-- BB dock to Ratchet -->
+                              <CustomBehavior File="UseTransport" TransportId="20808"
+                                                      WaitAtX="-14280.88" WaitAtY="566.6268" WaitAtZ="6.979454" 
+                                                      TransportStartX="-14277.75" TransportStartY="582.8661" TransportStartZ="0.01553879"
+                                                      StandOnX="-14270.46" StandOnY="579.9881" StandOnZ="6.088587"
+                                                      TransportEndX="-1005.613" TransportEndY="-3841.648" TransportEndZ="0.03330701"
+                                                      GetOffX="-996.8669" GetOffY="-3826.07" GetOffZ="5.536246" />
+                              </If>
+                              
+                              <If condition="false"><!-- If Set true will go to Pandaland -->
+                              <CustomBehavior File="Message" Text="Going to Pandaland." LogColor="Lime" />
+                              
+                              <CustomBehavior File="FlyTo" X="-8200.323" Y="527.858" Z="116.7516"  />
+                              <CustomBehavior File="InteractWith" MobId="215457" ObjectType="Gameobject" Range="4" />
+                              <CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+                              <!-- Going to Pandaland Stop -->
+                              </If> 
+                              
+                              <!-- No profiles in deepholm-->
+                                    
+                        </If>
+                  </If>
+                  <!-- Horde part -->
+                  <If Condition="Me.IsHorde" >
+                        <!-- Outland move to and use portal in shat -->
+                        <If Condition="Me.MapId == 530" >
+                        <CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+                              <While Condition="Me.MapId == 530" >
+                                    <CustomBehavior File="FlyTo" DestName="Org portal" X="-1956.413" Y="5383.551" Z="-12.42774" />
+                                    <CustomBehavior File="ForcedDismount" />
+
+                                    <RunTo X="-1898.169" Y="5395.958" Z="-12.42774" />
+                                    <CustomBehavior File="InteractWith" MobId="183323" ObjectType="Gameobject" Range="4" />
+                                    <CustomBehavior File="WaitTimer" WaitTime="15000" GoalText="Waiting for zone {TimeRemaining}" />
+                              </While>
+                              <RunTo X="1896.122" Y="-4489.93" Z="23.84045" />
+                              <CustomBehavior File="FlyTo" X="1882.573" Y="-4548.733" Z="110.4602" />
+                        </If>
+                        <!-- Northrend, go home from borean -->
+                        <If Condition="Me.MapId == 571" >
+                        <CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+                              <If Condition="(HasSpell(54197))">
+                                    <CustomBehavior File="FlyTo" DestName="Borean Tundra" X="2708.396" Y="6066.991" Z="109.617" />
+                                    <CustomBehavior File="FlyTo" DestName="Warsong Hold, BT" X="2740.837" Y="6097.529" Z="76.88604" />
+                              </If>
+                              <CustomBehavior File="Message" Text="Running to Borean Zepp to Org" LogColor="Cornflowerblue" />
+                              <RunTo X="2829.74" Y="6179.48" Z="121.9793" />
+                              <CustomBehavior File="Message" Text="Waiting for Borean Zepp to Org - don't interact!" LogColor="Orange" />
+                              <CustomBehavior File="UseTransport" TransportId="186238"
+                                                      WaitAtX="2836.831" WaitAtY="6185.15" WaitAtZ="121.9923" 
+                                                      TransportStartX="2837.908" TransportStartY="6187.443" TransportStartZ="140.1648" 
+                                                      StandOnX="2844.171" StandOnY="6191.577" StandOnZ="122.3017" 
+                                                      TransportEndX="1775.066" TransportEndY="-4299.745" TransportEndZ="151.0326" 
+                                                      GetOffX="1763.203" GetOffY="-4284.529" GetOffZ="133.1072" />
+                        </If>
+                        <!-- From Eastern Kingdom going home -->
+                        <If Condition="Me.MapId == 0" >
+                        <CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+                              <If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                    <CustomBehavior File="FlyTo" X="2039.925" Y="273.7229" Z="142.3792" />
+                                    <CustomBehavior File="FlyTo" X="2067.174" Y="284.9927" Z="97.03151" />
+                              </If>
+                              <RunTo X="2070.155" Y="289.2588" Z="97.0315" />
+                              <CustomBehavior File="UseTransport"
+                                                      TransportId="164871"
+                                                      WaitAtX="2070.155" WaitAtY="289.2588" WaitAtZ="97.0315" 
+                                                      TransportStartX="2062.376" TransportStartY="292.998" TransportStartZ="114.973"
+                                                      TransportEndX="1833.509" TransportEndY="-4391.543" TransportEndZ="152.7679"
+                                                      StandOnX="2067.979" StandOnY="295.2747" StandOnZ="97.23677" 
+                                                      GetOffX="1840.225" GetOffY="-4390.912" GetOffZ="135.2337" />
+                        </If>
+                        <!-- Deepholm, Taking portal. -->
+                        <If Condition="Me.MapId == 646" >
+                        <CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+                              <CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
+                              <CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
+                              <RunTo X="990.1199" Y="457.7099" Z="-44.2598" />
+                              <CustomBehavior File="InteractWith" MobId="205273" ObjectType="Gameobject" Range="4" X="990.1199" Y="457.7099" Z="-44.2598" />
+                              <CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
+                        </If>
+                        <!-- Pandaland, Taking portal. -->
+                        <If Condition="Me.MapId == 870" >
+                        <CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+                        
+                              <CustomBehavior File="FlyTo" X="2924.921" Y="-510.5903" Z="268.8555" />
+                              <RunTo X="2924.921" Y="-510.5903" Z="268.8555" />
+                              <CustomBehavior File="InteractWith" MobId="210804" ObjectType="Gameobject" Range="4" />
+                              <CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+                        </If>
+                        <!-- Homeland, Horde Kalimdor -->
+                        <If Condition="Me.MapId == 1" >
+                              <!--
+                              "Horde Going to!!!"
+                              *********OBS*********
+                              Set true will go there.
+                              Northrend
+                              Outland
+                              Eastern Kingdom
+                              Pandaland
+                              Set true only on one, the rest should be false.
+                              Set all false if your farming map is Kalimdor.
+                              *********End OBS********
+                              -->   
+                              <!-- -->
+                              <If condition="false"><!-- If Set true will go to Northrend -->
+                              <CustomBehavior File="Message" Text="Going to Northrend." LogColor="Lime" />
+                              
+                                    <If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                          <CustomBehavior File="FlyTo" X="1736.402" Y="-4283.072" Z="190.7621" />
+                                          <CustomBehavior File="FlyTo" X="1754.089" Y="-4278.742" Z="133.0416" />
+                                          <CustomBehavior File="ForcedDismount" />
+                                    </If>
+                                    <RunTo X="1763.389" Y="-4283.858" Z="133.1073" />
+                                    
+                                    <CustomBehavior File="Message" Text="Waiting for Org Zepp to Borean - don't interact!" LogColor="Orange" />
+                        
+                                    <CustomBehavior File="UseTransport" TransportId="186238"
+                                                            WaitAtX="1763.066" WaitAtY="-4284.396" WaitAtZ="133.1081" 
+                                                            TransportStartX="1775.066" TransportStartY="-4299.745" TransportStartZ="151.0326" 
+                                                            StandOnX="1770.22" StandOnY="-4292.056" StandOnZ="133.1872" 
+                                                            TransportEndX="2837.908" TransportEndY="6187.443" TransportEndZ="140.1648" 
+                                                            GetOffX="2836.831" GetOffY="6185.15" GetOffZ="121.9923" />
+                                    <RunTo X="2740.837" Y="6097.529" Z="76.88604" />
+                              </If>
+                              
+                              <If condition="false"><!-- If Set true will go to Outland -->
+                              <CustomBehavior File="Message" Text="On out way to Outland." LogColor="Lime" />
+                              <CustomBehavior File="Message" Text="Going by boat in Ratchet." LogColor="Lime" />
+                              
+                              <If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                    <CustomBehavior File="FlyTo" X="-996.8669" Y="-3826.07" Z="5.536246" />
+                              </If>
+                              <If Condition="!SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                    <RunTo X="-996.8669" Y="-3826.07" Z="5.536246" />
+                              </If>
+                              <CustomBehavior File="UseTransport" TransportId="20808"
+                                                      WaitAtX="-996.8669" WaitAtY="-3826.07" WaitAtZ="5.536246" 
+                                                      TransportStartX="-1005.613" TransportStartY="-3841.648" TransportStartZ="0.01553879"
+                                                      StandOnX="-997.3311" StandOnY="-3836.707" StandOnZ="6.030852"
+                                                      TransportEndX="-14277.75" TransportEndY="582.8661" TransportEndZ="0.03330701"
+                                                      GetOffX="-14280.88" GetOffY="566.6268" GetOffZ="6.979454" />
+                                                      <!-- Should now be in Eastern Kingdom -->
+                                    <While Condition="Me.MapId == 0" >
+                                          <If Condition="Me.MapId == 0" >
+                                                <If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                                      <CustomBehavior File="FlyTo" X="-11895.44" Y="-3206.936" Z="-14.64132" />
+                                                </If>
+                                                <RunTo X="-11895.44" Y="-3206.936" Z="-14.64132" />
+                                                <CustomBehavior File="WaitTimer" WaitTime="1000" />
+                                          </If>
+                                          <If Condition="Me.MapId == 0" >
+                                                <CustomBehavior File="MyCTM" X="-11908.09" Y="-3208.854" Z="-14.83002" />
+                                                <CustomBehavior File="WaitTimer" WaitTime="5000" />
+                                          </If>
+                                          <If Condition="Me.MapId == 0" >
+                                                <CustomBehavior File="WaitTimer" WaitTime="5000" />
+                                          </If>
+                                    </While>
+                              </If>
+                              
+                              <If condition="true"><!-- If Set true will go to Eastern Kingdom -->
+                              <CustomBehavior File="Message" Text="Going to Eastern Kingdom." LogColor="Lime" />
+                              
+                                    <If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+                                          <CustomBehavior File="FlyTo" X="1836.794" Y="-4383.654" Z="206.7829" />
+                                          <CustomBehavior File="FlyTo" X="1848.44" Y="-4398.829" Z="135.1602" />
+                                          <CustomBehavior File="ForcedDismount" />
+                                    </If>
+                                    <RunTo X="1840.468" Y="-4392.099" Z="135.2326" />
+                                    <CustomBehavior File="UseTransport" TransportId="164871"
+                                                            WaitAtX="1838.676" WaitAtY="-4387.965" WaitAtZ="135.2332"
+                                                            TransportStartX="1833.509" TransportStartY="-4391.543" TransportStartZ="152.7679"
+                                                            TransportEndX="2062.376" TransportEndY="292.998" TransportEndZ="114.973"
+                                                            StandOnX="1834.961" StandOnY="-4385.694" StandOnZ="135.0334" 
+                                                            GetOffX="2066.773" GetOffY="288.873" GetOffZ="97.03159" />
+                              </If>
+                              
+                              <If condition="false"><!-- If Set true will go to Pandaland -->
+                              <CustomBehavior File="Message" Text="Going to Pandaland." LogColor="Lime" />
+                              
+                                    <CustomBehavior File="FlyTo" X="2012.948" Y="-4698.641" Z="28.60529" />
+                                    <CustomBehavior File="InteractWith" MobId="215424" ObjectType="Gameobject" Range="4" />
+                                    <CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+                                    
+                              </If> 
+                              
+                              <!-- No profiles in deepholm-->
+                                    
+                        </If>
+                  </If>
+            
+            </While>
+            <!-- 
+            End transport script credit to Bengan. 
+            With use of Kicks go to profiles.
+            Big thanks to Kick for this.
+            --> 
+</If>
+      <While Condition="true" >
+            <If Condition="!(Me.MapId == 532)" >
+            <If Condition="Me.Location.Distance(new WoWPoint(-11125.32, -2016.662, 47.15016)) &gt; 50" >  
+            <CustomBehavior File="Message" Text="Heading to instance." LogColor="Green" />
+            <CustomBehavior File="FlyTo" DestName="Karazan" X="-11125.32" Y="-2016.662" Z="47.15016" />
+      </If>
+</If>
+            <While Condition="(Me.FreeBagSlots &gt;= 11)" >
+            <If Condition="!(Me.MapId == 532)" >
+                  <CustomBehavior File="Message" Text="Going To Karazhan" LogColor="Green" />
+                        <RunTo X="-11112.15" Y="-2005.483" Z="49.3307" />
+                        <!-- Interacting with Gate outside -->
+                        <CustomBehavior File="InteractWith" MobId="184164" NumOfTimes="1" X="-1113.5" Y="-2006.63" Z="49.3307" />
+                        <RunTo X="-11107.5" Y="-2002.63" Z="49.3307" />
+                        <CustomBehavior File="WaitTimer" WaitTime="15000" />  
+            </If>
+            <If Condition="(Me.MapId == 532)" >
+			<!-- Interacting with Gate Inside -->
+                  <CustomBehavior File="Message" Text="Going to Enter Karazhan" LogColor="Green" />
+			<CustomBehavior File="InteractWith" MobId="183450" NumOfTimes="1" X="-11100.58" Y="-1997.149" Z="49.8921" />
+			<!-- Clearing Vendors to avoid Koren being readded every loop -->
+			<ClearVendor />
+			<!-- Adding Koren to the Vendor List if reputation is Honored or higher -->
+			<If Condition="Me.GetReputationLevelWith(967) &gt;= WoWUnitReaction.Honored" > 
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Koren" Entry="16388" Type="Repair" X="-11090.44" Y="-1908.379" Z="49.86682"/>
+					</Vendors>
+				</SetVendor>
+			</If>
+      <CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+      <RunTo X="-11096.1" Y="-1993.281" Z="49.88972" />
+      <RunTo X="-11094.35" Y="-1987.887" Z="49.81068" />
+      <RunTo X="-11090.61" Y="-1973.23" Z="49.89059" />
+      <RunTo X="-11086.91" Y="-1958.578" Z="49.66531" />
+      <RunTo X="-11092.45" Y="-1945.631" Z="49.88918" />
+      <RunTo X="-11106.7" Y="-1941.661" Z="49.88921" />
+      <RunTo X="-11113.99" Y="-1949.864" Z="49.88983" />
+      <RunTo X="-11126.06" Y="-1958.971" Z="49.88832" />
+      <RunTo X="-11130.99" Y="-1962.691" Z="49.88473" />
+      <RunTo X="-11136.25" Y="-1960.966" Z="49.8892" />
+      <RunTo X="-11150.54" Y="-1956.04" Z="49.89033" />
+      <RunTo X="-11149.84" Y="-1948.357" Z="49.89033" />
+      <RunTo X="-11144.91" Y="-1934.757" Z="49.89035" />
+      <RunTo X="-11155.55" Y="-1934.339" Z="49.88923" />
+      <RunTo X="-11165.95" Y="-1932.697" Z="49.88949" />
+      <RunTo X="-11162.53" Y="-1917.969" Z="49.8881" />
+      <RunTo X="-11152.44" Y="-1913.351" Z="49.88859" />
+      <RunTo X="-11145.45" Y="-1903.657" Z="49.88859" />
+      <RunTo X="-11139.27" Y="-1893.863" Z="49.88859" />
+      <RunTo X="-11137.32" Y="-1899.187" Z="49.88859" />
+      <RunTo X="-11132.02" Y="-1913.35" Z="49.40611" />
+      <RunTo X="-11121.12" Y="-1916.008" Z="49.28505" />
+      <RunTo X="-11108.9" Y="-1917.069" Z="49.89073" />
+      <RunTo X="-11094.2" Y="-1913.539" Z="49.87636" />
+      <RunTo X="-11096.19" Y="-1905.371" Z="49.88998" />
+      <RunTo X="-11105.19" Y="-1901.186" Z="49.88908" />
+      <RunTo X="-11120.42" Y="-1899.145" Z="49.88908" />
+      <RunTo X="-11115.79" Y="-1896.556" Z="49.88908" />
+      <RunTo X="-11103.91" Y="-1891.029" Z="49.86829" />
+      <RunTo X="-11114.48" Y="-1884.885" Z="54.11089" />
+      <RunTo X="-11129.35" Y="-1884.465" Z="60.99062" />
+      <RunTo X="-11143.91" Y="-1888.079" Z="68.31783" />
+      <RunTo X="-11155.13" Y="-1897.547" Z="74.39787" />
+      <RunTo X="-11159.16" Y="-1912.089" Z="74.38553" />
+      <RunTo X="-11159.61" Y="-1920.071" Z="74.41909" />
+      <RunTo X="-11158.18" Y="-1928.571" Z="74.41812" />
+      <RunTo X="-11162.89" Y="-1942.926" Z="74.40017" />
+      <RunTo X="-11151.46" Y="-1944.703" Z="74.41618" />
+      <RunTo X="-11138.46" Y="-1946.507" Z="74.40596" />
+      <RunTo X="-11127.77" Y="-1957.378" Z="74.40359" />
+      <RunTo X="-11118.64" Y="-1959.969" Z="74.39948" />
+      <RunTo X="-11112.25" Y="-1950.226" Z="74.39789" />
+      <RunTo X="-11113.1" Y="-1944.181" Z="74.39789" />
+      <RunTo X="-11108.33" Y="-1945.746" Z="74.40134" />
+      <RunTo X="-11097.39" Y="-1938.317" Z="74.45246" />
+      <RunTo X="-11091.03" Y="-1925.451" Z="74.4097" />
+      <RunTo X="-11093.72" Y="-1915.309" Z="74.40871" />
+      <RunTo X="-11106.5" Y="-1908.71" Z="74.40732" />
+      <RunTo X="-11112.55" Y="-1899.403" Z="74.4107" />
+      <RunTo X="-11106.55" Y="-1893.305" Z="74.40751" />
+      <RunTo X="-11104.21" Y="-1897.917" Z="74.41145" />
+      <RunTo X="-11099.1" Y="-1912.118" Z="74.41296" />
+      <RunTo X="-11096.64" Y="-1916.627" Z="74.40984" />
+      <RunTo X="-11093.91" Y="-1921.01" Z="74.40292" />
+      <RunTo X="-11085.87" Y="-1933.813" Z="74.49705" />
+      <RunTo X="-11073.56" Y="-1937.988" Z="77.26888" />
+      <RunTo X="-11069.79" Y="-1942.33" Z="77.26893" />
+      <RunTo X="-11069.72" Y="-1957.45" Z="77.26869" />
+      <RunTo X="-11070.31" Y="-1972.554" Z="77.26869" />
+      <RunTo X="-11071.75" Y="-1987.604" Z="77.26869" />
+      <RunTo X="-11071.24" Y="-2002.807" Z="77.26869" />
+      <RunTo X="-11064.54" Y="-2002.887" Z="77.26869" />
+      <RunTo X="-11055.76" Y="-1996.156" Z="77.26869" />
+      <RunTo X="-11063.71" Y="-1986.223" Z="77.26869" />
+      <RunTo X="-11057.96" Y="-1981.766" Z="77.26869" />
+      <RunTo X="-11054.1" Y="-1978.257" Z="77.26869" />
+      <RunTo X="-11051" Y="-1973.66" Z="77.26869" />
+      <RunTo X="-11048.72" Y="-1964.79" Z="77.26869" />
+      <RunTo X="-11053.41" Y="-1952.555" Z="77.26869" />
+      <RunTo X="-11045.3" Y="-1944.048" Z="77.26869" />
+      <RunTo X="-11059.27" Y="-1938.306" Z="77.26869" />
+      <RunTo X="-11061.94" Y="-1927.061" Z="77.26869" />
+      <RunTo X="-11061.05" Y="-1921.341" Z="77.26869" />
+      <RunTo X="-11055.92" Y="-1921.939" Z="77.26869" />
+      <RunTo X="-11040.88" Y="-1923.424" Z="77.26869" />
+      <RunTo X="-11025.8" Y="-1924.518" Z="78.86919" />
+      <RunTo X="-11010.66" Y="-1926.26" Z="78.86919" />
+      <RunTo X="-10995.75" Y="-1928.721" Z="79.63675" />
+      <RunTo X="-10980.75" Y="-1930.007" Z="79.63675" />
+      <RunTo X="-10976.57" Y="-1920.859" Z="78.96365" />
+      <RunTo X="-10990.52" Y="-1923.319" Z="79.63634" />
+      <RunTo X="-11005.52" Y="-1921.866" Z="78.86946" />
+      <RunTo X="-11008.27" Y="-1911.235" Z="78.86801" />
+      <RunTo X="-11001.19" Y="-1897.797" Z="79.93547" />
+      <RunTo X="-11011.18" Y="-1899.839" Z="79.60461" />
+      <RunTo X="-11020.22" Y="-1901.511" Z="78.86888" />
+      <RunTo X="-11015.42" Y="-1904.278" Z="78.86888" />
+      <RunTo X="-11004.93" Y="-1908.601" Z="78.86655" />
+      <RunTo X="-10999.68" Y="-1910.359" Z="78.86655" />
+      <RunTo X="-10984.5" Y="-1911.579" Z="78.86655" />
+      <RunTo X="-10973.36" Y="-1905.469" Z="78.92706" />
+      <RunTo X="-10965.26" Y="-1902.845" Z="79.70032" />
+      <RunTo X="-10955.28" Y="-1906.481" Z="78.86827" />
+      <RunTo X="-10949.42" Y="-1912.886" Z="78.86827" />
+      <RunTo X="-10951.98" Y="-1917.368" Z="78.86827" />
+      <RunTo X="-10958.95" Y="-1930.924" Z="78.86827" />
+      <RunTo X="-10962.93" Y="-1945.509" Z="78.86827" />
+      <RunTo X="-10966.85" Y="-1960.151" Z="79.9733" />
+      <RunTo X="-10964.63" Y="-1968.336" Z="79.97331" />
+      <RunTo X="-10953.89" Y="-1970.09" Z="79.97331" />
+      <RunTo X="-10955.16" Y="-1975.493" Z="79.97331" />
+      <RunTo X="-10958.56" Y="-1987.303" Z="79.97331" />
+      <RunTo X="-10973.35" Y="-1990.892" Z="79.97331" />
+      <RunTo X="-10973.92" Y="-1996.111" Z="79.97331" />
+      <RunTo X="-10971.33" Y="-2002.596" Z="79.97332" />
+      <RunTo X="-10982.2" Y="-2013.022" Z="79.97332" />
+      <RunTo X="-10976.5" Y="-2017.37" Z="79.97332" />
+      <RunTo X="-10961.63" Y="-2020.138" Z="79.97332" />
+      <RunTo X="-10952.2" Y="-2016.535" Z="79.97332" />
+      <RunTo X="-10947.14" Y="-2017.489" Z="79.97332" />
+      <RunTo X="-10932.73" Y="-2020.672" Z="79.97332" />
+      <RunTo X="-10934.39" Y="-2032.79" Z="85.11166" />
+      <RunTo X="-10934.93" Y="-2042.861" Z="86.07256" />
+      <RunTo X="-10924.79" Y="-2042.733" Z="86.07282" />
+      <RunTo X="-10922.9" Y="-2035.471" Z="86.79515" />
+      <RunTo X="-10921.58" Y="-2020.419" Z="92.18369" />
+      <RunTo X="-10919.54" Y="-2005.392" Z="92.18375" />
+      <RunTo X="-10917.81" Y="-1990.284" Z="92.18409" />
+      <RunTo X="-10920.81" Y="-1981.736" Z="92.18414" />
+      <RunTo X="-10931.33" Y="-1971.375" Z="92.18111" />
+      <RunTo X="-10924.09" Y="-1961.364" Z="92.17957" />
+      <RunTo X="-10920.58" Y="-1954.638" Z="92.18227" />
+      <RunTo X="-10929.8" Y="-1942.624" Z="92.18202" />
+      <RunTo X="-10936.35" Y="-1934.561" Z="93.82143" />
+      <RunTo X="-10937.04" Y="-1939.937" Z="93.81989" />
+      <RunTo X="-10939.71" Y="-1954.949" Z="94.07692" />
+      <RunTo X="-10942.3" Y="-1969.839" Z="93.82424" />
+      <RunTo X="-10943.56" Y="-1982.108" Z="93.82425" />
+      <RunTo X="-10945.48" Y="-1995.317" Z="93.82425" />
+      <RunTo X="-10947" Y="-2010.309" Z="93.82425" />
+      <RunTo X="-10948.49" Y="-2021.041" Z="93.82425" />
+      <RunTo X="-10946.51" Y="-2016.274" Z="93.82425" />
+      <RunTo X="-10940.68" Y="-2002.193" Z="93.82425" />
+      <RunTo X="-10938.6" Y="-1997.33" Z="93.82425" />
+      <RunTo X="-10932.95" Y="-1983.175" Z="92.18415" />
+      <RunTo X="-10927.36" Y="-1968.992" Z="92.1821" />
+      <RunTo X="-10921.81" Y="-1954.927" Z="92.18265" />
+      <RunTo X="-10916.25" Y="-1940.863" Z="92.19195" />
+      <RunTo X="-10911.71" Y="-1926.415" Z="92.20213" />
+      <RunTo X="-10909.95" Y="-1911.269" Z="92.1664" />
+      <RunTo X="-10908.16" Y="-1896.256" Z="92.1774" />
+      <RunTo X="-10907.04" Y="-1885.223" Z="94.59832" />
+      <RunTo X="-10900.57" Y="-1874.307" Z="94.86224" />
+      <RunTo X="-10905.93" Y="-1869.413" Z="94.74242" />
+      <RunTo X="-10906.57" Y="-1864.137" Z="94.47505" />
+      <RunTo X="-10898.82" Y="-1854.686" Z="94.96383" />
+      <RunTo X="-10896.07" Y="-1849.603" Z="93.6784" />
+      <RunTo X="-10892.55" Y="-1842.981" Z="93.35606" />
+      <RunTo X="-10890.8" Y="-1836.394" Z="93.52117" />
+      <RunTo X="-10886.43" Y="-1830.18" Z="92.74612" />
+      <RunTo X="-10883.34" Y="-1823.726" Z="92.53498" />
+      <RunTo X="-10889.25" Y="-1827.01" Z="93.63652" />
+      <RunTo X="-10894.56" Y="-1826.484" Z="92.55796" />
+      <RunTo X="-10906.01" Y="-1821.918" Z="92.41235" />
+      <RunTo X="-10913.09" Y="-1819.157" Z="92.3559" />
+      <RunTo X="-10916.54" Y="-1823.033" Z="92.69374" />
+      <RunTo X="-10918.63" Y="-1830.362" Z="92.94885" />
+      <RunTo X="-10915.05" Y="-1837.016" Z="93.23254" />
+      <RunTo X="-10901.35" Y="-1839.352" Z="93.40454" />
+      <RunTo X="-10902.64" Y="-1846.692" Z="93.60732" />
+      <RunTo X="-10900.16" Y="-1851.172" Z="93.78876" />
+      <RunTo X="-10904.43" Y="-1865.068" Z="94.52151" />
+      <RunTo X="-10904.83" Y="-1870.18" Z="94.77341" />
+      <RunTo X="-10905.87" Y="-1877.734" Z="94.8593" />
+      <RunTo X="-10906.9" Y="-1885.224" Z="94.60754" />
+      <RunTo X="-10908.23" Y="-1894.9" Z="92.18215" />
+      <RunTo X="-10910.3" Y="-1910" Z="92.16855" />
+      <RunTo X="-10912" Y="-1925.021" Z="92.20454" />
+      <RunTo X="-10912.93" Y="-1937.323" Z="92.19633" />
+      <RunTo X="-10908.59" Y="-1949.018" Z="92.18915" />
+      <RunTo X="-10902.26" Y="-1962.841" Z="92.17376" />
+      <RunTo X="-10896.67" Y="-1963.64" Z="92.17197" />
+      <RunTo X="-10881.51" Y="-1965.304" Z="92.17197" />
+      <RunTo X="-10881.76" Y="-1972.1" Z="92.17197" />
+      <RunTo X="-10888.18" Y="-1985.886" Z="92.17255" />
+      <RunTo X="-10877.25" Y="-1988.544" Z="92.17261" />
+      <RunTo X="-10862.39" Y="-1991.293" Z="92.16593" />
+      <RunTo X="-10850.96" Y="-1985.557" Z="92.16003" />
+      <RunTo X="-10846.16" Y="-1987.507" Z="92.16003" />
+      <RunTo X="-10835.39" Y="-1998.296" Z="92.16003" />
+      <RunTo X="-10829.96" Y="-2003.369" Z="92.16003" />
+      <RunTo X="-10831.29" Y="-1998.247" Z="92.16003" />
+      <RunTo X="-10835.39" Y="-1983.56" Z="92.16003" />
+      <RunTo X="-10833.71" Y="-1968.77" Z="93.35954" />
+      <RunTo X="-10831.89" Y="-1962.478" Z="93.35954" />
+      <RunTo X="-10833.64" Y="-1967.472" Z="93.35954" />
+      <RunTo X="-10838.19" Y="-1982.028" Z="92.16073" />
+      <RunTo X="-10843.62" Y="-1993.697" Z="92.16073" />
+      <RunTo X="-10858.48" Y="-1990.896" Z="92.16073" />
+      <RunTo X="-10873.47" Y="-1988.15" Z="92.17158" />
+      <RunTo X="-10882.67" Y="-1993.763" Z="92.17258" />
+      <RunTo X="-10891.63" Y="-2006.096" Z="92.17364" />
+      <RunTo X="-10896.59" Y="-2012.928" Z="92.17364" />
+      <RunTo X="-10891.23" Y="-2015.091" Z="92.17364" />
+      <RunTo X="-10876.77" Y="-2019.534" Z="92.17364" />
+      <RunTo X="-10862.35" Y="-2024.478" Z="92.17364" />
+      <RunTo X="-10853.87" Y="-2022.966" Z="92.17364" />
+      <RunTo X="-10853.02" Y="-2031.445" Z="92.17364" />
+      <RunTo X="-10845.74" Y="-2031.086" Z="90.92479" />
+      <RunTo X="-10835.25" Y="-2030.994" Z="90.92545" />
+      <RunTo X="-10855.29" Y="-2025.374" Z="92.17493" />
+      <RunTo X="-10869.87" Y="-2020.961" Z="92.17493" />
+      <RunTo X="-10884.13" Y="-2015.936" Z="92.17493" />
+      <RunTo X="-10890.66" Y="-2024.499" Z="92.17493" />
+      <RunTo X="-10897.94" Y="-2037.887" Z="92.17493" />
+      <RunTo X="-10905.49" Y="-2051.138" Z="92.17339" />
+      <RunTo X="-10910.26" Y="-2061.493" Z="92.17339" />
+      <RunTo X="-10897.38" Y="-2069.601" Z="92.17185" />
+      <RunTo X="-10884.78" Y="-2070.964" Z="92.16364" />
+      <RunTo X="-10878.26" Y="-2081.146" Z="90.49621" />
+      <RunTo X="-10868.09" Y="-2081.862" Z="90.49621" />
+      <RunTo X="-10858.83" Y="-2092.836" Z="90.49621" />
+      <RunTo X="-10853.09" Y="-2098.829" Z="92.16338" />
+      <RunTo X="-10857.64" Y="-2095.673" Z="91.3298" />
+      <RunTo X="-10870.33" Y="-2087.211" Z="90.49519" />
+      <RunTo X="-10883" Y="-2078.753" Z="91.74554" />
+      <RunTo X="-10891.02" Y="-2072.546" Z="92.16743" />
+      <RunTo X="-10903.97" Y="-2064.534" Z="92.17074" />
+      <RunTo X="-10906.05" Y="-2056.031" Z="92.17074" />
+      <RunTo X="-10899.68" Y="-2042.178" Z="92.17178" />
+      <RunTo X="-10893.31" Y="-2028.326" Z="92.17333" />
+      <RunTo X="-10886.94" Y="-2014.48" Z="92.17333" />
+      <RunTo X="-10883.29" Y="-1999.679" Z="92.17333" />
+      <RunTo X="-10879.76" Y="-1984.977" Z="92.17333" />
+      <RunTo X="-10877.6" Y="-1969.96" Z="92.17179" />
+      <RunTo X="-10876.92" Y="-1954.761" Z="92.16486" />
+      <RunTo X="-10876.35" Y="-1939.525" Z="92.27752" />
+      <RunTo X="-10874.56" Y="-1924.388" Z="92.27752" />
+      <RunTo X="-10872.77" Y="-1909.246" Z="86.69209" />
+      <RunTo X="-10870.99" Y="-1894.23" Z="78.43333" />
+      <RunTo X="-10869.2" Y="-1879.095" Z="70.68952" />
+      <RunTo X="-10875.82" Y="-1873.967" Z="70.68952" />
+      <RunTo X="-10890.98" Y="-1872.401" Z="70.68952" />
+      <RunTo X="-10906.14" Y="-1870.835" Z="70.68952" />
+      <RunTo X="-10914.48" Y="-1872.871" Z="70.68952" />
+      <RunTo X="-10915.68" Y="-1888.028" Z="63.35756" />
+      <RunTo X="-10917.08" Y="-1903.212" Z="54.56717" />
+      <RunTo X="-10918.46" Y="-1918.268" Z="49.41655" />
+      <RunTo X="-10920.65" Y="-1933.349" Z="49.41655" />
+      <RunTo X="-10924.62" Y="-1945.449" Z="49.44641" />
+      <RunTo X="-10925.66" Y="-1959.531" Z="49.47793" />
+      <RunTo X="-10926.46" Y="-1965.063" Z="49.47793" />
+      <RunTo X="-10928.97" Y="-1980.063" Z="49.4772" />
+      <RunTo X="-10927.99" Y="-1994.345" Z="49.49454" />
+      <RunTo X="-10916.06" Y="-2003.636" Z="49.47426" />
+      <RunTo X="-10901.15" Y="-2006.657" Z="49.47426" />
+      <RunTo X="-10895.71" Y="-2016.703" Z="49.47426" />
+      <RunTo X="-10897.39" Y="-2031.763" Z="49.47426" />
+      <RunTo X="-10899.39" Y="-2046.749" Z="49.47426" />
+      <RunTo X="-10899.65" Y="-2061.984" Z="49.47426" />
+      <RunTo X="-10898.59" Y="-2075.352" Z="49.47426" />
+      <RunTo X="-10892.43" Y="-2065.096" Z="49.47426" />
+      <RunTo X="-10885.29" Y="-2051.632" Z="49.47426" />
+      <RunTo X="-10879.67" Y="-2040.634" Z="49.47426" />
+      <RunTo X="-10883.5" Y="-2028.099" Z="49.47426" />
+      <RunTo X="-10894" Y="-2017.052" Z="49.47426" />
+      <RunTo X="-10904.85" Y="-2006.337" Z="49.47426" />
+      <RunTo X="-10910.16" Y="-2004.25" Z="49.47426" />
+      <RunTo X="-10925.34" Y="-2002.845" Z="49.47426" />
+      <RunTo X="-10940.57" Y="-2001.682" Z="49.47426" />
+      <RunTo X="-10955.62" Y="-2000.533" Z="47.11158" />
+      <RunTo X="-10963.41" Y="-1999.938" Z="45.93204" />
+      <RunTo X="-10968.63" Y="-1999.126" Z="45.92447" />
+      <RunTo X="-10976.03" Y="-1996.291" Z="45.9222" />
+      <RunTo X="-10969.84" Y="-1982.363" Z="45.69156" />
+      <RunTo X="-10966.73" Y="-1974.923" Z="45.79834" />
+      <RunTo X="-10971.38" Y="-1971.964" Z="45.6423" />
+      <RunTo X="-10976.72" Y="-1973.792" Z="45.63992" />
+      <RunTo X="-10991.96" Y="-1973.494" Z="45.97439" />
+      <RunTo X="-11006.98" Y="-1971.591" Z="48.528" />
+      <RunTo X="-11019.05" Y="-1968.539" Z="48.528" />
+      <RunTo X="-11017.96" Y="-1974.059" Z="48.528" />
+      <RunTo X="-11012.78" Y="-1988.381" Z="48.528" />
+      <RunTo X="-11017.6" Y="-1990.93" Z="48.52961" />
+      <RunTo X="-11032.54" Y="-1992.936" Z="48.52961" />
+      <RunTo X="-11047.21" Y="-1995.619" Z="49.91307" />
+      <RunTo X="-11060.81" Y="-2002.484" Z="49.89669" />
+      <RunTo X="-11073.41" Y="-2008.555" Z="49.90086" />
+      <RunTo X="-11075.93" Y="-2004.119" Z="49.91037" />
+      <RunTo X="-11078.76" Y="-1999.838" Z="49.91081" />
+      <RunTo X="-11088.21" Y="-1987.905" Z="49.71706" />
+      <RunTo X="-11095.4" Y="-1993.02" Z="49.87681" />
+
+      <If Condition="Me.FreeBagSlots &lt;= 15" >
+                  <CustomBehavior File="Message" Text="\nWe are going to town and dump our bags." LogColor="Coral" />
+                </If>
+<<<<<<< .mine
+                  <CustomBehavior File="InteractWith" MobId="184164" NumOfTimes="1" X="-1113.5" Y="-2006.63" Z="49.3307" />
+                  <CustomBehavior File="Misc\InstanceTimer" Timer="Check" /> 
+=======
+                  <CustomBehavior File="InteractWith" MobId="184164" NumOfTimes="1" X="-1113.5" Y="-2006.63" Z="49.3307" />
+>>>>>>> .r519
+                  <CustomBehavior File="MyCTM" X="-11110" Y="-2006" Z="49.85" /> 
+                  <CustomBehavior File="WaitTimer" WaitTime="15000" />
+                  <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+            </If>
+            <!--Instance Coordnation Complete -->
+      </While>
+
+<If Condition="(Me.FreeBagSlots &lt;= 15)" >
+            <CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+            <If Condition="Me.IsAlliance">
+                  <CustomBehavior File="FlyTo" X="-10968.71" Y="-3444.409" Z="64.74454" />
+                  <CustomBehavior File="WaitTimer" WaitTime="1000" />
+                  <CustomBehavior File="RunMacro" Macro="/dismount" />
+                  <RunTo X="-10952.3" Y="-3453.662" Z="66.75845" />
+                  <SetVendor>
+                        <Vendors>
+                              <Vendor Name="Strumner Flintheel" Entry="5508" Type="Repair" X="-10951.8" Y="-3451.99" Z="66.76158" />
+                        </Vendors>
+                  </SetVendor>
+                  <CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+                  <CustomBehavior File="WaitTimer" WaitTime="1000" />
+                  <ClearVendor />
+                  <RunTo X="-10968.71" Y="-3444.409" Z="64.74454" />
+                  <RunTo X="-10995.47" Y="-3389.044" Z="62.09529" />
+                  <CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+                  <CustomBehavior File="WaitTimer" WaitTime="1000" />
+            </If>
+            <If Condition="Me.IsHorde" >
+                  <CustomBehavior File="FlyTo" X="-10406.97" Y="-3265.748" Z="21.89375" />
+                  
+                  <CustomBehavior File="WaitTimer" WaitTime="1000" />
+                  <CustomBehavior File="RunMacro" Macro="/dismount" />
+                  <SetVendor>
+                        <Vendor>
+                              <Vendor Name="Gharash" Entry="8176" Type="Repair" X="-10406.97" Y="-3265.748" Z="21.89375" />
+                        </Vendor>
+                  </SetVendor>
+                  <CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+                  <ClearVendor />
+                  <RunTo X="-10463.04" Y="-3265.259" Z="20.17783" />
+                  <CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail -->
+                  <CustomBehavior File="WaitTimer" WaitTime="1000" />
+            </If>
+      </If>
+</While>
+</QuestOrder>
+</HBProfile>
