@@ -55,29 +55,8 @@
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 
 	<QuestOrder>
-	
-		 <!-- Transporter -->
-		 
-		<!-- Transport script, pre made for all purposes. -->
-		<!-- Use this if you want, but give credit. -->
-		<!--
-		Id
-		0 = Eastern Kingdoms
-		1 = Kalimdor
-		530 = Outland 
-		646 = Deepholm
-		571 = Northrend 
-		870 = Pandaland
-		******************************
-		Important, you might need to edit where the profile will take you.
-		Search for "Ally Going to!!!" and read how to edit that part.
-		Also search for "Horde Going to!!!" and edit that part.
-		A monkey can do it.
-		******************************
-		Add MapId for farming location, the id you enter here is where you want to go.-->
+
 		<While Condition="!(Me.MapId == 1)" >
-			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" 
-			Text="Do not stop the bot, i will take you where you want to go, just sit back and relax." Title="WARNING" />
 			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" 
 			Text="This Profile Still has a few bugs but works 4/5 times, mostly he will miss a barrel, we are still looking for a solution" Title="WARNING" />
 		
@@ -142,18 +121,6 @@
 				</If>
 				<!-- Homeland, Ally Eastern Kingdom -->
 				<If Condition="Me.MapId == 0" >
-					<!--
-					"Ally going to!!!"
-					*********OBS*********
-					Set true will go there.
-					Northrend
-					Outland
-					Kalimdor
-					Pandaland
-					Set true only on one, the rest should be false.
-					Set all false if your farming map is Eastern Kingdom.
-					*********End OBS********
-					-->	
 					
 					<If condition="false"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Vikingland." LogColor="Lime" />
@@ -292,19 +259,7 @@
 				</If>
 				<!-- Homeland, Horde Kalimdor -->
 				<If Condition="Me.MapId == 1" >
-					<!--
-					"Horde Going to!!!"
-					*********OBS*********
-					Set true will go there.
-					Northrend
-					Outland
-					Eastern Kingdom
-					Pandaland
-					Set true only on one, the rest should be false.
-					Set all false if your farming map is Kalimdor.
-					*********End OBS********
-					-->	
-					<!-- -->
+
 					<If condition="false"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Northrend." LogColor="Lime" />
 					
