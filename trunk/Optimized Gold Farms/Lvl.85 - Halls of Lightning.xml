@@ -1,13 +1,12 @@
 <HBProfile>
-<Name>Mjj23's Glorious Plate Grind</Name>
-<MinDurability>0.3</MinDurability>
-<MinFreeBagSlots>1</MinFreeBagSlots>
+<Name>Lightning Halls Lvl.85 Gold Farm</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////
-// Profile Maker: Mjj23
-// Farm zone(s): Alcaz Island, Winterspring, Silithus
-// Farm mobs: Elite Hydra, Minion of Dr. Weavil, Rabid Shardtooth Bear
-// Grind Speed: 200 mobs/h (with 90 mage)
-// Grind what? Glorious Plate
+// Profile Developer(S): Mjj23 and EchoTiger
+//Originally coded by Mjj23,  DetectionDiamond added by EchoTiger
+// Farm zone: Lightning Halls
+// Farm mobs: All
+// Grind Speed: N/A
 ///////////////////////////////////////////////////////////////////////
 
 <MinLevel>54</MinLevel>
@@ -20,42 +19,46 @@
 <MailPurple>True</MailPurple>
 
 <SellGrey>True</SellGrey>
-<SellWhite>false</SellWhite>
-<SellGreen>false</SellGreen>
-<SellBlue>false</SellBlue>
-<SellPurple>false</SellPurple>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
 
-	<Vendors>
-		<Vendor Name="Razbo Rustgear" Entry="23571" Type="Repair" X="-4603.661" Y="-3210.939" Z="34.92498" />
-		<Vendor Name="Wixxrak" Entry="11184" Type="Repair" X="6733.39" Y="-4699.038" Z="721.37" />
-		<Vendor Name="Vargus" Entry="15176" Type="Repair" X="-6860.931" Y="753.0439" Z="42.47256" />
-	</Vendors>
+//Protected Items list, can add to these as you see fit, if you are looking for specific items.
+<ProtectedItems>
+	<Item Name="Book of Glyph Mastery" Entry="45912"/>
+</ProtectedItems>
+		
+<Vendors>
+</Vendors>
 
-	<Mailboxes>
-		<Mailbox X="-4598.088" Y="-3181.409" Z="34.91448" />
-		<Mailbox X="6705.105" Y="-4667.351" Z="721.2368" />
-		<Mailbox X="-6838.888" Y="735.251" Z="42.2317" /> 
-	</Mailboxes>
+<Mailboxes>
+	<Mailbox X="8440.736" Y="-329.4271" Z="906.5062" />
+</Mailboxes>
 
-
-		<AvoidMobs>
-			<Mob Name="Doctor Weavil" Entry="15552" />
-		</AvoidMobs>
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+	<Mob Name="Ionar Invis Stalker" Entry="28947" />
+</AvoidMobs>
 
 
 <Blackspots>
-	<Blackspot X="-2639.086" Y="-4997.247" Z="22.99818" Radius="5.372036" /> // Avoid Table in First Building
-	<Blackspot X="-2676.412" Y="-5001.78" Z="21.59055" Radius="1.533009" /> // Stuck Spot in Courtyard
-	<Blackspot X="-2734.754" Y="-5017.247" Z="24.29678" Radius="6.815754" /> // Big Tree on Hill
-	<Blackspot X="-2798.004" Y="-4984.718" Z="57.66114" Radius="8.988581" />
 </Blackspots>
-
-<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="100" KillBetweenHotspots="True" LogoutForInactivity="False" />
 	
+<QuestOrder>
+<If Condition="(Me.MapId == 602)" >
+	<CustomBehavior File="Message" Text="Bot was started in-instance.\nMoving out of instance." LogColor="Red" />
+	<!-- <CustomBehavior File="RunMacro" Macro="/cast Hearthstone" /> --> // Remove the <!-- --> to use Hearthstone instead.
 
-	<QuestOrder>
-	
-		<While Condition="!(Me.MapId == 1)" >
+	<RunTo X="1331.879" Y="247.3523" Z="52.58322" />  //Delete this if you're using the Hearthstone.
+	<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />  //Delete this if you're using the Hearthstone.
+	<CustomBehavior File="WaitTimer" WaitTime="15000" /> //Delete this if you're using the Hearthstone.
+
+	<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+</If>
+
+<If Condition="!(Me.MapId == 602)" >
+		<While Condition="!(Me.MapId == 571)" >
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
 				<If Condition="Me.MapId == 530" >
@@ -117,8 +120,8 @@
 				</If>
 				<!-- Homeland, Ally Eastern Kingdom -->
 				<If Condition="Me.MapId == 0" >
-					
-					<If condition="false"><!-- If Set true will go to Northrend -->
+
+					<If condition="true"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Vikingland." LogColor="Lime" />
 					
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
@@ -154,7 +157,7 @@
 					</While>
 					</If>
 					
-					<If condition="true"> <!-- If Set true will go to Kalimdor -->
+					<If condition="false"> <!-- If Set true will go to Kalimdor -->
 					<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
 					
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
@@ -256,7 +259,7 @@
 				<!-- Homeland, Horde Kalimdor -->
 				<If Condition="Me.MapId == 1" >
 
-					<If condition="false"><!-- If Set true will go to Northrend -->
+					<If condition="true"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Northrend." LogColor="Lime" />
 					
 						<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
@@ -336,242 +339,228 @@
 						<CustomBehavior File="InteractWith" MobId="215424" ObjectType="Gameobject" Range="4" />
 						<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
 						
-					</If>	
-					
-					<!-- No profiles in deepholm-->
-						
+					</If>							
 				</If>
 			</If>
 		</While>
-		<!-- 
-		End transport script credit to Bengan. 
-		With use of Kicks go to profiles.
-		Big thanks to Kick for this.
-		--> 
-		
-				
-		<While Condition="(Me.MapId == 1)">
-		
-			<If Condition="(Me.ZoneId == 15)" >
-			<CustomBehavior File="FlyTo" X="-3792.358" Y="-3895.982" Z="33.79902" />
-			<CustomBehavior File="RunMacro" Macro="/cleartarget\n/target Theramore Highway Guard" />
-			<If Condition="(Me.CurrentTarget == null)" >
-				<CustomBehavior File="Message" Text="\nWe're not phased properly.\nChanging our phase." LogColor="Red" />
-				<CustomBehavior File="FlyTo" DestName="Zidormi" X="-3766.99" Y="-3910.53" Z="11.58" />
-				<CustomBehavior File="InteractWith" MobId="63546" X="-3766.99" Y="-3910.53" Z="11.58" />
-				<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="1" WaitTime="1000" />
-				<CustomBehavior File="WaitTimer" WaitTime="5000" />
-			</If>
-			</If>
+</If>
+<!-- End transport script credit to Bengan. 
+	With use of Kicks go to profiles.
+	Big thanks to Kick for this. -->
+
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+
+//DD Hub Coordinate  X="9165.304" Y="-1367.107" Z="1091.947"
+
+<!-- Travel to Halls of Lightning --> 
+<If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &gt;= 30" >
+	<CustomBehavior File="Message" Text="Heading to Halls of Lightning." LogColor="Green" />
+	<CustomBehavior File="FlyTo" X="9149.345" Y="-1351.977" Z="1075.505" />
+	<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<CustomBehavior File="MyCTM" X="9165.259" Y="-1367.11" Z="1091.923" /> //Change this to alter the default option.
+</If>
+<If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &lt; 30" >
+	<RunTo X="9149.345" Y="-1351.977" Z="1075.505" />
+	<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<CustomBehavior File="MyCTM" X="9165.259" Y="-1367.11" Z="1091.923" /> //Change this to alter the default option.
+</If>
 
 
-		
-				<If Condition="(Me.ZoneId == 15)" >
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="75" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Flying to Alcaz Island Farm Location.  Farming for: Helm/Chest/Legs" LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Alcaz Island" X="-2703.286" Y="-4685.863" Z="10.16349" />
-						<CustomBehavior File="ForcedDismount" />
-			
-			<SetGrindArea>
-				<GrindArea>
-					<Name>Alcaz Island Grind (Helm, Breastplate, Legs</Name>
-					<Factions>74 14</Factions>
-					<TargetMinLevel>54</TargetMinLevel>
-					<TargetMaxLevel>62</TargetMaxLevel>
-					<Hotspots>
-						<Hotspot X="-2703.286" Y="-4685.863" Z="10.16349" />
-						<Hotspot X="-2637.574" Y="-4686.336" Z="-11.11105" />
-						<Hotspot X="-2629.009" Y="-4660.383" Z="-14.25909" />
-						<Hotspot X="-2702.608" Y="-4624.066" Z="-16.00544" />
-						<Hotspot X="-2733.018" Y="-4657.891" Z="-7.036565" />
-						<Hotspot X="-2738.897" Y="-4705.015" Z="3.273936" />
-						<Hotspot X="-2669.409" Y="-4768.127" Z="12.6414" />
-						<Hotspot X="-2541.333" Y="-4909.695" Z="33.22778" /> // Begin first Building
-						<Hotspot X="-2538.046" Y="-4932.038" Z="34.97356" />
-						<Hotspot X="-2541.333" Y="-4909.695" Z="33.22778" /> // End First Building
-						<Hotspot X="-2686.622" Y="-4973.577" Z="22.91924" />
-						<Hotspot X="-2652.632" Y="-4995.044" Z="21.40219" /> // Begin Second Building
-						<Hotspot X="-2645.956" Y="-4991.535" Z="22.98255" />
-						<Hotspot X="-2632.651" Y="-5007.821" Z="23.33307" />
-						<Hotspot X="-2652.632" Y="-4995.044" Z="21.40219" /> // End Second Building
-						<Hotspot X="-2644.692" Y="-5028.149" Z="21.16435" /> // Begin Third Building
-						<Hotspot X="-2636.802" Y="-5034.557" Z="22.73528" />
-						<Hotspot X="-2658.079" Y="-5057.903" Z="23.00721" /> // Bottom of Stairs - Sometimes will get upstairs mobs, but pathing issues so do not try to go upstairs
-						<Hotspot X="-2644.692" Y="-5028.149" Z="21.16435" /> // End Third Building
-						<Hotspot X="-2672.032" Y="-5034.514" Z="22.06094" /> // Begin Basement
-						<Hotspot X="-2671.188" Y="-5044.57" Z="16.22992" />
-						<Hotspot X="-2673.666" Y="-5036.634" Z="9.716917" /> // Bottom of Stairs
-						<Hotspot X="-2747.877" Y="-5036.635" Z="8.239479" /> // By Gate in Basement
-						<Hotspot X="-2673.666" Y="-5036.634" Z="9.716917" />
-						<Hotspot X="-2672.032" Y="-5034.514" Z="22.06094" /> // End Basement
-						<Hotspot X="-2689.067" Y="-5029.278" Z="21.14714" /> // Enter Fourth Building
-						<Hotspot X="-2698.126" Y="-5037.647" Z="23.4426" />
-						<Hotspot X="-2716.234" Y="-5022.568" Z="23.1044" />
-						<Hotspot X="-2689.067" Y="-5029.278" Z="21.14714" />  // End Fourth Building
-						<Hotspot X="-2715.936" Y="-4986.924" Z="26.70961" /> // Bottom of Hill
-						<Hotspot X="-2775.249" Y="-4999.283" Z="42.26286" /> // Between Trees on Hill
-						<Hotspot X="-2798.317" Y="-4941.652" Z="68.202" /> // Top of Hill
-						<Hotspot X="-2693.788" Y="-4848.452" Z="20.14082" /> // Avoid "Stuck" Flying spot on return loop
-					</Hotspots>
-				</GrindArea>
-			</SetGrindArea>
-			
-			<GrindTo Condition="Me.FreeBagSlots &lt;= 5" />
-			
-			<!-- Random Chance of Moving to Winterspring or Silithus, If not Mail/Vendor from Dustwallow Marsh-->
-			<!-- Note: GrindTo Free bag slots can be changed, but should ALWAYS match Me.FreeBagSlots in IF condition below -->
-			<!-- "Chance" can also be changed, as the percent chance of move ocurring-->
-			
-			<If Condition="Chance(50) &amp;&amp; (Me.ZoneId == 15)">
-					<CustomBehavior File="Message" Text="Flying to Winterspring Farm Location. Farming for: Helm/Chest/Legs" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" X="5287.306" Y="-4387.221" Z="877.8645" />
+<CustomBehavior File="Message" Text="Lvl.85 Gold Run Activated!\n" LogColor="Yellow" />
+	<While Condition="true" >
+		<If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &gt;= 30" >
+			<CustomBehavior File="FlyTo" X="9149.345" Y="-1351.977" Z="1075.505" />
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 10)" >
+			<If Condition="!(Me.MapId == 602)">
+				<RunTo X="9182.586" Y="-1384.403" Z="1110.212" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<CustomBehavior File="MyCTM" X="9186.445" Y="-1387.921" Z="1110.215" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
-			
-			<If Condition="Chance(50) &amp;&amp; (Me.ZoneId == 15)">
-					<CustomBehavior File="Message" Text="Flying to Silithus Farm Location.  Farming for: Boots/Shoulders" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" X="-7891.313" Y="733.6312" Z="-26.87126" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 5) || (Me.LowestDurabilityPercent &lt; 20.0 &amp;&amp; (Me.ZoneId == 15))" >
-					<CustomBehavior File="Message" Text="Flying to Dustwallow Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" X="-4598.088" Y="-3181.409" Z="34.91448" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>	
-			
-		
-			<ElseIf Condition="(Me.MapId == 1) &amp;&amp; (Me.ZoneId == 618)">
-					<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="75" KillBetweenHotspots="True" LogoutForInactivity="False" />
-					<CustomBehavior File="FlyTo" X="5287.306" Y="-4387.221" Z="877.8645" />
-					<CustomBehavior File="ForcedDismount" />
-			
-			<SetGrindArea>
-				<GrindArea>
-					<Name>Winterspring Grind (Helm, Breastplate, Legs)</Name>
-					<Factions>16</Factions>
-					<TargetMinLevel>54</TargetMinLevel>
-					<TargetMaxLevel>62</TargetMaxLevel>
-					<Hotspots>
-						<Hotspot X="5287.306" Y="-4387.221" Z="877.8645" />
-						<Hotspot X="5233.121" Y="-4383.483" Z="885.2924" />
-						<Hotspot X="5179.268" Y="-4356.669" Z="907.0401" />
-						<Hotspot X="5113.188" Y="-4419.781" Z="899.507" />
-						<Hotspot X="5046.044" Y="-4477.268" Z="884.5648" />
-						<Hotspot X="5046.568" Y="-4599.423" Z="853.4652" />
-						<Hotspot X="5026.26" Y="-4654.756" Z="856.7075" />
-						<Hotspot X="5018.262" Y="-4710.079" Z="853.9313" />
-						<Hotspot X="5012.994" Y="-4791.73" Z="865.3741" />
-						<Hotspot X="5019.773" Y="-4847.929" Z="876.9031" />
-						<Hotspot X="5093.674" Y="-4957.882" Z="876.8275" />
-						<Hotspot X="5095.927" Y="-4998.025" Z="901.9893" />
-						<Hotspot X="5118.727" Y="-5031.48" Z="922.7539" />
-						<Hotspot X="5160.33" Y="-5052.281" Z="916.13" />
-						<Hotspot X="5196.809" Y="-5064.164" Z="903.735" />
-						<Hotspot X="5236.932" Y="-5062.331" Z="904.0425" />
-						<Hotspot X="5275.187" Y="-5074.877" Z="906.3724" />
-						<Hotspot X="5237.327" Y="-5061.803" Z="903.5749" />
-						<Hotspot X="5198.166" Y="-5053.129" Z="902.7216" />
-						<Hotspot X="5179.28" Y="-5021.331" Z="886.1827" />
-						<Hotspot X="5149.688" Y="-4993.608" Z="883.1904" />
-						<Hotspot X="5129.611" Y="-4959.824" Z="872.67" />
-						<Hotspot X="5111.622" Y="-4924.189" Z="867.4565" />
-						<Hotspot X="5101.531" Y="-4885.269" Z="867.6807" />
-						<Hotspot X="5105.984" Y="-4846.288" Z="858.4396" />
-						<Hotspot X="5094.442" Y="-4807.449" Z="857.2265" />
-						<Hotspot X="5075.974" Y="-4771.83" Z="855.2067" />
-						<Hotspot X="5073.46" Y="-4732.609" Z="845.9002" />
-						<Hotspot X="5077.447" Y="-4692.281" Z="848.9151" />
-						<Hotspot X="5081.908" Y="-4652.513" Z="848.3109" />
-						<Hotspot X="5114.081" Y="-4630.053" Z="839.9332" />
-						<Hotspot X="5140.129" Y="-4599.345" Z="842.301" />
-						<Hotspot X="5168.802" Y="-4570.941" Z="844.4761" />
-						<Hotspot X="5188.964" Y="-4536.98" Z="834.7094" />
-						<Hotspot X="5199.995" Y="-4499.904" Z="845.5328" />
-						<Hotspot X="5184.479" Y="-4464.696" Z="858.033" />
-						<Hotspot X="5208.833" Y="-4432.159" Z="858.1074" />
-						<Hotspot X="5235.809" Y="-4404.134" Z="867.8002" />
-					</Hotspots>
-				</GrindArea>
-			</SetGrindArea>
-			<GrindTo Condition="Me.FreeBagSlots &lt;= 5" />
-			
-			<!-- Random Chance of Moving to Alcaz Island or Silithus, If not Mail/Vendor from Winterspring-->
-			<!-- Note: GrindTo Free bag slots can be changed, but should ALWAYS match Me.FreeBagSlots in IF condition below -->
-			<!-- "Chance" can also be changed, as the percent chance of move ocurring-->
-			
-			<If Condition="Chance(50) &amp;&amp; (Me.ZoneId == 618)">
-					<CustomBehavior File="Message" Text="Flying to Alcaz Island Farm Location.  Farming for: Helm/Chest/Legs" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" X="-2703.286" Y="-4685.863" Z="10.16349" />
-			</If>
-			
-			<If Condition="Chance(50) &amp;&amp; (Me.ZoneId == 618)">
-					<CustomBehavior File="Message" Text="Flying to Silithus Farm Location.  Farming for: Boots/Shoulders" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" X="-7891.313" Y="733.6312" Z="-26.87126" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 5) || (Me.LowestDurabilityPercent &lt; 20.0 &amp;&amp; (Me.ZoneId == 618))" >
-					<CustomBehavior File="Message" Text="Flying to Winterspring Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" X="6705.105" Y="-4667.351" Z="721.2368" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>	
-			
-			
-			</ElseIf>
-			
-			<ElseIf Condition="(Me.MapId == 1) &amp;&amp; (Me.ZoneId == 1377)">
-					<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="75" KillBetweenHotspots="True" LogoutForInactivity="False" />
-					<CustomBehavior File="FlyTo" X="-7891.313" Y="733.6312" Z="-26.87126" />
-					<CustomBehavior File="ForcedDismount" />
-			
-			<SetGrindArea>
-				<GrindArea>
-					<Name>Silithus Grind (Boots, Shoulders)</Name>
-					<Factions>310 311</Factions>
-					<TargetMinLevel>54</TargetMinLevel>
-					<TargetMaxLevel>62</TargetMaxLevel>
-					<Hotspots>
-						<Hotspot X="-7891.313" Y="733.6312" Z="-26.87126" />
-						<Hotspot X="-7759.247" Y="722.6305" Z="-34.83002" />
-						<Hotspot X="-7691.076" Y="677.6386" Z="-49.59098" />
-						<Hotspot X="-7614.703" Y="657.1177" Z="-46.82822" />
-						<Hotspot X="-7600.563" Y="622.5038" Z="-42.98196" />
-						<Hotspot X="-7664.257" Y="549.4442" Z="-43.70428" />
-						<Hotspot X="-7623.552" Y="459.0954" Z="-48.76233" />
-						<Hotspot X="-7770.062" Y="426.6943" Z="-34.93748" />
-						<Hotspot X="-7953.283" Y="436.0781" Z="-30.84744" />
-						<Hotspot X="-8038.813" Y="527.8234" Z="-11.2953" />
-						<Hotspot X="-8052.576" Y="603.2959" Z="-17.39823" />
-						<Hotspot X="-7970.731" Y="665.2415" Z="-22.71717" />
-						<Hotspot X="-7873.684" Y="694.0967" Z="-27.20204" />
-					</Hotspots>
-				</GrindArea>
-			</SetGrindArea>
-			<GrindTo Condition="Me.FreeBagSlots &lt;= 5" />
-			
-			<!-- Random Chance of Moving to Alcaz Island or Winterspring, If not Mail/Vendor from Silithus-->
-			<!-- Note: GrindTo Free bag slots can be changed, but should ALWAYS match Me.FreeBagSlots in IF condition below -->
-			<!-- "Chance" can also be changed, as the percent chance of move ocurring-->
-			
-			<If Condition="Chance(50) &amp;&amp; (Me.ZoneId == 1377)">
-					<CustomBehavior File="Message" Text="Flying to Alcaz Island Farm Location.  Farming for: Helm/Chest/Legs" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" X="-2703.286" Y="-4685.863" Z="10.16349" />
-			</If>
-			
-			<If Condition="Chance(50) &amp;&amp; (Me.ZoneId == 1377)">
-					<CustomBehavior File="Message" Text="Flying to Winterspring Farm Location. Farming for: Helm/Chest/Legs" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" X="5287.306" Y="-4387.221" Z="877.8645" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 5) || (Me.LowestDurabilityPercent &lt; 20.0 &amp;&amp; (Me.ZoneId == 1377))" >
-					<CustomBehavior File="Message" Text="Flying to Silithus Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" X="-6838.888" Y="735.251" Z="42.2317" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>	
-			
-			
-			</ElseIf>
-			</If>
-        </While>
-				
-	</QuestOrder>
+			<If Condition="(Me.MapId == 602)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="40" />
+				<RunTo X="1331.41" Y="199.7128" Z="52.81123" />
 
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1337.66" Y="163.1053" Z="53.70436" />
+					<Hotspot X="1336.256" Y="100.1847" Z="40.18056" />
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1355.665" Y="65.16386" Z="43.96903" /> //
+					<Hotspot X="1402.045" Y="42.95391" Z="50.03842" /> //
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1439.105" Y="45.48732" Z="56.66748" /> ///  <!-- Last mob pack pull. -->
+				</CustomBehavior>
+
+				<RunTo X="1388.471" Y="30.90633" Z="50.03843" /> <!-- No mobs pulled here. -->
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1368.888" Y="21.05645" Z="49.83234" />
+					<Hotspot X="1337.649" Y="-32.34933" Z="40.18052" />
+				</CustomBehavior>
+
+				<RunTo X="1331.997" Y="-100.1994" Z="23.22629" /> <!-- No mobs pulled here. -->
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >  <!-- Slabs -->
+					<Hotspot X="1316.529" Y="-167.4804" Z="23.22557" />
+					<Hotspot X="1331.599" Y="-224.597" Z="36.6249" />
+				</CustomBehavior>
+
+				<RunTo  X="1337.942" Y="-233.5529" Z="37.80328" /> <!-- No mobs pulled here. -->
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1363.093" Y="-237.6061" Z="37.80626" />
+					<Hotspot X="1302.291" Y="-237.3351" Z="37.76667" />
+				</CustomBehavior>
+
+				<RunTo X="1310.339" Y="-222.924" Z="40.59811" /> <!--No mobs pulled here. -->
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1296.24" Y="-184.3698" Z="52.02307" />
+					<Hotspot X="1369.066" Y="-186.5488" Z="52.02481" />
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1366.527" Y="-137.415" Z="54.94798" /> //
+					<Hotspot X="1296.846" Y="-144.8582" Z="52.00815" /> //
+				</CustomBehavior>
+
+				<RunTo X="1333.095" Y="-111.4276" Z="56.71784" /> <!-- Pull Volkhan -->
+				<RunTo X="1287.921" Y="-161.2075" Z="52.02122" /> <!-- No mobs pulled here. -->
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1190.766" Y="-163.0728" Z="52.37841" />
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1182.156" Y="-198.6261" Z="52.44511" /> // 
+				</CustomBehavior>
+
+				<RunTo X="1177.321" Y="-222.0205" Z="52.55298" /> <!-- No mobs pulled here. -->
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1174.103" Y="-261.2543" Z="52.35262" />
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1111.6" Y="-263.8185" Z="56.87343" /> //
+				</CustomBehavior>
+
+
+				<RunTo X="1099.243" Y="-262.1025" Z="56.87389" /> <!-- No mobs pulled here. -->
+				<RunTo X="1084.386" Y="-261.6173" Z="61.1981" /> <!-- Pull Ionar -->
+				<RunTo X="1074.463" Y="-232.8099" Z="61.19876" /> <!-- No mobs pulled here. -->
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1081.213" Y="-210.6741" Z="61.19409" />
+					<Hotspot X="1086.953" Y="-173.0991" Z="56.6468" />
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1100.955" Y="-142.5512" Z="61.21936" /> //
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1056.017" Y="-169.4132" Z="56.64449" />
+					<Hotspot X="1055.698" Y="-170.059" Z="56.64816" />
+					<Hotspot X="1048.225" Y="-139.9224" Z="61.22002" />
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1040.782" Y="-115.5496" Z="61.25932" /> //
+				</CustomBehavior>
+
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1074.053" Y="-108.4413" Z="56.74244" />
+					<Hotspot X="1114.542" Y="-118.3881" Z="61.26659" />
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1078.436" Y="-39.96408" Z="61.19484" /> //
+				</CustomBehavior>
+
+
+				<RunTo X="1066.26" Y="-18.35331" Z="61.20409" /> <!-- No mobs pulled here. -->
+				<RunTo X="1039.36" Y="24.96756" Z="58.34365" /> <!-- Mob may be pulled here. -->
+				<RunTo X="1150.202" Y="33.70441" Z="60.43929" /> <!--Mob may be pulled here. -->
+				<RunTo X="1179.998" Y="34.06177" Z="60.72852" /> <!-- Pull Loken. -->
+				<RunTo X="1183.806" Y="50.22289" Z="60.72858" /> <!-- Navigate shortcut 1 -->
+				<RunTo X="1243.369" Y="32.99341" Z="58.21875" /> <!-- Navigate shortcut 2 -->
+				<CustomBehavior File="MyCTM" X="1265.287" Y="33.88977" Z="33.50571" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1252.129" Y="-26.77266" Z="33.50569" />
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="1269.707" Y="104.146" Z="33.50554" /> //
+					<Hotspot X="1293.428" Y="91.48701" Z="36.04799" />//
+				</CustomBehavior>
+
+				<RunTo X="1313.052" Y="99.55944" Z="40.18031" /> <!-- No mobs pulled here. -->
+				<RunTo X="1331.879" Y="247.3523" Z="52.58322" /> <!-- No mobs pulled here. -->
+
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+
+			</If>
+		</While>
+		<!--Vendor Code -->	
+		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+			<CustomBehavior File="FlyTo" X="9125.889" Y="-1329.844" Z="1061.307" />
+			<CustomBehavior File="FlyTo" X="8913.015" Y="-1302.307" Z="1025.499" />
+			<CustomBehavior File="FlyTo" X="8897.434" Y="-1347.713" Z="1031.36" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="8891.013" Y="-1359.756" Z="1033.76" />
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Chester Copperpot" Entry="32477" Type="Repair" />
+					<Vendor Name="Chester Copperpot" Entry="32477" Type="Food" X="8893.612" Y="-1361.069" Z="1033.906" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True"  />
+			<RunTo X="8900.253" Y="-1344.676" Z="1029.835" />
+			<ClearVendor />
+		
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+				<CustomBehavior File="FlyTo" X="8838.542" Y="-1240.169" Z="1072.359" />
+				<CustomBehavior File="FlyTo" X="8549.084" Y="-397.8126" Z="1038.629" />
+				<CustomBehavior File="FlyTo" X="8452.892" Y="-331.8914" Z="906.7128" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<RunTo X="8443.004" Y="-329.3138" Z="906.6082" />
+				<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="False" DoSell="False" />
+				<RunTo X="8447.863" Y="-331.8242" Z="906.6082" />
+				<RunTo X="8389.097" Y="-387.6377" Z="903.0562" />
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Dargum Hammerdeep" Entry="29964" Type="Repair" X="8383.45" Y="-390.166" Z="903.1187" />
+					</Vendors>
+				</SetVendor>
+				<RunTo X="8426.303" Y="-355.7512" Z="906.402" />
+				<RunTo X="8454.813" Y="-326.4458" Z="906.878" />
+				<CustomBehavior File="FlyTo" X="8549.319" Y="-282.6343" Z="926.7976" />
+				<ClearVendor />
+				<CustomBehavior File="FlyTo" X="8607.005" Y="-458.6642" Z="1092.152" />
+			</If>
+		</If>
+	</While>
+</QuestOrder>
 </HBProfile>
