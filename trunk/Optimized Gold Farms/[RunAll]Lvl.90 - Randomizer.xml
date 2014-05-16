@@ -813,7 +813,7 @@
 	<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DeepSkyBlue" />
 
 	<If Condition="Chance(20.0)" > <!-- The Nexus -->
-		<CustomBehavior File="Message" Text="Heading to The Nexus." LogColor="Green" />
+		<CustomBehavior File="Message" Text="Heading to The Nexus." LogColor="DeepSkyBlue" />
 		<If Condition="!(Me.MapId == 576) &amp;&amp; (Me.FreeBagSlots &gt;= 11)" >
 			<If Condition="Me.Location.Distance(new WoWPoint(3843.809, 6980.912, 86.65029)) &gt; 100" >
 				<CustomBehavior File="FlyTo" X="3752.128" Y="6946.389" Z="158.0456" />
@@ -903,6 +903,7 @@
 				<MoveTo X="146.0642" Y="-13.9860" Z="-16.6367"  />
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 				<CustomBehavior File="MyCTM" X="145.8862" Y="-16.48927" Z="-16.63667" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			</If> <!--Nexus -->
 		</While>
