@@ -32,7 +32,6 @@
 </Vendors>
 
 <Mailboxes>
-	<Mailbox X="5483.014" Y="-2644.763" Z="307.0358" />
 </Mailboxes>
 
 <AvoidMobs>
@@ -422,10 +421,11 @@
 				<Hotspot X="1775.782" Y="650.1952" Z="124.4696" />
 				<Hotspot X="1775.17" Y="675.1672" Z="129.2167" />
 			</CustomBehavior>
-		    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobId="192518" X="1775.293" Y="679.6804" Z="142.7876" />
+			<MoveTo X="1777.956" Y="676.9604" Z="129.2174" />
+			<CustomBehavior File="InteractWith" CollectionDistance="8" WaitForNpcs="false" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
 
-		    <MoveTo X="1765.704" Y="644.8124" Z="124.4661" />
-		    <MoveTo X="1726.359" Y="632.9615" Z="129.1971" />
+			<MoveTo X="1765.704" Y="644.8124" Z="124.4661" />
+			<MoveTo X="1726.359" Y="632.9615" Z="129.1971" />
 
 			<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 				<Hotspot X="1694.117" Y="633.3572" Z="128.4503" />
@@ -438,9 +438,10 @@
 				<Hotspot X="1626.227" Y="744.3055" Z="142.7861" />
 				<Hotspot X="1680.791" Y="743.1531" Z="142.7869" />
 			</CustomBehavior>
-		    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
+			<MoveTo X="1689.662" Y="743.3555" Z="142.781" />
+			<CustomBehavior File="InteractWith"  CollectionDistance="8" WaitForNpcs="false" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
 
-		    <MoveTo X="1627.208" Y="751.5085" Z="142.7861" />
+			<MoveTo X="1627.208" Y="751.5085" Z="142.7861" />
 
 			<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 				<Hotspot X="1625.227" Y="790.0083" Z="142.7824" />
@@ -456,7 +457,9 @@
 				<Hotspot X="1797.481" Y="856.8885" Z="129.1889" />
 				<Hotspot X="1772.675" Y="810.5074" Z="129.2168" /> <!-- Third boss -->
 			</CustomBehavior>
-		    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
+			<MoveTo X="1772.236" Y="808.7632" Z="129.2166" />
+			<CustomBehavior File="InteractWith" CollectionDistance="8" WaitForNpcs="false" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
+
 
 		    <MoveTo X="1770.553" Y="799.0406" Z="129.2166" />
 		    <CustomBehavior File="MyCTM" X="1740.134" Y="760.9633" Z="111.9823" />
@@ -507,10 +510,15 @@
 			<CustomBehavior File="FlyTo" X="5525.695" Y="-2623.592" Z="319.2954" />
 			<RunTo X="5490.855" Y="-2640.885" Z="305.896" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<SetMailbox>
+				<Mailboxes>
+					<Mailbox X="5483.014" Y="-2644.763" Z="307.0358" />
+				</Mailboxes>
+			</SetMailbox>
 			<RunTo X="5485.827" Y="-2642.328" Z="306.8372" />
 			<CustomBehavior File="ForceSetVendor" DoMail="True" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<RunTo X="5502.937" Y="-2641.314" Z="303.9546" />
+			<ClearMailbox />
 			<CustomBehavior File="FlyTo" X="5599.888" Y="-2891.674" Z="485.6808" />
 		</If>
 		<CustomBehavior File="FlyTo" X="6002.019" Y="-3651.332" Z="491.8026" />
