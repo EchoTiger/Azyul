@@ -31,7 +31,6 @@
 </Vendors>
 
 <Mailboxes>
-	<Mailbox X="8440.736" Y="-329.4271" Z="906.5062" />  <!-- Halls of Lightning -->
 </Mailboxes>
 
 <AvoidMobs>
@@ -478,7 +477,6 @@
 					</Vendors>
 				</SetVendor>
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<ClearVendor />
 				<RunTo X="5397.145" Y="-2639.515" Z="303.9551" />
 				<RunTo X="5481.02" Y="-2642.918" Z="307.1006" />
@@ -798,9 +796,15 @@
 				<CustomBehavior File="FlyTo" X="8452.892" Y="-331.8914" Z="906.7128" />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<SetMailbox>
+					<Mailboxes>
+							<Mailbox X="8440.736" Y="-329.4271" Z="906.5062" />  <!-- Halls of Lightning -->
+					</Mailboxes>
+				</SetMailbox>
 				<RunTo X="8443.004" Y="-329.3138" Z="906.6082" />
 				<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="False" DoSell="False" />
 				<RunTo X="8447.863" Y="-331.8242" Z="906.6082" />
+				<ClearMailbox/>
 				<RunTo X="8389.097" Y="-387.6377" Z="903.0562" />
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" />
 				<SetVendor>
