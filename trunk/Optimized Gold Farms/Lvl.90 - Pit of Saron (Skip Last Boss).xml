@@ -43,6 +43,7 @@
 </Blackspots>
 
 <QuestOrder>
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Pit of Saron (skip last boss) Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00165.8|r\n\n|cFFFF0000! Warning !|r\nThis profile has a  very high pull density.  Also, there's one mob that will cast a spell on you that *will* kill you.\nThis profile is still being optimized to avoid these issues.&quot;)" />
 
 	<!-- Instance Precheck -->
 	<If Condition="(Me.MapId == 632) &amp;&amp; Me.Location.Distance(new WoWPoint(4913.565, 2193.538, 638.733)) &lt;= 350" >
@@ -435,6 +436,11 @@
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				</If>
 				<If Condition="(Me.MapId == 658)" >
+
+					<CustomBehavior File="RunMacro" Macro="/sw clear" />
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+					<CustomBehavior File="RunMacro" Macro="/sw play" />
+
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 					<MoveTo X="462.8812" Y="210.3155" Z="528.7101" />
 
@@ -491,6 +497,10 @@
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 					<CustomBehavior File="WaitTimer" WaitTime="5000" />
 					<CustomBehavior File="NoCombatMoveTo" X="441.2151" Y="212.344" Z="528.7101" />
+
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+					<CustomBehavior File="RunMacro" Macro="/sw pause" />
+
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 					<CustomBehavior File="MyCTM" X="425.3003" Y="212.2813" Z="529.9125" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />

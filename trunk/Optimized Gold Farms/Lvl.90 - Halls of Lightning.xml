@@ -45,6 +45,8 @@
 </Blackspots>
 	
 <QuestOrder>
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Halls of Lightning Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00149.5|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
+
 <If Condition="(Me.MapId == 602)" >
 	<CustomBehavior File="Message" Text="Bot was started in-instance.\nMoving out of instance." LogColor="Red" />
 	<!-- <CustomBehavior File="RunMacro" Macro="/cast Hearthstone" /> --> // Remove the <!-- --> to use Hearthstone instead.
@@ -368,7 +370,6 @@
 
 
 //Lvl.90 Gold-Run Coded by EchoTiger <!-- Dist from Hub - 6.56    X="9169.088" Y="-1370.75" Z="1095.874" -->
-<CustomBehavior File="Message" Text="Lvl.90 Gold Run Activated!\n" LogColor="Yellow" />
 	<While Condition="true" >
 		<If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &gt;= 30" >
 			<CustomBehavior File="FlyTo" X="9149.345" Y="-1351.977" Z="1075.505" />
@@ -381,6 +382,11 @@
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
 			<If Condition="(Me.MapId == 602)" >
+
+				<CustomBehavior File="RunMacro" Macro="/sw clear" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw play" />
+
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="40" />
 				<RunTo X="1331.41" Y="199.7128" Z="52.81123" />
@@ -479,6 +485,8 @@
 				<RunTo X="1313.052" Y="99.55944" Z="40.18031" /> <!-- No mobs pulled here. -->
 				<RunTo X="1331.879" Y="247.3523" Z="52.58322" /> <!-- No mobs pulled here. -->
 
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 				<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />
