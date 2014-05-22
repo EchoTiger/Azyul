@@ -46,6 +46,7 @@
 </Blackspots>
 	
 <QuestOrder>
+<CustomBehavior File="Misc\RunLUA" Lua="beginningmoney = GetMoney();" />
 <If Condition="(Me.MapId == 602)" >
 	<CustomBehavior File="Message" Text="Bot was started in-instance.\nMoving out of instance." LogColor="Red" />
 	<!-- <CustomBehavior File="RunMacro" Macro="/cast Hearthstone" /> --> // Remove the <!-- --> to use Hearthstone instead.
@@ -368,7 +369,6 @@
 </If>
 
 
-<CustomBehavior File="Message" Text="Lvl.85 Gold Run Activated!\n" LogColor="Yellow" />
 	<While Condition="true" >
 		<If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &gt;= 30" >
 			<CustomBehavior File="FlyTo" X="9149.345" Y="-1351.977" Z="1075.505" />
@@ -382,6 +382,7 @@
 			</If>
 			<If Condition="(Me.MapId == 602)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="40" />
 				<RunTo X="1331.41" Y="199.7128" Z="52.81123" />
 
@@ -509,6 +510,10 @@
 				<RunTo X="1313.052" Y="99.55944" Z="40.18031" /> <!-- No mobs pulled here. -->
 				<RunTo X="1331.879" Y="247.3523" Z="52.58322" /> <!-- No mobs pulled here. -->
 
+				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 				<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />
@@ -519,6 +524,7 @@
 		</While>
 		<!--Vendor Code -->	
 		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<CustomBehavior File="FlyTo" X="9125.889" Y="-1329.844" Z="1061.307" />
 			<CustomBehavior File="FlyTo" X="8913.015" Y="-1302.307" Z="1025.499" />
@@ -564,7 +570,11 @@
 				<CustomBehavior File="FlyTo" X="8549.319" Y="-282.6343" Z="926.7976" />
 				<ClearVendor />
 				<ClearMailbox />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
 				<CustomBehavior File="FlyTo" X="8607.005" Y="-458.6642" Z="1092.152" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 			</If>
 		</If>
 	</While>
