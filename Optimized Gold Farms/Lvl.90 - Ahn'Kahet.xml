@@ -49,6 +49,8 @@
 
 <!--TRANSPORTATION SCRIPT STARTS HERE. YOU MUST MARK TRUE/FALSE ON WHERE YOU WANT THE BOT TO GO -->
 <QuestOrder>
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Ahn'Kahet Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00137.65|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
+
 	<If Condition="!(Me.MapId == 619)" >
 
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />				
@@ -417,6 +419,11 @@
 			</If>
 			<!--Instance Navigation Start -->
 			<If Condition="(Me.MapId == 619)" >
+
+				<CustomBehavior File="RunMacro" Macro="/sw clear" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw play" />
+
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<DisableBehavior Name="Combat" />
 
@@ -507,6 +514,9 @@
 
 				<MoveTo X="516.2031" Y="-354.2806" Z="45.94658" />
 				<MoveTo X="523.0122" Y="-309.9897" Z="60.57951" />
+
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="523.33" Y="-299.5683" Z="68.36054" />

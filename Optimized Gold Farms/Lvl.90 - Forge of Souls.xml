@@ -42,6 +42,8 @@
 </Blackspots>
 
 <QuestOrder>
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Forge of Souls Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00115.14|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
+
 <If Condition="!(Me.MapId == 632)" >
 
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />				
@@ -407,6 +409,11 @@
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 		<If Condition="(Me.MapId == 632)" >
+
+			<CustomBehavior File="RunMacro" Macro="/sw clear" />
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+			<CustomBehavior File="RunMacro" Macro="/sw play" />
+
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
 			    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
@@ -452,6 +459,10 @@
 			</CustomBehavior>
 
 		    <RunTo X="4964.0605" Y="2237.5291" Z="638.8666"  />
+
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+			<CustomBehavior File="RunMacro" Macro="/sw pause" />
+
 		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 		    <RunTo X="4909.7832" Y="2209.0750" Z="638.7333"  />
 		    <CustomBehavior File="MyCTM" X="4925.131" Y="2170.357" Z="638.7333" />

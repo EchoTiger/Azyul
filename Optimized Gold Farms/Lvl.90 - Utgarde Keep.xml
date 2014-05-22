@@ -47,6 +47,8 @@
 
 
 <QuestOrder>
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Utgarde Keep Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00112.4|r\n\n|cFFFF0000! Warning !|r\nThere is a rare in-game bug that causes a door to not open after the last boss is killed.  If this occurs, the bot will bug out!&quot;)" />
+
 	<CustomBehavior File="Message" Text="\n\n ! WARINING ! \nThere's an in-game bug that causes a door to not open in this dungeon which causes the bot to get stuck.  The bug only occurs if the bosses are killed too quickly.\n\n" LogColor="Red" />
 	<CustomBehavior File="WaitTimer" WaitTime="5000" />
 	<If Condition="!(Me.MapId == 574)" >
@@ -413,6 +415,11 @@
 				<!--Instance Navigation Start -->
 			</If>
 			<If Condition="(Me.MapId == 574)" >
+
+				<CustomBehavior File="RunMacro" Macro="/sw clear" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw play" />
+
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
 				<MoveTo X="186.7376" Y="-75.69962" Z="16.87691" />
@@ -500,7 +507,8 @@
 				<CustomBehavior File="MyCTM" X="154.9776" Y="-167.8116" Z="7.393792" />
 				<CustomBehavior File="MyCTM" X="193.7686" Y="-147.3069" Z="8.8823"  />
 				<!-- -->
-
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="146.4876" Y="-88.77183" Z="12.55122" />

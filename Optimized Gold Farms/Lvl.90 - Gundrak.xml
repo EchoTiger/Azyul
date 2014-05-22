@@ -43,6 +43,7 @@
 
 
 <QuestOrder>
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Gundrak Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00249.1|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
 
 <If Condition="!(Me.MapId == 604)" >
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
@@ -406,6 +407,10 @@
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 		<If Condition="(Me.MapId == 604)" >
+			<CustomBehavior File="RunMacro" Macro="/sw clear" />
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+			<CustomBehavior File="RunMacro" Macro="/sw play" />
+
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
 			<MoveTo X="1854.622" Y="640.1485" Z="175.8663" />
@@ -479,6 +484,9 @@
 
 			<MoveTo X="1947.211" Y="681.9457" Z="135.4161" />
 			<MoveTo X="1945.433" Y="663.1171" Z="135.2176" />
+
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+			<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 		    <CustomBehavior File="MyCTM" X="1914.803" Y="647.9481" Z="135.1441" />

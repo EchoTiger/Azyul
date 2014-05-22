@@ -49,6 +49,7 @@
 
 <QuestOrder>
 <If Condition="!(Me.MapId == 576)" >
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to |r |cFFC2DAF3The Nexus Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00154.42|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
 
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
 
@@ -414,6 +415,11 @@
 		</If>
 	<!-- Instance Navigation Start -->
 		<If Condition="(Me.MapId == 576)" >
+
+			<CustomBehavior File="RunMacro" Macro="/sw clear" />
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+			<CustomBehavior File="RunMacro" Macro="/sw play" />
+
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			    <MoveTo X="169.1284" Y="-4.3689" Z="-16.6367"  />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
@@ -481,6 +487,10 @@
 			    <MoveTo X="146.0996" Y="-4.8693" Z="-16.6367"  />
 			    <MoveTo X="146.0792" Y="-10.1207" Z="-16.6367"  />
 			    <MoveTo X="146.0642" Y="-13.9860" Z="-16.6367"  />
+
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw pause" />
+
 			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 				<CustomBehavior File="MyCTM" X="145.8862" Y="-16.48927" Z="-16.63667" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />

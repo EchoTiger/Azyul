@@ -43,6 +43,8 @@
 
 
 <QuestOrder>
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Drak'Tharon Keep Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00233.2|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
+
 <If Condition="!(Me.MapId == 600)" >
 
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />				
@@ -410,6 +412,11 @@
 			</If>
 			<If Condition="(Me.MapId == 600)" >
 				<DisableBehavior Name="Combat" /> <!-- Avoid spiders on second level -->
+
+				<CustomBehavior File="RunMacro" Macro="/sw clear" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw play" />
+
  				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			    <RunTo X="-515.2283" Y="-500.0652" Z="11.0231"  />
 			    <RunTo X="-508.0701" Y="-514.1385" Z="11.0453"  />
@@ -499,6 +506,8 @@
 			    <MoveTo X="-507.212" Y="-511.9265" Z="11.04625" />
 			    <MoveTo X="-516.8404" Y="-487.5807" Z="11.00653" />
 
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 				<CustomBehavior File="MyCTM" X="-519.5411" Y="-482.5808" Z="10.97855" />
