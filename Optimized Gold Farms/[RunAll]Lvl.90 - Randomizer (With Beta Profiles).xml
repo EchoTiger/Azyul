@@ -1268,6 +1268,11 @@
 	<If Condition="Chance(14.3)" > <!-- Utgarde Keep -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Utgarde Keep." LogColor="DeepSkyBlue" />
+		<If Condition="Me.Location.Distance(new WoWPoint(1200.907, -4901.904, 41.24823)) &gt;= 100" >
+			<CustomBehavior File="FlyTo" X="1058.342" Y="-4917.199" Z="40.53729" />
+			<CustomBehavior File="MyCTM" X="1107.68" Y="-4901.972" Z="41.2485" />
+			<CustomBehavior File="MyCTM" X="1161.246" Y="-4884.816" Z="41.2485" />
+		</If>
 		<If Condition="!(Me.MapId == 574)" >
 			<MoveTo X="1215.008" Y="-4866.93" Z="41.24829" />
 			<CustomBehavior File="MyCTM" X="1236.456" Y="-4859.878" Z="41.24817" />
