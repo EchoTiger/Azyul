@@ -44,6 +44,7 @@
 
 <QuestOrder>
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Drak'Tharon Keep Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00233.2|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
+<CustomBehavior File="Misc\RunLUA" Lua="beginningmoney = GetMoney();" />
 
 <If Condition="!(Me.MapId == 600)" >
 
@@ -416,6 +417,7 @@
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
+				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 
  				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			    <RunTo X="-515.2283" Y="-500.0652" Z="11.0231"  />
@@ -509,6 +511,11 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
+				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+
 			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 				<CustomBehavior File="MyCTM" X="-519.5411" Y="-482.5808" Z="10.97855" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -517,6 +524,7 @@
 		</While>
 			<!-- Force Town Sell -->
 			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 				<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 				<If Condition="Me.Location.Distance(new WoWPoint(4775.771, -2045.906, 229.4198)) &lt;= 150" > <!-- If just came out instance -->
 					<MoveTo X="4781.665" Y="-2042.948" Z="229.428" />
@@ -548,6 +556,11 @@
 				<ClearMailbox />
 				<RunTo X="5497.83" Y="-2629.477" Z="304.5119" />
 				<CustomBehavior File="FlyTo" X="5466.952" Y="-2513.64" Z="423.929" />
+
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 			</If>
 </While>
 

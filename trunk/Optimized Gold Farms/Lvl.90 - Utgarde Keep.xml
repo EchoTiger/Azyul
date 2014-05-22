@@ -48,6 +48,7 @@
 
 <QuestOrder>
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Utgarde Keep Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00112.4|r\n\n|cFFFF0000! Warning !|r\nThere is a rare in-game bug that causes a door to not open after the last boss is killed.  If this occurs, the bot will bug out!&quot;)" />
+<CustomBehavior File="Misc\RunLUA" Lua="beginningmoney = GetMoney();" />
 
 	<CustomBehavior File="Message" Text="\n\n ! WARINING ! \nThere's an in-game bug that causes a door to not open in this dungeon which causes the bot to get stuck.  The bug only occurs if the bosses are killed too quickly.\n\n" LogColor="Red" />
 	<CustomBehavior File="WaitTimer" WaitTime="5000" />
@@ -419,6 +420,7 @@
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
+				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
@@ -509,6 +511,11 @@
 				<!-- -->
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
+				
+				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="146.4876" Y="-88.77183" Z="12.55122" />
@@ -517,6 +524,7 @@
 
 
 				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+					<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 					<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 					<RunTo X="1099.184" Y="-4904.298" Z="41.2481" />
 					<CustomBehavior File="FlyTo" X="967.9332" Y="-4959.149" Z="117.8148" />
@@ -538,6 +546,12 @@
 					<ClearMailbox />
 					<ClearVendor />
 					<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
+
+					<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+					<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+					<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+
 				</If>
 			</If>
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
