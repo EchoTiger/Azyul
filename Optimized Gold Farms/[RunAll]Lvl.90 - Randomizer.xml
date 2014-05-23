@@ -46,6 +46,29 @@
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Lvl.90 Randomizer!|r\nNo |cFFCCCC00Farm Scores|r are currently availible for this profile.\n\nThere is currently no known issues with this profile.  If you come across an issue, please report it to the forum.&quot;)" />
 <CustomBehavior File="Misc\RunLUA" Lua="beginningmoney = GetMoney();" />
 
+		<CustomBehavior File="Misc\RunLUA" Lua="sh,sm = GetGameTime();" />
+		<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" /> 
+		<CustomBehavior File="Misc\RunLUA" Lua="dsh,dsm = &quot;0&quot;" /> 
+		<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" /> 
+		<CustomBehavior File="Misc\RunLUA" Lua="deh,dem = &quot;0&quot;" /> 
+		<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
+		<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+		<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+		<CustomBehavior File="Misc\RunLUA" Lua="SLASH_SHOWSTATS1 = '/stats';" />  <!-- Register the command /stats -->
+		<CustomBehavior File="Misc\RunLUA" Lua="
+			function SlashCmdList.SHOWSTATS()
+				currmoney = GetMoney();
+				rh,rm = GetGameTime();
+				drth = math.floor(deh-dsh)
+				drtm = math.floor(dem-dsm)
+				rth = math.floor(rh-sh)
+				rtm = math.floor(rm-sm)
+				difmoney = math.floor(currmoney-beginningmoney)
+				print(&quot;|cFF0099FF~Global Stats!|r\n|cFF00CCFFTime active:|r &quot;, rth, &quot;hour(s)&quot;, rtm, &quot;minute(s).\n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney));
+				print(&quot;|cFF0099FF~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, drtm, &quot;minute(s).\n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
+
+				end" />
 
 <If Condition="!(Me.MapId == 602)" >
 		<While Condition="!(Me.MapId == 571)" >

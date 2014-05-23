@@ -47,6 +47,31 @@
 	
 <QuestOrder>
 <CustomBehavior File="Misc\RunLUA" Lua="beginningmoney = GetMoney();" />
+
+		<CustomBehavior File="Misc\RunLUA" Lua="sh,sm = GetGameTime();" />
+		<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" /> 
+		<CustomBehavior File="Misc\RunLUA" Lua="dsh,dsm = &quot;0&quot;" /> 
+		<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" /> 
+		<CustomBehavior File="Misc\RunLUA" Lua="deh,dem = &quot;0&quot;" /> 
+		<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
+		<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+		<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+		<CustomBehavior File="Misc\RunLUA" Lua="SLASH_SHOWSTATS1 = '/stats';" />  <!-- Register the command /stats -->
+		<CustomBehavior File="Misc\RunLUA" Lua="
+			function SlashCmdList.SHOWSTATS()
+				currmoney = GetMoney();
+				rh,rm = GetGameTime();
+				drth = math.floor(deh-dsh)
+				drtm = math.floor(dem-dsm)
+				rth = math.floor(rh-sh)
+				rtm = math.floor(rm-sm)
+				difmoney = math.floor(currmoney-beginningmoney)
+				print(&quot;|cFF0099FF~Global Stats!|r\n|cFF00CCFFTime active:|r &quot;, rth, &quot;hour(s)&quot;, rtm, &quot;minute(s).\n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney));
+				print(&quot;|cFF0099FF~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, drtm, &quot;minute(s).\n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
+
+				end" />
+
 <If Condition="(Me.MapId == 602)" >
 	<CustomBehavior File="Message" Text="Bot was started in-instance.\nMoving out of instance." LogColor="Red" />
 	<!-- <CustomBehavior File="RunMacro" Macro="/cast Hearthstone" /> --> // Remove the <!-- --> to use Hearthstone instead.
@@ -383,6 +408,7 @@
 			<If Condition="(Me.MapId == 602)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="dsh,dsm = GetGameTime();" />
 				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="40" />
 				<RunTo X="1331.41" Y="199.7128" Z="52.81123" />
 
@@ -514,6 +540,7 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="deh,dem = GetGameTime();" />
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 				<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />
