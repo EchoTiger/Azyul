@@ -50,8 +50,8 @@
 <QuestOrder>
 <If Condition="!(Me.MapId == 576)" >
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to |r |cFFC2DAF3The Nexus Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00154.42|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
-<CustomBehavior File="Misc\RunLUA" Lua="beginningmoney = GetMoney();" />
 
+		<CustomBehavior File="Misc\RunLUA" Lua="beginningmoney = GetMoney();" />
 		<CustomBehavior File="Misc\RunLUA" Lua="sh,sm = GetGameTime();" />
 		<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" /> 
 		<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" /> 
@@ -67,14 +67,37 @@
 		<CustomBehavior File="Misc\RunLUA" Lua="SLASH_SHOWSTATS1 = '/stats';" />  <!-- Register the command /stats -->
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			function SlashCmdList.SHOWSTATS()
+				local itemSellPrice = 0
+				local itemID = 0
+				local itemBagCount = 1
+				local itemStackCount = 1
+				total_value_of_bags = 0
+				for i = 0, NUM_BAG_SLOTS do
+					bagslots = GetContainerNumSlots(i)
+						for bagslotscounter = 1, bagslots do
+						itemID = GetContainerItemID(i, bagslotscounter)
+
+							if (itemID == nil)  or (itemSellPrice == nill) then
+							else
+							itemSellPrice = select(11, GetItemInfo(itemID))
+							if (itemSellPrice == nil) then
+							itemSellPrice = 0
+							end
+							itemBagCount = select(2, GetContainerItemInfo(i, bagslotscounter))
+							total_value_of_bags = total_value_of_bags + (itemSellPrice * itemBagCount)
+							end
+						end
+				end
+				totals = GetCoinTextureString(total_value_of_bags);
 				currmoney = GetMoney();
 				rh,rm = GetGameTime();
 				cdrtm = math.floor(rm-dsm)
 				rth = math.floor(rh-sh)
 				rtm = math.floor(rm-sm)
+				completetotal = math.floor(difmoney+total_value_of_bags)
 				cprogressmoney = math.floor(currmoney-cstartingmoney)
 				difmoney = math.floor(currmoney-beginningmoney)
-				print(&quot;|cFF0099FF~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, rth, &quot;hour(s)&quot;, rtm, &quot;minute(s).\n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney));
+				print(&quot;|cFF0099FF~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, rth, &quot;hour(s)&quot;, rtm, &quot;minute(s).\n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
 				print(&quot;|cFF0099FF~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, drtm, &quot;minute(s).\n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
 				print(&quot;|cFF0099FF~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cdrtm, &quot;minute(s).\n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
 				end" />
