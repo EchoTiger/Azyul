@@ -45,21 +45,21 @@
 <QuestOrder>
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Gundrak Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00249.1|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
 
-		<CustomBehavior File="Misc\RunLUA" Lua="beginningmoney = GetMoney();" />
-		<CustomBehavior File="Misc\RunLUA" Lua="sh,sm = GetGameTime();" />
-		<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" /> 
-		<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" /> 
-		<CustomBehavior File="Misc\RunLUA" Lua="cstartingmoney = GetMoney();" /> 
-		<CustomBehavior File="Misc\RunLUA" Lua="dsh,dsm = 0,0;" /> 
-		<CustomBehavior File="Misc\RunLUA" Lua="deh,dem = 0,0;" /> 
-		<CustomBehavior File="Misc\RunLUA" Lua="drth = 0,0;" />
-		<CustomBehavior File="Misc\RunLUA" Lua="drtm = 0,0;" />
-		<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
-		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
-		<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
-		<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-		<CustomBehavior File="Misc\RunLUA" Lua="SLASH_SHOWSTATS1 = '/stats';" />  <!-- Register the command /stats -->
 		<CustomBehavior File="Misc\RunLUA" Lua="
+			SLASH_SHOWSTATS1 = '/stats';
+			sh,sm = GetGameTime();
+			startingmoney = GetMoney();
+			endingmoney = GetMoney();
+			cstartingmoney = GetMoney();
+			dsh,dsm = 0,0;
+			deh,dem = 0,0;
+			drth = 0,0;
+			drtm = 0,0;
+			beginningmoney = GetMoney();
+			progressmoney = math.floor(endingmoney-startingmoney);
+			vendorstartingmoney = GetMoney();
+			vendorendingmoney = GetMoney();
+			vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);
 			function SlashCmdList.SHOWSTATS()
 				local itemSellPrice = 0
 				local itemID = 0
