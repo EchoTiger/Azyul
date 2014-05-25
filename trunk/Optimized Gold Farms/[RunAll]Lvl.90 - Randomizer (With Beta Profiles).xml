@@ -43,10 +43,11 @@
 </Blackspots>
 	
 <QuestOrder>
-<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Lvl.90 Randomizer (with beta profiles)!|r\nNo |cFFCCCC00Farm Scores|r are currently availible for this profile.\n\nPlease note that this Randomizer runs profiles that are considered unreliable.  Issues may occur!&quot;)" />
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Lvl.90 Randomizer (with beta profiles)!|r\nNo |cFFCCCC00Farm Scores|r are currently availible for this profile.\n\n Type /stats or /stats2 for statistics!\n\nPlease note that this Randomizer runs profiles that are considered unreliable.  Issues may occur!&quot;)" />
 
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
+			SLASH_EXTRASTATS1 = '/stats2';
 			starttime = GetTime();
 			currtime = GetTime();
 			lastdungeon = 0
@@ -60,7 +61,7 @@
 			vendorstartingmoney = GetMoney();
 			vendorendingmoney = GetMoney();
 			vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);
-			function SlashCmdList.SHOWSTATS()
+			function calculate()
 				local itemSellPrice = 0
 				local itemID = 0
 				local itemBagCount = 1
@@ -101,9 +102,21 @@
 				completetotal = math.floor(difmoney+total_value_of_bags)
 				farmscore = math.floor((difmoney/tdiftime)/10)
 				farmscore2 = math.floor((completetotal/tdiftime)/10)
-				print(&quot;|cFF0099FF~Total Stats!\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;  |cFFffe314Farm Score:|r&quot;, farmscore, &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal),&quot;  |cFFffe314Farm Score:|r&quot;, farmscore2);
+				gph = GetCoinTextureString(math.floor(difmoney/(tdiftime/3600)))
+				gph2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/3600)))
+				gpm = GetCoinTextureString(math.floor(difmoney/(tdiftime/60 - (tHours*60))))
+				gpm2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/60 - (tHours*60))))
+			end
+			function SlashCmdList.SHOWSTATS()
+				calculate()
+				print(&quot;|cFF0099FF~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
 				print(&quot;|cFF0099FF~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
 				print(&quot;|cFF0099FF~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
+				print(&quot;|cFFF79A71Type /stats2 for more stats!|r&quot;)
+			end
+			function SlashCmdList.EXTRASTATS()
+				calculate()
+				print(&quot;|cFF0099FF~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
 			end" />
 
 
