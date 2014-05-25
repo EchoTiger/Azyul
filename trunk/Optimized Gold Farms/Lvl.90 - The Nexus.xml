@@ -53,14 +53,14 @@
 
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
-			sh,sm = GetGameTime();
+			starttime = GetTime();
+			currtime = GetTime();
+			lastdungeon = 0
+			scurrdungeon = GetTime();
+			ecurrdungeon = GetTime();
 			startingmoney = GetMoney();
 			endingmoney = GetMoney();
 			cstartingmoney = GetMoney();
-			dsh,dsm = 0,0;
-			deh,dem = 0,0;
-			drth = 0,0;
-			drtm = 0,0;
 			beginningmoney = GetMoney();
 			progressmoney = math.floor(endingmoney-startingmoney);
 			vendorstartingmoney = GetMoney();
@@ -90,17 +90,26 @@
 				end
 				totals = GetCoinTextureString(total_value_of_bags);
 				currmoney = GetMoney();
-				rh,rm = GetGameTime();
-				cdrtm = math.floor(rm-dsm)
-				rth = math.floor(rh-sh)
-				rtm = math.floor(rm-sm)
+				currtime = GetTime();
+				tdiftime = (currtime - starttime);
+				cdiftime = (currtime - scurrdungeon);
+				tHours = string.format(&quot;%02.f&quot;, math.floor(tdiftime/3600));
+				tMins = string.format(&quot;%02.f&quot;, math.floor(tdiftime/60 - (tHours*60)));
+				tSecs = string.format(&quot;%02.f&quot;, math.floor(tdiftime - tHours*3600 - tMins *60));
+				lHours = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/3600));
+				lMins = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/60 - (lHours*60)));
+				lSecs = string.format(&quot;%02.f&quot;, math.floor(lastdungeon - lHours*3600 - lMins *60));
+				cHours = string.format(&quot;%02.f&quot;, math.floor(cdiftime/3600));
+				cMins = string.format(&quot;%02.f&quot;, math.floor(cdiftime/60 - (cHours*60)));
+				cSecs = string.format(&quot;%02.f&quot;, math.floor(cdiftime - cHours*3600 - cMins *60));
 				cprogressmoney = math.floor(currmoney-cstartingmoney)
 				difmoney = math.floor(currmoney-beginningmoney)
 				completetotal = math.floor(difmoney+total_value_of_bags)
-				print(&quot;|cFF0099FF~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, rth, &quot;hour(s)&quot;, rtm, &quot;minute(s).\n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
-				print(&quot;|cFF0099FF~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, drtm, &quot;minute(s).\n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
-				print(&quot;|cFF0099FF~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cdrtm, &quot;minute(s).\n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
-				end" />
+				farmscore = math.floor((difmoney/starttime)/10)
+				print(&quot;|cFF0099FF~Total Stats!|r |cFFffe314   Farm Score:|r&quot;, farmscore, &quot;\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
+				print(&quot;|cFF0099FF~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
+				print(&quot;|cFF0099FF~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
+			end" />
 
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
 
@@ -471,7 +480,7 @@
 			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
 			<CustomBehavior File="RunMacro" Macro="/sw play" />
 			<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="dsh,dsm = GetGameTime();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
 			<CustomBehavior File="Misc\RunLUA" Lua="cstartingmoney = GetMoney();" />
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
@@ -550,10 +559,8 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="deh,dem = GetGameTime();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					drth = math.floor(deh-dsh)
-					drtm = math.floor(dem-dsm)" /> 
+				<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
 
 			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 				<CustomBehavior File="MyCTM" X="145.8862" Y="-16.48927" Z="-16.63667" />
