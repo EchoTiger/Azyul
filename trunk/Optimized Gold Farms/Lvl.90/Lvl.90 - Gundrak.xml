@@ -460,18 +460,18 @@
 
 </If>
 
-<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />
-<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
-<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />				
-
-<!-- CHOP CHOP D: -->
 <If Condition="(Me.MapId == 604)" >
 	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="DeepSkyBlue" />
 	<MoveTo X="1889.699" Y="643.147" Z="176.6776" />
 	<CustomBehavior File="MyCTM" X="1897.259" Y="657.8406" Z="176.6371" />
 	<CustomBehavior File="WaitTimer" WaitTime="15000" />
-	<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 </If>
+
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />				
+
+<!-- CHOP CHOP D: -->
 
 <While Condition="true" >
 	<If Condition="!(Me.MapId == 604) &amp;&amp; (Me.FreeBagSlots &gt;= 11)" >
