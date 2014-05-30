@@ -486,6 +486,13 @@
 			<!-- END OF COLD WEATHER FLYING CHECK -->
 		</If>
 
+<If Condition="(Me.MapId == 658)" >
+	<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
+	<RunTo X="436.2414" Y="211.0046" Z="528.7086" />
+	<CustomBehavior File="MyCTM" X="425.3003" Y="212.2813" Z="529.9125" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+</If>
+
 		<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />

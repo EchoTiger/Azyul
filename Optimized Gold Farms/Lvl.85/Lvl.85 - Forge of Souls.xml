@@ -415,8 +415,7 @@
 			With use of Kicks go to profiles.
 			Big thanks to Kick for this.
 			--> 
-			
-
+		
 
 	<!-- ALLIANCE CHECK - RIDING -->
 	<If Condition="(!HasSpell(54197))  &amp;&amp; (Me.IsAlliance)" >
@@ -458,6 +457,13 @@
 
 	<!-- END OF COLD WEATHER FLYING CHECK -->
 
+</If>
+
+<If Condition="(Me.MapId == 632)" >
+	<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
+	<RunTo X="4916.448" Y="2187.365" Z="638.733" />
+	<CustomBehavior File="MyCTM" X="4925.131" Y="2170.357" Z="638.7333" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
 </If>
 
 <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				

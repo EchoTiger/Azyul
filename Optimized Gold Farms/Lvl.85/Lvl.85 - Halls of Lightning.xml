@@ -124,17 +124,6 @@
 				print(&quot;|cFF0099FF~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
 			end" />
 
-<If Condition="(Me.MapId == 602)" >
-	<CustomBehavior File="Message" Text="Bot was started in-instance.\nMoving out of instance." LogColor="Red" />
-	<!-- <CustomBehavior File="RunMacro" Macro="/cast Hearthstone" /> --> // Remove the <!-- --> to use Hearthstone instead.
-
-	<RunTo X="1331.879" Y="247.3523" Z="52.58322" />  //Delete this if you're using the Hearthstone.
-	<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />  //Delete this if you're using the Hearthstone.
-	<CustomBehavior File="WaitTimer" WaitTime="15000" /> //Delete this if you're using the Hearthstone.
-
-	<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-</If>
-
 <If Condition="!(Me.MapId == 602)" >
 		<While Condition="!(Me.MapId == 571)" >
 			<If Condition="Me.IsAlliance" >
@@ -425,6 +414,15 @@
 <!-- End transport script credit to Bengan. 
 	With use of Kicks go to profiles.
 	Big thanks to Kick for this. -->
+
+<If Condition="(Me.MapId == 602)" >
+	<CustomBehavior File="Message" Text="Bot was started in-instance.\nMoving out of instance." LogColor="Red" />
+	<!-- <CustomBehavior File="RunMacro" Macro="/cast Hearthstone" /> --> // Remove the <!-- --> to use Hearthstone instead.
+
+	<RunTo X="1331.879" Y="247.3523" Z="52.58322" />  //Delete this if you're using the Hearthstone.
+	<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />  //Delete this if you're using the Hearthstone.
+	<CustomBehavior File="WaitTimer" WaitTime="15000" /> //Delete this if you're using the Hearthstone.
+</If>
 
 <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />

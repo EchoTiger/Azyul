@@ -48,7 +48,7 @@
 
 
 <QuestOrder>
-<If Condition="!(Me.MapId == 576)" >
+
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to |r |cFFC2DAF3The Nexus Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00154.42|r\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
 
 		<CustomBehavior File="Misc\RunLUA" Lua="
@@ -125,8 +125,14 @@
 				print(&quot;|cFF0099FF~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
 			end" />
 
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
+<If Condition="(Me.MapId == 576)" >
+	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="DeepSkyBlue" />
+	<MoveTo X="146.1775" Y="-5.935885" Z="-16.6367" />
+	<CustomBehavior File="MyCTM" X="145.8862" Y="-16.48927" Z="-16.63667" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+</If>
 
+<If Condition="!(Me.MapId == 576)" >
 		<While Condition="!(Me.MapId == 571)" >
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->

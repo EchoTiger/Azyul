@@ -124,7 +124,14 @@
 			end" />
 
 	<CustomBehavior File="Message" Text="\n\n ! WARINING ! \nThere's an in-game bug that causes a door to not open in this dungeon which causes the bot to get stuck.  The bug only occurs if the bosses are killed too quickly.\n\n" LogColor="Red" />
-	<CustomBehavior File="WaitTimer" WaitTime="5000" />
+
+<If Condition="(Me.MapId == 574)" >
+	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="DeepSkyBlue" />
+	<MoveTo X="186.7376" Y="-75.69962" Z="16.87691" />
+	<CustomBehavior File="MyCTM" X="146.4876" Y="-88.77183" Z="12.55122" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+</If>
+
 	<If Condition="!(Me.MapId == 574)" >
 
 
