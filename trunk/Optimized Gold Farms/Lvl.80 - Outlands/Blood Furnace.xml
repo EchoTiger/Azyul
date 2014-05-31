@@ -1,10 +1,9 @@
 <HBProfile>
-<Name>Endless Hellfire Ramparts Farm</Name>
+<Name>Endless Blood Furnace Farm</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
-// Profile Developer: Echo
-// Farm zone: Hellfire Ramparts
-// Farm mobs: All
+// Profile Maker: Echo
+// Farm zone: Blood Furnace
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 <MinLevel>54</MinLevel>
@@ -28,20 +27,18 @@
 	</ProtectedItems>
 		
 
-	<Mailboxes>
-	</Mailboxes>
 
-
-		<AvoidMobs>
+	<AvoidMobs>
 		<Mob Name="Summon Enabler Stalker" Entry="53488" />
-		</AvoidMobs>
+	</AvoidMobs>
 
 
 <Blackspots>
 </Blackspots>
 	
+	
 <QuestOrder>
-<If Condition="!(Me.MapId == 543)" >
+<If Condition="!(Me.MapId == 542)" >
 
 		<While Condition="!(Me.MapId == 530)" >
 			<If Condition="Me.IsAlliance" >
@@ -105,7 +102,7 @@
 				</If>
 				<!-- Homeland, Ally Eastern Kingdom -->
 				<If Condition="Me.MapId == 0" >
-
+					
 					<If condition="false"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Vikingland." LogColor="Lime" />
 					
@@ -337,77 +334,92 @@
 		Big thanks to Kick for this.
 		--> 
 </If>
-
 <While Condition="true" >
-	<If Condition="!(Me.MapId == 543)" >
-		<If Condition="Me.Location.Distance(new WoWPoint(-365.5185, 3082.94, 14.648)) &gt; 10" >
+	<If Condition="!(Me.MapId == 542)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(301.0435, 3160.816, 31.69807)) &gt; 50" >
 			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
 			<CustomBehavior File="Message" Text="Moving to The Instance." LogColor="Lime" />
-			<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-362.5798" Y="3074.1" Z="-15.07973" />
+			<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-300.1603" Y="3159.839" Z="31.68681" />
 			<CustomBehavior File="ForcedDismount" />
 		</If>
 	</If>
 	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
-		<If Condition="!(Me.MapId == 543)" >
-			<RunTo X="-361.8816" Y="3074.594" Z="-15.06141" />
+		<If Condition="!(Me.MapId == 542)" >
+			<RunTo X="-300.1603" Y="3159.839" Z="31.68681" />
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-			<CustomBehavior File="Message" Text="Entering Hellfire Ramparts." LogColor="Lime" />
-			<CustomBehavior File="MyCTM" X="-364.5978" Y="3084.308" Z="-14.6655" /> <!-- Enters instance if not already inside -->
+			<CustomBehavior File="Message" Text="Entering Shattered Halls." LogColor="Lime" />
+			<CustomBehavior File="MyCTM" X="-307.1952" Y="3169.764" Z="29.37688" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 	<!-- Begin Instance Grind -->
-		<If Condition="(Me.MapId == 543)" >
+		<If Condition="(Me.MapId == 542)" >
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
 			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-				<Hotspot X="-1327.783" Y="1658.816" Z="69.02531" />
-				<Hotspot X="-1286.658" Y="1670.126" Z="68.85224" />
-				<Hotspot X="-1269.697" Y="1654.359" Z="69.01041" />
-				<Hotspot X="-1246.154" Y="1642.782" Z="67.99894" />
-				<Hotspot X="-1242.782" Y="1615.589" Z="68.50784" />
-				<Hotspot X="-1277.144" Y="1536.638" Z="68.56718" />
-				<Hotspot X="-1283.451" Y="1484.417" Z="68.59309" />
-				<Hotspot X="-1227.096" Y="1471.908" Z="68.56191" />
-				<Hotspot X="-1197.323" Y="1438.084" Z="68.50845" />
-				<Hotspot X="-1173.902" Y="1448.243" Z="68.42118" />
-				<Hotspot X="-1180.059" Y="1484.618" Z="68.45656" />
-				<Hotspot X="-1156.76" Y="1492.668" Z="68.42524" />
-				<Hotspot X="-1210.77" Y="1536.615" Z="68.56165" />
-				<Hotspot X="-1216.448" Y="1524.082" Z="68.78717" />
+				<Hotspot X="7.414839" Y="-54.36414" Z="-41.3403" />
+				<Hotspot X="-13.65627" Y="-81.26894" Z="-41.33458" />
+				<Hotspot X="4.913551" Y="-84.82957" Z="-41.33128" />
+				<Hotspot X="27.786" Y="-82.38058" Z="-40.99796" />
+				<Hotspot X="50.42345" Y="-74.83198" Z="-39.83932" />
+				<Hotspot X="195.5927" Y="-78.98607" Z="9.616326" />
+				<Hotspot X="228.5695" Y="-96.1877" Z="9.618876" />
+				<Hotspot X="229.056" Y="-73.23717" Z="9.618803" />
+				<Hotspot X="246.0742" Y="-63.78553" Z="9.624695" />
+				<Hotspot X="247.7027" Y="-27.58046" Z="6.952242" />
+				<Hotspot X="286.0409" Y="-8.175566" Z="9.154942" />
+				<Hotspot X="314.5207" Y="10.59063" Z="9.616748" />
+				<Hotspot X="338.127" Y="4.17969" Z="9.617012" />
+				<Hotspot X="330.8773" Y="28.92477" Z="9.621761" />
+				<Hotspot X="329.9184" Y="69.61333" Z="9.613991" />
+				<Hotspot X="319.9046" Y="93.73685" Z="9.615495" />
+				<Hotspot X="338.1127" Y="96.79599" Z="9.617128" />
+				<Hotspot X="327.481" Y="134.3709" Z="9.616546" /> //First boss
 			</CustomBehavior>
-
-			// stairs up
-			<RunTo X="-1237.639" Y="1543.673" Z="90.41658" />
 
 			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-				<Hotspot X="-1241.293" Y="1568.899" Z="91.25544" />
-				<Hotspot X="-1265.418" Y="1589.205" Z="92.42994" />
-				<Hotspot X="-1299.254" Y="1588.31" Z="91.7769" />
-				<Hotspot X="-1315.771" Y="1616.452" Z="91.74995" />
-				<Hotspot X="-1286.966" Y="1636.029" Z="91.73589" />
-				<Hotspot X="-1271.274" Y="1625.361" Z="91.67679" />
+				<Hotspot X="319.1566" Y="181.2381" Z="9.614828" />
+				<Hotspot X="305.0569" Y="167.2818" Z="9.616645" />
+				<Hotspot X="348.2625" Y="193.1552" Z="9.606102" />
+				<Hotspot X="372.9948" Y="188.5283" Z="9.599682" />
+				<Hotspot X="404.5976" Y="189.2656" Z="9.596346" />
+				<Hotspot X="437.7708" Y="192.5099" Z="9.606613" />
+				<Hotspot X="482.8837" Y="175.5251" Z="9.620012" />
+				<Hotspot X="480.9954" Y="94.1746" Z="9.622114" />
+				<Hotspot X="449.0607" Y="100.0155" Z="9.61551" />
+				<Hotspot X="468.172" Y="60.40864" Z="9.611184" />
+				<Hotspot X="440.9545" Y="59.93634" Z="9.611332" />
 			</CustomBehavior>
 
-			<RunTo X="-1127.371" Y="1715.692" Z="89.5407" /> //boss front
-			<RunTo X="-1120.016" Y="1719.72" Z="89.42169" /> //boss back
-			<RunTo X="-1385.165" Y="1712.253" Z="82.65675" /> // two mobs before boss
-			<RunTo X="-1409.182" Y="1739.18" Z="81.06302" /> // boss
-			<RunTo X="-1429.184" Y="1771.122" Z="81.99654" /> // in front of loot chest
+			<RunTo X="458.7253" Y="61.84747" Z="9.614225" /> //lever - second boss
 
-			<CustomBehavior File="InteractWith" MobId="185168" MobState="DontCare" WaitForNpcs="false" X="-1429.81" Y="1772.916" Z="82.0765" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<CustomBehavior File="InteractWith" MobId="185169" MobState="DontCare" WaitForNpcs="false" X="-1429.81" Y="1772.916" Z="82.0765" />  <!-- Heroic version of chest -->
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="InteractWith" MobId="181982" X="456.0855" Y="60.34892" Z="9.47833" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="InteractWith"  MobId="17380" MobState="Dontcare" WaitForNpcs="false" Range="1" X="459.3484" Y="61.32819" Z="9.614701" />  <!-- Get boss -->
 
-			<!-- Leave dungeon -->
-			<RunTo X="-1313.081" Y="1634.123" Z="91.74801" />
-			<CustomBehavior File="MyCTM" X="-1350.454" Y="1649.72" Z="68.70227" />
+			<RunTo X="455.4205" Y="21.31718" Z="9.551927" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="423.5845" Y="-83.76239" Z="9.616058" />
+				<Hotspot X="349.7664" Y="-176.3916" Z="-25.52129" />
+				<Hotspot X="326.8768" Y="-189.1981" Z="-25.51024" />
+				<Hotspot X="320.062" Y="-168.0013" Z="-25.50184" />
+			</CustomBehavior>
+
+
+			<RunTo X="327.2821" Y="-149.4359" Z="-25.46661" /> // coordinate before boss event
+			<RunTo X="316.0663" Y="-107.1946" Z="-24.68061" /> // aggro mobs around boss
+
+			<RunTo X="305.3157" Y="-102.5977" Z="-24.67721" /> // assuming boss is dead, leave coordinate
+			<RunTo X="269.3188" Y="-127.5226" Z="-25.15705" />
+			<RunTo X="-2.634235" Y="-100.845" Z="-41.33091" /> // other side of tunnel
+
+			<RunTo X="-3.076933" Y="20.59763" Z="-44.7897" /> // front of instance
 
 
 
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
-		    <CustomBehavior File="MyCTM" X="-1358.809" Y="1635.626" Z="68.50739" />
+		    <CustomBehavior File="MyCTM" X="0.3323504" Y="26.54314" Z="-44.81076" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
@@ -470,5 +482,11 @@
 	</If>
 
 </While>
+
 </QuestOrder>
 </HBProfile>
+
+
+
+
+

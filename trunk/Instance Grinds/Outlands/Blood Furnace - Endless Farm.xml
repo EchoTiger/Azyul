@@ -1,12 +1,9 @@
 <HBProfile>
-<Name>Frostfever's Endless The Blood Furnace Farm</Name>
+<Name>Endless Blood Furnace Farm</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
-// Profile Maker: Frostfever
-// Farm zone: The Blood Furnace
-// Farm mobs: All
-// Grind Speed: N/A
-// Grind what? Rep: Honor Hold Rep
+// Profile Maker: Echo
+// Farm zone: Blood Furnace
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 <MinLevel>54</MinLevel>
@@ -27,34 +24,18 @@
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
 	
 	<ProtectedItems>
-		<Item Name = "Lightning Steel Ingot" Entry = "94111"/>
-				<Item Name = "Scroll of Wisdom" Entry = "79731"/>
-		<Item Name = "Silkworm Cocoon" Entry = "92960"/>	
-		<Item Name = "Facets of Research" Entry = "90395"/>	
-		<Item Name = "Facets of Research" Entry = "90397"/>
-		<Item Name = "Facets of Research" Entry = "90398"/>
-		<Item Name = "Facets of Research" Entry = "90399"/>
-		<Item Name = "Facets of Research" Entry = "90400"/>
-		<Item Name = "Facets of Research" Entry = "90406"/>
-		<Item Name = "Facets of Research" Entry = "90401"/>
 	</ProtectedItems>
 		
 
-	<Mailboxes>
-		<Mailbox X="-707.0386" Y="2700.07" Z="94.45774" />
-		<Mailbox X="172.726" Y="2623.055" Z="863836" />
-	</Mailboxes>
 
-
-		<AvoidMobs>
+	<AvoidMobs>
 		<Mob Name="Summon Enabler Stalker" Entry="53488" />
-		</AvoidMobs>
+	</AvoidMobs>
 
 
 <Blackspots>
 </Blackspots>
 	
-<Factions>16</Factions>
 	
 <QuestOrder>
 <If Condition="!(Me.MapId == 542)" >
@@ -121,7 +102,7 @@
 				</If>
 				<!-- Homeland, Ally Eastern Kingdom -->
 				<If Condition="Me.MapId == 0" >
-
+					
 					<If condition="false"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Vikingland." LogColor="Lime" />
 					
@@ -353,159 +334,154 @@
 		Big thanks to Kick for this.
 		--> 
 </If>
-
 <While Condition="true" >
 	<If Condition="!(Me.MapId == 542)" >
-						<If Condition="Me.Location.Distance(new WoWPoint(-305.55, 3167.44, 30.22)) &gt; 15" >
-							<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
-							<CustomBehavior File="Message" Text="Moving to The Blood Furnace." LogColor="Lime" />
-							<CustomBehavior File="FlyTo" DestName="The Blood Furnace" X="-272.2083" Y="3114.613" Z="31.36712" />
-							<RunTo X="-300.55" Y="3150.44" Z="30.22" />
-							<CustomBehavior File="ForcedDismount" />
-						</If>
-						<If Condition="(Me.FreeBagSlots &lt;= 10)" >
-							<If Condition="Me.IsAlliance">
-								<CustomBehavior File="FlyTo" X="-710.32" Y="2650.58" Z="91.01" />
-								<CustomBehavior File="WaitTimer" WaitTime="1000" />
-								<CustomBehavior File="RunMacro" Macro="/dismount" />
-								<RunTo X="-717.32" Y="2607.58" Z="91.01" />
-								<SetVendor>
-									<Vendors>
-										<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
-									</Vendors>
-								</SetVendor>
-								<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
-								<CustomBehavior File="ForcedDismount" />
-								<CustomBehavior File="WaitTimer" WaitTime="1000" />
-								<ClearVendor />
-								<RunTo X="-707.0386" Y="2700.07" Z="94.45774" />
-								<CustomBehavior File="ForceSetVendor" DoMail="True" />
-								<CustomBehavior File="FlyTo" X="-272.2083" Y="3114.613" Z="31.36712" />
-							</If>
-							<!-- Need To Fix this -->
-							<If Condition="Me.IsHorde" >
-								<CustomBehavior File="FlyTo" X="172.726" Y="2623.055" Z="863836" />
-								<CustomBehavior File="WaitTimer" WaitTime="1000" />
-								<CustomBehavior File="RunMacro" Macro="/dismount" />
-								<SetVendor>
-									<Vendor>
-										<Vendor Name="Reagan Mancuso" Entry="22225" Type="Repair" X="179.7871" Y="2605.4" Z="87.28392"/>
-									</Vendor>
-								</SetVendor>
-								<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
-								<ClearVendor />
-								<RunTo X="172.726" Y="2623.055" Z="863836" />
-								<CustomBehavior File="ForceSetVendor" DoMail="True" />
-								<CustomBehavior File="WaitTimer" WaitTime="1000" />
-								<CustomBehavior File="FlyTo" X="-272.2083" Y="3114.613" Z="31.36712" />
-							</If>
-						</If>
-							<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-							<CustomBehavior File="Message" Text="Entering The Blood Furnace." LogColor="Lime" />
-							<CustomBehavior File="MyCTM" X="-307.55" Y="3167.44" Z="30.22" /> <!-- Enters instance if not already inside -->
-							<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<If Condition="Me.Location.Distance(new WoWPoint(301.0435, 3160.816, 31.69807)) &gt; 50" >
+			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+			<CustomBehavior File="Message" Text="Moving to The Instance." LogColor="Lime" />
+			<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-300.1603" Y="3159.839" Z="31.68681" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
 	</If>
+	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<If Condition="!(Me.MapId == 542)" >
+			<RunTo X="-300.1603" Y="3159.839" Z="31.68681" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			<CustomBehavior File="Message" Text="Entering Shattered Halls." LogColor="Lime" />
+			<CustomBehavior File="MyCTM" X="-307.1952" Y="3169.764" Z="29.37688" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.MapId == 542)" >	
+		<If Condition="(Me.MapId == 542)" >
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
-					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-					<RunTo X="-2.7378" Y="19.8424" Z="-44.7973"  />
-					<RunTo X="6.5729" Y="-53.1395" Z="-41.3403"  />
-					<RunTo X="-12.0365" Y="-82.6148" Z="-41.3348"  />
-					<RunTo X="26.6086" Y="-85.0423" Z="-41.1520"  />
-					<RunTo X="49.4181" Y="-92.1502" Z="-40.2538"  />
-					<RunTo X="193.1923" Y="-91.4202" Z="9.6116"  />
-					<RunTo X="226.2120" Y="-71.8887" Z="9.6186"  />
-					<RunTo X="226.3313" Y="-98.7988" Z="9.6175"  />
-					<RunTo X="243.4249" Y="-69.2302" Z="9.6181"  />
-					<RunTo X="247.9132" Y="-28.5470" Z="6.9527"  />
-					<RunTo X="313.9966" Y="10.8903" Z="9.6167"  />
-					<RunTo X="329.6500" Y="29.9482" Z="9.6204"  />
-					<RunTo X="313.0209" Y="69.5790" Z="9.6156"  />
-					<RunTo X="350.0067" Y="68.8997" Z="9.6187"  />
-					<RunTo X="312.6703" Y="98.0912" Z="9.6183"  />
-					<RunTo X="339.5060" Y="98.7678" Z="9.6183"  />
-					<RunTo X="328.6922" Y="130.0471" Z="9.6166"  />
-					<RunTo X="318.4547" Y="184.1546" Z="9.6149"  />
-					<RunTo X="348.1801" Y="193.1998" Z="9.6064"  />
-					<RunTo X="434.4225" Y="191.7949" Z="9.6058"  />
-					<RunTo X="461.2196" Y="170.1924" Z="9.6135"  />
-					<RunTo X="448.7272" Y="102.2875" Z="9.6153"  />
-					<RunTo X="481.5595" Y="96.0595" Z="9.6222"  />
-					<RunTo X="468.4370" Y="62.0829" Z="9.6106"  />
-					<RunTo X="441.7766" Y="62.2117" Z="9.6096"  />
-					<RunTo X="456.2785" Y="61.8393" Z="9.6138"  />
-					<CustomBehavior File="InteractWith" MobId="181982" ObjectType="GameObject" WaitTime="0" X="456.085" Y="60.34" Z="9.47" />
-					<RunTo X="478.3699" Y="73.7993" Z="9.6181"  />
-					<RunTo X="454.5829" Y="52.4552" Z="9.6180"  />
-					<RunTo X="455.1309" Y="10.6221" Z="9.5483"  />
-					<RunTo X="488.6636" Y="7.9079" Z="9.5462"  />
-					<RunTo X="470.7940" Y="-22.2413" Z="9.5495"  />
-					<RunTo X="486.7489" Y="-66.6498" Z="9.5460"  />
-					<RunTo X="462.9890" Y="-61.6081" Z="9.5467"  />
-					<RunTo X="457.6347" Y="-88.1734" Z="9.5915"  />
-					<RunTo X="415.0618" Y="-70.2243" Z="9.6176"  />
-					<RunTo X="429.3263" Y="-94.1003" Z="9.6214"  />
-					<RunTo X="413.5654" Y="-91.8421" Z="9.6247"  />
-					<RunTo X="402.8492" Y="-144.5712" Z="-4.7953"  />
-					<RunTo X="351.6836" Y="-175.1246" Z="-25.5259"  />
-					<RunTo X="328.3218" Y="-190.4908" Z="-25.5081"  />
-					<RunTo X="317.7902" Y="-173.1652" Z="-25.5080"  />
-					<RunTo X="326.4911" Y="-87.32143" Z="-24.65262" />
-					<CustomBehavior File="InteractWith" MobId="17653" ObjectType="Npc" NumOfTimes="1" X="326.4911" Y="-87.32143" Z="-24.65262" />
-					<RunTo X="259.2075" Y="-127.7233" Z="-26.1556"  />
-					<RunTo X="103.4703" Y="-143.3634" Z="-57.2124"  />
-					<RunTo X="-2.9521" Y="-134.0961" Z="-45.6803"  />
-					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
-				    
-		    <CustomBehavior File="MyCTM" X="-1.4279" Y="25.9991" Z="-44.7859"  />
+
+			<RunTo X="7.414839" Y="-54.36414" Z="-41.3403" />
+			<RunTo X="-13.65627" Y="-81.26894" Z="-41.33458" />
+			<RunTo X="4.913551" Y="-84.82957" Z="-41.33128" />
+			<RunTo X="27.786" Y="-82.38058" Z="-40.99796" />
+			<RunTo X="50.42345" Y="-74.83198" Z="-39.83932" />
+			<RunTo X="195.5927" Y="-78.98607" Z="9.616326" />
+			<RunTo X="228.5695" Y="-96.1877" Z="9.618876" />
+			<RunTo X="229.056" Y="-73.23717" Z="9.618803" />
+			<RunTo X="246.0742" Y="-63.78553" Z="9.624695" />
+			<RunTo X="247.7027" Y="-27.58046" Z="6.952242" />
+			<RunTo X="286.0409" Y="-8.175566" Z="9.154942" />
+			<RunTo X="314.5207" Y="10.59063" Z="9.616748" />
+			<RunTo X="338.127" Y="4.17969" Z="9.617012" />
+			<RunTo X="330.8773" Y="28.92477" Z="9.621761" />
+			<RunTo X="329.9184" Y="69.61333" Z="9.613991" />
+			<RunTo X="319.9046" Y="93.73685" Z="9.615495" />
+			<RunTo X="338.1127" Y="96.79599" Z="9.617128" />
+			<RunTo X="327.481" Y="134.3709" Z="9.616546" /> //First boss
+
+			<RunTo X="319.1566" Y="181.2381" Z="9.614828" />
+			<RunTo X="305.0569" Y="167.2818" Z="9.616645" />
+			<RunTo X="348.2625" Y="193.1552" Z="9.606102" />
+			<RunTo X="372.9948" Y="188.5283" Z="9.599682" />
+			<RunTo X="404.5976" Y="189.2656" Z="9.596346" />
+			<RunTo X="437.7708" Y="192.5099" Z="9.606613" />
+			<RunTo X="482.8837" Y="175.5251" Z="9.620012" />
+			<RunTo X="480.9954" Y="94.1746" Z="9.622114" />
+			<RunTo X="449.0607" Y="100.0155" Z="9.61551" />
+			<RunTo X="468.172" Y="60.40864" Z="9.611184" />
+			<RunTo X="440.9545" Y="59.93634" Z="9.611332" />
+
+			<RunTo X="458.7253" Y="61.84747" Z="9.614225" /> //lever
+
+			<CustomBehavior File="InteractWith" MobId="181982" X="456.0855" Y="60.34892" Z="9.47833" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="InteractWith"  MobId="17380" MobState="Dontcare" WaitForNpcs="false" Range="1" X="459.3484" Y="61.32819" Z="9.614701" />  <!-- Get boss -->
+
+			<RunTo X="455.4205" Y="21.31718" Z="9.551927" />
+
+
+			<RunTo X="423.5845" Y="-83.76239" Z="9.616058" />
+			<RunTo X="349.7664" Y="-176.3916" Z="-25.52129" />
+			<RunTo X="326.8768" Y="-189.1981" Z="-25.51024" />
+			<RunTo X="320.062" Y="-168.0013" Z="-25.50184" />
+
+			<RunTo X="327.2821" Y="-149.4359" Z="-25.46661" /> // coordinate before boss event
+			<RunTo X="316.0663" Y="-107.1946" Z="-24.68061" /> // aggro mobs around boss
+
+			<RunTo X="305.3157" Y="-102.5977" Z="-24.67721" /> // assuming boss is dead, leave coordinate
+			<RunTo X="269.3188" Y="-127.5226" Z="-25.15705" />
+			<RunTo X="-2.634235" Y="-100.845" Z="-41.33091" /> // other side of tunnel
+
+			<RunTo X="-3.076933" Y="20.59763" Z="-44.7897" /> // front of instance
+
+
+
+
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+		    <CustomBehavior File="MyCTM" X="0.3323504" Y="26.54314" Z="-44.81076" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
-		
+		</If>
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 	</While>
-					<!-- End Instance Grind -->
+	<!-- End Instance Grind -->
 	
 	<!-- Checks if bags are full -->	
 	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 <!-- Force town sell. -->
-<!-- Insert Nav Code. -->
-<!-- Force town sell. -->
 		<If Condition="Me.IsAlliance">
-			<CustomBehavior File="FlyTo" X="-710.32" Y="2650.58" Z="91.01" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="FlyTo" X="-706.9598" Y="2622.356" Z="89.74428" />
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
-			<RunTo X="-717.32" Y="2607.58" Z="91.01" />
+			<RunTo X="-714.2572" Y="2608.813" Z="91.01031" />
 			<SetVendor>
 				<Vendors>
 					<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
 				</Vendors>
 			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
 			<ClearVendor />
-			<RunTo X="-707.0386" Y="2700.07" Z="94.45774" />
+			<RunTo X="-709.0159" Y="2620.78" Z="89.70387" />
+			<CustomBehavior File="FlyTo" X="-707.691" Y="2699.656" Z="94.40236" />
+			<SetMailbox>
+				<Mailboxes>
+					<Mailbox X="-706.5545" Y="2700.936" Z="94.53797" />
+				</Mailboxes>
+			</SetMailbox>
 			<CustomBehavior File="ForceSetVendor" DoMail="True" />
+			<RunTo X="-708.5986" Y="2695.111" Z="94.19513" />
+			<ClearMailbox />
 		</If>
-		<!-- Need To Fix this -->
+
 		<If Condition="Me.IsHorde" >
-			<CustomBehavior File="FlyTo" X="172.726" Y="2623.055" Z="863836" />
+			<CustomBehavior File="FlyTo" X="173.5389" Y="2625.896" Z="87.10639" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="179.7871" Y="2605.4" Z="87.28379" />
 			<SetVendor>
 				<Vendor>
-					<Vendor Name="Reagan Mancuso" Entry="22225" Type="Repair" X="179.7871" Y="2605.4" Z="87.28392"/>
+					<Vendor Name="Reagan Mancuso" Entry="22225" Type="Repair" X="179.7871" Y="2605.4" Z="87.28379" />
 				</Vendor>
 			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
 			<ClearVendor />
-			<RunTo X="172.726" Y="2623.055" Z="863836" />
+			<RunTo X="179.7871" Y="2605.4" Z="87.28379" />
+			<SetMailbox>
+				<Mailboxes>
+					<Mailbox X="172.7261" Y="2623.055" Z="86.8361" />
+				</Mailboxes>
+			</SetMailbox>
+			<CustomBehavior File="ForceSetVendor" DoMail="True" />
+			<RunTo X="181.3871" Y="2634.12" Z="87.11672" />
+			<ClearMailbox />
 			<CustomBehavior File="ForceSetVendor" DoMail="True" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-
 		</If>
+
 	</If>
-				
+
 </While>
+
 </QuestOrder>
 </HBProfile>
+
+
+
+
+
