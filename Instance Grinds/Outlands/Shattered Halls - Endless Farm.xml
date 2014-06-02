@@ -336,18 +336,20 @@
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 
 <While Condition="true" >
-	<If Condition="!Me.MapId == 540 &amp;&amp; Me.FreeBagSlots &gt;= 11" >
+	<If Condition="!(Me.MapId == 540) &amp;&amp; Me.FreeBagSlots &gt;= 11" >
 		<If Condition="Me.Location.Distance(new WoWPoint(-309.7233, 3077.926, -3.641827)) &gt; 25" >
 			<CustomBehavior File="Message" Text="Moving to The Instance." LogColor="Lime" />
-			<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-307.9488" Y="3068.925" Z="-3.259766" />
+			<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-299.862" Y="3020.822" Z="6.165497" />
+			<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-303.6577" Y="3046.832" Z="-4.586812" />
 			<CustomBehavior File="ForcedDismount" />
 		</If>
 	</If>
 	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
 		<If Condition="!(Me.MapId == 542)" >
-			<RunTo X="-309.9763" Y="3083.01" Z="-3.74686" />
-			<RunTo X="-310.0607" Y="3081.636" Z="-3.705267" />
-			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+			<RunTo X="-309.2963" Y="3076.825" Z="-3.645569" />
+			<CustomBehavior File="InteractWith" MobId="184912" X="-309.6581" Y="3078.957" Z="-3.545551" />
+ 			<RunTo X="-310.0607" Y="3081.636" Z="-3.705267" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 			<CustomBehavior File="Message" Text="Entering Shattered Halls." LogColor="Lime" />
 			<CustomBehavior File="MyCTM" X="-309.5081" Y="3089.006" Z="-4.079539" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -442,6 +444,10 @@
 	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 <!-- Force town sell. -->
+		<CustomBehavior File="MyCTM" X="-310.3208" Y="3079.639" Z="-3.630647" />
+		<CustomBehavior File="InteractWith" MobId="184912" X="-309.6581" Y="3078.957" Z="-3.545551" />
+		<CustomBehavior File="MyCTM" X="-305.6588" Y="3057.463" Z="-2.565235" />
+
 		<If Condition="Me.IsAlliance">
 			<CustomBehavior File="FlyTo" X="-706.9598" Y="2622.356" Z="89.74428" />
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
