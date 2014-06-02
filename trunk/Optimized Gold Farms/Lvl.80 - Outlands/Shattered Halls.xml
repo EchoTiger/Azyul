@@ -1,5 +1,5 @@
 <HBProfile>
-<Name>Endless Shattered Halls Farm</Name>
+<Name>Shattered Halls - Gold Optimized</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Maker: Echo
@@ -347,7 +347,7 @@
 		<If Condition="!(Me.MapId == 542)" >
 			<RunTo X="-309.9763" Y="3083.01" Z="-3.74686" />
 			<RunTo X="-310.0607" Y="3081.636" Z="-3.705267" />
-			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 			<CustomBehavior File="Message" Text="Entering Shattered Halls." LogColor="Lime" />
 			<CustomBehavior File="MyCTM" X="-309.5081" Y="3089.006" Z="-4.079539" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -359,68 +359,82 @@
 
 			<RunTo X="-6.887658" Y="1.269876" Z="-13.20117" />
 
-			<RunTo X="13.17112" Y="-2.436876" Z="-13.20898" />
-			<RunTo X="23.99797" Y="7.550211" Z="-13.19831" />
-			<RunTo X="57.79525" Y="3.740786" Z="-13.20503" />
-			<RunTo X="66.89086" Y="44.02871" Z="-13.22156" />
-			<RunTo X="56.63627" Y="79.59594" Z="-13.22298" />
-			<RunTo X="77.19499" Y="82.90537" Z="-13.22298" />
-			<RunTo X="82.7926" Y="75.95638" Z="-13.22298" />
-			<RunTo X="73.8502" Y="97.79764" Z="-13.22298" />
-			<RunTo X="71.63753" Y="262.5831" Z="-13.20006" />
-			<RunTo X="100.1498" Y="266.8936" Z="-13.22271" />
-			<RunTo X="113.3796" Y="258.1164" Z="-13.22087" /> //LOS
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="13.17112" Y="-2.436876" Z="-13.20898" />
+				<Hotspot X="23.99797" Y="7.550211" Z="-13.19831" />
+				<Hotspot X="57.79525" Y="3.740786" Z="-13.20503" />
+				<Hotspot X="66.89086" Y="44.02871" Z="-13.22156" />
+				<Hotspot X="56.63627" Y="79.59594" Z="-13.22298" />
+				<Hotspot X="77.19499" Y="82.90537" Z="-13.22298" />
+				<Hotspot X="82.7926" Y="75.95638" Z="-13.22298" />
+				<Hotspot X="73.8502" Y="97.79764" Z="-13.22298" />
+				<Hotspot X="71.63753" Y="262.5831" Z="-13.20006" />
+				<Hotspot X="100.1498" Y="266.8936" Z="-13.22271" />
+				<Hotspot X="113.3796" Y="258.1164" Z="-13.22087" /> //LOS
+			</CustomBehavior>
 
 
 			<RunTo X="123.2967" Y="257.0708" Z="-13.45786" /> //Before jump into hole
 			<CustomBehavior File="MyCTM" X="123.2172" Y="232.369" Z="-46.67575" /> //Jump into hole
 
-			<RunTo X="123.2172" Y="232.369" Z="-46.67575" />
-			<RunTo X="126.0666" Y="203.6981" Z="-48.66307" />
-			<RunTo X="147.1593" Y="180.6897" Z="-44.70436" />
-			<RunTo X="195.146" Y="160.3623" Z="-42.36845" />
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="123.2172" Y="232.369" Z="-46.67575" />
+				<Hotspot X="126.0666" Y="203.6981" Z="-48.66307" />
+				<Hotspot X="147.1593" Y="180.6897" Z="-44.70436" />
+				<Hotspot X="195.146" Y="160.3623" Z="-42.36845" />
+			</CustomBehavior>
 
 
 			<RunTo X="176.3361" Y="185.6294" Z="-33.40644" /> // Run out of hole
 			<RunTo X="178.7517" Y="244.1802" Z="-14.73902" /> // Before netherkurse
 
-			<RunTo X="164.182" Y="267.5016" Z="-13.19498" />  //Adds in front of Nethekurse
-			<RunTo X="196.5051" Y="267.1118" Z="-13.17735" />
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="164.182" Y="267.5016" Z="-13.19498" />  //Adds in front of Netherkurse
+				<Hotspot X="196.5051" Y="267.1118" Z="-13.17735" />
+			</CustomBehavior>
 
 			<CustomBehavior File="InteractWith" ObjectType="Npc" Range="1" MobId="16807" X="193.5504" Y="268.7236" Z="-13.19248" />
 
 			<RunTo X="293.4147" Y="316.04" Z="1.916794" />
 
-			<RunTo X="514.7968" Y="315.3378" Z="1.934975" />
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="514.7968" Y="315.3378" Z="1.934975" />
+			</CustomBehavior>
 
 			<RunTo X="518.2218" Y="279.7864" Z="1.91704" />
 
-			<RunTo X="552.1165" Y="226.8909" Z="0.2611506" />
-			<RunTo X="522.5391" Y="222.9452" Z="1.92967" />
-			<RunTo X="485.9933" Y="229.1581" Z="0.2583271" />
-			<RunTo X="518.3529" Y="173.944" Z="1.941186" />
-			<RunTo X="518.8812" Y="150.6398" Z="1.930282" />
-			<RunTo X="551.7672" Y="141.6794" Z="0.2552367" />
-			<RunTo X="484.4099" Y="145.524" Z="0.2499073" />
-			<RunTo X="517.2573" Y="124.1982" Z="1.919351" />
-			<RunTo X="517.9753" Y="123.7084" Z="1.916567" />
-			<RunTo X="517.914" Y="86.12634" Z="1.933533" />
-			<RunTo X="495.1732" Y="65.96227" Z="1.930056" />
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="552.1165" Y="226.8909" Z="0.2611506" />
+				<Hotspot X="522.5391" Y="222.9452" Z="1.92967" />
+				<Hotspot X="485.9933" Y="229.1581" Z="0.2583271" />
+				<Hotspot X="518.3529" Y="173.944" Z="1.941186" />
+				<Hotspot X="518.8812" Y="150.6398" Z="1.930282" />
+				<Hotspot X="551.7672" Y="141.6794" Z="0.2552367" />
+				<Hotspot X="484.4099" Y="145.524" Z="0.2499073" />
+				<Hotspot X="517.2573" Y="124.1982" Z="1.919351" />
+				<Hotspot X="517.9753" Y="123.7084" Z="1.916567" />
+				<Hotspot X="517.914" Y="86.12634" Z="1.933533" />
+				<Hotspot X="495.1732" Y="65.96227" Z="1.930056" />
+			</CustomBehavior>
 
 
 
 			<RunTo X="475.9195" Y="59.41596" Z="1.930984" />
 
-			<RunTo X="448.3889" Y="62.8599" Z="1.934261" />
-			<RunTo X="372.0871" Y="57.31403" Z="-7.320482" /> // Ogre boss
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="448.3889" Y="62.8599" Z="1.934261" />
+				<Hotspot X="372.0871" Y="57.31403" Z="-7.320482" /> // Ogre boss
+			</CustomBehavior>
 
 			<RunTo X="373.7285" Y="12.73867" Z="1.105464" />
 
-			<RunTo X="378.7624" Y="-9.562923" Z="1.913295" />
-			<RunTo X="372.5128" Y="-71.50995" Z="1.908466" />
-			<RunTo X="355.1585" Y="-83.86179" Z="1.925266" />
-			<RunTo X="280.0462" Y="-89.62786" Z="1.962766" />
-			<RunTo X="229.163" Y="-83.62787" Z="4.938707" />
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="378.7624" Y="-9.562923" Z="1.913295" />
+				<Hotspot X="372.5128" Y="-71.50995" Z="1.908466" />
+				<Hotspot X="355.1585" Y="-83.86179" Z="1.925266" />
+				<Hotspot X="280.0462" Y="-89.62786" Z="1.962766" />
+				<Hotspot X="229.163" Y="-83.62787" Z="4.938707" />
+			</CustomBehavior>
 
 
 
