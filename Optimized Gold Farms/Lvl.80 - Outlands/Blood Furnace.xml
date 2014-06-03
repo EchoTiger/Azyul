@@ -39,6 +39,15 @@
 	
 <QuestOrder>
 
+<If Condition="(Me.MapId == 542)" > <!-- Blood Furnace -->
+	<DisableBehavior Name="Pull" />
+	<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
+	<RunTo X="-3.076933" Y="20.59763" Z="-44.7897" /> // front of instance
+	<CustomBehavior File="MyCTM" X="0.3323504" Y="26.54314" Z="-44.81076" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<EnableBehavior Name="Pull" />
+</If>
+
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
 			SLASH_EXTRASTATS1 = '/stats2';

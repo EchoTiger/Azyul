@@ -42,6 +42,15 @@
 	
 <QuestOrder>
 
+<If Condition="(Me.MapId == 543)" > <!-- Hellfire Ramparts -->
+	<DisableBehavior Name="Pull" />
+	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
+	<RunTo X="-1350.486" Y="1647.54" Z="68.60976" />
+	<CustomBehavior File="MyCTM" X="-1358.846" Y="1634.4" Z="68.48954" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<EnableBehavior Name="Pull" />
+</If>
+
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
 			SLASH_EXTRASTATS1 = '/stats2';
@@ -139,7 +148,7 @@
 			end
 
 			" />
-	
+
 <If Condition="!(Me.MapId == 543)" >
 
 		<While Condition="!(Me.MapId == 530)" >
@@ -515,7 +524,7 @@
 
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
-		    <CustomBehavior File="MyCTM" X="-1358.809" Y="1635.626" Z="68.50739" />
+		    <CustomBehavior File="MyCTM" X="-1358.846" Y="1634.4" Z="68.48954" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
