@@ -37,6 +37,18 @@
 		
 <QuestOrder>
 
+<If Condition="(Me.MapId == 540)" > <!-- Shattered Halls -->
+	<DisableBehavior Name="Pull" />
+	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
+	<RunTo X="-41.76889" Y="-21.58352" Z="-13.68016" />
+	<CustomBehavior File="MyCTM" X="-42.50687" Y="-27.9767" Z="-13.50718" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<CustomBehavior File="MyCTM" X="-310.3208" Y="3079.639" Z="-3.630647" />
+	<CustomBehavior File="InteractWith" MobId="184912" X="-309.6581" Y="3078.957" Z="-3.545551" />
+	<CustomBehavior File="MyCTM" X="-305.6588" Y="3057.463" Z="-2.565235" />
+	<EnableBehavior Name="Pull" />
+</If>
+
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
 			SLASH_EXTRASTATS1 = '/stats2';
