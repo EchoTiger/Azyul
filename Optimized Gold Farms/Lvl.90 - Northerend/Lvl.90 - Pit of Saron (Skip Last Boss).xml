@@ -128,7 +128,10 @@
 		<RunTo X="4918.189" Y="2183.545" Z="638.733" />
 		<CustomBehavior File="MyCTM" X="4923.932" Y="2170.097" Z="638.733" />
 		<CustomBehavior File="WaitTimer" WaitTime="1000" />
-		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 	</If>
 	<If Condition="(Me.MapId == 632) &amp;&amp;Me.Location.Distance(new WoWPoint(5641.85, 2498.017, 708.697 )) &lt;= 500" > <!-- Enter Pit of Saron if in Halls of Reflection -->
 		<CustomBehavior File="Message" Text="\nWe're in Halls of Reflection!\n\nMoving to Pit of Saron." LogColor="Red" />
@@ -137,7 +140,10 @@
 		<RunTo X="5688.484" Y="2542.031" Z="714.6916" />
 		<CustomBehavior File="MyCTM" X="5684.098" Y="2536.179" Z="715.6583" />
 		<CustomBehavior File="WaitTimer" WaitTime="1000" />
-		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 	</If>
 	<If Condition="!(Me.MapId == 658)" > 
 
@@ -490,7 +496,10 @@
 	<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
 	<RunTo X="436.2414" Y="211.0046" Z="528.7086" />
 	<CustomBehavior File="MyCTM" X="425.3003" Y="212.2813" Z="529.9125" />
-	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 </If>
 
 		<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
@@ -514,7 +523,10 @@
 				<If Condition="!(Me.MapId == 658)" >
 					<RunTo X="5599.823" Y="2016.675" Z="798.0419" />
 					<RunTo X="5587.691" Y="2005.754" Z="798.0637" />
-					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+								<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 				</If>
 				<If Condition="(Me.MapId == 658)" >
 
@@ -595,7 +607,10 @@
 
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 					<CustomBehavior File="MyCTM" X="425.3003" Y="212.2813" Z="529.9125" />
-					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+								<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 					<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 				</If>
 

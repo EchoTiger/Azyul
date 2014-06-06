@@ -129,7 +129,10 @@
 	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="DeepSkyBlue" />
 	<MoveTo X="146.1775" Y="-5.935885" Z="-16.6367" />
 	<CustomBehavior File="MyCTM" X="145.8862" Y="-16.48927" Z="-16.63667" />
-	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 </If>
 
 <If Condition="!(Me.MapId == 576)" >
@@ -491,7 +494,10 @@
 		<If Condition="!(Me.MapId == 576)" >
 			<RunTo X="3894.839" Y="6985.287" Z="69.4888" />
 			<CustomBehavior File="MyCTM" X="3902.16" Y="6985.516" Z="69.4879" />
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 		</If>
 	<!-- Instance Navigation Start -->
 		<If Condition="(Me.MapId == 576)" >
@@ -584,7 +590,10 @@
 
 			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 				<CustomBehavior File="MyCTM" X="145.8862" Y="-16.48927" Z="-16.63667" />
-				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+							<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 			    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 		</If> <!--Nexus -->
 	</While>
