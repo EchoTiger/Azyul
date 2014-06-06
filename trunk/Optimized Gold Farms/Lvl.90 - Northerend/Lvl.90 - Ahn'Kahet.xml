@@ -129,7 +129,10 @@
 	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="DeepSkyBlue" />
 	<MoveTo X="339.9675" Y="-1105.186" Z="63.50312" />
 	<CustomBehavior File="MyCTM" X="332.6724" Y="-1110.448" Z="69.77464" />
-	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 </If>
 
 	<If Condition="!(Me.MapId == 619)" >
@@ -496,7 +499,10 @@
 			<If Condition="!(Me.MapId == 619)" >
 				<MoveTo X="3644.882" Y="2040.105" Z="1.787762" />
 				<CustomBehavior File="MyCTM" X="3639.663" Y="2027.607" Z="2.518004" />
-				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+							<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 			</If>
 			<!--Instance Navigation Start -->
 			<If Condition="(Me.MapId == 619)" >
@@ -580,7 +586,10 @@
 				</CustomBehavior>
 
 				<MoveTo X="375.0802" Y="-707.8635" Z="-16.181" />
-				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+							<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 
 			   <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 					<Hotspot X="404.0738" Y="-780.0747" Z="-31.65137" />
@@ -612,7 +621,10 @@
 
 			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="523.33" Y="-299.5683" Z="68.36054" />
-			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			    			<CustomBehavior File="WaitTimer" WaitTime="4000" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 			    <MoveTo X="3766.764" Y="2059.474" Z="19.73799" />
 			    <MoveTo X="3773.85" Y="2135.026" Z="32.66523" />
