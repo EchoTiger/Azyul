@@ -90,7 +90,7 @@
 			</While>
 	<EnableBehavior Name="Pull" />
 </If>
-<If Condition="(Me.MapId == 555)" > <!-- Shadow Labrynth -->
+<If Condition="(Me.MapId == 555)" > <!-- Shadow Labyrinth -->
 	<DisableBehavior Name="Pull" />
 		<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
 		<RunTo X="-0.3524668" Y="-0.2714353" Z="-1.129797" /> <!-- Run back to the instance entrance -->
@@ -1809,9 +1809,9 @@
 		<!-- End vendor routine -->
 	</If>
 
-	<If Condition="Chance(14.2)" > <!-- Shadow Labrynth -->
+	<If Condition="Chance(14.2)" > <!-- Shadow Labyrinth -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
-		<CustomBehavior File="Message" Text="Heading to Steamvaults." LogColor="DeepSkyBlue" />
+		<CustomBehavior File="Message" Text="Heading to Shadow Labyrinth." LogColor="DeepSkyBlue" />
 
 		<If Condition="!(Me.MapId == 555)" >
 			<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
@@ -1833,7 +1833,7 @@
 			<If Condition="!(Me.MapId == 555)" >
 				<RunTo X="-3644.636" Y="4943.016" Z="-101.048" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-				<CustomBehavior File="Message" Text="Entering Shadow Labrynth." LogColor="Lime" />
+				<CustomBehavior File="Message" Text="Entering Shadow Labyrinth." LogColor="Lime" />
 				<CustomBehavior File="MyCTM" X="-3651.557" Y="4942.885" Z="-101.048" />
 				<CustomBehavior File="WaitTimer" WaitTime="5500" />
 				<While Condition="!(StyxWoW.IsInWorld)" >
@@ -1940,24 +1940,19 @@
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 
+		<!-- Bot ignores this vendor.
+				<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" />
+				<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
+				<ClearVendor /> -->  
 
-			<CustomBehavior File="MyCTM" X="-3558.459" Y="4943.008" Z="-101.0484" />
-			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="InteractWith" MobId="183294" MobState="DontCare" X="-3556.407" Y="4943.071" Z="-101.1189" />
-			<CustomBehavior File="MyCTM" X="-3533.682" Y="4944.602" Z="-101.396" />
-			<RunTo X="-3522.661" Y="4939.101" Z="-101.396" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="WaitTimer" WaitTime="1500" />
-			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-			<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
-			<ClearVendor />
-			<!-- Mailbox jump -->
-			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
-				<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+
 				<If Condition="Me.IsAlliance" >
 					<MoveTo Nav="Fly" X="-2944.846" Y="4009.452" Z="5.567399" />
 					<CustomBehavior File="ForcedDismount" />
@@ -1968,7 +1963,7 @@
 						</Mailboxes>
 					</SetMailbox>
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
 					<MoveTo Nav="Run" X="-2936.408" Y="4010.14" Z="-1.248712" />
 					<ClearMailbox />
 				</If>
@@ -1982,21 +1977,17 @@
 						</Mailboxes>
 					</SetMailbox>
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
 					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
 					<ClearMailbox />
 				</If>
-				<Else>
-					<CustomBehavior File="Message" Text="\nSince the mailbox is so far away, we will not mail this time.\nOnce your bags are low enough after vendoring, we will mail." LogColor="Green" />
-				</Else>
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 			</If>
-			<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" /> 
-			<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			<!-- End Vendor Routine -->
 		</If>
-		<!-- End Vendor Routine -->
-	</If>
 
 </While>
 </QuestOrder>
