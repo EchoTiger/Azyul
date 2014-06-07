@@ -1,5 +1,5 @@
 <HBProfile>
-<Name>Endless Mana Tombs Farm</Name>
+<Name>Mana Tombs - Gold Optimized</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Developer: Echo
@@ -35,6 +35,105 @@
 </Blackspots>
 	
 <QuestOrder>
+
+		<CustomBehavior File="Misc\RunLUA" Lua="
+			SLASH_SHOWSTATS1 = '/stats';
+			SLASH_EXTRASTATS1 = '/stats2';
+
+			starttime = GetTime();
+			currtime = GetTime();
+
+			lastdungeon = 0
+
+			scurrdungeon = GetTime();
+			ecurrdungeon = GetTime();
+
+			startingmoney = GetMoney();
+			endingmoney = GetMoney();
+			cstartingmoney = GetMoney();
+			beginningmoney = GetMoney();
+			progressmoney = math.floor(endingmoney-startingmoney);
+			vendorstartingmoney = GetMoney();
+			vendorendingmoney = GetMoney();
+			vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);
+
+			function calculate()
+				local itemSellPrice = 0
+				local itemID = 0
+				local itemBagCount = 1
+				local itemStackCount = 1
+
+				total_value_of_bags = 0
+
+				for i = 0, NUM_BAG_SLOTS do
+					bagslots = GetContainerNumSlots(i)
+						for bagslotscounter = 1, bagslots do
+						itemID = GetContainerItemID(i, bagslotscounter)
+
+							if (itemID == nil)  or (itemSellPrice == nill) then
+							else
+							itemSellPrice = select(11, GetItemInfo(itemID))
+							if (itemSellPrice == nil) then
+							itemSellPrice = 0
+							end
+							itemBagCount = select(2, GetContainerItemInfo(i, bagslotscounter))
+							total_value_of_bags = total_value_of_bags + (itemSellPrice * itemBagCount)
+							end
+						end
+				end
+				totals = GetCoinTextureString(total_value_of_bags);
+
+				currmoney = GetMoney();
+
+				currtime = GetTime();
+				
+				tdiftime = (currtime - starttime);
+
+				cdiftime = (currtime - scurrdungeon);
+
+
+
+				tHours = string.format(&quot;%02.f&quot;, math.floor(tdiftime/3600));
+				tMins = string.format(&quot;%02.f&quot;, math.floor(tdiftime/60 - (tHours*60)));
+				tSecs = string.format(&quot;%02.f&quot;, math.floor(tdiftime - tHours*3600 - tMins *60));
+
+				lHours = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/3600));
+				lMins = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/60 - (lHours*60)));
+				lSecs = string.format(&quot;%02.f&quot;, math.floor(lastdungeon - lHours*3600 - lMins *60));
+
+				cHours = string.format(&quot;%02.f&quot;, math.floor(cdiftime/3600));
+				cMins = string.format(&quot;%02.f&quot;, math.floor(cdiftime/60 - (cHours*60)));
+				cSecs = string.format(&quot;%02.f&quot;, math.floor(cdiftime - cHours*3600 - cMins *60));
+
+
+
+
+				cprogressmoney = math.floor(currmoney-cstartingmoney)
+				difmoney = math.floor(currmoney-beginningmoney)
+				completetotal = math.floor(difmoney+total_value_of_bags)
+				farmscore = math.floor((difmoney/tdiftime)/10)
+				farmscore2 = math.floor((completetotal/tdiftime)/10)
+
+				gph = GetCoinTextureString(math.floor(difmoney/(tdiftime/3600)))
+				gph2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/3600)))
+				gpm = GetCoinTextureString(math.floor(difmoney/(tdiftime/60 - (tHours*60))))
+				gpm2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/60 - (tHours*60))))
+			end
+
+			function SlashCmdList.SHOWSTATS()
+				calculate()
+				print(&quot;|cFF0099FF~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
+				print(&quot;|cFF0099FF~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
+				print(&quot;|cFF0099FF~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
+				print(&quot;|cFFF79A71Type /stats2 for more stats!|r&quot;)
+			end
+			function SlashCmdList.EXTRASTATS()
+				calculate()
+				print(&quot;|cFF0099FF~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
+			end
+
+			" />
+
 <If Condition="!(Me.MapId == 557)" >
 
 		<While Condition="!(Me.MapId == 530)" >
@@ -344,7 +443,6 @@
 		</If>
 	</If>
 
-
 	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
 		<If Condition="!(Me.MapId == 557)" >
 			<MoveTo X="-3082.419" Y="4943.42" Z="-101.0463" />
@@ -359,43 +457,60 @@
 		<!-- Begin Instance Grind -->
 		<If Condition="(Me.MapId == 557)" >
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+			<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" /> 
+			<CustomBehavior File="Misc\RunLUA" Lua="cstartingmoney = GetMoney();" /> 
+			<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" /> 
+
+			<DisableBehavior Name="Combat" />
 			<RunTo X="-16.80901" Y="1.030072" Z="-0.954329" />
-			<RunTo X="-43.51881" Y="3.135723" Z="-0.954329" />
-			<RunTo X="-38.45295" Y="-86.87414" Z="-2.21646" />
-			<RunTo X="-103.6541" Y="-75.71763" Z="-0.7120234" />
-			<RunTo X="-100.9519" Y="-101.9905" Z="-0.8627535" />
-			<RunTo X="-57.63459" Y="-1.085338" Z="-0.9480746" />
-			<RunTo X="-68.17797" Y="-67.64489" Z="-0.8830972" />
-			<RunTo X="-68.27274" Y="-120.7148" Z="-1.335112" />
+			<RunTo X="-68.0435" Y="-136.9184" Z="-0.9722393" /> //Boss
+			<EnableBehavior Name="Combat" />
+
 			<RunTo X="-68.3775" Y="-144.6523" Z="-0.9561071" />
-			<RunTo X="-61.43065" Y="-174.031" Z="-1.009858" />
-			<RunTo X="-63.12685" Y="-191.2188" Z="-1.703829" />
-			<RunTo X="-38.37562" Y="-198.4327" Z="-0.2362401" />
-			<RunTo X="-28.22877" Y="-219.2819" Z="0.1598396" />
-			<RunTo X="-98.29636" Y="-240.179" Z="0.2557542" />
-			<RunTo X="-118.4999" Y="-198.8715" Z="-1.125831" />
-			<RunTo X="-156.9006" Y="-223.5131" Z="-0.9543628" />
-			<RunTo X="-191.3721" Y="-226.9792" Z="-0.9543628" />
-			<RunTo X="-221.8884" Y="-217.1153" Z="-0.6970484" />
-			<RunTo X="-253.1384" Y="-177.5203" Z="-0.9527512" />
-			<RunTo X="-253.0494" Y="-162.5546" Z="-0.8904037" />
-			<RunTo X="-297.0168" Y="-203.995" Z="-1.683555" />
-			<RunTo X="-327.7555" Y="-225.4176" Z="-0.9572976" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+				<Hotspot X="-61.43065" Y="-174.031" Z="-1.009858" />
+				<Hotspot X="-63.12685" Y="-191.2188" Z="-1.703829" />
+				<Hotspot X="-38.37562" Y="-198.4327" Z="-0.2362401" />
+				<Hotspot X="-28.22877" Y="-219.2819" Z="0.1598396" />
+				<Hotspot X="-98.29636" Y="-240.179" Z="0.2557542" />
+				<Hotspot X="-118.4999" Y="-198.8715" Z="-1.125831" />
+				<Hotspot X="-156.9006" Y="-223.5131" Z="-0.9543628" />
+				<Hotspot X="-191.3721" Y="-226.9792" Z="-0.9543628" />
+				<Hotspot X="-221.8884" Y="-217.1153" Z="-0.6970484" />
+				<Hotspot X="-253.1384" Y="-177.5203" Z="-0.9527512" />
+				<Hotspot X="-253.0494" Y="-162.5546" Z="-0.8904037" />
+				<Hotspot X="-297.0168" Y="-203.995" Z="-1.683555" />
+				<Hotspot X="-327.7555" Y="-225.4176" Z="-0.9572976" />
+			</CustomBehavior>
+
 			<RunTo X="-356.417" Y="-223.2754" Z="-0.9587091" />
-			<RunTo X="-373.3704" Y="-107.2118" Z="-0.9600735" />
-			<RunTo X="-391.1584" Y="-64.5545" Z="-0.9784701" />
-			<RunTo X="-354.8347" Y="-69.68562" Z="-0.9602346" />
-			<RunTo X="-372.945" Y="-38.24996" Z="-0.9602063" />
-			<RunTo X="-372.7962" Y="7.895702" Z="7.917375" />
-			<RunTo X="-284.1698" Y="-8.572141" Z="16.68573" />
-			<RunTo X="-252.9226" Y="10.58179" Z="16.89592" />
-			<RunTo X="-183.3848" Y="8.853148" Z="16.73916" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+				<Hotspot X="-373.3704" Y="-107.2118" Z="-0.9600735" />
+				<Hotspot X="-391.1584" Y="-64.5545" Z="-0.9784701" />
+				<Hotspot X="-354.8347" Y="-69.68562" Z="-0.9602346" />
+				<Hotspot X="-372.945" Y="-38.24996" Z="-0.9602063" />
+				<Hotspot X="-372.7962" Y="7.895702" Z="7.917375" />
+				<Hotspot X="-284.1698" Y="-8.572141" Z="16.68573" />
+				<Hotspot X="-252.9226" Y="10.58179" Z="16.89592" />
+				<Hotspot X="-183.3848" Y="8.853148" Z="16.73916" />
+			</CustomBehavior>
+
 			<RunTo X="-165.0837" Y="8.724791" Z="16.78777" />
 			<RunTo X="-95.39121" Y="-51.76127" Z="16.78783" />
 			<CustomBehavior File="MyCTM" X="-78.64133" Y="-62.85951" Z="-0.6658678" />
+
 			<RunTo X="-0.7623158" Y="1.010749" Z="-0.9534453" />
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" /> 
+			<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" /> 
+			<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
+			<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+			
 			<CustomBehavior File="MyCTM" X="7.765326" Y="0.9056869" Z="-0.9534453" />
 			<CustomBehavior File="WaitTimer" WaitTime="5500" />
 			<While Condition="!(StyxWoW.IsInWorld)" >
