@@ -32,6 +32,17 @@
 </AvoidMobs>
 	
 <QuestOrder>
+
+<If Condition="(Me.MapId == 546)" >
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
+		<RunTo X="8.428388" Y="-18.08784" Z="-2.754004" /> <!-- Run to in front of instance -->
+		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+	    <CustomBehavior File="MyCTM" X="4.744936" Y="-10.7971" Z="-2.753272" />
+	    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<EnableBehavior Name="Pull" />
+</If>
+
 <If Condition="!(Me.MapId == 546)" >
 
 		<While Condition="!(Me.MapId == 530)" >

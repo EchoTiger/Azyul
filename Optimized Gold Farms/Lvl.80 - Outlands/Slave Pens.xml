@@ -31,6 +31,18 @@
 </AvoidMobs>
 	
 <QuestOrder>
+
+<If Condition="(Me.MapId == 547)" >
+	<DisableBehavior Name="Pull" />
+		<RunTo X="121.3587" Y="-130.6102" Z="-0.9406101" /> <!-- Last long run coordinate -->
+		<CustomBehavior File="MyCTM" X="119.4756" Y="-138.2408" Z="-0.5430195" />
+		<CustomBehavior File="WaitTimer" WaitTime="5500" />
+		<While Condition="!(StyxWoW.IsInWorld)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</While>
+	<EnableBehavior Name="Pull" />
+</If>
+
 <If Condition="!(Me.MapId == 547)" >
 
 		<While Condition="!(Me.MapId == 530)" >
