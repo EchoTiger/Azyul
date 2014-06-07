@@ -102,6 +102,28 @@
 		</While>
 	<EnableBehavior Name="Pull" />
 </If>
+<If Condition="(Me.MapId == 558)" > <!-- Auchenai Crypts -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
+		<RunTo X="-22.57451" Y="0.7706324" Z="-0.1192664" /> <!-- Long run to entrance -->
+		<CustomBehavior File="MyCTM" X="-29.3374" Y="0.3493616" Z="-0.1192664" />
+		<CustomBehavior File="WaitTimer" WaitTime="5500" />
+		<While Condition="!(StyxWoW.IsInWorld)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</While>
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 557)" > <!-- Mana Tombs -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
+		<RunTo X="-22.57451" Y="0.7706324" Z="-0.1192664" /> <!-- Long run to entrance -->
+		<CustomBehavior File="MyCTM" X="-29.3374" Y="0.3493616" Z="-0.1192664" />
+		<CustomBehavior File="WaitTimer" WaitTime="5500" />
+		<While Condition="!(StyxWoW.IsInWorld)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</While>
+	<EnableBehavior Name="Pull" />
+</If>
 
 
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Randomizer!|r\nNo |cFFCCCC00Farm Scores|r are currently availible for this profile.\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\nThere is currently no known issues with this profile.  Is you come across one, please report it to the forums.&quot;)" />
@@ -2142,6 +2164,9 @@
 	</If>
 
 	<If Condition="Chance(11.11)" > <!-- Mana Tombs -->
+		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
+		<CustomBehavior File="Message" Text="Heading to Mana Tombs." LogColor="DeepSkyBlue" />
+
 		<If Condition="!(Me.MapId == 557)" >
 			<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
 				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
