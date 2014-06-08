@@ -580,13 +580,11 @@
 			<RunTo X="5692.563" Y="2154.98" Z="798.1262" />
 
 			<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
-			<If Condition="Me.IsCasting" >
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
 					<CustomBehavior File="WaitTimer" WaitTime="1100" />
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
-			</If>
 
 			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 				<CustomBehavior File="FlyTo" X="5693.586" Y="2289.171" Z="841.021" />
