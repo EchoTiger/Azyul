@@ -603,13 +603,11 @@
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 
 			<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
-			<If Condition="Me.IsCasting" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
 				<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
 					<CustomBehavior File="WaitTimer" WaitTime="1100" />
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
-			</If>
 			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 				<CustomBehavior File="FlyTo" X="6845.171" Y="-4535.665" Z="524.4027" />
 				<CustomBehavior File="FlyTo" X="5870.244" Y="-3906.165" Z="493.8217" />

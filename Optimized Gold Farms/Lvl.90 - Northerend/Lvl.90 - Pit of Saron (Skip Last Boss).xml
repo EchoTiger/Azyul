@@ -606,13 +606,11 @@
 					<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
 
 					<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
-					<If Condition="Me.IsCasting" >
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
 							<CustomBehavior File="WaitTimer" WaitTime="1100" />
 							<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 						</If>
-					</If>
 
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 					<CustomBehavior File="MyCTM" X="425.3003" Y="212.2813" Z="529.9125" />
