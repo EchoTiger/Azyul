@@ -621,17 +621,18 @@
 
 			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="523.33" Y="-299.5683" Z="68.36054" />
-			    			<CustomBehavior File="WaitTimer" WaitTime="5500" />
-			<While Condition="!(StyxWoW.IsInWorld)" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			</While>
+				<CustomBehavior File="WaitTimer" WaitTime="5500" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-			    <MoveTo X="3766.764" Y="2059.474" Z="19.73799" />
-			    <MoveTo X="3773.85" Y="2135.026" Z="32.66523" />
+				<MoveTo X="3766.764" Y="2059.474" Z="19.73799" />
+				<MoveTo X="3773.85" Y="2135.026" Z="32.66523" />
 			</If>
 			<!--Instance Coordnation Complete -->
 		</While>
-					<!-- Force town sell. -->
+		<!-- Force town sell. -->
+
 		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
@@ -639,48 +640,60 @@
 			<RunTo X="3750.99" Y="2132.471" Z="46.86636" />
 			<RunTo X="3746.578" Y="2151.833" Z="50.47399" />
 			<RunTo X="3709.337" Y="2140.31" Z="55.26149" />
-			<If Condition="Me.IsAlliance">
-				<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
-				<CustomBehavior File="FlyTo" X="3493.006" Y="2001.989" Z="65.05994" />
+
+			<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
+			<If Condition="Me.IsCasting" >
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<RunTo X="3514.716" Y="2000.593" Z="64.89097" />
-				<SetVendor>
-					<Vendors>
-						<Vendor Name="Sentinel Amberline" Entry="27055" Type="Repair" X="3514.701" Y="1999.156" Z="64.8862" />
-					</Vendors>
-				</SetVendor>
-				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<ClearVendor />
-				<RunTo X="3476.981" Y="2004.02" Z="64.86568" />
-				<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
-			</If>
-			<If Condition="Me.IsHorde" >
-				<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
-				<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
-				<CustomBehavior File="FlyTo" X="3845.488" Y="1572.724" Z="86.69903" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<SetVendor>
-					<Vendor>
-						<Vendor Name="Siegesmith Gulda" Entry="27019" Type="Repair" X="3845.488" Y="1572.724" Z="86.69914" />
-					</Vendor>
-				</SetVendor>
-				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
-				<ClearVendor />
-				<RunTo X="3825.224" Y="1533.922" Z="89.72506" />
-				<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail -->
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="FlyTo" X="3766.959" Y="1540.819" Z="189.2775" />
+				<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
+					<CustomBehavior File="WaitTimer" WaitTime="1100" />
+					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+				</If>
 			</If>
 
-			<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<If Condition="Me.IsAlliance">
+					<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
+					<CustomBehavior File="FlyTo" X="3493.006" Y="2001.989" Z="65.05994" />
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+					<RunTo X="3514.716" Y="2000.593" Z="64.89097" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Sentinel Amberline" Entry="27055" Type="Repair" X="3514.701" Y="1999.156" Z="64.8862" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<ClearVendor />
+					<RunTo X="3476.981" Y="2004.02" Z="64.86568" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+				</If>
+				<If Condition="Me.IsHorde" >
+					<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
+					<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
+					<CustomBehavior File="FlyTo" X="3845.488" Y="1572.724" Z="86.69903" />
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+					<SetVendor>
+						<Vendor>
+							<Vendor Name="Siegesmith Gulda" Entry="27019" Type="Repair" X="3845.488" Y="1572.724" Z="86.69914" />
+						</Vendor>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+					<ClearVendor />
+					<RunTo X="3825.224" Y="1533.922" Z="89.72506" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail -->
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="FlyTo" X="3766.959" Y="1540.819" Z="189.2775" />
+				</If>
+
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			</If>
 
 		</If>
-</While>
+	</While>
 </QuestOrder>
 </HBProfile>

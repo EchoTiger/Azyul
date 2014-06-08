@@ -578,39 +578,51 @@
 			<RunTo X="5639.342" Y="2093.575" Z="798.0549" />
 			<RunTo X="5683.509" Y="2097.039" Z="798.0556" />
 			<RunTo X="5692.563" Y="2154.98" Z="798.1262" />
-			<CustomBehavior File="FlyTo" X="5693.586" Y="2289.171" Z="841.021" />
-			<CustomBehavior File="FlyTo" X="5842.477" Y="2221.141" Z="818.6159" />
-			<CustomBehavior File="FlyTo" X="5644.941" Y="864.0459" Z="757.019" />
-			<CustomBehavior File="FlyTo" X="5799.46" Y="728.1071" Z="666.0384" />
-			<CustomBehavior File="FlyTo" X="5784.907" Y="693.1074" Z="647.0889" />
-			<CustomBehavior File="RunMacro" Macro="/dismount" />
-			<CustomBehavior File="MyCTM" X="5792.684" Y="686.665" Z="647.0988" />
-			<CustomBehavior File="MyCTM" X="5797.183" Y="688.9267" Z="648.1799" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Rueben Lauren" Entry="35496" Type="Repair" X="5798.024" Y="689.6007" Z="647.0987" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-			<RunTo X="5788.56" Y="689.9357" Z="647.0991" />
-			<ClearVendor />
-			<SetMailbox>
-				<Mailboxes>
-					<Mailbox X="5800.739" Y="731.1019" Z="640.4297" />
-				</Mailboxes>
-			</SetMailbox>
-			<RunTo X="5800.739" Y="731.1019" Z="640.4297" />
-			<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
-			<RunTo X="5803.12" Y="718.2377" Z="640.7383" />
-			<ClearMailbox />
-			<CustomBehavior File="FlyTo" X="5777.883" Y="697.1115" Z="732.1843" />
-			<CustomBehavior File="FlyTo" X="5686.838" Y="905.868" Z="712.2202" />
-			<ClearVendor />
 
-			<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
+			<If Condition="Me.IsCasting" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
+					<CustomBehavior File="WaitTimer" WaitTime="1100" />
+					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+				</If>
+			</If>
+
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<CustomBehavior File="FlyTo" X="5693.586" Y="2289.171" Z="841.021" />
+				<CustomBehavior File="FlyTo" X="5842.477" Y="2221.141" Z="818.6159" />
+				<CustomBehavior File="FlyTo" X="5644.941" Y="864.0459" Z="757.019" />
+				<CustomBehavior File="FlyTo" X="5799.46" Y="728.1071" Z="666.0384" />
+				<CustomBehavior File="FlyTo" X="5784.907" Y="693.1074" Z="647.0889" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<CustomBehavior File="MyCTM" X="5792.684" Y="686.665" Z="647.0988" />
+				<CustomBehavior File="MyCTM" X="5797.183" Y="688.9267" Z="648.1799" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Rueben Lauren" Entry="35496" Type="Repair" X="5798.024" Y="689.6007" Z="647.0987" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<RunTo X="5788.56" Y="689.9357" Z="647.0991" />
+				<ClearVendor />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="5800.739" Y="731.1019" Z="640.4297" />
+					</Mailboxes>
+				</SetMailbox>
+				<RunTo X="5800.739" Y="731.1019" Z="640.4297" />
+				<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+				<RunTo X="5803.12" Y="718.2377" Z="640.7383" />
+				<ClearMailbox />
+				<CustomBehavior File="FlyTo" X="5777.883" Y="697.1115" Z="732.1843" />
+				<CustomBehavior File="FlyTo" X="5686.838" Y="905.868" Z="712.2202" />
+				<ClearVendor />
+
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			</If>
 
 		</If>
 	</While>

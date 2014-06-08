@@ -570,82 +570,93 @@
 			    <MoveTo  X="106.699" Y="-37.19381" Z="118.8866" /> <!-- Extra coordinate because bot didn't loot during testing -->
 			    <CustomBehavior File="UserSettings" LootMobs="True"/>
 			    <CustomBehavior File="WaitTimer" WaitTime="1500" />
-				<MoveTo X="180.117" Y="-15.40531" Z="134.9601" />
+			    <MoveTo X="180.117" Y="-15.40531" Z="134.9601" />
 
 
-				<!-- Different aggro method for the landing mob -->
-				<DisableBehavior Name="Combat" />
-				<MoveTo X="242.9421" Y="14.83746" Z="135.1886" />
-				<MoveTo X="216.0704" Y="7.687538" Z="178.5074" />
-				<MoveTo X="250.8247" Y="-11.3468" Z="178.5074" />
-				<MoveTo X="270.8568" Y="-108.3208" Z="190.3894" />
-				<MoveTo X="248.751" Y="-157.2589" Z="190.4111" />
-				<CustomBehavior File="WaitTimer" WaitTime="5000" />
-				<MoveTo X="154.3276" Y="-178.3493" Z="180.5018" />
-				<EnableBehavior Name="Combat" />
+			    <!-- Different aggro method for the landing mob -->
+			    <DisableBehavior Name="Combat" />
+			    <MoveTo X="242.9421" Y="14.83746" Z="135.1886" />
+			    <MoveTo X="216.0704" Y="7.687538" Z="178.5074" />
+			    <MoveTo X="250.8247" Y="-11.3468" Z="178.5074" />
+			    <MoveTo X="270.8568" Y="-108.3208" Z="190.3894" />
+			    <MoveTo X="248.751" Y="-157.2589" Z="190.4111" />
+			    <CustomBehavior File="WaitTimer" WaitTime="5000" />
+			    <MoveTo X="154.3276" Y="-178.3493" Z="180.5018" />
+			    <EnableBehavior Name="Combat" />
 
-				<MoveTo X="244.031" Y="-336.4045" Z="180.4473" /> <!-- Boss -->
-				<CustomBehavior File="WaitTimer" WaitTime="26000" />
+			    <MoveTo X="244.031" Y="-336.4045" Z="180.4473" /> <!-- Boss -->
+			    <CustomBehavior File="WaitTimer" WaitTime="26000" />
 
-				<!-- Leave coordinates -->
-				<RunTo X="156.7793" Y="-171.9999" Z="180.5006"  />
+			    <!-- Leave coordinates -->
+			    <RunTo X="156.7793" Y="-171.9999" Z="180.5006"  />
 			    <CustomBehavior File="MyCTM" X="138.1159" Y="-114.84" Z="88.37748" />
 			    <CustomBehavior File="MyCTM" X="149.0161" Y="-147.3957" Z="94.20318" />
-				<CustomBehavior File="MyCTM" X="150.1802" Y="-160.539" Z="7.517741" />
-				<CustomBehavior File="MyCTM" X="186.7866" Y="-151.26" Z="10.72245" />
-				<CustomBehavior File="MyCTM" X="182.8658" Y="-152.0624" Z="10.86669" />
-				<RunTo X="160.7596" Y="-87.45521" Z="12.55195" />
-				<!-- -->
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
-				<CustomBehavior File="RunMacro" Macro="/sw pause" />
+			    <CustomBehavior File="MyCTM" X="150.1802" Y="-160.539" Z="7.517741" />
+			    <CustomBehavior File="MyCTM" X="186.7866" Y="-151.26" Z="10.72245" />
+			    <CustomBehavior File="MyCTM" X="182.8658" Y="-152.0624" Z="10.86669" />
+			    <RunTo X="160.7596" Y="-87.45521" Z="12.55195" />
+			    <!-- -->
+			    <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+			    <CustomBehavior File="RunMacro" Macro="/sw pause" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
-				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
+			    <CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
+			    <CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+			    <CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
+			    <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+			    <CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
+			    <CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
+			    <CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
 
-				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
-				<CustomBehavior File="MyCTM" X="146.4876" Y="-88.77183" Z="12.55122" />
-							<CustomBehavior File="WaitTimer" WaitTime="5500" />
-			<While Condition="!(StyxWoW.IsInWorld)" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			</While>
-				<!--Instance Coordnation Complete -->
+			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			    <CustomBehavior File="MyCTM" X="146.4876" Y="-88.77183" Z="12.55122" />
+			    <CustomBehavior File="WaitTimer" WaitTime="5500" />
+			    <While Condition="!(StyxWoW.IsInWorld)" >
+			    	<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			    </While>
+			    <!--Instance Coordnation Complete -->
 
 
-				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
-					<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
-					<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
-					<RunTo X="1099.184" Y="-4904.298" Z="41.2481" />
-					<CustomBehavior File="FlyTo" X="967.9332" Y="-4959.149" Z="117.8148" />
-					<CustomBehavior File="FlyTo" DestName="Kamagua" X="736.4531" Y="-2919.483" Z="7.2804" />
+			    <If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			    	<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
+			    	<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+			    	<RunTo X="1099.184" Y="-4904.298" Z="41.2481" />
 
-					<SetVendor>
-						<Vendors>
-							<Vendor Name="Deniigi" Entry="27151" Type="Repair" X="801.2076" Y="-2948.573" Z="6.660583" />
-						</Vendors>
-					</SetVendor>
-					<SetMailbox>
-						<Mailboxes>
-							<Mailbox X="737.4531" Y="-2920.483" Z="7.2804" />
-						</Mailboxes>
-					</SetMailbox>
+			    	<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
+			    	<If Condition="Me.IsCasting" >
+			    		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			    		<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
+			    			<CustomBehavior File="WaitTimer" WaitTime="1100" />
+			    			<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+			    		</If>
+			    	</If>
+			    	
+			    	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			    		<CustomBehavior File="FlyTo" X="967.9332" Y="-4959.149" Z="117.8148" />
+			    		<CustomBehavior File="FlyTo" DestName="Kamagua" X="736.4531" Y="-2919.483" Z="7.2804" />
 
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
-					<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
-					<ClearMailbox />
-					<ClearVendor />
-					<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
+			    		<SetVendor>
+			    			<Vendors>
+			    				<Vendor Name="Deniigi" Entry="27151" Type="Repair" X="801.2076" Y="-2948.573" Z="6.660583" />
+			    			</Vendors>
+			    		</SetVendor>
+			    		<SetMailbox>
+			    			<Mailboxes>
+			    				<Mailbox X="737.4531" Y="-2920.483" Z="7.2804" />
+			    			</Mailboxes>
+			    		</SetMailbox>
 
-					<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
-					<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-					<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			    		<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
+			    		<CustomBehavior File="Message" Text="Returning to Instance" LogColor="Lime" />
+			    		<ClearMailbox />
+			    		<ClearVendor />
+			    		<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
 
-				</If>
+			    		<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+			    		<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+			    		<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+			    		<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			    	</If>
+			    </If>
 			</If>
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 		</While>
