@@ -499,12 +499,14 @@
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
+				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf" />
 			    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 					<Hotspot X="4949.285" Y="2220.286" Z="638.733" />
 					<Hotspot X="5025.729" Y="2157.038" Z="641.4286" />
 					<Hotspot X="5158.983" Y="2134.435" Z="652.2718" />
 			    </CustomBehavior>
 			    //
+			    <CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf" />
 			    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 			    	<Hotspot X="5214.833" Y="2176.601" Z="652.276" />
 					<Hotspot X="5141.462" Y="2299.482" Z="665.4296" />
@@ -516,6 +518,7 @@
 				<MoveTo X="5219.134" Y="2355.058" Z="668.1611" />
 				<MoveTo X="5215.247" Y="2393.873" Z="668.1611" />
 
+				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf" />
 			    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 					<Hotspot X="5254.924" Y="2460.375" Z="677.9609" />
 					<Hotspot X="5257.022" Y="2551.821" Z="675.2283" />
@@ -526,6 +529,7 @@
 				<MoveTo X="5318.403" Y="2509.544" Z="686.0679" />
 				<MoveTo X="5340.788" Y="2528.873" Z="677.9619" />
 
+				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf" />
 			    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 					<Hotspot X="5322.511" Y="2544.449" Z="675.2291" />
 					<Hotspot X="5346.5" Y="2452.666" Z="686.4702" />
@@ -544,6 +548,7 @@
 				</Safespots>
 			</CustomBehavior>
 
+			<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf" />
 		    <RunTo X="4964.0605" Y="2237.5291" Z="638.8666"  />
 
 			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
@@ -572,39 +577,50 @@
 			<RunTo X="5639.342" Y="2093.575" Z="798.0549" />
 			<RunTo X="5683.509" Y="2097.039" Z="798.0556" />
 			<RunTo X="5692.563" Y="2154.98" Z="798.1262" />
-			<CustomBehavior File="FlyTo" X="5693.586" Y="2289.171" Z="841.021" />
-			<CustomBehavior File="FlyTo" X="5842.477" Y="2221.141" Z="818.6159" />
-			<CustomBehavior File="FlyTo" X="5644.941" Y="864.0459" Z="757.019" />
-			<CustomBehavior File="FlyTo" X="5799.46" Y="728.1071" Z="666.0384" />
-			<CustomBehavior File="FlyTo" X="5784.907" Y="693.1074" Z="647.0889" />
-			<CustomBehavior File="RunMacro" Macro="/dismount" />
-			<CustomBehavior File="MyCTM" X="5792.684" Y="686.665" Z="647.0988" />
-			<CustomBehavior File="MyCTM" X="5797.183" Y="688.9267" Z="648.1799" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Rueben Lauren" Entry="35496" Type="Repair" X="5798.024" Y="689.6007" Z="647.0987" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-			<RunTo X="5788.56" Y="689.9357" Z="647.0991" />
-			<ClearVendor />
-			<SetMailbox>
-				<Mailboxes>
-					<Mailbox X="5800.739" Y="731.1019" Z="640.4297" />
-				</Mailboxes>
-			</SetMailbox>
-			<RunTo X="5800.739" Y="731.1019" Z="640.4297" />
-			<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
-			<RunTo X="5803.12" Y="718.2377" Z="640.7383" />
-			<ClearMailbox />
-			<CustomBehavior File="FlyTo" X="5777.883" Y="697.1115" Z="732.1843" />
-			<CustomBehavior File="FlyTo" X="5686.838" Y="905.868" Z="712.2202" />
-			<ClearVendor />
 
-			<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+			<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
+					<CustomBehavior File="WaitTimer" WaitTime="1100" />
+					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+				</If>
+
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<CustomBehavior File="FlyTo" X="5693.586" Y="2289.171" Z="841.021" />
+				<CustomBehavior File="FlyTo" X="5842.477" Y="2221.141" Z="818.6159" />
+				<CustomBehavior File="FlyTo" X="5644.941" Y="864.0459" Z="757.019" />
+				<CustomBehavior File="FlyTo" X="5799.46" Y="728.1071" Z="666.0384" />
+				<CustomBehavior File="FlyTo" X="5784.907" Y="693.1074" Z="647.0889" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<CustomBehavior File="MyCTM" X="5792.684" Y="686.665" Z="647.0988" />
+				<CustomBehavior File="MyCTM" X="5797.183" Y="688.9267" Z="648.1799" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Rueben Lauren" Entry="35496" Type="Repair" X="5798.024" Y="689.6007" Z="647.0987" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<RunTo X="5788.56" Y="689.9357" Z="647.0991" />
+				<ClearVendor />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="5800.739" Y="731.1019" Z="640.4297" />
+					</Mailboxes>
+				</SetMailbox>
+				<RunTo X="5800.739" Y="731.1019" Z="640.4297" />
+				<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+				<RunTo X="5803.12" Y="718.2377" Z="640.7383" />
+				<ClearMailbox />
+				<CustomBehavior File="FlyTo" X="5777.883" Y="697.1115" Z="732.1843" />
+				<CustomBehavior File="FlyTo" X="5686.838" Y="905.868" Z="712.2202" />
+				<ClearVendor />
+
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			</If>
 
 		</If>
 	</While>
