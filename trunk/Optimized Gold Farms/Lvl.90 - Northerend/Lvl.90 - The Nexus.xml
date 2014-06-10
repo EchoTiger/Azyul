@@ -652,19 +652,22 @@
 					<CustomBehavior File="FlyTo" X="3500.86" Y="6272.117" Z="296.2089" />
 					<CustomBehavior File="FlyTo" X="3040.02" Y="5984.059" Z="251.9397" />
 					<If Condition="Me.IsHorde" >
-						<CustomBehavior File="FlyTo" X="2713.999" Y="6052.944" Z="160.6471" />
-						<CustomBehavior File="FlyTo" X="2769.476" Y="6123.135" Z="91.70531" />
+						<MoveTo Nav="Fly" X="4469.471" Y="5769.258" Z="112.6388" />
 						<SetMailbox>
 							<Mailboxes>
-								<Mailbox X="2730.556" Y="6015.366" Z="33.46182" />
+								<Mailbox Nav="Fly" X="4502.223" Y="5716.38" Z="81.48362" />
 							</Mailboxes>
 						</SetMailbox>
-						<RunTo X="2793.023" Y="6145.093" Z="84.35379" />
-						<CustomBehavior File="ForceSetVendor" DoMail="True" />
-						<RunTo X="2769.476" Y="6123.135" Z="91.70531" />
-						<ClearMailbox/>
-						<CustomBehavior File="FlyTo" X="2713.999" Y="6052.944" Z="160.6471" />
-						<CustomBehavior File="FlyTo" X="2941.957" Y="6014.226" Z="228.8569" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Nav="Fly" Name="Vrok" Entry="27063" Type="Repair" X="4507.342" Y="5722.407" Z="81.51395" />
+							</Vendors>
+						</SetVendor>
+
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+						<MoveTo Nav="Fly" X="4469.471" Y="5769.258" Z="112.6388" />
+						<ClearMailbox />
+						<ClearVendor />
 					</If>
 					<If Condition="Me.IsAlliance" >
 						<CustomBehavior File="FlyTo" X="2830.381" Y="5640.667" Z="186.129" />
