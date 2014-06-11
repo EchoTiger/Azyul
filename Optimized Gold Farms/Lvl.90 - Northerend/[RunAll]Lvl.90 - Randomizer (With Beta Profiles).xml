@@ -109,7 +109,7 @@
 </If>
 
 
-<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFWelcome to the|r |cFFC2DAF3Lvl.90 Randomizer (with beta profiles)!|r\nNo |cFFCCCC00Farm Scores|r are currently availible for this profile.\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\nPlease note that this Randomizer runs profiles that are considered unreliable.  Issues may occur!&quot;)" />
+<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Welcome to the|r |cFFC2DAF3Lvl.90 Randomizer (with beta profiles)!|r\nNo |cFFCCCC00Farm Scores|r are currently availible for this profile.\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\nPlease note that this Randomizer runs profiles that are considered unreliable.  Issues may occur!&quot;)" />
 
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
@@ -175,14 +175,14 @@
 			end
 			function SlashCmdList.SHOWSTATS()
 				calculate()
-				print(&quot;|cFF0099FF~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
-				print(&quot;|cFF0099FF~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
-				print(&quot;|cFF0099FF~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
+				print(&quot;|cFFF0F0F0~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
+				print(&quot;|cFFF0F0F0~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
+				print(&quot;|cFFF0F0F0~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
 				print(&quot;|cFFF79A71Type /stats2 for more stats!|r&quot;)
 			end
 			function SlashCmdList.EXTRASTATS()
 				calculate()
-				print(&quot;|cFF0099FF~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
+				print(&quot;|cFFF0F0F0~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
 			end" />
 
 
@@ -512,7 +512,7 @@
 				<DisableBehavior Name="Combat" /> <!-- Avoid spiders on second level -->
 
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
 				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
@@ -615,13 +615,13 @@
 				<MoveTo X="-507.212" Y="-511.9265" Z="11.04625" />
 				<MoveTo X="-516.8404" Y="-487.5807" Z="11.00653" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Instance completed. In-game timer paused.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 			<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
@@ -688,7 +688,7 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 			</If>
 		</If>
 	</If>
@@ -713,7 +713,7 @@
 			</If>
 			<If Condition="(Me.MapId == 604)" >
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
 				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
@@ -795,12 +795,12 @@
 
 				<MoveTo X="1947.211" Y="681.9457" Z="135.4161" />
 				<MoveTo X="1945.433" Y="663.1171" Z="135.2176" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Instance completed. In-game timer paused.&quot;)" />
 
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
@@ -868,7 +868,7 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 
 				<CustomBehavior File="FlyTo" X="6002.019" Y="-3651.332" Z="491.8026" />
 			</If>
@@ -894,7 +894,7 @@
 			<If Condition="(Me.MapId == 602)" >
 
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
 				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
@@ -1010,12 +1010,12 @@
 				<RunTo X="1313.052" Y="99.55944" Z="40.18031" /> <!-- No mobs pulled here. -->
 				<RunTo X="1331.879" Y="247.3523" Z="52.58322" /> <!-- No mobs pulled here. -->
 
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Instance completed. In-game timer paused.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
@@ -1093,7 +1093,7 @@
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
 			<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 		</If>
 		</If>
 	</If>
@@ -1127,7 +1127,7 @@
 			<If Condition="(Me.MapId == 576)" >
 
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
 				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
@@ -1218,13 +1218,13 @@
 				    <MoveTo X="146.0792" Y="-10.1207" Z="-16.6367"  />
 				    <MoveTo X="146.0642" Y="-13.9860" Z="-16.6367"  />
 
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Instance completed. In-game timer paused.&quot;)" />
 					<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 					<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 					<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
 					<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 					<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 					<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
 					<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
@@ -1315,7 +1315,7 @@
 					<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
 					<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
 					<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 				</If>
 			</If>
 		</If>
@@ -1347,7 +1347,7 @@
 			<If Condition="(Me.MapId == 658)" >
 
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
 				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
@@ -1414,13 +1414,13 @@
 				<CustomBehavior File="WaitTimer" WaitTime="5000" />
 				<CustomBehavior File="NoCombatMoveTo" X="441.2151" Y="212.344" Z="528.7101" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Instance completed. In-game timer paused.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
@@ -1481,7 +1481,7 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 			</If>
 	</If>
 
@@ -1511,7 +1511,7 @@
 			<If Condition="(Me.MapId == 619)" >
 
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
 				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
@@ -1616,13 +1616,13 @@
 				<MoveTo X="516.2031" Y="-354.2806" Z="45.94658" />
 				<MoveTo X="523.0122" Y="-309.9897" Z="60.57951" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Instance completed. In-game timer paused.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
@@ -1695,7 +1695,7 @@
 					<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
 					<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
 					<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 				</If>
 
 			</If>
@@ -1723,7 +1723,7 @@
 			<If Condition="(Me.MapId == 574)" >
 
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFIn-game timer started.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
 				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
@@ -1820,13 +1820,13 @@
 				<CustomBehavior File="MyCTM" X="182.8658" Y="-152.0624" Z="10.86669" />
 				<RunTo X="160.7596" Y="-87.45521" Z="12.55195" />
 				<!-- -->
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFInstance completed. In-game timer paused.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Instance completed. In-game timer paused.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
 				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
@@ -1879,7 +1879,7 @@
 			    		<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
 			    		<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
 			    		<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-			    		<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			    		<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 			    	</If>
 			    </If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
