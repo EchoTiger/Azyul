@@ -333,16 +333,18 @@
 </If>
 
 <While Condition="true" >
-	<If Condition="!(Me.MapId == 556)" >
-		<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
-			<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
-			<CustomBehavior File="FlyTo" X="-3363.273" Y="4831.82" Z="-88.0773" />
-			<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
-		</If>
+	<If Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<If Condition="!(Me.MapId == 556)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+				<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+				<CustomBehavior File="FlyTo" X="-3363.273" Y="4831.82" Z="-88.0773" />
+				<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+			</If>
 
-		<If Condition="Me.Location.Distance(new WoWPoint(-3361.789, 4704.56, -101.2225)) &gt;= 47" > <!-- Outside of pre-instance -->
-			<MoveTo Nav="Fly" X="-3362.458" Y="4756.291" Z="-101.3952" />
-			<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+			<If Condition="Me.Location.Distance(new WoWPoint(-3361.789, 4704.56, -101.2225)) &gt;= 47" > <!-- Outside of pre-instance -->
+				<MoveTo Nav="Fly" X="-3362.458" Y="4756.291" Z="-101.3952" />
+				<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+			</If>
 		</If>
 	</If>
 
@@ -360,7 +362,6 @@
 		<!-- Begin Instance Grind -->
 		<If Condition="(Me.MapId == 556)" >
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" /> <!-- Wait for mobs to position. -->
 			<MoveTo X="29.36919" Y="5.17807" Z="0.005755" />
 			<MoveTo X="42.56845" Y="13.54576" Z="0.008236584" />
 			<MoveTo X="38.90885" Y="39.33591" Z="0.008236584" />
