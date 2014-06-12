@@ -38,6 +38,105 @@
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFFF0000! WARNING !|r\nThere is an optimization issue in this profile!\nSome NPCs in this dungeon will Mind-Control you causing you to drop all aggro'd mobs.&quot;)" />
 <CustomBehavior File="Message" Text="! WARNING !\nThere is an optimization issue in this profile!\nSome NPCs in this dungeon will Mind-Control you causing you to drop all aggro'd mobs." LogColor="Red" />
 
+		<CustomBehavior File="Misc\RunLUA" Lua="
+			SLASH_SHOWSTATS1 = '/stats';
+			SLASH_EXTRASTATS1 = '/stats2';
+
+			starttime = GetTime();
+			currtime = GetTime();
+
+			lastdungeon = 0
+
+			scurrdungeon = GetTime();
+			ecurrdungeon = GetTime();
+
+			startingmoney = GetMoney();
+			endingmoney = GetMoney();
+			cstartingmoney = GetMoney();
+			beginningmoney = GetMoney();
+			progressmoney = math.floor(endingmoney-startingmoney);
+			vendorstartingmoney = GetMoney();
+			vendorendingmoney = GetMoney();
+			vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);
+
+			function calculate()
+				local itemSellPrice = 0
+				local itemID = 0
+				local itemBagCount = 1
+				local itemStackCount = 1
+
+				total_value_of_bags = 0
+
+				for i = 0, NUM_BAG_SLOTS do
+					bagslots = GetContainerNumSlots(i)
+						for bagslotscounter = 1, bagslots do
+						itemID = GetContainerItemID(i, bagslotscounter)
+
+							if (itemID == nil)  or (itemSellPrice == nill) then
+							else
+							itemSellPrice = select(11, GetItemInfo(itemID))
+							if (itemSellPrice == nil) then
+							itemSellPrice = 0
+							end
+							itemBagCount = select(2, GetContainerItemInfo(i, bagslotscounter))
+							total_value_of_bags = total_value_of_bags + (itemSellPrice * itemBagCount)
+							end
+						end
+				end
+				totals = GetCoinTextureString(total_value_of_bags);
+
+				currmoney = GetMoney();
+
+				currtime = GetTime();
+				
+				tdiftime = (currtime - starttime);
+
+				cdiftime = (currtime - scurrdungeon);
+
+
+
+				tHours = string.format(&quot;%02.f&quot;, math.floor(tdiftime/3600));
+				tMins = string.format(&quot;%02.f&quot;, math.floor(tdiftime/60 - (tHours*60)));
+				tSecs = string.format(&quot;%02.f&quot;, math.floor(tdiftime - tHours*3600 - tMins *60));
+
+				lHours = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/3600));
+				lMins = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/60 - (lHours*60)));
+				lSecs = string.format(&quot;%02.f&quot;, math.floor(lastdungeon - lHours*3600 - lMins *60));
+
+				cHours = string.format(&quot;%02.f&quot;, math.floor(cdiftime/3600));
+				cMins = string.format(&quot;%02.f&quot;, math.floor(cdiftime/60 - (cHours*60)));
+				cSecs = string.format(&quot;%02.f&quot;, math.floor(cdiftime - cHours*3600 - cMins *60));
+
+
+
+
+				cprogressmoney = math.floor(currmoney-cstartingmoney)
+				difmoney = math.floor(currmoney-beginningmoney)
+				completetotal = math.floor(difmoney+total_value_of_bags)
+				farmscore = math.floor((difmoney/tdiftime)/10)
+				farmscore2 = math.floor((completetotal/tdiftime)/10)
+
+				gph = GetCoinTextureString(math.floor(difmoney/(tdiftime/3600)))
+				gph2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/3600)))
+				gpm = GetCoinTextureString(math.floor(difmoney/(tdiftime/60 - (tHours*60))))
+				gpm2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/60 - (tHours*60))))
+			end
+
+			function SlashCmdList.SHOWSTATS()
+				calculate()
+				print(&quot;|cFFF0F0F0~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
+				print(&quot;|cFFF0F0F0~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
+				print(&quot;|cFFF0F0F0~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
+				print(&quot;|cFFF79A71Type /stats2 for more stats!|r&quot;)
+			end
+			function SlashCmdList.EXTRASTATS()
+				calculate()
+				print(&quot;|cFFF0F0F0~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
+			end
+
+			" />
+
+
 <If Condition="!(Me.MapId == 556)" >
 
 		<While Condition="!(Me.MapId == 530)" >
@@ -336,16 +435,18 @@
 </If>
 
 <While Condition="true" >
-	<If Condition="!(Me.MapId == 556)" >
-		<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
-			<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
-			<CustomBehavior File="FlyTo" X="-3363.273" Y="4831.82" Z="-88.0773" />
-			<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
-		</If>
+	<If Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<If Condition="!(Me.MapId == 556)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+				<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+				<CustomBehavior File="FlyTo" X="-3363.273" Y="4831.82" Z="-88.0773" />
+				<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+			</If>
 
-		<If Condition="Me.Location.Distance(new WoWPoint(-3361.789, 4704.56, -101.2225)) &gt;= 47" > <!-- Outside of pre-instance -->
-			<MoveTo Nav="Fly" X="-3362.458" Y="4756.291" Z="-101.3952" />
-			<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+			<If Condition="Me.Location.Distance(new WoWPoint(-3361.789, 4704.56, -101.2225)) &gt;= 47" > <!-- Outside of pre-instance -->
+				<MoveTo Nav="Fly" X="-3362.458" Y="4756.291" Z="-101.3952" />
+				<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+			</If>
 		</If>
 	</If>
 
@@ -363,7 +464,9 @@
 		<!-- Begin Instance Grind -->
 		<If Condition="(Me.MapId == 556)" >
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" /> <!-- Wait for mobs to position. -->
+			<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="cstartingmoney = GetMoney();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
 
 
 			<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
@@ -431,7 +534,12 @@
 			<CustomBehavior File="MyCTM" X="44.83607" Y="127.225" Z="0.2093463" /> //CTM just in case
 			<RunTo X="2.589283" Y="0.3863665" Z="0.005763793" /> //Before instance
 
-
+			<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" />
+			<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 			<CustomBehavior File="MyCTM" X="-8.710955" Y="-0.1144782" Z="0.005999689" />
