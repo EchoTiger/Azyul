@@ -10,15 +10,15 @@
 <MaxLevel>91</MaxLevel>
 
 <MailGrey>False</MailGrey>
-<MailWhite>True</MailWhite>
-<MailGreen>True</MailGreen>
-<MailBlue>True</MailBlue>
+<MailWhite>False</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
 <MailPurple>True</MailPurple>
 
 <SellGrey>True</SellGrey>
-<SellWhite>False</SellWhite>
-<SellGreen>False</SellGreen>
-<SellBlue>False</SellBlue>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
 <SellPurple>False</SellPurple>
 
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
@@ -536,7 +536,8 @@
 		<CustomBehavior File="ForcedMount" MountType="Flying" />
 		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
 		<If Condition="(Me.FreeBagSlots &lt;= 10)" > <!-- Mail if player still has 10 or less slots -->
-		<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
 			<SetMailbox>
 				<Mailboxes>
 						<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
