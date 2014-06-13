@@ -124,6 +124,28 @@
 		</While>
 	<EnableBehavior Name="Pull" />
 </If>
+<If Condition="(Me.MapId == 556)" > <!-- Sethekk Halls -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
+		<RunTo X="2.589283" Y="0.3863665" Z="0.005763793" /> 
+		<CustomBehavior File="MyCTM" X="-8.710955" Y="-0.1144782" Z="0.005999689" />
+		<CustomBehavior File="WaitTimer" WaitTime="5500" />
+		<While Condition="!(StyxWoW.IsInWorld)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</While>
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId = 553)" > <!-- The Botanica -->
+	<DisableBehavior Name="Pull" />
+	<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+	<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Message" Text="Deleting all Bottled Nethergon potions and Arcane Tomes." LogColor="Azure" />
+	<EnableBehavior Name="Pull" />
+</If>
 
 
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Welcome to the|r |cFFC2DAF3Randomizer!|r\nNo |cFFCCCC00Farm Scores|r are currently availible for this profile.\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\nThere is currently no known issues with this profile.  Is you come across one, please report it to the forums.&quot;)" />
@@ -498,7 +520,7 @@
 
 <While Condition="true" >
 
-	<If Condition="Chance(10)" > <!-- Blood Furnace -->
+	<If Condition="Chance(9)" > <!-- Blood Furnace -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Blood Furnace." LogColor="DeepSkyBlue" />
 
@@ -667,7 +689,7 @@
 		</If>
 	</If>
 
-	<If Condition="Chance(10)" > <!-- Hellfire Ramparts -->
+	<If Condition="Chance(9)" > <!-- Hellfire Ramparts -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Hellfire Ramparts." LogColor="DeepSkyBlue" />
 
@@ -816,7 +838,7 @@
 		</If>
 	</If>
 
-	<If Condition="Chance(10)" > <!-- Shattered Halls -->
+	<If Condition="Chance(9)" > <!-- Shattered Halls -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Shattered Halls." LogColor="DeepSkyBlue" />
 
@@ -1015,7 +1037,7 @@
 		</If>
 	</If>
 
-	<If Condition="Chance(10)" > <!-- Slave Pens -->
+	<If Condition="Chance(9)" > <!-- Slave Pens -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Slave Pens." LogColor="DeepSkyBlue" />
 
@@ -1296,7 +1318,7 @@
 		<!-- End vendor routine -->
 	</If>
 
-	<If Condition="Chance(10)" > <!-- Underbog -->
+	<If Condition="Chance(9)" > <!-- Underbog -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Underbog." LogColor="DeepSkyBlue" />
 
@@ -1563,7 +1585,7 @@
 		<!-- End vendor routine -->
 	</If>
 
-	<If Condition="Chance(10)" > <!-- Steamvaults -->
+	<If Condition="Chance(9)" > <!-- Steamvaults -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Steamvaults." LogColor="DeepSkyBlue" />
 
@@ -1831,7 +1853,7 @@
 		<!-- End vendor routine -->
 	</If>
 
-	<If Condition="Chance(10)" > <!-- Shadow Labyrinth -->
+	<If Condition="Chance(9)" > <!-- Shadow Labyrinth -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Shadow Labyrinth." LogColor="DeepSkyBlue" />
 
@@ -2011,7 +2033,7 @@
 			<!-- End Vendor Routine -->
 	</If>
 
-	<If Condition="Chance(10)" > <!-- Auchenai Crypts -->
+	<If Condition="Chance(9)" > <!-- Auchenai Crypts -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Auchenai Crypts." LogColor="DeepSkyBlue" />
 
@@ -2163,7 +2185,7 @@
 			<!-- End Vendor Routine -->
 	</If>
 
-	<If Condition="Chance(10)" > <!-- Mana Tombs -->
+	<If Condition="Chance(9)" > <!-- Mana Tombs -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Mana Tombs." LogColor="DeepSkyBlue" />
 
@@ -2310,7 +2332,7 @@
 			<!-- End Vendor Routine -->
 	</If>
 
-	<If Condition="Chance(10)" > <!-- Sethekk Halls -->
+	<If Condition="Chance(9)" > <!-- Sethekk Halls -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Mana Tombs." LogColor="DeepSkyBlue" />
 
@@ -2484,6 +2506,149 @@
 			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 		</If>
 		<!-- End Vendor Routine -->
+	</If>
+
+	<If Condition="Chance(9)" > <!-- The Botanica -->
+		<If Condition="!(Me.MapId == 553)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(3366.32, 1518.864, 182.6719)) &gt;= 56" >				
+				<MoveTo Nav="Fly" X="3403.443" Y="1489.909" Z="182.8369" />
+				<CustomBehavior File="ForcedDismount" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 10)" >
+			<!--Start Endless Cycle -->
+			<If Condition="!(Me.MapId == 553)" >
+				<MoveTo X="3410.782" Y="1485.11" Z="182.8369" />
+				<CustomBehavior File="MyCTM" X="3416.718" Y="1481.022" Z="182.8369" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<!--Instance Navigation Start -->
+			<If Condition="(Me.MapId == 553)" >
+				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="cstartingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+				<MoveTo X="1.399361" Y="19.53091" Z="-5.708767" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="-1.132295" Y="61.46199" Z="-5.662589" />
+					<Hotspot X="-5.061379" Y="90.00092" Z="-5.650543" />
+					<Hotspot X="-0.8882984" Y="121.8921" Z="-5.540264" />
+					<Hotspot X="3.652268" Y="164.1741" Z="-5.540264" />
+					<Hotspot X="11.64091" Y="202.0575" Z="-5.540264" />
+					<Hotspot X="-10.77896" Y="205.5492" Z="-5.540341" />
+					<Hotspot X="-5.300217" Y="215.8055" Z="-5.540341" />
+					<Hotspot X="-4.699225" Y="254.8372" Z="-4.83915" />
+					<Hotspot X="-34.40111" Y="289.5725" Z="-1.847308" />
+				</CustomBehavior>
+
+				<MoveTo X="-20.18953" Y="288.3877" Z="-1.830582" />
+
+				<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Commander Sarannis -->
+				<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
+				<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
+				<MoveTo X="107.8981" Y="287.203" Z="-6.826936" />
+				<MoveTo X="159.7016" Y="283.7128" Z="-3.114579" />
+				<MoveTo X="164.708" Y="297.3946" Z="-4.807951" />
+				<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
+				<CustomBehavior File="InteractWith" MobId="17976" ObjectType="Npc" Range="1" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="161.3502" Y="344.174" Z="-6.860448" />
+
+				<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Botanist Freywinn -->
+				<MoveTo X="160.0694" Y="372.2791" Z="-5.387292" />
+				<MoveTo X="195.8619" Y="378.2886" Z="-5.478722" />
+				<MoveTo X="173.4993" Y="395.0775" Z="-5.387872" />
+				<MoveTo X="159.0994" Y="412.2748" Z="-5.387872" />
+				<MoveTo X="162.9829" Y="445.4804" Z="-6.894575" />
+				<MoveTo X="171.8593" Y="499.6241" Z="-2.300941" />
+				<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
+				<CustomBehavior File="InteractWith" MobId="17975" ObjectType="Npc" Range="1" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="128.9197" Y="502.4178" Z="-5.422901" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="95.23268" Y="491.5663" Z="-6.756306" />
+					<Hotspot X="-2.302615" Y="506.1841" Z="-5.304161" />
+					<Hotspot X="-16.17399" Y="481.9402" Z="-5.473525" />
+					<Hotspot X="18.12697" Y="574.5814" Z="-17.94993" />
+					<Hotspot X="-6.9636" Y="575.9285" Z="-17.89389" />
+					<Hotspot X="6.485384" Y="598.557" Z="-15.17408" />
+				</CustomBehavior>
+
+				<MoveTo X="-49.59764" Y="560.2516" Z="-18.04433" />
+
+				<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Laj -->
+				<MoveTo X="-112.3502" Y="541.3242" Z="-17.82489" />
+				<MoveTo X="-134.2693" Y="507.8932" Z="-17.82489" />
+				<MoveTo X="-148.4885" Y="524.0147" Z="-17.82489" />
+				<MoveTo X="-160.7684" Y="497.2664" Z="-17.82489" />
+				<MoveTo X="-173.5526" Y="405.0211" Z="-17.69368" />
+				<MoveTo X="-155.3918" Y="398.094" Z="-17.79432" />
+				<MoveTo X="-173.3446" Y="369.5784" Z="-17.69936" />
+				<MoveTo X="-193.35" Y="369.8827" Z="-15.1717" /> <!-- Face Laj -->
+				<CustomBehavior File="RunMacro" Macro="/target Laj\n/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n\n/cast Taunt/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" /> <!-- Pull Laj -->
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
+				<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="3.693267" Y="409.3721" Z="-27.63801" />
+					<Hotspot X="17.46659" Y="369.3841" Z="-26.25432" />
+					<Hotspot X="66.04333" Y="390.6274" Z="-27.97719" />
+				</CustomBehavior>
+
+				<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+
+				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" />
+				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+				<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+				<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+				<CustomBehavior File="Message" Text="Deleting all Bottled Nethergon potions and Arcane Tomes." LogColor="Azure" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			</If>
+			<!--Instance Coordnation Complete -->
+		</While>
+
+		<!-- Vendor Routine -->
+		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
+			<CustomBehavior File="Message" Text="Moving to Sell, Repair" LogColor="Lime" />
+			<CustomBehavior File="ForcedMount" MountType="Flying" />
+			<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" > <!-- Mail if player still has 10 or less slots -->
+				<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+				<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+				<ClearMailbox />
+			</If>
+			<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+		</If>
 	</If>
 
 </While>
