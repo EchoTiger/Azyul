@@ -465,6 +465,11 @@
 			<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 			<CustomBehavior File="Message" Text="Heading to Drak'Tharon." LogColor="DeepSkyBlue" />
 			<If Condition="!(Me.MapId == 600) &amp;&amp; (Me.FreeBagSlots &gt;= 11)" >
+				<If Condition="Me.Location.Distance(new WoWPoint(4893.181, -2042.959, 248.309 )) &lt; 10" > <!-- If we just used Traveler's Mammoth -->
+					<CustomBehavior File="MyCTM" X="4872.786" Y="-2032.948" Z="250.0702" />
+					<CustomBehavior File="MyCTM" X="4824.002" Y="-2037.679" Z="250.1376" />
+					<CustomBehavior File="MyCTM" X="4772.893" Y="-2036.125" Z="229.3822" />
+				</If>
 				<If Condition="Me.Location.Distance(new WoWPoint(4775.771, -2045.906, 229.4198)) &gt;= 150" >
 					<CustomBehavior File="FlyTo" X="4922.837" Y="-2046.354" Z="279.7324" />
 					<CustomBehavior File="MyCTM"  X="4868.813" Y="-2034.23" Z="250.0712" />
@@ -637,11 +642,6 @@
 							<CustomBehavior File="WaitTimer" WaitTime="1100" />
 							<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 							<RunTo X="4889.332" Y="-2032.711" Z="248.3089" />
-							<If Condition="(Me.FreeBagSlots &gt;= 11)" >
-								<CustomBehavior File="MyCTM" X="4872.786" Y="-2032.948" Z="250.0702" />
-								<CustomBehavior File="MyCTM" X="4824.002" Y="-2037.679" Z="250.1376" />
-								<CustomBehavior File="MyCTM" X="4772.893" Y="-2036.125" Z="229.3822" />
-							</If>
 						</If>
 
 					<If Condition="(Me.FreeBagSlots &lt;= 10)" >
