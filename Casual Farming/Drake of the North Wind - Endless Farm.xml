@@ -6,7 +6,7 @@
 // Farm mobs: Altairus
 ///////////////////////////////////////////////////////////////////////
 
-<Name>Drake of the North Wind - Farm</Name>
+<Name>Drake of the North Wind</Name>
 
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 
@@ -49,7 +49,6 @@
 <CustomBehavior File="Message" Text="\n\nWelcome to Echo's Drake of the North Wind farm!\nThis profile is designed to kill Altairus in The Vortex Pinnacle.\n" LogColor="LightBlue" />
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 <While Condition="!(Me.MapId == 657) &amp;&amp; !(Me.MapId == 1)" >
-			<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="5" ExpiryTime="15" ExpiryAction="InputEnabled_Continue" Text="Do not stop the bot, I will take you where you need to go, just sit back and relax." Title="WARNING" />	
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
 				<If Condition="Me.MapId == 530" >
@@ -390,25 +389,17 @@
 		<RunTo X="-991.0753" Y="-95.1430" Z="694.9166"  />
 		<RunTo X="-1006.7589" Y="-97.9969" Z="694.9166"  />
 		<DisableBehavior Name="Combat" />
-		<RunTo X="-1040.0112" Y="-69.4754" Z="700.4930"  />
-		<CustomBehavior File="WaitTimer" WaitTime="1000" />
-		<CustomBehavior File="RunMacro" Macro="/targetenemy" />
-		<CustomBehavior File="RunMacro" Macro="/cast Ice Lance \n/cast Expel Harm \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" />
+		<RunTo X="-1032.734" Y="-75.63425" Z="698.8443" />
+		<CustomBehavior File="RunMacro" WaitTime="800" Macro="/targetenemy\n/cast Ice Lance \n/cast Expel Harm \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" />
+		<If Condition="(Me.Class == WoWClass.Monk)" >
+			<CustomBehavior File="RunMacro" Macro="/cast Spinning Fire Blossom" />
+		</If>
+		<RunTo X="-1056.526" Y="-52.6046" Z="700.4836" />
+		<CustomBehavior File="RunMacro" WaitTime="800" Macro="/stopattack\n/cleartarget\n/targetenemy\n/cast Ice Lance \n/cast Expel Harm \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" />
 		<If Condition="(Me.Class == WoWClass.Monk)" >
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
 			<CustomBehavior File="RunMacro" Macro="/cast Spinning Fire Blossom" />
 		</If>
-		<RunTo X="-1061.29" Y="-48.08741" Z="700.4819" />
-		<CustomBehavior File="RunMacro" Macro="/stopattack" />
-		<CustomBehavior File="RunMacro" Macro="/cleartarget" />
-		<CustomBehavior File="WaitTimer" WaitTime="1000" />
-		<CustomBehavior File="RunMacro" Macro="/targetenemy" />
-		<CustomBehavior File="RunMacro" Macro="/cast Ice Lance \n/cast Expel Harm \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" />
-		<If Condition="(Me.Class == WoWClass.Monk)" >
-			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="RunMacro" Macro="/cast Spinning Fire Blossom" />
-		</If>
-		<CustomBehavior File="WaitTimer" WaitTime="1000" />
 		<CustomBehavior File="RunMacro" Macro="/cleartarget" />
 		<EnableBehavior Name="Combat" />
 		<RunTo X="-1108.587" Y="-0.7937434" Z="704.7394" />
@@ -428,9 +419,15 @@
 		<!-- -1250.4404,  72.1284  before boss-->
 		<RunTo X="-1197.9132" Y="56.4448" Z="734.1751"  />
 		<RunTo X="-1207.4271" Y="82.9884" Z="734.1751"  />
-		<RunTo X="-1196.4479" Y="111.5284" Z="740.7061"  />
-		<CustomBehavior File="MyCTM" X="-1192.063" Y="124.0476" Z="716.7746" /> <!-- Needs Improvement -->
-		<CustomBehavior File="WaitTimer" WaitTime="10000" />
+		<RunTo X="-1196.497" Y="110.3023" Z="740.7074" />
+		<CustomBehavior File="MountVehOnly" VehicleMountId="45455" X="-1190.88" Y="125.203" Z="737.6243" />
+		<CustomBehavior File="WaitTimer" WaitTime="8500" />
+
+		<CustomBehavior File="MyCTM" X="-1208.394" Y="463.4632" Z="631.938" />
+		<CustomBehavior File="WaitTimer" WaitTime="9000" />
+
+
+
 		<RunTo X="-339.4252" Y="13.0758" Z="626.9792" />
 		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 		<CustomBehavior File="MyCTM" X="-327.9889" Y="24.11956" Z="626.9792" />
