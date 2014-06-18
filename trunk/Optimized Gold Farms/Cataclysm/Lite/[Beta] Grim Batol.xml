@@ -6,7 +6,7 @@
 // Farm mobs: Universal Profile -- User's Choice
 ///////////////////////////////////////////////////////////////////////
 
-<Name>Grim Batol Heavy-Gold Farm</Name>
+<Name>Grim Batol Heavy - Gold Optimized - Lite Pulls</Name>
 
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 
@@ -44,7 +44,13 @@
 
 <QuestOrder>
 <If Condition="(Me.MapId == 670)" >
-	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="This profile is currently not designed to be started while in the instace.  Please leave the instance then start the profile." />
+	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="DeepSkyBlue" />
+	<RunTo X="-624.7546" Y="-185.558" Z="272.062" />
+	<CustomBehavior File="MyCTM" X="-627.3558" Y="-175.5583" Z="272.1352" />
+				<CustomBehavior File="WaitTimer" WaitTime="5500" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
 </If>
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />
 		<While Condition="!(Me.MapId == 0)" >
@@ -361,10 +367,6 @@
 
 <DisableBehavior Name="Death" />
 
-
-<!-- Heavy Gold Run Detection -->
-	<CustomBehavior File="Message" Text="Heavy-Pull Gold Run Activated!\n" LogColor="Yellow" />
-	<CustomBehavior File="Message" Text="*WARNING* This run-type contains heavy pulls. If you aren't geared you may die!\nIf you see a pull that you think needs to be changed, please post it on the forums!" LogColor="Red" />
 	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
 		<While Condition="(Me.FreeBagSlots &gt;= 11)">
 			<If Condition="!(Me.MapId == 670)" >
@@ -380,116 +382,95 @@
 			</If>
 			<If Condition="(Me.MapId == 670)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<!-- Every spaced out coordinate is a pull unless otherwise posted.  -->
 				<RunTo X="-579.9321" Y="-237.6211" Z="276.5957" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-534.395" Y="-266.0773" Z="276.5795" />
-					<Hotspot X="-564.5115" Y="-316.9427" Z="268.7674" />
-				</CustomBehavior>
+				<RunTo X="-534.395" Y="-266.0773" Z="276.5795" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-522.905" Y="-312.8895" Z="268.7675" />
-					<Hotspot X="-484.284" Y="-321.5328" Z="268.6973" />		
-				</CustomBehavior>
+				<RunTo X="-564.5115" Y="-316.9427" Z="268.7674" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-452.7674" Y="-337.2468" Z="268.4345" />
-					<Hotspot X="-450.606" Y="-369.8665" Z="269.3948" />
-				</CustomBehavior>
+				<RunTo X="-522.905" Y="-312.8895" Z="268.7675" />
+
+				<RunTo X="-484.284" Y="-321.5328" Z="268.6973" />		
+
+				<RunTo X="-452.7674" Y="-337.2468" Z="268.4345" />
+
+				<RunTo X="-450.606" Y="-369.8665" Z="269.3948" />
 
 				<RunTo X="-471.7854" Y="-371.5662" Z="268.6678" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-508.0822" Y="-361.472" Z="268.7682" />
-					<Hotspot X="-540.7727" Y="-377.0743" Z="269.1198" />
-				</CustomBehavior>
+				<RunTo X="-508.0822" Y="-361.472" Z="268.7682" />
+				
+				<RunTo X="-540.7727" Y="-377.0743" Z="269.1198" />
 
 				<RunTo X="-534.8872" Y="-364.5476" Z="268.7675" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-565.5552" Y="-363.0222" Z="268.7675" />
-					<Hotspot X="-602.6298" Y="-374.5875" Z="268.7675" />
-					<Hotspot X="-636.8891" Y="-394.4153" Z="268.7678" />
-				</CustomBehavior>
+				<RunTo X="-565.5552" Y="-363.0222" Z="268.7675" />
+				
+				<RunTo X="-602.6298" Y="-374.5875" Z="268.7675" />
+				
+				<RunTo X="-636.8891" Y="-394.4153" Z="268.7678" />
 
 				<RunTo X="-618.6313" Y="-382.9435" Z="268.7678" />
-				<RunTo X="-632.0266" Y="-358.9445" Z="271.3231" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-612.6282" Y="-327.6003" Z="268.7661" />
-					<Hotspot X="-703.341" Y="-388.7024" Z="268.7661" />
-				</CustomBehavior>
+				<RunTo X="-632.0266" Y="-358.9445" Z="271.3231" />
+				
+				<RunTo X="-612.6282" Y="-327.6003" Z="268.7661" />
+				
+				<RunTo X="-703.341" Y="-388.7024" Z="268.7661" />
 
 				<RunTo X="-666.3197" Y="-423.3141" Z="268.7676" /> <!-- Last Mob near First Boss -->
 				<!-- Boss is intentionally skipped because nobody loves him and he's a disgrace. -->
 				<RunTo X="-671.3713" Y="-445.9702" Z="269.1199" /> <!-- Nav through area after first boss -->
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-634.0962" Y="-463.4138" Z="276.5843" />
-					<Hotspot X="-570.849" Y="-503.0447" Z="276.5972" />
-				</CustomBehavior>
+				<RunTo X="-634.0962" Y="-463.4138" Z="276.5843" />
+					
+				<RunTo X="-570.849" Y="-503.0447" Z="276.5972" />
 
 				<RunTo X="-535.7795" Y="-480.0509" Z="276.5973" /> <!-- These mobs are hard... -->
 				<RunTo X="-478.5992" Y="-528.0516" Z="271.9075" /> <!-- These mobs are hard... -->
-				<!--Boss will aggro here.. which just the pull along will probably kill the character... these mobs are ridiculously harder than they should be. -->
 				<RunTo X="-529.1798" Y="-579.1294" Z="276.5973" /> <!-- These mobs are hard... -->
 
-
 				<RunTo X="-566.6215" Y="-554.9785" Z="276.5972" /> <!-- Last mob in Khardros' Anvil -->
+
 				<RunTo X="-625.882" Y="-604.2358" Z="276.5818" />
 				<RunTo X="-664.7763" Y="-606.7249" Z="269.1947" />
 
 				<!-- New Room -->
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-698.8266" Y="-606.3247" Z="268.7646" />
-					<Hotspot X="-678.5309" Y="-644.9106" Z="268.7674" />
-				</CustomBehavior>
+				<RunTo X="-698.8266" Y="-606.3247" Z="268.7646" />
+
+				<RunTo X="-678.5309" Y="-644.9106" Z="268.7674" />
 
 				<RunTo X="-705.568" Y="-667.9664" Z="268.7675" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-655.5172" Y="-718.6245" Z="269.1169" />
-				</CustomBehavior>
+				<RunTo X="-655.5172" Y="-718.6245" Z="269.1169" />
 
 				<RunTo X="-621.9861" Y="-730.7045" Z="268.7661" /> <!--Stray mob pull -->
+
 				<RunTo X="-640.6693" Y="-722.181" Z="268.7675" /> <!-- Navigate over bridge1-->
 				<RunTo X="-625.624" Y="-691.6069" Z="271.3095" /> <!-- Navigate over bridge2-->
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-627.3105" Y="-667.6534" Z="268.7675" />
-					<Hotspot X="-564.4159" Y="-696.5651" Z="268.7674" />
-				</CustomBehavior>
+				<RunTo X="-627.3105" Y="-667.6534" Z="268.7675" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-469.7773" Y="-689.2486" Z="268.769" /> <!-- Last pack before next boss -->
-				</CustomBehavior>
+				<RunTo X="-564.4159" Y="-696.5651" Z="268.7674" />
+
+				<RunTo X="-469.7773" Y="-689.2486" Z="268.769" /> <!-- Last pack before next boss -->
 				<!-- Skip boss because he complains too much about me not making him dinner when he gets home from work.-->
 
 				<RunTo X="-457.5056" Y="-735.4189" Z="268.7691" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-556.8271" Y="-747.3787" Z="268.7677" />
-				</CustomBehavior>
-				<CustomBehavior File="Message" Text="\nHeavy-Gold run complete, returning to entrance for reset." LogColor="Yellow" />
+				<RunTo X="-556.8271" Y="-747.3787" Z="268.7677" />
+				<CustomBehavior File="Message" Text="\nLite-Gold run complete, returning to entrance for reset." LogColor="Yellow" />
 				<!-- Run back to beginning -->
 				<RunTo X="-457.5056" Y="-735.4189" Z="268.7691" />
 				<RunTo X="-509.3425" Y="-696.4219" Z="268.7674"  /> <!-- Before Second Boss -->
 				<RunTo X="-533.5356" Y="-308.2173" Z="268.7674" /> <!-- Long Run Back #1-->
 				<CustomBehavior File="MyCTM" X="-533.8972" Y="-259.8702" Z="276.488" />
 				<RunTo X="-623.868" Y="-192.9199" Z="272.0293" /> <!-- Before instance portal. -->
+
+
+
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<RunTo X="-624.7546" Y="-185.558" Z="272.062" />
@@ -564,7 +545,5 @@
 			<CustomBehavior File="FlyTo" X="-4072.477" Y="-3852.522" Z="320.9184" />
 		</While>
 	</While>
-
-
 </QuestOrder>
 </HBProfile>
