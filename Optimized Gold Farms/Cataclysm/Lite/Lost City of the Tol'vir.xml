@@ -517,8 +517,9 @@
 		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
+		<DisableBehavior Name="Combat" />
 		<RunTo X="-10693.1" Y="-1310.958" Z="17.65261" /> //leave
-
+		<EnableBehavior Name="Combat" />
 
 		<CustomBehavior File="MyCTM" X="-10688.97" Y="-1309.467" Z="17.64143" />
 		<CustomBehavior File="WaitTimer" WaitTime="8000" />
