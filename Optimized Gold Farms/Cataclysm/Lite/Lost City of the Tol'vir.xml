@@ -513,6 +513,10 @@
 		<RunTo X="-11099.58" Y="-1335.802" Z="10.80706" />
 		<RunTo X="-11102.12" Y="-1348.249" Z="10.80648" />
 
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
 		<RunTo X="-10693.1" Y="-1310.958" Z="17.65261" /> //leave
 
 
@@ -531,7 +535,7 @@
 			print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)
 			" />
 		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
-		<CustomBehavior File="MyCTM" X="-327.9889" Y="24.11956" Z="626.9792" />
+		<CustomBehavior File="MyCTM" X="-10688.79" Y="-1309.816" Z="17.6524" />
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 	</If>
