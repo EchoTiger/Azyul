@@ -2,11 +2,11 @@
 
 ///////////////////////////////////////////////////////////////////////
 // Profile Developer: Echo the Tiger
-// Farm zone: Vortex Pinnacle
+// Farm zone: Lost City of the Tol'vir
 // Farm mobs: Optimized Run
 ///////////////////////////////////////////////////////////////////////
 
-<Name>Vortex Pinnacle - Gold Optimized - Heavy Pulls</Name>
+<Name>Vortex Pinnacle - Lost City of the Tol'vir - Lite Pulls</Name>
 
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 
@@ -35,12 +35,11 @@
 </Mailboxes>
 
 <AvoidMobs>
-	<Mob Name="Howling Gale" Entry="45572" /> 
 	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
-    <Mob Name="Lurking Tempest" Entry="45704"  />
 </AvoidMobs>
 
 <Blackspots>
+	<Blackspot X="-10752.81" Y="-1309.918" Z="15.353" Radius="1.246056" />
 </Blackspots>
 
 
@@ -419,101 +418,105 @@
 
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 <While Condition="true" >
-	<If Condition="!(Me.MapId == 657) &amp;&amp; (Me.FreeBagSlots &gt; 10)" >
-		<If Condition="Me.Location.Distance(new WoWPoint(-11414.14, -2282.823, 640.3994)) &gt;= 150" >
+	<If Condition="!(Me.MapId == 755) &amp;&amp; (Me.FreeBagSlots &gt; 10)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(-10666.71, -1304.58, 17.70085)) &gt;= 15" >
 			<CustomBehavior File="Message" Text="Heading to Instance Hub" LogColor="Green" />
-			<CustomBehavior File="FlyTo" X="-11065.5" Y="-2100.08" Z="253.8059" />
-			<CustomBehavior File="MyCTM" X="-11473.84" Y="-2305.7" Z="604.3729" />
-			<CustomBehavior File="MyCTM" X="-11499.96" Y="-2298.713" Z="607.1202" />
+			<CustomBehavior File="FlyTo" X="-10642.87" Y="-1298.32" Z="26.36411" />
 		</If>
-		<CustomBehavior File="RunMacro" Macro="/dismount" />
-		<RunTo X="-11510.58" Y="-2307.878" Z="608.3931" />
-		<CustomBehavior File="MyCTM" X="-11522.48" Y="-2317.246" Z="608.3938" />
+		<CustomBehavior File="MyCTM" X="-10683.19" Y="-1307.82" Z="17.43537" /> <!-- CTM due to mesh problems -->
+		<CustomBehavior File="MyCTM" X="-10688.31" Y="-1308.927" Z="17.71752" />
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 	</If>
-	<If Condition="(Me.MapId == 657)" >
+	<If Condition="(Me.MapId == 755)" >
 		<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
 		<CustomBehavior File="Misc\RunLUA" Lua="
 				startingmoney = GetMoney();
 				cstartingmoney = GetMoney();
 				scurrdungeon = GetTime();
 				" />
-		<RunTo X="-380.4344" Y="-35.35885" Z="634.4307" />
-
-		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-			<Hotspot X="-405.1092" Y="-71.29957" Z="634.4307" />
-			<Hotspot X="-451.8933" Y="-96.83641" Z="638.8187" />
-			<Hotspot X="-534.105" Y="-215.8259" Z="631.853" />
-		</CustomBehavior>
-
-		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-			<Hotspot X="-572.109" Y="-174.9965" Z="623.837" />
-			<Hotspot X="-594.4453" Y="-120.5573" Z="619.752" />
-			<Hotspot X="-670.493" Y="-62.2869" Z="619.7391" />
-		</CustomBehavior>
-
-		<RunTo X="-691.7479" Y="-23.94444" Z="635.6715" />
-		<RunTo X="-721.9564" Y="8.076453" Z="635.6729" />
-
-		<RunTo X="-769.3553" Y="-54.5395" Z="639.926" />
-		<CustomBehavior File="MountVehOnly" VehicleMountId="45455" X="-768.213" Y="-53.6862" Z="639.926" />
-		<CustomBehavior File="WaitTimer" WaitTime="6500" />
-
-		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-			<Hotspot X="-939.9739" Y="-143.1351" Z="670.1371" />
-			<Hotspot X="-970.9564" Y="-170.5601" Z="671.2607" />
-		</CustomBehavior>
-
-		<RunTo X="-988.3417" Y="-119.0032" Z="694.9169" /> // Drake - not pulling with other trash due to heal
 
 
-		<DisableBehavior Name="Combat" />
-			<RunTo X="-1032.734" Y="-75.63425" Z="698.8443" />
-			<CustomBehavior File="RunMacro" WaitTime="800" Macro="/targetenemy\n/cast Ice Lance \n/cast Expel Harm \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" />
-			<If Condition="(Me.Class == WoWClass.Monk)" >
-				<CustomBehavior File="RunMacro" Macro="/cast Spinning Fire Blossom" />
-			</If>
-			<RunTo X="-1056.526" Y="-52.6046" Z="700.4836" />
-			<CustomBehavior File="RunMacro" WaitTime="800" Macro="/stopattack\n/cleartarget\n/targetenemy\n/cast Ice Lance \n/cast Expel Harm \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" />
-			<If Condition="(Me.Class == WoWClass.Monk)" >
-				<CustomBehavior File="WaitTimer" WaitTime="500" />
-				<CustomBehavior File="RunMacro" Macro="/cast Spinning Fire Blossom" />
-			</If>
-			<CustomBehavior File="RunMacro" Macro="/cleartarget" />
-		<EnableBehavior Name="Combat" />
+		<RunTo X="-10731.33" Y="-1320.488" Z="15.35447" />
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
-		<RunTo X="-1101.592" Y="-7.983932" Z="704.7393" />
+		<RunTo X="-10785.45" Y="-1299.795" Z="15.35325" />
+		<RunTo X="-10846.62" Y="-1302.075" Z="15.35322" />
 
-		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-			<Hotspot X="-1133.65" Y="25.35023" Z="704.7337" />
-			<Hotspot X="-1173.843" Y="38.23246" Z="707.7147" />
-		</CustomBehavior>
+		<RunTo X="-10871.82" Y="-1317.731" Z="15.35322" />
+
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+		<RunTo X="-10861.34" Y="-1363.376" Z="15.35322" /> //boss
+		<RunTo X="-10854.13" Y="-1406.46" Z="15.35453" />
+
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+		<RunTo X="-10876.98" Y="-1498.26" Z="6.676346" />
+
+		<RunTo X="-10909.83" Y="-1498.246" Z="6.675339" />
+		<RunTo X="-10952.23" Y="-1500.03" Z="6.677206" />
+
+		<RunTo X="-11000.68" Y="-1504.468" Z="6.666711" />
+
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+		<RunTo X="-10962.36" Y="-1572.08" Z="6.228077" />
+
+		<RunTo X="-10977.8" Y="-1604.236" Z="6.532305" />
+		<RunTo X="-10996.4" Y="-1583.696" Z="6.421384" />
+
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+		<RunTo X="-10985.82" Y="-1485.022" Z="6.784729" />
+
+		<RunTo X="-11022.48" Y="-1478.691" Z="6.674856" />
+		<RunTo X="-11040.62" Y="-1509.827" Z="6.677071" />
+		<RunTo X="-11075.99" Y="-1483.85" Z="7.225331" />
+
+			<!-- <Hotspot X="-11101.73" Y="-1544.479" Z="6.676576" /> -->
+
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+		<RunTo X="-11113.11" Y="-1432.007" Z="12.56301" />
+
+		<RunTo X="-11132.55" Y="-1407.241" Z="10.80723" />
+		<RunTo X="-11154.66" Y="-1388.039" Z="10.80723" /> 
+
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+		<RunTo X="-11100.14" Y="-1359.349" Z="10.80681" />
+		<RunTo X="-11076.18" Y="-1385.427" Z="10.93777" />
+		<RunTo X="-11056.32" Y="-1378.931" Z="10.80679" />
+		<RunTo X="-11032.46" Y="-1377.451" Z="10.80562" />
+
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+		<RunTo X="-11023.83" Y="-1316.493" Z="10.8076" />
+		<RunTo X="-11048.11" Y="-1319.628" Z="10.8076" />
+		<RunTo X="-11071.26" Y="-1326.239" Z="10.8076" />
+		<RunTo X="-11099.58" Y="-1335.802" Z="10.80706" />
+		<RunTo X="-11102.12" Y="-1348.249" Z="10.80648" />
+
+		<RunTo X="-10693.1" Y="-1310.958" Z="17.65261" /> //leave
 
 
-		<RunTo X="-1197.228" Y="56.76911" Z="734.1746" />
-		<RunTo X="-1197.064" Y="110.423" Z="740.7063" />
-
-
-		<CustomBehavior File="MountVehOnly" VehicleMountId="45455" X="-1190.88" Y="125.203" Z="737.6243" />
-		<CustomBehavior File="WaitTimer" WaitTime="9500" />
-		<!--<CustomBehavior File="MyCTM" X="-1208.394" Y="463.4632" Z="631.938" />
-		<CustomBehavior File="WaitTimer" WaitTime="9000" /> -->
-
-		<RunTo X="-1150.82" Y="475.5646" Z="644.8638" />
-
-		<RunTo X="-1110.638" Y="469.9456" Z="644.8389" />
-		<RunTo X="-987.9365" Y="498.9625" Z="700.0138" />
-
-
-		<RunTo X="-881.0551" Y="532.3972" Z="716.4963" />
-
-		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-			<Hotspot X="-851.119" Y="501.2508" Z="700.0204" />
-			<Hotspot X="-826.0461" Y="475.1049" Z="700.0196" />
-		</CustomBehavior>
-
-		<RunTo X="-865.5783" Y="554.4388" Z="716.9537" />
-		<CustomBehavior File="MyCTM" X="-849.0779" Y="562.5357" Z="707.9435" />
+		<CustomBehavior File="MyCTM" X="-10688.97" Y="-1309.467" Z="17.64143" />
 		<CustomBehavior File="WaitTimer" WaitTime="8000" />
 
 
