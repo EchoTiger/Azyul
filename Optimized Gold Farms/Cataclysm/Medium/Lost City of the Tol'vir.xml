@@ -504,6 +504,10 @@
 			<Hotspot X="-11040.62" Y="-1509.827" Z="6.677071" />
 		</CustomBehavior>
 
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
 		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 			<Hotspot X="-11075.99" Y="-1483.85" Z="7.225331" />
 			<Hotspot X="-11101.73" Y="-1544.479" Z="6.676576" />
