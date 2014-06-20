@@ -394,25 +394,27 @@
 						<RunTo X="1886.799" Y="1269.618" Z="41.63361" />
 						<CustomBehavior File="SwitchTarget" BossId="7274" /> <!-- Pull Executioner -->
 						<RunTo X="1879.636" Y="1296.464" Z="46.30863" />
+
 						<CustomBehavior File="InteractWith" MobId="141071" WaitForNpcs="False" X="1886.067" Y="1297.517" Z="48.24273" />
-		
-						<CustomBehavior File="RunMacro" Macro="/cleartarget" />
-						<CustomBehavior File="RunMacro" Macro="/target Sergeant Bly" />
-						<CustomBehavior File="RunMacro" Macro="/focus" />
-						<!-- Complete Temple Event -->
-						
-						<While Condition="(Me.FocusedUnit.Entry == 7604) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(1886.63, 1203.83, 8.88)) &gt; 15)" >
-							<CustomBehavior File="InteractWithEscort" WaitForNpcs="False"  NumOfTimes="1" MobState="Alive" MobId="7607" /> 
-							<While Condition="(Me.FocusedUnit.Distance &lt; 5) " >
-								<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="1" MobState="Alive" MobId="7788" MobId2="8876" MobId3="5649" MobId4="7789" MobId5="7268" MobId6="5648" MobId7="7246" MobId8="7787" MobId9="5650" MobId10="7247" MobId11="8877" CollectionDistance="50" />	
-							</While>	
-						</While>
-						
-						<CustomBehavior File="SwitchTarget" BossId="7796" /> <!-- Pull Nekrum Gutchewer -->
-						
-						
+
+						<MoveTo X="1886.782" Y="1264.664" Z="41.50404" />
+
+						<DisableBehavior Name="Combat" />
+							<MoveTo X="1897.391" Y="1212.823" Z="8.876872" />
+							<MoveTo X="1876.268" Y="1214.351" Z="8.916135" />
+							<MoveTo X="1886.497" Y="1268.206" Z="41.60099" />
+						<EnableBehavior Name="Combat" />
+
+						<CustomBehavior File="EscortGroup" StartNpcId="7604"
+							EscortNpcId1="7604" EscortNpcId2="7607" EscortNpcId3="7605" EscortNpcId4="7606" EscortNpcId5="7608"
+							EscortCompleteWhen="DestinationReached" EscortCompleteX="1885.295" EscortCompleteY="1202.984" EscortCompleteZ="8.877229" />
+
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
 						<CustomBehavior File="InteractWith" MobId="7604" GossipOptions="1" WaitForNpcs="False" /> <!-- Pull Sergeant Bly -->
-						
+						<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" /> <!-- Just in case -->
+
+										
 						
 						<RunTo X="1857.458" Y="1145.359" Z="15.77392" />
 						<RunTo X="1745.094" Y="1039.88" Z="49.86219" />
