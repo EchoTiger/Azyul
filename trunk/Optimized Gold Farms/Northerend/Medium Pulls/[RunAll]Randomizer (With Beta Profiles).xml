@@ -576,8 +576,11 @@
 						<Hotspot X="-342.2566" Y="-592.2085" Z="72.60779" />
 						<Hotspot X="-305.9066" Y="-612.2153" Z="72.59185" />
 					</CustomBehavior>
-					//
-					<CustomBehavior File="RunMacro" Macro="/cast Burst of Speed\n/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 						<Hotspot X="-288.0025" Y="-699.2864" Z="101.7704" />
 						<Hotspot X="-274.4177" Y="-728.6484" Z="101.7957" />
