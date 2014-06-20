@@ -628,35 +628,36 @@
 
 				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 					<CustomBehavior File="FlyTo" X="5077.122" Y="-2249.123" Z="430.6839" />
-				<CustomBehavior File="FlyTo" X="5384.368" Y="-2631.522" Z="329.4101" />
-				<CustomBehavior File="FlyTo" X="5405.227" Y="-2655.048" Z="303.9551" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<SetVendor>
-					<Vendors>
-						<Vendor Name="Arlen Brighthammer" Entry="28796" Type="Repair" X="5410.7" Y="-2658.249" Z="303.9539" />
-					</Vendors>
-				</SetVendor>
-				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<ClearVendor />
-				<RunTo X="5397.145" Y="-2639.515" Z="303.9551" />
-				<RunTo X="5416.015" Y="-2622.577" Z="306.9517" />
-				<SetMailbox>
-					<Mailboxes>
-						<Mailbox X="5417.155" Y="-2620.26" Z="307.0088" />
-					</Mailboxes>
-				</SetMailbox>
-				<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
-				<RunTo X="5396.842" Y="-2617.582" Z="303.9539" />
-				<ClearMailbox />
-				<CustomBehavior File="FlyTo" X="5377.773" Y="-2611.433" Z="321.3243" />
+					<CustomBehavior File="FlyTo" X="5384.368" Y="-2631.522" Z="329.4101" />
+					<CustomBehavior File="FlyTo" X="5405.227" Y="-2655.048" Z="303.9551" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Arlen Brighthammer" Entry="28796" Type="Repair" X="5410.7" Y="-2658.249" Z="303.9539" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<ClearVendor />
+					<RunTo X="5397.145" Y="-2639.515" Z="303.9551" />
+					<RunTo X="5416.015" Y="-2622.577" Z="306.9517" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="5417.155" Y="-2620.26" Z="307.0088" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+					<RunTo X="5396.842" Y="-2617.582" Z="303.9539" />
+					<ClearMailbox />
+					<CustomBehavior File="FlyTo" X="5377.773" Y="-2611.433" Z="321.3243" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+					<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+					<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+					<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+				</If>
 			</If>
-		</If>
+	</If>
 
 		<If Condition="Chance(14.3)"> <!-- Gundrak -->
 			<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
