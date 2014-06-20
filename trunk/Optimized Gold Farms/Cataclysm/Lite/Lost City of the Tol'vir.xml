@@ -507,10 +507,10 @@
 		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
-		<DisableBehavior Name="Combat" />
-		<MoveTo Nav="Run" X="-10756.17" Y="-1375.582" Z="15.35429" />
-		<MoveTo Nav="Run" X="-10739.26" Y="-1395.34" Z="15.35429" /> //leave1
-		<EnableBehavior Name="Combat" />
+		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+			<Hotspot X="-10756.17" Y="-1375.582" Z="15.35429" />
+			<Hotspot X="-10739.26" Y="-1395.34" Z="15.35429" /> //leave1
+		</CustomBehavior>
 
 
 		<MoveTo Nav="Run" X="-10693.1" Y="-1310.958" Z="17.65261" /> //leave2
