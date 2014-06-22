@@ -481,68 +481,35 @@
 		</While>
 		<While Condition="(Me.FreeBagSlots &lt;= 10)">
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
-			<CustomBehavior File="FlyTo" X="-4141.074" Y="-3630.835" Z="315.875" />
-			<CustomBehavior File="FlyTo" X="-4072.477" Y="-3852.522" Z="320.9184" />
+			<CustomBehavior File="FlyTo" X="-4083.552" Y="-3465.485" Z="287.8949" />
 			<If Condition="Me.IsHorde" >
-				<CustomBehavior File="FlyTo" X="-3784.637" Y="-4285.239" Z="374.3226" />
-				<CustomBehavior File="FlyTo" X="-3551.648" Y="-4396.826" Z="271.4088" />
 				<CustomBehavior File="FlyTo" X="-3491.58" Y="-4368.721" Z="210.4921" />
-				<CustomBehavior File="WaitTimer" WaitTime="500" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
 				<SetVendor>
 					<Vendors>
-						<Vendor Name="Provisioner Graka" Entry="49775" Type="Food" X="-3491.58" Y="-4368.721" Z="210.4921" />
+						<Vendor Name="Provisioner Graka" Nav="Fly" Entry="49775" Type="Repair" X="-3491.58" Y="-4368.721" Z="210.4921" />
 					</Vendors>
 				</SetVendor>
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<ClearVendor />
 				<If Condition="(Me.FreeBagSlots &lt;= 10)">
 					<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
-					<CustomBehavior File="FlyTo" X="-3528.461" Y="-4374.663" Z="261.6372" />
-					<CustomBehavior File="FlyTo" X="-3612.721" Y="-5234.316" Z="121.982" />
-					<CustomBehavior File="FlyTo" X="-3629.782" Y="-5301.838" Z="113.119" />
-					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<SetMailbox>
-					    <Mailbox X="-3666.559" Y="5278.83" Z="41.7954" />
-					</SetMailbox>
-					<CustomBehavior File="ForceSetVendor"  DoMail="true" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
-					<ClearMailbox />
-					<CustomBehavior File="FlyTo" X="-3629.782" Y="-5301.838" Z="113.119" />
+					<CustomBehavior File="ForceSetVendor"  DoMail="True" />
 				</If>
 			</If>
 			<If Condition="Me.IsAlliance" >
-				<CustomBehavior File="FlyTo" X="-4107.253" Y="-4707.152" Z="200.6324" />
-				<CustomBehavior File="FlyTo" X="-4183.102" Y="-4737.195" Z="126.7861" />
-				<CustomBehavior File="WaitTimer" WaitTime="500" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<RunTo X="-4187.008" Y="-4749.5" Z="126.7858" />
+				<CustomBehavior File="FlyTo" X="-4187.616" Y="-4751.438" Z="126.7861" />
 				<SetVendor>
 					<Vendors>
-						<Vendor Name="Brian Terrel" Entry="49605" Type="Repair" X="-4187.616" Y="-4751.438" Z="126.7861" />
+						<Vendor Name="Brian Terrel" Nav="Fly" Entry="49605" Type="Repair" X="-4187.616" Y="-4751.438" Z="126.7861" />
 					</Vendors>
 				</SetVendor>
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<ClearVendor />
-				<RunTo X="-4185.4" Y="-4738.308" Z="126.7875" />
-				<CustomBehavior File="FlyTo" X="-4135.626" Y="-4712.699" Z="176.611" />
 				<If Condition="(Me.FreeBagSlots &lt;= 10)">
 					<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
-					<CustomBehavior File="FlyTo" X="-3188.68" Y="-4942.156" Z="191.9901" />
-					<CustomBehavior File="FlyTo" X="-3206.767" Y="-5044.222" Z="120.4336" />
-					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="RunMacro" Macro="/dismount" />
-					<SetMailbox>
-					    <Mailbox X="-3208.13" Y="-5047.059" Z="120.562" />
-					</SetMailbox>
-					<CustomBehavior File="ForceSetVendor"  DoMail="true" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
-					<ClearMailbox />
+					<CustomBehavior File="ForceSetVendor"  DoMail="True" />
 				</If>
 			</If>
-			<CustomBehavior File="FlyTo" X="-4072.477" Y="-3852.522" Z="320.9184" />
+			<ClearVendor />
+			<ClearMailbox />
 		</While>
 	</While>
 </QuestOrder>
