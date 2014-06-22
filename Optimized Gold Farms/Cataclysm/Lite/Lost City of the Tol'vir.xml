@@ -46,6 +46,17 @@
 
 <QuestOrder>
 
+	<If Condition="(Me.MapId == 755)" >
+		<DisableBehavior Name="Pull" />
+			<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
+			<RunTo X="-10730.72" Y="-1320.814" Z="15.35361" /> />
+			<CustomBehavior File="MyCTM" X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
+			<CustomBehavior File="MyCTM" X="-10688.83" Y="-1309.427" Z="17.63992" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			<EnableBehavior Name="Pull" />
+	</If>
+
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
 			SLASH_EXTRASTATS1 = '/stats2';
