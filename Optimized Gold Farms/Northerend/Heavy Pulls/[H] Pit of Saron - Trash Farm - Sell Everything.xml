@@ -3,10 +3,10 @@
 ///////////////////////////////////////////////////////////////////////
 // Profile Developer: Echo
 // Farm zone: Pit of Saron
-// Farm mobs: Gold run.
+// Farm mobs: Trash Farm
 ///////////////////////////////////////////////////////////////////////
 
-<Name>Pit of Saron - Gold Optimized Farm - Heavy Pulls</Name>
+<Name>Pit of Saron - Gold Optimized - Trash Farm - Heavy Pulls</Name>
 
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 
@@ -43,7 +43,9 @@
 </Blackspots>
 
 <QuestOrder>
-<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Welcome to the|r |cFFC2DAF3Pit of Saron Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00120.21|r\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\n|cFFFF0000! Warning !|r\nThis profile has a  very high pull density.  Also, there's one mob that will cast a spell on you that *will* kill you.\nThis profile is still being optimized to avoid these issues.&quot;)" />
+
+	<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFef0609*NOTE*|r\nThis run is optimized for people who have the Traveler's Mammoth or Grand Yak.\n\nIt will town-vendor if you do not have these mounts.&quot;)" />
+	<CustomBehavior File="Message" Text="*NOTE*\nThis run is optimized for people who have the Traveler's Mammoth or Grand Yak.\n\nIt will town-vendor if you do not have these mounts." LogColor="Red" />
 
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
@@ -538,100 +540,58 @@
 					<CustomBehavior File="Misc\RunLUA" Lua="cstartingmoney = GetMoney();" />
 
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-					<MoveTo X="462.8812" Y="210.3155" Z="528.7101" />
-
-					<CustomBehavior File="RunMacro" Macro="/cast Burst of Speed\n/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="497.7629" Y="198.9767" Z="528.711" />
-						<Hotspot X="499.1763" Y="246.8468" Z="528.7086" />
-						<Hotspot X="560.7149" Y="314.6028" Z="508.8786" />
-						<Hotspot X="594.894" Y="273.0906" Z="506.1729" />
-						<Hotspot X="627.7512" Y="329.0624" Z="511.8988" />
-						<Hotspot X="637.7632" Y="246.7409" Z="508.2406" />
-						<Hotspot X="618.652" Y="215.003" Z="507.2184" /> <!-- May need to be seperated if there's a death -->
-						<Hotspot X="586.6638" Y="193.0613" Z="509.5077" />
-						<Hotspot X="589.692" Y="164.9623" Z="509.4684" />
-					</CustomBehavior>
-
-					<CustomBehavior File="RunMacro" Macro="/cast Burst of Speed\n/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> <!--This may be removed -->
-						<Hotspot X="607.6797" Y="153.0993" Z="507.0971" />
-						<Hotspot X="627.4225" Y="112.1783" Z="510.0671" />
-						<Hotspot X="612.2524" Y="103.2638" Z="509.5931" />
-						<Hotspot X="600.7726" Y="51.78936" Z="510.3212" />
-						<Hotspot X="622.8182" Y="-13.72707" Z="513.7403" />
-					</CustomBehavior>
-
-
-					<MoveTo  X="694.9253" Y="-114.1457" Z="513.8766" />
-					<CustomBehavior File="InteractWith" MobId="36494" ObjectType="Npc" Range="1" X="686.7497" Y="-201.2122" Z="526.718" /><!-- Ensure boss is pulled -->
-					<MoveTo X="697.0652" Y="-154.8882" Z="528.0614" />
-
-					<CustomBehavior File="RunMacro" Macro="/cast Burst of Speed\n/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="751.0167" Y="-67.72236" Z="511.3784" />
-						<Hotspot X="832.5563" Y="4.63835" Z="509.8898" />
-						<Hotspot X="792.0877" Y="73.15079" Z="511.1664" />
-						<Hotspot X="855.215" Y="124.6178" Z="509.9713" /> <!-- Boss -->
-					</CustomBehavior>
-
-					<!-- Different method for pulling because of wait timers -->
-					<DisableBehavior Name="Combat" />
-					<RunTo X="822.5422" Y="62.66116" Z="510.1578" />
-					<RunTo X="881.9714" Y="53.17904" Z="527.1292" />
-					<CustomBehavior File="WaitTimer" WaitTime="8000" />
-					<RunTo X="909.2275" Y="73.0071" Z="549.1202" />
-					<EnableBehavior Name="Combat" />
-
-					<MoveTo X="947.6536" Y="64.77467" Z="566.3545" />
-
-					<CustomBehavior File="RunMacro" Macro="/cast Burst of Speed\n/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="941.338" Y="36.81192" Z="571.168" />
-						<Hotspot X="935.8949" Y="30.70243" Z="572.967" />
-						<Hotspot X="932.956" Y="-27.00056" Z="588.8272" />
-					</CustomBehavior>
-
-
-					<MoveTo X="931.0003" Y="-74.68202" Z="592.0203" />
-
-					<CustomBehavior File="RunMacro" Macro="/cast Burst of Speed\n/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> <!-- Cave -->
-						<Hotspot X="959.2842" Y="-109.4517" Z="595.525" />
-						<Hotspot X="974.2144" Y="-129.1506" Z="602.9148" />
-						<Hotspot X="1001.561" Y="-129.0965" Z="616.9089" />
-						<Hotspot X="1024.149" Y="-125.5363" Z="625.0868" />
-						<Hotspot X="1039.077" Y="-122.3489" Z="627.6387" />
-						<Hotspot X="1053.726" Y="-94.20415" Z="632.6741" />
-						<Hotspot X="1058.075" Y="-67.19184" Z="633.5257" />
-						<Hotspot X="1070.595" Y="-54.00539" Z="633.6078" />
-						<Hotspot X="1072.702" Y="-32.5157" Z="633.4127" />
-						<Hotspot X="1079.23" Y="9.112684" Z="634.19" />
-						<Hotspot X="1069.133" Y="43.154" Z="630.027" />
-						<Hotspot X="1070.863" Y="69.12458" Z="631.2704" />
-						<Hotspot X="1057.673" Y="112.3984" Z="628.3781" />
-					</CustomBehavior>
-
-					<CustomBehavior File="RunMacro" Macro="/cast Burst of Speed\n/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-					<DisableBehavior Name="Combat" />
-					<MoveTo X="1017.669" Y="168.4924" Z="628.1569" />
-					<CustomBehavior File="WaitTimer" WaitTime="32000" />
-					<MoveTo X="1030.496" Y="164.2683" Z="628.1561" />
-					<EnableBehavior Name="Combat" />
-					<MoveTo X="1025.215" Y="162.9924" Z="628.1561" />
-					<CustomBehavior File="InteractWith" MobId="36658" MobState="Dontcare" X="1025.672" Y="162.4676" Z="628.1563" />
-					<CustomBehavior File="WaitTimer" WaitTime="35000" />
-
-					<RunTo X="974.6478" Y="128.9203" Z="628.1562" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<DisableBehavior Name="Pull" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
-					<CustomBehavior File="WaitTimer" WaitTime="5000" />
-					
-					<CustomBehavior File="MyCTM" X="974.792" Y="57.8029" Z="569.4996" />
-					<CustomBehavior File="MyCTM" X="954.6213" Y="66.65122" Z="566.1841" />
-					<RunTo X="838.4686" Y="45.50679" Z="510.6235" />
-					<CustomBehavior File="RunMacro" Macro="/cast Burst of Speed\n/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
-					<CustomBehavior File="NoCombatMoveTo" X="441.2151" Y="212.344" Z="528.7101" />
+					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="505.3736" Y="202.3084" Z="528.7101" />
+						<Hotspot X="505.3747" Y="233.8973" Z="528.7092" />
+						<Hotspot X="563.1221" Y="316.6517" Z="508.778" />
+						<Hotspot X="600.8759" Y="299.5524" Z="506.579" />
+						<Hotspot X="628.6747" Y="329.2739" Z="511.8989" />
+						<Hotspot X="595.4843" Y="256.973" Z="507.0815" />
+						<Hotspot X="618.137" Y="207.2323" Z="507.2108" />
+						<Hotspot X="591.7188" Y="169.8918" Z="509.1473" />
+						<Hotspot X="627.8425" Y="112.3358" Z="510.0912" />
+						<Hotspot X="611.732" Y="100.943" Z="509.8015" />
+					</CustomBehavior>
+
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="713.0514" Y="183.7709" Z="511.5082" />
+						<Hotspot X="765.2572" Y="135.9163" Z="510.4806" />
+						<Hotspot X="812.0828" Y="55.54153" Z="509.7747" />
+						<Hotspot X="842.827" Y="-20.75695" Z="509.4837" />
+						<Hotspot X="749.5108" Y="-74.72801" Z="512.3375" />
+						<Hotspot X="742.7823" Y="-123.8103" Z="512.6193" />
+					</CustomBehavior>
+
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="782.2004" Y="99.20539" Z="510.5967" />
+						<Hotspot X="720.0635" Y="148.756" Z="511.5299" />
+						<Hotspot X="557.6715" Y="143.4032" Z="516.6772" />
+					</CustomBehavior>
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+					<EnableBehavior Name="Pull" />
+
+
+					<CustomBehavior File="UserSettings" PullDistance="100" />
+
+					<MoveTo Nav="Run" X="431.2955" Y="212.869" Z="528.7089" />
+
+					<CustomBehavior File="UserSettings" PullDistance="25" />
+					<DisableBehavior Name="Pull" />
 
 					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Instance completed. In-game timer paused.&quot;)" />
 					<CustomBehavior File="RunMacro" Macro="/sw pause" />
@@ -660,13 +620,13 @@
 						<CustomBehavior File="Misc\RunLUA" Lua="
 							 for b=0,4 do for s=1,GetContainerNumSlots(b)
 							 	do local n=GetContainerItemLink(b,s)
-							 		if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33445&quot;) then
+							 		if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
 								 		print(&quot;Selling &quot;..n)UseContainerItem(b,s)
 							 		end
 							 	end
 							 end" />
 							<Else>
-								<CustomBehavior File="Message" Text="Failed to vendor using mount." LogColor="Red" />
+								<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
 							</Else>
 						</If>
 
