@@ -167,7 +167,7 @@
 	<CustomBehavior File="Message" Text="Deleting all Bottled Nethergon potions and Arcane Tomes." LogColor="Azure" />
 	<EnableBehavior Name="Pull" />
 </If>
-<If Condition="(Me.MapId = 552)" > <!-- The Botanica -->
+<If Condition="(Me.MapId = 552)" > <!-- The Arcatraz -->
 	<DisableBehavior Name="Pull" />
 	<MoveTo X="4.971334" Y="0.8803384" Z="-0.2067001" />
 	<CustomBehavior File="MyCTM" X="-4.845096" Y="0.7352772" Z="-0.2067001" />
@@ -868,11 +868,11 @@
 
 				<MoveTo X="40.06908" Y="0.2844397" Z="-0.3992822" />
 
-				<DisableBehavior Name="Combat" /> <!-- Must use this method due to coordinate-skipping -->
-					<MoveTo X="75.89242" Y="17.51129" Z="-10.17308" /> <!-- Small pull due to 10 second root -->
-					<MoveTo X="71.59758" Y="-15.51212" Z="-10.17307" />
-					<MoveTo X="103.7019" Y="-0.3404537" Z="-10.17306" /> 
-				<EnableBehavior Name="Combat" />
+				<!-- Not no-combat pulling due to ridiculous 10 second root. -->
+				<MoveTo X="75.89242" Y="17.51129" Z="-10.17308" /> 
+				<MoveTo X="71.59758" Y="-15.51212" Z="-10.17307" />
+				<MoveTo X="103.7019" Y="-0.3404537" Z="-10.17306" /> 
+
 
 
 				<MoveTo X="122.5889" Y="-0.334416" Z="-10.10375" />
