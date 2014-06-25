@@ -348,9 +348,15 @@
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 <!--CHOP CHOP -->
 <While Condition="true">
+	<If Condition="!(Me.ZoneId == 3523)" >
+		<CustomBehavior File="FlyTo" X="589.3289" Y="3427.308" Z="291.0131" />
+		<CustomBehavior File="MyCTM" X="2945.934" Y="1784.823" Z="206.9143" />
+	</If>
 	<If Condition="!(Me.MapId == 552)" >
-		<If Condition="Me.Location.Distance(new WoWPoint(3291.662, 1384.015, 503.9863)) &gt;= 55" >				
-			<MoveTo Nav="Fly" X="3307.26" Y="1343.292" Z="505.5608" />
+		<If Condition="Me.Location.Distance(new WoWPoint(3366.32, 1518.864, 182.6719)) &gt;= 55" >				
+			<CustomBehavior File="FlyTo" X="3211.36" Y="1702.123" Z="257.0714" />
+			<CustomBehavior File="MyCTM" X="3262.718" Y="1458.447" Z="513.5992" />
+			<CustomBehavior File="MyCTM" X="3304.598" Y="1351.14" Z="502.2926" />
 			<CustomBehavior File="ForcedDismount" />
 		</If>
 	</If>
