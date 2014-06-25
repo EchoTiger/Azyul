@@ -520,14 +520,16 @@
 
 
 		<DisableBehavior Name="Pull" />
-		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-			<Hotspot X="-10756.17" Y="-1375.582" Z="15.35429" />
-			<Hotspot X="-10739.26" Y="-1395.34" Z="15.35429" /> //leave1
-		</CustomBehavior>
+		<DisableBehavior Name="Combat" />
+			<RunTo X="-10755.1" Y="-1373.037" Z="15.3536" />
+			<RunTo X="-10736.38" Y="-1401.744" Z="15.3536" />
+		<EnableBehavior Name="Combat" />
 
 
-		<RunTo X="-10730.72" Y="-1320.814" Z="15.35361" /> /> //leave2
-		<CustomBehavior File="MyCTM" X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
+		<RunTo X="-10746.68" Y="-1361.759" Z="15.3536" /> /> //leave2
+		<DisableBehavior Name="Combat" />
+		<RunTo X="-10729.95" Y="-1320.165" Z="15.35445" />
+		<RunTo X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
 
 
 		<CustomBehavior File="Misc\RunLUA" Lua="
@@ -543,7 +545,7 @@
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 		<EnableBehavior Name="Pull" />
-
+		<EnableBehavior Name="Combat" />
 	</If>
 	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
