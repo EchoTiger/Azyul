@@ -649,16 +649,17 @@
 						print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 						end" />
 
-					<CustomBehavior File="Misc\RunLUA" Lua="
-						if GuildBankFrame:IsVisible()==1 then
-							for b=0,4 do for s=1,GetContainerNumSlots(b)
-								do local n=GetContainerItemLink(b,s)
-									if n and strfind(n,&quot;53010&quot;)then
-										print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+						<CustomBehavior File="Misc\RunLUA" Lua="
+							if GuildBankFrame:IsVisible()==1 then
+								print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
+								for b=0,4 do for s=1,GetContainerNumSlots(b)
+									do local n=GetContainerItemLink(b,s)
+										if n and strfind(n,&quot;53010&quot;)then
+											UseContainerItem(b,s)
+										end
 									end
 								end
-							end
-						end" />
+							end" />
 
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 					<CustomBehavior File="MyCTM" X="425.3003" Y="212.2813" Z="529.9125" />
