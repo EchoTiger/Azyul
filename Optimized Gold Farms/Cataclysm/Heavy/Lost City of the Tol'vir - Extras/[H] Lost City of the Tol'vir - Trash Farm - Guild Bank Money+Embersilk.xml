@@ -467,13 +467,11 @@
 		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
-
-		<MoveTo Nav="Run" X="-10768.64" Y="-1343.984" Z="15.3525" />
-
 		<DisableBehavior Name="Combat" />
-			<MoveTo Nav="Run" X="-10750.65" Y="-1368.373" Z="15.3525" />
-			<MoveTo Nav="Run" X="-10781.77" Y="-1394.23" Z="15.3525" />
-			<MoveTo Nav="Run" X="-10855.85" Y="-1410.849" Z="15.3525" />
+			<RunTo X="-10768.64" Y="-1343.984" Z="15.3525" />
+			<RunTo X="-10750.65" Y="-1368.373" Z="15.3525" />
+			<RunTo X="-10781.77" Y="-1394.23" Z="15.3525" />
+			<RunTo X="-10855.85" Y="-1410.849" Z="15.3525" />
 		<EnableBehavior Name="Combat" />
 
 		<CustomBehavior File="WaitTimer" WaitTime="500" />
@@ -556,6 +554,10 @@
 					end
 				end
 			end" />
+
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
 		<RunTo X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
 
