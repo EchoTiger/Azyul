@@ -125,14 +125,14 @@
 			end
 			function SlashCmdList.SHOWSTATS()
 				calculate()
-				print(&quot;|cFFF0F0F0~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
-				print(&quot;|cFFF0F0F0~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
-				print(&quot;|cFFF0F0F0~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
+				print(&quot;|cFFF0F0F0~Total Stats!|r\n|cFF00CCFFTime active|r: &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold|r: &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value|r: &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag|r: &quot;, GetCoinTextureString(completetotal));
+				print(&quot;|cFFF0F0F0~Last Dungeon!|r\n|cFF00CCFFTime taken|r: &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold|r: &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold|r:&quot;, GetCoinTextureString(vendorsellmoney));
+				print(&quot;|cFFF0F0F0~Current Dungeon!|r\n|cFF00CCFFTime taken|r: &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold|r: &quot;, GetCoinTextureString(cprogressmoney));
 				print(&quot;|cFFF0F0F0Type /stats2 for more stats!|r&quot;)
 			end
 			function SlashCmdList.EXTRASTATS()
 				calculate()
-				print(&quot;|cFFF0F0F0~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
+				print(&quot;|cFFF0F0F0~Estimates!|r\n|cFF00CCFFGPH|r: &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value)|r: &quot;, gph2, &quot;\n|cFF00CCFFGPM|r: &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value)|r: &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score|r: &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
 			end" />
 
 <While Condition="!(Me.MapId == 1)" >
@@ -531,14 +531,14 @@
 				for b=0,4 do for s=1,GetContainerNumSlots(b)
 					do local n=GetContainerItemLink(b,s)
 						if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
-							print(&quot;|cFF3399FF[Azyul]:|r Selling &quot;..n)UseContainerItem(b,s)
+							print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
 						end
 					end
 				end" />
 			<CustomBehavior File="WaitTimer" WaitTime="2500" />
 			<CustomBehavior File="ForcedDismount" />
 				<Else>
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]:|r Vendor mount wasn't detected, continuing run.&quot;" />
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
 					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
 				</Else>
 		</If>
@@ -554,16 +554,16 @@
 			if GuildBankFrame:IsVisible()==1 then
 				MyMoney = GetMoney();
 				DepositGuildBankMoney(MyMoney);
-				print(&quot;Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+				print(&quot;|cFF3399FF[Azyul]|r:Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
 				for b=0,4 do for s=1,GetContainerNumSlots(b)
 					do local n=GetContainerItemLink(b,s)
 						if n and n:find(&quot;53010&quot;) then
-							print(&quot;|cFF3399FF[Azyul]:|r Depositing &quot;..n)UseContainerItem(b,s);
+							print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..n)UseContainerItem(b,s);
 						end
 					end
 				end
 			else
-			print(&quot;|cFF3399FF[Azyul]:|r Your mobile guild bank wasn't detected, continuing run.&quot;)
+			print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 			end" />
 
 		<CustomBehavior File="WaitTimer" WaitTime="500" />
@@ -579,7 +579,7 @@
 			lastdungeon = math.floor(ecurrdungeon-scurrdungeon)
 			progressmoney = math.floor(endingmoney-startingmoney);
 			totalmoney = math.floor(endingmoney-beginningmoney);
-			print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)
+			print(&quot;|cFFF0F0F0Statistics so far|r:\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)
 			" />
 		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 		<CustomBehavior File="MyCTM" X="-10688.83" Y="-1309.427" Z="17.63992" />
@@ -621,7 +621,7 @@
 			vendorendingmoney = GetMoney();
 			vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);
 			vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);
-			print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+			print(&quot;|cFFF0F0F0Statistics so far|r:\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 	</If>
 </While>
 </QuestOrder>
