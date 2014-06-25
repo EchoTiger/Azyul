@@ -554,16 +554,20 @@
 			if GuildBankFrame:IsVisible()==1 then
 				MyMoney = GetMoney();
 				DepositGuildBankMoney(MyMoney);
-				print(&quot;|cFF3399FF[Azyul]|r:Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+				print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+			else
+			print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+			end" />
+
+		<CustomBehavior File="Misc\RunLUA" Lua="
+			if GuildBankFrame:IsVisible()==1 then
 				for b=0,4 do for s=1,GetContainerNumSlots(b)
 					do local n=GetContainerItemLink(b,s)
-						if n and n:find(&quot;53010&quot;) then
-							print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..n)UseContainerItem(b,s);
+						if n and strfind(n,&quot;53010&quot;)then
+							print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
 						end
 					end
 				end
-			else
-			print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 			end" />
 
 		<CustomBehavior File="WaitTimer" WaitTime="500" />
