@@ -478,7 +478,11 @@
 		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
-		<RunTo X="-10875.6" Y="-1501.181" Z="6.678038" />
+		<RunTo X="-10858.93" Y="-1420.425" Z="15.95636" />
+
+		<CustomBehavior File="WaitTimer" WaitTime="500" /> <!-- Another re-mount if looting caused us to unmount-->
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) end" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
 		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 			<Hotspot X="-10908.39" Y="-1496.237" Z="6.675475" />
@@ -510,6 +514,7 @@
 			<Hotspot X="-11057.53" Y="-1378.129" Z="10.81136" />
 		</CustomBehavior>
 
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
 		<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
 		<CustomBehavior File="WaitTimer" WaitTime="2000" />
 		<If Condition="Me.HasAura(61425) || Me.HasAura(61447) || Me.HasAura(122708)" >
@@ -536,7 +541,8 @@
 					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
 				</Else>
 		</If>
-		<CustomBehavior File="RunMacro" Macro="/cast Mobile Banking" WaitTime="3500" />
+		<CustomBehavior File="RunMacro" Macro="/cast Mobile Banking" />
+		<CustomBehavior File="WaitTimer" WaitTime="3500" />
 		<If Condition="Me.IsAlliance" > 
 		    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 		</If> 
