@@ -531,13 +531,14 @@
 				for b=0,4 do for s=1,GetContainerNumSlots(b)
 					do local n=GetContainerItemLink(b,s)
 						if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
-							print(&quot;Selling &quot;..n)UseContainerItem(b,s)
+							print(&quot;|cFF3399FF[Azyul]:|r Selling &quot;..n)UseContainerItem(b,s)
 						end
 					end
 				end" />
 			<CustomBehavior File="WaitTimer" WaitTime="2500" />
 			<CustomBehavior File="ForcedDismount" />
 				<Else>
+					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]:|r Vendor mount wasn't detected, continuing run.&quot;" />
 					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
 				</Else>
 		</If>
@@ -550,15 +551,19 @@
 		    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 		</If> 
 		<CustomBehavior File="Misc\RunLUA" Lua="
-			MyMoney = GetMoney();
-			DepositGuildBankMoney(MyMoney);
-			print(&quot;Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
-			for b=0,4 do for s=1,GetContainerNumSlots(b)
-				do local n=GetContainerItemLink(b,s)
-					if n and n:find(&quot;53010&quot;) then
-						print(&quot;Depositing &quot;..n)UseContainerItem(b,s);
+			if GuildBankFrame:IsVisible()==1 then
+				MyMoney = GetMoney();
+				DepositGuildBankMoney(MyMoney);
+				print(&quot;Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+				for b=0,4 do for s=1,GetContainerNumSlots(b)
+					do local n=GetContainerItemLink(b,s)
+						if n and n:find(&quot;53010&quot;) then
+							print(&quot;|cFF3399FF[Azyul]:|r Depositing &quot;..n)UseContainerItem(b,s);
+						end
 					end
 				end
+			else
+			print(&quot;|cFF3399FF[Azyul]:|r Your mobile guild bank wasn't detected, continuing run.&quot;)
 			end" />
 
 		<CustomBehavior File="WaitTimer" WaitTime="500" />

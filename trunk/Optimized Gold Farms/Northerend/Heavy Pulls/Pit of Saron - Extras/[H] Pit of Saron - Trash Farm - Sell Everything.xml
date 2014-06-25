@@ -48,7 +48,6 @@
 	<CustomBehavior File="Message" Text="*NOTE*\nThis run is optimized for people who have the Traveler's Mammoth or Grand Yak.\n\nIt will town-vendor if you do not have these mounts." LogColor="Red" />
 	<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
 
-
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
 			SLASH_EXTRASTATS1 = '/stats2';
@@ -622,11 +621,12 @@
 							 for b=0,4 do for s=1,GetContainerNumSlots(b)
 							 	do local n=GetContainerItemLink(b,s)
 							 		if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
-								 		print(&quot;Selling &quot;..n)UseContainerItem(b,s)
+								 		print(&quot;|cFF3399FF[Azyul]:|r Selling &quot;..n)UseContainerItem(b,s)
 							 		end
 							 	end
 							 end" />
 							<Else>
+								<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]:|r Vendor mount wasn't detected, continuing run.&quot;" />
 								<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
 							</Else>
 						</If>
