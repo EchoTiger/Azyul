@@ -497,10 +497,7 @@
 			<If Condition="!(Me.MapId == 600)" >
 				<RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
 				<CustomBehavior File="MyCTM" X="4774.691" Y="-2022.088" Z="229.3516" />
-							<CustomBehavior File="WaitTimer" WaitTime="5500" />
-			<While Condition="!(StyxWoW.IsInWorld)" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			</While>
+				<CustomBehavior File="WaitTimer" WaitTime="1000" TerminateWhen="Me.MapId == 600" />
 			</If>
 			<If Condition="(Me.MapId == 600)" >
 				<DisableBehavior Name="Combat" /> <!-- Avoid spiders on second level -->

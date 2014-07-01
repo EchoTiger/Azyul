@@ -43,7 +43,6 @@
 </Blackspots>
 
 <QuestOrder>
-
 <If Condition="(Me.MapId == 670)" >
 	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="DeepSkyBlue" />
 	<RunTo X="-624.7546" Y="-185.558" Z="272.062" />
@@ -530,14 +529,19 @@
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
 				<If Condition="(Me.FreeBagSlots &lt;= 10)">
 					<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+					<CustomBehavior File="FlyTo" X="-5361.541" Y="-2951.45" Z="324.0776" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox Nav="Fly" X="-5365.623" Y="-2954.108" Z="323.7545" />
+						</Mailboxes>
+					</SetMailbox>
 					<CustomBehavior File="ForceSetVendor"  DoMail="True" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
 				</If>
 			</If>
 			<ClearVendor />
 			<ClearMailbox />
 		</While>
 	</While>
-
-
 </QuestOrder>
 </HBProfile>
