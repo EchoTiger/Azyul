@@ -4,6 +4,7 @@
 ///////////////////////////////////////////////////////////////////////
 // Profile Maker: Mjj23
 // Farm zone: Molten Core
+// Re-built by: EchoTiger
 // Farm mobs: All
 // Grind Speed: N/A
 // Grind what? Transmog/Recipes
@@ -23,6 +24,8 @@
 <SellGreen>False</SellGreen>
 <SellBlue>False</SellBlue>
 <SellPurple>False</SellPurple>
+
+<TargetElites>True</TargetElites>
 
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
 	
@@ -336,9 +339,8 @@
 					<!-- No profiles in deepholm-->
 						
 				</If>
-			</If>
-		
 		</While>
+		
 		<!-- 
 		End transport script credit to Bengan. 
 		With use of Kicks go to profiles.
@@ -353,118 +355,59 @@
 			
 			<!-- Navigation to deal with being inside mountain -->
 			
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
 						<CustomBehavior File="Message" Text="Moving to Molten Core Location." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7843.759" Y="-1140.536" Z="208.2344" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7794.918" Y="-1134.368" Z="214.8472" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7745.932" Y="-1117.598" Z="215.0841" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7710.015" Y="-1086.716" Z="217.7014" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7689.18" Y="-1091.725" Z="217.4671" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7547.833" Y="-982.0856" Z="229.0867" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7519.461" Y="-1049.127" Z="180.9119" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7812.092" Y="-1134.613" Z="222.4833" />
+						<CustomBehavior File="MyCTM" X="-7747.853" Y="-1121.215" Z="218.404" />
+						<CustomBehavior File="MyCTM" X="-7736.496" Y="-1086.391" Z="217.5282" />
+						<CustomBehavior File="MyCTM" X="-7669.704" Y="-1091.817" Z="222.4783" />
+						<CustomBehavior File="MyCTM" X="-7516.03" Y="-1046.301" Z="182.3015" />
 						<CustomBehavior File="ForcedDismount" />
 						<RunTo X="-7509.546" Y="-1040.151" Z="180.9113" />
 						
-			<If Condition="HasQuestAvailable(14387)" > <!-- Picks up Molten Core Attunement quest from Lothos Riftwalker, if needed -->
-						<CustomBehavior File="InteractWith" MobId="14387" NumOfTimes="1" WaitTime="1000" />
-						<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
-						<CustomBehavior File="Misc\RunLua" Lua="AcceptQuest()" WaitTime="100" />
-			</If>
-			<!-- Begin Molten Core Attunement -->
 		</If>
 </If>
 <If Condition="!(Me.MapId == 409)" >
-			<If Condition="HasQuest(7848) &amp;&amp; !IsQuestCompleted(7848)" >
-						<RunTo X="-7178.522" Y="-924.8549" Z="166.7823" />
-						<CustomBehavior File="MyCTM" X="-7178.522" Y="-926.8549" Z="166.7823" /> <!-- Enters instance if not already inside -->
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
-						<RunTo X="494.5241" Y="14.57071" Z="-70.14531" />
-						<CustomBehavior File="InteractWith" MobId="170559" ObjectType="GameObject" X="496.3966" Y="16.01264" Z="-70.25659" /> <!-- Open Shadowforge Gate #1 -->
-						<RunTo X="567.3649" Y="-7.604219" Z="-70.13715" />
-						<CustomBehavior File="InteractWith" MobId="170560" ObjectType="GameObject" X="569.5891" Y="-9.361542" Z="-70.25659" /> <!-- Open Shadowforge Gate #2 -->
-						<RunTo X="559.7013" Y="-50.9404" Z="-60.2491" />
-						<CustomBehavior File="InteractWith" MobId="170570" ObjectType="GameObject" X="560.5311" Y="-51.81592" Z="60.09396" /> <!-- Open East Garrison Door -->
-						<RunTo X="610.652" Y="-50.89309" Z="-60.0553" />
-						<CustomBehavior File="InteractWith" MobId="161460" ObjectType="GameObject" X="615.6141" Y="-49.78228" Z="60.05573" /> <!-- Open Shadowforge Lock -->
-						<RunTo X="595.4376" Y="-80.28967" Z="-45.46703" />
-						<RunTo X="698.2953" Y="-129.7628" Z="-46.233" />
-						<RunTo X="745.8502" Y="-82.92848" Z="-45.88385" />
-						<RunTo X="720.9578" Y="22.26288" Z="-45.42532" />
-						<RunTo X="813.3042" Y="-45.6054" Z="-53.73921" />
-						<RunTo X="850.3034" Y="-142.8952" Z="-49.75375" />
-						<RunTo X="883.5315" Y="-178.4838" Z="-43.92514" />
-						<CustomBehavior File="InteractWith" MobId="9499" ObjectType="Npc" X="885.5588" Y="-175.5309" Z="-42.9623" /> <!-- Buy Ale from Plugger Spazzring -->
-						<CustomBehavior File="RunMacro" Macro="/run BuyMerchantItem(1, 10)" NumOfTimes="1" WaitTime="2000" />
-						<RunTo X="889.6729" Y="-196.6794" Z="-43.70361" />
-						<While Condition="(GetItemCount(11325) &gt; 4)" > <!-- Feed Ale to Private Rocknot so we Aggro Phalanx -->
-							<CustomBehavior File="InteractWith"  MobId="9503" NumOfTimes="1" CollectionDistance="50" WaitTime="1000" X="891.1985" Y="-197.924" Z="-43.70374" />
-							<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteButton" NumOfTimes="1" WaitTime="1000" />
-							<CustomBehavior File="RunMacro" Macro="/click QuestFrameCompleteQuestButton" NumOfTimes="1" WaitTime="1000" />
-							<CustomBehavior File="WaitTimer" WaitTime="3000" />
-						</While>
-						<CustomBehavior File="WaitTimer" WaitTime="60000" /> <!-- Wait for Phalanx to become hostile -->
-						<RunTo X="865.4268" Y="-220.2316" Z="-43.70376" /> <!-- Pull Phalanx -->
-						<RunTo X="888.0352" Y="-222.4015" Z="-49.94399" />
-						<RunTo X="996.8618" Y="-224.4338" Z="-61.78908" /> <!-- Chamber of Enchantment -->
-						<RunTo X="1122.843" Y="-135.4519" Z="-74.35896" /> <!-- Mold Foundry -->
-						<RunTo X="1279.917" Y="-279.4926" Z="-78.21929" /> <!-- Summoner's Tomb Doom'rel -->
-						<CustomBehavior File="InteractWith" MobId="9039" ObjectType="Npc" X="1281.137" Y="-282.1509" Z="-78.21904" />
-						<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="1" WaitTime="1000" />
-						<RunTo X="1271.22" Y="-268.0984" Z="-78.21925" />
-						<CustomBehavior File="WaitTimer" WaitTime="120000" /> <!-- Wait for Summoner's Tomb Event to complete -->
-						<RunTo X="1264.12" Y="-295.1791" Z="-78.21929" />
-						<RunTo X="1206.95" Y="-369.4516" Z="-92.6128" />
-						<RunTo X="1127.581" Y="-470.8286" Z="-105.1575" />
-						<CustomBehavior File="InteractWith" MobId="179553" ObjectType="GameObject" X="1128.009" Y="-471.7635" Z="-104.032" /> <!-- Pick up Core Fragment -->
-						<While Condition="(Me.ZoneId == 2717)" >
-						<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />  <!--Hearth out so we can turn in Attunement-->
-						<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
-						</While>
-						<!-- End Molten Core Attunement -->
-						</If>
-						
-			<If Condition="HasQuest(7848) &amp;&amp; IsQuestCompleted(7848) &amp;&amp; (Me.ZoneId != 2717)" >
-						<TurnIn QuestName="Attunement to the Core" QuestId="7848" TurnInName="Lothos Riftwalker" TurnInId="14387" />
-			</If>
-			
-			<If Condition="!HasQuest(7848) &amp;&amp; IsQuestCompleted(7848) &amp;&amp; (Me.ZoneId != 2717)" >
+
+			<If Condition="(Me.ZoneId != 2717)" >
 						<CustomBehavior File="InteractWith" MobId="14387" NumOfTimes="1" WaitTime="1000" />
-						<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+						<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton3\n/click GossipTitleButton2\n/click GossipTitleButton1" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
 </If>
 			<!-- Molten Core Instance Farm -->
 			
 			<If Condition="(Me.MapId == 409)" >
+					<TargetingDistance Value="40" />
 			
-						<RunTo X="1090.535" Y="-474.5745" Z="-107.2641" />
-						<RunTo X="1128.429" Y="-541.4446" Z="-107.4853" />
-						<RunTo X="1182.84" Y="-618.7682" Z="-122.6626" />
+						<RunTo X="1135.373" Y="-535.4296" Z="-107.1947" />
+						<RunTo X="1141.288" Y="-571.0024" Z="-112.7228" />
+						<RunTo X="1171.529" Y="-562.1083" Z="-112.416" />
+						
 						<RunTo X="1032.922" Y="-785.865" Z="-152.4614" />
 						<RunTo X="949.2805" Y="-934.8061" Z="-185.5758" />
-						<CustomBehavior File="SwitchTarget" BossId="12118" /> <!-- Pull Lucifron -->
+						<CustomBehavior File="InteractWith" MobId="12118" /> <!-- Pull Lucifron -->
 						<RunTo X="994.1364" Y="-971.6543" Z="-181.1627" /> <!-- Core Hound Pack #1 -->
 						<RunTo X="1035.617" Y="-964.0767" Z="-180.0197" /> <!--Core Hound Pack #2 -->
 						<RunTo X="1072.931" Y="-972.1534" Z="-182.068" /> <!-- Core Hound Pack #3 -->
 						<RunTo X="1107.933" Y="-989.1984" Z="-186.0287" /> <!-- Core Hound Pack #4 -->
 						<RunTo X="1094.139" Y="-1016.994" Z="-186.8083" /> <!-- Core Hound Pack #5 -->
 						<RunTo X="1132.937" Y="-1017.055" Z="-186.4149" />
-						<CustomBehavior File="SwitchTarget" BossId="11982" /> <!-- Pull Magmadar -->
+						<CustomBehavior File="InteractWith" MobId="11982" /> <!-- Pull Magmadar -->
 						<RunTo X="898.7932" Y="-549.5908" Z="-203.8107" />
-						<CustomBehavior File="SwitchTarget" BossId="12259" /> <!-- Pull Gehennas -->
+						<CustomBehavior File="InteractWith" MobId="12259" /> <!-- Pull Gehennas -->
 						<RunTo X="673.803" Y="-502.5283" Z="-213.4892" />
-						<CustomBehavior File="SwitchTarget" BossId="12057" /> <!-- Pull Garr -->
+						<CustomBehavior File="InteractWith" MobId="12057" /> <!-- Pull Garr -->
 						<RunTo X="661.2715" Y="-813.8049" Z="-208.743" />
-						<CustomBehavior File="SwitchTarget" BossId="12056" /> <!-- Pull Baron Geddon -->
+						<CustomBehavior File="InteractWith" MobId="12056" /> <!-- Pull Baron Geddon -->
 						<RunTo X="587.7184" Y="-806.6628" Z="-205.0457" />
-						<CustomBehavior File="SwitchTarget" BossId="12264" /> <!-- Pull Shazzrah -->
+						<CustomBehavior File="InteractWith" MobId="12264" /> <!-- Pull Shazzrah -->
 						<RunTo X="602.7177" Y="-1179.208" Z="-195.9757" />
-						<CustomBehavior File="SwitchTarget" BossId="12098" /> <!-- Pull Sulfuron Harbinger -->
+						<CustomBehavior File="InteractWith" MobId="12098" /> <!-- Pull Sulfuron Harbinger -->
 						<RunTo X="817.8962" Y="-1131.66" Z="-153.365" />
 						<RunTo X="795.8419" Y="-997.9019" Z="-207.2172" />
-						<CustomBehavior File="SwitchTarget" BossId="11988" /> <!-- Pull Golemagg the Incinerator -->
+						<CustomBehavior File="InteractWith" MobId="11988" /> <!-- Pull Golemagg the Incinerator -->
 						<RunTo X="752.6776" Y="-1176.209" Z="-118.8567" />
-						<CustomBehavior File="SwitchTarget" BossId="12018" AuraId="20620" AddId1="11664" AddId2="11663" /> <!-- Pull Majordomo Executus -->
+						<CustomBehavior File="InteractWith" MobId="12018" AuraId="20620" AddId1="11664" AddId2="11663" /> <!-- Pull Majordomo Executus -->
 						<RunTo X="754.4194" Y="-1180.436" Z="-118.4213" />
 						<CustomBehavior File="InteractWith" MobId="179703" ObjectType="GameObject" X="756.8968" Y="-1180.698" Z="-118.5964" /> <!-- Loot Cache of the Firelord -->
 						<RunTo X="695.109" Y="-1067.931" Z="-181.7801" />
