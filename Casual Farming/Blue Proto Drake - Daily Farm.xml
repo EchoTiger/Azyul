@@ -454,6 +454,7 @@
 				    <CustomBehavior File="RunMacro" Macro="/y LEEERROOOOOYYY JEENNNKIINNNS" />
 				</If>
 			    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
+			    <!-- ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Any(u =&gt; u.Entry == 26893 &amp;&amp; u.IsValid) : Old method-->
 				<While Condition="Object(26893, o => o.IsValid) != null">
 					<While Condition="!HasItem(37372) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
 						<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
@@ -493,7 +494,7 @@
 				<If Condition="(!HasItem(44151))" >
 					<CustomBehavior File="Message" Text="\n\nThe proto-drake did not drop.\n\nBetter luck next time though!" LogColor="Red" />
 				</If>
-				
+
 				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" />
 			    <RunTo X="310.6154" Y="-469.5724" Z="104.7145"  />
 			    <RunTo X="267.8144" Y="-452.9744" Z="104.7015"  />
