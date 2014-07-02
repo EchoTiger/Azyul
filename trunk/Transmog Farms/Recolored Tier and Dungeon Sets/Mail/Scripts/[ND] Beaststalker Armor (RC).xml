@@ -494,20 +494,24 @@
 				<!-- Begin Instance Grind -->
 				<If Condition="(Me.MapId == 547)" >
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+					<CustomBehavior File="UserSettings" LootMobs="True" />
+
 
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<RunTo X="17.56726" Y="-381.3828" Z="3.036324" />
+						<Hotspot X="17.56726" Y="-381.3828" Z="3.036324" />
 					</CustomBehavior>
 
-					<CustomBehavior File="UserSettings" LootMobs="true" />
+					<CustomBehavior File="UserSettings" LootMobs="True" />
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="RunMacro" Macro="/petpassive" />
 					<CustomBehavior File="InteractWith" MobId="17941" ObjectType="Npc" MobState="DontCare" Range="1" X="53.91827" Y="-380.2251" Z="3.035571" /> <!-- Pull Menuu the Betrayer -->
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="UserSettings" LootMobs="false" />
+					<CustomBehavior File="UserSettings" LootMobs="False" />
+					<CustomBehavior File="RunMacro" Macro="/petassist" />
 
 
 
-					<If Condition="HasItem(24366)" >
+					<If Condition="!HasItem(24366)" >
 						<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 							<Hotspot X="126.8301" Y="-380.1393" Z="30.55235" />
 							<Hotspot X="126.8301" Y="-380.1393" Z="30.55235" />
@@ -524,17 +528,17 @@
 
 						<RunTo X="-252.5504" Y="-703.7756" Z="36.8893" /> <!-- Avoid swimming -->
 						<CustomBehavior File="MyCTM" X="-251.6965" Y="-690.3016" Z="30.62204" />
-						<CustomBehavior File="UserSettings" LootMobs="true" />
+						<CustomBehavior File="UserSettings" LootMobs="True" />
+						<CustomBehavior File="RunMacro" Macro="/petpassive" />
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
 						<CustomBehavior File="InteractWith" MobId="17942" ObjectType="Npc" Range="1" X="-273.3637" Y="-689.0301" Z="34.90844" /> <!-- Pull Quagmirran -->
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
-						<CustomBehavior File="UserSettings" LootMobs="false" />
+						<CustomBehavior File="RunMacro" Macro="/petassist" />
+						<CustomBehavior File="UserSettings" LootMobs="False" />
 						<CustomBehavior File="MyCTM" X="-197.7341" Y="-708.9185" Z="37.8924" />
 						<RunTo X="-84.43185" Y="-442.025" Z="-1.590477" /> <!-- First long run back -->
 						<CustomBehavior File="MyCTM" X="-87.84837" Y="-321.3455" Z="-1.5785" /> <!-- Shortcut CTM -->
 					</If>
-
-					<RunTo X="-105.2105" Y="-295.7466" Z="-1.575601" />
 
 					<RunTo X="121.3587" Y="-130.6102" Z="-0.9406101" /> <!-- Last long run coordinate -->
 
@@ -676,7 +680,7 @@
 				<!-- End vendor routine -->
 		</While>
 
-<!-- Go to Underbogs (Chest - Wrists drop here but are skipped) -->
+<!-- Go to Underbogs (Chest - Wrists will be looted but not required.) -->
 		<While Condition="!HasItem(24465)" >
 			<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &gt;= 145" >
 				<CustomBehavior File="Message" Text="Entering the Reservoir." LogColor="Lime" />
@@ -722,6 +726,11 @@
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 						<Hotspot X="-124.0515" Y="-391.9363" Z="37.31304" />
 					</CustomBehavior>
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="UserSettings" LootMobs="True" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="UserSettings" LootMobs="False" />
+
 
 
 					<RunTo X="-49.52848" Y="-387.7764" Z="30.90817" />
@@ -740,7 +749,6 @@
 
 
 					<RunTo X="158.3553" Y="-476.7667" Z="74.69814" />
-					<CustomBehavior File="InteractWith" MobId="18105" ObjectType="Npc" Range="1" X="176.8558" Y="-485.8806" Z="67.233" /> <!-- Pull Ghaz'an -->
 
 					<RunTo X="332.9549" Y="-476.7554" Z="51.18067" /> <!-- Go to jump off point -->
 					<CustomBehavior File="MyCTM" X="355.3692" Y="-461.4476" Z="25.81182" />
@@ -959,10 +967,10 @@
 					<RunTo X="-16.80901" Y="1.030072" Z="-0.954329" />
 					<RunTo X="-68.0435" Y="-136.9184" Z="-0.9722393" /> //Boss
 					<EnableBehavior Name="Combat" />
-					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="UserSettings" LootMobs="False" />
 
 					<RunTo X="-0.7623158" Y="1.010749" Z="-0.9534453" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="UserSettings" LootMobs="False" />
 
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 
@@ -1023,6 +1031,129 @@
 				<!-- End Vendor Routine -->
 		</While>
 
+<!-- Auchenai Crypts (Helm) -->
+		<While Condition="!HasItem(27414)">
+
+			<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+				<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+				<CustomBehavior File="FlyTo" X="-3363.058" Y="5047.969" Z="-79.39336" />
+				<CustomBehavior File="MyCTM" X="-3361.46" Y="5170.593" Z="-101.0491" />
+			</If>
+
+			<If Condition="Me.Location.Distance(new WoWPoint(-3535.028, 4942.239, -101.3962)) &lt;= 20" > <!-- If we just vendored -->
+				<CustomBehavior File="FlyTo" X="-3363.058" Y="5047.969" Z="-79.39336" />
+				<CustomBehavior File="MyCTM" X="-3361.46" Y="5170.593" Z="-101.0491" />
+			</If>
+		</If>
+
+		<If Condition="(Me.FreeBagSlots &gt;= 11)" >
+			<If Condition="!(Me.MapId == 558)" >
+				<MoveTo X="-3361.847" Y="5218.072" Z="-101.0482" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="Message" Text="Entering Auchenai Crypts." LogColor="Lime" />
+				<CustomBehavior File="MyCTM" X="-3362.656" Y="5233.142" Z="-101.048" />
+				<CustomBehavior File="WaitTimer" WaitTime="5500" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 558)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="UserSettings" LootMobs="False" />
+
+				<RunTo X="33.74844" Y="-0.630427" Z="-0.1248157" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="248.4002" Y="-11.97912" Z="-0.07495958" />
+					<Hotspot X="262.194" Y="8.858376" Z="4.136531" /> //LoS
+				</CustomBehavior>
+
+
+				<RunTo X="267.8954" Y="29.45913" Z="13.43622" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="-73.3963" Y="-162.7334" Z="26.54875" /> <!-- Shirrak the Dead Watcher -->
+					<Hotspot X="-64.43861" Y="-183.3418" Z="26.28424" /> //LoS
+				</CustomBehavior>
+
+
+				<RunTo X="-86.33018" Y="-162.9736" Z="26.58985" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="15.01026" Y="-369.0821" Z="25.96285" />
+				</CustomBehavior>
+
+				<CustomBehavior File="UserSettings" LootMobs="True" />
+				<RunTo X="70.46895" Y="-389.265" Z="26.58933" /> <!-- Exarch Maladaar -->
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="UserSettings" LootMobs="False" />
+
+
+				<RunTo X="-22.57451" Y="0.7706324" Z="-0.1192664" /> <!-- Long run to entrance -->
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<CustomBehavior File="MyCTM" X="-29.3374" Y="0.3493616" Z="-0.1192664" />
+				<CustomBehavior File="WaitTimer" WaitTime="5500" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!-- End Instance Grind -->
+		
+		<!-- Vendor Routine -->
+		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
+
+			<!-- Bot ignores this vendor.
+					<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoSell="True" />
+					<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
+					<ClearVendor /> -->  
+
+
+				<If Condition="Me.IsAlliance" >
+					<MoveTo Nav="Fly" X="-2944.846" Y="4009.452" Z="5.567399" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2933.421" Y="4009.331" Z="-1.294724" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2929.392" Y="4008.916" Z="-1.389165" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2936.408" Y="4010.14" Z="-1.248712" />
+					<ClearMailbox />
+				</If>
+				<If Condition="Me.IsHorde" >
+					<MoveTo Nav="Fly" X="-2620.939" Y="4409.075" Z="49.22842" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2615.288" Y="4417.971" Z="35.98839" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<ClearMailbox />
+				</If>
+		</If>
+		<!-- End Vendor Routine -->
+
+		</While>
 
 	<If Condition="HasItem(24366) &amp;&amp; HasItem(24360) &amp;&amp; HasItem(24465) &amp;&amp; HasItem(27414) &amp;&amp; HasItem(25941) &amp;&amp; HasItem(24022) &amp;&amp; HasItem(24090)">
 		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="All items have been obtained!\nThere's no dungeons that drop heroic items for this set." />
