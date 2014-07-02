@@ -468,41 +468,53 @@
 			    <RunTo X="300.3060" Y="-452.0946" Z="104.7349"  />
 			    <RunTo X="310.6154" Y="-469.5724" Z="104.7145"  />
 			    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
-			    <CustomBehavior File="RunMacro" Macro="/cleartarget\n/target Grauf\n/focus\n/cleartarget" />
 			    <RunTo X="309.4785" Y="-508.1805" Z="104.381" />
+
 			    <If Condition="Chance(28.0)"> <!-- Random easteregg code to make the bot more human-like -->
 				    <CustomBehavior File="NoCombatMoveTo" X="370.7579" Y="-511.7003" Z="104.875" />
 				    <CustomBehavior File="RunMacro" Macro="/y LEEERROOOOOYYY JEENNNKIINNNS" />
 				</If>
 			    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
-				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />
-				<While Condition="(Me.FocusedUnit != null)">
-					<While Condition="(Me.FocusedUnit != null) &amp;&amp; (!HasItem(37372))">
-						<EnableBehavior Name="Combat" />
-						<EnableBehavior Name="Pull" />
-						<CustomBehavior File="UserSettings" PullDistance="25" />
-						<CustomBehavior File="NoCombatMoveTo" X="477.2179" Y="-504.6097" Z="104.7244" />
-						<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" Range="30" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
+				<While Condition="Object(26893, o => o.IsValid) != null">
+					<While Condition="!HasItem(37372) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
+						<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
+							<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
+						</CustomBehavior>
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+						<While Condition="(Object(192539, o => o.IsValid) != null) &amp;&amp; (Object(26893, o => o.IsValid) != null)" >
+							<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" NumOfTimes="1" CollectionDistance="30" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
+						</While>
 					</While>
-					<While Condition="(Me.FocusedUnit != null) &amp;&amp; (HasItem(37372))" >
-						<If Condition="(Me.FocusedUnit != null) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 18)" >
+					<While Condition="HasItem(37372) &amp;&amp; (Object(26893, o => o.IsValid) != null)" >
+						<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 35) != null) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
 							<DisableBehavior Name="Combat" />
- 							<CustomBehavior File="InteractWith" MobId1="192176" MobId2="192177" Range="5" X="485.5264" Y="-523.3635" Z="104.7237" />
+ 							<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" MobId1="192176" MobId2="192177" X="485.5264" Y="-523.3635" Z="104.7237" />
+ 							<EnableBehavior Name="Combat" />
 						</If>
-						<If Condition="(Me.FocusedUnit != null) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 25)" >
-							<EnableBehavior Name="Combat" />
-							<DisableBehavior Name="Pull" />
-							<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="1" Range="20" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
+						<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 36) != null) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
+							<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
+								<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
+							</CustomBehavior>
+							<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" CollectionDistance="20" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
+							<CustomBehavior File="WaitTimer" WaitTime="500" />
 						</If>
 					</While>
 				</While>
 				<EnableBehavior Name="Combat" />
 				<EnableBehavior Name="Pull" />
-				<If Condition="HasItem(37372)" >
+				<If Condition="(HasItem(37372))" >
 					<CustomBehavior File="Message" Text="\nLook's like we're finished!\nThrowing away extra harpoons." LogColor="Green" />
-					<CustomBehavior File="DeleteItems" Ids="37372" />
+					<CustomBehavior File="Misc\RunLUA" Lua="local item,l,i=&quot;37372&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				</If>				
+			    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
+				<If Condition="(HasItem(44151))" >
+					<CustomBehavior File="Message" Text="\n\nCongratulations!\nYou are now the owner of a fresh new Blue Proto-Drake!" LogColor="LightBlue" />
+				</If>
+				<If Condition="(!HasItem(44151))" >
+					<CustomBehavior File="Message" Text="\n\nThe proto-drake did not drop.\n\nBetter luck next time though!" LogColor="Red" />
+				</If>
+				
 				<CustomBehavior File="UserSettings" PullDistance="25" />
 			    <RunTo X="472.2087" Y="-450.2808" Z="104.7206" />
 				<CustomBehavior File="MyCTM" X="465.8292" Y="-433.3245" Z="97.96548" />
