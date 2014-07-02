@@ -475,6 +475,7 @@
 				    <CustomBehavior File="RunMacro" Macro="/y LEEERROOOOOYYY JEENNNKIINNNS" />
 				</If>
 			    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
+			    <!-- ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Any(u =&gt; u.Entry == 26893 &amp;&amp; u.IsValid) : Old method-->
 				<While Condition="Object(26893, o => o.IsValid) != null">
 					<While Condition="!HasItem(37372) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
 						<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
@@ -510,9 +511,6 @@
 			    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
 				<If Condition="(HasItem(44151))" >
 					<CustomBehavior File="Message" Text="\n\nCongratulations!\nYou are now the owner of a fresh new Blue Proto-Drake!" LogColor="LightBlue" />
-				</If>
-				<If Condition="(!HasItem(44151))" >
-					<CustomBehavior File="Message" Text="\n\nThe proto-drake did not drop.\n\nBetter luck next time though!" LogColor="Red" />
 				</If>
 				
 				<CustomBehavior File="UserSettings" PullDistance="25" />
