@@ -495,7 +495,7 @@
 			<RunTo X="3683.676" Y="2117.896" Z="26.34149" />
 		</If>
 	</If>
-		<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="!(Me.MapId == 619)" >
 				<MoveTo X="3644.882" Y="2040.105" Z="1.787762" />
 				<CustomBehavior File="MyCTM" X="3639.663" Y="2027.607" Z="2.518004" />
@@ -639,7 +639,7 @@
 		</While>
 		<!-- Force town sell. -->
 
-		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<RunTo X="3732.481" Y="2124.925" Z="41.21062" />
@@ -655,7 +655,7 @@
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
 
-			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<If Condition="Me.IsAlliance">
 					<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
 					<CustomBehavior File="FlyTo" X="3493.006" Y="2001.989" Z="65.05994" />

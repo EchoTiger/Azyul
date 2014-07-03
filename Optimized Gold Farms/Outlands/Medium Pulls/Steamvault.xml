@@ -466,7 +466,7 @@
 			<RunTo X="818.2902" Y="6940.515" Z="-80.59582" />
 		</If>
 	</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="!(Me.MapId == 546)" >
 			<RunTo X="818.3602" Y="6944.097" Z="-80.6101" />
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
@@ -589,7 +589,7 @@
 	<!-- End Instance Grind -->
 	
 	<!-- Vendor routine -->
-	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 
@@ -603,7 +603,7 @@
 			<CustomBehavior File="WaitTimer" WaitTime="1500" />
 			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
 			<ClearVendor />
-			<If Condition="(Me.FreeBagSlots &lt;= 10)" >  <!-- Go to normal vendor routine if the player needs to mail -->
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >  <!-- Go to normal vendor routine if the player needs to mail -->
 				<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
 				<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
 				<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
@@ -646,7 +646,7 @@
 			</If>
 		</If>
 
-		<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &lt;= 144 &amp;&amp; Me.GetReputationLevelWith(942) &lt; Styx.WoWUnitReaction.Exalted &amp;&amp; Me.FreeBagSlots &lt;= 10" >
+		<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &lt;= 144 &amp;&amp; Me.GetReputationLevelWith(942) &lt; Styx.WoWUnitReaction.Exalted &amp;&amp; Me.FreeBagSlots &lt; 17" >
 			<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
 			<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
 			<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
@@ -661,7 +661,7 @@
 
 			<If Condition="Me.IsAlliance" >
 				<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
-				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
 					<CustomBehavior File="FlyTo" X="1019.702" Y="7383.811" Z="36.24001" />
 					<CustomBehavior File="ForcedDismount" />
 					<SetVendor>
@@ -687,7 +687,7 @@
 
 			<If Condition="Me.IsHorde" >
 				<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
-				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
 					<CustomBehavior File="FlyTo" X="319.7794" Y="7840.998" Z="24.84016" />
 					<CustomBehavior File="ForcedDismount" />
 					<SetVendor>

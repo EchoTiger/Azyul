@@ -485,7 +485,7 @@
 			<RunTo X="5635.262" Y="2048.698" Z="798.0886" /> <!-- Instance Hub Center -->
 		</If>
 	</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="!(Me.MapId == 632)" >
 			<RunTo X="5664.142" Y="2012.161" Z="798.0413" />
 			<RunTo X="5674.774" Y="1997.939" Z="798.0421" />
@@ -575,7 +575,7 @@
 		    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 		</If>
 
-		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<RunTo X="5639.215" Y="2052.72" Z="798.0443" />
@@ -591,7 +591,7 @@
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
 
-			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<CustomBehavior File="FlyTo" X="5693.586" Y="2289.171" Z="841.021" />
 				<CustomBehavior File="FlyTo" X="5842.477" Y="2221.141" Z="818.6159" />
 				<CustomBehavior File="FlyTo" X="5644.941" Y="864.0459" Z="757.019" />

@@ -448,7 +448,7 @@
 		</If>
 	</If>
 
-	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="!(Me.MapId == 555)" >
 			<RunTo X="-3644.636" Y="4943.016" Z="-101.048" />
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
@@ -555,7 +555,7 @@
 	<!-- End Instance Grind -->
 	
 	<!-- Vendor Routine -->
-	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 

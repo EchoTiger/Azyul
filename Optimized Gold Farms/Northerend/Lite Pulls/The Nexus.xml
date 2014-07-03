@@ -469,7 +469,7 @@
 </If><!-- If inside inside, skip above code -->
 <!-- CHOP CHOP :D -->
 <While Condition="true" >
-	<If Condition="!(Me.MapId == 576) &amp;&amp; (Me.FreeBagSlots &gt;= 11)" >
+	<If Condition="!(Me.MapId == 576) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(3843.809, 6980.912, 86.65029)) &gt; 100" >
 			<CustomBehavior File="Message" Text="Heading to Instance." LogColor="Green" />
 			<CustomBehavior File="FlyTo" X="3752.128" Y="6946.389" Z="158.0456" />
@@ -479,10 +479,10 @@
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
 		</If>
 	</If>
-	<If Condition="!(Me.MapId == 576) &amp;&amp; (Me.FreeBagSlots &lt;= 10)" >
+	<If Condition="!(Me.MapId == 576) &amp;&amp; (Me.FreeBagSlots &lt; 17)" >
 		<CustomBehavior File="Message" Text="Profile started with nearly-fully bags." LogColor="Red" />
 	</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 11)">
+	<While Condition="(Me.FreeBagSlots &gt;= 17)">
 		<If Condition="!(Me.MapId == 576)" >
 			<RunTo X="3894.839" Y="6985.287" Z="69.4888" />
 			<CustomBehavior File="MyCTM" X="3901.258" Y="6985.32" Z="69.4879" />
@@ -620,7 +620,7 @@
 			    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 		</If> <!--Nexus -->
 	</While>
-		<If Condition="(Me.FreeBagSlots &lt;= 10)" ><!-- Force Town Sell: Nexus-->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" ><!-- Force Town Sell: Nexus-->
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 
@@ -632,7 +632,7 @@
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
 
-			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<If Condition="!Me.Location.Distance(new WoWPoint(3843.809, 6980.912, 86.65029)) &gt; 100" >
 					<RunTo X="3787.271" Y="6959.985" Z="104.8405" />
 					<CustomBehavior File="FlyTo" X="3724.287" Y="6919.871" Z="183.8073" />
@@ -652,7 +652,7 @@
 				<ClearVendor />
 				<MoveTo X="3578.65" Y="6669.341" Z="195.698" />
 				<MoveTo X="3583.291" Y="6664.908" Z="195.218" />
-				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<If Condition="(Me.FreeBagSlots &lt; 20)" >
 					<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
 					<CustomBehavior File="FlyTo" X="3627.705" Y="6537.568" Z="330.9476" />
 					<CustomBehavior File="FlyTo" X="3500.86" Y="6272.117" Z="296.2089" />

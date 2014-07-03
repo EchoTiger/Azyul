@@ -360,7 +360,7 @@
 			<CustomBehavior File="ForcedDismount" />
 		</If>
 	</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 		<!--Start Endless Cycle -->
 		<If Condition="!(Me.MapId == 552)" >
 			<MoveTo X="3310.654" Y="1335.361" Z="505.5604" />
@@ -453,12 +453,12 @@
 	</While>
 
 	<!-- Vendor Routine -->
-	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair" LogColor="Lime" />
 		<CustomBehavior File="ForcedMount" MountType="Flying" />
 		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
 		<CustomBehavior File="WaitTimer" WaitTime="1000" />
-		<If Condition="(Me.FreeBagSlots &lt;= 10)" > <!-- Mail if player still has 10 or less slots -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" > <!-- Mail if player still has 10 or less slots -->
 			<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
 			<SetMailbox>
 				<Mailboxes>

@@ -477,7 +477,7 @@
 <!-- CHOP CHOP D: -->
 
 <While Condition="true" >
-	<If Condition="!(Me.MapId == 604) &amp;&amp; (Me.FreeBagSlots &gt;= 11)" >
+	<If Condition="!(Me.MapId == 604) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(6944.809, -4426.977, 450.8831)) &gt; 100 " >
 			<CustomBehavior File="Message" Text="Heading to instance." LogColor="DeepSkyBlue" />
 			<CustomBehavior File="FlyTo" X="6869.925" Y="-4472.948" Z="511.2688" />
@@ -486,7 +486,7 @@
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
 		</If>
 	</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="!(Me.MapId == 604)" >
 			<RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
 			<!--<CustomBehavior File="MyCTM" X="6973.58" Y="-4400.046" Z="441.5751" />-->
@@ -602,7 +602,7 @@
 		<!--Instance Coordination Complete-->
 	</While>
 	<!-- Force town sell. -->
-	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
 		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 
@@ -613,7 +613,7 @@
 					<CustomBehavior File="WaitTimer" WaitTime="1100" />
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
-			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<CustomBehavior File="FlyTo" X="6845.171" Y="-4535.665" Z="524.4027" />
 				<CustomBehavior File="FlyTo" X="5870.244" Y="-3906.165" Z="493.8217" />
 				<CustomBehavior File="FlyTo" X="5850.354" Y="-3643.215" Z="398.8691" />
@@ -630,7 +630,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<ClearVendor />
 				<RunTo X="5780.233" Y="-3568.455" Z="386.5152" />
-				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<If Condition="(Me.FreeBagSlots &lt; 20)" >
 					<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
 					<CustomBehavior File="FlyTo" X="5546.134" Y="-3194.041" Z="440.3812" />
 					<CustomBehavior File="FlyTo" X="5525.695" Y="-2623.592" Z="319.2954" />
