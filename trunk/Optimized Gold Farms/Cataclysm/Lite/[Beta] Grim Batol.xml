@@ -368,7 +368,7 @@
 <DisableBehavior Name="Death" />
 
 	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
-		<While Condition="(Me.FreeBagSlots &gt;= 11)">
+		<While Condition="(Me.FreeBagSlots &gt;= 17)">
 			<If Condition="!(Me.MapId == 670)" >
 				<If Condition="Me.Location.Distance(new WoWPoint(-4074.677, -3454.845, 277.4006)) &gt; 30" >
 					<CustomBehavior File="Message" Text="Heading to Instance Location." LogColor="Green" />
@@ -479,7 +479,7 @@
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			</If>
 		</While>
-		<While Condition="(Me.FreeBagSlots &lt;= 10)">
+		<While Condition="(Me.FreeBagSlots &lt; 17)">
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<CustomBehavior File="FlyTo" X="-4083.552" Y="-3465.485" Z="287.8949" />
 			<If Condition="Me.IsHorde" >
@@ -490,8 +490,8 @@
 					</Vendors>
 				</SetVendor>
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-				<If Condition="(Me.FreeBagSlots &lt;= 10)">
-					<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+				<If Condition="(Me.FreeBagSlots &lt; 20)">
+					<CustomBehavior File="Message" Text="\nYou're still under 20 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
 					<CustomBehavior File="ForceSetVendor"  DoMail="True" />
 				</If>
 			</If>
@@ -503,8 +503,8 @@
 					</Vendors>
 				</SetVendor>
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-				<If Condition="(Me.FreeBagSlots &lt;= 10)">
-					<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+				<If Condition="(Me.FreeBagSlots &lt; 20)">
+					<CustomBehavior File="Message" Text="\nYou're still under 20 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
 					<CustomBehavior File="FlyTo" X="-5361.541" Y="-2951.45" Z="324.0776" />
 					<SetMailbox>
 						<Mailboxes>

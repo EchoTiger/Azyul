@@ -429,7 +429,7 @@
 
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 <While Condition="true" >
-	<If Condition="!(Me.MapId == 755) &amp;&amp; (Me.FreeBagSlots &gt; 10)" >
+	<If Condition="!(Me.MapId == 755) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(-10666.71, -1304.58, 17.70085)) &gt;= 15" >
 			<CustomBehavior File="Message" Text="Heading to Instance Hub" LogColor="Green" />
 			<CustomBehavior File="FlyTo" X="-10642.87" Y="-1298.32" Z="26.36411" />
@@ -581,7 +581,7 @@
 		<EnableBehavior Name="Pull" />
 		<EnableBehavior Name="Combat" />
 	</If>
-	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
 		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 		<CustomBehavior File="WaitTimer" WaitTime="750" />
 		<CustomBehavior File="RunMacro" Macro="/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
@@ -591,7 +591,7 @@
 			<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 		</If>
 
-		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<CustomBehavior File="FlyTo" X="-9457.354" Y="-959.7435" Z="123.8492" />
 			<SetVendor>
