@@ -479,7 +479,7 @@
 
 	</If>
 
-	<If Condition="Me.Location.Distance(new WoWPoint(1200.907, -4901.904, 41.24823)) &gt;= 100" >
+	<If Condition="Me.Location.Distance(new WoWPoint(1200.907, -4901.904, 41.24823)) &gt;= 170" >
 		<CustomBehavior File="FlyTo" X="1058.342" Y="-4917.199" Z="40.53729" />
 		<CustomBehavior File="MyCTM" X="1107.68" Y="-4901.972" Z="41.2485" />
 		<CustomBehavior File="MyCTM" X="1161.246" Y="-4884.816" Z="41.2485" />
@@ -487,12 +487,12 @@
 
 	<!--CHOP CHOP -->
 	<While Condition="true" >
-			<If Condition="Me.Location.Distance(new WoWPoint(1200.907, -4901.904, 41.24823)) &gt;= 100" >
+			<If Condition="Me.Location.Distance(new WoWPoint(1200.907, -4901.904, 41.24823)) &gt;= 170" >
 				<CustomBehavior File="FlyTo" X="1058.342" Y="-4917.199" Z="40.53729" />
 				<CustomBehavior File="MyCTM" X="1107.68" Y="-4901.972" Z="41.2485" />
 				<CustomBehavior File="MyCTM" X="1161.246" Y="-4884.816" Z="41.2485" />
 			</If>
-			<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+			<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 				<!--Start Endless Cycle -->
 				<If Condition="!(Me.MapId == 574)" >
 					<MoveTo X="1215.008" Y="-4866.93" Z="41.24829" />
@@ -642,7 +642,7 @@
 		</While>
 
 
-			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 				<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 				<RunTo X="1099.184" Y="-4904.298" Z="41.2481" />
@@ -655,7 +655,7 @@
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
 
-				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
 					<CustomBehavior File="FlyTo" X="967.9332" Y="-4959.149" Z="117.8148" />
 					<CustomBehavior File="FlyTo" DestName="Kamagua" X="736.4531" Y="-2919.483" Z="7.2804" />
 

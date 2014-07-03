@@ -474,8 +474,8 @@
 
 
 <While Condition="true" >
-		<If Condition="!(Me.MapId == 600) &amp;&amp; (Me.FreeBagSlots &gt;= 11)" >
-			<If Condition="Me.Location.Distance(new WoWPoint(4893.181, -2042.959, 248.309 )) &lt; 10" > <!-- If we just used Traveler's Mammoth -->
+		<If Condition="!(Me.MapId == 600) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(4893.181, -2042.959, 248.309 )) &lt; 17" > <!-- If we just used Traveler's Mammoth -->
 				<CustomBehavior File="MyCTM" X="4872.786" Y="-2032.948" Z="250.0702" />
 				<CustomBehavior File="MyCTM" X="4824.002" Y="-2037.679" Z="250.1376" />
 				<CustomBehavior File="MyCTM" X="4772.893" Y="-2036.125" Z="229.3822" />
@@ -491,7 +491,7 @@
 				<CustomBehavior File="Message" Text="Profile started with full bags." LogColor="Red" />
 			</Else>
 		</If>
-		<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			<If Condition="!(Me.MapId == 600)" >
 				<RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
@@ -637,7 +637,7 @@
 			</If>
 		</While>
 			<!-- Force Town Sell -->
-			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 				<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 				<If Condition="Me.Location.Distance(new WoWPoint(4775.771, -2045.906, 229.4198)) &lt;= 150" > <!-- If just came out instance -->
@@ -656,7 +656,7 @@
 						<RunTo X="4889.332" Y="-2032.711" Z="248.3089" />
 					</If>
 
-				<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
 					<CustomBehavior File="FlyTo" X="5077.122" Y="-2249.123" Z="430.6839" />
 				<CustomBehavior File="FlyTo" X="5384.368" Y="-2631.522" Z="329.4101" />
 				<CustomBehavior File="FlyTo" X="5405.227" Y="-2655.048" Z="303.9551" />

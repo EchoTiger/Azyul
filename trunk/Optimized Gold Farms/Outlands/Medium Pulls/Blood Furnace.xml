@@ -451,7 +451,7 @@
 			<CustomBehavior File="ForcedDismount" />
 		</If>
 	</If>
-	<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="!(Me.MapId == 542)" >
 			<RunTo X="-300.1603" Y="3159.839" Z="31.68681" />
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
@@ -554,7 +554,7 @@
 	<!-- End Instance Grind -->
 	
 	<!-- Checks if bags are full -->	
-	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
 		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />

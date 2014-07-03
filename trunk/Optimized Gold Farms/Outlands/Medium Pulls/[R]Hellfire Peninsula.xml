@@ -558,7 +558,7 @@
 				<CustomBehavior File="ForcedDismount" />
 			</If>
 		</If>
-		<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="!(Me.MapId == 542)" >
 				<RunTo X="-300.1603" Y="3159.839" Z="31.68681" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
@@ -661,7 +661,7 @@
 		<!-- End Instance Grind -->
 
 		<!-- Checks if bags are full -->	
-		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
@@ -727,13 +727,13 @@
 		<CustomBehavior File="Message" Text="Heading to Hellfire Ramparts." LogColor="DeepSkyBlue" />
 
 		<If Condition="!(Me.MapId == 543)" >
-			<If Condition="Me.Location.Distance(new WoWPoint(-365.5185, 3082.94, 14.648)) &gt; 10" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-365.5185, 3082.94, 14.648)) &gt;= 17" >
 				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
 				<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-362.5798" Y="3074.1" Z="-15.07973" />
 				<CustomBehavior File="ForcedDismount" />
 			</If>
 		</If>
-		<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="!(Me.MapId == 543)" >
 				<RunTo X="-361.8816" Y="3074.594" Z="-15.06141" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
@@ -816,7 +816,7 @@
 		<!-- End Instance Grind -->
 
 		<!-- Checks if bags are full -->	
-		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 
@@ -881,14 +881,14 @@
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Shattered Halls." LogColor="DeepSkyBlue" />
 
-		<If Condition="!(Me.MapId == 540) &amp;&amp; Me.FreeBagSlots &gt;= 11" >
+		<If Condition="!(Me.MapId == 540) &amp;&amp; Me.FreeBagSlots &gt;= 17" >
 			<If Condition="Me.Location.Distance(new WoWPoint(-309.7233, 3077.926, -3.641827)) &gt; 25" >
 				<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-299.862" Y="3020.822" Z="6.165497" />
 				<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-303.6577" Y="3046.832" Z="-4.586812" />
 				<CustomBehavior File="ForcedDismount" />
 			</If>
 		</If>
-		<While Condition="(Me.FreeBagSlots &gt;= 11)" >
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="!(Me.MapId == 542)" >
 				<RunTo X="-309.2963" Y="3076.825" Z="-3.645569" />
 				<CustomBehavior File="InteractWith" MobId="184912" X="-309.6581" Y="3078.957" Z="-3.545551" />
@@ -998,7 +998,7 @@
 
 
 		<!-- Checks if bags are full -->	
-		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
 
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
