@@ -15,14 +15,14 @@
 
 <MailGrey>False</MailGrey>
 <MailWhite>False</MailWhite>
-<MailGreen>True</MailGreen>
-<MailBlue>True</MailBlue>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
 <MailPurple>True</MailPurple>
 
 <SellGrey>True</SellGrey>
 <SellWhite>True</SellWhite>
-<SellGreen>False</SellGreen>
-<SellBlue>False</SellBlue>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
 <SellPurple>False</SellPurple>
 
 <ProtectedItems>
@@ -43,6 +43,105 @@
 </Blackspots>
 
 <QuestOrder>
+
+		<CustomBehavior File="Misc\RunLUA" Lua="
+			SLASH_SHOWSTATS1 = '/stats';
+			SLASH_EXTRASTATS1 = '/stats2';
+
+			starttime = GetTime();
+			currtime = GetTime();
+
+			lastdungeon = 0
+
+			scurrdungeon = GetTime();
+			ecurrdungeon = GetTime();
+
+			startingmoney = GetMoney();
+			endingmoney = GetMoney();
+			cstartingmoney = GetMoney();
+			beginningmoney = GetMoney();
+			progressmoney = math.floor(endingmoney-startingmoney);
+			vendorstartingmoney = GetMoney();
+			vendorendingmoney = GetMoney();
+			vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);
+
+			function calculate()
+				local itemSellPrice = 0
+				local itemID = 0
+				local itemBagCount = 1
+				local itemStackCount = 1
+
+				total_value_of_bags = 0
+
+				for i = 0, NUM_BAG_SLOTS do
+					bagslots = GetContainerNumSlots(i)
+						for bagslotscounter = 1, bagslots do
+						itemID = GetContainerItemID(i, bagslotscounter)
+
+							if (itemID == nil)  or (itemSellPrice == nill) then
+							else
+							itemSellPrice = select(11, GetItemInfo(itemID))
+							if (itemSellPrice == nil) then
+							itemSellPrice = 0
+							end
+							itemBagCount = select(2, GetContainerItemInfo(i, bagslotscounter))
+							total_value_of_bags = total_value_of_bags + (itemSellPrice * itemBagCount)
+							end
+						end
+				end
+				totals = GetCoinTextureString(total_value_of_bags);
+
+				currmoney = GetMoney();
+
+				currtime = GetTime();
+				
+				tdiftime = (currtime - starttime);
+
+				cdiftime = (currtime - scurrdungeon);
+
+
+
+				tHours = string.format(&quot;%02.f&quot;, math.floor(tdiftime/3600));
+				tMins = string.format(&quot;%02.f&quot;, math.floor(tdiftime/60 - (tHours*60)));
+				tSecs = string.format(&quot;%02.f&quot;, math.floor(tdiftime - tHours*3600 - tMins *60));
+
+				lHours = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/3600));
+				lMins = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/60 - (lHours*60)));
+				lSecs = string.format(&quot;%02.f&quot;, math.floor(lastdungeon - lHours*3600 - lMins *60));
+
+				cHours = string.format(&quot;%02.f&quot;, math.floor(cdiftime/3600));
+				cMins = string.format(&quot;%02.f&quot;, math.floor(cdiftime/60 - (cHours*60)));
+				cSecs = string.format(&quot;%02.f&quot;, math.floor(cdiftime - cHours*3600 - cMins *60));
+
+
+
+
+				cprogressmoney = math.floor(currmoney-cstartingmoney)
+				difmoney = math.floor(currmoney-beginningmoney)
+				completetotal = math.floor(difmoney+total_value_of_bags)
+				farmscore = math.floor((difmoney/tdiftime)/10)
+				farmscore2 = math.floor((completetotal/tdiftime)/10)
+
+				gph = GetCoinTextureString(math.floor(difmoney/(tdiftime/3600)))
+				gph2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/3600)))
+				gpm = GetCoinTextureString(math.floor(difmoney/(tdiftime/60 - (tHours*60))))
+				gpm2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/60 - (tHours*60))))
+			end
+
+			function SlashCmdList.SHOWSTATS()
+				calculate()
+				print(&quot;|cFF0099FF~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
+				print(&quot;|cFF0099FF~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
+				print(&quot;|cFF0099FF~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
+				print(&quot;|cFFF79A71Type /stats2 for more stats!|r&quot;)
+			end
+			function SlashCmdList.EXTRASTATS()
+				calculate()
+				print(&quot;|cFF0099FF~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
+			end
+
+			" />
+
 <If Condition="(Me.MapId == 670)" >
 	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="DeepSkyBlue" />
 	<RunTo X="-624.7546" Y="-185.558" Z="272.062" />
@@ -366,6 +465,8 @@
 
 
 <DisableBehavior Name="Death" />
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />	
 
 	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
 		<While Condition="(Me.FreeBagSlots &gt;= 17)">
@@ -382,6 +483,10 @@
 			</If>
 			<If Condition="(Me.MapId == 670)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLUA" Lua="
+					startingmoney = GetMoney();
+					cstartingmoney = GetMoney();
+					scurrdungeon = GetTime();" />
 				<!-- Every spaced out coordinate is a pull unless otherwise posted.  -->
 				<RunTo X="-579.9321" Y="-237.6211" Z="276.5957" />
 
@@ -462,9 +567,24 @@
 
 				<RunTo X="-556.8271" Y="-747.3787" Z="268.7677" />
 				<CustomBehavior File="Message" Text="\nLite-Gold run complete, returning to entrance for reset." LogColor="Yellow" />
+				<CustomBehavior File="Misc\RunLUA" Lua="
+					endingmoney = GetMoney();
+					ecurrdungeon = GetTime();
+					lastdungeon = math.floor(ecurrdungeon-scurrdungeon)
+					progressmoney = math.floor(endingmoney-startingmoney);
+					totalmoney = math.floor(endingmoney-beginningmoney);
+					print(&quot;|cFF0099FFStatistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(progressmoney), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)
+					" /> 
 				<!-- Run back to beginning -->
 				<RunTo X="-457.5056" Y="-735.4189" Z="268.7691" />
 				<RunTo X="-509.3425" Y="-696.4219" Z="268.7674"  /> <!-- Before Second Boss -->
+
+				<RunTo X="-613.7416" Y="-680.3417" Z="268.7671" />
+				<CustomBehavior File="MyCTM" X="-625.48" Y="-690.126" Z="271.2801" /> <!-- Bridge nav. -->
+				<CustomBehavior File="MyCTM" X="-629.9317" Y="-706.8118" Z="270.6573" />
+				<CustomBehavior File="MyCTM" X="-644.0728" Y="-715.4374" Z="268.766" />
+
+
 				<RunTo X="-533.5356" Y="-308.2173" Z="268.7674" /> <!-- Long Run Back #1-->
 				<CustomBehavior File="MyCTM" X="-533.8972" Y="-259.8702" Z="276.488" />
 				<RunTo X="-623.868" Y="-192.9199" Z="272.0293" /> <!-- Before instance portal. -->
@@ -481,6 +601,8 @@
 		</While>
 		<While Condition="(Me.FreeBagSlots &lt; 17)">
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+			<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
+
 			<CustomBehavior File="FlyTo" X="-4083.552" Y="-3465.485" Z="287.8949" />
 			<If Condition="Me.IsHorde" >
 				<CustomBehavior File="FlyTo" X="-3491.58" Y="-4368.721" Z="210.4921" />
@@ -492,6 +614,8 @@
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
 				<If Condition="(Me.FreeBagSlots &lt; 20)">
 					<CustomBehavior File="Message" Text="\nYou're still under 20 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+					<CustomBehavior File="FlyTo" X="-3669.523" Y="-5285.55" Z="48.18324" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
 					<CustomBehavior File="ForceSetVendor"  DoMail="True" />
 				</If>
 			</If>
@@ -515,6 +639,12 @@
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
 				</If>
 			</If>
+			<CustomBehavior File="Misc\RunLUA" Lua="
+				vendorendingmoney = GetMoney();
+				vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);
+				vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);
+				print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)
+				" /> 
 			<ClearVendor />
 			<ClearMailbox />
 		</While>
