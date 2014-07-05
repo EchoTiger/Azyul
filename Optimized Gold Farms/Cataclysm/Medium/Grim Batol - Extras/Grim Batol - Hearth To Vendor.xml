@@ -504,6 +504,7 @@
 					<CustomBehavior File="RunMacro" Macro="/dismount" />
 				</If>
 				<RunTo X="-4058.044" Y="-3449.554" Z="281.16" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 				<CustomBehavior File="MyCTM" X="-4046.575" Y="-3446.058" Z="283.3518" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
@@ -642,7 +643,7 @@
 							" /> 
 						<ClearVendor />
 						<ClearMailbox />
- 						<ElseIf Condition="Me.IsAlliance &amp;&amp; WoWSpell.FromId(8690).Cooldown)">
+ 						<ElseIf Condition="Me.IsAlliance &amp;&amp; !Me.HearthstoneAreaId == 2101)">
 							<CustomBehavior File="Message" Text="*NOTE*\nYour Hearthstone isn't properly set to Thelsamar.\nPlease set it for this profile to operate properly.\n\nContinuing run for now." />
 							<RunTo X="-457.5056" Y="-735.4189" Z="268.7691" />
 							<RunTo X="-509.3425" Y="-696.4219" Z="268.7674"  /> <!-- Before Second Boss -->
@@ -700,7 +701,7 @@
 						</ElseIf>
 					</If>
 					<Else>
-						<CustomBehavior File="Message" Text="\nHeavy-Gold run complete, returning to entrance for reset." LogColor="Yellow" />
+						<CustomBehavior File="Message" Text="\nYour hearthstone is on cooldown.  Returning to entrance." LogColor="Yellow" />
 						<!-- Run back to beginning -->
 						<RunTo X="-457.5056" Y="-735.4189" Z="268.7691" />
 						<RunTo X="-509.3425" Y="-696.4219" Z="268.7674"  /> <!-- Before Second Boss -->
