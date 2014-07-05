@@ -579,13 +579,14 @@
 			<MoveTo X="1945.433" Y="663.1171" Z="135.2176" />
 			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
 
-			<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(progressmoney), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
-			<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
+			<CustomBehavior File="Misc\RunLUA" Lua="
+				endingmoney = GetMoney();
+				ecurrdungeon = GetTime();
+				lastdungeon = math.floor(ecurrdungeon-scurrdungeon)
+				progressmoney = math.floor(endingmoney-startingmoney);
+				totalmoney = math.floor(endingmoney-beginningmoney);
+				print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(progressmoney), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))
+			" /> 
 
 
 

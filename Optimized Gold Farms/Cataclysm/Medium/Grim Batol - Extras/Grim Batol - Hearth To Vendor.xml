@@ -44,6 +44,20 @@
 
 <QuestOrder>
 
+	<If Condition="Me.IsAlliance &amp;&amp; !Me.HearthstoneAreaId == 2101" >
+		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" ExpiryTime="30" SoundCueInterval="1" Text="Your Hearthstone must be set to Thelsamar for this profile.  Once you close this dialog out, I will set your Hearthstone for you.." />
+	</If>
+	<If Condition="Me.IsHorde" >
+		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" ExpiryTime="30" SoundCueInterval="1" Text="Your Hearthstone must be set to Bloodgulch for this profile.  You must set your hearthstone manually." />
+		<!--
+		<CustomBehavior File="FlyTo" X="-3676.707" Y="-5286.801" Z="46.18471" />
+		<CustomBehavior File="ForcedDismount" />
+		<RunTo X="-3663.24" Y="-5246.885" Z="42.13864"
+		<CustomBehavior File="SetHearthstone" MobId="49762" X="-3663.24" Y="-5246.885" Z="42.13864" />
+		-->
+	</If>
+
+
 		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
 			SLASH_EXTRASTATS1 = '/stats2';
@@ -442,7 +456,17 @@
 		End transport script credit to Bengan. 
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
-		--> 
+		-->
+	<If Condition="Me.IsAlliance &amp;&amp; !Me.HearthstoneAreaId == 2101" >
+		<CustomBehavior File="FlyTo" X="-5370.68" Y="-2954.063" Z="323.5525" />
+		<CustomBehavior File="ForcedDismount" />
+		<CustomBehavior File="InteractWith" MobId="6734" />
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="/click GossipTitleButton1"
+		<CustomBehavior File="WaitTimer" WaitTime="500" />
+		<CustomBehavior File="/click StaticPopup1Button1" />
+	</If>
+
 
 <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
 <!-- I don't always code dungeon runs, but when I do - I use over 1000 lines of code just for one dungeon.-->
