@@ -516,6 +516,7 @@
 			<Hotspot X="-11057.53" Y="-1378.129" Z="10.81136" />
 		</CustomBehavior>
 
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
 		<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Grand Expedition Yak" />
 		<CustomBehavior File="WaitTimer" WaitTime="2000" />
 		<If Condition="Me.HasAura(61425) || Me.HasAura(61447) || Me.HasAura(122708)" >
@@ -541,6 +542,9 @@
 					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
 				</Else>
 		</If>
+	</If>
+	
+		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) end" />
 
 		<RunTo X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
 
