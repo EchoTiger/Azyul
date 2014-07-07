@@ -760,21 +760,25 @@
 					<Hotspot X="1775.17" Y="675.1672" Z="129.2167" />
 				</CustomBehavior>
 				<MoveTo X="1777.956" Y="676.9604" Z="129.2174" />
-				<CustomBehavior File="InteractWith" CollectionDistance="8" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
-				<CustomBehavior File="InteractWith" CollectionDistance="6" WaitForNpcs="false" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" /> <!-- Double tap, just in case -->
+
+				<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
+				<While Condition="Object(192518, o => o.ToGameObject().CanUse()) != null">
+					<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
+					<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				</While>
 
 				<MoveTo X="1765.704" Y="644.8124" Z="124.4661" />
 				<MoveTo X="1726.359" Y="632.9615" Z="129.1971" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					CastSpellByID(2645);
-					CastSpellByID(2983);
-					CastSpellByID(17);
-					CastSpellByID(85499);
-					CastSpellByID(108843);
-					CastSpellByID(1850);
-					CastSpellByID(108212);
-				" />
+					<CustomBehavior File="Misc\RunLUA" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 					<Hotspot X="1694.117" Y="633.3572" Z="128.4503" />
 					<Hotspot X="1673.767" Y="633.6954" Z="127.5972" />
@@ -787,20 +791,24 @@
 					<Hotspot X="1680.791" Y="743.1531" Z="142.7869" />
 				</CustomBehavior>
 				<MoveTo X="1689.662" Y="743.3555" Z="142.781" />
-				<CustomBehavior File="InteractWith"  CollectionDistance="8" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
-				<CustomBehavior File="InteractWith"  CollectionDistance="6" WaitForNpcs="false" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" /> <!-- Double tap, just in case -->
+
+				<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
+				<While Condition="Object(192520, o => o.ToGameObject().CanUse()) != null">
+					<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192520" X="1775.293" Y="679.6804" Z="129.2361" />
+					<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				</While>
 
 				<MoveTo X="1627.208" Y="751.5085" Z="142.7861" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					CastSpellByID(2645);
-					CastSpellByID(2983);
-					CastSpellByID(17);
-					CastSpellByID(85499);
-					CastSpellByID(108843);
-					CastSpellByID(1850);
-					CastSpellByID(108212);
-				" />
+					<CustomBehavior File="Misc\RunLUA" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 					<Hotspot X="1625.227" Y="790.0083" Z="142.7824" />
 					<Hotspot X="1575.291" Y="833.7738" Z="153.3104" />
@@ -815,8 +823,12 @@
 					<Hotspot X="1772.675" Y="810.5074" Z="129.2168" /> <!-- Third boss -->
 				</CustomBehavior>
 				<MoveTo X="1772.236" Y="808.7632" Z="129.2166" />
-				<CustomBehavior File="InteractWith" CollectionDistance="8" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
-				<CustomBehavior File="InteractWith" CollectionDistance="6" WaitForNpcs="false" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" /> <!-- Double tap, just in case -->
+
+				<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
+				<While Condition="Object(192519, o => o.ToGameObject().CanUse()) != null">
+					<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192519" X="1775.293" Y="679.6804" Z="129.2361" />
+					<CustomBehavior File="WaitTimer" WaitTime="1200" />
+				</While>
 
 			    <RunTo X="1769.452" Y="801.0773" Z="129.2167" />
 			    <CustomBehavior File="MyCTM" X="1768.35" Y="781.2085" Z="108.4817" />
