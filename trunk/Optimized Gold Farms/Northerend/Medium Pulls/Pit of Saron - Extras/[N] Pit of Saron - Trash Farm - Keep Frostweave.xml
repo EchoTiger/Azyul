@@ -671,12 +671,19 @@
 				<CustomBehavior File="RunMacro" Macro="/dismount" />
 				<CustomBehavior File="MyCTM" X="5792.684" Y="686.665" Z="647.0988" />
 				<CustomBehavior File="MyCTM" X="5797.183" Y="688.9267" Z="648.1799" />
-				<SetVendor>
-					<Vendors>
-						<Vendor Name="Rueben Lauren" Entry="35496" Type="Repair" X="5798.024" Y="689.6007" Z="647.0987" />
-					</Vendors>
-				</SetVendor>
-				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+
+				<CustomBehavior File="InteractWith" MobId="35496" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="Misc\RunLUA" Lua="
+					 for b=0,4 do for s=1,GetContainerNumSlots(b)
+						do local n=GetContainerItemLink(b,s)
+							if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33470&quot;) then
+								print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+							end
+						end
+					end" />
+				<CustomBehavior File="WaitTimer" WaitTime="8500" />
+
 				<RunTo X="5788.56" Y="689.9357" Z="647.0991" />
 				<ClearVendor />
 				<SetMailbox>

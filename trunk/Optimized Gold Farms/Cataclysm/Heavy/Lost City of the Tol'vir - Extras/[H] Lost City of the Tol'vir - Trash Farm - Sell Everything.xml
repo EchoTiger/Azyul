@@ -577,11 +577,19 @@
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			<CustomBehavior File="FlyTo" X="-9457.354" Y="-959.7435" Z="123.8492" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Nav="Fly" Name="Blacksmith Abasi" Entry="48617" Type="Repair" X="-9404.68" Y="-906.438" Z="112.5403" />
-				</Vendors>
-			</SetVendor>
+
+			<CustomBehavior File="InteractWith" MobId="48617" />
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+			<CustomBehavior File="Misc\RunLUA" Lua="
+				for b=0,4 do for s=1,GetContainerNumSlots(b)
+					do local n=GetContainerItemLink(b,s)
+						if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
+							print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+						end
+					end
+				end" />
+			<CustomBehavior File="WaitTimer" WaitTime="8500" />
+
 			<SetMailbox>
 				<Mailboxes>
 					<Mailbox Nav="Fly" X="-9426.741" Y="-967.3004" Z="111.8145" />
@@ -590,7 +598,6 @@
 			<CustomBehavior File="FlyTo" X="-9446.563" Y="-960.4221" Z="117.4931" />
 			<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
 			<CustomBehavior File="FlyTo" X="-9453.447" Y="-938.5175" Z="118.9775" />
-			<ClearVendor />
 			<ClearMailbox />
 		</If>
 		<CustomBehavior File="Misc\RunLUA" Lua="

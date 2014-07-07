@@ -681,16 +681,20 @@
 				<CustomBehavior File="FlyTo" X="5850.354" Y="-3643.215" Z="398.8691" />
 				<CustomBehavior File="FlyTo" X="5780.249" Y="-3583.092" Z="400.9279" />
 				<CustomBehavior File="FlyTo" X="5779.767" Y="-3573.306" Z="386.5177" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<RunTo X="5770.711" Y="-3573.024" Z="387.1675" />
-				<SetVendor>
-					<Vendors>
-						<Vendor Name="Ba'kari" Entry="28855" Type="Repair" X="5769.661" Y="-3572.947" Z="387.2385" />
-					</Vendors>
-				</SetVendor>
-				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<ClearVendor />
+
+				<CustomBehavior File="FlyTo" X="5770.711" Y="-3573.024" Z="387.1675" />
+				<CustomBehavior File="InteractWith" MobId="28855" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="Misc\RunLUA" Lua="
+					 for b=0,4 do for s=1,GetContainerNumSlots(b)
+						do local n=GetContainerItemLink(b,s)
+							if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
+								print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+							end
+						end
+					end" />
+				<CustomBehavior File="WaitTimer" WaitTime="8500" />
+
 				<RunTo X="5780.233" Y="-3568.455" Z="386.5152" />
 				<If Condition="(Me.FreeBagSlots &lt; 20)" >
 					<CustomBehavior File="Message" Text="\nYou're still under 20 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />

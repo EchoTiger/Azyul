@@ -590,8 +590,20 @@
 
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="ForcedMount" MountType="Flying" />
-			<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+
+			<CustomBehavior	File="FlyTo" X="2955.032" Y="1802.131" Z="139.1213" />
+			<CustomBehavior File="InteractWith" MobId="22491" />
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+			<CustomBehavior File="Misc\RunLUA" Lua="
+				 for b=0,4 do for s=1,GetContainerNumSlots(b)
+					do local n=GetContainerItemLink(b,s)
+						if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;21877&quot;) then
+							print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+						end
+					end
+				end" />
+			<CustomBehavior File="WaitTimer" WaitTime="8500" />
+
 			<If Condition="(Me.FreeBagSlots &lt; 17)" > <!-- Mail if player still has 10 or less slots -->
 				<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
 				<SetMailbox>
