@@ -267,6 +267,7 @@
 								TitleLabel:SetTextColor(.5, 1, .5, 1);
 								TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
 								TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 20, -70);
+
 							MediumPull = CreateFrame(&quot;CheckButton&quot;, &quot;MediumPull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
 							MediumPull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 30, -38);
 							MediumPull:SetScript(&quot;PostClick&quot;, MediumPull_OnClick);
@@ -277,18 +278,19 @@
 								TitleLabel:SetTextColor(1, 1, .5, 1);
 								TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
 								TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 47, -70);
+
 							HeavyPull = CreateFrame(&quot;CheckButton&quot;, &quot;HeavyPull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
 							HeavyPull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 50, -38);
 							HeavyPull:SetScript(&quot;PostClick&quot;, HeavyPull_OnClick);
 							HeavyPull:SetScale(1.3);
 							HeavyPull:SetHitRectInsets(1, 1, 1, 1)
 							HeavyPull:SetChecked(true);
-
 								local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
 								TitleLabel:SetText(&quot;H&quot;);
 								TitleLabel:SetTextColor(1, .5, .5, 1);
 								TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
 								TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 73, -70);
+
 							HeroicMode = CreateFrame(&quot;CheckButton&quot;, &quot;HeroicCheck&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
 							HeroicMode:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 65, -73);
 							HeroicMode:SetScript(&quot;PostClick&quot;, HeroicMode_OnClick);
@@ -300,6 +302,7 @@
 								TitleLabel:SetTextColor(1, 1, 1, 1);
 								TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
 								TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 5, -100);
+
 					--[[Bagslots]]
 						local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
 						TitleLabel:SetText(&quot;- Bagslot Management -&quot;);
@@ -322,6 +325,7 @@
 								BagSlotCheck:SetAutoFocus(false)
 								BagSlotCheck:SetHeight(50)
 								BagSlotCheck:SetScript(&quot;OnChar&quot;, function(self,userInput,...) bagslotset = BagSlotCheck:GetNumber() end);
+
 							local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
 							TitleLabel:SetText(&quot;Mailing Min:&quot;);
 							TitleLabel:SetTextColor(1, 1, 1, 1);
@@ -338,6 +342,7 @@
 								MailingCheck:SetAutoFocus(false)
 								MailingCheck:SetHeight(50)
 								MailingCheck:SetScript(&quot;OnChar&quot;, function(self,userInput,...) mailingset = MailingCheck:GetNumber() end);
+
 							SellEverything = CreateFrame(&quot;CheckButton&quot;, &quot;SellEverything&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
 							SellEverything:SetPoint(&quot;TOP&quot;, AzyulManager, 27, -73);
 							SellEverything:SetScript(&quot;PostClick&quot;, SellEverything_OnClick);
@@ -349,6 +354,7 @@
 								TitleLabel:SetTextColor(1, 1, 1, 1);
 								TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
 								TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -28, -100);
+
 					--[[Deposit Method]]
 						local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
 						TitleLabel:SetText(&quot;- Mobile Bank -&quot;);
@@ -366,6 +372,7 @@
 								TitleLabel:SetTextColor(1, 1, 1, 1);
 								TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
 								TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -35, -54);
+								
 							DepositCloth = CreateFrame(&quot;CheckButton&quot;, &quot;DepositCloth&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
 							DepositCloth:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -5, -55);
 							DepositCloth:SetScript(&quot;PostClick&quot;, DepositCloth_OnClick);
@@ -1231,6 +1238,7 @@
 			<If Condition="(Lua.GetReturnValues(&quot;return heroicset&quot;)[0] == &quot;1&quot;)"> 
 				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 				<CustomBehavior File="Misc\RunLua" Lua="
+					heroicset = 0;
 					HeroicMode:SetChecked(nil);
 					print(&quot;|cFF3399FF[Azyul]|r: Switching the dungeon back to Normal difficulty.&quot;)" />
 			</If>
@@ -1357,7 +1365,7 @@
 				</Else>
 			</If>
 		</If>
-<!-- End Lua Sell, Everything -->
+<!-- END Lua Sell, Everything -->
 
 <!-- Honorbuddy Routine Mount Sell -->
 		<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;0&quot;)"> 
@@ -1369,7 +1377,7 @@
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
 		</If>
-<!-- Honorbuddy Routine Mount Sell -->
+<!-- END Honorbuddy Routine Mount Sell -->
 
 <!-- ////////////////////////////////////END MOUNT VENDORS///////////////////////////////////////////////////-->
 
@@ -1430,6 +1438,7 @@
 				</If>
 		<!-- END Normal Sell -->
 
+		<!-- Generic Mail Routine -->
 				<RunTo X="5780.233" Y="-3568.455" Z="386.5152" />
 				<If Condition="(Me.FreeBagSlots &lt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return mailingset&quot;, 0)))" >
 					<CustomBehavior File="Message" Text="\nYou're still under the minimum bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
@@ -1456,6 +1465,7 @@
 
 				<CustomBehavior File="FlyTo" X="6002.019" Y="-3651.332" Z="491.8026" />
 			</If>
+		<!-- END Generic Mail Routine -->
 <!-- ////////////////////////////////////END TOWN VENDORS///////////////////////////////////////////////////-->
 
 		</If>
