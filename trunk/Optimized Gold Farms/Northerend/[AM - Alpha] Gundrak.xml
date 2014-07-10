@@ -6,7 +6,7 @@
 // Farm mobs: Partial run.
 ///////////////////////////////////////////////////////////////////////
 
-<Name>Gundrak - Optimized Gold Farm - Heavy Pulls</Name>
+<Name>Gundrak - Optimized Gold Farm - AM</Name>
 
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 
@@ -1223,11 +1223,17 @@
 
 		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
 		    <CustomBehavior File="MyCTM" X="1914.803" Y="647.9481" Z="135.1441" />
-							<CustomBehavior File="WaitTimer" WaitTime="5500" />
+			<CustomBehavior File="WaitTimer" WaitTime="5500" />
 			<While Condition="!(StyxWoW.IsInWorld)" >
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			</While>
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			<If Condition="(Lua.GetReturnValues(&quot;return heroicset&quot;)[0] == &quot;1&quot;)"> 
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+					HeroicMode:SetChecked(nil);
+					print(&quot;|cFF3399FF[Azyul]|r: Switching the dungeon back to Normal difficulty.&quot;)" />
+			</If>
 		</If>
 		<!--Instance Coordination Complete-->
 	</If>
