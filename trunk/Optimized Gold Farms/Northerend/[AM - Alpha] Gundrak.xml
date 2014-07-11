@@ -1296,19 +1296,19 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<CustomBehavior File="Misc\RunLua" Lua="vendorstartingmoney = GetMoney();" />
 		<CustomBehavior File="Message" Text="Executing Mail, Vendor and Bank Routine" LogColor="Lime" />
 <!-- ////////////////////////////////////START GUILD BANK DETECTION/////////////////////////////////////////////-->
-<!-- Deposit Frostweave -->
-		<If Condition="(Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;)"> 
-			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958)" />
-			<CustomBehavior File="WaitTimer" WaitTime="3500" />
-			<If Condition="Me.IsAlliance" > 
-			    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
-			</If> 
-			<If Condition="Me.IsHorde" > 
-			    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
-			</If> 
-				<CustomBehavior File="Misc\RunLua" Lua="
+		<!-- Deposit Gold and Frostweave -->
+			<If Condition="(Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositgoldset&quot;)[0] == &quot;1&quot;) &amp;&amp; (WoWSpell.FromId(83958).Cooldown)"> 
+				<CustomBehavior File="Misc\RunLUA" Lua="
 					if GuildBankFrame:IsVisible()==1 then
-						print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
+						MyMoney = GetMoney();
+						DepositGuildBankMoney(MyMoney);
+						print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+					else
+					print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+					end" />
+				<CustomBehavior File="Misc\RunLUA" Lua="
+					if GuildBankFrame:IsVisible()==1 then
+						print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
 						for b=0,4 do for s=1,GetContainerNumSlots(b)
 							do local n=GetContainerItemLink(b,s)
 								if n and strfind(n,&quot;33470&quot;)then
@@ -1317,29 +1317,55 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							end
 						end
 					end" />
-		</If>
-<!-- END Deposit Frostweave -->
 
-<!-- Deposit Gold -->
-		<If Condition="(Lua.GetReturnValues(&quot;return depositgoldset&quot;)[0] == &quot;1&quot;)">
-			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
-			<CustomBehavior File="WaitTimer" WaitTime="3500" />
-			<If Condition="Me.IsAlliance" > 
-			    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
-			</If> 
-			<If Condition="Me.IsHorde" > 
-			    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
-			</If> 
-			<CustomBehavior File="Misc\RunLua" Lua="
-				if GuildBankFrame:IsVisible()==1 then
-					MyMoney = GetMoney();
-					DepositGuildBankMoney(MyMoney);
-					print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
-				else
-				print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
-				end" />
-		</If>
-<!-- END Deposit Gold -->
+			<!-- Deposit Frostweave -->
+				<ElseIf Condition="(Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;) &amp;&amp; (WoWSpell.FromId(83958).Cooldown)"> 
+						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958)" />
+						<CustomBehavior File="WaitTimer" WaitTime="3500" />
+						<If Condition="Me.IsAlliance" > 
+						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+						</If> 
+						<If Condition="Me.IsHorde" > 
+						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+						</If> 
+							<CustomBehavior File="Misc\RunLua" Lua="
+								if GuildBankFrame:IsVisible()==1 then
+									print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
+									for b=0,4 do for s=1,GetContainerNumSlots(b)
+										do local n=GetContainerItemLink(b,s)
+											if n and strfind(n,&quot;33470&quot;)then
+												UseContainerItem(b,s)
+											end
+										end
+									end
+								end" />
+				</ElseIf>
+			<!-- END Deposit Frostweave -->
+
+			<!-- Deposit Gold -->
+				<ElseIf Condition="(Lua.GetReturnValues(&quot;return depositgoldset&quot;)[0] == &quot;1&quot;) &amp;&amp; (WoWSpell.FromId(83958).Cooldown)">
+						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+						<CustomBehavior File="WaitTimer" WaitTime="3500" />
+						<If Condition="Me.IsAlliance" > 
+						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+						</If> 
+						<If Condition="Me.IsHorde" > 
+						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+						</If> 
+						<CustomBehavior File="Misc\RunLua" Lua="
+							if GuildBankFrame:IsVisible()==1 then
+								MyMoney = GetMoney();
+								DepositGuildBankMoney(MyMoney);
+								print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+							else
+							print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+							end" />
+				</ElseIf>
+			<!-- END Deposit Gold -->
+				<Else>
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Your mobile bank is on cooldown.  Continuing run.&quot;)" />
+				</Else>
+			</If>
 
 <!-- ////////////////////////////////////END GUILD BANK DETECTION/////////////////////////////////////////////-->
 
