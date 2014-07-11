@@ -987,6 +987,8 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 <!-- ////////////////////////////////////START GUILD BANK DETECTION/////////////////////////////////////////////-->
 		<!-- Deposit Gold and Frostweave -->
 			<If Condition="(Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositgoldset&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+				<CustomBehavior File="WaitTimer" WaitTime="3500" />
 				<CustomBehavior File="Misc\RunLUA" Lua="
 					if GuildBankFrame:IsVisible()==1 then
 						MyMoney = GetMoney();
@@ -1009,7 +1011,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 
 			<!-- Deposit Netherweave -->
 				<ElseIf Condition="(Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
-						<CustomBehavior File="RunMacro" Macro="/cast Mobile Banking\n/cast Мобильный банк" />
+						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
 						<CustomBehavior File="WaitTimer" WaitTime="3500" />
 						<If Condition="Me.IsAlliance" > 
 						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
