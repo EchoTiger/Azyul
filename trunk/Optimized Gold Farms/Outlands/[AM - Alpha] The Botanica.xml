@@ -1,16 +1,12 @@
 <HBProfile>
-
-///////////////////////////////////////////////////////////////////////
-// Profile Developer: Echo
-// Farm zone: Gundrak
-// Farm mobs: Partial run.
-///////////////////////////////////////////////////////////////////////
-
-<Name>Gundrak - Optimized Gold Farm - AM</Name>
-
+<Name>Botanica - Gold Optimized - AM</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////////////////////////
+// Profile Maker: EchoTiger
+// Farm zone: The Botanica
+///////////////////////////////////////////////////////////////////////////////////////////
 
-<MinLevel>1</MinLevel>
+<MinLevel>54</MinLevel>
 <MaxLevel>91</MaxLevel>
 
 <MailGrey>False</MailGrey>
@@ -25,23 +21,22 @@
 <SellBlue>True</SellBlue>
 <SellPurple>False</SellPurple>
 
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
 <ProtectedItems>
 </ProtectedItems>
-
+		
 <Vendors>
+	<Vendor Nav="Fly" Name="Kerpow Blastwrench" Entry="22491" Type="Repair" X="2955.032" Y="1802.131" Z="139.1213" />
 </Vendors>
 
 <Mailboxes>
 </Mailboxes>
 
 <AvoidMobs>
-	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
 </AvoidMobs>
 
-<Blackspots>
-</Blackspots>
-
-
+	
 <QuestOrder>
 
 <!-- 
@@ -71,11 +66,11 @@ ATTRIBUTES:
 
 	selleverythingset
 		0 = The bot will sell using Honorbuddy's routine.  All protected items are protected, and any vendor rules apply.
-		1 = The bot will sell using a Lua script.  Everything in the player's bags WILL BE sold except for Frostweave IF it's checked to be deposited.
+		1 = The bot will sell using a Lua script.  Everything in the player's bags WILL BE sold except for Netherweave IF it's checked to be deposited.
 
 	depositclothset
-		0 = The bot will not deposit any obtained Frostweave that's obtained while running the profile.
-		1 = The bot will deposit any obtained Frostweave that's obtained.  Also, the Frostweave will be protected from the Lua sell script.
+		0 = The bot will not deposit any obtained Netherweave that's obtained while running the profile.
+		1 = The bot will deposit any obtained Netherweave that's obtained.  Also, the Netherweave will be protected from the Lua sell script.
 		The deposit routine is called once the vendoring routine starts.
 
 	depositgoldset
@@ -148,12 +143,10 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						end
 						function LitePull_OnClick() 
 							if (LitePull:GetChecked() == 1) then
-								difficultyset = 1;
-								MediumPull:SetChecked(false);
-								HeavyPull:SetChecked(false);
-								print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Lite Pulls.&quot;)
+								LitePull:SetChecked(nil);
+								print(&quot;|cFF3399FF[Azyul]|r: There is no Lite Pulls for this instance.&quot;)
 							else
-								LitePull:SetChecked(true);
+								LitePull:SetChecked(nil);
 							end
 						end
 					--[[Bagslot Manager]]
@@ -229,13 +222,14 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							LitePull = CreateFrame(&quot;CheckButton&quot;, &quot;LitePull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
 							LitePull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 10, -38);
 							LitePull:SetScript(&quot;PostClick&quot;, LitePull_OnClick);
+							LitePull:Disable();
 							LitePull:SetScale(1.3);
 							LitePull:SetHitRectInsets(1, 1, 1, 1)
 								local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
-								TitleLabel:SetText(&quot;L&quot;);
-								TitleLabel:SetTextColor(.5, 1, .5, 1);
+								TitleLabel:SetText(&quot;*&quot;);
+								TitleLabel:SetTextColor(.84, .84, .84, 1);
 								TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
-								TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 20, -70);
+								TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 22, -72);
 
 							MediumPull = CreateFrame(&quot;CheckButton&quot;, &quot;MediumPull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
 							MediumPull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 30, -38);
@@ -356,7 +350,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			end"
 		/>
 
-		<CustomBehavior File="Misc\RunLua" Lua="
+		<CustomBehavior File="Misc\RunLUA" Lua="
 			SLASH_SHOWSTATS1 = '/stats';
 			SLASH_EXTRASTATS1 = '/stats2';
 			starttime = GetTime();
@@ -423,20 +417,28 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				print(&quot;|cFFF0F0F0~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
 				print(&quot;|cFFF0F0F0~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
 				print(&quot;|cFFF0F0F0~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
-				print(&quot;|cFFF79A71Type /stats2 for more stats!|r&quot;)
+				print(&quot;|cFFF0F0F0Type /stats2 for more stats!|r&quot;)
 			end
 			function SlashCmdList.EXTRASTATS()
 				calculate()
 				print(&quot;|cFFF0F0F0~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
-			end"
-		/>
+			end" />
 
+<If Condition="(Me.MapId == 553)" > <!-- The Botanica -->
+	<DisableBehavior Name="Pull" />
+	<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+	<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Message" Text="Deleting all Bottled Nethergon potions and Arcane Tomes." LogColor="Azure" />
+	<EnableBehavior Name="Pull" />
+</If>
 
+<If Condition="!(Me.MapId == 553)" >
 
-<If Condition="!(Me.MapId == 604)" >
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
-
-		<While Condition="!(Me.MapId == 571)" >
+		<While Condition="!(Me.MapId == 530)" >
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
 				<If Condition="Me.MapId == 530" >
@@ -499,7 +501,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<!-- Homeland, Ally Eastern Kingdom -->
 				<If Condition="Me.MapId == 0" >
 
-					<If condition="true"><!-- If Set true will go to Northrend -->
+					<If condition="false"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Vikingland." LogColor="Lime" />
 					
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
@@ -514,7 +516,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					<CustomBehavior File="WaitTimer" WaitTime="5000" />
 					</If>
 					
-					<If condition="false"><!-- If Set true will go to Outland -->
+					<If condition="true"><!-- If Set true will go to Outland -->
 					<CustomBehavior File="Message" Text="Going to Outland." LogColor="Lime" />
 					
 					<While Condition="Me.MapId == 0" >
@@ -637,7 +639,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<!-- Homeland, Horde Kalimdor -->
 				<If Condition="Me.MapId == 1" >
 
-					<If condition="true"><!-- If Set true will go to Northrend -->
+					<If condition="false"><!-- If Set true will go to Northrend -->
 					<CustomBehavior File="Message" Text="Going to Northrend." LogColor="Lime" />
 					
 						<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
@@ -658,7 +660,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<RunTo X="2740.837" Y="6097.529" Z="76.88604" />
 					</If>
 					
-					<If condition="false"><!-- If Set true will go to Outland -->
+					<If condition="true"><!-- If Set true will go to Outland -->
 					<CustomBehavior File="Message" Text="On out way to Outland." LogColor="Lime" />
 					<CustomBehavior File="Message" Text="Going by boat in Ratchet." LogColor="Lime" />
 					
@@ -685,10 +687,10 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							</If>
 							<If Condition="Me.MapId == 0" >
 								<CustomBehavior File="MyCTM" X="-11908.09" Y="-3208.854" Z="-14.83002" />
-								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+								<CustomBehavior File="WaitTimer" WaitTime="10000" />
 							</If>
 							<If Condition="Me.MapId == 0" >
-								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+								<CustomBehavior File="WaitTimer" WaitTime="10000" />
 							</If>
 						</While>
 					</If>
@@ -729,76 +731,30 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		--> 
-		
-
-<!-- ALLIANCE CHECK - RIDING -->
-<If Condition="(!HasSpell(54197))  &amp;&amp; (Me.IsAlliance)" >
-	<CustomBehavior File="Message" Text="Training Riding" LogColor="Cornflowerblue" />
-				
-	<If Condition="Me.Gold &gt;= 401" >
-		<RunTo X="2274.391" Y="5174.106" Z="11.17985" />
-		<CustomBehavior File="InteractWith"  MobId="35133" WaitTime="1000" CollectionDistance="50" X="2274.391" Y="5174.106" Z="11.17985" />
-		<CustomBehavior File="ForceTrainRiding" MobId="35133" />
-		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
+</If>
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+<!--CHOP CHOP -->
+<While Condition="true">
+	<If Condition="!(Me.ZoneId == 3523)" >
+		<CustomBehavior File="FlyTo" X="589.3289" Y="3427.308" Z="291.0131" />
+		<CustomBehavior File="MyCTM" X="2945.934" Y="1784.823" Z="206.9143" />
 	</If>
-</If>
-<!-- HORDE CHECK - RIDING -->
-<If Condition="(!HasSpell(54197)) &amp;&amp; (Me.IsHorde)">
-	<CustomBehavior File="Message" Text="Training Riding" LogColor="Cornflowerblue" />
-
-	<!-- Elevator -->
-	<If Condition="(Me.Z &lt; 190)" >
-		<RunTo X="2869.177" Y="6215.224" Z="104.2853" />
-		<CustomBehavior File="UseTransport" TransportId="188521" 
-					WaitAtX="2869.177" WaitAtY="6215.224" WaitAtZ="104.2853"
-					GetOffX="2880.96" GetOffY="6225.813" GetOffZ="208.7495" 
-					TransportStartX="2877.649" TransportStartY="6223.188" TransportStartZ="104.8859" 
-					TransportEndX="2892.18" TransportEndY="6236.337" TransportEndZ="208.908"
-					StandOnX="2878.604" StandOnY="6223.707" StandOnZ="105.3792"  />
- 	</If>
-	<If Condition="Me.Gold &gt;= 401" >
-		<RunTo X="2773.588" Y="6144.316" Z="208.7535" />
-		<CustomBehavior File="InteractWith"  MobId="35135" WaitTime="1000" CollectionDistance="50" X="2773.588" Y="6144.316" Z="208.7535" />
-		<CustomBehavior File="ForceTrainRiding" MobId="35135" />
-		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
-	</If>
-</If>
-
-<!--Flying notification -->
-<If Condition="(!HasSpell(54197))">
-	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" StopOnContinue="True" Text="You don't have enough gold to train Cold Weather Flying!\nYou must have Cold Weather Flying to continue." />
-</If>
-
-<!-- END OF COLD WEATHER FLYING CHECK -->
-
-</If>
-
-<If Condition="(Me.MapId == 604)" >
-	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="DeepSkyBlue" />
-	<MoveTo X="1889.699" Y="643.147" Z="176.6776" />
-	<CustomBehavior File="MyCTM" X="1897.259" Y="657.8406" Z="176.6371" />
-							<CustomBehavior File="WaitTimer" WaitTime="5500" />
-			<While Condition="!(StyxWoW.IsInWorld)" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			</While>
-</If>
-
-<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />
-<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />		
-
-<!-- CHOP CHOP D: -->
-
-<While Condition="true" >
-	<If Condition="!(Me.MapId == 604) &amp;&amp; (Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
-		<If Condition="Me.Location.Distance(new WoWPoint(6944.809, -4426.977, 450.8831)) &gt; 100 " >
-			<CustomBehavior File="Message" Text="Heading to instance." LogColor="DeepSkyBlue" />
-			<CustomBehavior File="FlyTo" X="6869.925" Y="-4472.948" Z="511.2688" />
-			<CustomBehavior File="FlyTo" X="6954.726" Y="-4416.813" Z="450.0275" />
-			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<!-- <If Condition="!(Me.MapId == 552)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(3291.662, 1384.015, 503.9863)) &gt;= 55" >				
+			<CustomBehavior File="FlyTo" X="3187.521" Y="1654.452" Z="194.4471" />
+			<CustomBehavior File="MyCTM" X="3398.964" Y="1494.088" Z="182.7867" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
+	</If> -->
+	<If Condition="!(Me.MapId == 553) &amp;&amp; (Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
+		<If Condition="Me.Location.Distance(new WoWPoint(3366.32, 1518.864, 182.6719)) &gt;= 56" >
+			<MoveTo Nav="Fly" X="3403.443" Y="1489.909" Z="182.8369" />
+			<CustomBehavior File="ForcedDismount" />
 		</If>
 	</If>
-	<If Condition="(Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))"> 
+
+<!-- Dungeon Routine -->
+	<While Condition="(Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
 		<!-- AzyulManager Setting -->
 		<If Condition="(Lua.GetReturnValues(&quot;return heroicset&quot;)[0] == &quot;0&quot;)"> 
 			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
@@ -807,479 +763,211 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<If Condition="Lua.GetReturnValues(&quot;return heroicset&quot;)[0] == &quot;1&quot;"> 
 			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
 		</If>
-		<!--                    -->
-
-		<If Condition="!(Me.MapId == 604)" >
-			<RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
-			<!--<CustomBehavior File="MyCTM" X="6973.58" Y="-4400.046" Z="441.5751" />-->
-			<CustomBehavior File="GoThruPortal" Timeout="15000" X="6969.74" Y="-4403.101" Z="442.0615" />
+		<!--Start Endless Cycle -->
+		<If Condition="!(Me.MapId == 553)" >
+			<MoveTo X="3410.782" Y="1485.11" Z="182.8369" />
+			<CustomBehavior File="MyCTM" X="3416.718" Y="1481.022" Z="182.8369" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
-		<If Condition="(Me.MapId == 604)" >
-			<CustomBehavior File="RunMacro" Macro="/sw clear" />
-			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
-			<CustomBehavior File="RunMacro" Macro="/sw play" />
-			<CustomBehavior File="Misc\RunLua" Lua="startingmoney = GetMoney();" />
-			<CustomBehavior File="Misc\RunLua" Lua="scurrdungeon = GetTime();" />
-			<CustomBehavior File="Misc\RunLua" Lua="cstartingmoney = GetMoney();" />
+		<!--Instance Navigation Start -->
+		<If Condition="(Me.MapId == 553)" >
+			<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="cstartingmoney = GetMoney();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
-			<MoveTo X="1854.622" Y="640.1485" Z="175.8663" />
-			<MoveTo X="1853.228" Y="638.6234" Z="175.802" />
-			<CustomBehavior File="MyCTM" X="1840.902" Y="631.1052" Z="126.2862" />
-			<MoveTo X="1824.368" Y="632.9717" Z="129.3592" />
+			<MoveTo X="1.399361" Y="19.53091" Z="-5.708767" />
 
-		<!-- Heavy Pull execution -->
+		<!-- Pull executions -->
+			<!-- Heavy Pull execution -->
 			<If Condition="Lua.GetReturnValues(&quot;return difficultyset&quot;)[0] == &quot;3&quot;"> 
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1805.276" Y="633.3484" Z="129.1355" />
-						<Hotspot X="1789.081" Y="630.5768" Z="124.4691" />
-						<Hotspot X="1775.437" Y="610.9134" Z="124.6004" />
-						<Hotspot X="1763.212" Y="624.6196" Z="124.4669" />
-						<Hotspot X="1775.782" Y="650.1952" Z="124.4696" />
-						<Hotspot X="1775.17" Y="675.1672" Z="129.2167" />
-					</CustomBehavior>
-					<MoveTo X="1777.956" Y="676.9604" Z="129.2174" />
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="-1.132295" Y="61.46199" Z="-5.662589" />
+					<Hotspot X="-5.061379" Y="90.00092" Z="-5.650543" />
+					<Hotspot X="-0.8882984" Y="121.8921" Z="-5.540264" />
+					<Hotspot X="3.652268" Y="164.1741" Z="-5.540264" />
+					<Hotspot X="11.64091" Y="202.0575" Z="-5.540264" />
+					<Hotspot X="-10.77896" Y="205.5492" Z="-5.540341" />
+					<Hotspot X="-5.300217" Y="215.8055" Z="-5.540341" />
+					<Hotspot X="-4.699225" Y="254.8372" Z="-4.83915" />
+					<Hotspot X="-34.40111" Y="289.5725" Z="-1.847308" />
+				</CustomBehavior>
 
-					<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
-					<While Condition="Object(192518, o => o.ToGameObject().CanUse()) != null">
-						<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
-						<CustomBehavior File="WaitTimer" WaitTime="1200" />
-					</While>
+				<MoveTo X="-20.18953" Y="288.3877" Z="-1.830582" />
 
-					<MoveTo X="1765.704" Y="644.8124" Z="124.4661" />
-					<MoveTo X="1726.359" Y="632.9615" Z="129.1971" />
+				<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Commander Sarannis -->
+					<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
+					<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
+					<MoveTo X="107.8981" Y="287.203" Z="-6.826936" />
+					<MoveTo X="159.7016" Y="283.7128" Z="-3.114579" />
+					<MoveTo X="164.708" Y="297.3946" Z="-4.807951" />
+					<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
+					<CustomBehavior File="InteractWith" MobId="17976" ObjectType="Npc" MobState="DontCare" WaitForNpcs="false" Range="2" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
+				<EnableBehavior Name="Combat" />
 
-						<CustomBehavior File="Misc\RunLua" Lua="
-							CastSpellByID(2645);
-							CastSpellByID(2983);
-							CastSpellByID(17);
-							CastSpellByID(85499);
-							CastSpellByID(108843);
-							CastSpellByID(1850);
-							CastSpellByID(108212);
-						" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1694.117" Y="633.3572" Z="128.4503" />
-						<Hotspot X="1673.767" Y="633.6954" Z="127.5972" />
-						<Hotspot X="1663.43" Y="625.3335" Z="128.0307" />
-						<Hotspot X="1664.98" Y="649.3254" Z="127.0745" />
-						<Hotspot X="1640.559" Y="639.2423" Z="126.216" />
-						<Hotspot X="1639.297" Y="659.866" Z="124.4361" />
-						<Hotspot X="1626.241" Y="695.3307" Z="142.1719" />
-						<Hotspot X="1626.227" Y="744.3055" Z="142.7861" />
-						<Hotspot X="1680.791" Y="743.1531" Z="142.7869" />
-					</CustomBehavior>
-					<MoveTo X="1689.662" Y="743.3555" Z="142.781" />
+				<MoveTo X="161.3502" Y="344.174" Z="-6.860448" />
 
-					<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
-					<While Condition="Object(192520, o => o.ToGameObject().CanUse()) != null">
-						<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
-						<CustomBehavior File="WaitTimer" WaitTime="1200" />
-					</While>
+				<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Botanist Freywinn -->
+					<MoveTo X="160.0694" Y="372.2791" Z="-5.387292" />
+					<MoveTo X="195.8619" Y="378.2886" Z="-5.478722" />
+					<MoveTo X="173.4993" Y="395.0775" Z="-5.387872" />
+					<MoveTo X="159.0994" Y="412.2748" Z="-5.387872" />
+					<MoveTo X="162.9829" Y="445.4804" Z="-6.894575" />
+					<MoveTo X="171.8593" Y="499.6241" Z="-2.300941" />
+					<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
+					<CustomBehavior File="InteractWith" MobId="17975" ObjectType="Npc" MobState="DontCare" WaitForNpcs="false" Range="2" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
+				<EnableBehavior Name="Combat" />
 
-					<MoveTo X="1627.208" Y="751.5085" Z="142.7861" />
+				<MoveTo X="128.9197" Y="502.4178" Z="-5.422901" />
 
-						<CustomBehavior File="Misc\RunLua" Lua="
-							CastSpellByID(2645);
-							CastSpellByID(2983);
-							CastSpellByID(17);
-							CastSpellByID(85499);
-							CastSpellByID(108843);
-							CastSpellByID(1850);
-							CastSpellByID(108212);
-						" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1625.227" Y="790.0083" Z="142.7824" />
-						<Hotspot X="1575.291" Y="833.7738" Z="153.3104" />
-						<Hotspot X="1585.866" Y="883.0992" Z="151.4873" />
-						<Hotspot X="1643.559" Y="894.985" Z="143.8395" />
-						<Hotspot X="1660.83" Y="867.6797" Z="137.6806" />
-						<Hotspot X="1686.498" Y="894.6101" Z="133.4067" />
-						<Hotspot X="1715.809" Y="854.1606" Z="129.1983" />
-						<Hotspot X="1746.728" Y="858.087" Z="129.1924" />
-						<Hotspot X="1776.924" Y="850.5671" Z="123.1936" />
-						<Hotspot X="1797.481" Y="856.8885" Z="129.1889" />
-						<Hotspot X="1772.675" Y="810.5074" Z="129.2168" /> <!-- Third boss -->
-					</CustomBehavior>
-					<MoveTo X="1772.236" Y="808.7632" Z="129.2166" />
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="95.23268" Y="491.5663" Z="-6.756306" />
+					<Hotspot X="-2.302615" Y="506.1841" Z="-5.304161" />
+					<Hotspot X="-16.17399" Y="481.9402" Z="-5.473525" />
+					<Hotspot X="18.12697" Y="574.5814" Z="-17.94993" />
+					<Hotspot X="-6.9636" Y="575.9285" Z="-17.89389" />
+					<Hotspot X="6.485384" Y="598.557" Z="-15.17408" />
+				</CustomBehavior>
 
-					<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
-					<While Condition="Object(192519, o => o.ToGameObject().CanUse()) != null">
-						<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
-						<CustomBehavior File="WaitTimer" WaitTime="1200" />
-					</While>
+				<MoveTo X="-49.59764" Y="560.2516" Z="-18.04433" />
 
-				    <RunTo X="1769.452" Y="801.0773" Z="129.2167" />
-				    <CustomBehavior File="MyCTM" X="1768.35" Y="781.2085" Z="108.4817" />
-				    <CustomBehavior File="MyCTM" X="1751.59" Y="766.5654" Z="108.4294" />
-				    <CustomBehavior File="MyCTM" X="1736.734" Y="761.5352" Z="111.9292" />
+				<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Laj -->
+					<MoveTo X="-112.3502" Y="541.3242" Z="-17.82489" />
+					<MoveTo X="-134.2693" Y="507.8932" Z="-17.82489" />
+					<MoveTo X="-148.4885" Y="524.0147" Z="-17.82489" />
+					<MoveTo X="-160.7684" Y="497.2664" Z="-17.82489" />
+					<MoveTo X="-173.5526" Y="405.0211" Z="-17.69368" />
+					<MoveTo X="-155.3918" Y="398.094" Z="-17.79432" />
+					<MoveTo X="-173.3446" Y="369.5784" Z="-17.69936" />
+					<MoveTo X="-193.35" Y="369.8827" Z="-15.1717" /> <!-- Face Laj -->
+					<CustomBehavior File="RunMacro" Macro="/target Laj\n/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n\n/cast Taunt/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" /> <!-- Pull Laj -->
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<EnableBehavior Name="Combat" />
 
-				    <MoveTo X="1751.777" Y="743.4966" Z="118.9603" />
+				<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
+				<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
 
-						<CustomBehavior File="Misc\RunLua" Lua="
-							CastSpellByID(2645);
-							CastSpellByID(2983);
-							CastSpellByID(17);
-							CastSpellByID(85499);
-							CastSpellByID(108843);
-							CastSpellByID(1850);
-							CastSpellByID(108212);
-						" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1847.016" Y="742.9401" Z="135.9356" />
-						<Hotspot X="1880.714" Y="757.1185" Z="135.9769" />
-						<Hotspot X="1882.871" Y="728.2493" Z="135.9563" />
-						<Hotspot X="1919.834" Y="743.6863" Z="136.5191" />
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="3.693267" Y="409.3721" Z="-27.63801" />
+					<Hotspot X="17.46659" Y="369.3841" Z="-26.25432" />
+					<Hotspot X="66.04333" Y="390.6274" Z="-27.97719" />
+				</CustomBehavior>
+
+				<!-- Medium pull execution -->
+				<ElseIf Condition="Lua.GetReturnValues(&quot;return difficultyset&quot;)[0] == &quot;2&quot;" >
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+						<Hotspot X="-1.132295" Y="61.46199" Z="-5.662589" />
+						<Hotspot X="-5.061379" Y="90.00092" Z="-5.650543" />
+						<Hotspot X="-0.8882984" Y="121.8921" Z="-5.540264" />
+						<Hotspot X="3.652268" Y="164.1741" Z="-5.540264" />
+						<Hotspot X="11.64091" Y="202.0575" Z="-5.540264" />
 					</CustomBehavior>
 
-						<CustomBehavior File="Misc\RunLua" Lua="
-							CastSpellByID(2645);
-							CastSpellByID(2983);
-							CastSpellByID(17);
-							CastSpellByID(85499);
-							CastSpellByID(108843);
-							CastSpellByID(1850);
-							CastSpellByID(108212);
-						" />
-
-		<!-- Medium pull execution -->
-			<ElseIf Condition="Lua.GetReturnValues(&quot;return difficultyset&quot;)[0] == &quot;2&quot;" >
-						<CustomBehavior File="Misc\RunLua" Lua="
-							CastSpellByID(2645);
-							CastSpellByID(2983);
-							CastSpellByID(17);
-							CastSpellByID(85499);
-							CastSpellByID(108843);
-							CastSpellByID(1850);
-							CastSpellByID(108212);
-						" />
-						<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-							<Hotspot X="1805.276" Y="633.3484" Z="129.1355" />
-							<Hotspot X="1789.081" Y="630.5768" Z="124.4691" />
-							<Hotspot X="1775.437" Y="610.9134" Z="124.6004" />
-							<Hotspot X="1763.212" Y="624.6196" Z="124.4669" />
-							<Hotspot X="1775.782" Y="650.1952" Z="124.4696" />
-							<Hotspot X="1775.17" Y="675.1672" Z="129.2167" />
-						</CustomBehavior>
-
-						<MoveTo X="1777.956" Y="676.9604" Z="129.2174" />
-
-						<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
-						<While Condition="Object(192518, o => o.ToGameObject().CanUse()) != null">
-							<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
-							<CustomBehavior File="WaitTimer" WaitTime="1200" />
-						</While>
-
-						<MoveTo X="1765.704" Y="644.8124" Z="124.4661" />
-						<MoveTo X="1726.359" Y="632.9615" Z="129.1971" />
-
-							<CustomBehavior File="Misc\RunLua" Lua="
-								CastSpellByID(2645);
-								CastSpellByID(2983);
-								CastSpellByID(17);
-								CastSpellByID(85499);
-								CastSpellByID(108843);
-								CastSpellByID(1850);
-								CastSpellByID(108212);
-							" />
-						<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-							<Hotspot X="1694.117" Y="633.3572" Z="128.4503" />
-							<Hotspot X="1673.767" Y="633.6954" Z="127.5972" />
-							<Hotspot X="1663.43" Y="625.3335" Z="128.0307" />
-							<Hotspot X="1664.98" Y="649.3254" Z="127.0745" />
-							<Hotspot X="1640.559" Y="639.2423" Z="126.216" />
-							<Hotspot X="1639.297" Y="659.866" Z="124.4361" />
-							<Hotspot X="1626.241" Y="695.3307" Z="142.1719" />
-							<Hotspot X="1626.227" Y="744.3055" Z="142.7861" />
-							<Hotspot X="1680.791" Y="743.1531" Z="142.7869" />
-						</CustomBehavior>
-						
-						<MoveTo X="1689.662" Y="743.3555" Z="142.781" />
-
-						<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
-						<While Condition="Object(192520, o => o.ToGameObject().CanUse()) != null">
-							<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
-							<CustomBehavior File="WaitTimer" WaitTime="1200" />
-						</While>
-
-						<MoveTo X="1627.208" Y="751.5085" Z="142.7861" />
-
-							<CustomBehavior File="Misc\RunLua" Lua="
-								CastSpellByID(2645);
-								CastSpellByID(2983);
-								CastSpellByID(17);
-								CastSpellByID(85499);
-								CastSpellByID(108843);
-								CastSpellByID(1850);
-								CastSpellByID(108212);
-							" />
-						<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-							<Hotspot X="1625.227" Y="790.0083" Z="142.7824" />
-							<Hotspot X="1575.291" Y="833.7738" Z="153.3104" />
-							<Hotspot X="1585.866" Y="883.0992" Z="151.4873" />
-							<Hotspot X="1643.559" Y="894.985" Z="143.8395" />
-							<Hotspot X="1660.83" Y="867.6797" Z="137.6806" />
-						</CustomBehavior>
-						
-							<CustomBehavior File="Misc\RunLua" Lua="
-								CastSpellByID(2645);
-								CastSpellByID(2983);
-								CastSpellByID(17);
-								CastSpellByID(85499);
-								CastSpellByID(108843);
-								CastSpellByID(1850);
-								CastSpellByID(108212);
-							" />
-						<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-							<Hotspot X="1686.498" Y="894.6101" Z="133.4067" />
-							<Hotspot X="1715.809" Y="854.1606" Z="129.1983" />
-							<Hotspot X="1746.728" Y="858.087" Z="129.1924" />
-							<Hotspot X="1776.924" Y="850.5671" Z="123.1936" />
-							<Hotspot X="1797.481" Y="856.8885" Z="129.1889" />
-							<Hotspot X="1772.675" Y="810.5074" Z="129.2168" /> <!-- Third boss -->
-						</CustomBehavior>
-						<MoveTo X="1772.236" Y="808.7632" Z="129.2166" />
-
-						<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
-						<While Condition="Object(192519, o => o.ToGameObject().CanUse()) != null">
-							<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
-							<CustomBehavior File="WaitTimer" WaitTime="1200" />
-						</While>
-
-					    <RunTo X="1769.452" Y="801.0773" Z="129.2167" />
-					    <CustomBehavior File="MyCTM" X="1768.35" Y="781.2085" Z="108.4817" />
-					    <CustomBehavior File="MyCTM" X="1751.59" Y="766.5654" Z="108.4294" />
-					    <CustomBehavior File="MyCTM" X="1736.734" Y="761.5352" Z="111.9292" />
-
-					    <MoveTo X="1751.777" Y="743.4966" Z="118.9603" />
-
-							<CustomBehavior File="Misc\RunLua" Lua="
-								CastSpellByID(2645);
-								CastSpellByID(2983);
-								CastSpellByID(17);
-								CastSpellByID(85499);
-								CastSpellByID(108843);
-								CastSpellByID(1850);
-								CastSpellByID(108212);
-							" />
-						<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-							<Hotspot X="1847.016" Y="742.9401" Z="135.9356" />
-							<Hotspot X="1880.714" Y="757.1185" Z="135.9769" />
-							<Hotspot X="1882.871" Y="728.2493" Z="135.9563" />
-							<Hotspot X="1919.834" Y="743.6863" Z="136.5191" />
-						</CustomBehavior>
-			</ElseIf>
-
-		<!-- Lite pull execution -->
-			<ElseIf Condition="Lua.GetReturnValues(&quot;return difficultyset&quot;)[0] == &quot;1&quot;" >
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1805.276" Y="633.3484" Z="129.1355" />
-						<Hotspot X="1789.081" Y="630.5768" Z="124.4691" />
-						<Hotspot X="1775.437" Y="610.9134" Z="124.6004" />
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" > //
+						<Hotspot X="-10.77896" Y="205.5492" Z="-5.540341" />
+						<Hotspot X="-5.300217" Y="215.8055" Z="-5.540341" />
+						<Hotspot X="-4.699225" Y="254.8372" Z="-4.83915" />
+						<Hotspot X="-34.40111" Y="289.5725" Z="-1.847308" />
 					</CustomBehavior>
 
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1763.212" Y="624.6196" Z="124.4669" />
-						<Hotspot X="1775.782" Y="650.1952" Z="124.4696" />
-						<Hotspot X="1775.17" Y="675.1672" Z="129.2167" />
+					<MoveTo X="-20.18953" Y="288.3877" Z="-1.830582" />
+
+					<DisableBehavior Name="Combat" /> 
+						<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
+						<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
+						<MoveTo X="107.8981" Y="287.203" Z="-6.826936" />
+					<EnableBehavior Name="Combat" />
+
+					<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Commander Sarannis -->
+						<MoveTo X="159.7016" Y="283.7128" Z="-3.114579" />
+						<MoveTo X="164.708" Y="297.3946" Z="-4.807951" />
+						<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
+						<CustomBehavior File="InteractWith" MobId="17976" ObjectType="Npc" MobState="DontCare" WaitForNpcs="false" Range="2" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
+					<EnableBehavior Name="Combat" />
+
+					<MoveTo X="161.3502" Y="344.174" Z="-6.860448" />
+
+					<DisableBehavior Name="Combat" />
+						<MoveTo X="160.0694" Y="372.2791" Z="-5.387292" />
+						<MoveTo X="195.8619" Y="378.2886" Z="-5.478722" />
+						<MoveTo X="173.4993" Y="395.0775" Z="-5.387872" />
+						<MoveTo X="159.0994" Y="412.2748" Z="-5.387872" />
+					<EnableBehavior Name="Combat" />
+
+					<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Botanist Freywinn -->
+						<MoveTo X="162.9829" Y="445.4804" Z="-6.894575" />
+						<MoveTo X="171.8593" Y="499.6241" Z="-2.300941" />
+						<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
+						<CustomBehavior File="InteractWith" MobId="17975" ObjectType="Npc" MobState="DontCare" WaitForNpcs="false" Range="2" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
+					<EnableBehavior Name="Combat" />
+
+					<MoveTo X="128.9197" Y="502.4178" Z="-5.422901" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+						<Hotspot X="95.23268" Y="491.5663" Z="-6.756306" />
+						<Hotspot X="-16.26616" Y="506.0811" Z="-5.301754" />
+						<Hotspot X="-2.302615" Y="506.1841" Z="-5.304161" />
+						<Hotspot X="-16.17399" Y="481.9402" Z="-5.473525" />
 					</CustomBehavior>
 
-					<MoveTo X="1777.956" Y="676.9604" Z="129.2174" />
+					<RunTo X="25.32044" Y="539.7997" Z="-17.98305" />
 
-					<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
-					<While Condition="Object(192518, o => o.ToGameObject().CanUse()) != null">
-						<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
-						<CustomBehavior File="WaitTimer" WaitTime="1200" />
-					</While>
-
-					<MoveTo X="1765.704" Y="644.8124" Z="124.4661" />
-					<MoveTo X="1726.359" Y="632.9615" Z="129.1971" />
-
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1694.117" Y="633.3572" Z="128.4503" />
-						<Hotspot X="1673.767" Y="633.6954" Z="127.5972" />
-						<Hotspot X="1663.43" Y="625.3335" Z="128.0307" />
-						<Hotspot X="1664.98" Y="649.3254" Z="127.0745" />
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" > <!-- CTM to avoid mob skipping -->
+						<Hotspot X="13.46458" Y="570.8362" Z="-17.98895" />
+						<Hotspot X="4.489791" Y="597.8298" Z="-15.16989" />
+						<Hotspot X="-1.552027" Y="577.4376" Z="-17.8621" />
 					</CustomBehavior>
 
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> //
-						<Hotspot X="1640.559" Y="639.2423" Z="126.216" />
-						<Hotspot X="1639.297" Y="659.866" Z="124.4361" />
-						<Hotspot X="1626.241" Y="695.3307" Z="142.1719" />
-						<Hotspot X="1626.227" Y="744.3055" Z="142.7861" />
-						<Hotspot X="1680.791" Y="743.1531" Z="142.7869" />
+					<MoveTo X="-49.59764" Y="560.2516" Z="-18.04433" />
+
+					<DisableBehavior Name="Combat" />
+						<MoveTo X="-112.3502" Y="541.3242" Z="-17.82489" />
+						<MoveTo X="-134.2693" Y="507.8932" Z="-17.82489" />
+						<MoveTo X="-148.4885" Y="524.0147" Z="-17.82489" />
+						<MoveTo X="-160.7684" Y="497.2664" Z="-17.82489" />
+					<EnableBehavior Name="Combat" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+					<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Laj -->
+						<MoveTo X="-173.5526" Y="405.0211" Z="-17.69368" />
+						<MoveTo X="-155.3918" Y="398.094" Z="-17.79432" />
+						<MoveTo X="-173.3446" Y="369.5784" Z="-17.69936" />
+						<MoveTo X="-193.35" Y="369.8827" Z="-15.1717" /> <!-- Face Laj -->
+						<CustomBehavior File="RunMacro" Macro="/target Laj\n/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n\n/cast Taunt/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" /> <!-- Pull Laj -->
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<EnableBehavior Name="Combat" />
+
+					<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
+					<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+						<Hotspot X="3.693267" Y="409.3721" Z="-27.63801" />
+						<Hotspot X="17.46659" Y="369.3841" Z="-26.25432" />
+						<Hotspot X="66.04333" Y="390.6274" Z="-27.97719" />
 					</CustomBehavior>
-					<MoveTo X="1689.662" Y="743.3555" Z="142.781" />
-
-				
-					<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
-					<While Condition="Object(192520, o => o.ToGameObject().CanUse()) != null">
-						<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
-						<CustomBehavior File="WaitTimer" WaitTime="1200" />
-					</While>
-
-					<MoveTo X="1627.208" Y="751.5085" Z="142.7861" />
-
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1625.227" Y="790.0083" Z="142.7824" />
-						<Hotspot X="1575.291" Y="833.7738" Z="153.3104" />
-						<Hotspot X="1585.866" Y="883.0992" Z="151.4873" />
-					</CustomBehavior>
-
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> //
-						<Hotspot X="1643.559" Y="894.985" Z="143.8395" />
-						<Hotspot X="1660.83" Y="867.6797" Z="137.6806" />
-					</CustomBehavior>
-					
-
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1686.498" Y="894.6101" Z="133.4067" />
-						<Hotspot X="1715.809" Y="854.1606" Z="129.1983" />
-						<Hotspot X="1746.728" Y="858.087" Z="129.1924" />
-					</CustomBehavior>
-
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> //
-						<Hotspot X="1776.924" Y="850.5671" Z="123.1936" />
-						<Hotspot X="1797.481" Y="856.8885" Z="129.1889" />
-						<Hotspot X="1772.675" Y="810.5074" Z="129.2168" /> <!-- Third boss -->
-					</CustomBehavior>
-					<MoveTo X="1772.236" Y="808.7632" Z="129.2166" />
-
-					<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
-					<While Condition="Object(192519, o => o.ToGameObject().CanUse()) != null">
-						<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
-						<CustomBehavior File="WaitTimer" WaitTime="1200" />
-					</While>
-
-				    <RunTo X="1769.452" Y="801.0773" Z="129.2167" />
-				    <CustomBehavior File="MyCTM" X="1768.35" Y="781.2085" Z="108.4817" />
-				    <CustomBehavior File="MyCTM" X="1751.59" Y="766.5654" Z="108.4294" />
-				    <CustomBehavior File="MyCTM" X="1736.734" Y="761.5352" Z="111.9292" />
-
-				    <MoveTo X="1751.777" Y="743.4966" Z="118.9603" />
-
-					<CustomBehavior File="Misc\RunLua" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="1847.016" Y="742.9401" Z="135.9356" />
-						<Hotspot X="1880.714" Y="757.1185" Z="135.9769" />
-						<Hotspot X="1882.871" Y="728.2493" Z="135.9563" />
-						<Hotspot X="1919.834" Y="743.6863" Z="136.5191" />
-					</CustomBehavior>
-			</ElseIf>
+				</ElseIf>
 			</If>
 
-			<MoveTo X="1947.211" Y="681.9457" Z="135.4161" />
-			<MoveTo X="1945.433" Y="663.1171" Z="135.2176" />
-			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
+			<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
 
-			<CustomBehavior File="Misc\RunLua" Lua="
-				endingmoney = GetMoney();
-				ecurrdungeon = GetTime();
-				lastdungeon = math.floor(ecurrdungeon-scurrdungeon)
-				progressmoney = math.floor(endingmoney-startingmoney);
-				totalmoney = math.floor(endingmoney-beginningmoney);
-				print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(progressmoney), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))
-			" /> 
+			<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" />
+			<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(progressmoney), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
 
-			<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
-		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
-		    <CustomBehavior File="MyCTM" X="1914.803" Y="647.9481" Z="135.1441" />
-			<CustomBehavior File="WaitTimer" WaitTime="5500" />
-			<While Condition="!(StyxWoW.IsInWorld)" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			</While>
-			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="Misc\RunLUA" Lua="
+				local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+				local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+				local item,l,i=&quot;29739&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end " />
+			<CustomBehavior File="Message" Text="Deleting all Bottled Nethergon potions and Arcane Tomes." LogColor="Azure" />
 			<If Condition="(Lua.GetReturnValues(&quot;return heroicset&quot;)[0] == &quot;1&quot;)"> 
 				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 				<CustomBehavior File="Misc\RunLua" Lua="
@@ -1287,14 +975,15 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					HeroicMode:SetChecked(nil);
 					print(&quot;|cFF3399FF[Azyul]|r: Switching the dungeon back to Normal difficulty.&quot;)" />
 			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 		</If>
-		<!--Instance Coordination Complete-->
-	</If>
+		<!--Instance Coordnation Complete -->
+	</While>
 
-<!-- Vendor, Mail, Bank and Routine -->
+<!-- Vendor Routine -->
 	<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
-		<CustomBehavior File="Misc\RunLua" Lua="vendorstartingmoney = GetMoney();" />
-		<CustomBehavior File="Message" Text="Executing Mail, Vendor and Bank Routine" LogColor="Lime" />
+		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair" LogColor="Lime" />
 <!-- ////////////////////////////////////START GUILD BANK DETECTION/////////////////////////////////////////////-->
 		<!-- Deposit Gold and Frostweave -->
 			<If Condition="(Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositgoldset&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
@@ -1311,14 +1000,14 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
 						for b=0,4 do for s=1,GetContainerNumSlots(b)
 							do local n=GetContainerItemLink(b,s)
-								if n and strfind(n,&quot;33470&quot;)then
+								if n and strfind(n,&quot;53010&quot;)then
 									UseContainerItem(b,s)
 								end
 							end
 						end
 					end" />
 
-			<!-- Deposit Frostweave -->
+			<!-- Deposit Netherweave -->
 				<ElseIf Condition="(Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
 						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958)" />
 						<CustomBehavior File="WaitTimer" WaitTime="3500" />
@@ -1330,17 +1019,17 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						</If> 
 							<CustomBehavior File="Misc\RunLua" Lua="
 								if GuildBankFrame:IsVisible()==1 then
-									print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
+									print(&quot;|cFF3399FF[Azyul]|r: Depositing Netherweave Cloth.&quot;)
 									for b=0,4 do for s=1,GetContainerNumSlots(b)
 										do local n=GetContainerItemLink(b,s)
-											if n and strfind(n,&quot;33470&quot;)then
+											if n and strfind(n,&quot;21877&quot;)then
 												UseContainerItem(b,s)
 											end
 										end
 									end
 								end" />
 				</ElseIf>
-			<!-- END Deposit Frostweave -->
+			<!-- END Deposit Netherweave -->
 
 			<!-- Deposit Gold -->
 				<ElseIf Condition="(Lua.GetReturnValues(&quot;return depositgoldset&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)">
@@ -1371,56 +1060,115 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 
 
 <!-- ////////////////////////////////////START MOUNT VENDORS///////////////////////////////////////////////////-->
+		<!-- Lua Sell, Keep Netherweave -->
+			<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;)"> 
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+					<CustomBehavior File="WaitTimer" WaitTime="2000" />
+					<If Condition="Me.HasAura(61425) || Me.HasAura(61447) || Me.HasAura(122708)" >
+						<If Condition="Me.HasAura(61425)" >
+							<CustomBehavior File="InteractWith" MobId="32639" />
+							<ElseIf Condition="Me.HasAura(61447)" >
+								<CustomBehavior File="InteractWith" MobId="32641" />
+							</ElseIf>
+							<ElseIf Condition="Me.HasAura(122708)" >
+								<CustomBehavior File="InteractWith" MobId="62822" />
+							</ElseIf>
+						</If>
+						<CustomBehavior File="Misc\RunLua" Lua="
+							MerchantRepairAllButton:Click()
+							 for b=0,4 do for s=1,GetContainerNumSlots(b)
+								do local n=GetContainerItemLink(b,s)
+									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;21877&quot;) then
+										print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+									end
+								end
+							end" />
+						<CustomBehavior File="WaitTimer" WaitTime="8500" />
+						<Else>
+							<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
+							<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
+						</Else>
+					</If>
+			</If>
+		<!-- END Lua Sell, Keep Netherweave -->
 
-<!-- Lua Sell, Keep Frostweave -->
-		<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;)"> 
-			<CustomBehavior File="WaitTimer" WaitTime="750" />
-			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
-			<CustomBehavior File="WaitTimer" WaitTime="2000" />
-			<If Condition="Me.HasAura(61425) || Me.HasAura(61447) || Me.HasAura(122708)" >
-				<If Condition="Me.HasAura(61425)" >
-					<CustomBehavior File="InteractWith" MobId="32639" />
-					<ElseIf Condition="Me.HasAura(61447)" >
-						<CustomBehavior File="InteractWith" MobId="32641" />
-					</ElseIf>
-					<ElseIf Condition="Me.HasAura(122708)" >
-						<CustomBehavior File="InteractWith" MobId="62822" />
-					</ElseIf>
-				</If>
-				<CustomBehavior File="Misc\RunLua" Lua="
+		<!-- Lua Sell, Everything -->
+			<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;0&quot;)"> 
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+					<CustomBehavior File="WaitTimer" WaitTime="2000" />
+					<If Condition="Me.HasAura(61425) || Me.HasAura(61447) || Me.HasAura(122708)" >
+						<If Condition="Me.HasAura(61425)" >
+							<CustomBehavior File="InteractWith" MobId="32639" />
+							<ElseIf Condition="Me.HasAura(61447)" >
+								<CustomBehavior File="InteractWith" MobId="32641" />
+							</ElseIf>
+							<ElseIf Condition="Me.HasAura(122708)" >
+								<CustomBehavior File="InteractWith" MobId="62822" />
+							</ElseIf>
+						</If>
+						<CustomBehavior File="Misc\RunLua" Lua="
+							MerchantRepairAllButton:Click()
+							 for b=0,4 do for s=1,GetContainerNumSlots(b)
+								do local n=GetContainerItemLink(b,s)
+									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
+										print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+									end
+								end
+							end" />
+						<CustomBehavior File="WaitTimer" WaitTime="8500" />
+						<Else>
+							<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
+							<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
+						</Else>
+					</If>
+			</If>
+		<!-- END Lua Sell, Everything -->
+
+		<!-- Honorbuddy Routine Mount Sell -->
+			<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;0&quot;)"> 
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
+							<CustomBehavior File="WaitTimer" WaitTime="1100" />
+							<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+						</If>
+			</If>
+		<!-- END Honorbuddy Routine Mount Sell -->
+<!-- ////////////////////////////////////END MOUNT VENDORS///////////////////////////////////////////////////-->
+	</If>
+
+<!-- ////////////////////////////////////START TOWN VENDORS///////////////////////////////////////////////////-->
+		<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
+
+		<!-- Lua Sell, Keep Netherweave -->
+			<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;)"> 
+				<CustomBehavior File="ForcedMount" MountType="Flying" />
+				<CustomBehavior	File="FlyTo" X="2955.032" Y="1802.131" Z="139.1213" />
+				<CustomBehavior File="InteractWith" MobId="22491" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="Misc\RunLUA" Lua="
 					MerchantRepairAllButton:Click()
 					 for b=0,4 do for s=1,GetContainerNumSlots(b)
 						do local n=GetContainerItemLink(b,s)
-							if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33470&quot;) then
+							if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;21877&quot;) then
 								print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
 							end
 						end
 					end" />
 				<CustomBehavior File="WaitTimer" WaitTime="8500" />
-				<Else>
-					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
-					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
-				</Else>
 			</If>
-		</If>
-<!-- END Lua Sell, Keep Frostweave -->
+		<!-- END Lua Sell, Keep Netherweave -->
 
-<!-- Lua Sell, Everything -->
-		<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;0&quot;)"> 
-			<CustomBehavior File="WaitTimer" WaitTime="750" />
-			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
-			<CustomBehavior File="WaitTimer" WaitTime="2000" />
-			<If Condition="Me.HasAura(61425) || Me.HasAura(61447) || Me.HasAura(122708)" >
-				<If Condition="Me.HasAura(61425)" >
-					<CustomBehavior File="InteractWith" MobId="32639" />
-					<ElseIf Condition="Me.HasAura(61447)" >
-						<CustomBehavior File="InteractWith" MobId="32641" />
-					</ElseIf>
-					<ElseIf Condition="Me.HasAura(122708)" >
-						<CustomBehavior File="InteractWith" MobId="62822" />
-					</ElseIf>
-				</If>
-				<CustomBehavior File="Misc\RunLua" Lua="
+		<!-- Lua Sell, Everything -->
+			<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;0&quot;)">
+				<CustomBehavior File="ForcedMount" MountType="Flying" />
+				<CustomBehavior	File="FlyTo" X="2955.032" Y="1802.131" Z="139.1213" />
+				<CustomBehavior File="InteractWith" MobId="22491" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="Misc\RunLUA" Lua="
 					MerchantRepairAllButton:Click()
 					 for b=0,4 do for s=1,GetContainerNumSlots(b)
 						do local n=GetContainerItemLink(b,s)
@@ -1430,116 +1178,40 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						end
 					end" />
 				<CustomBehavior File="WaitTimer" WaitTime="8500" />
-				<Else>
-					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
-					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
-				</Else>
 			</If>
-		</If>
-<!-- END Lua Sell, Everything -->
-
-<!-- Honorbuddy Routine Mount Sell -->
-		<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;0&quot;)"> 
-			<CustomBehavior File="WaitTimer" WaitTime="750" />
-			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
-				<CustomBehavior File="WaitTimer" WaitTime="1500" />
-				<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
-					<CustomBehavior File="WaitTimer" WaitTime="1100" />
-					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
-				</If>
-		</If>
-<!-- END Honorbuddy Routine Mount Sell -->
-
-<!-- ////////////////////////////////////END MOUNT VENDORS///////////////////////////////////////////////////-->
-
-<!-- ////////////////////////////////////START TOWN VENDORS///////////////////////////////////////////////////-->
-
-			<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
-				<CustomBehavior File="FlyTo" X="5870.244" Y="-3906.165" Z="493.8217" />
-				<CustomBehavior File="FlyTo" X="5850.354" Y="-3643.215" Z="398.8691" />
-				<CustomBehavior File="FlyTo" X="5780.249" Y="-3583.092" Z="400.9279" />
-				<CustomBehavior File="FlyTo" X="5779.767" Y="-3573.306" Z="386.5177" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<RunTo X="5770.711" Y="-3573.024" Z="387.1675" />
-
-		<!-- Lua Sell, Keep Frostweave -->
-				<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;)"> 
-					<CustomBehavior File="InteractWith" MobId="28855" X="5769.661" Y="-3572.947" Z="387.2394" /> />
-					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="Misc\RunLua" Lua="
-						MerchantRepairAllButton:Click()
-						 for b=0,4 do for s=1,GetContainerNumSlots(b)
-							do local n=GetContainerItemLink(b,s)
-								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33470&quot;) then
-									print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-								end
-							end
-						end" />
-					<CustomBehavior File="WaitTimer" WaitTime="8500" />
-				</If>
-		<!-- END Lua Sell, Keep Frostweave -->
-
-		<!-- Lua Sell, Everything -->
-				<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;0&quot;)">
-					<CustomBehavior File="InteractWith" MobId="28855" X="5769.661" Y="-3572.947" Z="387.2394" /> />
-					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="Misc\RunLUA" Lua="
-					MerchantRepairAllButton:Click()
-						 for b=0,4 do for s=1,GetContainerNumSlots(b)
-							do local n=GetContainerItemLink(b,s)
-								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
-									print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-								end
-							end
-						end" />
-					<CustomBehavior File="WaitTimer" WaitTime="8500" />
-				</If>
 		<!-- END Lua Sell, Everything -->
 
 		<!-- Normal Sell -->
-				<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;0&quot;)"> 
-					<SetVendor>
-						<Vendors>
-							<Vendor Name="Ba'kari" Entry="28855" Type="Repair" X="5769.661" Y="-3572.947" Z="387.2385" />
-						</Vendors>
-					</SetVendor>
-					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
-					<ClearVendor />
-				</If>
+			<If Condition="(Lua.GetReturnValues(&quot;return selleverythingset&quot;)[0] == &quot;0&quot;)"> 
+				<CustomBehavior File="ForcedMount" MountType="Flying" />
+				<CustomBehavior	File="FlyTo" X="2955.032" Y="1802.131" Z="139.1213" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</If>
 		<!-- END Normal Sell -->
+<!-- ////////////////////////////////////START TOWN VENDORS///////////////////////////////////////////////////-->
+
 
 		<!-- Generic Mail Routine -->
-				<RunTo X="5780.233" Y="-3568.455" Z="386.5152" />
-				<If Condition="(Me.FreeBagSlots &lt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return mailingset&quot;, 0)))" >
-					<CustomBehavior File="Message" Text="\nYou're still under the minimum bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
-					<CustomBehavior File="FlyTo" X="5546.134" Y="-3194.041" Z="440.3812" />
-					<CustomBehavior File="FlyTo" X="5525.695" Y="-2623.592" Z="319.2954" />
-					<RunTo X="5490.855" Y="-2640.885" Z="305.896" />
-					<CustomBehavior File="RunMacro" Macro="/dismount" />
-					<SetMailbox>
-						<Mailboxes>
-							<Mailbox X="5417.155" Y="-2620.26" Z="307.0088" />
+			<If Condition="(Me.FreeBagSlots &lt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return mailingset&quot;, 0)))" >
+				<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
+				<SetMailbox>
+					<Mailboxes>
+							<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
 						</Mailboxes>
-					</SetMailbox>
-					<RunTo X="5416.015" Y="-2622.577" Z="306.9517" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" />
-					<RunTo X="5396.842" Y="-2617.582" Z="303.9539" />
-					<ClearMailbox />
-					<CustomBehavior File="FlyTo" X="5377.773" Y="-2611.433" Z="321.3243" />
-				</If>
-
-				<CustomBehavior File="Misc\RunLua" Lua="vendorendingmoney = GetMoney();" />
-				<CustomBehavior File="Misc\RunLua" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-				<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(progressmoney), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
-
-				<CustomBehavior File="FlyTo" X="6002.019" Y="-3651.332" Z="491.8026" />
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+				<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+				<ClearMailbox />
 			</If>
 		<!-- END Generic Mail Routine -->
-<!-- ////////////////////////////////////END TOWN VENDORS///////////////////////////////////////////////////-->
 
-		</If>
+			<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
+			<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(vendorsellmoney), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+	</If>
 </While>
 </QuestOrder>
 </HBProfile>
+
