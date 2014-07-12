@@ -6,7 +6,7 @@
 // Farm mobs: Universal Profile -- User's Choice
 ///////////////////////////////////////////////////////////////////////
 
-<Name>Grim Batol Heavy - Gold Optimized - Medium Pulls</Name>
+<Name>Grim Batol - Optimized Gold Farms - Medium Pulls</Name>
 
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 
@@ -444,26 +444,6 @@
 		Big thanks to Kick for this.
 		--> 
 
-<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
-<!-- I don't always code dungeon runs, but when I do - I use over 1000 lines of code just for one dungeon.-->
-
-<!-- Life's a game cracka killa -->
-<If Condition="Me.Location.Distance(new WoWPoint(-4074.677, -3454.845, 277.4006)) &lt;= 30" >
-	<RunTo X="-4090.286" Y="-3469.346" Z="269.1631" />
-	<CustomBehavior File="RunMacro" Macro="/dismount" />
-	<CustomBehavior File="MyCTM" X="-4074.767" Y="-3454.902" Z="277.3591" />
-</If>
-<If Condition="Me.Location.Distance(new WoWPoint(-4074.677, -3454.845, 277.4006)) &gt; 30" >
-	<CustomBehavior File="Message" Text="Heading to Instance Location." LogColor="Green" />
-	<CustomBehavior File="FlyTo" X="-4077.846" Y="-3455.929" Z="280.3766" />
-	<CustomBehavior File="WaitTimer" WaitTime="500" />
-	<CustomBehavior File="RunMacro" Macro="/dismount" />
-	<CustomBehavior File="MyCTM" X="-4074.767" Y="-3454.902" Z="277.3591" />
-</If>
-
-
-
-
 
 <DisableBehavior Name="Death" />
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
@@ -473,12 +453,14 @@
 	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
 		<While Condition="(Me.FreeBagSlots &gt;= 17)">
 			<If Condition="!(Me.MapId == 670)" >
-				<If Condition="Me.Location.Distance(new WoWPoint(-4074.677, -3454.845, 277.4006)) &gt; 30" >
-					<CustomBehavior File="Message" Text="Heading to Instance Location." LogColor="Green" />
-					<CustomBehavior File="FlyTo" X="-4064.753" Y="-3452.003" Z="287.0812" />
+				<CustomBehavior File="Message" Text="Heading to Instance Location." LogColor="Green" />
+				<CustomBehavior File="FlyTo" X="-4064.753" Y="-3452.003" Z="287.0812" />
+				<If Condition="Me.Mounted" >
+					<CustomBehavior File="MyCTM" X="-4042.579" Y="-3445.191" Z="285.3982" />
+					<Else>
+						<CustomBehavior File="MyCTM" X="-4046.489" Y="-3446.735" Z="283.352" />
+					</Else>
 				</If>
-				<RunTo X="-4058.044" Y="-3449.554" Z="281.16" />
-				<CustomBehavior File="MyCTM" X="-4042.806" Y="-3445.406" Z="283.4099" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			</If>
 			<If Condition="(Me.MapId == 670)" >
