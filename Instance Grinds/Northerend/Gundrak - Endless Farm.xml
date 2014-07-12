@@ -426,9 +426,11 @@
 		    <RunTo X="1805.4009" Y="633.5065" Z="129.1409"  />
 		    <RunTo X="1773.3491" Y="650.7789" Z="124.4717"  />
 		    <RunTo X="1775.3291" Y="674.1957" Z="129.2172"  />
-		    <CustomBehavior File="WaitTimer" WaitTime="1000" />
-		    <CustomBehavior File="InteractWith" MobId="192518" X="1775.293" Y="679.6804" Z="142.7876" />
-		    <CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Object(192518, o => o.ToGameObject().CanUse()) != null" />
+			<While Condition="Object(192518, o => o.ToGameObject().CanUse()) != null">
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+			</While>
 		    <RunTo X="1764.7021" Y="641.6945" Z="124.5679"  />
 		    <RunTo X="1730.0261" Y="633.5339" Z="129.1967"  />
 		    <RunTo X="1694.8667" Y="633.7415" Z="128.5703"  />
@@ -438,10 +440,11 @@
 		    <RunTo X="1625.1481" Y="743.2860" Z="142.7860"  />
 		    <RunTo X="1672.9222" Y="743.5790" Z="142.7861"  />
 		    <RunTo X="1686.5659" Y="743.7090" Z="142.7861"  />
-		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
-		    <CustomBehavior File="WaitTimer" WaitTime="1000" />
-		    <CustomBehavior File="InteractWith" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
-		    <CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Object(192520, o => o.ToGameObject().CanUse()) != null" />
+			<While Condition="Object(192520, o => o.ToGameObject().CanUse()) != null">
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+			</While>
 		    <RunTo X="1636.4142" Y="747.1359" Z="142.7862"  />
 		    <RunTo X="1627.1384" Y="767.3608" Z="142.7823"  />
 		    <RunTo X="1626.9495" Y="768.2653" Z="142.7823"  />
@@ -457,9 +460,11 @@
 		    <RunTo X="1772.8881" Y="857.4423" Z="123.1928"  />
 		    <RunTo X="1773.1008" Y="846.2695" Z="123.1928"  />
 		    <RunTo X="1772.3372" Y="810.0315" Z="129.2173"  />
-		    <CustomBehavior File="WaitTimer" WaitTime="1000" />
-		    <CustomBehavior File="InteractWith" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
-		    <CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="Object(192519, o => o.ToGameObject().CanUse()) != null" />
+			<While Condition="Object(192519, o => o.ToGameObject().CanUse()) != null">
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
+				<CustomBehavior File="WaitTimer" WaitTime="1200" />
+			</While>
 		    <RunTo X="1764.7054" Y="805.8669" Z="129.2173"  />
 		    <RunTo X="1772.4504" Y="798.1913" Z="129.2173"  />
 			<CustomBehavior File="UserSettings" LootMobs="False" />				
