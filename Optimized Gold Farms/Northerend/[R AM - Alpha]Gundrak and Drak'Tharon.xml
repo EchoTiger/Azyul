@@ -940,7 +940,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<CustomBehavior File="Message" Text="Profile started with full bags." LogColor="Red" />
 			</Else>
 		</If>
-		<If Condition="(Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
+		<While Condition="(Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
 
 			<!-- AzyulManager Setting -->
 			<If Condition="(Lua.GetReturnValues(&quot;return heroicset&quot;)[0] == &quot;0&quot;)"> 
@@ -1443,7 +1443,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						print(&quot;|cFF3399FF[Azyul]|r: Switching the dungeon back to Normal difficulty.&quot;)" />
 				</If>
 			</If>
-		</If>
+		</While>
 		<!-- Force Sell -->
 			<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
 				<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
@@ -1717,7 +1717,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
 		</If>
 	</If>
-	<If Condition="(Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))"> 
+	<While Condition="(Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))"> 
 		<!-- AzyulManager Setting -->
 		<If Condition="(Lua.GetReturnValues(&quot;return heroicset&quot;)[0] == &quot;0&quot;)"> 
 			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
@@ -2208,7 +2208,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			</If>
 		</If>
 		<!--Instance Coordination Complete-->
-	</If>
+	</While>
 
 <!-- Vendor, Mail, Bank and Routine -->
 	<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
