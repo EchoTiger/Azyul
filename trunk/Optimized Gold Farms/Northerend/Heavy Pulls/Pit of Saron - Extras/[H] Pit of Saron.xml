@@ -704,27 +704,9 @@
 						<CustomBehavior File="WaitTimer" WaitTime="750" />
 						<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
 						<CustomBehavior File="WaitTimer" WaitTime="2000" />
-							<If Condition="Me.HasAura(61425)" >
-								<CustomBehavior File="InteractWith" MobId="32639" />
-								<ElseIf Condition="Me.HasAura(61447)" >
-									<CustomBehavior File="InteractWith" MobId="32641" />
-								</ElseIf>
-								<ElseIf Condition="Me.HasAura(122708)" >
-									<CustomBehavior File="InteractWith" MobId="62822" />
-								</ElseIf>
-							</If>
-						<CustomBehavior File="Misc\RunLUA" Lua="
-							 for b=0,4 do for s=1,GetContainerNumSlots(b)
-							 	do local n=GetContainerItemLink(b,s)
-							 		if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33445&quot;) then
-								 		print(&quot;Selling &quot;..n)UseContainerItem(b,s)
-							 		end
-							 	end
-							 end" />
-							<Else>
-								<CustomBehavior File="Message" Text="Failed to vendor using mount." LogColor="Red" />
-							</Else>
-						</If>
+						<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+					</If>
+
 
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 					<CustomBehavior File="MyCTM" X="425.3003" Y="212.2813" Z="529.9125" />
