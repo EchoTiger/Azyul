@@ -63,7 +63,54 @@
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			</While>
 </If>
+<!-- 
+HOW TO: A quick documentation of adding your default settings.
 
+	At the top of the code below, you should see the words:   [[Define Variables]].
+	In this section, the defaults of the ASM are set.   You can change any of these variables to your preference.
+
+
+ATTRIBUTES:
+
+	startcheck
+		This code tells the game that ASM is active so more than one ASM will not appear on the game screen.
+		DO NOT CHANGE THIS VALUE.
+
+	heroicset
+		0 = Run the dungeon as normal difficulty.
+		1 = Run the dungeon as heroic difficulty.
+		After the dungeon has been ran as heroic, ASM will automatically switch it back to normal.
+
+	bagslotset
+		# = The minimum bagslots before the bot starts the vendor routine.
+
+	mailingset
+		# = The minimum bagslots before the bot starts the mailing routine.
+		The mailing routine is only checked after the vendor routine is completed.
+
+	difficultyset
+		1 = The bot will run the dungeon with Lite pulls.
+		2 = The bot will run the dungeon with Medium pulls.
+		3 = The bot will run the dungeon with Heavy pulls.
+		This value cannot be set to 0.  If it is set to 0, the bot won't run the dungeon properly.
+
+	selleverythingset
+		0 = The bot will sell using Honorbuddy's routine.  All protected items are protected, and any vendor rules apply.
+		1 = The bot will sell using a Lua script.  Everything in the player's bags WILL BE sold except for Frostweave IF it's checked to be deposited.
+
+	depositclothset
+		0 = The bot will not deposit any obtained Frostweave that's obtained while running the profile.
+		1 = The bot will deposit any obtained Frostweave that's obtained.  Also, the Frostweave will be protected from the Lua sell script.
+		The deposit routine is called once the vendoring routine starts.
+
+	depositgoldset
+		0 = The bot will NOT deposit all of its gold into the mobile guild.
+		1 = The bot will deposit all of its gold into the mobile guild bank.
+		The deposit routine is called once the vendoring routine starts.
+
+After any of these settings are applied, you must reload the profile for them to take effect.
+Please note also: If you make a change and it doesn't show up on ASM - then don't worry, the change HAS been made.
+-->
 <CustomBehavior File="Misc\RunLua" Lua="
 	--[[Define Variables]]
 		heroicset = 0;
@@ -797,7 +844,6 @@
 				<CustomBehavior File="MyCTM" X="4772.893" Y="-2036.125" Z="229.3822" />
 			</If>
 			<If Condition="Me.Location.Distance(new WoWPoint(4775.771, -2045.906, 229.4198)) &gt;= 150" >
-				<CustomBehavior File="Message" Text="Heading to Instance." LogColor="DeepSkyBlue" />
 				<CustomBehavior File="FlyTo" X="4922.837" Y="-2046.354" Z="279.7324" />
 				<CustomBehavior File="MyCTM"  X="4868.813" Y="-2034.23" Z="250.0712" />
 				<CustomBehavior File="MyCTM" X="4815.126" Y="-2040.735" Z="245.4605" />
@@ -1405,9 +1451,9 @@
 							end" />
 				</ElseIf>
 			<!-- END Deposit Gold -->
-				<Else>
+				<ElseIf Condition="((Lua.GetReturnValues(&quot;return depositclothset&quot;)[0] == &quot;1&quot;) || (Lua.GetReturnValues(&quot;return depositgoldset&quot;)[0] == &quot;1&quot;)) &amp;&amp; (WoWSpell.FromId(83958).Cooldown)"> 
 					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Your mobile bank is on cooldown.  Continuing run.&quot;)" />
-				</Else>
+				</ElseIf>
 			</If>
 
 		<!-- ////////////////////////////////////END GUILD BANK DETECTION/////////////////////////////////////////////-->
@@ -1578,7 +1624,6 @@
 
 	<If Condition="!(Me.MapId == 604) &amp;&amp; (Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
 		<If Condition="Me.Location.Distance(new WoWPoint(6944.809, -4426.977, 450.8831)) &gt; 100 " >
-			<CustomBehavior File="Message" Text="Heading to instance." LogColor="DeepSkyBlue" />
 			<CustomBehavior File="FlyTo" X="6869.925" Y="-4472.948" Z="511.2688" />
 			<CustomBehavior File="FlyTo" X="6954.726" Y="-4416.813" Z="450.0275" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
