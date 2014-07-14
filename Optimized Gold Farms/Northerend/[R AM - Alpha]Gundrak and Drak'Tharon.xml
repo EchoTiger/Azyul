@@ -108,6 +108,12 @@ ATTRIBUTES:
 		1 = The bot will deposit all of its gold into the mobile guild bank.
 		The deposit routine is called once the vendoring routine starts.
 
+	azgundrakset
+		# = A chance percentage that the Gundrak will be ran after the vendoring routine of the last dungeon is completed.
+
+	azdraktharonset
+		# = A chance percentage that the Drak'Tharon will be ran after the vendoring routine of the last dungeon is completed.
+
 After any of these settings are applied, you must reload the profile for them to take effect.
 Please note also: If you make a change and it doesn't show up on ASM - then don't worry, the change HAS been made.
 -->
@@ -120,6 +126,8 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		selleverythingset = 0;
 		depositclothset = 0;
 		depositgoldset = 0;
+		azgundrakset = 50;
+		azdraktharonset = 50;
 
 	if (startcheck == nil or startcheck == &apos;&apos;) then
 		startcheck = 1;
@@ -242,6 +250,85 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						HideAzyul:SetHeight(25)
 						HideAzyul:SetText(&quot;X&quot;)
 						HideAzyul:SetHitRectInsets(1, 1, 1, 1)
+
+
+		--[[Create Randomizer Frame]]
+				--[[Randomize Button]]
+							RandomizeButton = CreateFrame(&quot;Button&quot;, &quot;RandomizeButton&quot;, AzyulManager, &quot;UIPanelButtonTemplate&quot;);
+							RandomizeButton:SetPoint(&quot;BOTTOMRIGHT&quot;, AzyulManager, 0, 0);
+							RandomizeButton:SetScript(&quot;PostClick&quot;, function () RandomizerFrame:Show(); end);
+							RandomizeButton:SetScale(1);
+							RandomizeButton:SetWidth(105)
+							RandomizeButton:SetHeight(20)
+							RandomizeButton:SetText(&quot;Randomizer&quot;)
+							RandomizeButton:SetHitRectInsets(1, 1, 1, 1)
+				--[[Randomize Frame]]
+					RandomizerFrame = CreateFrame(&quot;StatusBar&quot;, nil, UIParent)
+					RandomizerFrame:SetStatusBarTexture(&quot;Interface\\DialogFrame\\UI-DialogBox-Background&quot;)
+					RandomizerFrame:SetWidth(125)
+					RandomizerFrame:SetHeight(75)
+					RandomizerFrame:SetPoint(&quot;CENTER&quot;,UIParent,&quot;CENTER&quot;)
+					RandomizerFrame:SetMovable(true);
+					RandomizerFrame:EnableMouse(true);
+					RandomizerFrame:SetScript(&quot;OnUpdate&quot;, function () 
+						RandomizerFrame:SetScript(&quot;OnMouseUp&quot;, function()
+							RandomizerFrame:StopMovingOrSizing();
+						end);
+
+						RandomizerFrame:SetScript(&quot;OnMouseDown&quot;, function()
+							RandomizerFrame:StartMoving();
+						end);
+					end);
+					RandomizerFrame:Hide();
+					local TitleLabel = RandomizerFrame:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+					TitleLabel:SetText(&quot;Chances&quot;);
+					TitleLabel:SetTextColor(.9, .9, 1, 1);
+					TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 18, &quot;NONE&quot;);
+					TitleLabel:SetPoint(&quot;TOP&quot;, -5, -5);
+
+				--[[Randomizer Hide Button]]
+							HideRandomizer = CreateFrame(&quot;Button&quot;, &quot;HideRandomizer&quot;, RandomizerFrame, &quot;UIPanelButtonTemplate&quot;);
+							HideRandomizer:SetPoint(&quot;TOPRIGHT&quot;, RandomizerFrame, 0, 0);
+							HideRandomizer:SetScript(&quot;PostClick&quot;, function () RandomizerFrame:Hide(); end);
+							HideRandomizer:SetScale(1);
+							HideRandomizer:SetWidth(23)
+							HideRandomizer:SetHeight(25)
+							HideRandomizer:SetText(&quot;X&quot;)
+							HideRandomizer:SetHitRectInsets(1, 1, 1, 1)
+				--[[Randomizer Variables]]
+					local TitleLabel = RandomizerFrame:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+					TitleLabel:SetText(&quot;Gundrak:&quot;);
+					TitleLabel:SetTextColor(1, 1, 1, 1);
+					TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+					TitleLabel:SetPoint(&quot;TOP&quot;, RandomizerFrame, -7, -33);
+						AZGundrak = CreateFrame(&quot;EditBox&quot;, &quot;AZGundrak&quot;, RandomizerFrame, &quot;InputBoxTemplate&quot;);
+						AZGundrak:SetPoint(&quot;TOP&quot;, RandomizerFrame, 38, -14);
+						AZGundrak:SetHitRectInsets(0, 0, 6, 7)
+						AZGundrak:SetNumeric(true)
+						AZGundrak:SetMaxLetters(2)
+						AZGundrak:SetText(azgundrakset)
+						AZGundrak:SetWidth(20)
+						AZGundrak:EnableMouse(true)
+						AZGundrak:SetAutoFocus(false)
+						AZGundrak:SetHeight(50)
+						AZGundrak:SetScript(&quot;OnChar&quot;, function(self,userInput,...) azgundrakset = AZGundrak:GetNumber() end);
+					local TitleLabel = RandomizerFrame:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+					TitleLabel:SetText(&quot;Drak'Tharon:&quot;);
+					TitleLabel:SetTextColor(1, 1, 1, 1);
+					TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+					TitleLabel:SetPoint(&quot;TOP&quot;, RandomizerFrame, -16, -58);
+						AZDrakTharon = CreateFrame(&quot;EditBox&quot;, &quot;AZDrakTharon&quot;, RandomizerFrame, &quot;InputBoxTemplate&quot;);
+						AZDrakTharon:SetPoint(&quot;TOP&quot;, RandomizerFrame, 38, -38);
+						AZDrakTharon:SetHitRectInsets(0, 0, 8, 9)
+						AZDrakTharon:SetNumeric(true)
+						AZDrakTharon:SetMaxLetters(2)
+						AZDrakTharon:SetText(azdraktharonset)
+						AZDrakTharon:SetWidth(20)
+						AZDrakTharon:EnableMouse(true)
+						AZDrakTharon:SetAutoFocus(false)
+						AZDrakTharon:SetHeight(50)
+						AZDrakTharon:SetScript(&quot;OnChar&quot;, function(self,userInput,...) azdraktharonset = AZDrakTharon:GetNumber() end);
+
 		--[[Dungeon Properties]]
 			--[[Difficulties]]
 				local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
@@ -834,7 +921,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 
 <While Condition="true" >
 
-	<If Condition="Chance(50.0)"> <!-- Drak'Tharon -->
+	<If Condition="Chance((Lua.GetReturnVal&lt;uint&gt;(&quot;return azdraktharonset&quot;, 0)))"> <!-- Drak'Tharon -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Drak'Tharon." LogColor="DeepSkyBlue" />
 		<If Condition="!(Me.MapId == 600) &amp;&amp; (Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return bagslotset&quot;, 0)))" >
@@ -1618,7 +1705,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 	</If>
 
 
-	<If Condition="Chance(50.0)"> <!-- Gundrak -->
+	<If Condition="Chance((Lua.GetReturnVal&lt;uint&gt;(&quot;return azgundrakset&quot;, 0)))"> <!-- Gundrak -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Gundrak." LogColor="DeepSkyBlue" />
 
