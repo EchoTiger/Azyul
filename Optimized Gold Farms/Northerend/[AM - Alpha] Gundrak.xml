@@ -93,18 +93,19 @@ After any of these settings are applied, you must reload the profile for them to
 Please note also: If you make a change and it doesn't show up on ASM - then don't worry, the change HAS been made.
 -->
 <CustomBehavior File="Misc\RunLua" Lua="
+	--[[Define Variables]]
+		heroicset = 0;
+		bagslotset = 17;
+		mailingset = 20;
+		difficultyset = 3;
+		selleverythingset = 0;
+		depositclothset = 0;
+		depositgoldset = 0;
+
 	if (startcheck == nil or startcheck == &apos;&apos;) then
-		--[[Define Variables]]
-				startcheck = 1;
-				heroicset = 0;
-				bagslotset = 17;
-				mailingset = 20;
-				difficultyset = 3;
-				selleverythingset = 0;
-				depositclothset = 0;
-				depositgoldset = 0;
-				SLASH_AZYULHIDE1 = '/ahide';
-				SLASH_AZYULSHOW1 = '/ashow';
+		startcheck = 1;
+		SLASH_AZYULHIDE1 = '/ahide';
+		SLASH_AZYULSHOW1 = '/ashow';
 
 
 		--[[Functions]]
@@ -349,6 +350,8 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
 						TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -35, -77);
 
+	end;
+
 		--[[Adjust Visuals]]
 			if (heroicset == 1) then
 				HeroicMode:SetChecked(1)
@@ -377,7 +380,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			if (depositgoldset == 1) then
 				DepositGold:SetChecked(1)
 			end
-	end;
 " />
 
 		<CustomBehavior File="Misc\RunLUA" Lua="
