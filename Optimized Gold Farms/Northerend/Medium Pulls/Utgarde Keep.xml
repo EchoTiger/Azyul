@@ -50,21 +50,21 @@
 <CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Welcome to the|r |cFFC2DAF3Utgarde Keep Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00112.4|r\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\n|cFFFF0000! Warning !|r\nThere is a rare in-game bug that causes a door to not open after the last boss is killed.  If this occurs, the bot will bug out!&quot;)" />
 
 		<CustomBehavior File="Misc\RunLUA" Lua="
-			SLASH_SHOWSTATS1 = '/stats';
-			SLASH_EXTRASTATS1 = '/stats2';
-			starttime = GetTime();
-			currtime = GetTime();
-			lastdungeon = 0
-			scurrdungeon = GetTime();
-			ecurrdungeon = GetTime();
-			startingmoney = GetMoney();
-			endingmoney = GetMoney();
-			cstartingmoney = GetMoney();
-			beginningmoney = GetMoney();
-			progressmoney = math.floor(endingmoney-startingmoney);
-			vendorstartingmoney = GetMoney();
-			vendorendingmoney = GetMoney();
-			vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);
+			SLASH_DEADLYBOSSMODS1 = '/stats';
+			SLASH_DBMRANGE1 = '/stats2';
+			ShowWarningsInChat = GetTime();
+			ShowFakedRaidWarnings = GetTime();
+			WarningIconLeft = 0
+			WarningIconRight = GetTime();
+			WarningIconChat = GetTime();
+			ShowLoadMessage = GetMoney();
+			ShowPizzaMessage = GetMoney();
+			ShowEngageMessage = GetMoney();
+			ShowKillMessage = GetMoney();
+			ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);
+			ShowRecoveryMessage = GetMoney();
+			AutoRespond = GetMoney();
+			WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
 			function calculate()
 				local itemSellPrice = 0
 				local itemID = 0
@@ -87,40 +87,40 @@
 							end
 						end
 				end
-				totals = GetCoinTextureString(total_value_of_bags);
-				currmoney = GetMoney();
-				currtime = GetTime();
-				tdiftime = (currtime - starttime);
-				cdiftime = (currtime - scurrdungeon);
-				tHours = string.format(&quot;%02.f&quot;, math.floor(tdiftime/3600));
-				tMins = string.format(&quot;%02.f&quot;, math.floor(tdiftime/60 - (tHours*60)));
-				tSecs = string.format(&quot;%02.f&quot;, math.floor(tdiftime - tHours*3600 - tMins *60));
-				lHours = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/3600));
-				lMins = string.format(&quot;%02.f&quot;, math.floor(lastdungeon/60 - (lHours*60)));
-				lSecs = string.format(&quot;%02.f&quot;, math.floor(lastdungeon - lHours*3600 - lMins *60));
-				cHours = string.format(&quot;%02.f&quot;, math.floor(cdiftime/3600));
-				cMins = string.format(&quot;%02.f&quot;, math.floor(cdiftime/60 - (cHours*60)));
-				cSecs = string.format(&quot;%02.f&quot;, math.floor(cdiftime - cHours*3600 - cMins *60));
-				cprogressmoney = math.floor(currmoney-cstartingmoney)
-				difmoney = math.floor(currmoney-beginningmoney)
-				completetotal = math.floor(difmoney+total_value_of_bags)
-				farmscore = math.floor((difmoney/tdiftime)/10)
-				farmscore2 = math.floor((completetotal/tdiftime)/10)
-				gph = GetCoinTextureString(math.floor(difmoney/(tdiftime/3600)))
-				gph2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/3600)))
-				gpm = GetCoinTextureString(math.floor(difmoney/(tdiftime/60 - (tHours*60))))
-				gpm2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/60 - (tHours*60))))
+				HideBossEmoteFrame = GetCoinTextureString(total_value_of_bags);
+				SpamBlockBossWhispers = GetMoney();
+				ShowFakedRaidWarnings = GetTime();
+				ShowMinimapButton = (ShowFakedRaidWarnings - ShowWarningsInChat);
+				BlockVersionUpdateNotice = (ShowFakedRaidWarnings - WarningIconRight);
+				ShowSpecialWarnings = string.format(&quot;%02.f&quot;, math.floor(ShowMinimapButton/3600));
+				ShowFlashFrame = string.format(&quot;%02.f&quot;, math.floor(ShowMinimapButton/60 - (ShowSpecialWarnings*60)));
+				ShowAdvSWSounds = string.format(&quot;%02.f&quot;, math.floor(ShowMinimapButton - ShowSpecialWarnings*3600 - ShowFlashFrame *60));
+				AlwaysShowHealthFrame = string.format(&quot;%02.f&quot;, math.floor(WarningIconLeft/3600));
+				ShowBigBrotherOnCombatStart = string.format(&quot;%02.f&quot;, math.floor(WarningIconLeft/60 - (AlwaysShowHealthFrame*60)));
+				AutologBosses = string.format(&quot;%02.f&quot;, math.floor(WarningIconLeft - AlwaysShowHealthFrame*3600 - ShowBigBrotherOnCombatStart *60));
+				AdvancedAutologBosses = string.format(&quot;%02.f&quot;, math.floor(BlockVersionUpdateNotice/3600));
+				LogOnlyRaidBosses = string.format(&quot;%02.f&quot;, math.floor(BlockVersionUpdateNotice/60 - (AdvancedAutologBosses*60)));
+				UseMasterVolume = string.format(&quot;%02.f&quot;, math.floor(BlockVersionUpdateNotice - AdvancedAutologBosses*3600 - LogOnlyRaidBosses *60));
+				LFDEnhance = math.floor(SpamBlockBossWhispers-ShowEngageMessage)
+				SetPlayerRole = math.floor(SpamBlockBossWhispers-ShowKillMessage)
+				HideWatchFrame = math.floor(SetPlayerRole+total_value_of_bags)
+				EnableModels = math.floor((SetPlayerRole/ShowMinimapButton)/10)
+				RangeFrameFrames = math.floor((HideWatchFrame/ShowMinimapButton)/10)
+				RangeFrameUpdates = GetCoinTextureString(math.floor(SetPlayerRole/(ShowMinimapButton/3600)))
+				RangeFramePoint = GetCoinTextureString(math.floor(HideWatchFrame/(ShowMinimapButton/3600)))
+				RangeFrameX = GetCoinTextureString(math.floor(SetPlayerRole/(ShowMinimapButton/60 - (ShowSpecialWarnings*60))))
+				RangeFrameY = GetCoinTextureString(math.floor(HideWatchFrame/(ShowMinimapButton/60 - (ShowSpecialWarnings*60))))
 			end
-			function SlashCmdList.SHOWSTATS()
+			function SlashCmdList.DEADLYBOSSMODS()
 				calculate()
-				print(&quot;|cFFF0F0F0~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF00CCFFBag Value:|r &quot;, totals, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(completetotal));
-				print(&quot;|cFFF0F0F0~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, lHours .. &quot;h,&quot;, lMins .. &quot;m,&quot;, lSecs .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(progressmoney), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(vendorsellmoney));
-				print(&quot;|cFFF0F0F0~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, cHours .. &quot;h,&quot;, cMins .. &quot;m,&quot;, cSecs .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(cprogressmoney));
+				print(&quot;|cFFF0F0F0~Total Stats!|r\n|cFF00CCFFTime active:|r &quot;, ShowSpecialWarnings .. &quot;h,&quot;, ShowFlashFrame .. &quot;m,&quot;, ShowAdvSWSounds .. &quot;s \n|cFF00CCFFTotal Gold:|r &quot;, GetCoinTextureString(SetPlayerRole), &quot;\n|cFF00CCFFBag Value:|r &quot;, HideBossEmoteFrame, &quot;\n|cFF00CCFFTotal + Bag:|r &quot;, GetCoinTextureString(HideWatchFrame));
+				print(&quot;|cFFF0F0F0~Last Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, AlwaysShowHealthFrame .. &quot;h,&quot;, ShowBigBrotherOnCombatStart .. &quot;m,&quot;, AutologBosses .. &quot;s \n|cFF00CCFFRaw Gold:|r &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\n|cFF00CCFFVendor Gold:|r&quot;, GetCoinTextureString(WhisperStats));
+				print(&quot;|cFFF0F0F0~Current Dungeon!|r\n|cFF00CCFFTime taken:|r &quot;, AdvancedAutologBosses .. &quot;h,&quot;, LogOnlyRaidBosses .. &quot;m,&quot;, UseMasterVolume .. &quot;s \n|cFF00CCFFGold:|r &quot;, GetCoinTextureString(LFDEnhance));
 				print(&quot;|cFFF79A71Type /stats2 for more stats!|r&quot;)
 			end
-			function SlashCmdList.EXTRASTATS()
+			function SlashCmdList.DBMRANGE()
 				calculate()
-				print(&quot;|cFFF0F0F0~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, gph, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF00CCFFGPM:|r &quot;, gpm, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, farmscore2);
+				print(&quot;|cFFF0F0F0~Estimates!|r\n|cFF00CCFFGPH:|r &quot;, RangeFrameUpdates, &quot; \n|cFF00CCFFGPH (+ Bag Value):|r &quot;, RangeFramePoint, &quot;\n|cFF00CCFFGPM:|r &quot;, RangeFrameX, &quot;\n|cFF00CCFFGPM (+ Bag Value):|r &quot;, RangeFrameY,  &quot;\n|cFF00CCFFFarm Score:|r &quot;, EnableModels,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, RangeFrameFrames);
 			end" />
 
 	<CustomBehavior File="Message" Text="\n\n ! WARINING ! \nThere's an in-game bug that causes a door to not open in this dungeon which causes the bot to get stuck.  The bug only occurs if the bosses are killed too quickly.\n\n" LogColor="Red" />
@@ -500,9 +500,9 @@
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
-				<CustomBehavior File="Misc\RunLUA" Lua="startingmoney = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="scurrdungeon = GetTime();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="cstartingmoney = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconRight = GetTime();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="ShowEngageMessage = GetMoney();" />
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
@@ -656,13 +656,13 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="progressmoney = math.floor(endingmoney-startingmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(endingmoney-beginningmoney);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(progressmoney), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
-				<CustomBehavior File="Misc\RunLUA" Lua="endingmoney = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="ecurrdungeon = GetTime();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="lastdungeon = math.floor(ecurrdungeon-scurrdungeon)" /> 
+				<CustomBehavior File="Misc\RunLUA" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+				<CustomBehavior File="Misc\RunLUA" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconChat = GetTime();" />
+				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 				<CustomBehavior File="MyCTM" X="146.4876" Y="-88.77183" Z="12.55122" />
@@ -671,7 +671,7 @@
 
 
 			    <If Condition="(Me.FreeBagSlots &lt; 17)" >
-			    	<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
+			    	<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
 			    	<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 			    	<RunTo X="1099.184" Y="-4904.298" Z="41.2481" />
 
@@ -703,10 +703,10 @@
 			    		<ClearVendor />
 			    		<RunTo X="769.9571" Y="-2938.768" Z="7.330936" /> <!-- Pull away from possible stuckspots -->
 
-			    		<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" />
-			    		<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-			    		<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-			    		<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(progressmoney), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+			    		<CustomBehavior File="Misc\RunLUA" Lua="AutoRespond = GetMoney();" />
+			    		<CustomBehavior File="Misc\RunLUA" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			    		<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			    		<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
 			    	</If>
 			    </If>
 			</If>
