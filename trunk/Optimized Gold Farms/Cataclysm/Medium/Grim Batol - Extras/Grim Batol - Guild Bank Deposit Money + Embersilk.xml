@@ -629,6 +629,34 @@
 					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
 				</Else>
 			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+			<CustomBehavior File="WaitTimer" WaitTime="3500" />
+			<If Condition="Me.IsAlliance" > 
+			    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+			</If> 
+			<If Condition="Me.IsHorde" > 
+			    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+			</If> 
+			<CustomBehavior File="Misc\RunLUA" Lua="
+				if GuildBankFrame:IsVisible()==1 then
+					MyMoney = GetMoney();
+					DepositGuildBankMoney(MyMoney);
+					print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+				else
+				print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+				end" />
+
+				<CustomBehavior File="Misc\RunLUA" Lua="
+					if GuildBankFrame:IsVisible()==1 then
+						print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
+						for b=0,4 do for s=1,GetContainerNumSlots(b)
+							do local n=GetContainerItemLink(b,s)
+								if n and strfind(n,&quot;53010&quot;)then
+									UseContainerItem(b,s)
+								end
+							end
+						end
+					end" />
 
 			<CustomBehavior File="FlyTo" X="-4083.552" Y="-3465.485" Z="287.8949" />
 			<If Condition="Me.IsHorde" >
