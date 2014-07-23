@@ -66,8 +66,6 @@
 
 	</Blackspots>
 	
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
-
 <QuestOrder>
 <If Condition="!(Me.MapId == 733)" >
 
@@ -380,8 +378,6 @@
 <While Condition="true" >
 	<If Condition="!(Me.MapId == 733)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(-8767.0029, -4165.9390, -210.1310)) &gt; 150" >
-		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />		
-
 			<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8175.918" Y="-4707.365" Z="48.94663" />
 			<CustomBehavior File="MyCTM" X="-8175.043" Y="-4720.596" Z="44.30181" />
 			<CustomBehavior File="MyCTM" X="-8175.128" Y="-4888.313" Z="40.85376" />
@@ -418,7 +414,6 @@
 		    <CustomBehavior File="WaitTimer" WaitTime="6000" />
 					
 
-			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 			<CustomBehavior File="Aeonus" BossId="17881" AddId1="21104" AddId2="21140" AddId3="21148" AddId4="17839" AddId5="17879" AddId6="17880" AddId7="17835" AddId8="17892" AddId9="18994" AddId10="18995" AddId11="21818" AddId12="21139" AddId13="21136" AddId14="21138" AddId15="21137" />
 			
 			
@@ -429,10 +424,6 @@
 		    <RunTo X="-1500.5530" Y="7047.7622" Z="32.8794"  />
 		    <RunTo X="-1500.1003" Y="7040.0908" Z="33.0374"  />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
-		    <If Condition="Me.FreeBagSlots &lt;= 10" >
-		    	<CustomBehavior File="Message" Text="\n\nWaiting to avoid instance overloads.\nAfter we're finished waiting, I'll go to town to clear your bags.\n\n Since we're going to town, the wait timer will be reduced." LogColor="Coral" />
-		    	<CustomBehavior File="WaitTimer" WaitTime="123000" />
-		    </If>
 		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 			<CustomBehavior File="MyCTM" X="-1494.671" Y="7028.2757" Z="32.8237" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
