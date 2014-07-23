@@ -9,6 +9,7 @@
 <Name>Gundrak - Optimized Gold Farms - Medium Pulls</Name>
 
 <MinFreeBagSlots>-1</MinFreeBagSlots>
+<MinDurability>-1</MinDurability>
 
 <MinLevel>1</MinLevel>
 <MaxLevel>91</MaxLevel>
@@ -477,6 +478,7 @@
 <!-- CHOP CHOP D: -->
 
 <While Condition="true" >
+	<DisableBehavior Name="Death" />
 	<If Condition="!(Me.MapId == 604) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(6944.809, -4426.977, 450.8831)) &gt; 100 " >
 			<CustomBehavior File="Message" Text="Heading to instance." LogColor="DeepSkyBlue" />
