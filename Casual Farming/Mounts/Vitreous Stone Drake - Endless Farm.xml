@@ -446,29 +446,37 @@
 	<!-- Vendor Routine -->
 	<If Condition="(Me.FreeBagSlots &lt; 17) &amp;&amp; Me.IsAlive" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
-		<CustomBehavior File="FlyTo" X="977.2117" Y="678.8298" Z="153.3052" />
-		<CustomBehavior File="MyCTM" X="933.7256" Y="637.4918" Z="133.1676" />
-		<CustomBehavior File="MyCTM" X="868.5516" Y="572.0604" Z="22.80867" />
-        <CustomBehavior File="FlyTo" X="894.2306" Y="500.5792" Z="-30.86596" />
+		<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+			<CustomBehavior File="WaitTimer" WaitTime="750" />
+			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+			<CustomBehavior File="WaitTimer" WaitTime="2000" />
+			<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+		</If>
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="FlyTo" X="977.2117" Y="678.8298" Z="153.3052" />
+			<CustomBehavior File="MyCTM" X="933.7256" Y="637.4918" Z="133.1676" />
+			<CustomBehavior File="MyCTM" X="868.5516" Y="572.0604" Z="22.80867" />
+	        <CustomBehavior File="FlyTo" X="894.2306" Y="500.5792" Z="-30.86596" />
 
-        <If Condition="Me.IsAlliance" >
-            <CustomBehavior File="MyCTM" X="987.4436" Y="518.3469" Z="-38.70247" />
-            <CustomBehavior File="MyCTM" X="1023.961" Y="560.5769" Z="-40.13696" />
-            <CustomBehavior File="MyCTM" X="1050.577" Y="634.3514" Z="-45.71395" />
-            <MoveTo X="1050.775" Y="634.2302" Z="-45.69601" />
-            <CustomBehavior File="WaitTimer" WaitTime="2500" /> <!-- Wait for NPC spawn lag -->
-            <CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
-        </If>
-        <If Condition="Me.IsHorde" >
-            <CustomBehavior File="MyCTM" X="987.4436" Y="518.3469" Z="-38.70247" />
-            <CustomBehavior File="MyCTM" X="1049.787" Y="483.1206" Z="-40.61964" />
-            <CustomBehavior File="MyCTM" X="1090.271" Y="438.8304" Z="-45.77536" />
-            <MoveTo X="1088.669" Y="437.292" Z="-45.75327" />
-            <CustomBehavior File="WaitTimer" WaitTime="2500" /> <!-- Wait for NPC spawn lag -->
-            <CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
-        </If>
+	        <If Condition="Me.IsAlliance" >
+	            <CustomBehavior File="MyCTM" X="987.4436" Y="518.3469" Z="-38.70247" />
+	            <CustomBehavior File="MyCTM" X="1023.961" Y="560.5769" Z="-40.13696" />
+	            <CustomBehavior File="MyCTM" X="1050.577" Y="634.3514" Z="-45.71395" />
+	            <MoveTo X="1050.775" Y="634.2302" Z="-45.69601" />
+	            <CustomBehavior File="WaitTimer" WaitTime="2500" /> <!-- Wait for NPC spawn lag -->
+	            <CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+	        </If>
+	        <If Condition="Me.IsHorde" >
+	            <CustomBehavior File="MyCTM" X="987.4436" Y="518.3469" Z="-38.70247" />
+	            <CustomBehavior File="MyCTM" X="1049.787" Y="483.1206" Z="-40.61964" />
+	            <CustomBehavior File="MyCTM" X="1090.271" Y="438.8304" Z="-45.77536" />
+	            <MoveTo X="1088.669" Y="437.292" Z="-45.75327" />
+	            <CustomBehavior File="WaitTimer" WaitTime="2500" /> <!-- Wait for NPC spawn lag -->
+	            <CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+	        </If>
 
-        <RunTo X="906.6677" Y="502.1017" Z="-49.21947" />
+	        <RunTo X="906.6677" Y="502.1017" Z="-49.21947" />
+	    </If>
 
     </If>
 	<!-- End Vendor Routine -->
