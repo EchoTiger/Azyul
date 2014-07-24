@@ -1,6 +1,7 @@
 <HBProfile>
 <Name>The Stonecore - Vitreous Stone Drake</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
+<MinDurability>-1</MinDurability>
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Profile Developer: Echo
 // Farm zone: The Stonecore
@@ -347,6 +348,7 @@
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 
 <While Condition="true" >
+	<DisableBehavior Name="Death" />
 
 	<If Condition="(Me.FreeBagSlots &gt;= 17) &amp;&amp; !(Me.MapId == 725)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(1022.057, 659.4061, 155.4537)) &gt;= 35" > <!-- Nav-to -->
@@ -358,7 +360,7 @@
 		</If>
 	</If>
 
-	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+	<While Condition="(Me.FreeBagSlots &gt;= 17) || Me.IsDead" >
 		<If Condition="!(Me.MapId == 725)" >
 			<RunTo X="1026.976" Y="629.6721" Z="156.672" />
 			<CustomBehavior File="Message" Text="Entering The Stonecore." LogColor="Lime" />
@@ -370,46 +372,71 @@
 		</If>
 
 		<!-- Begin Instance Grind -->
-		<If Condition="(Me.MapId == 725)" >
+		<If Condition="(Me.MapId == 725) &amp;&amp; Me.IsAlive" >
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			<CustomBehavior File="UserSettings" LootMobs="False" />
 			<DisableBehavior Name="Pull" />
 
-			<RunTo X="899.8765" Y="980.8341" Z="316.8646" />
-			<RunTo X="980.9249" Y="893.5306" Z="305.5399" />
-			<RunTo X="1055.909" Y="868.0199" Z="294.0879" />
-
-			<RunTo X="1118.775" Y="881.5455" Z="285.9568" />
-			<RunTo X="1137.849" Y="906.4434" Z="286.6169" />
-			<RunTo X="1263.269" Y="1207.495" Z="247.363" /> <!-- Go all the way to Slabhide -->
-
-			<EnableBehavior Name="Pull" />
-			<CustomBehavior File="UserSettings" LootMobs="True" />
-			<CustomBehavior File="WaitTimer" WaitTime="2500" />
-			<CustomBehavior File="InteractWith" MobId="43214" X="1292.352" Y="1226.478" Z="247.6368" />
-			<RunTo X="1307.165" Y="1232.391" Z="247.2243" />
-			<CustomBehavior File="UserSettings" LootMobs="False" />
-			<If Condition="(HasItem(63043))" >
-				<CustomBehavior File="Message" Text="\n\nCongratulations!\nYou are now the owner of a fresh new Vitreous Stone Drake!" LogColor="LightBlue" />
+			<If Condition="Me.IsAlive" >
+				<RunTo X="899.8765" Y="980.8341" Z="316.8646" />
 			</If>
-			<If Condition="(!HasItem(63043))" >
-				<CustomBehavior File="Message" Text="\n\nThe Vitreous Stone Drake did not drop.\nContinuing run." LogColor="Red" />
+			<If Condition="Me.IsAlive" >
+				<RunTo X="980.9249" Y="893.5306" Z="305.5399" />
+			</If>
+			<If Condition="Me.IsAlive" >
+				<RunTo X="1055.909" Y="868.0199" Z="294.0879" />
+			</If>
+			<If Condition="Me.IsAlive" >
+				<RunTo X="1118.775" Y="881.5455" Z="285.9568" />
+			</If>
+			<If Condition="Me.IsAlive" >
+				<RunTo X="1137.849" Y="906.4434" Z="286.6169" />
+			</If>
+			<If Condition="Me.IsAlive" >
+				<RunTo X="1263.269" Y="1207.495" Z="247.363" /> <!-- Go all the way to Slabhide -->
 			</If>
 
-			<CustomBehavior File="InteractWith" MobId="51397" X="1313.26" Y="1236.833" Z="247.2859" />
-			<CustomBehavior File="WaitTimer" WaitTime="1500" />
-			<RunTo X="836.7336" Y="987.9589" Z="317.4236" />
+			<If Condition="Me.IsAlive" >
+				<EnableBehavior Name="Pull" />
+				<CustomBehavior File="UserSettings" LootMobs="True" />
+				<CustomBehavior File="WaitTimer" WaitTime="2500" />
+				<CustomBehavior File="InteractWith" MobId="43214" X="1292.352" Y="1226.478" Z="247.6368" />
+			</If>
+			<If Condition="Me.IsAlive" >
+				<RunTo X="1307.165" Y="1232.391" Z="247.2243" />
+				<CustomBehavior File="UserSettings" LootMobs="False" />
+			</If>
+			<If Condition="Me.IsAlive" >
+				<If Condition="(HasItem(63043))" >
+					<CustomBehavior File="Message" Text="\n\nCongratulations!\nYou are now the owner of a fresh new Vitreous Stone Drake!" LogColor="LightBlue" />
+				</If>
+				<If Condition="(!HasItem(63043))" >
+					<CustomBehavior File="Message" Text="\n\nThe Vitreous Stone Drake did not drop.\nContinuing run." LogColor="Red" />
+				</If>
+			</If>
 
-			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
-			<CustomBehavior File="MyCTM" X="822.9694" Y="986.8021" Z="318.7797" />
-			<CustomBehavior File="WaitTimer" WaitTime="5500" />
-			<While Condition="!(StyxWoW.IsInWorld)" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			</While>
+			<If Condition="Me.IsAlive" >
+				<CustomBehavior File="InteractWith" MobId="51397" X="1313.26" Y="1236.833" Z="247.2859" />
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				<RunTo X="836.7336" Y="987.9589" Z="317.4236" />
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<CustomBehavior File="MyCTM" X="822.9694" Y="986.8021" Z="318.7797" />
+				<CustomBehavior File="WaitTimer" WaitTime="5500" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+			</If>
+
+			<If Condition="Me.IsDead" >
+				<CustomBehavior File="Message" Text="We died!  Returning to instance..." LogColor="Red" />
+				<CustomBehavior File="RunMacro" Macro="/script RepopMe()" />
+				<CustomBehavior File="MyCTM" X="993.4387" Y="717.355" Z="158.3469" />
+				<CustomBehavior File="MyCTM" X="1014.872" Y="656.0049" Z="156.6734" /> 
+			</If>
 		</If>
-
-		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
-		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 		<If Condition="HasItem(63043)" >
 			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="5" Text="Congratulations!\n\nYou are now the owner of a fresh new Vitreous Stone Drake!" />
 		</If>
@@ -417,7 +444,7 @@
 	<!-- End Instance Grind -->
 
 	<!-- Vendor Routine -->
-	<If Condition="(Me.FreeBagSlots &lt; 17)" >
+	<If Condition="(Me.FreeBagSlots &lt; 17) &amp;&amp; Me.IsAlive" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 		<CustomBehavior File="FlyTo" X="977.2117" Y="678.8298" Z="153.3052" />
 		<CustomBehavior File="MyCTM" X="933.7256" Y="637.4918" Z="133.1676" />
