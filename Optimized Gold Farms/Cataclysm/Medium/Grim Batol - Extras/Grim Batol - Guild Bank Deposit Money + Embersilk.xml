@@ -657,51 +657,52 @@
 							end
 						end
 					end" />
-
-			<CustomBehavior File="FlyTo" X="-4083.552" Y="-3465.485" Z="287.8949" />
-			<If Condition="Me.IsHorde" >
-				<CustomBehavior File="FlyTo" X="-3491.58" Y="-4368.721" Z="210.4921" />
-				<SetVendor>
-					<Vendors>
-						<Vendor Name="Provisioner Graka" Nav="Fly" Entry="49775" Type="Repair" X="-3491.58" Y="-4368.721" Z="210.4921" />
-					</Vendors>
-				</SetVendor>
-				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-				<If Condition="(Me.FreeBagSlots &lt; 20)">
-					<CustomBehavior File="Message" Text="\nYou're still under 20 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
-					<CustomBehavior File="FlyTo" X="-3669.523" Y="-5285.55" Z="48.18324" />
-					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="ForceSetVendor"  DoMail="True" />
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="FlyTo" X="-4083.552" Y="-3465.485" Z="287.8949" />
+				<If Condition="Me.IsHorde" >
+					<CustomBehavior File="FlyTo" X="-3491.58" Y="-4368.721" Z="210.4921" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Provisioner Graka" Nav="Fly" Entry="49775" Type="Repair" X="-3491.58" Y="-4368.721" Z="210.4921" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+					<If Condition="(Me.FreeBagSlots &lt; 20)">
+						<CustomBehavior File="Message" Text="\nYou're still under 20 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+						<CustomBehavior File="FlyTo" X="-3669.523" Y="-5285.55" Z="48.18324" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+						<CustomBehavior File="ForceSetVendor"  DoMail="True" />
+					</If>
 				</If>
-			</If>
-			<If Condition="Me.IsAlliance" >
-				<CustomBehavior File="FlyTo" X="-4187.616" Y="-4751.438" Z="126.7861" />
-				<SetVendor>
-					<Vendors>
-						<Vendor Name="Brian Terrel" Nav="Fly" Entry="49605" Type="Repair" X="-4187.616" Y="-4751.438" Z="126.7861" />
-					</Vendors>
-				</SetVendor>
-				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
-				<If Condition="(Me.FreeBagSlots &lt; 20)">
-					<CustomBehavior File="Message" Text="\nYou're still under 20 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
-					<CustomBehavior File="FlyTo" X="-5361.541" Y="-2951.45" Z="324.0776" />
-					<SetMailbox>
-						<Mailboxes>
-							<Mailbox Nav="Fly" X="-5365.623" Y="-2954.108" Z="323.7545" />
-						</Mailboxes>
-					</SetMailbox>
-					<CustomBehavior File="ForceSetVendor"  DoMail="True" />
-					<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<If Condition="Me.IsAlliance" >
+					<CustomBehavior File="FlyTo" X="-4187.616" Y="-4751.438" Z="126.7861" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Brian Terrel" Nav="Fly" Entry="49605" Type="Repair" X="-4187.616" Y="-4751.438" Z="126.7861" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+					<If Condition="(Me.FreeBagSlots &lt; 20)">
+						<CustomBehavior File="Message" Text="\nYou're still under 20 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+						<CustomBehavior File="FlyTo" X="-5361.541" Y="-2951.45" Z="324.0776" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox Nav="Fly" X="-5365.623" Y="-2954.108" Z="323.7545" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="ForceSetVendor"  DoMail="True" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+					</If>
 				</If>
+				<CustomBehavior File="Misc\RunLUA" Lua="
+					AutoRespond = GetMoney();
+					WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
+					vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);
+					print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(WhisperStats), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)
+					" /> 
+				<ClearVendor />
+				<ClearMailbox />
 			</If>
-			<CustomBehavior File="Misc\RunLUA" Lua="
-				AutoRespond = GetMoney();
-				WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
-				vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);
-				print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(WhisperStats), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)
-				" /> 
-			<ClearVendor />
-			<ClearMailbox />
 		</While>
 	</While>
 </QuestOrder>
