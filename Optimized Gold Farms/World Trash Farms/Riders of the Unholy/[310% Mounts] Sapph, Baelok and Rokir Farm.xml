@@ -474,10 +474,21 @@
  			<CustomBehavior File="FlyTo" X="6515.826" Y="1632.509" Z="641.4912" />
 			<CustomBehavior File="WaitTimer" WaitTime="600" /> <!-- Lag for mob phasing. -->
 			<DisableBehavior Name="Combat" />
-				<CustomBehavior File="MyCTM" X="6533.286" Y="1638.455" Z="632" TerminateWhen="Me.InCombat" />
+				<CustomBehavior File="MyCTM" X="6533.286" Y="1638.455" Z="632" TerminateWhen="Me.Combat" />
 				<RunTo X="6565.354" Y="1635.761" Z="632.36" />
 				<RunTo X="6555.378" Y="1622.628" Z="633.5463" />
 				<RunTo X="6564.565" Y="1614.278" Z="633.5462" />
+			<EnableBehavior Name="Combat" />
+		</If>
+
+		<If Condition="Me.FreeBagSlots &gt;= 5" > <!-- Baelok -->
+			<CustomBehavior File="Message" Text="Heading to Baelok." LogColor="LightBlue" />
+			<CustomBehavior File="FlyTo" X="6454.699" Y="1733.882" Z="530.6132" />
+			<DisableBehavior Name="Combat" />
+				<CustomBehavior File="MyCTM" X="6450.091" Y="1738.04" Z="507"  TerminateWhen="Me.Combat" />
+				<RunTo X="6481.654" Y="1749.664" Z="508.6015" />
+				<RunTo X="6481.654" Y="1749.664" Z="508.6015" />
+				<RunTo X="6472.392" Y="1721.921" Z="508.6017" />
 			<EnableBehavior Name="Combat" />
 		</If>
 
@@ -485,7 +496,7 @@
 			<CustomBehavior File="Message" Text="Heading to Rokir." LogColor="LightBlue" />
 			<CustomBehavior File="FlyTo" X="6098.962" Y="1924.725" Z="639.3121" />
 			<DisableBehavior Name="Combat" />
-				<CustomBehavior File="MyCTM" X="6071.854" Y="1936.294" Z="632" TerminateWhen="Me.InCombat" />
+				<CustomBehavior File="MyCTM" X="6071.854" Y="1936.294" Z="632" TerminateWhen="Me.Combat" />
 				<RunTo X="6073.725" Y="1915.888" Z="632.9465" />
 				<RunTo X="6067.225" Y="1892.131" Z="632.5796" />
 			<EnableBehavior Name="Combat" />
