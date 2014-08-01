@@ -3,10 +3,10 @@
 ///////////////////////////////////////////////////////////////////////
 // Profile Developer: Echo
 // Farm zone: Icecrown
-// Farm mobs: Mjordin Combatant Farm
+// Farm mobs: Kvaldir Farm
 ///////////////////////////////////////////////////////////////////////
 
-<Name>Icecrown - Mjordin Combatant Farm</Name>
+<Name>Icecrown - Kvaldir Farm</Name>
 
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 
@@ -458,7 +458,7 @@
 
 <While Condition="true" >
 	<CustomBehavior File="Message" Text="Heading to farm location." LogColor="LightBlue" />
-	<CustomBehavior File="FlyTo" X="8427.534" Y="3097.683" Z="600.6643" />
+	<CustomBehavior File="FlyTo" X="9861.36" Y="1053.349" Z="43.18058" />
 	<CustomBehavior File="Misc\RunLua" Lua="
 			starttime = GetTime();
 			currtime = GetTime();
@@ -466,14 +466,18 @@
 			print(&quot;|cFF00CCFFStatter!|r variables have been reset.&quot;);" /> <!-- Reset Lua variables -->
 
 	<While Condition="Me.FreeBagSlots &gt;= 5" > <!-- Loop 2 -->
-		<CustomBehavior File="InteractWith" MobId="30037" MobState="Alive" PreInteractMountStrategy="Dismount" >
+		<CustomBehavior File="InteractWith" MobId1="34839" MobId2="34838" MobState="Alive" PreInteractMountStrategy="Dismount" >
 			<HuntingGrounds WaypointVisitStrategy="Random" >
-				<Hotspot X="8408.028" Y="3068.951" Z="588.1426" />
-				<Hotspot X="8398.158" Y="3121.186" Z="588.1649" />
-				<Hotspot X="8444.817" Y="3102.066" Z="588.1387" />
-				<Hotspot X="8469.514" Y="3109.597" Z="588.14" />
-				<Hotspot X="8433.302" Y="3151.319" Z="588.142" />
-				<Hotspot X="8413.422" Y="3159.678" Z="588.1379" />
+				<Hotspot X="10121.64" Y="1205.702" Z="82.41029" />
+				<Hotspot X="9996.684" Y="1197.545" Z="62.41208" />
+				<Hotspot X="9978.868" Y="1082.946" Z="32.59003" />
+				<Hotspot X="10033.69" Y="976.0269" Z="13.98477" />
+				<Hotspot X="10095.05" Y="858.4169" Z="19.25631" />
+				<Hotspot X="10153.1" Y="859.9666" Z="43.87528" />
+				<Hotspot X="10169.94" Y="763.7243" Z="69.73451" />
+				<Hotspot X="10267.13" Y="777.6508" Z="77.91188" />
+				<Hotspot X="10287.26" Y="697.066" Z="76.97736" />
+				<Hotspot X="10413.51" Y="769.8014" Z="68.13956" />
 			</HuntingGrounds>
 		</CustomBehavior>
 	</While>
