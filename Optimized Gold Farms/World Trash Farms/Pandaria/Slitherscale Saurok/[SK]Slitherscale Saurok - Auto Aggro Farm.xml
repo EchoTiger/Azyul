@@ -1,0 +1,241 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo
+// Farm zone: Pandaria - Jade Forest
+// Farm mobs: Slitherscale Eggdrinkers,  Slitherscale Rippers
+///////////////////////////////////////////////////////////////////////
+
+<Name>[SK-Heavy]Slitherscale Lizard-People</Name>
+
+<MinFreeBagSlots>5</MinFreeBagSlots>
+<MinDurability>.05</MinDurability>
+
+<MinLevel>90</MinLevel>
+<MaxLevel>101</MaxLevel>
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+</ProtectedItems>
+
+<Vendors>
+	<Vendor Nav="Fly" Name="Brollen Wheatbeard" Entry="33599" Type="Repair" X="8548.112" Y="933.3629" Z="547.2941" />
+</Vendors>
+
+<Mailboxes>
+	<Mailbox Nav="Fly" X="8592.528" Y="693.717" Z="547.2921" />
+</Mailboxes>
+
+<AvoidMobs>
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+
+<QuestOrder>
+		<CustomBehavior File="Misc\RunLUA" Lua="
+			SLASH_SHOWSTATS1 = '/stats';
+			SLASH_SHOWSTATS2 = '/statter';
+			SLASH_SHOWSTATS3 = '/statter!';
+
+			SLASH_RESET1 = '/statsreset';
+			SLASH_TIMERRESET1 = '/timerreset';
+
+			starttime = GetTime();
+			currtime = GetTime();
+
+			beginningmoney = GetMoney();
+
+			function calculate()
+				local itemSellPrice = 0
+				local itemID = 0
+				local itemBagCount = 1
+				local itemStackCount = 1
+				total_value_of_bags = 0
+				for i = 0, NUM_BAG_SLOTS do
+				bagslots = GetContainerNumSlots(i)
+				for bagslotscounter = 1, bagslots do
+				itemID = GetContainerItemID(i, bagslotscounter)
+
+				if (itemID == nil)  or (itemSellPrice == nill) then
+					else
+						itemSellPrice = select(11, GetItemInfo(itemID))
+						if (itemSellPrice == nil) then
+							itemSellPrice = 0
+						end
+							itemBagCount = select(2, GetContainerItemInfo(i, bagslotscounter))
+							total_value_of_bags = total_value_of_bags + (itemSellPrice * itemBagCount)
+						end
+					end
+				end
+				totals = GetCoinTextureString(total_value_of_bags);
+
+				currmoney = GetMoney();
+				currtime = GetTime();
+				tdiftime = (currtime - starttime);
+
+				tHours = string.format(&quot;%02.f&quot;, math.floor(tdiftime/3600)); 
+				tMins = string.format(&quot;%02.f&quot;, math.floor(tdiftime/60 - (tHours*60))); 
+				tSecs = string.format(&quot;%02.f&quot;, math.floor(tdiftime - tHours*3600 - tMins *60)); 
+
+				difmoney = math.floor(currmoney-beginningmoney)
+				completetotal = math.floor(difmoney+total_value_of_bags)
+				farmscore = math.floor((difmoney/tdiftime)/10)
+				farmscore2 = math.floor((completetotal/tdiftime)/10)
+
+				gph = GetCoinTextureString(math.floor(difmoney/(tdiftime/3600))) 
+				gph2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/3600)))
+				gpm = GetCoinTextureString(math.floor(difmoney/(tdiftime/60 - (tHours*60))))
+				gpm2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/60 - (tHours*60))))
+			end
+
+			function SlashCmdList.SHOWSTATS()
+				calculate()
+				print(&quot;|cFF00CCFF~Total Stats!|r\n|cFF85C2FFTime since activation:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF85C2FFObtained Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF85C2FFBag Loot Value:|r &quot;, totals, &quot;\n|cFF85C2FFTotal Obtained + Bag Loot:|r &quot;, GetCoinTextureString(completetotal));
+				print(&quot;|cFF00CCFF~Estimates!|r\n|cFF85C2FFGPH:|r &quot;, gph, &quot; \n|cFF85C2FFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF85C2FFGPM:|r &quot;, gpm, &quot;\n|cFF85C2FFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF85C2FFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF85C2FFFarm Score (+Bag Value)|r &quot;, farmscore2);
+			end
+
+			function SlashCmdList.RESET()
+				starttime = GetTime();
+				currtime = GetTime();
+				beginningmoney = GetMoney();
+				print(&quot;|cFF00CCFFStatter!|r has been reset.&quot;);
+			end
+
+			function SlashCmdList.TIMERRESET()
+				starttime = GetTime();
+				print(&quot;|cFF00CCFFStatter!|r timers have been reset.&quot;);
+			end
+
+			print(&quot;|cFF00CCFFStatter! is now active.|r\nType |cFF00CCFF/stats|r to show statistics!\nYou may also use |cFF00CCFF/statsreset|r to reset the stats!\nAlso, using |cFF00CCFF/timerreset|r will reset the timer.\nTo cleanly disable Statter! use the command |cFF00CCFF/reload|r.\n&quot;);
+			" />
+	<CustomBehavior File="Message" Text="Heading to farm location." LogColor="LightBlue" />
+	<CustomBehavior File="FlyTo" X="2101.268" Y="-3045.307" Z="44.21409" />
+	<CustomBehavior File="Misc\RunLua" Lua="
+			starttime = GetTime();
+			currtime = GetTime();
+			beginningmoney = GetMoney();
+			print(&quot;|cFF00CCFFStatter!|r variables have been reset.&quot;);" /> <!-- Reset Lua variables -->
+
+<While Condition="true" >
+
+		<While Condition="(Me.Class == WoWClass.Mage) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Mage, Ice Lance -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="30455" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Warlock) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Warlock, Fel Flame -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="77799" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Priest) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Priest, Shadow Word: Pain - Needs support for other Disc and Holy -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="589" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Druid) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Druid, Moonfire -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="8921" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Rogue) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Rogue, Throw -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="121733" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Monk) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Monk, Storm Earth and Fire -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="137639" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5 || Me.MaxEnergy &lt;= 9" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Hunter) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Hunter, Serpent Sting -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="1978" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.MaxFocus &lt;= 14" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Shaman) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Shaman, Chain Lightning -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="421" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.DeathKnight) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Death Knight, Icy Touch - needs to be improved with more spells -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="45477" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.FrostRuneCount == 0" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Warrior) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Warrior, Throw -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="122475" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Paladin) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Paladin, Judgment.  Holy needs spell. -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="20271" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2372.891" Y="-3201.861" Z="11.9032" />
+					<Hotspot X="2345.594" Y="-3166.806" Z="17.94233" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+	<If Condition="Me.FreeBagSlots &lt; 5" >
+		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="True" /> 
+	</If>
+
+
+
+</While>
+</QuestOrder>
+</HBProfile>
