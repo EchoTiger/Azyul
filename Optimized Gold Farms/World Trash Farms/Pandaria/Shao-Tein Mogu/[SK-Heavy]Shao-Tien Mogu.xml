@@ -2,11 +2,11 @@
 
 ///////////////////////////////////////////////////////////////////////
 // Profile Developer: Echo
-// Farm zone: Icecrown
-// Farm mobs: Shao-Tein Moguls
+// Farm zone: Pandaria, Vale of Eternal Blossoms
+// Farm mobs: Shao-Tien Moguls
 ///////////////////////////////////////////////////////////////////////
 
-<Name>[SK-Lite]Shao-Tein Moguls</Name>
+<Name>[SK-Heavy]Shao-Tien Moguls</Name>
 
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 <MinDurability>-1</MinDurability>
@@ -30,11 +30,11 @@
 </ProtectedItems>
 
 <Vendors>
-	<Vendor Nav="Fly" Name="Brollen Wheatbeard" Entry="33599" Type="Repair" X="8548.112" Y="933.3629" Z="547.2941" />
+	<Vendor Nav="Fly" Name="Tan Shin Tiao" Entry="64605" Type="Repair" X="1453.913" Y="398.1754" Z="548.0798" />
 </Vendors>
 
 <Mailboxes>
-	<Mailbox Nav="Fly" X="8592.528" Y="693.717" Z="547.2921" />
+	<Mailbox Nav="Fly" X="720.8524" Y="1578.852" Z="376.0925" />
 </Mailboxes>
 
 <AvoidMobs>
@@ -122,7 +122,7 @@
 			print(&quot;|cFF00CCFFStatter! is now active.|r\nType |cFF00CCFF/stats|r to show statistics!\nYou may also use |cFF00CCFF/statsreset|r to reset the stats!\nAlso, using |cFF00CCFF/timerreset|r will reset the timer.\nTo cleanly disable Statter! use the command |cFF00CCFF/reload|r.\n&quot;);
 			" />
 	<CustomBehavior File="Message" Text="Heading to farm location." LogColor="LightBlue" />
-	<CustomBehavior File="FlyTo" X="1309.684" Y="1776.36" Z="414.2991" />	
+	<CustomBehavior File="FlyTo" X="1309.684" Y="1776.36" Z="414.2991" />
 	<CustomBehavior File="Misc\RunLua" Lua="
 			starttime = GetTime();
 			currtime = GetTime();
@@ -132,7 +132,7 @@
 <While Condition="true" >
 
 		<While Condition="(Me.Class == WoWClass.Mage) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Mage, Ice Lance -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="30455" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="30455" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -153,7 +153,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Warlock) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Warlock, Fel Flame -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="77799" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="77799" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -174,7 +174,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Priest) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Priest, Shadow Word: Pain - Needs support for other Disc and Holy -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="589" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="589" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -195,7 +195,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Druid) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Druid, Moonfire -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="8921" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="8921" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -216,7 +216,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Rogue) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Rogue, Throw -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="121733" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="121733" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -237,7 +237,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Monk) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Monk, Storm Earth and Fire -->
-			<CustomBehavior File="InteractWith" InteractAttempt="1" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="137639" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5 || Me.MaxEnergy &lt;= 9" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="137639" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5 || Me.MaxEnergy &lt;= 9" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -258,7 +258,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Hunter) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Hunter, Serpent Sting -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="1978" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.MaxFocus &lt;= 14" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="1978" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.MaxFocus &lt;= 14" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -279,7 +279,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Shaman) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Shaman, Chain Lightning -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="421" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="421" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -300,7 +300,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.DeathKnight) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Death Knight, Icy Touch - needs to be improved with more spells -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="45477" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.FrostRuneCount == 0" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="45477" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.FrostRuneCount == 0" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -321,7 +321,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Warrior) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Warrior, Throw -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="122475" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="122475" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
@@ -342,7 +342,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Paladin) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Paladin, Judgment.  Holy needs spell. -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="20271" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="20271" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
 					<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
