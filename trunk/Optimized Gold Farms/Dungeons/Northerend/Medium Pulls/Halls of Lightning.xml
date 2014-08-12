@@ -430,14 +430,11 @@
 
 	<While Condition="true" >
 		<If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &gt;= 30" >
-			<CustomBehavior File="FlyTo" X="9149.345" Y="-1351.977" Z="1075.505" />
+			<CustomBehavior File="FlyTo" X="9160.772" Y="-1364.403" Z="1115.498" />
 		</If>
 		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="!(Me.MapId == 602)">
-				<RunTo X="9182.586" Y="-1384.403" Z="1110.212" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<CustomBehavior File="MyCTM" X="9186.445" Y="-1387.921" Z="1110.215" />
-				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="MyCTM" X="9190.415" Y="-1395.566" Z="1110.215" TerminateWhen="Me.MapId == 602" />
 			</If>
 			<If Condition="(Me.MapId == 602)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />

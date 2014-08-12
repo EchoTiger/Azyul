@@ -433,17 +433,11 @@
 //Lvl.90 Gold-Run Coded by EchoTiger <!-- Dist from Hub - 6.56    X="9169.088" Y="-1370.75" Z="1095.874" -->
 	<While Condition="true" >
 		<If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &gt;= 30" >
-			<CustomBehavior File="FlyTo" X="9182.586" Y="-1384.403" Z="1110.212" />
+			<CustomBehavior File="FlyTo" X="9160.772" Y="-1364.403" Z="1115.498" />
 		</If>
 		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="!(Me.MapId == 602)">
-				<RunTo X="9182.586" Y="-1384.403" Z="1110.212" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<CustomBehavior File="MyCTM" X="9186.445" Y="-1387.921" Z="1110.215" />
-							<CustomBehavior File="WaitTimer" WaitTime="1100" />
-			<While Condition="!(StyxWoW.IsInWorld)" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			</While>
+				<CustomBehavior File="MyCTM" X="9190.415" Y="-1395.566" Z="1110.215" TerminateWhen="Me.MapId == 602" />
 			</If>
 			<If Condition="(Me.MapId == 602)" >
 

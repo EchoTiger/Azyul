@@ -665,11 +665,11 @@
 			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
 				<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
-				<If Condition="Me.Location.Distance(new WoWPoint(4775.771, -2045.906, 229.4198)) &lt;= 150" > <!-- If just came out instance -->
-					<MoveTo X="4781.665" Y="-2042.948" Z="229.428" />
-					<MoveTo X="4844.876" Y="-2034.98" Z="250.072" />
-					<MoveTo X="4884.797" Y="-2036.033" Z="250.0502" />
-					<CustomBehavior File="MyCTM" X="4895.741" Y="-2039.486" Z="248.3093" />
+				<If Condition="Me.Location.Distance(new WoWPoint(4822.283, -2039.614, 239.7233)) &lt;= 65" > <!-- If just came out instance -->
+					<CustomBehavior File="MyCTM" X="4779.117" Y="-2037.057" Z="229.4113" />
+					<CustomBehavior File="MyCTM" X="4841.16" Y="-2037.29" Z="250.0716" />
+					<CustomBehavior File="MyCTM" X="4895.43" Y="-2032.036" Z="248.31" />
+					
 				</If>
 
 			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
@@ -943,17 +943,11 @@
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Halls of Lightning." LogColor="DeepSkyBlue" />
 		<If Condition="Me.Location.Distance(new WoWPoint(9168.483, -1370.176, 1095.251)) &gt;= 30" >
-			<CustomBehavior File="FlyTo" X="9149.345" Y="-1351.977" Z="1075.505" />
+			<CustomBehavior File="FlyTo" X="9160.772" Y="-1364.403" Z="1115.498" />
 		</If>
 		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="!(Me.MapId == 602)">
-				<RunTo X="9182.586" Y="-1384.403" Z="1110.212" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
-				<CustomBehavior File="MyCTM" X="9186.445" Y="-1387.921" Z="1110.215" />
-							<CustomBehavior File="WaitTimer" WaitTime="1100" />
-			<While Condition="!(StyxWoW.IsInWorld)" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			</While>
+				<CustomBehavior File="MyCTM" X="9190.415" Y="-1395.566" Z="1110.215" TerminateWhen="Me.MapId == 602" />
 			</If>
 			<If Condition="(Me.MapId == 602)" >
 
