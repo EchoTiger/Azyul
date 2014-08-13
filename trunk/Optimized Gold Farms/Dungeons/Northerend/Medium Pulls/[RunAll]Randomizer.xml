@@ -49,11 +49,7 @@
 <If Condition="(Me.MapId == 600)" >
 	<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
 	<RunTo X="-515.2283" Y="-500.0652" Z="11.0231"  />
-	<CustomBehavior File="MyCTM" X="-519.5411" Y="-482.5808" Z="10.97855" />
-				<CustomBehavior File="WaitTimer" WaitTime="1100" />
-			<While Condition="!(StyxWoW.IsInWorld)" >
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			</While>
+	<CustomBehavior File="MyCTM" X="-519.5411" Y="-482.5808" Z="10.97855" TerminateWhen="Me.MapId != 600" />
 </If>
 <If Condition="(Me.MapId == 604)" >
 	<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
@@ -480,8 +476,7 @@
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 				<If Condition="!(Me.MapId == 600)" >
 					<RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
-					<CustomBehavior File="MyCTM" X="4774.691" Y="-2022.088" Z="229.3516" />
-					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="MyCTM" X="4774.691" Y="-2022.088" Z="229.3516" TerminateWhen="Me.MapId == 600" />
 				</If>
 				<If Condition="(Me.MapId == 600)" >
 					<DisableBehavior Name="Combat" /> <!-- Avoid spiders on second level -->
@@ -674,8 +669,7 @@
 					<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
 					
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
-					<CustomBehavior File="MyCTM" X="-519.5411" Y="-482.5808" Z="10.97855" />
-					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="MyCTM" X="-519.5411" Y="-482.5808" Z="10.97855" TerminateWhen="Me.MapId != 600" />
 					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 				</If>
 			</While>

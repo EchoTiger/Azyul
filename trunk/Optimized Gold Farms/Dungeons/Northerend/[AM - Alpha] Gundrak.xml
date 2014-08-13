@@ -1408,12 +1408,12 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<!-- Deposit Gold and Frostweave -->
 			<If Condition="(Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
-				<CustomBehavior File="WaitTimer" WaitTime="3500" />
+				<CustomBehavior File="WaitTimer" WaitTime="4500" />
 				<If Condition="Me.IsAlliance" > 
-				    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+				    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="30" WaitTime="2000" /> 
 				</If> 
 				<If Condition="Me.IsHorde" > 
-				    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+				    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="30" WaitTime="2000" /> 
 				</If> 
 				<CustomBehavior File="Misc\RunLUA" Lua="
 					if GuildBankFrame:IsVisible()==1 then
@@ -1438,12 +1438,12 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			<!-- Deposit Frostweave -->
 				<ElseIf Condition="(Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
 						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
-						<CustomBehavior File="WaitTimer" WaitTime="3500" />
+						<CustomBehavior File="WaitTimer" WaitTime="4500" />
 						<If Condition="Me.IsAlliance" > 
-						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="30" WaitTime="2000" /> 
 						</If> 
 						<If Condition="Me.IsHorde" > 
-						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="30" WaitTime="2000" /> 
 						</If> 
 							<CustomBehavior File="Misc\RunLua" Lua="
 								if GuildBankFrame:IsVisible()==1 then
@@ -1462,12 +1462,12 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			<!-- Deposit Gold -->
 				<ElseIf Condition="(Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)">
 						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
-						<CustomBehavior File="WaitTimer" WaitTime="3500" />
+						<CustomBehavior File="WaitTimer" WaitTime="4500" />
 						<If Condition="Me.IsAlliance" > 
-						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="30" WaitTime="2000" /> 
 						</If> 
 						<If Condition="Me.IsHorde" > 
-						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="30" WaitTime="2000" /> 
 						</If> 
 						<CustomBehavior File="Misc\RunLua" Lua="
 							if GuildBankFrame:IsVisible()==1 then
