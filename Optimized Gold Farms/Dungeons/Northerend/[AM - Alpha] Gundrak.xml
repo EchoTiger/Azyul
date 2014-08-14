@@ -845,7 +845,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<If Condition="!(Me.MapId == 604)" >
 			<RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
 			<!--<CustomBehavior File="MyCTM" X="6973.58" Y="-4400.046" Z="441.5751" />-->
-			<CustomBehavior File="GoThruPortal" Timeout="15000" X="6969.74" Y="-4403.101" Z="442.0615" />
+			<CustomBehavior File="MyCTM" X="7025.931" Y="-4345.251" Z="449.7054" TerminateWhen="Me.MapId == 604" />
 		</If>
 		<If Condition="(Me.MapId == 604)" >
 			<DisableBehavior Name="Death" />
@@ -1374,8 +1374,8 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
-			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
-			    <CustomBehavior File="MyCTM" X="1914.803" Y="647.9481" Z="135.1441" />
+			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			    <CustomBehavior File="MyCTM" X="1905.168" Y="640.1153" Z="176.6356" TerminateWhen="Me.MapId != 604" />
 			    <EnableBehavior Name="Death" />
 				<CustomBehavior File="WaitTimer" WaitTime="11000" />
 				<While Condition="!(StyxWoW.IsInWorld)" >

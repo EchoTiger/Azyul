@@ -463,7 +463,7 @@
 <If Condition="(Me.MapId == 600)" >
 	<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
 	<RunTo X="-515.2283" Y="-500.0652" Z="11.0231"  />
-	<CustomBehavior File="MyCTM" X="-519.5411" Y="-482.5808" Z="10.97855" TerminateWhen="Me.MapId != 600" />
+	<CustomBehavior File="MyCTM" X="-525.4516" Y="-474.7986" Z="10.98291" TerminateWhen="Me.MapId != 600" />
 </If>	
 
 <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
@@ -492,7 +492,7 @@
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			<If Condition="!(Me.MapId == 600)" >
 				<RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
-				<CustomBehavior File="MyCTM" X="4774.691" Y="-2022.088" Z="229.3516" TerminateWhen="Me.MapId == 600" />
+				<CustomBehavior File="MyCTM" X="4774.691" Y="-2015.088" Z="229.3516" TerminateWhen="Me.MapId == 600" />
 			</If>
 			<If Condition="(Me.MapId == 600)" >
 				<DisableBehavior Name="Combat" /> <!-- Avoid spiders on second level -->
@@ -656,8 +656,8 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconChat = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
 					
-			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="375000" />
-				<CustomBehavior File="MyCTM" X="-519.5411" Y="-482.5808" Z="10.97855" TerminateWhen="Me.MapId != 600" />
+			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<CustomBehavior File="MyCTM" X="-525.4516" Y="-474.7986" Z="10.98291" TerminateWhen="Me.MapId != 600" />
 			    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			</If>
 		</While>
