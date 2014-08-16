@@ -246,6 +246,7 @@
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Monk) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Monk, Storm Earth and Fire -->
+			<DisableBehavior Name="Combat" />
 			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="137639" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="5" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5 || Me.MaxEnergy &lt;= 9" >
 				<HuntingGrounds WaypointVisitStrategy="Random" >
 					<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
@@ -264,6 +265,8 @@
 					<Hotspot X="1485.759" Y="1826.404" Z="307.716" />
 				</HuntingGrounds>
 			</CustomBehavior>
+			<CustomBehavior File="RunMacro" Macro="/cancelaura Storm, Earth and Fire" />
+			<EnableBehavior Name="Combat" />
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Hunter) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Hunter, Serpent Sting -->
