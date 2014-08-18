@@ -595,17 +595,17 @@
 			if GuildBankFrame:IsVisible()==1 then
 				MyMoney = GetMoney();
 				DepositGuildBankMoney(MyMoney);
-				print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+				print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney));
 			else
 			print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 			end" />
 
 			<CustomBehavior File="Misc\RunLUA" Lua="
 				if GuildBankFrame:IsVisible()==1 then
-					print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
+					print(&quot;|cFF3399FF[Azyul]|r: Depositing Netherweave Cloth.&quot;)
 					for b=0,4 do for s=1,GetContainerNumSlots(b)
 						do local n=GetContainerItemLink(b,s)
-							if n and strfind(n,&quot;53010&quot;)then
+							if n and strfind(n,&quot;21877&quot;)then
 								UseContainerItem(b,s)
 							end
 						end
