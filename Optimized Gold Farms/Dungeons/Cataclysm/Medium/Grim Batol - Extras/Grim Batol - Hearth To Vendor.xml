@@ -44,7 +44,7 @@
 
 <QuestOrder>
 
-	<If Condition="Me.IsAlliance &amp;&amp; !Me.HearthstoneAreaId == 2101" >
+	<If Condition="Me.IsAlliance &amp;&amp; Me.HearthstoneAreaId != 2101" >
 		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" ExpiryTime="30" SoundCueInterval="1" Text="Your Hearthstone must be set to Thelsamar for this profile.  Once you close this dialog out, I will set your Hearthstone for you." />
 	</If>
 	<If Condition="Me.IsHorde &amp;&amp; Me.HearthstoneAreaId != 5138" >
@@ -451,14 +451,14 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		-->
-	<If Condition="Me.IsAlliance &amp;&amp; !Me.HearthstoneAreaId == 2101" >
+	<If Condition="Me.IsAlliance &amp;&amp; Me.HearthstoneAreaId != 2101" >
 		<CustomBehavior File="FlyTo" X="-5370.68" Y="-2954.063" Z="323.5525" />
 		<CustomBehavior File="ForcedDismount" />
-		<CustomBehavior File="InteractWith" MobId="6734" />
-		<CustomBehavior File="WaitTimer" WaitTime="500" />
-		<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
-		<CustomBehavior File="WaitTimer" WaitTime="500" />
-		<CustomBehavior File="RunMacro" Macro="/click StaticPopup1Button1" />
+		<CustomBehavior File="SetHearthstone" MobId="6734" X="-5377.913" Y="-2973.908" Z="323.1691" />
+		<CustomBehavior File="MyCTM" X="-5365.691" Y="-2969.348" Z="326.7807" />
+		<CustomBehavior File="MyCTM" X="-5365.975" Y="-2962.336" Z="326.5025" />
+		<CustomBehavior File="MyCTM" X="-5371.688" Y="-2942.453" Z="326.2382" />
+
 	</If>
 
 	<If Condition="Me.IsHorde &amp;&amp; Me.HearthstoneAreaId != 5138" >
