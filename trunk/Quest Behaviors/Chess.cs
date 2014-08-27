@@ -177,8 +177,8 @@ namespace Honorbuddy.Quest_Behaviors.Chess
         }
 
         // DON'T EDIT THESE--they are auto-populated by Subversion
-        public override string SubversionId { get { return ("$Id: UsePetAbility.cs 501 2013-05-10 16:29:10Z chinajade $"); } }
-        public override string SubversionRevision { get { return ("$Revision: 501 $"); } }
+        public override string SubversionId { get { return ("$Id$"); } }
+        public override string SubversionRevision { get { return ("$Revision$"); } }
 
 
         ~Chess()
