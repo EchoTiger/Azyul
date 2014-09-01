@@ -177,7 +177,7 @@ namespace Honorbuddy.Quest_Behaviors.Chess
         }
 
         // DON'T EDIT THESE--they are auto-populated by Subversion
-        public override string SubversionId { get { return ("$Id$"); } }
+        public override string SubversionId { get { return ("$Id: Chess.cs 974 2014-08-27 22:05:08Z bsmx93@gmail.com $"); } }
         public override string SubversionRevision { get { return ("$Revision$"); } }
 
 
