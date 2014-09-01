@@ -1,0 +1,461 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo
+// Farm zone: Pandaria, Townlong Steppes
+// Farm mobs: Sra'Vess
+///////////////////////////////////////////////////////////////////////
+
+<Name>[SK-Lite]Sra'Vess [$Rev$]</Name>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+<MinDurability>-1</MinDurability>
+
+<MinLevel>90</MinLevel>
+<MaxLevel>101</MaxLevel>
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+</ProtectedItems>
+
+<Vendors>
+	<Vendor Nav="Fly" Name="Commander Oxheart" Entry="64606" Type="Repair" X="2084.738" Y="4902.924" Z="198.5374" />
+	<Vendor Nav="Fly" Name="Supplier Bao" Entry="62791" Type="Repair" X="3613.071" Y="5434.695" Z="82.10617" />
+</Vendors>
+
+<Mailboxes>
+	<Mailbox Nav="Fly" X="1850.856" Y="4275.009" Z="148.832" />
+</Mailboxes>
+
+<AvoidMobs>
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+<!-- 
+	Regenerator: 63681
+	Mutilator: 63678
+	Drone: 63677
+	Cacophyte: 63680
+	Swiftwing: 63683
+-->
+
+<QuestOrder>
+		<CustomBehavior File="Misc\RunLUA" Lua="
+			SLASH_SHOWSTATS1 = '/stats';
+			SLASH_SHOWSTATS2 = '/statter';
+			SLASH_SHOWSTATS3 = '/statter!';
+
+			SLASH_RESET1 = '/statsreset';
+			SLASH_TIMERRESET1 = '/timerreset';
+
+			starttime = GetTime();
+			currtime = GetTime();
+
+			beginningmoney = GetMoney();
+
+			function calculate()
+				local itemSellPrice = 0
+				local itemID = 0
+				local itemBagCount = 1
+				local itemStackCount = 1
+				total_value_of_bags = 0
+				for i = 0, NUM_BAG_SLOTS do
+				bagslots = GetContainerNumSlots(i)
+				for bagslotscounter = 1, bagslots do
+				itemID = GetContainerItemID(i, bagslotscounter)
+
+				if (itemID == nil)  or (itemSellPrice == nill) then
+					else
+						itemSellPrice = select(11, GetItemInfo(itemID))
+						if (itemSellPrice == nil) then
+							itemSellPrice = 0
+						end
+							itemBagCount = select(2, GetContainerItemInfo(i, bagslotscounter))
+							total_value_of_bags = total_value_of_bags + (itemSellPrice * itemBagCount)
+						end
+					end
+				end
+				totals = GetCoinTextureString(total_value_of_bags);
+
+				currmoney = GetMoney();
+				currtime = GetTime();
+				tdiftime = (currtime - starttime);
+
+				tHours = string.format(&quot;%02.f&quot;, math.floor(tdiftime/3600)); 
+				tMins = string.format(&quot;%02.f&quot;, math.floor(tdiftime/60 - (tHours*60))); 
+				tSecs = string.format(&quot;%02.f&quot;, math.floor(tdiftime - tHours*3600 - tMins *60)); 
+
+				difmoney = math.floor(currmoney-beginningmoney)
+				completetotal = math.floor(difmoney+total_value_of_bags)
+				farmscore = math.floor((difmoney/tdiftime)/10)
+				farmscore2 = math.floor((completetotal/tdiftime)/10)
+
+				gph = GetCoinTextureString(math.floor(difmoney/(tdiftime/3600))) 
+				gph2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/3600)))
+				gpm = GetCoinTextureString(math.floor(difmoney/(tdiftime/60 - (tHours*60))))
+				gpm2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/60 - (tHours*60))))
+			end
+
+			function SlashCmdList.SHOWSTATS()
+				calculate()
+				print(&quot;|cFF00CCFF~Total Stats!|r\n|cFF85C2FFTime since activation:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF85C2FFObtained Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF85C2FFBag Loot Value:|r &quot;, totals, &quot;\n|cFF85C2FFTotal Obtained + Bag Loot:|r &quot;, GetCoinTextureString(completetotal));
+				print(&quot;|cFF00CCFF~Estimates!|r\n|cFF85C2FFGPH:|r &quot;, gph, &quot; \n|cFF85C2FFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF85C2FFGPM:|r &quot;, gpm, &quot;\n|cFF85C2FFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF85C2FFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF85C2FFFarm Score (+Bag Value)|r &quot;, farmscore2);
+			end
+
+			function SlashCmdList.RESET()
+				starttime = GetTime();
+				currtime = GetTime();
+				beginningmoney = GetMoney();
+				print(&quot;|cFF00CCFFStatter!|r has been reset.&quot;);
+			end
+
+			function SlashCmdList.TIMERRESET()
+				starttime = GetTime();
+				print(&quot;|cFF00CCFFStatter!|r timers have been reset.&quot;);
+			end
+
+			print(&quot;|cFF00CCFFStatter! is now active.|r\nType |cFF00CCFF/stats|r to show statistics!\nYou may also use |cFF00CCFF/statsreset|r to reset the stats!\nAlso, using |cFF00CCFF/timerreset|r will reset the timer.\nTo cleanly disable Statter! use the command |cFF00CCFF/reload|r.\n&quot;);
+			" />
+	<CustomBehavior File="Message" Text="Heading to farm location." LogColor="LightBlue" />
+	<CustomBehavior File="FlyTo" X="2421.4" Y="5257.706" Z="143.0982" />
+	<CustomBehavior File="Misc\RunLua" Lua="
+			starttime = GetTime();
+			currtime = GetTime();
+			beginningmoney = GetMoney();
+			print(&quot;|cFF00CCFFStatter!|r variables have been reset.&quot;);" /> <!-- Reset Lua variables -->
+
+<While Condition="true" >
+
+		<While Condition="(Me.Class == WoWClass.Mage) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Mage, Ice Lance -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="30455" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Warlock) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Warlock, Fel Flame -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="77799" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Priest) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Priest, Shadow Word: Pain - Needs support for other Disc and Holy -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="589" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Druid) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Druid, Moonfire -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="8921" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Rogue) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Rogue, Throw -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="121733" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Monk) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Monk, Storm Earth and Fire -->
+			<DisableBehavior Name="Combat" />
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="137639" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+			<CustomBehavior File="RunMacro" Macro="/cancelaura Storm, Earth and Fire" />
+			<EnableBehavior Name="Combat" />
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Hunter) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Hunter, Serpent Sting -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="1978" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30 || Me.MaxFocus &lt;= 14" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Shaman) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Shaman, Chain Lightning -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="421" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.DeathKnight) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Death Knight, Icy Touch - needs to be improved with more spells -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="45477" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30 || Me.FrostRuneCount == 0" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Warrior) &amp;&amp; Me.FreeBagSlots &gt;= 5" > <!-- Warrior, Throw -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="122475" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Paladin) &amp;&amp; Me.FreeBagSlots &gt;= 5" >  <!-- Paladin, Judgment.  Holy needs spell. -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="20271" WaitForNpcs="False" Range="9" PreInteractMountStrategy="Dismount" NumOfTimes="1" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 5 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+					<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+					<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+					<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+					<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+					<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+					<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+					<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+					<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+					<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+					<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+					<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+					<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+					<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+					<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+					<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+					<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+					<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+					<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+					<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+	<If Condition="Me.FreeBagSlots &lt; 5" >
+		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="True" /> 
+	</If>
+
+
+
+</While>
+</QuestOrder>
+</HBProfile>
