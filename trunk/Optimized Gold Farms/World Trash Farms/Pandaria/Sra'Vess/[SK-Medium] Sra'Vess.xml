@@ -607,21 +607,6 @@
 		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="True" /> 
 	</If>
 
-	<!-- Item Management -->
-	<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-		<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-		<CustomBehavior File="ForcedDismount" />
-		<CustomBehavior File="UseItem" ItemId="93351" />
-	</If>
-	<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-		<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-		<CustomBehavior File="UseItem" ItemId="93351" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-	</While>
-	<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-		<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-		<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-	</While>
-
 
 </While>
 </QuestOrder>
