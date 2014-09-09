@@ -15,9 +15,9 @@
 <MailPurple>True</MailPurple>
 
 <SellGrey>True</SellGrey>
-<SellWhite>False</SellWhite>
-<SellGreen>False</SellGreen>
-<SellBlue>False</SellBlue>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
 <SellPurple>False</SellPurple>
 
 	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
@@ -40,6 +40,7 @@
 <Blackspots>
 	<Blackspot X="3868.92" Y="-3530.008" Z="137.5698" Radius="5.388495" />
 	<Blackspot X="3844.466" Y="-3538.624" Z="138.7303" Radius="2.448554" />
+	<Blackspot X="4067.023" Y="-3452.492" Z="120.4575" Radius="3.75266" /> <!-- Crate in Stratholme -->
 </Blackspots>
 
 <QuestOrder>
@@ -345,7 +346,7 @@
 			--> 
 		<!-- Travel to Stratholme --> 
 		<While Condition="!HasItem(13335) &amp;&amp; !Me.KnowsSpell(17481)" > 
-			<If Condition="!(Me.MapId == 329)" >
+			<If Condition="!(Me.MapId == 329) &amp;&amp; Me.FreeBagSlots &gt;= 5" >
 				<If Condition="Me.Location.Distance(new WoWPoint(3206.076, -4044.047, 106.9399)) &gt; 35" >
 					<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
 					<CustomBehavior File="Message" Text="Heading to the Service Entrance" LogColor="Lime" />
@@ -353,7 +354,7 @@
 					<CustomBehavior File="ForcedDismount" />
 				</If>
 			</If>
-				<If Condition="!(Me.MapId == 329)" >
+				<If Condition="!(Me.MapId == 329)  &amp;&amp; Me.FreeBagSlots &gt;= 5" >
 					<RunTo X="3234.148" Y="-4049.988" Z="108.4452" />
 					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 					<CustomBehavior File="MyCTM" X="3236.423" Y="-4056.37" Z="108.4664" />
@@ -435,7 +436,8 @@
 
 					<!-- Finish off event -->
 					<CustomBehavior File="InteractWith" MobId="10439" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4032.864" Y="-3396.774" Z="117.5075" />
-					<CustomBehavior File="WaitTimer" WaitTime="5000" /> <!-- Wait for skeleton Horde -->
+					<RunTo X="4008.083" Y="-3405.96" Z="116.8564" />
+					<CustomBehavior File="WaitTimer" WaitTime="3000" /> <!-- Wait for skeleton Horde -->
 					<CustomBehavior File="InteractWith" MobId="10394" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4032.81" Y="-3387.44" Z="119.7416" />
 
 					<!-- Finale -->
@@ -448,13 +450,31 @@
 
 					<!-- Leave -->
 					<RunTo X="3918.728" Y="-3546.245" Z="134.3499" />
-					<CustomBehavior File="MyCTM" UpperLimitOnMovementTime="100000" X="3897.05" Y="-3544.939" Z="137.1984" /> <!-- Run against gate until it opens -->
+					<RunTo X="3897.05" Y="-3544.939" Z="137.1984" /> <!-- Run against gate until it opens. A waited CTM was removed due to movement lock bugs. -->
 					<RunTo X="3590.338" Y="-3642.218" Z="138.4868" />
 
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
 
 					<RunTo X="3588.635" Y="-3638.869" Z="138.4745" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				</If>
+				<If Condition="Me.FreeBagSlots &lt;= 4" >
+					<CustomBehavior File="Message" Text="Going to repair, sell and mail." LogColor="LightBlue" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Nav="Fly" Name="Vincent Randolph" Entry="47286" Type="Repair" X="2266.471" Y="-5288.881" Z="82.18443" />
+						</Vendors>
+					</SetVendor>
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox Nav="Fly" X="2290.66" Y="-5323.351" Z="90.0145" />
+						</Mailboxes>
+					</SetMailbox>
+					<RunTo X="3173.351" Y="-4039.884" Z="105.4206" />
+					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" DoMail="true" />
+					<CustomBehavior File="FlyTo" X="2266.471" Y="-5288.881" Z="82.18443" />
+					<ClearVendor />
+					<ClearMailbox />
 				</If>
 		</While>
 	</If>
