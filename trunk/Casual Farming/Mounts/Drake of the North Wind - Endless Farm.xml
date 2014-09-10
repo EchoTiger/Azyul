@@ -354,6 +354,7 @@
 			<CustomBehavior File="MyCTM" X="-11499.96" Y="-2298.713" Z="607.1202" />
 		</If>
 		<CustomBehavior File="RunMacro" Macro="/dismount" />
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 		<RunTo X="-11510.58" Y="-2307.878" Z="608.3931" />
 		<CustomBehavior File="MyCTM" X="-11522.48" Y="-2317.246" Z="608.3938" />
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -399,7 +400,7 @@
 			CastSpellByID(585);
 			CastSpellByID(122475);
 			CastSpellByID(8921);
-			CastSpellByID(172);
+			CastSpellByID(77799);
 			CastSpellByID(3044);
 			" />
 		<CustomBehavior File="WaitTimer" WaitTime="800" />
@@ -421,7 +422,7 @@
 			CastSpellByID(585);
 			CastSpellByID(122475);
 			CastSpellByID(8921);
-			CastSpellByID(172);
+			CastSpellByID(77799);
 			CastSpellByID(3044);
 			" />
 		<CustomBehavior File="WaitTimer" WaitTime="800" />
@@ -451,13 +452,13 @@
 		<CustomBehavior File="UserSettings" LootMobs="true" LootRadius="30" PullDistance="1" />
 		<!-- -1250.4404,  72.1284  before boss-->
 		<RunTo X="-1197.9132" Y="56.4448" Z="734.1751"  />
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<CustomBehavior File="InteractWith" MobId="43873" WaitForNpcs="true" MobState="Dead" InteractByLooting="true" Range="1" X="-1192.84" Y="54.5626" Z="734.1742" />
 		<RunTo X="-1207.4271" Y="82.9884" Z="734.1751"  />
 		<RunTo X="-1196.497" Y="110.3023" Z="740.7074" />
-		<CustomBehavior File="MountVehOnly" VehicleMountId="45455" X="-1190.88" Y="125.203" Z="737.6243" />
-		<CustomBehavior File="WaitTimer" WaitTime="8500" />
-
-		<CustomBehavior File="MyCTM" X="-1208.394" Y="463.4632" Z="631.938" />
-		<CustomBehavior File="WaitTimer" WaitTime="9000" />
+		<RunTo X="-1196.497" Y="110.3023" Z="740.7074" />
+		<CustomBehavior File="MyCTM" X="-1189.816" Y="127.4594" Z="706.5384" TerminateWhen="Me.Z &lt; 734" />
+		<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="Me.Y &lt; 0" />
 
 
 

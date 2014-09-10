@@ -398,13 +398,13 @@
 
 			<If Condition="Me.IsAlive" >
 				<EnableBehavior Name="Pull" />
-				<CustomBehavior File="UserSettings" LootMobs="True" />
 				<CustomBehavior File="WaitTimer" WaitTime="2500" />
 				<CustomBehavior File="InteractWith" MobId="43214" X="1292.352" Y="1226.478" Z="247.6368" />
 			</If>
 			<If Condition="Me.IsAlive" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="InteractWith" MobId="43214" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
 				<RunTo X="1307.165" Y="1232.391" Z="247.2243" />
-				<CustomBehavior File="UserSettings" LootMobs="False" />
 			</If>
 			<If Condition="Me.IsAlive" >
 				<If Condition="(HasItem(63043))" >
