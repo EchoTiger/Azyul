@@ -27,6 +27,7 @@
 <SellPurple>False</SellPurple>
 
 <ProtectedItems>
+	<Item Name="Ghost Iron Lockbox" Entry="88567" />
 </ProtectedItems>
 
 <Vendors>
@@ -136,6 +137,11 @@
 			beginningmoney = GetMoney();
 			print(&quot;|cFF00CCFFStatter!|r variables have been reset.&quot;);" /> <!-- Reset Lua variables -->
 
+<!-- Activate Hooks -->
+<CustomBehavior File="Hooks\DoWhen" ItemId="93351" UseWhen="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" AllowUseDuringCombat="true" /> <!-- Potion of Luck -->
+<CustomBehavior File="Hooks\DoWhen" ItemId="87391" UseWhen="HasItem(87391)" AllowUseDuringCombat="true" /> <!-- Plundered Treasure Chest -->
+<CustomBehavior File="Hooks\DoWhen" ItemId="89112" UseWhen="GetItemCount(89112) &gt;= 10" AllowUseDuringCombat="true" /> <!-- Combine Motes -->
+
 <While Condition="true" >
 
 		<While Condition="(Me.Class == WoWClass.Mage)" > <!-- Mage, Ice Lance -->
@@ -164,20 +170,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Warlock)" > <!-- Warlock, Fel Flame -->
@@ -206,20 +198,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Priest)" > <!-- Priest, Shadow Word: Pain - Needs support for other Disc and Holy -->
@@ -248,20 +226,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Druid)" > <!-- Druid, Moonfire -->
@@ -290,20 +254,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Rogue)" > <!-- Rogue, Throw -->
@@ -332,20 +282,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Monk)" >  <!-- Monk, Storm Earth and Fire -->
@@ -375,23 +311,9 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
+
 			<CustomBehavior File="RunMacro" Macro="/cancelaura Storm, Earth and Fire" />
-			<EnableBehavior Name="Combat" />
-		</While>
+			<EnableBehavior Name="Combat" />		</While>
 
 		<While Condition="(Me.Class == WoWClass.Hunter)" >  <!-- Hunter, Serpent Sting -->
 			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="1978" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="5" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.MaxFocus &lt;= 14" >
@@ -419,20 +341,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Shaman)" >  <!-- Shaman, Chain Lightning -->
@@ -461,20 +369,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.DeathKnight)" >  <!-- Death Knight, Icy Touch - needs to be improved with more spells -->
@@ -503,20 +397,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Warrior)" > <!-- Warrior, Throw -->
@@ -545,20 +425,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Paladin)" >  <!-- Paladin, Judgment.  Holy needs spell. -->
@@ -587,20 +453,6 @@
 					<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
 				</HuntingGrounds>
 			</CustomBehavior>
-			<!-- Item Management -->
-			<If Condition="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" > <!-- Potion of Luck Refresh -->
-				<CustomBehavior File="Message" Text="Refreshing Potion of Luck" LogColor="LightBlue" />
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="UseItem" ItemId="93351" />
-			</If>
-			<While Condition="HasItem(87391)" > <!-- Open Plundered Treasure Chests -->
-				<CustomBehavior File="Message" Text="Opening Plundered Treasure Chests" LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
-			</While>
-			<While Condition="GetItemCount(89112) &gt;= 10" > <!-- Combine Motes -->
-				<CustomBehavior File="Message" Text="Combining Motes of Harmony." LogColor="LightBlue" />
-				<CustomBehavior File="UseItem" ItemId="89112" WaitTime="500" NumOfTimes="100" TerminateWhen="GetItemCount(89112) &lt;= 9" />
-			</While>
 		</While>
 
 </While>
