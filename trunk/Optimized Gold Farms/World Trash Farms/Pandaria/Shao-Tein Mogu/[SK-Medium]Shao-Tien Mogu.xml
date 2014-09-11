@@ -27,6 +27,7 @@
 <SellPurple>False</SellPurple>
 
 <ProtectedItems>
+	<Item Name="Ghost Iron Lockbox" Entry="88567" />
 </ProtectedItems>
 
 <Vendors>
@@ -137,6 +138,11 @@
 			currtime = GetTime();
 			beginningmoney = GetMoney();
 			print(&quot;|cFF00CCFFStatter!|r variables have been reset.&quot;);" /> <!-- Reset Lua variables -->
+
+<!-- Activate Hooks -->
+<CustomBehavior File="Hooks\DoWhen" ItemId="93351" UseWhen="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" AllowUseDuringCombat="true" /> <!-- Potion of Luck -->
+<CustomBehavior File="Hooks\DoWhen" ItemId="87391" UseWhen="HasItem(87391)" AllowUseDuringCombat="true" /> <!-- Plundered Treasure Chest -->
+<CustomBehavior File="Hooks\DoWhen" ItemId="89112" UseWhen="GetItemCount(89112) &gt;= 10" AllowUseDuringCombat="true" /> <!-- Combine Motes -->
 
 <While Condition="true" >
 
