@@ -482,9 +482,34 @@
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="Message" Text="Looks like we died, returning to instance." LogColor="Yellow" />
+        <RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="4774.691" Y="-2015.088" Z="229.3516" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 604)" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="Message" Text="Looks like we died, returning to instance." LogColor="Yellow" />
+        <RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="6968.59" Y="-4404.028" Z="442.5896" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 604" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+
 <While Condition="true" >
 
 	<If Condition="Chance(50.0)"> <!-- Drak'Tharon -->
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Disable" />
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Enable" />
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Drak'Tharon." LogColor="DeepSkyBlue" />
 
@@ -726,6 +751,8 @@
 
 
 	<If Condition="Chance(50.0)"> <!-- Gundrak -->
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Enable" />
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Gundrak." LogColor="DeepSkyBlue" />
 
