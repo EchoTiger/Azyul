@@ -445,11 +445,22 @@
 		--> 
 
 
-<DisableBehavior Name="Death" />
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />	
 
-<!-- Heavy Gold Run Detection -->
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 670)" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="Message" Text="Looks like we died, returning to instance." LogColor="Yellow" />
+        <RunTo X="-4057.114" Y="-3449.378" Z="281.2569" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="-4052.985" Y="-3448.013" Z="283.4044" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 670" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+
 	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
 		<While Condition="(Me.FreeBagSlots &gt;= 17)">
 			<If Condition="!(Me.MapId == 670)" >
