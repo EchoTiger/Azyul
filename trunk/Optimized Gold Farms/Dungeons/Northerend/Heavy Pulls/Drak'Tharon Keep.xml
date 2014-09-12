@@ -470,6 +470,17 @@
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="Message" Text="Looks like we died, returning to instance." LogColor="Yellow" />
+        <RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="4774.691" Y="-2015.088" Z="229.3516" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+
 <While Condition="true" >
 		<If Condition="!(Me.MapId == 600) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="Me.Location.Distance(new WoWPoint(4893.181, -2042.959, 248.309 )) &lt; 17" > <!-- If we just used Traveler's Mammoth -->

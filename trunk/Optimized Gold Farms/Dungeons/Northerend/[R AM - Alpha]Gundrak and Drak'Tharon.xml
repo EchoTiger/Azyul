@@ -915,9 +915,34 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="Message" Text="Looks like we died, returning to instance." LogColor="Yellow" />
+        <RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="4774.691" Y="-2015.088" Z="229.3516" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 604)" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="Message" Text="Looks like we died, returning to instance." LogColor="Yellow" />
+        <RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="6968.59" Y="-4404.028" Z="442.5896" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 604" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+
 <While Condition="true" >
 
 	<If Condition="Chance((Lua.GetReturnVal&lt;uint&gt;(&quot;return azdraktharonset&quot;, 0)))"> <!-- Drak'Tharon -->
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Disable" />
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Enable" />
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Drak'Tharon." LogColor="DeepSkyBlue" />
 
@@ -975,7 +1000,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<!-- Heavy Pull execution -->
 			<If Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;3&quot;">
 
-				<If Condition="Me.IsAlive" >
 					<CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1002,9 +1026,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					    <Hotspot X="-268.0731" Y="-659.5375" Z="26.5084"  />
 					</CustomBehavior>
 					<EnableBehavior Name="Combat" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
 
 					<CustomBehavior File="Misc\RunLUA" Lua="
@@ -1022,10 +1044,8 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-289.179" Y="-728.0784" Z="27.29649" />
 						<Hotspot X="-279.2386" Y="-711.1038" Z="27.29188" />
 				    </CustomBehavior>
-				</If>
 
 
-				<If Condition="Me.IsAlive" >
 				    <RunTo X="-292.9587" Y="-716.4481" Z="27.53353" />
 				    <MoveTo X="-338.6151" Y="-720.4265" Z="28.57711" />
 				    <CustomBehavior File="Message" Text="This boss isn't worth it." LogColor="DeepSkyBlue" />
@@ -1033,9 +1053,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <CustomBehavior File="MyCTM" X="-409.0117" Y="-729.8685" Z="28.58064" />
 
 				    <MoveTo X="-424.5214" Y="-695.5582" Z="28.57602" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1058,9 +1076,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-531.3521" Y="-660.9335" Z="30.28404" />
 						<Hotspot X="-530.1593" Y="-697.5297" Z="30.24668" />
 				    </CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
@@ -1080,9 +1096,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-274.4177" Y="-728.6484" Z="101.7957" />
 						<Hotspot X="-268.0679" Y="-726.1499" Z="102.7696" />
 				    </CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1092,10 +1106,8 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-				</If>
 		<!-- Medium pull execution -->
 			<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;2&quot;" >
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1122,9 +1134,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					    <Hotspot X="-268.0731" Y="-659.5375" Z="26.5084"  />
 					</CustomBehavior>
 					<EnableBehavior Name="Combat" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
 
 				    <CustomBehavior File="Misc\RunLUA" Lua="
@@ -1140,9 +1150,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    	<Hotspot X="-257.2279" Y="-712.0146" Z="27.1521" />
 						<Hotspot X="-245.5512" Y="-723.813" Z="27.37361" />
 				    </CustomBehavior>
-			   	</If>
 
-				<If Condition="Me.IsAlive" >
 					<CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1156,9 +1164,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-289.179" Y="-728.0784" Z="27.29649" />
 						<Hotspot X="-279.2386" Y="-711.1038" Z="27.29188" />
 				    </CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >			    
 				    <RunTo X="-292.9587" Y="-716.4481" Z="27.53353" />
 				    <MoveTo X="-338.6151" Y="-720.4265" Z="28.57711" />
 				    <CustomBehavior File="Message" Text="This boss isn't worth it." LogColor="DeepSkyBlue" />
@@ -1166,9 +1172,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <CustomBehavior File="MyCTM" X="-409.0117" Y="-729.8685" Z="28.58064" />
 
 				    <MoveTo X="-424.5214" Y="-695.5582" Z="28.57602" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1185,9 +1189,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-497.2484" Y="-718.712" Z="30.24763" />
 						<Hotspot X="-512.645" Y="-725.9342" Z="30.24763" />
 				    </CustomBehavior>
-			   	</If>
 
-			   	<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1205,9 +1207,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-531.3521" Y="-660.9335" Z="30.28404" />
 						<Hotspot X="-530.1593" Y="-697.5297" Z="30.24668" />
 				    </CustomBehavior>
-			   	</If>
 
-			   	<If Condition="Me.IsAlive" >
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
@@ -1215,8 +1215,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <MoveTo X="-508.7027" Y="-727.5312" Z="30.24722" />
 				    <MoveTo X="-487.2624" Y="-709.7524" Z="30.24722" />
 				    <MoveTo X="-472.4294" Y="-631.804" Z="72.60222" />
-			   	</If>
-			   	<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1234,9 +1232,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-342.2566" Y="-592.2085" Z="72.60779" />
 						<Hotspot X="-305.9066" Y="-612.2153" Z="72.59185" />
 				    </CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
@@ -1246,11 +1242,9 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-274.4177" Y="-728.6484" Z="101.7957" />
 						<Hotspot X="-268.0679" Y="-726.1499" Z="102.7696" />
 				    </CustomBehavior>
-			   	</If>
 			</ElseIf>
 		<!-- Lite pull execution -->
 			<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;1&quot;" >
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1277,9 +1271,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					    <Hotspot X="-268.0731" Y="-659.5375" Z="26.5084"  />
 					</CustomBehavior>
 					<EnableBehavior Name="Combat" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
 
 				    <CustomBehavior File="Misc\RunLUA" Lua="
@@ -1295,9 +1287,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    	<Hotspot X="-257.2279" Y="-712.0146" Z="27.1521" />
 						<Hotspot X="-245.5512" Y="-723.813" Z="27.37361" />
 				    </CustomBehavior>
-			   	</If>
 
-			   	<If Condition="Me.IsAlive" >
 					<CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1311,9 +1301,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-289.179" Y="-728.0784" Z="27.29649" />
 						<Hotspot X="-279.2386" Y="-711.1038" Z="27.29188" />
 				    </CustomBehavior>
-			   	</If>
 
-			   	<If Condition="Me.IsAlive" >			    
 				    <RunTo X="-292.9587" Y="-716.4481" Z="27.53353" />
 				    <MoveTo X="-338.6151" Y="-720.4265" Z="28.57711" />
 				    <CustomBehavior File="Message" Text="This boss isn't worth it." LogColor="DeepSkyBlue" />
@@ -1321,9 +1309,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <CustomBehavior File="MyCTM" X="-409.0117" Y="-729.8685" Z="28.58064" />
 
 				    <MoveTo X="-424.5214" Y="-695.5582" Z="28.57602" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1337,9 +1323,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-402.5685" Y="-670.2057" Z="26.64206" />
 						<Hotspot X="-454.369" Y="-652.0738" Z="28.42467" />
 					</CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1354,9 +1338,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-497.2484" Y="-718.712" Z="30.24763" />
 						<Hotspot X="-512.645" Y="-725.9342" Z="30.24763" />
 				    </CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1371,9 +1353,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-544.3643" Y="-704.096" Z="30.2448" />
 						<Hotspot X="-554.3542" Y="-689.1397" Z="30.70627" />
 					</CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
 						CastSpellByID(2983);
@@ -1388,9 +1368,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-531.3521" Y="-660.9335" Z="30.28404" />
 						<Hotspot X="-530.1593" Y="-697.5297" Z="30.24668" />
 				    </CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
@@ -1398,9 +1376,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <MoveTo X="-508.7027" Y="-727.5312" Z="30.24722" />
 				    <MoveTo X="-487.2624" Y="-709.7524" Z="30.24722" />
 				    <MoveTo X="-472.4294" Y="-631.804" Z="72.60222" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 						<Hotspot X="-447.0287" Y="-603.547" Z="72.60651" />
 						<Hotspot X="-416.5739" Y="-595.7975" Z="72.60668" />
@@ -1416,9 +1392,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> //
 						<Hotspot X="-345.2475" Y="-611.0251" Z="72.60713" />
 						<Hotspot X="-342.2566" Y="-592.2085" Z="72.60779" />
@@ -1428,25 +1402,19 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 						<Hotspot X="-288.0025" Y="-699.2864" Z="101.7704" />
 						<Hotspot X="-274.4177" Y="-728.6484" Z="101.7957" />
 						<Hotspot X="-268.0679" Y="-726.1499" Z="102.7696" />
 				    </CustomBehavior>
-				</If>
 			</ElseIf>
 			</If>
-				<If Condition="Me.IsAlive" >
 				    <MoveTo X="-245.4132" Y="-730.9987" Z="116.4721" />
 				    <MoveTo X="-237.274" Y="-698.6867" Z="131.1712" />
 				    <MoveTo X="-236.8188" Y="-676.8137" Z="131.8641" />
 				    <MoveTo X="-244.5186" Y="-620.9827" Z="116.4726" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 				    <CustomBehavior File="MyCTM" X="-266.3696" Y="-618.3034" Z="88.80046" />
 				    <CustomBehavior File="MyCTM" X="-254.1121" Y="-620.0305" Z="90.78832" />
 				    <CustomBehavior File="MyCTM" X="-240.4345" Y="-624.7491" Z="90.783" />
@@ -1499,11 +1467,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							HeroicMode:SetChecked(nil);
 							print(&quot;|cFF3399FF[Azyul]|r: Switching the dungeon back to Normal difficulty.&quot;)" />
 					</If>
-				</If>
-				<If Condition="Me.IsDead" >
-					<CustomBehavior File="Message" Text="We died!  Returning to instance..." LogColor="Red" />
-					<CustomBehavior File="RunMacro" Macro="/script RepopMe()" />
-				</If>
 			</If>
 		</If>
 		<!-- Force Sell -->
@@ -1760,6 +1723,8 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 
 
 	<If Condition="Chance((Lua.GetReturnVal&lt;uint&gt;(&quot;return azgundrakset&quot;, 0)))"> <!-- Gundrak -->
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Enable" />
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Gundrak." LogColor="DeepSkyBlue" />
 
