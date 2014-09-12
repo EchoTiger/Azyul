@@ -478,7 +478,18 @@
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />				
 
 <!-- CHOP CHOP D: -->
-
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 604)" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="Message" Text="Looks like we died, returning to instance." LogColor="Yellow" />
+        <RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="6968.59" Y="-4404.028" Z="442.5896" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 604" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
 <While Condition="true" >
 	<If Condition="!(Me.MapId == 604) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(6944.809, -4426.977, 450.8831)) &gt; 100 " >
@@ -519,7 +530,7 @@
 					CastSpellByID(1850);
 					CastSpellByID(108212);
 				" />
-			<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
 				<Hotspot X="1805.276" Y="633.3484" Z="129.1355" />
 				<Hotspot X="1789.081" Y="630.5768" Z="124.4691" />
 				<Hotspot X="1775.437" Y="610.9134" Z="124.6004" />
