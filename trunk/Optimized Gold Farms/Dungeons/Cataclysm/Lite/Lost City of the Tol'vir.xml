@@ -426,8 +426,21 @@
 		-->
 </While>
 
-
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 755)" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="Message" Text="Looks like we died, returning to instance." LogColor="Yellow" />
+        <CustomBehavior File="FlyTo" X="-10667.82" Y="-1303.857" Z="20.86421" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="-10680.89" Y="-1307.403" Z="17.34262" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 755" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+
 <While Condition="true" >
 	<If Condition="!(Me.MapId == 755) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(-10666.71, -1304.58, 17.70085)) &gt;= 15" >
