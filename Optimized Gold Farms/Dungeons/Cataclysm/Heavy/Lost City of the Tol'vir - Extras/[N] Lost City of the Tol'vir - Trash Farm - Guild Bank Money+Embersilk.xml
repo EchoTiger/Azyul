@@ -432,10 +432,10 @@
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 
-<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="!Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.MapId == 755 &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable)" >
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="(Me.CurrentTarget == null || Me.CurrentTarget.IsDead) &amp;&amp; !Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.IsInInstance &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable &amp;&amp; u.Distance &lt;= 40)" >
 		<CustomBehavior File="Message" Text="[Azyul]: Attempting to mount..." LogColor="Orchid" />
 		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.IsMoving" />
-		<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+		<CustomBehavior File="Misc\RunLua" Lua="local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])])" />
 		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.Mounted" />
 </CustomBehavior>
 
