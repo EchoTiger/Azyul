@@ -452,7 +452,7 @@
 			<RunTo X="-361.8816" Y="3074.594" Z="-15.06141" />
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 			<CustomBehavior File="Message" Text="Entering Hellfire Ramparts." LogColor="Lime" />
-			<CustomBehavior File="MyCTM" X="-364.5978" Y="3084.308" Z="-14.6655" /> <!-- Enters instance if not already inside -->
+			<CustomBehavior File="MyCTM" X="-364.5978" Y="3084.308" Z="-14.6655" TerminateWhen="Me.MapId == 543" /> <!-- Enters instance if not already inside -->
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 	<!-- Begin Instance Grind -->
@@ -522,7 +522,7 @@
 
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
-		    <CustomBehavior File="MyCTM" X="-1358.846" Y="1634.4" Z="68.48954" />
+		    <CustomBehavior File="MyCTM" X="-1358.846" Y="1634.4" Z="68.48954" TerminateWhen="Me.MapId != 543" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
