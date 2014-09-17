@@ -54,7 +54,20 @@
 			<CustomBehavior File="MyCTM" X="3588.635" Y="-3638.869" Z="138.4745" />
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 		</If>
+	
 			<While Condition="!(Me.MapId == 0)" >
+				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
+					<CustomBehavior File="ForcedDismount" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
+					<CustomBehavior File="Message" Text="Teleporting to Stormwind." LogColor="Yellow" />
+					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
+				</If>
+				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
+					<CustomBehavior File="ForcedDismount" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3563);" />
+					<CustomBehavior File="Message" Text="Teleporting to Undercity." LogColor="Yellow" />
+					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
+				</If>
 				<If Condition="Me.IsAlliance" >
 				<!-- Outland move to and use portal in shat -->
 					<If Condition="Me.MapId == 530" >
@@ -467,8 +480,22 @@
 
 	<If Condition="!HasItem(32768) &amp;&amp; !Me.KnowsSpell(41252)" > <!-- Ravenlord -->
 		<CustomBehavior File="Message" Text="\nLooks like we don't have the Ravenlord..\nLet's get it!" LogColor="LightBlue" />
-		<If Condition="!(Me.MapId == 556)" >
 
+		<If Condition="!(Me.MapId == 556)" >
+			<If Condition="!(Me.MapId == 556)" >
+				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
+					<CustomBehavior File="ForcedDismount" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(33690);" />
+					<CustomBehavior File="Message" Text="Teleporting to Shattrath." LogColor="Yellow" />
+					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 556" />
+				</If>
+				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
+					<CustomBehavior File="ForcedDismount" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(35715);" />
+					<CustomBehavior File="Message" Text="Teleporting to Shattrath." LogColor="Yellow" />
+					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 556" />
+				</If>
+			</If>
 				<While Condition="!(Me.MapId == 530)" >
 					<If Condition="Me.IsAlliance" >
 					<!-- Outland move to and use portal in shat -->
@@ -904,7 +931,7 @@
 		<DisableBehavior Name="FlightPath" />
 
 		<If Condition="!(Me.MapId == 571)" > 
-
+			
 			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.KnowsSpell(53140)" >
 				<CustomBehavior File="ForcedDismount" />
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(30719);" />

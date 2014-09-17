@@ -39,7 +39,20 @@
 
 
 <If Condition="!(Me.MapId == 556)" >
-
+	<If Condition="!(Me.MapId == 530)" >
+		<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
+			<CustomBehavior File="ForcedDismount" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(33690);" />
+			<CustomBehavior File="Message" Text="Teleporting to Shattrath." LogColor="Yellow" />
+			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 530" />
+		</If>
+		<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
+			<CustomBehavior File="ForcedDismount" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(35715);" />
+			<CustomBehavior File="Message" Text="Teleporting to Shattrath." LogColor="Yellow" />
+			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 530" />
+		</If>
+	</If>
 		<While Condition="!(Me.MapId == 530)" >
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->

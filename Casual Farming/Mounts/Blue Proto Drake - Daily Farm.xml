@@ -55,10 +55,28 @@
 <CustomBehavior File="WaitTimer" WaitTime="5000" />
 <If Condition="!(Me.MapId == 575)" >
 
+
+
 	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" />
 
 	<!-- Begin universal transportation script -->
 		<While Condition="!(Me.MapId == 571)" >
+			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.KnowsSpell(53140)" >
+				<CustomBehavior File="ForcedDismount" />
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(30719);" />
+				<CustomBehavior File="Message" Text="Teleporting to Dalaran." LogColor="Yellow" />
+				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 571" />
+				<ElseIf Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
+					<CustomBehavior File="Message" Text="We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Stormwind instead." LogColor="Red" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
+					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
+				</ElseIf>
+				<ElseIf Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
+					<CustomBehavior File="Message" Text="We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Orgrimmar instead." LogColor="Red" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
+					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
+				</ElseIf>
+			</If>
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
 				<If Condition="Me.MapId == 530" >
