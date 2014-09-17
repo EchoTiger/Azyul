@@ -49,6 +49,18 @@
 <CustomBehavior File="Message" Text="\n\nWelcome to Echo's Drake of the North Wind farm!\nThis profile is designed to kill Altairus in The Vortex Pinnacle.\n" LogColor="LightBlue" />
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 <While Condition="!(Me.MapId == 1)" >
+			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
+				<CustomBehavior File="ForcedDismount" />
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(49359);" />
+				<CustomBehavior File="Message" Text="Teleporting to Theramore." LogColor="Yellow" />
+				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
+			</If>
+			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
+				<CustomBehavior File="ForcedDismount" />
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
+				<CustomBehavior File="Message" Text="Teleporting to Orgrimmar." LogColor="Yellow" />
+				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
+			</If>
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
 				<If Condition="Me.MapId == 530" >
