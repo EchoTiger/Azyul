@@ -58,14 +58,14 @@
 			<While Condition="!(Me.MapId == 0)" >
 				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
 					<CustomBehavior File="ForcedDismount" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
 					<CustomBehavior File="Message" Text="Teleporting to Stormwind." LogColor="Yellow" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
 				</If>
 				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
 					<CustomBehavior File="ForcedDismount" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3563);" />
 					<CustomBehavior File="Message" Text="Teleporting to Undercity." LogColor="Yellow" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3563);" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
 				</If>
 				<If Condition="Me.IsAlliance" >
@@ -485,14 +485,14 @@
 			<If Condition="!(Me.MapId == 556)" >
 				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
 					<CustomBehavior File="ForcedDismount" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(33690);" />
 					<CustomBehavior File="Message" Text="Teleporting to Shattrath." LogColor="Yellow" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(33690);" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 556" />
 				</If>
 				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
 					<CustomBehavior File="ForcedDismount" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(35715);" />
 					<CustomBehavior File="Message" Text="Teleporting to Shattrath." LogColor="Yellow" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(35715);" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 556" />
 				</If>
 			</If>
@@ -930,24 +930,26 @@
 		<CustomBehavior File="Message" Text="\nLooks like we don't have the Blue-Proto Drake..\nLet's get it!" LogColor="Yellow" />
 		<DisableBehavior Name="FlightPath" />
 
-		<If Condition="!(Me.MapId == 571)" > 
-			
-			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.KnowsSpell(53140)" >
-				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(53140);" />
-				<CustomBehavior File="Message" Text="Teleporting to Dalaran." LogColor="Yellow" />
-				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 571" />
-				<ElseIf Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
-					<CustomBehavior File="Message" Text="We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Stormwind instead." LogColor="Red" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
-					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
-				</ElseIf>
-				<ElseIf Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
-					<CustomBehavior File="Message" Text="We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Orgrimmar instead." LogColor="Red" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
-					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
-				</ElseIf>
+			<If Condition="Me.MapId != 571" >
+				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.KnowsSpell(53140)" >
+					<CustomBehavior File="ForcedDismount" />
+					<CustomBehavior File="Message" Text="Teleporting to Dalaran." LogColor="Yellow" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(53140);" />
+					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 571" />
+					<ElseIf Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
+						<CustomBehavior File="Message" Text="We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Stormwind instead." LogColor="Red" />
+						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
+						<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
+					</ElseIf>
+					<ElseIf Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
+						<CustomBehavior File="Message" Text="We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Orgrimmar instead." LogColor="Red" />
+						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
+						<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
+					</ElseIf>
+				</If>
 			</If>
+
+		<If Condition="!(Me.MapId == 571)" > 
 
 			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" />
 			<!-- Begin universal transportation script -->
@@ -1404,20 +1406,22 @@
 	<If Condition="!HasItem(63040) &amp;&amp; !Me.KnowsSpell(88742)" > <!-- Drake of the North Wind -->
 		<CustomBehavior File="Message" Text="\nLooks like we don't have the Drake of the North Wind..\nLet's get it!" LogColor="Yellow" />
 		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+		<If Condition="Me.MapId != 1" >
+			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
+				<CustomBehavior File="ForcedDismount" />
+				<CustomBehavior File="Message" Text="Teleporting to Theramore." LogColor="Yellow" />
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(49359);" />
+				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
+			</If>
+			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
+				<CustomBehavior File="ForcedDismount" />
+				<CustomBehavior File="Message" Text="Teleporting to Orgrimmar." LogColor="Yellow" />
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
+				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
+			</If>
+		</If>
 
 		<While Condition="!(Me.MapId == 1)" >
-				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
-					<CustomBehavior File="ForcedDismount" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(49359);" />
-					<CustomBehavior File="Message" Text="Teleporting to Theramore." LogColor="Yellow" />
-					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
-				</If>
-				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
-					<CustomBehavior File="ForcedDismount" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
-					<CustomBehavior File="Message" Text="Teleporting to Orgrimmar." LogColor="Yellow" />
-					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
-				</If>
 					<If Condition="Me.IsAlliance" >
 					<!-- Outland move to and use portal in shat -->
 						<If Condition="Me.MapId == 530" >
@@ -1861,14 +1865,14 @@
 		<If Condition="(Me.IsHorde &amp;&amp; Me.MapId != 1) || (Me.IsAlliance &amp;&amp; Me.MapId != 0)" >
 				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
 					<CustomBehavior File="ForcedDismount" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
 					<CustomBehavior File="Message" Text="Teleporting to Stormwind." LogColor="Yellow" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
 				</If>
 				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
 					<CustomBehavior File="ForcedDismount" />
-					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
 					<CustomBehavior File="Message" Text="Teleporting to Orgrimmar." LogColor="Yellow" />
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
 				</If>
 					<If Condition="Me.IsAlliance" >

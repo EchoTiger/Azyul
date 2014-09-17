@@ -36,14 +36,14 @@
 	<If Condition="(Me.IsHorde &amp;&amp; Me.MapId != 1) || (Me.IsAlliance &amp;&amp; Me.MapId != 0)" >
 			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
 				<CustomBehavior File="Message" Text="Teleporting to Stormwind." LogColor="Yellow" />
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
 			</If>
 			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
 				<CustomBehavior File="Message" Text="Teleporting to Orgrimmar." LogColor="Yellow" />
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
 			</If>
 			<If Condition="Me.IsAlliance" >
