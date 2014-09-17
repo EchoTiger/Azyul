@@ -472,15 +472,52 @@
 
 		<DisableBehavior Name="Combat" />
 			<RunTo X="-1032.734" Y="-75.63425" Z="698.8443" />
-			<CustomBehavior File="RunMacro" WaitTime="800" Macro="/targetenemy\n/cast Ice Lance \n/cast Expel Harm \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" />
-			<If Condition="(Me.Class == WoWClass.Monk)" >
-				<CustomBehavior File="RunMacro" Macro="/cast Spinning Fire Blossom" />
-			</If>
-			<RunTo X="-1056.526" Y="-52.6046" Z="700.4836" />
-			<CustomBehavior File="RunMacro" WaitTime="800" Macro="/stopattack\n/cleartarget\n/targetenemy\n/cast Ice Lance \n/cast Expel Harm \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" />
+			<CustomBehavior File="RunMacro" Macro="/stopattack\n/cleartarget\n/targetenemy" />
+			<CustomBehavior File="Misc\RunLUA" Lua="
+				CastSpellByID(30455);
+				CastSpellByID(115072);
+				CastSpellByID(45477);
+				CastSpellByID(20271);
+				CastSpellByID(879);
+				CastSpellByID(585);
+				CastSpellByID(122475);
+				CastSpellByID(8921);
+				CastSpellByID(77799);
+				CastSpellByID(3044);
+				CastSpellByID(403);
+				" />
+			<CustomBehavior File="WaitTimer" WaitTime="800" />
 			<If Condition="(Me.Class == WoWClass.Monk)" >
 				<CustomBehavior File="WaitTimer" WaitTime="500" />
-				<CustomBehavior File="RunMacro" Macro="/cast Spinning Fire Blossom" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+					CastSpellByID(115073);" />
+			</If>
+			<If Condition="(Me.Class == WoWClass.Priest)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+			</If>
+			<RunTo X="-1056.526" Y="-52.6046" Z="700.4836" />
+			<CustomBehavior File="RunMacro" Macro="/stopattack\n/cleartarget\n/targetenemy" />
+			<CustomBehavior File="Misc\RunLUA" Lua="
+				CastSpellByID(30455);
+				CastSpellByID(115072);
+				CastSpellByID(45477);
+				CastSpellByID(20271);
+				CastSpellByID(879);
+				CastSpellByID(585);
+				CastSpellByID(122475);
+				CastSpellByID(8921);
+				CastSpellByID(77799);
+				CastSpellByID(3044);
+				CastSpellByID(403);
+				" />
+			<CustomBehavior File="WaitTimer" WaitTime="800" />
+			<If Condition="(Me.Class == WoWClass.Monk)" >
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+					CastSpellByID(115073);" />
+			</If>
+			<If Condition="(Me.Class == WoWClass.Priest)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
 			</If>
 			<CustomBehavior File="RunMacro" Macro="/cleartarget" />
 		<EnableBehavior Name="Combat" />
