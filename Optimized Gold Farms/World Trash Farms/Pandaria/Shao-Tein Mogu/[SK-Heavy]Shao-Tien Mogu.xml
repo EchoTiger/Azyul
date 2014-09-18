@@ -51,6 +51,8 @@
 
 	<Blackspot X="1146.13" Y="2033.978" Z="324.5503" Radius="11.36846" />
 	<Blackspot X="1160.781" Y="2058.901" Z="324.8774" Radius="6.328123" />
+
+	<Blackspot X="1519.272" Y="1926.361" Z="293.6891" Radius="17.9558" />
 </Blackspots>
 
 
@@ -142,7 +144,9 @@
 <!-- Activate Hooks -->
 <CustomBehavior File="Message" Text="\n\n\n[Azyul]: Item hooks are now activated\n   Bot will now:\n     - Use Potion of Luck on Cooldown.\n     - Open Plundered Treasure Chests\n     - Combine Mote of Harmony" LogColor="Yellow" />
 <CustomBehavior File="Hooks\DoWhen" ItemId="93351" UseWhen="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" AllowUseDuringCombat="true" /> <!-- Potion of Luck -->
-<CustomBehavior File="Hooks\DoWhen" ItemId="87391" UseWhen="HasItem(87391)" AllowUseDuringCombat="true" /> <!-- Plundered Treasure Chest -->
+<CustomBehavior File="Hooks\DoWhen" ActivityName="OpenChesthook" AllowUseDuringCombat="True" UseWhen="HasItem(87391)" > <!-- Plundered Treasure Chest -->
+	<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
+</CustomBehavior>
 <CustomBehavior File="Hooks\DoWhen" ItemId="89112" UseWhen="GetItemCount(89112) &gt;= 10" AllowUseDuringCombat="true" /> <!-- Combine Motes -->
 
 <While Condition="true" >
