@@ -51,7 +51,7 @@
 	<If Condition="(Me.MapId == 755)" >
 		<DisableBehavior Name="Pull" />
 			<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
-			<RunTo X="-10730.72" Y="-1320.814" Z="15.35361" /> />
+			<RunTo X="-10730.72" Y="-1320.814" Z="15.35361" />
 			<CustomBehavior File="MyCTM" X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
 			<CustomBehavior File="MyCTM" X="-10688.83" Y="-1309.427" Z="17.63992" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -437,6 +437,7 @@
 <CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="(Me.CurrentTarget == null || Me.CurrentTarget.IsDead) &amp;&amp; !Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.IsInInstance &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable &amp;&amp; u.Distance &lt;= 40)" >
 		<CustomBehavior File="Message" Text="[Azyul]: Attempting to mount..." LogColor="Orchid" />
 		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.IsMoving" />
+		<CustomBehavior File="RunMacro" Macro="/cancelform" />
 		<CustomBehavior File="Misc\RunLua" Lua="local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])])" />
 		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.Mounted" />
 </CustomBehavior>
