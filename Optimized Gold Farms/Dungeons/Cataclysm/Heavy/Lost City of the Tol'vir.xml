@@ -438,7 +438,7 @@
 		<CustomBehavior File="Message" Text="[Azyul]: Attempting to mount..." LogColor="Orchid" />
 		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.IsMoving" />
 		<CustomBehavior File="RunMacro" Macro="/cancelform" />
-		<CustomBehavior File="Misc\RunLua" Lua="local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])])" />
+		<CustomBehavior File="Misc\RunLua" Lua="CancelShapeshiftForm(); local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])])" />
 		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.Mounted" />
 </CustomBehavior>
 
