@@ -486,6 +486,26 @@
 			<!-- END OF COLD WEATHER FLYING CHECK -->
 		</If>
 
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="(Me.CurrentTarget == null || Me.CurrentTarget.IsDead) &amp;&amp; !Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.IsInInstance &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable &amp;&amp; u.Distance &lt;= 40)" >
+		<CustomBehavior File="Message" Text="[Azyul]: Attempting to mount..." LogColor="Orchid" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.IsMoving" />
+		<CustomBehavior File="Misc\RunLua" Lua="CancelShapeshiftForm(); local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])])" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.Mounted" />
+		<CustomBehavior File="WaitTimer" WaitTime="250" /> <!-- Slight lag to process if we are mounted or not for the unstuck process. -->
+		<If Condition="!Me.Mounted" >
+			<If Condition="Chance(50)" > <!-- Unstuck routine #1 -->
+				<CustomBehavior File="Message" Text="[Azyul]: We couldn't mount!  Attempting to unstuck..." LogColor="Orchid" />
+				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeRightStart();" WaitTime="750" />
+				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeRightStop();" />
+				<Else> <!-- Unstuck routine #2 -->
+					<CustomBehavior File="Message" Text="[Azyul]: We couldn't mount!  Attempting to unstuck..." LogColor="Orchid" />
+					<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeLeftStart();" WaitTime="750" />
+					<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeLeftStop();" />
+				</Else>
+			</If>
+		</If>
+</CustomBehavior>
+
 <If Condition="(Me.MapId == 658)" >
 	<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
 	<RunTo X="436.2414" Y="211.0046" Z="528.7086" />
@@ -650,9 +670,7 @@
 					</CustomBehavior>
 
 					<RunTo X="838.4686" Y="45.50679" Z="510.6235" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
-					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
-					<CustomBehavior File="WaitTimer" WaitTime="5000" />
+
 					<CustomBehavior File="NoCombatMoveTo" X="441.2151" Y="212.344" Z="528.7101" />
 
 					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
