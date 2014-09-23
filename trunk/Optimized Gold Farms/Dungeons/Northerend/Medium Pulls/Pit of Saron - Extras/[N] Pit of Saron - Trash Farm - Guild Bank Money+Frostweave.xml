@@ -495,6 +495,26 @@
 			<!-- END OF COLD WEATHER FLYING CHECK -->
 		</If>
 
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="(Me.CurrentTarget == null || Me.CurrentTarget.IsDead) &amp;&amp; !Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.IsInInstance &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable &amp;&amp; u.Distance &lt;= 40)" >
+		<CustomBehavior File="Message" Text="[Azyul]: Attempting to mount..." LogColor="Orchid" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.IsMoving" />
+		<CustomBehavior File="Misc\RunLua" Lua="CancelShapeshiftForm(); local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])])" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.Mounted" />
+		<CustomBehavior File="WaitTimer" WaitTime="250" /> <!-- Slight lag to process if we are mounted or not for the unstuck process. -->
+		<If Condition="!Me.Mounted" >
+			<If Condition="Chance(50)" > <!-- Unstuck routine #1 -->
+				<CustomBehavior File="Message" Text="[Azyul]: We couldn't mount!  Attempting to unstuck..." LogColor="Orchid" />
+				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeRightStart();" WaitTime="750" />
+				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeRightStop();" />
+				<Else> <!-- Unstuck routine #2 -->
+					<CustomBehavior File="Message" Text="[Azyul]: We couldn't mount!  Attempting to unstuck..." LogColor="Orchid" />
+					<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeLeftStart();" WaitTime="750" />
+					<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeLeftStop();" />
+				</Else>
+			</If>
+		</If>
+</CustomBehavior>
+
 <If Condition="(Me.MapId == 658)" >
 	<CustomBehavior File="Message" Text="Bot started in instance.  Leaving instance to reset." LogColor="Red" />
 	<RunTo X="436.2414" Y="211.0046" Z="528.7086" />
@@ -541,9 +561,7 @@
 
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 					<DisableBehavior Name="Pull" />
-					<CustomBehavior File="WaitTimer" WaitTime="750" />
-					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
-					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+
 
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 						<Hotspot X="505.3736" Y="202.3084" Z="528.7101" />
@@ -553,9 +571,7 @@
 						<Hotspot X="628.6747" Y="329.2739" Z="511.8989" />
 					</CustomBehavior>
 
-					<CustomBehavior File="WaitTimer" WaitTime="750" />
-					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
-					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+
 
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> //
 						<Hotspot X="595.4843" Y="256.973" Z="507.0815" />
@@ -566,9 +582,7 @@
 					</CustomBehavior>
 
 
-					<CustomBehavior File="WaitTimer" WaitTime="750" />
-					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
-					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+
 
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 						<Hotspot X="713.0514" Y="183.7709" Z="511.5082" />
@@ -576,9 +590,7 @@
 						<Hotspot X="812.0828" Y="55.54153" Z="509.7747" />
 					</CustomBehavior>
 
-					<CustomBehavior File="WaitTimer" WaitTime="750" />
-					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
-					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+
 
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> //
 						<Hotspot X="842.827" Y="-20.75695" Z="509.4837" />
@@ -586,18 +598,14 @@
 						<Hotspot X="742.7823" Y="-123.8103" Z="512.6193" />
 					</CustomBehavior>
 
-					<CustomBehavior File="WaitTimer" WaitTime="750" />
-					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
-					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+
 
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 						<Hotspot X="782.2004" Y="99.20539" Z="510.5967" />
 						<Hotspot X="720.0635" Y="148.756" Z="511.5299" />
 						<Hotspot X="557.6715" Y="143.4032" Z="516.6772" />
 					</CustomBehavior>
-					<CustomBehavior File="WaitTimer" WaitTime="750" />
-					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
-					<CustomBehavior File="WaitTimer" WaitTime="1600" />
+
 					<EnableBehavior Name="Pull" />
 
 
