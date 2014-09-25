@@ -416,10 +416,33 @@
 				<CustomBehavior File="WaitTimer" WaitTime="2500" />
 				<CustomBehavior File="InteractWith" MobId="43214" X="1292.352" Y="1226.478" Z="247.6368" />
 			</If>
-			<If Condition="Me.IsAlive" >
+			<While Condition="Me.Combat" > <!-- Clear Rock Borers since Combat Routine won't.-->
 				<CustomBehavior File="WaitTimer" WaitTime="1500" />
-				<CustomBehavior File="InteractWith" MobId1="43917" MobId2="42845" MobState="Alive" WaitForNpcs="false" NumOfTimes="100" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
-			</If>
+				<If Condition="Me.Class == WoWClass.Warlock" >
+					<CustomBehavior File="InteractWith" InteractByCastingSpellId="77799" Range="39" NumOfTimes="100" MobId1="43917" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
+				</If>
+				<If Condition="Me.Class == WoWClass.Hunter" >
+					<CustomBehavior File="InteractWith" InteractByCastingSpellId="2643" Range="39" NumOfTimes="100" MobId1="43917" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
+				</If>
+				<If Condition="!Me.Class == WoWClass.Hunter || !Me.Class == WoWClass.Warlock" >
+					<CustomBehavior File="InteractWith" MobId1="43917" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
+					<CustomBehavior File="RunMacro" Macro="/targetenemy" />
+					<CustomBehavior File="Misc\RunLua" NumOfTimes="2" Lua="
+						CastSpellByID(6343);
+						CastSpellByID(8190);
+						CastSpellByID(51723);
+						CastSpellByID(48045);
+						CastSpellByID(26573);
+						CastSpellByID(19072);
+						CastSpellByID(53385);
+						CastSpellByID(53595);
+						CastSpellByID(101546);
+						CastSpellByID(1449);
+						CastSpellByID(106785);
+						CastSpellByID(48721);
+						" />
+				</If>
+			</While>
 
 			<If Condition="Me.IsAlive" >
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
