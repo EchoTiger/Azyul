@@ -44,6 +44,10 @@
 	<Blackspot X="-11007.63" Y="-1378.011" Z="11.29595" Radius="18.36984" /> <!-- Camels at end of run -->
 </Blackspots>
 
+<Blacklist>
+	<Mob Name="Camel" Id="47720" Flags="Interact, Loot" />
+</Blacklist>
+
 
 
 <QuestOrder>
@@ -434,7 +438,7 @@
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
 
-<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="(Me.CurrentTarget == null || Me.CurrentTarget.IsDead) &amp;&amp; !Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.IsInInstance &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable &amp;&amp; u.Distance &lt;= 40)  &amp;&amp; !(Object(47720, o => o.Distance &lt;= 11) != null)" >
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="(Me.CurrentTarget == null || Me.CurrentTarget.IsDead) &amp;&amp; !Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.IsInInstance &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable &amp;&amp; u.Distance &lt;= 40)">
     <CustomBehavior File="RunMacro" Macro="/cleartarget" />
     <CustomBehavior File="Message" Text="[Azyul]: Attempting to mount..." LogColor="Orchid" />
     <CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.IsMoving" />
