@@ -486,7 +486,84 @@
 	</If>
 
 	<!--CHOP CHOP -->
-	<While Condition="true" >
+	<!-- Declare movement buff and defensive hooks -->
+	<If Condition="Me.Class == WoWClass.Mage" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!WoWSpell.FromId(11426).Cooldown &amp;&amp; Me.KnowsSpell(11426))" > <!-- (!WoWSpell.FromId(1953).Cooldown) ||  -->
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(11426);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Priest" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance)	&amp;&amp; (!WoWSpell.FromId(139).Cooldown &amp;&amp; !Me.HasAura(139))	|| (!WoWSpell.FromId(17).Cooldown &amp;&amp; !Me.HasAura(17) &amp;&amp; Me.KnowsSpell(17) &amp;&amp; !Me.HasAura(6788))" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(139); CastSpellByID(17);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.Warlock" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving)" >
+		</CustomBehavior>
+	</If> May use Burning Rush here -->
+	<If Condition="Me.Class == WoWClass.Druid" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (Me.HasAura(768) &amp;&amp; !WoWSpell.FromId(1850).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(22812).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(22812);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(1850);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Rogue" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!WoWSpell.FromId(2983).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(5277).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(5277);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2983);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Monk" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (Me.HealthPercent &lt;= 70 &amp;&amp; !WoWSpell.FromId(115072).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(115072);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Hunter" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!WoWSpell.FromId(13809).Cooldown) || (Me.HealthPercent &lt;= 30 &amp;&amp; !WoWSpell.FromId(19263).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<If Condition="Me.HealthPercent &lt;= 30" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(19263);" />
+			</If>
+			<If Condition="Me.HasAura(77769)" >
+				<CustomBehavior File="Misc\RunLua" Lua="CancelUnitBuff(&quot;player&quot;,&quot;Trap Launcher&quot;);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(13809);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Shaman" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!Me.HasAura(2645)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2645);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.DeathKnight" >
+	</If> Hmm.... -->
+	<!-- <If Condition="Me.Class == WoWClass.Warrior" >
+	</If>  Perhaps use of Enraged healing. -->
+	<If Condition="Me.Class == WoWClass.Paladin" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)) || (Me.HealthPercent &lt;= 10 &amp;&amp; !WoWSpell.FromId(633).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<If Condition="Me.HealthPercent &lt;= 10" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(633);" />
+			</If>
+			<If Condition="!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)" >
+				<CustomBehavior File="Misc\RunLua" Lua="TargetNearestEnemy(); CastSpellByID(20271);" />
+			</If>
+		</CustomBehavior>
+	</If>
+<!-- END Declare movement buff hooks -->
+
+<While Condition="true" >
+
 		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<!--Start Endless Cycle -->
 			<If Condition="!(Me.MapId == 574)" >
@@ -508,102 +585,62 @@
 
 				<MoveTo X="186.7376" Y="-75.69962" Z="16.87691" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					CastSpellByID(2645);
-					CastSpellByID(2983);
-					CastSpellByID(17);
-					CastSpellByID(85499);
-					CastSpellByID(108843);
-					CastSpellByID(1850);
-					CastSpellByID(108212);
-				" />
-			    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-					<Hotspot X="211.3973" Y="-63.97879" Z="24.67863" />
-					<Hotspot X="256.3593" Y="-40.54176" Z="24.67863" />
-					<Hotspot X="269.1995" Y="-62.08339" Z="24.67863" />
-					<Hotspot X="316.3462" Y="-36.62894" Z="22.75489" />
-					<Hotspot X="352.1555" Y="-39.64727" Z="24.67764" />
-					<Hotspot X="386.5623" Y="-11.83339" Z="24.48933" />
-					<Hotspot X="347.031" Y="4.550358" Z="24.63421" />
-			    </CustomBehavior>
+
+			    <DisableBehavior Name="Combat" />
+					<RunTo X="211.3973" Y="-63.97879" Z="24.67863" />
+					<RunTo X="256.3593" Y="-40.54176" Z="24.67863" />
+					<RunTo X="269.1995" Y="-62.08339" Z="24.67863" />
+					<RunTo X="316.3462" Y="-36.62894" Z="22.75489" />
+					<RunTo X="352.1555" Y="-39.64727" Z="24.67764" />
+					<RunTo X="386.5623" Y="-11.83339" Z="24.48933" />
+					<RunTo X="347.031" Y="4.550358" Z="24.63421" />
+			    <EnableBehavior Name="Combat" />
 
 				<MoveTo X="376.1462" Y="56.9547" Z="24.67728" />
 				<MoveTo X="380.2594" Y="91.26851" Z="30.74202" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					CastSpellByID(2645);
-					CastSpellByID(2983);
-					CastSpellByID(17);
-					CastSpellByID(85499);
-					CastSpellByID(108843);
-					CastSpellByID(1850);
-					CastSpellByID(108212);
-				" />
-			    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="333.3249" Y="101.2789" Z="31.85162" />
-						<Hotspot X="395.1321" Y="154.4304" Z="30.77521" />
-						<Hotspot X="343.9766" Y="160.103" Z="30.7719" />
-						<Hotspot X="311.6241" Y="168.6147" Z="31.93963" />
-						<Hotspot X="375.8603" Y="184.6561" Z="30.77577" />
-						<Hotspot X="336.756" Y="212.5732" Z="30.80466" />
-						<Hotspot X="325.302" Y="256.4638" Z="30.74519" />
-						<Hotspot X="303.5671" Y="246.6837" Z="30.74193" />
-			    </CustomBehavior>
+
+			    <DisableBehavior Name="Combat" />
+						<RunTo X="333.3249" Y="101.2789" Z="31.85162" />
+						<RunTo X="395.1321" Y="154.4304" Z="30.77521" />
+						<RunTo X="343.9766" Y="160.103" Z="30.7719" />
+						<RunTo X="311.6241" Y="168.6147" Z="31.93963" />
+						<RunTo X="375.8603" Y="184.6561" Z="30.77577" />
+						<RunTo X="336.756" Y="212.5732" Z="30.80466" />
+						<RunTo X="325.302" Y="256.4638" Z="30.74519" />
+						<RunTo X="303.5671" Y="246.6837" Z="30.74193" />
+			    <EnableBehavior Name="Combat" />
 
 				<MoveTo X="241.9964" Y="224.748" Z="40.9099" />
 				<MoveTo X="221.3011" Y="201.247" Z="40.8164" />
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					CastSpellByID(2645);
-					CastSpellByID(2983);
-					CastSpellByID(17);
-					CastSpellByID(85499);
-					CastSpellByID(108843);
-					CastSpellByID(1850);
-					CastSpellByID(108212);
-				" />
+
 				<MoveTo X="187.6204" Y="205.7753" Z="40.81636" /> <!-- Boss -->
 				<MoveTo X="164.7505" Y="251.5552" Z="42.86683" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					CastSpellByID(2645);
-					CastSpellByID(2983);
-					CastSpellByID(17);
-					CastSpellByID(85499);
-					CastSpellByID(108843);
-					CastSpellByID(1850);
-					CastSpellByID(108212);
-				" />
-			    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="152.5092" Y="277.3574" Z="42.86846" />
-						<Hotspot X="130.3804" Y="275.3771" Z="42.86846" />
-						<Hotspot X="87.87313" Y="259.5667" Z="42.8671" />
-						<Hotspot X="99.67241" Y="200.5663" Z="49.3759" />
-						<Hotspot X="66.38676" Y="186.1246" Z="49.37411" />
-						<Hotspot X="113.6451" Y="80.90563" Z="65.70265" />
-						<Hotspot X="133.3807" Y="77.24162" Z="65.70821" />
-						<Hotspot X="106.2656" Y="45.22725" Z="65.68821" />
-			    </CustomBehavior>
+
+			    <DisableBehavior Name="Combat" />
+						<RunTo X="152.5092" Y="277.3574" Z="42.86846" />
+						<RunTo X="130.3804" Y="275.3771" Z="42.86846" />
+						<RunTo X="87.87313" Y="259.5667" Z="42.8671" />
+						<RunTo X="99.67241" Y="200.5663" Z="49.3759" />
+						<RunTo X="66.38676" Y="186.1246" Z="49.37411" />
+						<RunTo X="113.6451" Y="80.90563" Z="65.70265" />
+						<RunTo X="133.3807" Y="77.24162" Z="65.70821" />
+						<RunTo X="106.2656" Y="45.22725" Z="65.68821" />
+			    <EnableBehavior Name="Combat" />
 
 				<MoveTo X="103.1364" Y="59.01193" Z="65.70141" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					CastSpellByID(2645);
-					CastSpellByID(2983);
-					CastSpellByID(17);
-					CastSpellByID(85499);
-					CastSpellByID(108843);
-					CastSpellByID(1850);
-					CastSpellByID(108212);
-				" />
-			    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="93.53909" Y="108.0608" Z="87.33531" />
-						<Hotspot X="112.9307" Y="113.8913" Z="87.30109" />
-						<Hotspot X="102.4625" Y="46.53362" Z="109.0073" />
-						<Hotspot X="24.52928" Y="22.2913" Z="115.0299" />
-						<Hotspot X="50.57508" Y="-9.289353" Z="118.7753" />
-						<Hotspot X="43.34703" Y="-32.25538" Z="118.7753" />
-						<Hotspot X="113.4088" Y="-38.0535" Z="118.9998" />
-			    </CustomBehavior>
+
+			    <DisableBehavior Name="Combat" />
+						<RunTo X="93.53909" Y="108.0608" Z="87.33531" />
+						<RunTo X="112.9307" Y="113.8913" Z="87.30109" />
+						<RunTo X="102.4625" Y="46.53362" Z="109.0073" />
+						<RunTo X="24.52928" Y="22.2913" Z="115.0299" />
+						<RunTo X="50.57508" Y="-9.289353" Z="118.7753" />
+						<RunTo X="43.34703" Y="-32.25538" Z="118.7753" />
+						<RunTo X="113.4088" Y="-38.0535" Z="118.9998" />
+			    <EnableBehavior Name="Combat" />
 
 			    <MoveTo  X="106.699" Y="-37.19381" Z="118.8866" /> <!-- Extra coordinate because bot didn't loot during testing -->
 			    <CustomBehavior File="UserSettings" LootMobs="True"/>
@@ -612,15 +649,7 @@
 
 
 				<!-- Different aggro method for the landing mob -->
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					CastSpellByID(2645);
-					CastSpellByID(2983);
-					CastSpellByID(17);
-					CastSpellByID(85499);
-					CastSpellByID(108843);
-					CastSpellByID(1850);
-					CastSpellByID(108212);
-				" />
+
 				<DisableBehavior Name="Combat" />
 				<MoveTo X="242.9421" Y="14.83746" Z="135.1886" />
 				<MoveTo X="216.0704" Y="7.687538" Z="178.5074" />
@@ -638,15 +667,7 @@
 			    <EnableBehavior Name="Combat" />
 
 				<!-- Leave coordinates -->
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					CastSpellByID(2645);
-					CastSpellByID(2983);
-					CastSpellByID(17);
-					CastSpellByID(85499);
-					CastSpellByID(108843);
-					CastSpellByID(1850);
-					CastSpellByID(108212);
-				" />
+
 				<RunTo X="156.7793" Y="-171.9999" Z="180.5006"  />
 			    <CustomBehavior File="MyCTM" X="138.1159" Y="-114.84" Z="88.37748" />
 			    <CustomBehavior File="MyCTM" X="149.0161" Y="-147.3957" Z="94.20318" />

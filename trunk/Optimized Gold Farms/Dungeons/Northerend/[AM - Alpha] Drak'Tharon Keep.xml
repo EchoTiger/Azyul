@@ -825,7 +825,84 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
 </CustomBehavior>
+<!-- Declare movement buff and defensive hooks -->
+	<If Condition="Me.Class == WoWClass.Mage" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!WoWSpell.FromId(11426).Cooldown &amp;&amp; Me.KnowsSpell(11426))" > <!-- (!WoWSpell.FromId(1953).Cooldown) ||  -->
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(11426);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Priest" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance)	&amp;&amp; (!WoWSpell.FromId(139).Cooldown &amp;&amp; !Me.HasAura(139))	|| (!WoWSpell.FromId(17).Cooldown &amp;&amp; !Me.HasAura(17) &amp;&amp; Me.KnowsSpell(17) &amp;&amp; !Me.HasAura(6788))" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(139); CastSpellByID(17);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.Warlock" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving)" >
+		</CustomBehavior>
+	</If> May use Burning Rush here -->
+	<If Condition="Me.Class == WoWClass.Druid" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (Me.HasAura(768) &amp;&amp; !WoWSpell.FromId(1850).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(22812).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(22812);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(1850);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Rogue" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!WoWSpell.FromId(2983).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(5277).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(5277);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2983);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Monk" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (Me.HealthPercent &lt;= 70 &amp;&amp; !WoWSpell.FromId(115072).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(115072);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Hunter" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!WoWSpell.FromId(13809).Cooldown) || (Me.HealthPercent &lt;= 30 &amp;&amp; !WoWSpell.FromId(19263).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<If Condition="Me.HealthPercent &lt;= 30" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(19263);" />
+			</If>
+			<If Condition="Me.HasAura(77769)" >
+				<CustomBehavior File="Misc\RunLua" Lua="CancelUnitBuff(&quot;player&quot;,&quot;Trap Launcher&quot;);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(13809);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Shaman" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!Me.HasAura(2645)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2645);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.DeathKnight" >
+	</If> Hmm.... -->
+	<!-- <If Condition="Me.Class == WoWClass.Warrior" >
+	</If>  Perhaps use of Enraged healing. -->
+	<If Condition="Me.Class == WoWClass.Paladin" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)) || (Me.HealthPercent &lt;= 10 &amp;&amp; !WoWSpell.FromId(633).Cooldown)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
+			<If Condition="Me.HealthPercent &lt;= 10" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(633);" />
+			</If>
+			<If Condition="!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)" >
+				<CustomBehavior File="Misc\RunLua" Lua="TargetNearestEnemy(); CastSpellByID(20271);" />
+			</If>
+		</CustomBehavior>
+	</If>
+<!-- END Declare movement buff hooks -->
+
 <While Condition="true" >
+
 		<If Condition="!(Me.MapId == 600) &amp;&amp; (Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
 			<If Condition="Me.Location.Distance(new WoWPoint(4893.181, -2042.959, 248.309 )) &lt; 17" > <!-- If we just used Traveler's Mammoth -->
 				<CustomBehavior File="MyCTM" X="4872.786" Y="-2032.948" Z="250.0702" />
@@ -878,50 +955,32 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<!-- Heavy Pull execution -->
 			<If Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;3&quot;">
 
-					<CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" UseCTM="True" >
-					    <Hotspot X="-537.1692" Y="-578.1137" Z="1.9140"  />
-					    <Hotspot X="-544.5040" Y="-579.6451" Z="1.0251"  />
-					    <Hotspot X="-517.4600" Y="-599.9984" Z="1.0250"  />
-					    <Hotspot X="-483.5866" Y="-606.0858" Z="1.4814"  />
-					    <Hotspot X="-469.5986" Y="-599.4240" Z="1.6413"  />
-					    <Hotspot X="-413.5121" Y="-603.0125" Z="1.0249"  />
-					    <Hotspot X="-384.3532" Y="-602.3880" Z="1.0249"  />
-					    <Hotspot X="-363.6618" Y="-608.0938" Z="2.2632"  />
-						<Hotspot X="-322.1031" Y="-647.5912" Z="10.9239"  />
-						<Hotspot X="-325.0045" Y="-658.7132" Z="10.3809"  />
-					    <Hotspot X="-324.2822" Y="-671.5656" Z="10.9238"  />
-					    <Hotspot X="-300.2212" Y="-667.8179" Z="10.9238"  />
-					    <Hotspot X="-278.3122" Y="-658.3167" Z="18.9390"  />
-					    <Hotspot X="-268.0731" Y="-659.5375" Z="26.5084"  />
-					</CustomBehavior>
+					    <RunTo X="-537.1692" Y="-578.1137" Z="1.9140"  />
+					    <RunTo X="-544.5040" Y="-579.6451" Z="1.0251"  />
+					    <RunTo X="-517.4600" Y="-599.9984" Z="1.0250"  />
+					    <RunTo X="-483.5866" Y="-606.0858" Z="1.4814"  />
+					    <RunTo X="-469.5986" Y="-599.4240" Z="1.6413"  />
+					    <RunTo X="-413.5121" Y="-603.0125" Z="1.0249"  />
+					    <RunTo X="-384.3532" Y="-602.3880" Z="1.0249"  />
+					    <RunTo X="-363.6618" Y="-608.0938" Z="2.2632"  />
+						<RunTo X="-322.1031" Y="-647.5912" Z="10.9239"  />
+						<RunTo X="-325.0045" Y="-658.7132" Z="10.3809"  />
+					    <RunTo X="-324.2822" Y="-671.5656" Z="10.9238"  />
+					    <RunTo X="-300.2212" Y="-667.8179" Z="10.9238"  />
+					    <RunTo X="-278.3122" Y="-658.3167" Z="18.9390"  />
+					    <RunTo X="-268.0731" Y="-659.5375" Z="26.5084"  />
+					<EnableBehavior Name="Combat" />
 					<EnableBehavior Name="Combat" />
 
 				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
 
-					<CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-				    	<Hotspot X="-257.2279" Y="-712.0146" Z="27.1521" />
-						<Hotspot X="-245.5512" Y="-723.813" Z="27.37361" />
-						<Hotspot X="-289.179" Y="-728.0784" Z="27.29649" />
-						<Hotspot X="-279.2386" Y="-711.1038" Z="27.29188" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+				    	<RunTo X="-257.2279" Y="-712.0146" Z="27.1521" />
+						<RunTo X="-245.5512" Y="-723.813" Z="27.37361" />
+						<RunTo X="-289.179" Y="-728.0784" Z="27.29649" />
+						<RunTo X="-279.2386" Y="-711.1038" Z="27.29188" />
+				    <EnableBehavior Name="Combat" />
 
 
 				    <RunTo X="-292.9587" Y="-716.4481" Z="27.53353" />
@@ -932,28 +991,19 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 
 				    <MoveTo X="-424.5214" Y="-695.5582" Z="28.57602" />
 
-					<CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-402.5685" Y="-670.2057" Z="26.64206" />
-						<Hotspot X="-454.369" Y="-652.0738" Z="28.42467" />
-						<Hotspot X="-501.23" Y="-651.8302" Z="30.22856" />
-						<Hotspot X="-497.2484" Y="-718.712" Z="30.24763" />
-						<Hotspot X="-512.645" Y="-725.9342" Z="30.24763" />
-						<Hotspot X="-533.1378" Y="-714.5676" Z="30.24775" />
-						<Hotspot X="-544.3643" Y="-704.096" Z="30.2448" />
-						<Hotspot X="-554.3542" Y="-689.1397" Z="30.70627" />
-						<Hotspot X="-543.3079" Y="-670.9773" Z="30.34695" />
-						<Hotspot X="-531.3521" Y="-660.9335" Z="30.28404" />
-						<Hotspot X="-530.1593" Y="-697.5297" Z="30.24668" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-402.5685" Y="-670.2057" Z="26.64206" />
+						<RunTo X="-454.369" Y="-652.0738" Z="28.42467" />
+						<RunTo X="-501.23" Y="-651.8302" Z="30.22856" />
+						<RunTo X="-497.2484" Y="-718.712" Z="30.24763" />
+						<RunTo X="-512.645" Y="-725.9342" Z="30.24763" />
+						<RunTo X="-533.1378" Y="-714.5676" Z="30.24775" />
+						<RunTo X="-544.3643" Y="-704.096" Z="30.2448" />
+						<RunTo X="-554.3542" Y="-689.1397" Z="30.70627" />
+						<RunTo X="-543.3079" Y="-670.9773" Z="30.34695" />
+						<RunTo X="-531.3521" Y="-660.9335" Z="30.28404" />
+						<RunTo X="-530.1593" Y="-697.5297" Z="30.24668" />
+				    <EnableBehavior Name="Combat" />
 
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
@@ -963,27 +1013,18 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <MoveTo X="-487.2624" Y="-709.7524" Z="30.24722" />
 				    <MoveTo X="-472.4294" Y="-631.804" Z="72.60222" />
 			
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-447.0287" Y="-603.547" Z="72.60651" />
-						<Hotspot X="-416.5739" Y="-595.7975" Z="72.60668" />
-						<Hotspot X="-405.4579" Y="-608.7828" Z="72.60668" />
-						<Hotspot X="-345.2475" Y="-611.0251" Z="72.60713" />
-						<Hotspot X="-342.2566" Y="-592.2085" Z="72.60779" />
-						<Hotspot X="-305.9066" Y="-612.2153" Z="72.59185" />
-						<Hotspot X="-288.0025" Y="-699.2864" Z="101.7704" />
-						<Hotspot X="-274.4177" Y="-728.6484" Z="101.7957" />
-						<Hotspot X="-268.0679" Y="-726.1499" Z="102.7696" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-447.0287" Y="-603.547" Z="72.60651" />
+						<RunTo X="-416.5739" Y="-595.7975" Z="72.60668" />
+						<RunTo X="-405.4579" Y="-608.7828" Z="72.60668" />
+						<RunTo X="-345.2475" Y="-611.0251" Z="72.60713" />
+						<RunTo X="-342.2566" Y="-592.2085" Z="72.60779" />
+						<RunTo X="-305.9066" Y="-612.2153" Z="72.59185" />
+						<RunTo X="-288.0025" Y="-699.2864" Z="101.7704" />
+						<RunTo X="-274.4177" Y="-728.6484" Z="101.7957" />
+						<RunTo X="-268.0679" Y="-726.1499" Z="102.7696" />
+				    <EnableBehavior Name="Combat" />
 
-					<CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 		<!-- Medium pull execution -->
 			<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;2&quot;" >
 				<If Condition="Me.IsAlive" >
@@ -997,21 +1038,21 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(108212);
 					" />
 				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" UseCTM="True" >
-					    <Hotspot X="-537.1692" Y="-578.1137" Z="1.9140"  />
-					    <Hotspot X="-544.5040" Y="-579.6451" Z="1.0251"  />
-					    <Hotspot X="-517.4600" Y="-599.9984" Z="1.0250"  />
-					    <Hotspot X="-483.5866" Y="-606.0858" Z="1.4814"  />
-					    <Hotspot X="-469.5986" Y="-599.4240" Z="1.6413"  />
-					    <Hotspot X="-413.5121" Y="-603.0125" Z="1.0249"  />
-					    <Hotspot X="-384.3532" Y="-602.3880" Z="1.0249"  />
-					    <Hotspot X="-363.6618" Y="-608.0938" Z="2.2632"  />
-						<Hotspot X="-322.1031" Y="-647.5912" Z="10.9239"  />
-						<Hotspot X="-325.0045" Y="-658.7132" Z="10.3809"  />
-					    <Hotspot X="-324.2822" Y="-671.5656" Z="10.9238"  />
-					    <Hotspot X="-300.2212" Y="-667.8179" Z="10.9238"  />
-					    <Hotspot X="-278.3122" Y="-658.3167" Z="18.9390"  />
-					    <Hotspot X="-268.0731" Y="-659.5375" Z="26.5084"  />
-					</CustomBehavior>
+					    <RunTo X="-537.1692" Y="-578.1137" Z="1.9140"  />
+					    <RunTo X="-544.5040" Y="-579.6451" Z="1.0251"  />
+					    <RunTo X="-517.4600" Y="-599.9984" Z="1.0250"  />
+					    <RunTo X="-483.5866" Y="-606.0858" Z="1.4814"  />
+					    <RunTo X="-469.5986" Y="-599.4240" Z="1.6413"  />
+					    <RunTo X="-413.5121" Y="-603.0125" Z="1.0249"  />
+					    <RunTo X="-384.3532" Y="-602.3880" Z="1.0249"  />
+					    <RunTo X="-363.6618" Y="-608.0938" Z="2.2632"  />
+						<RunTo X="-322.1031" Y="-647.5912" Z="10.9239"  />
+						<RunTo X="-325.0045" Y="-658.7132" Z="10.3809"  />
+					    <RunTo X="-324.2822" Y="-671.5656" Z="10.9238"  />
+					    <RunTo X="-300.2212" Y="-667.8179" Z="10.9238"  />
+					    <RunTo X="-278.3122" Y="-658.3167" Z="18.9390"  />
+					    <RunTo X="-268.0731" Y="-659.5375" Z="26.5084"  />
+					<EnableBehavior Name="Combat" />
 					<EnableBehavior Name="Combat" />
 				</If>
 
@@ -1026,24 +1067,15 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-				    	<Hotspot X="-257.2279" Y="-712.0146" Z="27.1521" />
-						<Hotspot X="-245.5512" Y="-723.813" Z="27.37361" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+				    	<RunTo X="-257.2279" Y="-712.0146" Z="27.1521" />
+						<RunTo X="-245.5512" Y="-723.813" Z="27.37361" />
+				    <EnableBehavior Name="Combat" />
 
-					<CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-289.179" Y="-728.0784" Z="27.29649" />
-						<Hotspot X="-279.2386" Y="-711.1038" Z="27.29188" />
-				    </CustomBehavior>
+					<DisableBehavior Name="Combat" />
+						<RunTo X="-289.179" Y="-728.0784" Z="27.29649" />
+						<RunTo X="-279.2386" Y="-711.1038" Z="27.29188" />
+				    <EnableBehavior Name="Combat" />
 
 				    <RunTo X="-292.9587" Y="-716.4481" Z="27.53353" />
 				    <MoveTo X="-338.6151" Y="-720.4265" Z="28.57711" />
@@ -1062,13 +1094,13 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-402.5685" Y="-670.2057" Z="26.64206" />
-						<Hotspot X="-454.369" Y="-652.0738" Z="28.42467" />
-						<Hotspot X="-501.23" Y="-651.8302" Z="30.22856" />
-						<Hotspot X="-497.2484" Y="-718.712" Z="30.24763" />
-						<Hotspot X="-512.645" Y="-725.9342" Z="30.24763" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-402.5685" Y="-670.2057" Z="26.64206" />
+						<RunTo X="-454.369" Y="-652.0738" Z="28.42467" />
+						<RunTo X="-501.23" Y="-651.8302" Z="30.22856" />
+						<RunTo X="-497.2484" Y="-718.712" Z="30.24763" />
+						<RunTo X="-512.645" Y="-725.9342" Z="30.24763" />
+				    <EnableBehavior Name="Combat" />
 
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
@@ -1079,14 +1111,14 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-536.3608" Y="-718.7067" Z="30.24651" />
-						<Hotspot X="-544.3643" Y="-704.096" Z="30.2448" />
-						<Hotspot X="-554.3542" Y="-689.1397" Z="30.70627" />
-						<Hotspot X="-543.3079" Y="-670.9773" Z="30.34695" />
-						<Hotspot X="-531.3521" Y="-660.9335" Z="30.28404" />
-						<Hotspot X="-530.1593" Y="-697.5297" Z="30.24668" />
-				    </CustomBehavior>
+					<DisableBehavior Name="Combat" />
+						<RunTo X="-536.3608" Y="-718.7067" Z="30.24651" />
+						<RunTo X="-544.3643" Y="-704.096" Z="30.2448" />
+						<RunTo X="-554.3542" Y="-689.1397" Z="30.70627" />
+						<RunTo X="-543.3079" Y="-670.9773" Z="30.34695" />
+						<RunTo X="-531.3521" Y="-660.9335" Z="30.28404" />
+						<RunTo X="-530.1593" Y="-697.5297" Z="30.24668" />
+				    <EnableBehavior Name="Combat" />
 
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
@@ -1104,24 +1136,24 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-447.0287" Y="-603.547" Z="72.60651" />
-						<Hotspot X="-416.5739" Y="-595.7975" Z="72.60668" />
-						<Hotspot X="-405.4579" Y="-608.7828" Z="72.60668" />
-						<Hotspot X="-345.2475" Y="-611.0251" Z="72.60713" />
-						<Hotspot X="-342.2566" Y="-592.2085" Z="72.60779" />
-						<Hotspot X="-305.9066" Y="-612.2153" Z="72.59185" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-447.0287" Y="-603.547" Z="72.60651" />
+						<RunTo X="-416.5739" Y="-595.7975" Z="72.60668" />
+						<RunTo X="-405.4579" Y="-608.7828" Z="72.60668" />
+						<RunTo X="-345.2475" Y="-611.0251" Z="72.60713" />
+						<RunTo X="-342.2566" Y="-592.2085" Z="72.60779" />
+						<RunTo X="-305.9066" Y="-612.2153" Z="72.59185" />
+				    <EnableBehavior Name="Combat" />
 
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-288.0025" Y="-699.2864" Z="101.7704" />
-						<Hotspot X="-274.4177" Y="-728.6484" Z="101.7957" />
-						<Hotspot X="-268.0679" Y="-726.1499" Z="102.7696" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-288.0025" Y="-699.2864" Z="101.7704" />
+						<RunTo X="-274.4177" Y="-728.6484" Z="101.7957" />
+						<RunTo X="-268.0679" Y="-726.1499" Z="102.7696" />
+				    <EnableBehavior Name="Combat" />
 			</ElseIf>
 		<!-- Lite pull execution -->
 			<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;1&quot;" >
@@ -1135,21 +1167,21 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(108212);
 					" />
 				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" UseCTM="True" >
-					    <Hotspot X="-537.1692" Y="-578.1137" Z="1.9140"  />
-					    <Hotspot X="-544.5040" Y="-579.6451" Z="1.0251"  />
-					    <Hotspot X="-517.4600" Y="-599.9984" Z="1.0250"  />
-					    <Hotspot X="-483.5866" Y="-606.0858" Z="1.4814"  />
-					    <Hotspot X="-469.5986" Y="-599.4240" Z="1.6413"  />
-					    <Hotspot X="-413.5121" Y="-603.0125" Z="1.0249"  />
-					    <Hotspot X="-384.3532" Y="-602.3880" Z="1.0249"  />
-					    <Hotspot X="-363.6618" Y="-608.0938" Z="2.2632"  />
-						<Hotspot X="-322.1031" Y="-647.5912" Z="10.9239"  />
-						<Hotspot X="-325.0045" Y="-658.7132" Z="10.3809"  />
-					    <Hotspot X="-324.2822" Y="-671.5656" Z="10.9238"  />
-					    <Hotspot X="-300.2212" Y="-667.8179" Z="10.9238"  />
-					    <Hotspot X="-278.3122" Y="-658.3167" Z="18.9390"  />
-					    <Hotspot X="-268.0731" Y="-659.5375" Z="26.5084"  />
-					</CustomBehavior>
+					    <RunTo X="-537.1692" Y="-578.1137" Z="1.9140"  />
+					    <RunTo X="-544.5040" Y="-579.6451" Z="1.0251"  />
+					    <RunTo X="-517.4600" Y="-599.9984" Z="1.0250"  />
+					    <RunTo X="-483.5866" Y="-606.0858" Z="1.4814"  />
+					    <RunTo X="-469.5986" Y="-599.4240" Z="1.6413"  />
+					    <RunTo X="-413.5121" Y="-603.0125" Z="1.0249"  />
+					    <RunTo X="-384.3532" Y="-602.3880" Z="1.0249"  />
+					    <RunTo X="-363.6618" Y="-608.0938" Z="2.2632"  />
+						<RunTo X="-322.1031" Y="-647.5912" Z="10.9239"  />
+						<RunTo X="-325.0045" Y="-658.7132" Z="10.3809"  />
+					    <RunTo X="-324.2822" Y="-671.5656" Z="10.9238"  />
+					    <RunTo X="-300.2212" Y="-667.8179" Z="10.9238"  />
+					    <RunTo X="-278.3122" Y="-658.3167" Z="18.9390"  />
+					    <RunTo X="-268.0731" Y="-659.5375" Z="26.5084"  />
+					<EnableBehavior Name="Combat" />
 					<EnableBehavior Name="Combat" />
 
 				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
@@ -1163,24 +1195,15 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-				    	<Hotspot X="-257.2279" Y="-712.0146" Z="27.1521" />
-						<Hotspot X="-245.5512" Y="-723.813" Z="27.37361" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+				    	<RunTo X="-257.2279" Y="-712.0146" Z="27.1521" />
+						<RunTo X="-245.5512" Y="-723.813" Z="27.37361" />
+				    <EnableBehavior Name="Combat" />
 
-					<CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-289.179" Y="-728.0784" Z="27.29649" />
-						<Hotspot X="-279.2386" Y="-711.1038" Z="27.29188" />
-				    </CustomBehavior>
+					<DisableBehavior Name="Combat" />
+						<RunTo X="-289.179" Y="-728.0784" Z="27.29649" />
+						<RunTo X="-279.2386" Y="-711.1038" Z="27.29188" />
+				    <EnableBehavior Name="Combat" />
 
 				    <RunTo X="-292.9587" Y="-716.4481" Z="27.53353" />
 				    <MoveTo X="-338.6151" Y="-720.4265" Z="28.57711" />
@@ -1199,10 +1222,10 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-402.5685" Y="-670.2057" Z="26.64206" />
-						<Hotspot X="-454.369" Y="-652.0738" Z="28.42467" />
-					</CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-402.5685" Y="-670.2057" Z="26.64206" />
+						<RunTo X="-454.369" Y="-652.0738" Z="28.42467" />
+					<EnableBehavior Name="Combat" />
 
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
@@ -1213,11 +1236,11 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> //
-						<Hotspot X="-501.23" Y="-651.8302" Z="30.22856" />
-						<Hotspot X="-497.2484" Y="-718.712" Z="30.24763" />
-						<Hotspot X="-512.645" Y="-725.9342" Z="30.24763" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" /> //
+						<RunTo X="-501.23" Y="-651.8302" Z="30.22856" />
+						<RunTo X="-497.2484" Y="-718.712" Z="30.24763" />
+						<RunTo X="-512.645" Y="-725.9342" Z="30.24763" />
+				    <EnableBehavior Name="Combat" />
 
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
@@ -1228,11 +1251,11 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-536.3608" Y="-718.7067" Z="30.24651" />
-						<Hotspot X="-544.3643" Y="-704.096" Z="30.2448" />
-						<Hotspot X="-554.3542" Y="-689.1397" Z="30.70627" />
-					</CustomBehavior>
+					<DisableBehavior Name="Combat" />
+						<RunTo X="-536.3608" Y="-718.7067" Z="30.24651" />
+						<RunTo X="-544.3643" Y="-704.096" Z="30.2448" />
+						<RunTo X="-554.3542" Y="-689.1397" Z="30.70627" />
+					<EnableBehavior Name="Combat" />
 
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
@@ -1243,11 +1266,11 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(1850);
 						CastSpellByID(108212);
 					" />
-					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> //
-						<Hotspot X="-543.3079" Y="-670.9773" Z="30.34695" />
-						<Hotspot X="-531.3521" Y="-660.9335" Z="30.28404" />
-						<Hotspot X="-530.1593" Y="-697.5297" Z="30.24668" />
-				    </CustomBehavior>
+					<DisableBehavior Name="Combat" /> //
+						<RunTo X="-543.3079" Y="-670.9773" Z="30.34695" />
+						<RunTo X="-531.3521" Y="-660.9335" Z="30.28404" />
+						<RunTo X="-530.1593" Y="-697.5297" Z="30.24668" />
+				    <EnableBehavior Name="Combat" />
 
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
@@ -1257,11 +1280,11 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <MoveTo X="-487.2624" Y="-709.7524" Z="30.24722" />
 				    <MoveTo X="-472.4294" Y="-631.804" Z="72.60222" />
 
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-447.0287" Y="-603.547" Z="72.60651" />
-						<Hotspot X="-416.5739" Y="-595.7975" Z="72.60668" />
-						<Hotspot X="-405.4579" Y="-608.7828" Z="72.60668" />
-					</CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-447.0287" Y="-603.547" Z="72.60651" />
+						<RunTo X="-416.5739" Y="-595.7975" Z="72.60668" />
+						<RunTo X="-405.4579" Y="-608.7828" Z="72.60668" />
+					<EnableBehavior Name="Combat" />
 
 				    <CustomBehavior File="Misc\RunLUA" Lua="
 						CastSpellByID(2645);
@@ -1273,21 +1296,21 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						CastSpellByID(108212);
 					" />
 
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1"> //
-						<Hotspot X="-345.2475" Y="-611.0251" Z="72.60713" />
-						<Hotspot X="-342.2566" Y="-592.2085" Z="72.60779" />
-						<Hotspot X="-305.9066" Y="-612.2153" Z="72.59185" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" /> //
+						<RunTo X="-345.2475" Y="-611.0251" Z="72.60713" />
+						<RunTo X="-342.2566" Y="-592.2085" Z="72.60779" />
+						<RunTo X="-305.9066" Y="-612.2153" Z="72.59185" />
+				    <EnableBehavior Name="Combat" />
 
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
-						<Hotspot X="-288.0025" Y="-699.2864" Z="101.7704" />
-						<Hotspot X="-274.4177" Y="-728.6484" Z="101.7957" />
-						<Hotspot X="-268.0679" Y="-726.1499" Z="102.7696" />
-				    </CustomBehavior>
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-288.0025" Y="-699.2864" Z="101.7704" />
+						<RunTo X="-274.4177" Y="-728.6484" Z="101.7957" />
+						<RunTo X="-268.0679" Y="-726.1499" Z="102.7696" />
+				    <EnableBehavior Name="Combat" />
 			</ElseIf>
 			</If>
 				    <MoveTo X="-245.4132" Y="-730.9987" Z="116.4721" />
@@ -1306,15 +1329,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <MoveTo X="-317.2586" Y="-577.3348" Z="11.00636" />
 				    <MoveTo X="-372.7647" Y="-595.0178" Z="2.462813" />
 				    <MoveTo X="-460.0569" Y="-600.3992" Z="1.956773" />
-					<CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 				    <MoveTo X="-529.5821" Y="-588.1884" Z="2.457371" />
 				    <MoveTo X="-531.9599" Y="-539.5211" Z="3.328138" />
 				    <MoveTo X="-507.212" Y="-511.9265" Z="11.04625" />
