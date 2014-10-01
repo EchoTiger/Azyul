@@ -955,7 +955,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<!-- Heavy Pull execution -->
 			<If Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;3&quot;">
 
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" UseCTM="True" >
+				    <DisableBehavior Name="Combat"
 					    <RunTo X="-537.1692" Y="-578.1137" Z="1.9140"  />
 					    <RunTo X="-544.5040" Y="-579.6451" Z="1.0251"  />
 					    <RunTo X="-517.4600" Y="-599.9984" Z="1.0250"  />
@@ -970,7 +970,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					    <RunTo X="-300.2212" Y="-667.8179" Z="10.9238"  />
 					    <RunTo X="-278.3122" Y="-658.3167" Z="18.9390"  />
 					    <RunTo X="-268.0731" Y="-659.5375" Z="26.5084"  />
-					<EnableBehavior Name="Combat" />
 					<EnableBehavior Name="Combat" />
 
 				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
@@ -1028,16 +1027,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<!-- Medium pull execution -->
 			<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;2&quot;" >
 				<If Condition="Me.IsAlive" >
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" UseCTM="True" >
+				    <DisableBehavior Name="Combat" />
 					    <RunTo X="-537.1692" Y="-578.1137" Z="1.9140"  />
 					    <RunTo X="-544.5040" Y="-579.6451" Z="1.0251"  />
 					    <RunTo X="-517.4600" Y="-599.9984" Z="1.0250"  />
@@ -1053,20 +1043,10 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					    <RunTo X="-278.3122" Y="-658.3167" Z="18.9390"  />
 					    <RunTo X="-268.0731" Y="-659.5375" Z="26.5084"  />
 					<EnableBehavior Name="Combat" />
-					<EnableBehavior Name="Combat" />
 				</If>
 
 				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
 
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 				    <DisableBehavior Name="Combat" />
 				    	<RunTo X="-257.2279" Y="-712.0146" Z="27.1521" />
 						<RunTo X="-245.5512" Y="-723.813" Z="27.37361" />
@@ -1085,15 +1065,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 
 				    <MoveTo X="-424.5214" Y="-695.5582" Z="28.57602" />
 
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 				    <DisableBehavior Name="Combat" />
 						<RunTo X="-402.5685" Y="-670.2057" Z="26.64206" />
 						<RunTo X="-454.369" Y="-652.0738" Z="28.42467" />
@@ -1102,15 +1073,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<RunTo X="-512.645" Y="-725.9342" Z="30.24763" />
 				    <EnableBehavior Name="Combat" />
 
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 					<DisableBehavior Name="Combat" />
 						<RunTo X="-536.3608" Y="-718.7067" Z="30.24651" />
 						<RunTo X="-544.3643" Y="-704.096" Z="30.2448" />
@@ -1127,15 +1089,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <MoveTo X="-508.7027" Y="-727.5312" Z="30.24722" />
 				    <MoveTo X="-487.2624" Y="-709.7524" Z="30.24722" />
 				    <MoveTo X="-472.4294" Y="-631.804" Z="72.60222" />
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 				    <DisableBehavior Name="Combat" />
 						<RunTo X="-447.0287" Y="-603.547" Z="72.60651" />
 						<RunTo X="-416.5739" Y="-595.7975" Z="72.60668" />
@@ -1157,16 +1110,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			</ElseIf>
 		<!-- Lite pull execution -->
 			<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;1&quot;" >
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
-				    <CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" UseCTM="True" >
+				    <DisableBehavior Name="Combat" />
 					    <RunTo X="-537.1692" Y="-578.1137" Z="1.9140"  />
 					    <RunTo X="-544.5040" Y="-579.6451" Z="1.0251"  />
 					    <RunTo X="-517.4600" Y="-599.9984" Z="1.0250"  />
@@ -1182,19 +1126,9 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					    <RunTo X="-278.3122" Y="-658.3167" Z="18.9390"  />
 					    <RunTo X="-268.0731" Y="-659.5375" Z="26.5084"  />
 					<EnableBehavior Name="Combat" />
-					<EnableBehavior Name="Combat" />
 
 				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
 
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 				    <DisableBehavior Name="Combat" />
 				    	<RunTo X="-257.2279" Y="-712.0146" Z="27.1521" />
 						<RunTo X="-245.5512" Y="-723.813" Z="27.37361" />
@@ -1213,59 +1147,23 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 
 				    <MoveTo X="-424.5214" Y="-695.5582" Z="28.57602" />
 
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 				    <DisableBehavior Name="Combat" />
 						<RunTo X="-402.5685" Y="-670.2057" Z="26.64206" />
 						<RunTo X="-454.369" Y="-652.0738" Z="28.42467" />
 					<EnableBehavior Name="Combat" />
 
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 				    <DisableBehavior Name="Combat" /> //
 						<RunTo X="-501.23" Y="-651.8302" Z="30.22856" />
 						<RunTo X="-497.2484" Y="-718.712" Z="30.24763" />
 						<RunTo X="-512.645" Y="-725.9342" Z="30.24763" />
 				    <EnableBehavior Name="Combat" />
 
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 					<DisableBehavior Name="Combat" />
 						<RunTo X="-536.3608" Y="-718.7067" Z="30.24651" />
 						<RunTo X="-544.3643" Y="-704.096" Z="30.2448" />
 						<RunTo X="-554.3542" Y="-689.1397" Z="30.70627" />
 					<EnableBehavior Name="Combat" />
 
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 					<DisableBehavior Name="Combat" /> //
 						<RunTo X="-543.3079" Y="-670.9773" Z="30.34695" />
 						<RunTo X="-531.3521" Y="-660.9335" Z="30.28404" />
@@ -1286,15 +1184,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<RunTo X="-405.4579" Y="-608.7828" Z="72.60668" />
 					<EnableBehavior Name="Combat" />
 
-				    <CustomBehavior File="Misc\RunLUA" Lua="
-						CastSpellByID(2645);
-						CastSpellByID(2983);
-						CastSpellByID(17);
-						CastSpellByID(85499);
-						CastSpellByID(108843);
-						CastSpellByID(1850);
-						CastSpellByID(108212);
-					" />
 
 				    <DisableBehavior Name="Combat" /> //
 						<RunTo X="-345.2475" Y="-611.0251" Z="72.60713" />
