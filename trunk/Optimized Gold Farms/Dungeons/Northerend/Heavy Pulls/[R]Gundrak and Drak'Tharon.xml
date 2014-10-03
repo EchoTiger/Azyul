@@ -559,7 +559,7 @@
 		</CustomBehavior>
 	</If>
 	<If Condition="Me.Class == WoWClass.Shaman" >
-		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!Me.HasAura(2645)" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!Me.HasAura(2645))" >
 			<CustomBehavior File="Message" Text="[Azyul]: Attempting use of passive defensive maneuvers." LogColor="Orchid" />
 			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2645);" />
 		</CustomBehavior>
@@ -611,7 +611,7 @@
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			<If Condition="!(Me.MapId == 600)" >
 				<RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
-				<CustomBehavior File="MyCTM" X="4774.691" Y="-2015.088" Z="229.3516" TerminateWhen="Me.MapId == 600" />
+				<CustomBehavior File="GoThruPortal" RetryDelay="20" Timeout="30000" X="4774.691" Y="-2015.088" Z="229.3516" />
 			</If>
 			<If Condition="(Me.MapId == 600)" >
 				<DisableBehavior Name="Combat" /> <!-- Avoid spiders on second level -->
@@ -728,7 +728,7 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />  
 
 			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
-				<CustomBehavior File="MyCTM" X="-525.4516" Y="-474.7986" Z="10.98291" TerminateWhen="Me.MapId != 600" />
+				<CustomBehavior File="GoThruPortal" RetryDelay="20" Timeout="30000" X="-525.4516" Y="-474.7986" Z="10.98291" />
 			    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			</If>
 		</While>
