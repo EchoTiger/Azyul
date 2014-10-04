@@ -420,7 +420,7 @@
 						<If Condition="Me.Class == WoWClass.Hunter" >
 							<CustomBehavior File="InteractWith" InteractByCastingSpellId="2643" Range="39" NumOfTimes="100" MobId1="10461" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
 						</If>
-						<If Condition="!Me.Class == WoWClass.Hunter || !Me.Class == WoWClass.Warlock" >
+						<If Condition="Me.Class != WoWClass.Hunter || Me.Class != WoWClass.Warlock" >
 							<CustomBehavior File="InteractWith" MobId1="10461" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
 							<CustomBehavior File="RunMacro" Macro="/targetenemy" />
 							<CustomBehavior File="Misc\RunLua" NumOfTimes="2" Lua="
