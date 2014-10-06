@@ -503,7 +503,12 @@
 
 			<RunTo X="-0.7623158" Y="1.010749" Z="-0.9534453" />
 
-			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 			<CustomBehavior File="Misc\RunLUA" Lua="ShowPizzaMessage = GetMoney();" /> 
 			<CustomBehavior File="Misc\RunLUA" Lua="WarningIconChat = GetTime();" /> 
 			<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 

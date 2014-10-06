@@ -564,7 +564,12 @@
 			totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);
 			print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))
 			" />
-		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+			<Else>
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			</Else>
+		</If>
 		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 			<Hotspot X="-10688.62" Y="-1309.633" Z="17.62269" />
 		</CustomBehavior>

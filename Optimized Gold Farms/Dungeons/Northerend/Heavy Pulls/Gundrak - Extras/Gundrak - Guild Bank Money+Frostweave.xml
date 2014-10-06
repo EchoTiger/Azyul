@@ -704,7 +704,12 @@
 
 			<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
-		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 		    <CustomBehavior File="MyCTM" X="1905.168" Y="640.1153" Z="176.6356" TerminateWhen="Me.MapId != 604" />
 							<CustomBehavior File="WaitTimer" WaitTime="1100" />
 			<While Condition="!(StyxWoW.IsInWorld)" >
