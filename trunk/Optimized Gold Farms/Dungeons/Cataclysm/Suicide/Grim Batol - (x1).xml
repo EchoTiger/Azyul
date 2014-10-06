@@ -612,7 +612,12 @@
 
 				<RunTo X="-624.6456" Y="-188.0161" Z="272.0483" /> <!-- Before instance portal. -->
 
-				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 				<RunTo X="-624.7546" Y="-185.558" Z="272.062" />
 				<CustomBehavior File="MyCTM" X="-640.3558" Y="-150.5583" Z="272.1352" TerminateWhen="Me.MapId != 670" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />

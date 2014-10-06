@@ -78,7 +78,12 @@
 	<DisableBehavior Name="Pull" />
 		<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
 		<RunTo X="8.428388" Y="-18.08784" Z="-2.754004" /> <!-- Run to in front of instance -->
-		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+			<Else>
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			</Else>
+		</If>
 	    <CustomBehavior File="MyCTM" X="4.744936" Y="-10.7971" Z="-2.753272" />
 	    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 	<EnableBehavior Name="Pull" />
@@ -98,7 +103,12 @@
 	<DisableBehavior Name="Pull" />
 		<CustomBehavior File="Message" Text="\nBot started inside of instance, moving out." LogColor="Red" />
 		<RunTo X="-0.3524668" Y="-0.2714353" Z="-1.129797" /> <!-- Run back to the instance entrance -->
-		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+			<Else>
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			</Else>
+		</If>
 		<CustomBehavior File="MyCTM" X="8.625723" Y="-0.285159" Z="-1.129767" />
 		<CustomBehavior File="WaitTimer" WaitTime="11000" />
 		<While Condition="!(StyxWoW.IsInWorld)" >
@@ -680,7 +690,12 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(ShowWipeMessage), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
 
 
-				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 				<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="Misc\RunLUA" Lua="
@@ -829,7 +844,12 @@
 					print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(ShowWipeMessage), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)
 					" />
 
-				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 				<CustomBehavior File="MyCTM" X="72.03339" Y="149.8745" Z="25.58112" /> <!--Exits Instance -->
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="Misc\RunLUA" Lua="
@@ -964,7 +984,12 @@
 			<EnableBehavior Name="Combat" />
 
 
-			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 			<CustomBehavior File="MyCTM" X="-4.845096" Y="0.7352772" Z="-0.2067001" /> <!--Exits Instance -->
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			<CustomBehavior File="Misc\RunLUA" Lua="

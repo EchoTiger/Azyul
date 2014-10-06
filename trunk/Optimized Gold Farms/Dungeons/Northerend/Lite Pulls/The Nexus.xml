@@ -691,7 +691,12 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconChat = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
 
-			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+					<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+					<Else>
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+					</Else>
+				</If>
 				<CustomBehavior File="MyCTM" X="145.8862" Y="-16.48927" Z="-16.63667" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />

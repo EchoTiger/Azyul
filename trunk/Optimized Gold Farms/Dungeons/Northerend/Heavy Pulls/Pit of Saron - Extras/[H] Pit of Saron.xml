@@ -747,7 +747,12 @@
 					</If>
 
 
-					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+					<If Condition="(Me.FreeBagSlots &lt; 17)" >
+						<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+						<Else>
+							<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+						</Else>
+					</If>
 					<CustomBehavior File="MyCTM" X="425.3003" Y="212.2813" Z="529.9125" />
 								<CustomBehavior File="WaitTimer" WaitTime="1100" />
 			<While Condition="!(StyxWoW.IsInWorld)" >

@@ -607,7 +607,12 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="ShowPizzaMessage = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconChat = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
-				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 				<CustomBehavior File="MyCTM" X="1330.933" Y="276.6876" Z="53.39822" />
 				<CustomBehavior File="WaitTimer" WaitTime="11000" />
 				<While Condition="!(StyxWoW.IsInWorld)" >

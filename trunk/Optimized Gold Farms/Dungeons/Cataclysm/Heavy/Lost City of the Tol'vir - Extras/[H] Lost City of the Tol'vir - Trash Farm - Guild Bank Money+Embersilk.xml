@@ -617,7 +617,12 @@
 			totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);
 			print(&quot;|cFFF0F0F0Statistics so far|r:\nYou've picked up &quot;, GetCoinTextureString(ShowWipeMessage), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)
 			" />
-		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+			<Else>
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			</Else>
+		</If>
 		<CustomBehavior File="MyCTM" X="-10688.83" Y="-1309.427" Z="17.63992" />
 		<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 

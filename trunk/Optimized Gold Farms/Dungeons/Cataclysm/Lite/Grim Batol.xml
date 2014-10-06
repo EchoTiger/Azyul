@@ -582,7 +582,12 @@
 
 
 
-				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 				<RunTo X="-624.7546" Y="-185.558" Z="272.062" />
 				<CustomBehavior File="MyCTM" X="-627.3558" Y="-175.5583" Z="272.1352" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />

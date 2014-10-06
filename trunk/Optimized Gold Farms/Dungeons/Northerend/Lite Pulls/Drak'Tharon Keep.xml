@@ -475,8 +475,14 @@
 		<DisableBehavior Name="Vendor" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
         <CustomBehavior File="Message" Text="Looks like we died, returning to instance." LogColor="Yellow" />
-        <RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
-        <CustomBehavior File="GoThruPortal" Timeout="30000" X="4774.691" Y="-2015.088" Z="229.3516" />
+		<CustomBehavior File="MyCTM" X="4436.68" Y="-1981.023" Z="159.1304" />
+		<CustomBehavior File="MyCTM" X="4472.991" Y="-2022.318" Z="161.5905" />
+		<CustomBehavior File="MyCTM" X="4641.027" Y="-2029.021" Z="183.8633" />
+		<CustomBehavior File="MyCTM" X="4662.697" Y="-2042.861" Z="184.188" />
+		<CustomBehavior File="MyCTM" X="4683.886" Y="-2045.152" Z="191.2767" />
+		<CustomBehavior File="MyCTM" X="4762.348" Y="-2044.422" Z="229.3993" />
+		<CustomBehavior File="MyCTM" X="4774.139" Y="-2032.782" Z="229.3779" />
+		<CustomBehavior File="GoThruPortal" Timeout="30000" X="4774.691" Y="-2015.088" Z="229.3516" />
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
 </CustomBehavior>
@@ -729,7 +735,12 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconChat = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
 					
-			    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+					<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+					<Else>
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+					</Else>
+				</If>
 				<CustomBehavior File="MyCTM" X="-525.4516" Y="-474.7986" Z="10.98291" TerminateWhen="Me.MapId != 600" />
 			    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			</If>

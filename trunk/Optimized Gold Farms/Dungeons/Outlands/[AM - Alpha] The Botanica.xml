@@ -1050,7 +1050,12 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
 
 
-				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 				<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="Misc\RunLUA" Lua="

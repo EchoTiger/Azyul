@@ -432,7 +432,12 @@
 			<EnableBehavior Name="Combat" />
 
 
-			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 			<CustomBehavior File="MyCTM" X="-4.845096" Y="0.7352772" Z="-0.2067001" /> <!--Exits Instance -->
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			<CustomBehavior File="Misc\RunLUA" Lua="

@@ -515,7 +515,12 @@
 			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
 
 
-			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				</Else>
+			</If>
 		    <CustomBehavior File="MyCTM" X="-1358.846" Y="1634.4" Z="68.48954" TerminateWhen="Me.MapId != 543" />
 		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
