@@ -467,6 +467,7 @@
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
 </CustomBehavior>
+<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 
 <While Condition="true" >
 	<If Condition="!(Me.MapId == 755) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
@@ -480,6 +481,7 @@
 	</If>
 	<If Condition="(Me.MapId == 755)" >
 		<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+		<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
 		<CustomBehavior File="Misc\RunLUA" Lua="
 				ShowLoadMessage = GetMoney();
 				ShowEngageMessage = GetMoney();
@@ -564,6 +566,7 @@
 			totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);
 			print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))
 			" />
+		<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
 			<Else>

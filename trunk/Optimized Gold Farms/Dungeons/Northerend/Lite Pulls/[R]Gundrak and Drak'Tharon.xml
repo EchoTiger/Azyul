@@ -491,6 +491,7 @@
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
 </CustomBehavior>
+<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
 <CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
 		<DisableBehavior Name="Death" />
 		<DisableBehavior Name="Vendor" />
@@ -503,6 +504,7 @@
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
 </CustomBehavior>
+<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Disable" />
 
 <!-- Declare movement buff and defensive hooks -->
 	<If Condition="Me.Class == WoWClass.Mage" >
@@ -584,8 +586,6 @@
 
 
 	<If Condition="Chance(50.0)"> <!-- Drak'Tharon -->
-		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Disable" />
-		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Enable" />
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Drak'Tharon." LogColor="DeepSkyBlue" />
 
@@ -623,6 +623,8 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="ShowEngageMessage = GetMoney();" />
 
  				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Disable" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Enable" />
 			    <RunTo X="-515.2283" Y="-500.0652" Z="11.0231"  />
 			    <RunTo X="-508.0701" Y="-514.1385" Z="11.0453"  />
 			    <RunTo X="-537.1221" Y="-551.0976" Z="2.2656"  />
@@ -757,7 +759,7 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="ShowPizzaMessage = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconChat = GetTime();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
-					
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
 				<If Condition="(Me.FreeBagSlots &lt; 17)" >
 					<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
 					<Else>
@@ -821,8 +823,6 @@
 	</If>
 
 	<If Condition="Chance(50.0)"> <!-- Gundrak -->
-		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Enable" />
-		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Gundrak." LogColor="DeepSkyBlue" />
 
@@ -849,6 +849,8 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="ShowEngageMessage = GetMoney();" />
 
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Enable" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
 
 				<MoveTo X="1854.622" Y="640.1485" Z="175.8663" />
 				<MoveTo X="1853.228" Y="638.6234" Z="175.802" />
@@ -972,6 +974,7 @@
 
 
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Disable" />
 
 				<If Condition="(Me.FreeBagSlots &lt; 17)" >
 					<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
