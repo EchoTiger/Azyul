@@ -482,7 +482,7 @@
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
 </CustomBehavior>
-<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 
 <!-- Declare movement buff and defensive hooks -->
 	<If Condition="Me.Class == WoWClass.Mage" >
@@ -596,7 +596,7 @@
 				<CustomBehavior File="Misc\RunLUA" Lua="ShowEngageMessage = GetMoney();" />
 
  				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
- 				<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
+ 				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
 			    <RunTo X="-515.2283" Y="-500.0652" Z="11.0231"  />
 			    <RunTo X="-508.0701" Y="-514.1385" Z="11.0453"  />
 			    <RunTo X="-537.1221" Y="-551.0976" Z="2.2656"  />
@@ -716,7 +716,7 @@
 
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw pause" />
-				<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 
 				<CustomBehavior File="Misc\RunLUA" Lua="ShowPizzaMessage = GetMoney();" />
 				<CustomBehavior File="Misc\RunLUA" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
