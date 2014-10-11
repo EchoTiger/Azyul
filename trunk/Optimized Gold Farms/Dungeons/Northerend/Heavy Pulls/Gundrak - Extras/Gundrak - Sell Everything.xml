@@ -491,7 +491,7 @@
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
 </CustomBehavior>
-<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 <!-- Declare movement buff and defensive hooks -->
 	<If Condition="Me.Class == WoWClass.Mage" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance) &amp;&amp; (!WoWSpell.FromId(11426).Cooldown &amp;&amp; Me.KnowsSpell(11426))" > <!-- (!WoWSpell.FromId(1953).Cooldown) ||  -->
@@ -594,7 +594,7 @@
 			<CustomBehavior File="Misc\RunLUA" Lua="ShowEngageMessage = GetMoney();" />
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-			<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
 
 			<MoveTo X="1854.622" Y="640.1485" Z="175.8663" />
 			<MoveTo X="1853.228" Y="638.6234" Z="175.802" />
@@ -704,7 +704,7 @@
 
 
 			<CustomBehavior File="RunMacro" Macro="/sw pause" />
-			<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 
 			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
