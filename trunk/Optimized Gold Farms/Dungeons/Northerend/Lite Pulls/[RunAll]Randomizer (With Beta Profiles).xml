@@ -790,7 +790,8 @@
 				<If Condition="!(Me.MapId == 604)" >
 					<RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
 					<!--<CustomBehavior File="MyCTM" X="6973.58" Y="-4400.046" Z="441.5751" />-->
-					<CustomBehavior File="MyCTM" X="7025.931" Y="-4345.251" Z="449.7054" TerminateWhen="Me.MapId == 604" />
+					<CustomBehavior File="MyCTM" X="7025.931" Y="-4345.251" Z="449.7054" TerminateWhen="Me.IsMoving" />
+					<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="Me.MapId == 604" />
 				</If>
 				<If Condition="(Me.MapId == 604)" >
 					<CustomBehavior File="RunMacro" Macro="/sw clear" />
