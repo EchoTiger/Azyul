@@ -487,7 +487,7 @@
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
 </CustomBehavior>
-<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 
 	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
 		<While Condition="(Me.FreeBagSlots &gt;= 17)">
@@ -503,7 +503,7 @@
 			</If>
 			<If Condition="(Me.MapId == 670)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-				<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
 				<CustomBehavior File="Misc\RunLUA" Lua="
 					ShowLoadMessage = GetMoney();
 					ShowEngageMessage = GetMoney();
@@ -651,7 +651,7 @@
 							<RunTo X="-533.5356" Y="-308.2173" Z="268.7674" /> <!-- Long Run Back #1-->
 							<CustomBehavior File="MyCTM" X="-533.8972" Y="-259.8702" Z="276.488" />
 							<RunTo X="-623.868" Y="-192.9199" Z="272.0293" /> <!-- Before instance portal. -->
-							<CustomBehavior File="Misc\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
+							<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 							<If Condition="(Me.FreeBagSlots &lt; 17)" >
 								<CustomBehavior File="Message" Text="[Azyul]: Skipping wait since we're going to the vendor." />
 								<Else>
