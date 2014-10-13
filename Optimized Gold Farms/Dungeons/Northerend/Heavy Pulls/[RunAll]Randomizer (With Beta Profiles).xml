@@ -772,6 +772,11 @@
 	<If Condition="Chance(14.3)"> <!-- Gundrak -->
 		<CustomBehavior File="Message" Text="Randomizing dungeons." LogColor="DarkCyan" />
 		<CustomBehavior File="Message" Text="Heading to Gundrak." LogColor="DeepSkyBlue" />
+		<If Condition="Me.Location.Distance(new WoWPoint(4822.283, -2039.614, 239.7233)) &lt;= 65" > <!-- If just came out of Drak'tharon -->
+			<CustomBehavior File="MyCTM" X="4779.117" Y="-2037.057" Z="229.4113" />
+			<CustomBehavior File="MyCTM" X="4841.16" Y="-2037.29" Z="250.0716" />
+			<CustomBehavior File="MyCTM" X="4895.43" Y="-2032.036" Z="248.31" />		
+		</If>
 		<If Condition="!(Me.MapId == 604) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="Me.Location.Distance(new WoWPoint(6944.809, -4426.977, 450.8831)) &gt; 100 " >
 				<CustomBehavior File="FlyTo" X="6869.925" Y="-4472.948" Z="511.2688" />
