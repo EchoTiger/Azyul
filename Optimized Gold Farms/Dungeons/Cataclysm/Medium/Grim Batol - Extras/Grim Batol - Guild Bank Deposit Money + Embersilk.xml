@@ -641,7 +641,7 @@
 			    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 			</If> 
 			<CustomBehavior File="Misc\RunLUA" Lua="
-				if GuildBankFrame:IsVisible()==1 then
+				if GuildBankFrame:IsVisible()==true then
 					MyMoney = GetMoney();
 					DepositGuildBankMoney(MyMoney);
 					print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
@@ -650,7 +650,7 @@
 				end" />
 
 				<CustomBehavior File="Misc\RunLUA" Lua="
-					if GuildBankFrame:IsVisible()==1 then
+					if GuildBankFrame:IsVisible()==true then
 						print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
 						for b=0,4 do for s=1,GetContainerNumSlots(b)
 							do local n=GetContainerItemLink(b,s)
