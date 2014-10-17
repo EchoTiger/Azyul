@@ -133,7 +133,7 @@
 
 			print(&quot;|cFF00CCFFStatter! is now active.|r\nType |cFF00CCFF/stats|r to show statistics!\nYou may also use |cFF00CCFF/statsreset|r to reset the stats!\nAlso, using |cFF00CCFF/timerreset|r will reset the timer.\nTo cleanly disable Statter! use the command |cFF00CCFF/reload|r.\n&quot;);
 			" />
-	<CustomBehavior File="Message" Text="Heading to farm location." LogColor="LightBlue" />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to farm location.&quot;);" />
 	<CustomBehavior File="FlyTo" X="1309.684" Y="1776.36" Z="414.2991" />
 	<CustomBehavior File="Misc\RunLua" Lua="
 			starttime = GetTime();
@@ -142,7 +142,7 @@
 			print(&quot;|cFF00CCFFStatter!|r variables have been reset.&quot;);" /> <!-- Reset Lua variables -->
 
 <!-- Activate Hooks -->
-<CustomBehavior File="Message" Text="\n\n\n[Azyul]: Item hooks are now activated\n   Bot will now:\n     - Use Potion of Luck on Cooldown.\n     - Open Plundered Treasure Chests\n     - Combine Mote of Harmony" LogColor="Yellow" />
+<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]:&quot; + Environment.NewLine + &quot;Item hooks are now activated.&quot; + Environment.NewLine + &quot;Bot will now:&quot; + Environment.NewLine + &quot;   - Open Plundered Treasure Chests.&quot; + Environment.NewLine + &quot;   - Combine Mote of Harmony.&quot; + Environment.NewLine + &quot;   - Use Potion of Luck.&quot;);" />
 <CustomBehavior File="Hooks\DoWhen" ItemId="93351" UseWhen="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" AllowUseDuringCombat="true" /> <!-- Potion of Luck -->
 <CustomBehavior File="Hooks\DoWhen" ItemId="87391" UseWhen="HasItem(87391)" AllowUseDuringCombat="true" /> <!-- Plundered Treasure Chest -->
 <CustomBehavior File="Hooks\DoWhen" ItemId="89112" UseWhen="GetItemCount(89112) &gt;= 10" AllowUseDuringCombat="true" /> <!-- Combine Motes -->

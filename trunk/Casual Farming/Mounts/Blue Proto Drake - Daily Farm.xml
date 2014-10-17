@@ -50,7 +50,7 @@
 
 
 <QuestOrder>
-<CustomBehavior File="Message" Text="\n\nWelcome to Echo's Blue Proto-Drake Farm!\n\nThis profile is designed to kill Skadi the Ruthless in Utgarde Pinnacle to obtain the rare Blue Proto-Drake flying mount.\n\nPlease note, this mount ONLY drops in heroic mode!  So this profile will only run the dungeon once!" LogColor="LightBlue" />
+<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Please note!  This mount only drops in Heroic mode.&quot;" />
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
 <CustomBehavior File="WaitTimer" WaitTime="5000" />
 <If Condition="!(Me.MapId == 575)" >
@@ -62,16 +62,16 @@
 			<If Condition="Me.MapId != 571" >
 				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.KnowsSpell(53140)" >
 					<CustomBehavior File="ForcedDismount" />
-					<CustomBehavior File="Message" Text="Teleporting to Dalaran." LogColor="Yellow" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Teleporting to Dalaran.&quot;" />
 					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(53140);" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 571" />
 					<ElseIf Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
-						<CustomBehavior File="Message" Text="We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Stormwind instead." LogColor="Red" />
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Stormwind instead.&quot;);" />
 						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
 						<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
 					</ElseIf>
 					<ElseIf Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
-						<CustomBehavior File="Message" Text="We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Orgrimmar instead." LogColor="Red" />
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: We are a Mage but don't know how to teleport to Dalaran!  Teleporting to Stormwind instead.&quot;);" />
 						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3567);" />
 						<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1" />
 					</ElseIf>
@@ -83,7 +83,7 @@
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
 				<If Condition="Me.MapId == 530" >
-				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
 					<CustomBehavior File="FlyTo" X="-248.064" Y="930.2079" Z="84.37978" DestName="BC Portal" />
 					<CustomBehavior File="MyCTM" X="-247.1655" Y="897.484" Z="84.3497" />
 					<CustomBehavior File="WaitTimer" WaitTime="5000"/>
@@ -95,7 +95,7 @@
 				</If>
 				<!-- Northrend, go home from borean -->
 				<If Condition="Me.MapId == 571" >
-				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
 					<If Condition="(HasSpell(54197))">
 						<CustomBehavior File="FlyTo" DestName="fly my minions fly" X="2236.118" Y="5145.615" Z="5.346904"  />
 					</If>
@@ -108,7 +108,7 @@
 				</If>
 				<!-- Kalimdor boat from Ratchet. -->
 				<If Condition="Me.MapId == 1" >
-				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
 						<CustomBehavior File="FlyTo" X="-996.8669" Y="-3826.07" Z="5.536246" />
 					</If>
@@ -124,7 +124,7 @@
 				</If>
 				<!-- Deepholm, Taking portal. -->
 				<If Condition="Me.MapId == 646" >
-				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
 					<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
 					<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
 					<RunTo X="973.6232" Y="570.9096" Z="-46.0024" />
@@ -133,7 +133,7 @@
 				</If>
 				<!-- Pandaland, Taking portal. -->
 				<If Condition="Me.MapId == 870" >
-				<CustomBehavior File="Message" Text="Going to Stormwind." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
 					<CustomBehavior File="FlyTo" X="-311.6545" Y="-1776.63" Z="62.67051" />
 					<RunTo X="-311.6545" Y="-1776.63" Z="62.67051" />
 					<CustomBehavior File="InteractWith" MobId="210805" ObjectType="Gameobject" Range="4" />
@@ -143,7 +143,7 @@
 				<If Condition="Me.MapId == 0" >
 					
 					<If condition="true"><!-- If Set true will go to Northrend -->
-					<CustomBehavior File="Message" Text="Going to Vikingland." LogColor="Lime" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Northerend.&quot;);" />
 					
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
 						<CustomBehavior File="FlyTo" X="-8300.08" Y="1405.158" Z="4.422395" />
@@ -158,7 +158,7 @@
 					</If>
 					
 					<If condition="false"><!-- If Set true will go to Outland -->
-					<CustomBehavior File="Message" Text="Going to Outland." LogColor="Lime" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Outland.&quot;);" />
 					
 					<While Condition="Me.MapId == 0" >
 						<If Condition="Me.MapId == 0" >
@@ -179,7 +179,7 @@
 					</If>
 					
 					<If condition="false"> <!-- If Set true will go to Kalimdor -->
-					<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
 					
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
 						<CustomBehavior File="FlyTo" X="-14288.29" Y="549.3284" Z="8.689642" />
@@ -198,7 +198,7 @@
 					</If>
 					
 					<If condition="false"><!-- If Set true will go to Pandaland -->
-					<CustomBehavior File="Message" Text="Going to Pandaland." LogColor="Lime" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Pandaria.&quot;);" />
 					
 					<CustomBehavior File="FlyTo" X="-8200.323" Y="527.858" Z="116.7516"  />
 					<CustomBehavior File="InteractWith" MobId="215457" ObjectType="Gameobject" Range="4" />
@@ -214,7 +214,7 @@
 			<If Condition="Me.IsHorde" >
 				<!-- Outland move to and use portal in shat -->
 				<If Condition="Me.MapId == 530" >
-				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
 					<While Condition="Me.MapId == 530" >
 						<CustomBehavior File="FlyTo" DestName="Org portal" X="-1956.413" Y="5383.551" Z="-12.42774" />
 						<CustomBehavior File="ForcedDismount" />
@@ -228,14 +228,14 @@
 				</If>
 				<!-- Northrend, go home from borean -->
 				<If Condition="Me.MapId == 571" >
-				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
 					<If Condition="(HasSpell(54197))">
 						<CustomBehavior File="FlyTo" DestName="Borean Tundra" X="2708.396" Y="6066.991" Z="109.617" />
 						<CustomBehavior File="FlyTo" DestName="Warsong Hold, BT" X="2740.837" Y="6097.529" Z="76.88604" />
 					</If>
-					<CustomBehavior File="Message" Text="Running to Borean Zepp to Org" LogColor="Cornflowerblue" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Returning to Borean Zeppelin to Orgrimmar.&quot;);" />
 					<RunTo X="2829.74" Y="6179.48" Z="121.9793" />
-					<CustomBehavior File="Message" Text="Waiting for Borean Zepp to Org - don't interact!" LogColor="Orange" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Waiting for Borean Zeppelin to Orgrimmar.&quot;);" />
 					<CustomBehavior File="UseTransport" TransportId="186238"
 									WaitAtX="2836.831" WaitAtY="6185.15" WaitAtZ="121.9923" 
 									TransportStartX="2837.908" TransportStartY="6187.443" TransportStartZ="140.1648" 
@@ -245,7 +245,7 @@
 				</If>
 				<!-- From Eastern Kingdom going home -->
 				<If Condition="Me.MapId == 0" >
-				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
 						<CustomBehavior File="FlyTo" X="2039.925" Y="273.7229" Z="142.3792" />
 						<CustomBehavior File="FlyTo" X="2067.174" Y="284.9927" Z="97.03151" />
@@ -261,7 +261,7 @@
 				</If>
 				<!-- Deepholm, Taking portal. -->
 				<If Condition="Me.MapId == 646" >
-				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
 					<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
 					<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
 					<RunTo X="990.1199" Y="457.7099" Z="-44.2598" />
@@ -270,7 +270,7 @@
 				</If>
 				<!-- Pandaland, Taking portal. -->
 				<If Condition="Me.MapId == 870" >
-				<CustomBehavior File="Message" Text="Going to Kalimdor." LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
 				
 					<CustomBehavior File="FlyTo" X="2924.921" Y="-510.5903" Z="268.8555" />
 					<RunTo X="2924.921" Y="-510.5903" Z="268.8555" />
@@ -281,7 +281,7 @@
 				<If Condition="Me.MapId == 1" >
 
 					<If condition="true"><!-- If Set true will go to Northrend -->
-					<CustomBehavior File="Message" Text="Going to Northrend." LogColor="Lime" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Northerend.&quot;);" />
 					
 						<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
 							<CustomBehavior File="FlyTo" X="1736.402" Y="-4283.072" Z="190.7621" />
@@ -290,7 +290,7 @@
 						</If>
 						<RunTo X="1763.389" Y="-4283.858" Z="133.1073" />
 						
-						<CustomBehavior File="Message" Text="Waiting for Org Zepp to Borean - don't interact!" LogColor="Orange" />
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Waiting on Zeppelin.&quot;);" />
 				
 						<CustomBehavior File="UseTransport" TransportId="186238"
 										WaitAtX="1763.066" WaitAtY="-4284.396" WaitAtZ="133.1081" 
@@ -302,8 +302,8 @@
 					</If>
 					
 					<If condition="false"><!-- If Set true will go to Outland -->
-					<CustomBehavior File="Message" Text="On out way to Outland." LogColor="Lime" />
-					<CustomBehavior File="Message" Text="Going by boat in Ratchet." LogColor="Lime" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Outlands.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going by boat in Ratchet.&quot;);" />
 					
 					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
 						<CustomBehavior File="FlyTo" X="-996.8669" Y="-3826.07" Z="5.536246" />
@@ -337,7 +337,7 @@
 					</If>
 					
 					<If condition="false"><!-- If Set true will go to Eastern Kingdom -->
-					<CustomBehavior File="Message" Text="Going to Eastern Kingdom." LogColor="Lime" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going toEastern Kingdoms.&quot;);" />
 					
 						<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
 							<CustomBehavior File="FlyTo" X="1836.794" Y="-4383.654" Z="206.7829" />
@@ -354,7 +354,7 @@
 					</If>
 					
 					<If condition="false"><!-- If Set true will go to Pandaland -->
-					<CustomBehavior File="Message" Text="Going to Pandaland." LogColor="Lime" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Pandaria.&quot;);" />
 					
 						<CustomBehavior File="FlyTo" X="2012.948" Y="-4698.641" Z="28.60529" />
 						<CustomBehavior File="InteractWith" MobId="215424" ObjectType="Gameobject" Range="4" />
@@ -375,7 +375,7 @@
 		
 <!-- ALLIANCE CHECK - RIDING -->
 <If Condition="(!HasSpell(54197))  &amp;&amp; (Me.IsAlliance)" >
-	<CustomBehavior File="Message" Text="Training Riding" LogColor="Cornflowerblue" />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Training Cold Weather Flying.&quot;);" />
 				
 	<If Condition="Me.Gold &gt;= 401" >
 		<RunTo X="2274.391" Y="5174.106" Z="11.17985" />
@@ -386,7 +386,7 @@
 </If>
 <!-- HORDE CHECK - RIDING -->
 <If Condition="(!HasSpell(54197)) &amp;&amp; (Me.IsHorde)">
-	<CustomBehavior File="Message" Text="Training Riding" LogColor="Cornflowerblue" />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Training Cold Weather Flying.&quot;);" />
 
 	<!-- Elevator -->
 	<If Condition="(Me.Z &lt; 190)" >
@@ -420,7 +420,7 @@
 	<CustomBehavior File="FlyTo" X="1317.418" Y="-4713.524" Z="253.851" />
 	<CustomBehavior File="FlyTo" X="1244.616" Y="-4857.312" Z="217.2103" />
 	<!-- Infront of Instance Portal -->
-	<CustomBehavior File="Message" Text="Starting Blue Proto-Drake - Daily Farm" LogColor="Lime" />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Starting Blue Proto-Drake - Daily Farm.&quot;);" />
 	<!-- Enable Loot -->
 	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 	<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
@@ -505,7 +505,7 @@
 				<EnableBehavior Name="Combat" />
 				<EnableBehavior Name="Pull" />
 				<If Condition="(HasItem(37372))" >
-					<CustomBehavior File="Message" Text="\nLook's like we're finished!\nThrowing away extra harpoons." LogColor="Green" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Throwing away extra harpoons.&quot;);" />
 					<CustomBehavior File="Misc\RunLUA" Lua="local item,l,i=&quot;37372&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				</If>
@@ -513,10 +513,10 @@
 				<RunTo X="478.0739" Y="-516.3156" Z="104.7221" /> <!-- Incase bot chased down strays -->
 			    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
 				<If Condition="(HasItem(44151))" >
-					<CustomBehavior File="Message" Text="\n\nCongratulations!\nYou are now the owner of a fresh new Blue Proto-Drake!" LogColor="LightBlue" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Congratulations! The Blue Proto-Drake mount has dropped!&quot;);" />
 				</If>
 				<If Condition="(!HasItem(44151))" >
-					<CustomBehavior File="Message" Text="\n\nThe proto-drake did not drop.\n\nBetter luck next time though!" LogColor="Red" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: The Blue Proto-Drake did not drop.  Better luck next time though!&quot;);" />
 				</If>
 
 				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" />
@@ -529,7 +529,7 @@
 				<!-- Instance Coordination Complete -->
 				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 				<If Condition="HasItem(44151)" >
-					<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="5" Text="Congratulations!\n\nYou are now the owner of a fresh new Blue Proto-Drake!" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Congratulations! Blue Proto-Drake mount has dropped!&quot;);" />
 				</If>
 				<If Condition="!HasItem(44151)" >
 					<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="The proto-drake did not drop.\n\nBetter luck next time though!" />
