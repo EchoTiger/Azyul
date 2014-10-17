@@ -718,16 +718,20 @@
 									<CustomBehavior File="InteractWith" MobId="62822" />
 								</ElseIf>
 							</If>
-						<CustomBehavior File="Misc\RunLUA" Lua="
-							MerchantRepairAllButton:Click()
-							 for b=0,4 do for s=1,GetContainerNumSlots(b)
-							 	do local n=GetContainerItemLink(b,s)
-							 		if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
-								 		print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-							 		end
-							 	end
-							 end" />
-						<CustomBehavior File="WaitTimer" WaitTime="11000" />
+						<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+							if MerchantFrame:IsVisible()==true then
+								if buffer==nil or buffer&gt;4 then buffer=0 end
+								MerchantRepairAllButton:Click()
+								if buffer&lt;5 then
+									for s=1,GetContainerNumSlots(buffer)
+										do local n=GetContainerItemLink(buffer,s)
+									 		if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
+												UseContainerItem(buffer,s)
+											end
+										end
+									buffer=buffer+1
+									end
+								end" />
 							<Else>
 								<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
 								<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
@@ -765,16 +769,20 @@
 
 				<CustomBehavior File="InteractWith" MobId="35496" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" />
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					MerchantRepairAllButton:Click()
-					 for b=0,4 do for s=1,GetContainerNumSlots(b)
-						do local n=GetContainerItemLink(b,s)
+				<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
 							if n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
-								print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-							end
-						end
-					end" />
-				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+						UseContainerItem(buffer,s)
+					end
+				end
+			buffer=buffer+1
+			end
+		end" />
 				
 				<RunTo X="5788.56" Y="689.9357" Z="647.0991" />
 				<SetMailbox>

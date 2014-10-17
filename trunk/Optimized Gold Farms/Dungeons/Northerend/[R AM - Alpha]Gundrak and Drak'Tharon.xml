@@ -1511,7 +1511,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 				</If> 
 				<CustomBehavior File="Misc\RunLUA" Lua="
-					if GuildBankFrame:IsVisible()==1 then
+					if GuildBankFrame:IsVisible()==true then
 						MyMoney = GetMoney();
 						DepositGuildBankMoney(MyMoney);
 						print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
@@ -1519,7 +1519,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 					end" />
 				<CustomBehavior File="Misc\RunLUA" Lua="
-					if GuildBankFrame:IsVisible()==1 then
+					if GuildBankFrame:IsVisible()==true then
 						print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
 						for b=0,4 do for s=1,GetContainerNumSlots(b)
 							do local n=GetContainerItemLink(b,s)
@@ -1541,7 +1541,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 						</If> 
 							<CustomBehavior File="Misc\RunLua" Lua="
-								if GuildBankFrame:IsVisible()==1 then
+								if GuildBankFrame:IsVisible()==true then
 									print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
 									for b=0,4 do for s=1,GetContainerNumSlots(b)
 										do local n=GetContainerItemLink(b,s)
@@ -1565,7 +1565,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 						</If> 
 						<CustomBehavior File="Misc\RunLua" Lua="
-							if GuildBankFrame:IsVisible()==1 then
+							if GuildBankFrame:IsVisible()==true then
 								MyMoney = GetMoney();
 								DepositGuildBankMoney(MyMoney);
 								print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
@@ -1599,16 +1599,20 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<CustomBehavior File="InteractWith" MobId="62822" />
 					</ElseIf>
 				</If>
-				<CustomBehavior File="Misc\RunLua" Lua="
-					MerchantRepairAllButton:Click()
-					 for b=0,4 do for s=1,GetContainerNumSlots(b)
-						do local n=GetContainerItemLink(b,s)
+				<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
 							if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33470&quot;) then
-								print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-							end
-						end
-					end" />
-				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+						UseContainerItem(buffer,s)
+					end
+				end
+			buffer=buffer+1
+			end
+		end" />
 				<Else>
 					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
 					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
@@ -1632,16 +1636,20 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<CustomBehavior File="InteractWith" MobId="62822" />
 					</ElseIf>
 				</If>
-				<CustomBehavior File="Misc\RunLua" Lua="
-					MerchantRepairAllButton:Click()
-					 for b=0,4 do for s=1,GetContainerNumSlots(b)
-						do local n=GetContainerItemLink(b,s)
+				<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
 							if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
-								print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-							end
-						end
-					end" />
-				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+						UseContainerItem(buffer,s)
+					end
+				end
+			buffer=buffer+1
+			end
+		end" />
 				<Else>
 					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
 					<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
@@ -1674,16 +1682,20 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;)"> 
 					<CustomBehavior File="InteractWith" MobId="28796" X="5410.7" Y="-2658.249" Z="303.9539" />
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="Misc\RunLua" Lua="
-						MerchantRepairAllButton:Click()
-						 for b=0,4 do for s=1,GetContainerNumSlots(b)
-							do local n=GetContainerItemLink(b,s)
+					<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+						if MerchantFrame:IsVisible()==true then
+							if buffer==nil or buffer&gt;4 then buffer=0 end
+							MerchantRepairAllButton:Click()
+							if buffer&lt;5 then
+								for s=1,GetContainerNumSlots(buffer)
+									do local n=GetContainerItemLink(buffer,s)
 								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33470&quot;) then
-									print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-								end
-							end
-						end" />
-					<CustomBehavior File="WaitTimer" WaitTime="11000" />
+						UseContainerItem(buffer,s)
+					end
+				end
+			buffer=buffer+1
+			end
+		end" />
 				</If>
 		<!-- END Lua Sell, Keep Frostweave -->
 
@@ -1691,16 +1703,18 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)">
 					<CustomBehavior File="InteractWith" MobId="28796" X="5410.7" Y="-2658.249" Z="303.9539" />
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="Misc\RunLUA" Lua="
-					MerchantRepairAllButton:Click()
+					<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" Lua="
+					if MerchantFrame:IsVisible()==true then
+						MerchantRepairAllButton:Click()
 						 for b=0,4 do for s=1,GetContainerNumSlots(b)
 							do local n=GetContainerItemLink(b,s)
 								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
-									print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-								end
-							end
-						end" />
-					<CustomBehavior File="WaitTimer" WaitTime="11000" />
+						UseContainerItem(buffer,s)
+					end
+				end
+			buffer=buffer+1
+			end
+		end" />
 				</If>
 		<!-- END Lua Sell, Everything -->
 
@@ -2211,7 +2225,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 					</If> 
 					<CustomBehavior File="Misc\RunLUA" Lua="
-						if GuildBankFrame:IsVisible()==1 then
+						if GuildBankFrame:IsVisible()==true then
 							MyMoney = GetMoney();
 							DepositGuildBankMoney(MyMoney);
 							print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
@@ -2219,7 +2233,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 						end" />
 					<CustomBehavior File="Misc\RunLUA" Lua="
-						if GuildBankFrame:IsVisible()==1 then
+						if GuildBankFrame:IsVisible()==true then
 							print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
 							for b=0,4 do for s=1,GetContainerNumSlots(b)
 								do local n=GetContainerItemLink(b,s)
@@ -2241,7 +2255,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 							</If> 
 								<CustomBehavior File="Misc\RunLua" Lua="
-									if GuildBankFrame:IsVisible()==1 then
+									if GuildBankFrame:IsVisible()==true then
 										print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
 										for b=0,4 do for s=1,GetContainerNumSlots(b)
 											do local n=GetContainerItemLink(b,s)
@@ -2265,7 +2279,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 							</If> 
 							<CustomBehavior File="Misc\RunLua" Lua="
-								if GuildBankFrame:IsVisible()==1 then
+								if GuildBankFrame:IsVisible()==true then
 									MyMoney = GetMoney();
 									DepositGuildBankMoney(MyMoney);
 									print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
@@ -2299,16 +2313,20 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							<CustomBehavior File="InteractWith" MobId="62822" />
 						</ElseIf>
 					</If>
-					<CustomBehavior File="Misc\RunLua" Lua="
-						MerchantRepairAllButton:Click()
-						 for b=0,4 do for s=1,GetContainerNumSlots(b)
-							do local n=GetContainerItemLink(b,s)
-								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33470&quot;) then
-									print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+					<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+						if MerchantFrame:IsVisible()==true then
+							if buffer==nil or buffer&gt;4 then buffer=0 end
+							MerchantRepairAllButton:Click()
+							if buffer&lt;5 then
+								for s=1,GetContainerNumSlots(buffer)
+									do local n=GetContainerItemLink(buffer,s)
+									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33470&quot;) then
+										UseContainerItem(buffer,s)
+									end
 								end
+							buffer=buffer+1
 							end
 						end" />
-					<CustomBehavior File="WaitTimer" WaitTime="11000" />
 					<Else>
 						<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
 						<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
@@ -2332,16 +2350,20 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							<CustomBehavior File="InteractWith" MobId="62822" />
 						</ElseIf>
 					</If>
-					<CustomBehavior File="Misc\RunLua" Lua="
-						MerchantRepairAllButton:Click()
-						 for b=0,4 do for s=1,GetContainerNumSlots(b)
-							do local n=GetContainerItemLink(b,s)
+					<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+						if MerchantFrame:IsVisible()==true then
+							if buffer==nil or buffer&gt;4 then buffer=0 end
+							MerchantRepairAllButton:Click()
+							if buffer&lt;5 then
+								for s=1,GetContainerNumSlots(buffer)
+									do local n=GetContainerItemLink(buffer,s)
 								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
-									print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-								end
-							end
-						end" />
-					<CustomBehavior File="WaitTimer" WaitTime="11000" />
+						UseContainerItem(buffer,s)
+					end
+				end
+			buffer=buffer+1
+			end
+		end" />
 					<Else>
 						<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
 						<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
@@ -2377,16 +2399,20 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;)"> 
 						<CustomBehavior File="InteractWith" MobId="28855" X="5769.661" Y="-3572.947" Z="387.2394" /> />
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
-						<CustomBehavior File="Misc\RunLua" Lua="
-							MerchantRepairAllButton:Click()
-							 for b=0,4 do for s=1,GetContainerNumSlots(b)
-								do local n=GetContainerItemLink(b,s)
-									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33470&quot;) then
-										print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+						<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+							if MerchantFrame:IsVisible()==true then
+								if buffer==nil or buffer&gt;4 then buffer=0 end
+								MerchantRepairAllButton:Click()
+								if buffer&lt;5 then
+									for s=1,GetContainerNumSlots(buffer)
+										do local n=GetContainerItemLink(buffer,s)
+											if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33470&quot;) then
+												UseContainerItem(buffer,s)
+											end
+										end
+									buffer=buffer+1
 									end
-								end
-							end" />
-						<CustomBehavior File="WaitTimer" WaitTime="11000" />
+								end" />
 					</If>
 			<!-- END Lua Sell, Keep Frostweave -->
 
@@ -2394,16 +2420,18 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)">
 						<CustomBehavior File="InteractWith" MobId="28855" X="5769.661" Y="-3572.947" Z="387.2394" /> />
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
-						<CustomBehavior File="Misc\RunLUA" Lua="
-						MerchantRepairAllButton:Click()
+						<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" Lua="
+						if MerchantFrame:IsVisible()==true then
+							MerchantRepairAllButton:Click()
 							 for b=0,4 do for s=1,GetContainerNumSlots(b)
 								do local n=GetContainerItemLink(b,s)
 									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
-										print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+										UseContainerItem(buffer,s)
 									end
 								end
-							end" />
-						<CustomBehavior File="WaitTimer" WaitTime="11000" />
+							buffer=buffer+1
+							end
+						end" />
 					</If>
 			<!-- END Lua Sell, Everything -->
 

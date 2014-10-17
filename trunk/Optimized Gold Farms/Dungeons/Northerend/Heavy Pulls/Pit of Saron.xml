@@ -752,8 +752,9 @@
 									<CustomBehavior File="InteractWith" MobId="62822" />
 								</ElseIf>
 							</If>
-						<CustomBehavior File="Misc\RunLUA" Lua="
-							 for b=0,4 do for s=1,GetContainerNumSlots(b)
+						<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" Lua="
+							if MerchantFrame:IsVisible()==true then
+								MerchantRepairAllButton:Click()
 							 	do local n=GetContainerItemLink(b,s)
 							 		if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;33445&quot;) then
 								 		print(&quot;Selling &quot;..n)UseContainerItem(b,s)

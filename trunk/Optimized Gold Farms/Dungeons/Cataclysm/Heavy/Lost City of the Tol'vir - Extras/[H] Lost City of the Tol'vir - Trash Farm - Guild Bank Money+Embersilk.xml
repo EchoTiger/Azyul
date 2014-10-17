@@ -559,15 +559,20 @@
 					<CustomBehavior File="InteractWith" MobId="62822" />
 				</ElseIf>
 			</If>
-			<CustomBehavior File="Misc\RunLUA" Lua="
-				MerchantRepairAllButton:Click()
-				for b=0,4 do for s=1,GetContainerNumSlots(b)
-					do local n=GetContainerItemLink(b,s)
-						if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
-							print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+			<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+				if MerchantFrame:IsVisible()==true then
+					if buffer==nil or buffer&gt;4 then buffer=0 end
+					MerchantRepairAllButton:Click()
+					if buffer&lt;5 then
+						for s=1,GetContainerNumSlots(buffer)
+							do local n=GetContainerItemLink(buffer,s)
+								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
+									UseContainerItem(buffer,s)
+								end
+							end
+						buffer=buffer+1
 						end
-					end
-				end" />
+					end" />
 			<CustomBehavior File="WaitTimer" WaitTime="2500" />
 			<CustomBehavior File="ForcedDismount" />
 				<Else>
@@ -584,7 +589,7 @@
 		    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 		</If> 
 		<CustomBehavior File="Misc\RunLUA" Lua="
-			if GuildBankFrame:IsVisible()==1 then
+			if GuildBankFrame:IsVisible()==true then
 				MyMoney = GetMoney();
 				DepositGuildBankMoney(MyMoney);
 				print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
@@ -593,7 +598,7 @@
 			end" />
 
 		<CustomBehavior File="Misc\RunLUA" Lua="
-			if GuildBankFrame:IsVisible()==1 then
+			if GuildBankFrame:IsVisible()==true then
 				print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
 				for b=0,4 do for s=1,GetContainerNumSlots(b)
 					do local n=GetContainerItemLink(b,s)
@@ -647,15 +652,20 @@
 
 			<CustomBehavior File="InteractWith" MobId="48617" />
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="Misc\RunLUA" Lua="
-				MerchantRepairAllButton:Click()
-				for b=0,4 do for s=1,GetContainerNumSlots(b)
-					do local n=GetContainerItemLink(b,s)
-						if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
-							print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+			<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+				if MerchantFrame:IsVisible()==true then
+					if buffer==nil or buffer&gt;4 then buffer=0 end
+					MerchantRepairAllButton:Click()
+					if buffer&lt;5 then
+						for s=1,GetContainerNumSlots(buffer)
+							do local n=GetContainerItemLink(buffer,s)
+								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
+									UseContainerItem(buffer,s)
+								end
+							end
+						buffer=buffer+1
 						end
-					end
-				end" />
+					end" />
 			<CustomBehavior File="WaitTimer" WaitTime="8500" />
 
 			<SetMailbox>

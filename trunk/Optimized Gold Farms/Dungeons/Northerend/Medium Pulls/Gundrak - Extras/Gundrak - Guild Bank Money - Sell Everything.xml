@@ -576,8 +576,7 @@
 		<If Condition="!(Me.MapId == 604)" >
 			<RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
 			<!--<CustomBehavior File="MyCTM" X="6973.58" Y="-4400.046" Z="441.5751" />-->
-			<CustomBehavior File="MyCTM" X="7025.931" Y="-4345.251" Z="449.7054" TerminateWhen="Me.IsMoving" />
-			<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="Me.MapId == 604" />
+			<CustomBehavior File="GoThruPortal" Timeout="30000" X="6968.59" Y="-4404.028" Z="442.5896" />
 		</If>
 		<If Condition="(Me.MapId == 604)" >
 			<CustomBehavior File="RunMacro" Macro="/sw clear" />
@@ -729,16 +728,20 @@
 					<CustomBehavior File="InteractWith" MobId="62822" />
 				</ElseIf>
 			</If>
-			<CustomBehavior File="Misc\RunLUA" Lua="
-				MerchantRepairAllButton:Click()
-				 for b=0,4 do for s=1,GetContainerNumSlots(b)
-					do local n=GetContainerItemLink(b,s)
-						if n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)  then
-							print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
+			<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+				if MerchantFrame:IsVisible()==true then
+					if buffer==nil or buffer&gt;4 then buffer=0 end
+					MerchantRepairAllButton:Click()
+					if buffer&lt;5 then
+						for s=1,GetContainerNumSlots(buffer)
+							do local n=GetContainerItemLink(buffer,s)
+								if n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)  then
+								UseContainerItem(buffer,s)
+							end
 						end
+					buffer=buffer+1
 					end
 				end" />
-			<CustomBehavior File="WaitTimer" WaitTime="11000" />
 			<Else>
 				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
 				<CustomBehavior File="Message" Text="Vendor mount not detected." LogColor="Orange" />
@@ -753,7 +756,7 @@
 		    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 		</If> 
 		<CustomBehavior File="Misc\RunLUA" Lua="
-			if GuildBankFrame:IsVisible()==1 then
+			if GuildBankFrame:IsVisible()==true then
 				MyMoney = GetMoney();
 				DepositGuildBankMoney(MyMoney);
 				print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
@@ -762,7 +765,7 @@
 			end" />
 
 			<CustomBehavior File="Misc\RunLUA" Lua="
-				if GuildBankFrame:IsVisible()==1 then
+				if GuildBankFrame:IsVisible()==true then
 					print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
 					for b=0,4 do for s=1,GetContainerNumSlots(b)
 						do local n=GetContainerItemLink(b,s)
@@ -783,16 +786,20 @@
 				<CustomBehavior File="FlyTo" X="5770.711" Y="-3573.024" Z="387.1675" />
 				<CustomBehavior File="InteractWith" MobId="28855" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" />
-				<CustomBehavior File="Misc\RunLUA" Lua="
-					MerchantRepairAllButton:Click()
-					 for b=0,4 do for s=1,GetContainerNumSlots(b)
-						do local n=GetContainerItemLink(b,s)
+				<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
 							if n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;) then
-								print(&quot;|cFF3399FF[Azyul]|r: Selling &quot;..n)UseContainerItem(b,s)
-							end
-						end
-					end" />
-				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+						UseContainerItem(buffer,s)
+					end
+				end
+			buffer=buffer+1
+			end
+		end" />
 
 				<RunTo X="5780.233" Y="-3568.455" Z="386.5152" />
 				<If Condition="(Me.FreeBagSlots &lt; 20)" >
