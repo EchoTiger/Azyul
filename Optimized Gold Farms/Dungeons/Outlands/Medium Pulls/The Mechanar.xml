@@ -39,7 +39,7 @@
 	
 <QuestOrder>
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 			ShowWarningsInChat = GetTime();
@@ -124,9 +124,9 @@
 		<CustomBehavior File="MyCTM" X="72.03339" Y="149.8745" Z="25.58112" /> <!--Exits Instance -->
 	</If>
 	<CustomBehavior File="WaitTimer" WaitTime="15000" />
-	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
-	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
-	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions and Arcane Tombs.&quot;);" />
 	<EnableBehavior Name="Pull" />
 </If>
@@ -452,7 +452,7 @@
 		<!--Instance Navigation Start -->
 		<If Condition="(Me.MapId == 554)" >
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-			<CustomBehavior File="Misc\RunLUA" Lua="
+			<CustomBehavior File="Misc\RunLua" Lua="
 				ShowLoadMessage = GetMoney();
 				ShowEngageMessage = GetMoney();
 				WarningIconRight = GetTime();
@@ -528,7 +528,7 @@
 			<CustomBehavior File="InteractWith" MobId="19220" ObjectType="Npc" Range="1"  X="132.7828" Y="151.2504" Z="25.58078" /> <!-- Pathaleon the Calculator -->
 
 			<RunTo X="82.74458" Y="149.4814" Z="25.58112" /> <!-- In front of exit portal -->
-			<CustomBehavior File="Misc\RunLUA" Lua="
+			<CustomBehavior File="Misc\RunLua" Lua="
 				ShowPizzaMessage = GetMoney();
 				WarningIconChat = GetTime();
 				WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
@@ -545,7 +545,7 @@
 			</If>
 			<CustomBehavior File="MyCTM" X="72.03339" Y="149.8745" Z="25.58112" /> <!--Exits Instance -->
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
-			<CustomBehavior File="Misc\RunLUA" Lua="
+			<CustomBehavior File="Misc\RunLua" Lua="
 				local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
 				local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions.&quot;);" />
@@ -556,7 +556,7 @@
 
 	<!-- Vendor Routine -->
 	<If Condition="(Me.FreeBagSlots &lt; 17)" >
-		<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
 		<CustomBehavior File="ForcedMount" MountType="Flying" />
@@ -573,7 +573,7 @@
 			<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
 			<ClearMailbox />
 		</If>
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			AutoRespond = GetMoney();
 			WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
 			vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);

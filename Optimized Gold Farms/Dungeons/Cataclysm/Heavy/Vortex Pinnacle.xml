@@ -47,7 +47,7 @@
 
 <QuestOrder>
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 			ShowWarningsInChat = GetTime();
@@ -433,7 +433,7 @@
 	</If>
 	<If Condition="(Me.MapId == 657)" >
 		<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 				ShowLoadMessage = GetMoney();
 				ShowEngageMessage = GetMoney();
 				WarningIconRight = GetTime();
@@ -470,7 +470,7 @@
 		<DisableBehavior Name="Combat" />
 			<RunTo X="-1032.734" Y="-75.63425" Z="698.8443" />
 			<CustomBehavior File="RunMacro" Macro="/stopattack\n/cleartarget\n/targetenemy" />
-			<CustomBehavior File="Misc\RunLUA" Lua="
+			<CustomBehavior File="Misc\RunLua" Lua="
 				CastSpellByID(30455);
 				CastSpellByID(115072);
 				CastSpellByID(45477);
@@ -495,7 +495,7 @@
 			</If>
 			<RunTo X="-1056.526" Y="-52.6046" Z="700.4836" />
 			<CustomBehavior File="RunMacro" Macro="/stopattack\n/cleartarget\n/targetenemy" />
-			<CustomBehavior File="Misc\RunLUA" Lua="
+			<CustomBehavior File="Misc\RunLua" Lua="
 				CastSpellByID(30455);
 				CastSpellByID(115072);
 				CastSpellByID(45477);
@@ -558,7 +558,7 @@
 
 
 		<RunTo X="-339.4252" Y="13.0758" Z="626.9792" />
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			ShowPizzaMessage = GetMoney();
 			WarningIconChat = GetTime();
 			WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
@@ -577,7 +577,7 @@
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 	</If>
 	<If Condition="(Me.FreeBagSlots &lt; 17)" >
-		<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 		<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 			<CustomBehavior File="WaitTimer" WaitTime="750" />
 			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
@@ -604,7 +604,7 @@
 			<ClearVendor />
 			<ClearMailbox />
 		</If>
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			AutoRespond = GetMoney();
 			WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
 			vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);

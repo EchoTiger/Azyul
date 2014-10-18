@@ -53,7 +53,7 @@
 	</If>
 
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 
@@ -504,7 +504,7 @@
 			<If Condition="(Me.MapId == 670)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					ShowLoadMessage = GetMoney();
 					ShowEngageMessage = GetMoney();
 					WarningIconRight = GetTime();" />
@@ -612,7 +612,7 @@
 					<Hotspot X="-556.8271" Y="-747.3787" Z="268.7677" />
 				</CustomBehavior>
 
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					ShowPizzaMessage = GetMoney();
 					WarningIconChat = GetTime();
 					WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
@@ -623,13 +623,13 @@
 
 				<If Condition="(!WoWSpell.FromId(8690).Cooldown)" >  <!-- Removed bagslot check, Me.FreeBagSlots &lt; 17 &amp;&amp;  -->
 					<If Condition="Me.IsAlliance &amp;&amp; Me.HearthstoneAreaId == 2101" >
-						<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+						<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 						<CustomBehavior File="UseHearthstone" />
 						<CustomBehavior File="WaitTimer" WaitTime="18000" TerminateWhen="Me.MapId == 0" />
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
 						<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="True" />
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
-						<CustomBehavior File="Misc\RunLUA" Lua="
+						<CustomBehavior File="Misc\RunLua" Lua="
 								AutoRespond = GetMoney();
 								WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
 								vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);
@@ -665,7 +665,7 @@
 						</ElseIf>
 					</If>
 					<If Condition="Me.IsHorde &amp;&amp; Me.HearthstoneAreaId == 5138" >
-						<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+						<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 						<CustomBehavior File="UseHearthstone" />
 						<CustomBehavior File="WaitTimer" WaitTime="18000" TerminateWhen="Me.MapId == 0" />
 						<CustomBehavior File="MyCTM" X="-3668.466" Y="-5265.098" Z="42.1588" />
@@ -683,7 +683,7 @@
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
 						<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="True" />
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
-						<CustomBehavior File="Misc\RunLUA" Lua="
+						<CustomBehavior File="Misc\RunLua" Lua="
 								AutoRespond = GetMoney();
 								WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
 								vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);
@@ -749,7 +749,7 @@
 		</While>
 		<While Condition="(Me.FreeBagSlots &lt; 17)">
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 
 			<CustomBehavior File="FlyTo" X="-4083.552" Y="-3465.485" Z="287.8949" />
 			<If Condition="Me.IsHorde" >
@@ -793,7 +793,7 @@
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
 				</If>
 			</If>
-			<CustomBehavior File="Misc\RunLUA" Lua="
+			<CustomBehavior File="Misc\RunLua" Lua="
 				AutoRespond = GetMoney();
 				WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
 				vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);

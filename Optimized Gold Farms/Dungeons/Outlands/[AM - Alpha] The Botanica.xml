@@ -390,7 +390,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			end
 " />
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 			ShowWarningsInChat = GetTime();
@@ -469,9 +469,9 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 	<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
 	<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
 	<CustomBehavior File="WaitTimer" WaitTime="15000" />
-	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
-	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
-	<CustomBehavior File="Misc\RunLUA" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions and Arcane Tombs.&quot;);" />
 	<EnableBehavior Name="Pull" />
 </If>
@@ -812,9 +812,9 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<!--Instance Navigation Start -->
 		<If Condition="(Me.MapId == 553)" >
 			<DisableBehavior Name="Death" />
-			<CustomBehavior File="Misc\RunLUA" Lua="ShowLoadMessage = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="ShowEngageMessage = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="WarningIconRight = GetTime();" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
@@ -1042,12 +1042,12 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			<If Condition="Me.IsAlive" >
 				<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="ShowPizzaMessage = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconChat = GetTime();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />
-				<CustomBehavior File="Misc\RunLUA" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
 
 
 				<If Condition="(Me.FreeBagSlots &lt; 17)" >
@@ -1058,7 +1058,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			</If>
 				<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
 					local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
 					local item,l,i=&quot;29739&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end " />
@@ -1082,7 +1082,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 
 <!-- Vendor Routine -->
 	<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
-		<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
 <!-- ////////////////////////////////////START GUILD BANK DETECTION/////////////////////////////////////////////-->
 		<!-- Deposit Gold and Frostweave -->
@@ -1095,7 +1095,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<If Condition="Me.IsHorde" > 
 				    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 				</If> 
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					if GuildBankFrame:IsVisible()==true then
 						MyMoney = GetMoney();
 						DepositGuildBankMoney(MyMoney);
@@ -1103,7 +1103,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					else
 					print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 					end" />
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					if GuildBankFrame:IsVisible()==true then
 						print(&quot;|cFF3399FF[Azyul]|r: Depositing Netherweave Cloth.&quot;)
 						for b=0,4 do for s=1,GetContainerNumSlots(b)
@@ -1183,7 +1183,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 								<CustomBehavior File="InteractWith" MobId="62822" />
 							</ElseIf>
 						</If>
-						<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+						<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 							if MerchantFrame:IsVisible()==true then
 								if buffer==nil or buffer&gt;4 then buffer=0 end
 								MerchantRepairAllButton:Click()
@@ -1220,7 +1220,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 								<CustomBehavior File="InteractWith" MobId="62822" />
 							</ElseIf>
 						</If>
-						<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+						<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 							if MerchantFrame:IsVisible()==true then
 								if buffer==nil or buffer&gt;4 then buffer=0 end
 								MerchantRepairAllButton:Click()
@@ -1265,7 +1265,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<CustomBehavior	File="FlyTo" X="2955.032" Y="1802.131" Z="139.1213" />
 				<CustomBehavior File="InteractWith" MobId="22491" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" />
-				<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 					if MerchantFrame:IsVisible()==true then
 						if buffer==nil or buffer&gt;4 then buffer=0 end
 						MerchantRepairAllButton:Click()
@@ -1288,7 +1288,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<CustomBehavior	File="FlyTo" X="2955.032" Y="1802.131" Z="139.1213" />
 				<CustomBehavior File="InteractWith" MobId="22491" />
 				<CustomBehavior File="WaitTimer" WaitTime="500" />
-				<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 					if MerchantFrame:IsVisible()==true then
 						if buffer==nil or buffer&gt;4 then buffer=0 end
 						MerchantRepairAllButton:Click()
@@ -1330,10 +1330,10 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			</If>
 		<!-- END Generic Mail Routine -->
 
-			<CustomBehavior File="Misc\RunLUA" Lua="AutoRespond = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
 	</If>
 </While>
 </QuestOrder>
