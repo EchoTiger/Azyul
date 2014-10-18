@@ -46,9 +46,9 @@
 </Blacklist>
 
 <QuestOrder>
-<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Welcome to the|r |cFFC2DAF3Gundrak Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00249.1|r\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
+<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFFF0F0F0Welcome to the|r |cFFC2DAF3Gundrak Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00249.1|r\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\nThere is currently no known issues with this profile, if you happen to come across one, please report it to the forums.&quot;)" />
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 			ShowWarningsInChat = GetTime();
@@ -586,11 +586,11 @@
 		</If>
 		<If Condition="(Me.MapId == 604)" >
 			<CustomBehavior File="RunMacro" Macro="/sw clear" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
 			<CustomBehavior File="RunMacro" Macro="/sw play" />
-			<CustomBehavior File="Misc\RunLUA" Lua="ShowLoadMessage = GetMoney();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="WarningIconRight = GetTime();" />
-			<CustomBehavior File="Misc\RunLUA" Lua="ShowEngageMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
 
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 			<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
@@ -612,7 +612,7 @@
 
 			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Object(192518, o => o.ToGameObject().CanUse()) != null" />
 			<While Condition="Object(192518, o => o.ToGameObject().CanUse()) != null">
-				<CustomBehavior File="UseGameObject" ObjectId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
+				<CustomBehavior File="InteractWith" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
 				<CustomBehavior File="WaitTimer" WaitTime="1200" />
 			</While>
 
@@ -634,7 +634,7 @@
 			<MoveTo X="1690.795" Y="743.5365" Z="142.7789" />
 			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Object(192520, o => o.ToGameObject().CanUse()) != null" />
 			<While Condition="Object(192520, o => o.ToGameObject().CanUse()) != null">
-				<CustomBehavior File="UseGameObject" ObjectId="192520" X="1693.509" Y="743.595" Z="142.7876" /> 
+				<CustomBehavior File="InteractWith" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" /> 
 				<CustomBehavior File="WaitTimer" WaitTime="1200" />
 			</While>
 
@@ -657,7 +657,7 @@
 
 			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Object(192519, o => o.ToGameObject().CanUse()) != null" />
 			<While Condition="Object(192519, o => o.ToGameObject().CanUse()) != null">
-				<CustomBehavior File="UseGameObject" ObjectId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
+				<CustomBehavior File="InteractWith" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
 				<CustomBehavior File="WaitTimer" WaitTime="1200" />
 			</While>
 
@@ -678,9 +678,9 @@
 			<CustomBehavior File="InteractWith" MobId="29306" MobState="Alive" WaitForNpcs="false" /> <!-- Pull Gal'darah just in case he was missed. -->
 			<MoveTo X="1947.211" Y="681.9457" Z="135.4161" />
 			<MoveTo X="1945.433" Y="663.1171" Z="135.2176" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
 
-			<CustomBehavior File="Misc\RunLUA" Lua="
+			<CustomBehavior File="Misc\RunLua" Lua="
 				ShowPizzaMessage = GetMoney();
 				WarningIconChat = GetTime();
 				WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
@@ -709,7 +709,7 @@
 	</While>
 	<!-- Force town sell. -->
 	<If Condition="(Me.FreeBagSlots &lt; 17)" >
-		<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
 
 			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
@@ -753,10 +753,10 @@
 					<CustomBehavior File="FlyTo" X="5377.773" Y="-2611.433" Z="321.3243" />
 				</If>
 
-				<CustomBehavior File="Misc\RunLUA" Lua="AutoRespond = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+				<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
 
 				<CustomBehavior File="FlyTo" X="6002.019" Y="-3651.332" Z="491.8026" />
 			</If>

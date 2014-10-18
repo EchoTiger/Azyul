@@ -63,7 +63,7 @@
 			<EnableBehavior Name="Pull" />
 	</If>
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 			ShowWarningsInChat = GetTime();
@@ -482,7 +482,7 @@
 	<If Condition="(Me.MapId == 755)" >
 		<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 				ShowLoadMessage = GetMoney();
 				ShowEngageMessage = GetMoney();
 				WarningIconRight = GetTime();
@@ -558,7 +558,7 @@
 		<RunTo X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
 
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			ShowPizzaMessage = GetMoney();
 			WarningIconChat = GetTime();
 			WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
@@ -582,7 +582,7 @@
 		<EnableBehavior Name="Combat" />
 	</If>
 	<If Condition="(Me.FreeBagSlots &lt; 17)" >
-		<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 		<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 			<CustomBehavior File="WaitTimer" WaitTime="750" />
 			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
@@ -609,7 +609,7 @@
 			<ClearVendor />
 			<ClearMailbox />
 		</If>
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			AutoRespond = GetMoney();
 			WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
 			vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);

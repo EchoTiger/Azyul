@@ -391,7 +391,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 			end
 " />
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 			ShowWarningsInChat = GetTime();
@@ -1283,7 +1283,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<If Condition="Me.IsHorde" > 
 				    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="30" WaitTime="2000" /> 
 				</If> 
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					if GuildBankFrame:IsVisible()==true then
 						MyMoney = GetMoney();
 						DepositGuildBankMoney(MyMoney);
@@ -1291,7 +1291,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					else
 					print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 					end" />
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					if GuildBankFrame:IsVisible()==true then
 						print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
 						for b=0,4 do for s=1,GetContainerNumSlots(b)
@@ -1372,7 +1372,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<CustomBehavior File="InteractWith" MobId="62822" />
 					</ElseIf>
 				</If>
-				<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 					if MerchantFrame:IsVisible()==true then
 						if buffer==nil or buffer&gt;4 then buffer=0 end
 						MerchantRepairAllButton:Click()
@@ -1409,7 +1409,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<CustomBehavior File="InteractWith" MobId="62822" />
 					</ElseIf>
 				</If>
-				<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 					if MerchantFrame:IsVisible()==true then
 						if buffer==nil or buffer&gt;4 then buffer=0 end
 						MerchantRepairAllButton:Click()
@@ -1458,7 +1458,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;)"> 
 					<CustomBehavior File="InteractWith" MobId="28855" X="5769.661" Y="-3572.947" Z="387.2394" />
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+					<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 						if MerchantFrame:IsVisible()==true then
 							if buffer==nil or buffer&gt;4 then buffer=0 end
 							MerchantRepairAllButton:Click()
@@ -1479,7 +1479,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)">
 					<CustomBehavior File="InteractWith" MobId="28855" X="5769.661" Y="-3572.947" Z="387.2394" />
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" Lua="
+					<CustomBehavior File="Misc\RunLua" NumOfTimes="10" Lua="
 					if MerchantFrame:IsVisible()==true then
 						MerchantRepairAllButton:Click()
 						 for b=0,4 do for s=1,GetContainerNumSlots(b)

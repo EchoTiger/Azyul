@@ -43,9 +43,9 @@
 </Blackspots>
 
 <QuestOrder>
-<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFF0F0F0Welcome to the|r |cFFC2DAF3Pit of Saron (skip last boss) Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00165.8|r\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\n|cFFFF0000! Warning !|r\nThis profile has a  very high pull density.  Also, there's one mob that will cast a spell on you that *will* kill you.\nThis profile is still being optimized to avoid these issues.&quot;)" />
+<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFFF0F0F0Welcome to the|r |cFFC2DAF3Pit of Saron (skip last boss) Optimized Gold Farm!|r\nThis dungeon has a |cFFCCCC00Farm Score|r of |cFFCCCC00165.8|r\n\n|cFF00CC00 Type /stats or /stats2 for statistics!|r\n\n|cFFFF0000! Warning !|r\nThis profile has a  very high pull density.  Also, there's one mob that will cast a spell on you that *will* kill you.\nThis profile is still being optimized to avoid these issues.&quot;)" />
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 			ShowWarningsInChat = GetTime();
@@ -628,11 +628,11 @@
 				<If Condition="(Me.MapId == 658)" >
 
 					<CustomBehavior File="RunMacro" Macro="/sw clear" />
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
 					<CustomBehavior File="RunMacro" Macro="/sw play" />
-					<CustomBehavior File="Misc\RunLUA" Lua="ShowLoadMessage = GetMoney();" />
-					<CustomBehavior File="Misc\RunLUA" Lua="WarningIconRight = GetTime();" />
-					<CustomBehavior File="Misc\RunLUA" Lua="ShowEngageMessage = GetMoney();" />
+					<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+					<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+					<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
 
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 					<MoveTo X="462.8812" Y="210.3155" Z="528.7101" />
@@ -695,16 +695,16 @@
 	
 					<CustomBehavior File="NoCombatMoveTo" X="441.2151" Y="212.344" Z="528.7101" />
 
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
 					<CustomBehavior File="RunMacro" Macro="/sw pause" />
 
-					<CustomBehavior File="Misc\RunLUA" Lua="ShowPizzaMessage = GetMoney();" />
-					<CustomBehavior File="Misc\RunLUA" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
-					<CustomBehavior File="Misc\RunLUA" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
-					<CustomBehavior File="Misc\RunLUA" Lua="ShowPizzaMessage = GetMoney();" />
-					<CustomBehavior File="Misc\RunLUA" Lua="WarningIconChat = GetTime();" />
-					<CustomBehavior File="Misc\RunLUA" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
+					<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+					<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+					<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+					<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+					<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+					<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
 
 					<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 						<CustomBehavior File="WaitTimer" WaitTime="750" />
@@ -729,7 +729,7 @@
 
 			</While>
 			<If Condition="(Me.FreeBagSlots &lt; 17)" >
-				<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
 				<RunTo X="5639.215" Y="2052.72" Z="798.0443" />
 				<RunTo X="5639.342" Y="2093.575" Z="798.0549" />
@@ -763,10 +763,10 @@
 				<CustomBehavior File="FlyTo" X="5777.883" Y="697.1115" Z="732.1843" />
 				<CustomBehavior File="FlyTo" X="5686.838" Y="905.868" Z="712.2202" />
 				<ClearVendor />
-				<CustomBehavior File="Misc\RunLUA" Lua="AutoRespond = GetMoney();" />
-				<CustomBehavior File="Misc\RunLUA" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
-				<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+				<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
 
 			</If>
 		</While>

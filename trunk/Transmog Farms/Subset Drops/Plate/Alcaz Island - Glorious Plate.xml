@@ -352,18 +352,18 @@
 	
 	<CustomBehavior File="FlyTo" X="-3792.358" Y="-3895.982" Z="33.79902" />
 	<CustomBehavior File="Message" Text="Checking to make sure we're in the correct phase." LogColor="LightBlue" />
-	<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Checking to make sure we're in the correct phase.&quot;)" />
+	<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Checking to make sure we're in the correct phase.&quot;)" />
 	<CustomBehavior File="RunMacro" Macro="/cleartarget\n/target Theramore Highway Guard" /> <!-- Phase check -->
 	<If Condition="(Me.CurrentTarget == null)" > 
 		<CustomBehavior File="Message" Text="\nWe're not phased properly.\nChanging our phase." LogColor="Red" />
-		<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: We are not phased properly. Changing phase.&quot;)" />
+		<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: We are not phased properly. Changing phase.&quot;)" />
 		<CustomBehavior File="FlyTo" DestName="Zidormi" X="-3766.99" Y="-3910.53" Z="11.58" />
 		<CustomBehavior File="InteractWith" MobId="63546" X="-3766.99" Y="-3910.53" Z="11.58" />
 		<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="1" WaitTime="1000" />
 		<CustomBehavior File="WaitTimer" WaitTime="5000" />
 		<Else>
 			<CustomBehavior File="Message" Text="Correct phase detected. Contiuning farm." LogColor="LightBlue" />
-			<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Correct phase detected.  Contiuning farm.&quot;)" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Correct phase detected.  Contiuning farm.&quot;)" />
 		</Else>
 	</If>
 

@@ -426,7 +426,7 @@
 	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
 		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
 		<CustomBehavior File="MyCTM" X="-3361.962" Y="4752.981" Z="-101.3954" />
-		<CustomBehavior File="Misc\RunLUA" Lua="vendorstartingmoney = GetMoney();" />
+		<CustomBehavior File="Misc\RunLua" Lua="vendorstartingmoney = GetMoney();" />
 
 		<!-- Bot ignores this vendor.
 				<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
@@ -469,10 +469,10 @@
 				<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
 				<ClearMailbox />
 			</If>
-		<CustomBehavior File="Misc\RunLUA" Lua="vendorendingmoney = GetMoney();" /> 
-		<CustomBehavior File="Misc\RunLUA" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
-		<CustomBehavior File="Misc\RunLUA" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
-		<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+		<CustomBehavior File="Misc\RunLua" Lua="vendorendingmoney = GetMoney();" /> 
+		<CustomBehavior File="Misc\RunLua" Lua="vendorsellmoney = math.floor(vendorendingmoney-vendorstartingmoney);" />
+		<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(vendorendingmoney-beginningmoney);" />
+		<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(vendorsellmoney), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
 	</If>
 	<!-- End Vendor Routine -->
 

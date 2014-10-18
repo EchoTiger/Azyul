@@ -44,7 +44,7 @@
 
 <QuestOrder>
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 
@@ -477,7 +477,7 @@
 			<If Condition="(Me.MapId == 670)" >
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					ShowLoadMessage = GetMoney();
 					ShowEngageMessage = GetMoney();
 					WarningIconRight = GetTime();" />
@@ -585,7 +585,7 @@
 					<Hotspot X="-556.8271" Y="-747.3787" Z="268.7677" />
 				</CustomBehavior>
 
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					ShowPizzaMessage = GetMoney();
 					WarningIconChat = GetTime();
 					WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
@@ -620,7 +620,7 @@
 		</While>
 		<While Condition="(Me.FreeBagSlots &lt; 17)">
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
-			<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 				<CustomBehavior File="WaitTimer" WaitTime="750" />
 				<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
@@ -628,7 +628,7 @@
 				<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
 				<CustomBehavior File="WaitTimer" WaitTime="5500" />
 				<Else>
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
 				</Else>
 			</If>
@@ -640,7 +640,7 @@
 			<If Condition="Me.IsHorde" > 
 			    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
 			</If> 
-			<CustomBehavior File="Misc\RunLUA" Lua="
+			<CustomBehavior File="Misc\RunLua" Lua="
 				if GuildBankFrame:IsVisible()==true then
 					MyMoney = GetMoney();
 					DepositGuildBankMoney(MyMoney);
@@ -649,7 +649,7 @@
 				print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 				end" />
 
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					if GuildBankFrame:IsVisible()==true then
 						print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
 						for b=0,4 do for s=1,GetContainerNumSlots(b)
@@ -703,7 +703,7 @@
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
 					</If>
 				</If>
-				<CustomBehavior File="Misc\RunLUA" Lua="
+				<CustomBehavior File="Misc\RunLua" Lua="
 					AutoRespond = GetMoney();
 					WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
 					vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);

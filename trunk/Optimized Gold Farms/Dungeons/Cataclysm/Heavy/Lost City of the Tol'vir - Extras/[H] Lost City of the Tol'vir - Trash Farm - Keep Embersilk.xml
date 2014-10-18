@@ -52,7 +52,7 @@
 
 <QuestOrder>
 
-	<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFFef0609*NOTE*|r\nThis run is optimized for people who have the Traveler's Mammoth or Grand Yak.\n\nIt will town-vendor if you do not have these mounts.&quot;)" />
+	<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFFef0609*NOTE*|r\nThis run is optimized for people who have the Traveler's Mammoth or Grand Yak.\n\nIt will town-vendor if you do not have these mounts.&quot;)" />
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: While it's not required, it's recommended that you use a mobile mount for this run.&quot;);" />
 
 	<If Condition="(Me.MapId == 755)" >
@@ -67,7 +67,7 @@
 	</If>
 
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			SLASH_DEADLYBOSSMODS1 = '/stats';
 			SLASH_DBMRANGE1 = '/stats2';
 			ShowWarningsInChat = GetTime();
@@ -486,7 +486,7 @@
 	<If Condition="(Me.MapId == 755)" >
 		<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 				ShowLoadMessage = GetMoney();
 				ShowEngageMessage = GetMoney();
 				WarningIconRight = GetTime();
@@ -558,7 +558,7 @@
 					<CustomBehavior File="InteractWith" MobId="62822" />
 				</ElseIf>
 			</If>
-			<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+			<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 				if MerchantFrame:IsVisible()==true then
 					if buffer==nil or buffer&gt;4 then buffer=0 end
 					MerchantRepairAllButton:Click()
@@ -573,7 +573,7 @@
 						end
 					end" />
 				<Else>
-					<CustomBehavior File="Misc\RunLUA" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;" />
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
 				</Else>
 		</If>
@@ -583,7 +583,7 @@
 		<RunTo X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
 
 
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			ShowPizzaMessage = GetMoney();
 			WarningIconChat = GetTime();
 			WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
@@ -605,7 +605,7 @@
 		<EnableBehavior Name="Combat" />
 	</If>
 	<If Condition="(Me.FreeBagSlots &lt; 17)" >
-		<CustomBehavior File="Misc\RunLUA" Lua="ShowRecoveryMessage = GetMoney();" />
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 		<CustomBehavior File="WaitTimer" WaitTime="750" />
 		<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" />
@@ -620,7 +620,7 @@
 
 			<CustomBehavior File="InteractWith" MobId="48617" />
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="Misc\RunLUA" NumOfTimes="10" WaitTime="2000" Lua="
+			<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 				if MerchantFrame:IsVisible()==true then
 					if buffer==nil or buffer&gt;4 then buffer=0 end
 					MerchantRepairAllButton:Click()
@@ -646,7 +646,7 @@
 			<CustomBehavior File="FlyTo" X="-9453.447" Y="-938.5175" Z="118.9775" />
 			<ClearMailbox />
 		</If>
-		<CustomBehavior File="Misc\RunLUA" Lua="
+		<CustomBehavior File="Misc\RunLua" Lua="
 			AutoRespond = GetMoney();
 			WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
 			vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);
