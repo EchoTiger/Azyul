@@ -494,24 +494,25 @@
 			<!-- END OF COLD WEATHER FLYING CHECK -->
 		</If>
 
-<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="(Me.CurrentTarget == null || Me.CurrentTarget.IsDead) &amp;&amp; !Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.IsInInstance &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable &amp;&amp; u.Distance &lt;= 40)" >
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting to mount...&quot;);" />
-		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.IsMoving" />
-		<CustomBehavior File="Misc\RunLua" Lua="CancelShapeshiftForm(); local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])])" />
-		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.Mounted" />
-		<CustomBehavior File="WaitTimer" WaitTime="250" /> <!-- Slight lag to process if we are mounted or not for the unstuck process. -->
-		<If Condition="!Me.Mounted" >
-			<If Condition="Chance(50)" > <!-- Unstuck routine #1 -->
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="(Me.CurrentTarget == null || Me.CurrentTarget.IsDead) &amp;&amp; !Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.IsInInstance &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable &amp;&amp; u.Distance &lt;= 40)">
+	<CustomBehavior File="RunMacro" Macro="/cleartarget" />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting to mount...&quot;);" />
+	<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.IsMoving" />
+	<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="100" Lua="CancelShapeshiftForm(); CallCompanion(&quot;MOUNT&quot;, random(GetNumCompanions(&quot;MOUNT&quot;)))" />
+	<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.Mounted" />
+	<CustomBehavior File="WaitTimer" WaitTime="250" /> <!-- Slight lag to process if we are mounted or not for the unstuck process. -->
+	<If Condition="!Me.Mounted" >
+		<If Condition="Chance(50)" > <!-- Unstuck routine #1 -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: We couldn't mount! Attempting to unstuck...&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeRightStart();" WaitTime="750" />
+			<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeRightStop();" />
+			<Else> <!-- Unstuck routine #2 -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: We couldn't mount! Attempting to unstuck...&quot;);" />
-				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeRightStart();" WaitTime="750" />
-				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeRightStop();" />
-				<Else> <!-- Unstuck routine #2 -->
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: We couldn't mount! Attempting to unstuck...&quot;);" />
-					<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeLeftStart();" WaitTime="750" />
-					<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeLeftStop();" />
-				</Else>
-			</If>
+				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeLeftStart();" WaitTime="750" />
+				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeLeftStop();" />
+			</Else>
 		</If>
+	</If>
 </CustomBehavior>
 
 <If Condition="(Me.MapId == 658)" >
