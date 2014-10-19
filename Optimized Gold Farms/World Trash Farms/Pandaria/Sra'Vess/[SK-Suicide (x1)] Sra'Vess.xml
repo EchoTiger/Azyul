@@ -140,8 +140,14 @@
 <!-- Activate Hooks -->
 <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]:&quot; + Environment.NewLine + &quot;Item hooks are now activated.&quot; + Environment.NewLine + &quot;Bot will now:&quot; + Environment.NewLine + &quot;   - Open Plundered Treasure Chests.&quot; + Environment.NewLine + &quot;   - Combine Mote of Harmony.&quot; + Environment.NewLine + &quot;   - Use Potion of Luck.&quot;);" />
 <CustomBehavior File="Hooks\DoWhen" ItemId="93351" UseWhen="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" AllowUseDuringCombat="true" /> <!-- Potion of Luck -->
-<CustomBehavior File="Hooks\DoWhen" ItemId="87391" UseWhen="HasItem(87391)" AllowUseDuringCombat="true" /> <!-- Plundered Treasure Chest -->
-<CustomBehavior File="Hooks\DoWhen" ItemId="89112" UseWhen="GetItemCount(89112) &gt;= 10" AllowUseDuringCombat="true" /> <!-- Combine Motes -->
+<CustomBehavior File="Hooks\DoWhen" ActivityName="Open_PChests" UseWhen="HasItem(87391)" AllowUseDuringCombat="true" > <!-- Plundered Treasure Chest -->
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Opening Plundered Treasure Chest.&quot;);" />
+	<CustomBehavior File="UseItem" ItemId="87391" NumOfTimes="500" TerminateWhen="!HasItem(87391)" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="Combine_Motes" UseWhen="GetItemCount(89112) &gt;= 10" AllowUseDuringCombat="true" > <!-- Combine Motes -->
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Combining Motes.&quot;);" />
+	<CustomBehavior File="UseItem" ItemId="89112" NumOfTimes="500" TerminateWhen="GetItemCount(89112) &lt;= 9" />
+</CustomBehavior>
 
 <While Condition="true" >
 
