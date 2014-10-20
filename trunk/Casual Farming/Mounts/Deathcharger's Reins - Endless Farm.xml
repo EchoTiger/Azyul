@@ -58,13 +58,13 @@
 		<While Condition="!(Me.MapId == 0)" >
 			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Teleporting to Stormwind.&quot;)" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Teleporting to Stormwind.&quot;);" />
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3561);" />
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
 			</If>
 			<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsHorde" >
 				<CustomBehavior File="ForcedDismount" />
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Teleporting to Undercity.&quot;)" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Teleporting to Undercity.&quot;);" />
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(3563);" />
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0" />
 			</If>
@@ -368,7 +368,7 @@
 	<If Condition="!(Me.MapId == 329) &amp;&amp; Me.FreeBagSlots &gt;= 5" >
 		<If Condition="Me.Location.Distance(new WoWPoint(3206.076, -4044.047, 106.9399)) &gt; 35" >
 			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to the Service Entrance." />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to the Service Entrance.&quot;);" />
 			<CustomBehavior File="FlyTo" X="3172.485" Y="-4038.614" Z="105.3601" />
 			<CustomBehavior File="ForcedDismount" />
 		</If>
