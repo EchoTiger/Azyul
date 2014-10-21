@@ -1473,18 +1473,20 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 				<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)">
 					<CustomBehavior File="InteractWith" MobId="28796" X="5410.7" Y="-2658.249" Z="303.9539" />
 					<CustomBehavior File="WaitTimer" WaitTime="500" />
-					<CustomBehavior File="Misc\RunLua" NumOfTimes="10" Lua="
+					<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
 					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
 						MerchantRepairAllButton:Click()
-						 for b=0,4 do for s=1,GetContainerNumSlots(b)
-							do local n=GetContainerItemLink(b,s)
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
 								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
-						UseContainerItem(buffer,s)
-					end
-				end
-			buffer=buffer+1
-			end
-		end" />
+									UseContainerItem(buffer,s)
+								end
+							end
+						buffer=buffer+1
+						end
+					end" />
 				</If>
 		<!-- END Lua Sell, Everything -->
 
