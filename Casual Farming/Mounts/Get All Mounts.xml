@@ -494,7 +494,7 @@
 					<RunTo X="3897.05" Y="-3544.939" Z="137.1984" /> <!-- Run against gate until it opens. A waited CTM was removed due to movement lock bugs. -->
 					<RunTo X="3590.338" Y="-3642.218" Z="138.4868" />
 
-					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 
 					<RunTo X="3588.635" Y="-3638.869" Z="138.4745" />
 					<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -1824,6 +1824,9 @@
 				<If Condition="(Me.Class == WoWClass.Priest)" >
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 				</If>
+				<If Condition="(Me.Class == WoWClass.Warlock)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				</If>
 				<RunTo X="-1056.526" Y="-52.6046" Z="700.4836" />
 				<CustomBehavior File="RunMacro" Macro="/stopattack\n/cleartarget\n/targetenemy" />
 				<CustomBehavior File="Misc\RunLua" Lua="
@@ -1849,6 +1852,9 @@
 						CastSpellByID(115073);" />
 				</If>
 				<If Condition="(Me.Class == WoWClass.Priest)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				</If>
+				<If Condition="(Me.Class == WoWClass.Warlock)" >
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 				</If>
 				<CustomBehavior File="RunMacro" Macro="/cleartarget" />
@@ -1877,7 +1883,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="Me.Y &lt; 0" />
 
 				<RunTo X="-339.4252" Y="13.0758" Z="626.9792" />
-				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				<CustomBehavior File="MyCTM" X="-327.9889" Y="24.11956" Z="626.9792" />
 				<CustomBehavior File="WaitTimer" WaitTime="15000" />
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
@@ -2317,7 +2323,7 @@
 						<CustomBehavior File="WaitTimer" WaitTime="1500" />
 						<RunTo X="836.7336" Y="987.9589" Z="317.4236" />
 
-						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 						<CustomBehavior File="MyCTM" X="822.9694" Y="986.8021" Z="318.7797" />
 						<CustomBehavior File="WaitTimer" WaitTime="5500" />
 						<While Condition="!(StyxWoW.IsInWorld)" >
