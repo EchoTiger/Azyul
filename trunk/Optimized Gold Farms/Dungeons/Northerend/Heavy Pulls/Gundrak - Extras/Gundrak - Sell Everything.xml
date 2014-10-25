@@ -613,7 +613,7 @@
 			<MoveTo X="1777.956" Y="676.9604" Z="129.2174" />
 			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Object(192518, o => o.ToGameObject().CanUse()) != null" />
 			<While Condition="Object(192518, o => o.ToGameObject().CanUse()) != null">
-				<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreLoSToTarget="true" Range="4.8" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
 				<CustomBehavior File="WaitTimer" WaitTime="1200" />
 			</While>
 
@@ -636,7 +636,7 @@
 
 			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Object(192520, o => o.ToGameObject().CanUse()) != null" />
 			<While Condition="Object(192520, o => o.ToGameObject().CanUse()) != null">
-				<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreLoSToTarget="true" Range="4.8" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
 				<CustomBehavior File="WaitTimer" WaitTime="1200" />
 			</While>
 
@@ -660,7 +660,7 @@
 
 			<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Object(192519, o => o.ToGameObject().CanUse()) != null" />
 			<While Condition="Object(192519, o => o.ToGameObject().CanUse()) != null">
-				<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreLoSToTarget="true" Range="4.8" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
 				<CustomBehavior File="WaitTimer" WaitTime="1200" />
 			</While>
 
@@ -709,7 +709,7 @@
 			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Skipping wait since we're going to the vendor.&quot;);" />
 				<Else>
-					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				</Else>
 			</If>
 		    <CustomBehavior File="MyCTM" X="1905.168" Y="640.1153" Z="176.6356" TerminateWhen="Me.MapId != 604" />
