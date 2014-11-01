@@ -462,6 +462,82 @@
 </CustomBehavior>
 <CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 
+<!-- Declare movement buff and defensive hooks -->
+	<If Condition="Me.Class == WoWClass.Mage" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!WoWSpell.FromId(11426).Cooldown &amp;&amp; Me.KnowsSpell(11426))" > <!-- (!WoWSpell.FromId(1953).Cooldown) ||  -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(11426);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Priest" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive)	&amp;&amp; ((!WoWSpell.FromId(139).Cooldown &amp;&amp; !Me.HasAura(139)) || (!WoWSpell.FromId(17).Cooldown &amp;&amp; !Me.HasAura(17) &amp;&amp; Me.KnowsSpell(17) &amp;&amp; !Me.HasAura(6788)))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(139); CastSpellByID(17);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.Warlock" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving)" >
+		</CustomBehavior>
+	</If> May use Burning Rush here -->
+	<If Condition="Me.Class == WoWClass.Druid" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((Me.HasAura(768) &amp;&amp; !WoWSpell.FromId(1850).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(22812).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(22812);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(1850);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Rogue" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(2983).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(5277).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(5277);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2983);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Monk" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (Me.HealthPercent &lt;= 70 &amp;&amp; !WoWSpell.FromId(115072).Cooldown)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(115072);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Hunter" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(13809).Cooldown) || (Me.HealthPercent &lt;= 30 &amp;&amp; !WoWSpell.FromId(19263).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 30" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(19263);" />
+			</If>
+			<If Condition="Me.HasAura(77769)" >
+				<CustomBehavior File="Misc\RunLua" Lua="CancelUnitBuff(&quot;player&quot;,&quot;Trap Launcher&quot;);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(13809);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Shaman" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!Me.HasAura(2645))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2645);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.DeathKnight" >
+	</If> Hmm.... -->
+	<!-- <If Condition="Me.Class == WoWClass.Warrior" >
+	</If>  Perhaps use of Enraged healing. -->
+	<If Condition="Me.Class == WoWClass.Paladin" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)) || (Me.HealthPercent &lt;= 10 &amp;&amp; !WoWSpell.FromId(633).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 10" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(633);" />
+			</If>
+			<If Condition="!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)" >
+				<CustomBehavior File="Misc\RunLua" Lua="TargetNearestEnemy(); CastSpellByID(20271);" />
+			</If>
+		</CustomBehavior>
+	</If>
+<!-- END Declare movement buff hooks -->
+
 	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
 		<While Condition="(Me.FreeBagSlots &gt;= 17)">
 			<If Condition="!(Me.MapId == 670)" >
@@ -483,14 +559,12 @@
 					WarningIconRight = GetTime();" />
 				<RunTo X="-579.9321" Y="-237.6211" Z="276.5957" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-534.395" Y="-266.0773" Z="276.5795" />
 					<Hotspot X="-564.5115" Y="-316.9427" Z="268.7674" />
 					<Hotspot X="-522.905" Y="-312.8895" Z="268.7675" />
 				</CustomBehavior>
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-484.284" Y="-321.5328" Z="268.6973" />		
 					<Hotspot X="-452.7674" Y="-337.2468" Z="268.4345" />
@@ -499,7 +573,6 @@
 
 				<RunTo X="-471.7854" Y="-371.5662" Z="268.6678" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-508.0822" Y="-361.472" Z="268.7682" />
 					<Hotspot X="-540.7727" Y="-377.0743" Z="269.1198" />
@@ -507,7 +580,6 @@
 
 				<RunTo X="-534.8872" Y="-364.5476" Z="268.7675" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-565.5552" Y="-363.0222" Z="268.7675" />
 					<Hotspot X="-602.6298" Y="-374.5875" Z="268.7675" />
@@ -517,7 +589,6 @@
 				<RunTo X="-618.6313" Y="-382.9435" Z="268.7678" />
 				<RunTo X="-632.0266" Y="-358.9445" Z="271.3231" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-612.6282" Y="-327.6003" Z="268.7661" />
 					<Hotspot X="-703.341" Y="-388.7024" Z="268.7661" />
@@ -527,7 +598,6 @@
 				<!-- Boss is intentionally skipped because nobody loves him and he's a disgrace. -->
 				<RunTo X="-671.3713" Y="-445.9702" Z="269.1199" /> <!-- Nav through area after first boss -->
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-634.0962" Y="-463.4138" Z="276.5843" />
 					<Hotspot X="-570.849" Y="-503.0447" Z="276.5972" />
@@ -545,7 +615,6 @@
 
 				<!-- New Room -->
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-698.8266" Y="-606.3247" Z="268.7646" />
 					<Hotspot X="-678.5309" Y="-644.9106" Z="268.7674" />
@@ -553,7 +622,6 @@
 
 				<RunTo X="-705.568" Y="-667.9664" Z="268.7675" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-655.5172" Y="-718.6245" Z="269.1169" />
 				</CustomBehavior>
@@ -562,7 +630,6 @@
 				<RunTo X="-640.6693" Y="-722.181" Z="268.7675" /> <!-- Navigate over bridge1-->
 				<RunTo X="-625.624" Y="-691.6069" Z="271.3095" /> <!-- Navigate over bridge2-->
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-627.3105" Y="-667.6534" Z="268.7675" />
 					<Hotspot X="-564.4159" Y="-696.5651" Z="268.7674" />
@@ -573,7 +640,6 @@
 
 				<RunTo X="-457.5056" Y="-735.4189" Z="268.7691" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast [@player]Dash\n/cast [@player]Blazing Speed\n/cast [@player]Speed of Light\n/cast [@player]Power Word: Shield\n/cast [@player]Sprint\n/cast [@player]Ghost Wolf\n/cast [@player]Darkflight" />
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-556.8271" Y="-747.3787" Z="268.7677" />
 				</CustomBehavior>
