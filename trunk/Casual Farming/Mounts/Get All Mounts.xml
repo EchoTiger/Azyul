@@ -411,8 +411,11 @@
 					<DisableBehavior Name="Combat" /> 
 						<RunTo X="3918.294" Y="-3546.263" Z="134.4024" />
 						<CustomBehavior File="WaitTimer" WaitTime="20000" />
+						<RunTo X="3853.457" Y="-3526.44" Z="144.2103" />
 					<EnableBehavior Name="Combat" />
-					<While Condition="Me.Combat" > <!-- Clear Rock Borers since Combat Routine won't.-->
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<!-- Third necropolis -->
+					<If Condition="Me.Combat" > <!-- Clear Rock Borers since Combat Routine won't.-->
 						<CustomBehavior File="WaitTimer" WaitTime="1500" />
 						<If Condition="Me.Class == WoWClass.Warlock" >
 							<CustomBehavior File="InteractWith" InteractByCastingSpellId="686" Range="39" NumOfTimes="100" MobId1="10461" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
@@ -429,21 +432,14 @@
 								CastSpellByID(51723);
 								CastSpellByID(48045);
 								CastSpellByID(26573);
-								CastSpellByID(19072);
 								CastSpellByID(53385);
 								CastSpellByID(53595);
 								CastSpellByID(101546);
 								CastSpellByID(1449);
 								CastSpellByID(106785);
-								CastSpellByID(48721);
 								" />
 						</If>
-					</While>
-					<DisableBehavior Name="Combat" />
-						<RunTo X="3853.457" Y="-3526.44" Z="144.2103" />
-					<EnableBehavior Name="Combat" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
-					<!-- Third necropolis -->
+					</If>
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 						<Hotspot X="3846.789" Y="-3495.841" Z="141.2105" />
 						<Hotspot X="3832.484" Y="-3503.41" Z="141.2105" />
