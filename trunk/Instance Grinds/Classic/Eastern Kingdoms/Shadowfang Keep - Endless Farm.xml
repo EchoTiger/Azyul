@@ -413,15 +413,18 @@
 						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
 						<RunTo X="-202.0162" Y="2100.212" Z="76.89195" />
 						<RunTo X="-228.3606" Y="2109.246" Z="76.88993" />
-						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" /> 
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" /> 
 						<CustomBehavior File="MyCTM" X="-230.1028" Y="2103.024" Z="76.8905" />
 						<CustomBehavior File="WaitTimer" WaitTime="15000" />
 						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 						<!-- End Instance Grind -->
 		</While>
 	<!-- Checks if bags are full -->	
-			<If Condition="HasSpell(61447) || HasSpell(61425)" >
-					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+			<CustomBehavior File="WaitTimer" WaitTime="1500" />
+			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1100" />
+				<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 			</If>
 			
 			<If Condition="(Me.FreeBagSlots &lt;= 15) &amp;&amp; Me.IsAlliance)" >
