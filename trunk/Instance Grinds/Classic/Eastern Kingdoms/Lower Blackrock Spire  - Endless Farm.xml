@@ -361,39 +361,32 @@
 <While Condition="true" >
 	<If Condition="!(Me.MapId == 229)" >
 		<While Condition="(Me.MapId == 0)" >
-			
 			<!-- Navigation to deal with being inside mountain -->
-			
-			<If Condition="Me.Location.Distance(new WoWPoint(-7533.004, -1228.654, 285.7321)) &gt; 10" >
-						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
-						<CustomBehavior File="Message" Text="Moving to Lower Blackrock Spire Location." LogColor="Lime" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7843.759" Y="-1140.536" Z="208.2344" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7794.918" Y="-1134.368" Z="214.8472" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7745.932" Y="-1117.598" Z="215.0841" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7710.015" Y="-1086.716" Z="217.7014" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7689.18" Y="-1091.725" Z="217.4671" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7537.032" Y="-1206.015" Z="294.143" />
-						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7533.004" Y="-1213.508" Z="285.4092" />
-						<CustomBehavior File="ForcedDismount" />
+			<If Condition="Me.ZoneId != 25" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we're outside of the mounting.  Entering it from the north.&quot;);" />
+				<CustomBehavior File="FlyTo" X="-7346.831" Y="-1098.501" Z="280.8842" />
+				<CustomBehavior File="MyCTM" X="-7406.253" Y="-1104.503" Z="281.3838" />
+				<CustomBehavior File="MyCTM" X="-7424.696" Y="-1060.343" Z="275.2023" />
+				<CustomBehavior File="MyCTM" X="-7495.707" Y="-1076.849" Z="264.9199" />
 			</If>
-						<RunTo X="-7525.331" Y="-1228.654" Z="285.7321" />
-						<CustomBehavior File="MyCTM" X="-7523.937" Y="-1233.463" Z="285.7379" /> <!-- Enters instance if not already inside -->
-						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<If Condition="Me.ZoneId == 25" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: I think we're in the mountain now.  Going to instance portal.&quot;);" />
+				<If Condition="Me.Location.Distance(new WoWPoint(-7514.638, -1334.04, 291.6871)) &gt;= 60" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Flying causes issues in this area.  Attempting to run instead.&quot;);" />
+					<RunTo X="-7527.242" Y="-1225.861" Z="285.7321" />
+					<CustomBehavior File="MyCTM" X="-7520.856" Y="-1239.994" Z="286.877" />
+					<CustomBehavior File="MyCTM" X="-7508.81" Y="-1318.492" Z="291.6873" />
+					<CustomBehavior File="MyCTM" X="-7511.87" Y="-1331.722" Z="291.6815" />
+				</If>
+				<CustomBehavior File="MyCTM" X="-7525.648" Y="-1334.353" Z="289.8185" TerminateWhen="Me.MapId == 229" /> <!-- Enters instance if not already inside -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId == 229" />
+			</If>
 		</While>
 	</If>
 	<!-- Begin Instance Grind -->
 		<While Condition="(Me.MapId == 229)" >
 						
 						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-						<RunTo X="78.3534" Y="-230.145" Z="50.20138" />
-						<RunTo X="92.06746" Y="-277.085" Z="60.59741" />
-						<RunTo X="72.45925" Y="-277.3184" Z="60.62326" />
-						<RunTo X="67.30666" Y="-316.8887" Z="65.46349" />
-						<RunTo X="81.34548" Y="-319.8718" Z="55.78053" />
-						<RunTo X="103.6877" Y="-310.4364" Z="53.91888" />
-						<RunTo X="105.8557" Y="-326.9674" Z="53.91915" />
-						<RunTo X="82.98757" Y="-354.3782" Z="60.70204" />
-						<RunTo X="57.08778" Y="-311.0986" Z="53.91863" />
 						<RunTo X="47.56035" Y="-260.798" Z="65.3494" />
 						<RunTo X="13.07125" Y="-260.489" Z="65.34661" />
 						<RunTo X="19.91747" Y="-321.4225" Z="48.86771" />
@@ -454,36 +447,32 @@
 						<RunTo X="-80.53194" Y="-521.5865" Z="82.43058" />
 						<RunTo X="-24.96272" Y="-486.8489" Z="90.63306" /> <!-- Overlord Wyrmthalak -->
 						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
-						<RunTo X="77.66439" Y="-223.971" Z="49.84536" />
-						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" />
-                        <CustomBehavior File="MyCTM" X="77.66439" Y="-221.971" Z="49.84536"   />
-                        <CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<RunTo X="58.40748" Y="-325.1075" Z="53.91624" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+                        <CustomBehavior File="MyCTM" X="64.15419" Y="-325.098" Z="54.03779" TerminateWhen="Me.MapId != 229" />
+                        <CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId != 229" />
                         <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 						<!-- End Instance Grind -->
 		</While>
-	<!-- Checks if bags are full -->	
-			<If Condition="HasSpell(61447) || HasSpell(61425)" >
-					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
-					<CustomBehavior File="Message" Text="Moving to Iron Summit Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7485.027" Y="-1072.944" Z="265.4049" />
-					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7444.863" Y="-1060.7" Z="269.4856" />
-					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7367.443" Y="-1098.339" Z="277.8398" />
-					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
-			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
-					<CustomBehavior File="Message" Text="Moving to Iron Summit Mailbox" LogColor="Lime" />
-					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7485.027" Y="-1072.944" Z="265.4049" />
-					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7444.863" Y="-1060.7" Z="269.4856" />
-					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7367.443" Y="-1098.339" Z="277.8398" />
-					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
-			</If>
-			
+	<!-- Checks if bags are full -->
+			<If Condition="Me.FreeBagSlots &lt;= 15" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-7511.293" Y="-1301.714" Z="296.6021" />
+				<CustomBehavior File="MyCTM" X="-7521.717" Y="-1234.427" Z="285.7122" />
+				<CustomBehavior File="MyCTM" X="-7534.948" Y="-1211.68" Z="285.4543" />
+				<RunTo X="-7488.923" Y="-1074.555" Z="265.2351" />
+				<CustomBehavior File="MyCTM" X="-7426.333" Y="-1060.413" Z="273.7263" />
+				<CustomBehavior File="MyCTM" X="-7408.079" Y="-1104.025" Z="278.0757" />
+				<CustomBehavior File="MyCTM" X="-7343.334" Y="-1098.286" Z="277.23" />
+				<If Condition="Me.IsAlliance" >
+						<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+				</If>
+				<If Condition="Me.IsHorde" >
+						<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+				</If>
+			</If>			
 	<!-- End bag check -->
 	
 </While>
