@@ -1792,8 +1792,8 @@
 				<RunTo X="-1032.734" Y="-75.63425" Z="698.8443" />
 				<CustomBehavior File="RunMacro" Macro="/stopattack\n/cleartarget\n/targetenemy" />
 				<CustomBehavior File="Misc\RunLua" Lua="
+					CastSpellByID(44614);
 					CastSpellByID(57755);
-					CastSpellByID(30455);
 					CastSpellByID(115072);
 					CastSpellByID(45477);
 					CastSpellByID(20271);
@@ -1809,7 +1809,7 @@
 					" />
 				<CustomBehavior File="WaitTimer" WaitTime="800" />
 				<If Condition="(Me.Class == WoWClass.Warrior)" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Waiting for Heroic Strike cooldown.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Waiting for Heroic Throw cooldown.&quot;);" />
 					<CustomBehavior File="WaitTimer" WaitTime="6000" TerminateWhen="(!WoWSpell.FromId(57755).Cooldown)" />
 				</If>
 				<If Condition="(Me.Class == WoWClass.Monk)" >
@@ -1823,11 +1823,14 @@
 				<If Condition="(Me.Class == WoWClass.Warlock)" >
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 				</If>
+				<If Condition="Me.Class == WoWClass.Mage" >
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				</If>
 				<RunTo X="-1056.526" Y="-52.6046" Z="700.4836" />
 				<CustomBehavior File="RunMacro" Macro="/stopattack\n/cleartarget\n/targetenemy" />
 				<CustomBehavior File="Misc\RunLua" Lua="
+					CastSpellByID(44614);
 					CastSpellByID(57755);
-					CastSpellByID(30455);
 					CastSpellByID(115072);
 					CastSpellByID(45477);
 					CastSpellByID(20271);
@@ -1851,6 +1854,9 @@
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 				</If>
 				<If Condition="(Me.Class == WoWClass.Warlock)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				</If>
+				<If Condition="Me.Class == WoWClass.Mage" >
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 				</If>
 				<CustomBehavior File="RunMacro" Macro="/cleartarget" />
