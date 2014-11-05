@@ -151,7 +151,6 @@
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			</While>
 </If>
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />
 		<While Condition="!(Me.MapId == 0)" >
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
@@ -517,19 +516,32 @@
 				
 				<RunTo X="-703.341" Y="-388.7024" Z="268.7661" />
 
+				<CustomBehavior File="InteractWith" MobId="39625" MobState="Alive" WaitForNpcs="false" X="-704.9254" Y="-444.5625" Z="269.0479" /> <!-- Pull boss -->
+
 				<RunTo X="-666.3197" Y="-423.3141" Z="268.7676" /> <!-- Last Mob near First Boss -->
-				<!-- Boss is intentionally skipped because nobody loves him and he's a disgrace. -->
+
 				<RunTo X="-671.3713" Y="-445.9702" Z="269.1199" /> <!-- Nav through area after first boss -->
 
 				<RunTo X="-634.0962" Y="-463.4138" Z="276.5843" />
 					
 				<RunTo X="-570.849" Y="-503.0447" Z="276.5972" />
 
-				<RunTo X="-535.7795" Y="-480.0509" Z="276.5973" /> <!-- These mobs are hard... -->
-				<RunTo X="-478.5992" Y="-528.0516" Z="271.9075" /> <!-- These mobs are hard... -->
-				<RunTo X="-529.1798" Y="-579.1294" Z="276.5973" /> <!-- These mobs are hard... -->
+				<RunTo X="-572.2717" Y="-507.7539" Z="276.5972" />
 
-				<RunTo X="-566.6215" Y="-554.9785" Z="276.5972" /> <!-- Last mob in Khardros' Anvil -->
+				<RunTo X="-528.3478" Y="-483.0892" Z="276.5972" />
+
+				<RunTo X="-477.74" Y="-529.9835" Z="272.2519" />
+
+				<RunTo X="-531.4787" Y="-575.2756" Z="276.5958" />
+
+				<If Condition="Unit(40177, u =&gt; u.IsAlive &amp;&amp; u.Location.Distance(new WoWPoint(-480.4336, -571.8136, 271.9123)) &gt;= 80) != null" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Throngus is in reasonable distance, pulling him.&quot;);" />
+					<CustomBehavior File="InteractWith" MobId="40177" MobState="Alive" Distance="150" WaitForNpcs="false" X="-504.1576" Y="-475.108" Z="276.2405" />
+				</If>
+
+				<RunTo X="-574.0319" Y="-553.9172" Z="276.5973" />
+
+				<CustomBehavior File="InteractWith" MobId="40177" MobState="Alive" Distance="150" WaitForNpcs="false" X="-504.1576" Y="-475.108" Z="276.2405" /> <!-- Last attempt to kill Throngus. -->
 
 				<RunTo X="-625.882" Y="-604.2358" Z="276.5818" />
 				<RunTo X="-664.7763" Y="-606.7249" Z="269.1947" />
@@ -554,11 +566,20 @@
 				<RunTo X="-564.4159" Y="-696.5651" Z="268.7674" />
 
 				<RunTo X="-469.7773" Y="-689.2486" Z="268.769" /> <!-- Last pack before next boss -->
-				<!-- Skip boss because he complains too much about me not making him dinner when he gets home from work.-->
+				
+				<CustomBehavior File="InteractWith" MobId="40319" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" X="-412.007" Y="-680.0705" Z="266.831" /> <!-- Pull Drahga. -->
+				<CustomBehavior File="WaitTimer" WaitTime="20000" TerminateWhen="!Me.Combat" />
 
 				<RunTo X="-457.5056" Y="-735.4189" Z="268.7691" />
 
 				<RunTo X="-556.8271" Y="-747.3787" Z="268.7677" />
+
+				<RunTo X="-609.3281" Y="-827.6926" Z="247.4572" />
+
+				<CustomBehavior File="InteractWith" IgnoreCombat="true" MobState="AliveNotInCombat" WaitTime="650" MobId="39392"  X="-741.0018" Y="-862.0551" Z="232.4673" />
+				<CustomBehavior File="InteractWith" IgnoreCombat="true" MobState="AliveNotInCombat" MobId="39392" X="-695.9404" Y="-805.4003" Z="233.2325" />
+				<CustomBehavior File="InteractWith" MobState="Alive" MobId="40484" X="-774.9028" Y="-827.0243" Z="233.2095" /> <!--Last boss -->
+
 				<CustomBehavior File="Misc\RunLua" Lua="
 					ShowPizzaMessage = GetMoney();
 					WarningIconChat = GetTime();
