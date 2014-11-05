@@ -151,7 +151,6 @@
 			</While>
 </If>
 
-	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />
 		<While Condition="!(Me.MapId == 0)" >
 			<If Condition="Me.IsAlliance" >
 			<!-- Outland move to and use portal in shat -->
@@ -575,90 +574,75 @@
 					<Hotspot X="-450.606" Y="-369.8665" Z="269.3948" />
 					<Hotspot X="-508.0822" Y="-361.472" Z="268.7682" />
 					<Hotspot X="-565.5552" Y="-363.0222" Z="268.7675" />
-
 					<!-- <Hotspot X="-561.3911" Y="-377.7259" Z="270.8114" /> LoS coordinate -->
 					<Hotspot X="-636.6893" Y="-400.7621" Z="268.7869" />
 				</CustomBehavior>
 
-				<CustomBehavior File="RunMacro" Macro="/cast Dash" />
-				<If Condition="!Me.HasAura(768)" >
-					<CustomBehavior File="RunMacro" Macro="/cast Cat Form" />
-				</If>
+				<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-636.6893" Y="-400.7621" Z="268.7869" />
 					<Hotspot X="-616.5806" Y="-329.5378" Z="268.7661" />
 					<Hotspot X="-695.5875" Y="-397.3557" Z="268.7661" />
-					<!-- <Hotspot X="-703.8369" Y="-442.8253" Z="269.1477" /> Boss, remove if GPH is less -->
+					<Hotspot X="-703.8369" Y="-442.8253" Z="269.1477" /> <!-- Boss, remove if GPH is less -->
 					<Hotspot X="-655.9354" Y="-450.5032" Z="273.096" /> <!-- Pull and LoS casters -->
 				</CustomBehavior>
 
-				<!--/////Anvil Room,  may be stealthable to increase GPH
-				<CustomBehavior File="RunMacro" Macro="/cast Dash" />
-				<If Condition="!Me.HasAura(768)" >
-					<CustomBehavior File="RunMacro" Macro="/cast Cat Form" />
-				</If>
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-570.849" Y="-503.0447" Z="276.5972" />
-					<Hotspot X="-483.066" Y="-520.4722" Z="271.9074" />
-				</CustomBehavior>
+				<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-533.495" Y="-574.931" Z="276.5972" />
-					<Hotspot X="-574.5972" Y="-554.6406" Z="276.5973" />
-				</CustomBehavior>
-				/////-->
+				<DisableBehavior Name="Combat" />
+					<RunTo X="-572.2717" Y="-507.7539" Z="276.5972" />
+					<RunTo X="-528.3478" Y="-483.0892" Z="276.5972" />
+					<RunTo X="-477.74" Y="-529.9835" Z="272.2519" />
+					<RunTo X="-531.4787" Y="-575.2756" Z="276.5958" />
+					<If Condition="Unit(40177, u =&gt; u.IsAlive &amp;&amp; u.Location.Distance(new WoWPoint(-480.4336, -571.8136, 271.9123)) &gt;= 80) != null" >
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Throngus is in reasonable distance, pulling him.&quot;);" />
+						<CustomBehavior File="InteractWith" MobId="40177" IgnoreCombat="true" MobState="Alive" Distance="150" WaitForNpcs="false" X="-504.1576" Y="-475.108" Z="276.2405" />
+					</If>
+					<RunTo X="-574.0319" Y="-553.9172" Z="276.5973" />
+				<EnableBehavior Name="Combat" />
+				<CustomBehavior File="InteractWith" MobId="40177" MobState="Alive" Distance="150" WaitForNpcs="false" X="-504.1576" Y="-475.108" Z="276.2405" /> <!-- Last attempt to kill Throngus. -->
 
-
-				<!--////Anvil room stealth skip				////-->
-				<RunTo X="-580.6266" Y="-470.3082" Z="276.8729" />
-				<CustomBehavior File="RunMacro" Macro="/cast Prowl" />
-				<CustomBehavior File="MyCTM" X="-568.3083" Y="-470.0022" Z="276.5972" />
-				<CustomBehavior File="MyCTM" X="-539.3652" Y="-457.1109" Z="276.8721" />
-				<CustomBehavior File="MyCTM" X="-522.7679" Y="-457.8945" Z="276.8723" />
-				<CustomBehavior File="MyCTM" X="-480.423" Y="-481.6433" Z="271.9133" />
-				<CustomBehavior File="MyCTM" X="-461.8241" Y="-534.7032" Z="271.9075" />
-				<CustomBehavior File="MyCTM" X="-488.007" Y="-586.9954" Z="271.9134" />
-				<CustomBehavior File="MyCTM" X="-544.8422" Y="-602.2615" Z="276.8723" />
-				<CustomBehavior File="MyCTM" X="-578.612" Y="-587.5532" Z="276.8723" />
-				<CustomBehavior File="RunMacro" Macro="/cancelaura Prowl" />
-
+				<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 
 
 				<RunTo X="-670.2148" Y="-609.6985" Z="269.1201" /> <!-- Right before pulls in Condemned Halls -->
 
-				<CustomBehavior File="RunMacro" Macro="/cast Dash" />
-				<If Condition="!Me.HasAura(768)" >
-					<CustomBehavior File="RunMacro" Macro="/cast Cat Form" />
-				</If>
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-697.2436" Y="-614.1842" Z="269.0871" />
 					<Hotspot X="-688.8019" Y="-649.1967" Z="268.7674" />
 					<Hotspot X="-620.6099" Y="-736.668" Z="268.7661" />
 				</CustomBehavior>
 
-				<CustomBehavior File="RunMacro" Macro="/cast Dash" />
-				<If Condition="!Me.HasAura(768)" >
-					<CustomBehavior File="RunMacro" Macro="/cast Cat Form" />
-				</If>
-				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
-					<Hotspot X="-627.3105" Y="-667.6534" Z="268.7675" />
-					<Hotspot X="-564.4159" Y="-696.5651" Z="268.7674" />
-					<Hotspot X="-469.7773" Y="-689.2486" Z="268.769" /> <!-- Last pack before next boss -->
-				</CustomBehavior>
+				<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 
-				<!-- Skip boss because he complains too much about me not making him dinner when he gets home from work.-->
+				<DisableBehavior Name="Combat" />
+					<RunTo X="-627.3105" Y="-667.6534" Z="268.7675" />
+					<RunTo X="-564.4159" Y="-696.5651" Z="268.7674" />
+					<RunTo X="-469.7773" Y="-689.2486" Z="268.769" /> <!-- Last pack before next boss -->
+					<CustomBehavior File="InteractWith" MobId="40319" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" X="-412.007" Y="-680.0705" Z="266.831" /> <!-- Pull Drahga. -->
+				<EnableBehavior Name="Combat" />
+				<CustomBehavior File="WaitTimer" WaitTime="20000" TerminateWhen="!Me.Combat" />
+
 
 				<RunTo X="-457.5056" Y="-735.4189" Z="268.7691" />
 
-				<CustomBehavior File="RunMacro" Macro="/cast Dash" />
-				<If Condition="!Me.HasAura(768)" >
-					<CustomBehavior File="RunMacro" Macro="/cast Cat Form" />
-				</If>
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 					<Hotspot X="-556.8271" Y="-747.3787" Z="268.7677" />
 					<Hotspot X="-533.2659" Y="-778.8906" Z="269.3457" />
 				</CustomBehavior>
+
+				<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
+
+				<RunTo X="-609.3281" Y="-827.6926" Z="247.4572" />
+
+				<DisableBehavior Name="Combat" />
+					<CustomBehavior File="InteractWith" IgnoreCombat="true" MobState="AliveNotInCombat" WaitTime="650" MobId="39392"  X="-741.0018" Y="-862.0551" Z="232.4673" />
+					<CustomBehavior File="InteractWith" IgnoreCombat="true" MobState="AliveNotInCombat" MobId="39392" X="-695.9404" Y="-805.4003" Z="233.2325" />
+					<CustomBehavior File="InteractWith" IgnoreCombat="true" MobState="Alive" MobId="40484" X="-774.9028" Y="-827.0243" Z="233.2095" /> <!--Last boss -->
+				<EnableBehavior Name="Combat" />
+
+				<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 
 				<CustomBehavior File="Misc\RunLua" Lua="
 					ShowPizzaMessage = GetMoney();
@@ -675,18 +659,6 @@
 				<CustomBehavior File="MyCTM" X="-638.9563" Y="-714.1722" Z="268.766" />
 
 				<RunTo X="-569.1259" Y="-587.9872" Z="276.5972" />
-				<!--////Anvil Room Stealth Skip				////-->
-				<CustomBehavior File="RunMacro" Macro="/cast Prowl" />
-				<CustomBehavior File="MyCTM" X="-549.576" Y="-607.4966" Z="276.8723" />
-				<CustomBehavior File="MyCTM" X="-532.3038" Y="-608.3854" Z="276.8723" />
-				<CustomBehavior File="MyCTM" X="-529.8596" Y="-604.9716" Z="276.8723" />
-				<CustomBehavior File="MyCTM" X="-511.8603" Y="-600.6884" Z="276.5972" />
-				<CustomBehavior File="MyCTM" X="-461.8242" Y="-549.1511" Z="271.9082" />
-				<CustomBehavior File="MyCTM" X="-470.8704" Y="-491.1239" Z="272.1841" />
-				<CustomBehavior File="MyCTM" X="-512.4814" Y="-459.8236" Z="276.5972" />
-				<CustomBehavior File="MyCTM" X="-583.2004" Y="-471.4074" Z="276.8724" />
-				<CustomBehavior File="RunMacro" Macro="/cancelaura Prowl" />
-
 
 				<RunTo X="-624.6456" Y="-188.0161" Z="272.0483" /> <!-- Before instance portal. -->
 				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
