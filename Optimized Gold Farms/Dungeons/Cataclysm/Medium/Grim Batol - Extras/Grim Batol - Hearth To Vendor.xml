@@ -451,6 +451,13 @@
 		With use of Kicks go to profiles.
 		Big thanks to Kick for this.
 		-->
+<!-- Activate Hooks -->
+<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]:&quot; + Environment.NewLine + &quot;Item hooks are now activated.&quot; + Environment.NewLine + &quot;Bot will now:&quot; + Environment.NewLine + &quot;   - Open Tiny Treasure Chests.&quot; + Environment.NewLine + &quot;   - Use Potion of Treasure Finding.&quot;);" />
+<CustomBehavior File="Hooks\DoWhen" ItemId="58488" UseWhen="!Me.HasAura(80263) &amp;&amp; HasItem(58488)" AllowUseDuringCombat="true" /> <!-- Potion of Treasure Finding -->
+<CustomBehavior File="Hooks\DoWhen" ActivityName="Open_TChests" UseWhen="HasItem(67539)" AllowUseDuringCombat="true" > <!-- Tiny Treasure Chest -->
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Opening Tiny Treasure Chest.&quot;);" />
+	<CustomBehavior File="UseItem" ItemId="67539" NumOfTimes="500" TerminateWhen="!HasItem(67539)" />
+</CustomBehavior>
 	<If Condition="Me.IsAlliance &amp;&amp; Me.HearthstoneAreaId != 2101" >
 		<CustomBehavior File="FlyTo" X="-5370.68" Y="-2954.063" Z="323.5525" />
 		<CustomBehavior File="ForcedDismount" />
