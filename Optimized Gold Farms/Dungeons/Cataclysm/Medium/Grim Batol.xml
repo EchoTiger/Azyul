@@ -465,7 +465,7 @@
 		<While Condition="(Me.FreeBagSlots &gt;= 17)">
 			<If Condition="!(Me.MapId == 670)" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Instance Location.&quot;);" />
-				<CustomBehavior File="FlyTo" X="-4064.753" Y="-3452.003" Z="287.0812" />
+				<CustomBehavior File="FlyTo" X="-4064.753" Y="-3452.003" Z="287.0812" ArrivalTolerance="15" />
 				<If Condition="Me.Mounted" >
 					<CustomBehavior File="MyCTM" X="-4035.729" Y="-3440.709" Z="283.5173" TerminateWhen="Me.MapId == 670" />
 					<Else>
@@ -544,12 +544,12 @@
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<If Condition="Unit(40177, u =&gt; u.IsAlive &amp;&amp; u.Location.Distance(new WoWPoint(-480.4336, -571.8136, 271.9123)) &gt;= 80) != null" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Throngus is in reasonable distance, pulling him.&quot;);" />
-					<CustomBehavior File="InteractWith" MobId="40177" MobState="Alive" Distance="150" WaitForNpcs="false" X="-504.1576" Y="-475.108" Z="276.2405" />
+					<CustomBehavior File="InteractWith" MobId="40177" MobState="Alive" CollectionDistance="150" WaitForNpcs="false" />
 				</If>
 				<CustomBehavior File="RunLikeHell" AllowCombat="false" > <!-- Khardos' Anvil #3 -->
 					<Hotspot X="-574.0319" Y="-553.9172" Z="276.5973" />
 				</CustomBehavior>
-				<CustomBehavior File="InteractWith" MobId="40177" MobState="Alive" Distance="150" WaitForNpcs="false" X="-504.1576" Y="-475.108" Z="276.2405" /> <!-- Last attempt to kill Throngus. -->
+				<CustomBehavior File="InteractWith" MobId="40177" MobState="Alive" CollectionDistance="150" WaitForNpcs="false" /> <!-- Last attempt to kill Throngus. -->
 
 
 				<RunTo X="-625.882" Y="-604.2358" Z="276.5818" />
@@ -598,8 +598,8 @@
 				<RunTo X="-609.3281" Y="-827.6926" Z="247.4572" />
 
 				<DisableBehavior Name="Combat" />
-					<CustomBehavior File="InteractWith" IgnoreCombat="true" MobState="AliveNotInCombat" WaitTime="650" MobId="39392"  X="-741.0018" Y="-862.0551" Z="232.4673" />
-					<CustomBehavior File="InteractWith" IgnoreCombat="true" MobState="AliveNotInCombat" MobId="39392" X="-695.9404" Y="-805.4003" Z="233.2325" />
+					<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" MobState="AliveNotInCombat" WaitTime="650" MobId="39392"  X="-741.0018" Y="-862.0551" Z="232.4673" />
+					<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" MobState="AliveNotInCombat" MobId="39392" X="-695.9404" Y="-805.4003" Z="233.2325" />
 				<EnableBehavior Name="Combat" />
 
 				<CustomBehavior File="InteractWith" MobState="Alive" MobId="40484" X="-774.9028" Y="-827.0243" Z="233.2095" /> <!--Last boss -->
