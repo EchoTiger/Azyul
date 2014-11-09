@@ -414,7 +414,7 @@
 			<If Condition="Me.IsAlive" >
 				<EnableBehavior Name="Pull" />
 				<CustomBehavior File="WaitTimer" WaitTime="2500" />
-				<CustomBehavior File="InteractWith" MobId="43214" X="1292.352" Y="1226.478" Z="247.6368" />
+				<CustomBehavior File="InteractWith" MobId="43214" WaitForNpcs="false" MobState="Alive" X="1292.352" Y="1226.478" Z="247.6368" />
 			</If>
 			<While Condition="Me.Combat" > <!-- Clear Rock Borers since Combat Routine won't.-->
 				<CustomBehavior File="WaitTimer" WaitTime="1500" />
@@ -446,7 +446,9 @@
 
 			<If Condition="Me.IsAlive" >
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
+				<While Condition="Unit(43213, u =&gt; u.IsLootable)" >
+					<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
+				</While>
 				<RunTo X="1307.165" Y="1232.391" Z="247.2243" />
 			</If>
 			<If Condition="Me.IsAlive" >

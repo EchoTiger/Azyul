@@ -479,9 +479,13 @@
 
 					<!-- Finale -->
 					<RunTo X="4032.853" Y="-3362.603" Z="115.0517" />
-					<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+					<While Condition="Unit(45412, u =&gt; u.IsAlive) != null" >
+						<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+					</While>
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
-					<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="true" MobState="Dead" InteractByLooting="true" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+					<While Condition="Unit(45412 u=&gt; u.IsLootable) != null" >
+						<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="true" MobState="Dead" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+					</While>
 					<RunTo X="4032.699" Y="-3412.439" Z="115.8689" />
 
 
@@ -2281,7 +2285,7 @@
 						<EnableBehavior Name="Pull" />
 						<CustomBehavior File="UserSettings" LootMobs="True" />
 						<CustomBehavior File="WaitTimer" WaitTime="2500" />
-						<CustomBehavior File="InteractWith" MobId="43214" X="1292.352" Y="1226.478" Z="247.6368" />
+						<CustomBehavior File="InteractWith" MobId="43214" WaitForNpcs="false" MobState="Alive" X="1292.352" Y="1226.478" Z="247.6368" />
 					
 					<While Condition="Me.Combat" > <!-- Clear Rock Borers since Combat Routine won't.-->
 						<CustomBehavior File="WaitTimer" WaitTime="1500" />
@@ -2312,7 +2316,9 @@
 					</While>
 
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
+						<While Condition="Unit(43213, u =&gt; u.IsLootable)" >
+							<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
+						</While>
 						<RunTo X="1307.165" Y="1232.391" Z="247.2243" />
 						<If Condition="(HasItem(63043))" >
 							<CustomBehavior File="Message" Text="\n\nCongratulations!\nYou are now the owner of a fresh new Vitreous Stone Drake!" LogColor="Yellow" />
