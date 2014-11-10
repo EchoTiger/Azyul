@@ -483,7 +483,7 @@
 						<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
 					</While>
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
-					<While Condition="Unit(45412 u=&gt; u.IsLootable) != null" >
+					<While Condition="Unit(45412 u=&gt; u.CanLoot) != null" >
 						<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="true" MobState="Dead" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
 					</While>
 					<RunTo X="4032.699" Y="-3412.439" Z="115.8689" />
@@ -2316,7 +2316,7 @@
 					</While>
 
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<While Condition="Unit(43213, u =&gt; u.IsLootable)" >
+						<While Condition="Unit(43213, u =&gt; u.CanLoot)" >
 							<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
 						</While>
 						<RunTo X="1307.165" Y="1232.391" Z="247.2243" />
