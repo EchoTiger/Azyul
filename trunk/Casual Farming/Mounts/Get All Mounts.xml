@@ -483,9 +483,13 @@
 						<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
 					</While>
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
-					<While Condition="Unit(45412 u=&gt; u.CanLoot) != null" >
-						<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="true" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
-					</While>
+					<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="true" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+					<If Condition="Unit(45412, u =&gt; u.CanLoot) != null" >
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Rivendare still seems lootable.  Enabling failsafe.&quot;);" />
+						<CustomBehavior File="UserSettings" LootMobs="true" />
+						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(45412, u =&gt; !u.CanLoot) != null" />
+						<CustomBehavior File="UserSettings" LootMobs="false" />
+					</If>
 					<RunTo X="4032.699" Y="-3412.439" Z="115.8689" />
 
 
@@ -2285,7 +2289,13 @@
 						<EnableBehavior Name="Pull" />
 						<CustomBehavior File="UserSettings" LootMobs="True" />
 						<CustomBehavior File="WaitTimer" WaitTime="2500" />
-						<CustomBehavior File="InteractWith" MobId="43214" WaitForNpcs="false" MobState="Alive" X="1292.352" Y="1226.478" Z="247.6368" />
+						<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
+						<If Condition="Unit(43214, u =&gt; u.CanLoot) != null" >
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Slabhide still seems lootable.  Enabling failsafe.&quot;);" />
+							<CustomBehavior File="UserSettings" LootMobs="true" />
+							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(43214, u =&gt; !u.CanLoot) != null" />
+							<CustomBehavior File="UserSettings" LootMobs="false" />
+						</If>
 					
 					<While Condition="Me.Combat" > <!-- Clear Rock Borers since Combat Routine won't.-->
 						<CustomBehavior File="WaitTimer" WaitTime="1500" />
