@@ -191,17 +191,45 @@
 			</CustomBehavior>
 		</While>
 
-		<While Condition="(Me.Class == WoWClass.Druid)" > <!-- Druid, Moonfire -->
-			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="8921" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
-				<HuntingGrounds WaypointVisitStrategy="Random" >
-					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
-					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
-					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
-					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
-					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
-					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
-				</HuntingGrounds>
-			</CustomBehavior>
+		<While Condition="(Me.Class == WoWClass.Druid)" > <!-- Druid -->
+			<While Condition="Me.Specialization == WoWSpec.DruidBalance" >
+				<If Condition="Me.CurrentEclipse &gt; 0" > <!-- Moonfire -->
+					<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="8921" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5  || Me.CurrentEclipse &lt; 0" >
+						<HuntingGrounds WaypointVisitStrategy="Random" >
+							<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+							<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+							<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+							<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+							<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+							<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+						</HuntingGrounds>
+					</CustomBehavior>
+				</If>
+				<If Condition="Me.CurrentEclipse &lt; 0" > <!-- Sunfire -->
+					<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="164815" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5  || Me.CurrentEclipse &gt; 0" >
+						<HuntingGrounds WaypointVisitStrategy="Random" >
+							<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+							<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+							<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+							<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+							<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+							<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+						</HuntingGrounds>
+					</CustomBehavior>
+				</If>
+			</While>
+			<While Condition="Me.Specialization == DruidFeral || Me.Specialization == DruidGuardian" > <!-- Faerie Fire -->
+				<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="770" WaitForNpcs="False" Range="34" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+					<HuntingGrounds WaypointVisitStrategy="Random" >
+						<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+						<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+						<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+						<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+						<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+						<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+					</HuntingGrounds>
+				</CustomBehavior>
+			</While>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Rogue)" > <!-- Rogue, Throw -->
