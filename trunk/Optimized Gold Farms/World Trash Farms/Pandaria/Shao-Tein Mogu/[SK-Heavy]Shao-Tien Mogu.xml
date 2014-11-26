@@ -256,27 +256,27 @@
 						</HuntingGrounds>
 					</CustomBehavior>
 				</If>
+				<If Condition="Me.Specialization == DruidFeral || Me.Specialization == DruidGuardian" > <!-- Faerie Fire -->
+					<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="770" WaitForNpcs="False" Range="34" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+						<HuntingGrounds WaypointVisitStrategy="Random" >
+							<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
+							<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
+							<Hotspot X="1530.217" Y="1726.386" Z="370.6978" />
+							<Hotspot X="1309.047" Y="1821.575" Z="346.1738" />
+							<Hotspot X="1229.358" Y="1820.632" Z="344.7776" />
+							<Hotspot X="1278.521" Y="1895.635" Z="349.9284" />
+							<Hotspot X="1352.505" Y="1972.63" Z="343.168" />
+							<Hotspot X="1355.343" Y="2107.826" Z="367.006" />
+							<Hotspot X="1414.302" Y="2178.818" Z="367.6205" />
+							<Hotspot X="1305.398" Y="2184.681" Z="362.274" />
+							<Hotspot X="1228.255" Y="2182.759" Z="332.5351" />
+							<Hotspot X="1447.07" Y="1983.783" Z="317.7354" />
+							<Hotspot X="1435.158" Y="1930.394" Z="299.5564" />
+							<Hotspot X="1485.759" Y="1826.404" Z="307.716" />
+						</HuntingGrounds>
+					</CustomBehavior>
+				</If>
 			</While>
-			<While Condition="Me.Specialization == DruidFeral || Me.Specialization == DruidGuardian" > <!-- Faerie Fire -->
-				<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63610" MobId2="63611" MobId3="65134" MobId4="65133" MobId5="58928" InteractByCastingSpellId="770" WaitForNpcs="False" Range="34" PreInteractMountStrategy="Dismount" NumOfTimes="7" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
-					<HuntingGrounds WaypointVisitStrategy="Random" >
-						<Hotspot X="1424.887" Y="1686.128" Z="344.2368" />
-						<Hotspot X="1484.778" Y="1729.572" Z="356.1625" />
-						<Hotspot X="1530.217" Y="1726.386" Z="370.6978" />
-						<Hotspot X="1309.047" Y="1821.575" Z="346.1738" />
-						<Hotspot X="1229.358" Y="1820.632" Z="344.7776" />
-						<Hotspot X="1278.521" Y="1895.635" Z="349.9284" />
-						<Hotspot X="1352.505" Y="1972.63" Z="343.168" />
-						<Hotspot X="1355.343" Y="2107.826" Z="367.006" />
-						<Hotspot X="1414.302" Y="2178.818" Z="367.6205" />
-						<Hotspot X="1305.398" Y="2184.681" Z="362.274" />
-						<Hotspot X="1228.255" Y="2182.759" Z="332.5351" />
-						<Hotspot X="1447.07" Y="1983.783" Z="317.7354" />
-						<Hotspot X="1435.158" Y="1930.394" Z="299.5564" />
-						<Hotspot X="1485.759" Y="1826.404" Z="307.716" />
-					</HuntingGrounds>
-				</CustomBehavior>
-			</If>
 		</While>
 
 		<While Condition="(Me.Class == WoWClass.Rogue)" > <!-- Rogue, Throw -->
