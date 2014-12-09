@@ -62,6 +62,7 @@
       
 
 <QuestOrder>
+      <CustomBehavior File="UserDialog" SoundCue="Exclamation" SoundCueInterval="1" Text="*WARNING* - As of patch 6.0.2, the Chess event behavior has been broken, the bot will stop at this point and wait for you to complete it manually.\n\nOnce I get time, I will fix this issue." />
       <If Condition="!(Me.MapId == 409)" >
             <While Condition="!(Me.MapId == 0)" >
                   <If Condition="Me.IsAlliance" >
@@ -669,13 +670,15 @@
 					<!-- BEGIN CHESS EVENT -->
 		
 	
-					<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="1" Text="Chess Event!\May take several attempts to complete, but will loop until it is successful.\nIf Event is already complete, bot will continue to Prince Melchazzar." ExpiryTime="10" />
+					<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="1" Text="Chess Event!\n\nAs of 6.0.2, the Chess behavior has been broken.  Please do it manually.\n\nA fix for this will be created soon.\n\nAfter you've completed the Chess Event, click Continue on this dialog." />
 					
-     <!-- Alliance Chess Code -->
+     <!-- CHESS CODE, FIX ME.
+
+      Alliance Chess Code
 
      <If Condition="(Me.IsAlliance)">
 
-           <!-- Check to see if we have won the game already -->
+            Check to see if we have won the game already
 
            <CustomBehavior File="InteractWith" MobId="21752" GossipOptions="1" WaitForNpcs="False" />
 
@@ -700,7 +703,7 @@
                   <CustomBehavior File="WaitTimer" WaitTime="500" />
             </While>
 
-            <!-- Move First Pawn -->
+             Move First Pawn
             <CustomBehavior File="InteractWith" MobId="17211" GossipOptions="1" X="-11089.70" Y="-1887.11" Z="220.67" />
             <CustomBehavior File="WaitTimer" WaitTime="1000" />
             <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11085.04" ClickToY="-1883.556" ClickToZ="220.6671" />
@@ -713,7 +716,7 @@
                   <CustomBehavior File="WaitTimer" WaitTime="500" />
             </While>
 
-            <!-- Move Second Pawn -->
+             Move Second Pawn
             <CustomBehavior File="InteractWith" MobId="17211" GossipOptions="1" X="-11093.3" Y="-1882.538" Z="220.6672" />
             <CustomBehavior File="WaitTimer" WaitTime="1000" />
             <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11088.78" ClickToY="-1879.139" ClickToZ="220.6672" />
@@ -726,7 +729,7 @@
                   <CustomBehavior File="WaitTimer" WaitTime="500" />
             </While>
 
-            <!-- Move Third Pawn -->
+             Move Third Pawn
             <CustomBehavior File="InteractWith" MobId="17211" GossipOptions="1" X="-11086.32" Y="-1891.587" Z="220.6676" />
             <CustomBehavior File="WaitTimer" WaitTime="1000" />
             <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11081.83" ClickToY="-1888.277" ClickToZ="220.6676" />
@@ -739,7 +742,7 @@
                   <CustomBehavior File="WaitTimer" WaitTime="500" />
             </While>
 
-            <!-- Move King and Fight -->
+             Move King and Fight
             <CustomBehavior File="InteractWith" MobId="21684" />
             <CustomBehavior File="WaitTimer" WaitTime="500" />
             <CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
@@ -799,7 +802,7 @@
 
         <CustomBehavior File="WaitTimer" WaitTime="15000" />
 
-        <!-- Recheck before looping to see if we won this time -->
+         Recheck before looping to see if we won this time 
 
         <CustomBehavior File="InteractWith" MobId="21752" GossipOptions="1" WaitForNpcs="False" />
 
@@ -813,11 +816,11 @@
 
 </If>
 
-<!-- Horde Chess Code -->
+ Horde Chess Code 
 
 <If Condition="(Me.IsHorde)">
 
- <!-- Check to see if we have won the game already -->
+  Check to see if we have won the game already 
 
  <CustomBehavior File="InteractWith" MobId="21684" GossipOptions="1" WaitForNpcs="False" />
 
@@ -843,7 +846,7 @@
                   <CustomBehavior File="WaitTimer" WaitTime="500" />
             </While>
 
-      <!-- Move First Pawn -->
+       Move First Pawn 
       <CustomBehavior File="InteractWith" MobId="17469" GossipOptions="1" X="-11068.56" Y="-1870.376" Z="220.668" />
       <CustomBehavior File="WaitTimer" WaitTime="1000" />
       <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11072.38" ClickToY="-1873.177" ClickToZ="220.668" />
@@ -856,7 +859,7 @@
                   <CustomBehavior File="WaitTimer" WaitTime="500" />
             </While>
 
-      <!-- Move Second Pawn -->
+       Move Second Pawn 
       <CustomBehavior File="InteractWith" MobId="17469" GossipOptions="1" X="-11072.06" Y="-1865.563" Z="220.668" />
       <CustomBehavior File="WaitTimer" WaitTime="1000" />
       <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11075.93" ClickToY="-1869.172" ClickToZ="220.668" />
@@ -869,7 +872,7 @@
                   <CustomBehavior File="WaitTimer" WaitTime="500" />
             </While>
 
-      <!-- Move Third Pawn -->
+       Move Third Pawn 
       <CustomBehavior File="InteractWith" MobId="17469" GossipOptions="1" X="-11075.07" Y="-1861.425" Z="220.668" />
       <CustomBehavior File="WaitTimer" WaitTime="1000" />
       <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11079.42" ClickToY="-1864.297" ClickToZ="220.668" />
@@ -882,7 +885,7 @@
                   <CustomBehavior File="WaitTimer" WaitTime="500" />
             </While>
 
-      <!-- Move King and Fight -->
+       Move King and Fight 
       <CustomBehavior File="InteractWith" MobId="21752" />
       <CustomBehavior File="WaitTimer" WaitTime="500" />
       <CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
@@ -945,7 +948,7 @@
 
 
 
-    <!-- Recheck before looping to see if we won this time -->
+     Recheck before looping to see if we won this time 
 
     <CustomBehavior File="InteractWith" MobId="21684" GossipOptions="1" WaitForNpcs="False" />
 
@@ -957,6 +960,8 @@
 </While>
 
 </If>
+
+END CHESS CODE, FIX ME! :P -->
 
 <RunTo X="-11101.31" Y="-1850.609" Z="221.0693" />
 <CustomBehavior File="InteractWith" MobId="185119" X="-11102.74" Y=" -1848.975" Z="221.0697" /> <!-- Loot -->
