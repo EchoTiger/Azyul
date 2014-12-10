@@ -542,7 +542,13 @@
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				</Else>
 			</If>
-			<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
+			<!-- Since Blizzard is having troubles with making their game work properly, let's change this 
+				<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> Exits Instance -->
+			<While Condition="Me.IsInInstance" >
+				<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+			    <CustomBehavior File="MyCTM" X="160.2607" Y="391.3514" Z="-35.81748" TerminateWhen="Me.MapId != 604" />
+			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</While>
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 			<CustomBehavior File="Misc\RunLua" Lua="
 				local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
