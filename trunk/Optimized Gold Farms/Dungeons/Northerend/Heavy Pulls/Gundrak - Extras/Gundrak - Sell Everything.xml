@@ -713,8 +713,14 @@
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				</Else>
 			</If>
-		    <CustomBehavior File="MyCTM" X="1905.168" Y="640.1153" Z="176.6356" TerminateWhen="Me.MapId != 604" />
-							<CustomBehavior File="WaitTimer" WaitTime="1100" />
+			<!-- Since Blizzard is having troubles with making their game work properly, let's change this 
+			<CustomBehavior File="MyCTM" X="1905.168" Y="640.1153" Z="176.6356" TerminateWhen="Me.MapId != 604" />-->
+			<While Condition="Me.IsInInstance" >
+				<MoveTo X="1945.433" Y="663.1171" Z="135.2176" />
+			    <CustomBehavior File="MyCTM" X="1913.81" Y="644.12" Z="135.14" TerminateWhen="Me.MapId != 604" />
+			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</While>
+			<CustomBehavior File="WaitTimer" WaitTime="1100" />
 			<While Condition="!(StyxWoW.IsInWorld)" >
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			</While>
