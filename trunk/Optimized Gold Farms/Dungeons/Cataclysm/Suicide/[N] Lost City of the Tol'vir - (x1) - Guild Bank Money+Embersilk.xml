@@ -1,0 +1,691 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo the Tiger
+// Farm zone: Lost City of the Tol'vir
+// Farm mobs: Optimized Trash Run
+///////////////////////////////////////////////////////////////////////
+
+<Name>Lost City of the Tol'vir - Gold Optimized - Suicide [$Rev: 1089 $]</Name>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+<MinLevel>1</MinLevel>
+<MaxLevel>101</MaxLevel>
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+</ProtectedItems>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+</AvoidMobs>
+
+<Blackspots>
+	<Blackspot X="-10752.81" Y="-1309.918" Z="15.353" Radius="1.246056" />
+	<Blackspot X="-10968.69" Y="-1497.479" Z="6.676874" Radius="2.345522" /> <!-- Standing cauldron near steps in Trapper's Enclave -->
+	<Blackspot X="-11007.63" Y="-1378.011" Z="11.29595" Radius="18.36984" /> <!-- Camels at end of run -->
+</Blackspots>
+
+<Blacklist> <!-- These mobs seem to cause interaction issues in Honorbuddy -->
+	<Mob Name="Camel" Id="47720" Flags="Interact,Loot,Pull" />
+</Blacklist>
+
+
+
+<QuestOrder>
+
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: While it's not required, it's recommended that you use a mobile mount for this run.&quot;);" />
+
+	<If Condition="(Me.MapId == 755)" >
+		<DisableBehavior Name="Pull" />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Bot started inside of instance. Moving out.&quot;);" />
+			<RunTo X="-10730.72" Y="-1320.814" Z="15.35361" />
+			<CustomBehavior File="MyCTM" X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
+			<CustomBehavior File="MyCTM" X="-10688.83" Y="-1309.427" Z="17.63992" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			<EnableBehavior Name="Pull" />
+	</If>
+
+
+		<CustomBehavior File="Misc\RunLua" Lua="
+			SLASH_DEADLYBOSSMODS1 = '/stats';
+			SLASH_DBMRANGE1 = '/stats2';
+			ShowWarningsInChat = GetTime();
+			ShowFakedRaidWarnings = GetTime();
+			WarningIconLeft = 0
+			WarningIconRight = GetTime();
+			WarningIconChat = GetTime();
+			ShowLoadMessage = GetMoney();
+			ShowPizzaMessage = GetMoney();
+			ShowEngageMessage = GetMoney();
+			ShowKillMessage = GetMoney();
+			ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);
+			ShowRecoveryMessage = GetMoney();
+			AutoRespond = GetMoney();
+			WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
+			function calculate()
+				local itemSellPrice = 0
+				local itemID = 0
+				local itemBagCount = 1
+				local itemStackCount = 1
+				total_value_of_bags = 0
+				for i = 0, NUM_BAG_SLOTS do
+					bagslots = GetContainerNumSlots(i)
+						for bagslotscounter = 1, bagslots do
+						itemID = GetContainerItemID(i, bagslotscounter)
+
+							if (itemID == nil)  or (itemSellPrice == nill) then
+							else
+							itemSellPrice = select(11, GetItemInfo(itemID))
+							if (itemSellPrice == nil) then
+							itemSellPrice = 0
+							end
+							itemBagCount = select(2, GetContainerItemInfo(i, bagslotscounter))
+							total_value_of_bags = total_value_of_bags + (itemSellPrice * itemBagCount)
+							end
+						end
+				end
+				HideBossEmoteFrame = GetCoinTextureString(total_value_of_bags);
+				SpamBlockBossWhispers = GetMoney();
+				ShowFakedRaidWarnings = GetTime();
+				ShowMinimapButton = (ShowFakedRaidWarnings - ShowWarningsInChat);
+				BlockVersionUpdateNotice = (ShowFakedRaidWarnings - WarningIconRight);
+				ShowSpecialWarnings = string.format(&quot;%02.f&quot;, math.floor(ShowMinimapButton/3600));
+				ShowFlashFrame = string.format(&quot;%02.f&quot;, math.floor(ShowMinimapButton/60 - (ShowSpecialWarnings*60)));
+				ShowAdvSWSounds = string.format(&quot;%02.f&quot;, math.floor(ShowMinimapButton - ShowSpecialWarnings*3600 - ShowFlashFrame *60));
+				AlwaysShowHealthFrame = string.format(&quot;%02.f&quot;, math.floor(WarningIconLeft/3600));
+				ShowBigBrotherOnCombatStart = string.format(&quot;%02.f&quot;, math.floor(WarningIconLeft/60 - (AlwaysShowHealthFrame*60)));
+				AutologBosses = string.format(&quot;%02.f&quot;, math.floor(WarningIconLeft - AlwaysShowHealthFrame*3600 - ShowBigBrotherOnCombatStart *60));
+				AdvancedAutologBosses = string.format(&quot;%02.f&quot;, math.floor(BlockVersionUpdateNotice/3600));
+				LogOnlyRaidBosses = string.format(&quot;%02.f&quot;, math.floor(BlockVersionUpdateNotice/60 - (AdvancedAutologBosses*60)));
+				UseMasterVolume = string.format(&quot;%02.f&quot;, math.floor(BlockVersionUpdateNotice - AdvancedAutologBosses*3600 - LogOnlyRaidBosses *60));
+				LFDEnhance = math.floor(SpamBlockBossWhispers-ShowEngageMessage)
+				SetPlayerRole = math.floor(SpamBlockBossWhispers-ShowKillMessage)
+				HideWatchFrame = math.floor(SetPlayerRole+total_value_of_bags)
+				EnableModels = math.floor((SetPlayerRole/ShowMinimapButton)/10)
+				RangeFrameFrames = math.floor((HideWatchFrame/ShowMinimapButton)/10)
+				RangeFrameUpdates = GetCoinTextureString(math.floor(SetPlayerRole/(ShowMinimapButton/3600)))
+				RangeFramePoint = GetCoinTextureString(math.floor(HideWatchFrame/(ShowMinimapButton/3600)))
+				RangeFrameX = GetCoinTextureString(math.floor(SetPlayerRole/(ShowMinimapButton/60 - (ShowSpecialWarnings*60))))
+				RangeFrameY = GetCoinTextureString(math.floor(HideWatchFrame/(ShowMinimapButton/60 - (ShowSpecialWarnings*60))))
+			end
+			function SlashCmdList.DEADLYBOSSMODS()
+				calculate()
+				print(&quot;|cFFF0F0F0~Total Stats!|r\n|cFF00CCFFTime active|r: &quot;, ShowSpecialWarnings .. &quot;h,&quot;, ShowFlashFrame .. &quot;m,&quot;, ShowAdvSWSounds .. &quot;s \n|cFF00CCFFTotal Gold|r: &quot;, GetCoinTextureString(SetPlayerRole), &quot;\n|cFF00CCFFBag Value|r: &quot;, HideBossEmoteFrame, &quot;\n|cFF00CCFFTotal + Bag|r: &quot;, GetCoinTextureString(HideWatchFrame));
+				print(&quot;|cFFF0F0F0~Last Dungeon!|r\n|cFF00CCFFTime taken|r: &quot;, AlwaysShowHealthFrame .. &quot;h,&quot;, ShowBigBrotherOnCombatStart .. &quot;m,&quot;, AutologBosses .. &quot;s \n|cFF00CCFFRaw Gold|r: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\n|cFF00CCFFVendor Gold|r:&quot;, GetCoinTextureString(WhisperStats));
+				print(&quot;|cFFF0F0F0~Current Dungeon!|r\n|cFF00CCFFTime taken|r: &quot;, AdvancedAutologBosses .. &quot;h,&quot;, LogOnlyRaidBosses .. &quot;m,&quot;, UseMasterVolume .. &quot;s \n|cFF00CCFFGold|r: &quot;, GetCoinTextureString(LFDEnhance));
+				print(&quot;|cFFF0F0F0Type /stats2 for more stats!|r&quot;)
+			end
+			function SlashCmdList.DBMRANGE()
+				calculate()
+				print(&quot;|cFFF0F0F0~Estimates!|r\n|cFF00CCFFGPH|r: &quot;, RangeFrameUpdates, &quot; \n|cFF00CCFFGPH (+ Bag Value)|r: &quot;, RangeFramePoint, &quot;\n|cFF00CCFFGPM|r: &quot;, RangeFrameX, &quot;\n|cFF00CCFFGPM (+ Bag Value)|r: &quot;, RangeFrameY,  &quot;\n|cFF00CCFFFarm Score|r: &quot;, EnableModels,  &quot;\n|cFF00CCFFFarm Score (+Bag Value)|r &quot;, RangeFrameFrames);
+			end" />
+
+<While Condition="!(Me.MapId == 1)" >
+			<If Condition="Me.IsAlliance" >
+			<!-- Outland move to and use portal in shat -->
+				<If Condition="Me.MapId == 530" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
+					<CustomBehavior File="FlyTo" X="-248.064" Y="930.2079" Z="84.37978" DestName="BC Portal" />
+					<CustomBehavior File="MyCTM" X="-247.1655" Y="897.484" Z="84.3497" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000"/>
+					<While Condition="Me.MapId == 530" >
+						<CustomBehavior File="MyCTM" X="-245.7161" Y="896.1308" Z="84.3497" />
+						<CustomBehavior File="WaitTimer" WaitTime="5000"/>
+					</While>
+					<CustomBehavior File="WaitTimer" WaitTime="10000"/>
+				</If>
+				<!-- Northrend, go home from borean -->
+				<If Condition="Me.MapId == 571" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
+					<If Condition="(HasSpell(54197))">
+						<CustomBehavior File="FlyTo" DestName="fly my minions fly" X="2236.118" Y="5145.615" Z="5.346904"  />
+					</If>
+					<CustomBehavior File="UseTransport" TransportId="190536"
+									WaitAtX="2234.375" WaitAtY="5132.568" WaitAtZ="5.343217" 
+									TransportStartX="2218.391" TransportStartY="5119.589" TransportStartZ="0.04" 
+									StandOnX="2223.174" StandOnY="5118.869" StandOnZ="9.43335"
+									TransportEndX="-8288.816" TransportEndY="1424.703" TransportEndZ="0.04" 
+									GetOffX="-8300.08" GetOffY="1405.158" GetOffZ="4.422395" />
+				</If>
+				<!-- Kalimdor boat from Ratchet. -->
+				<If Condition="Me.MapId == 1" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="-996.8669" Y="-3826.07" Z="5.536246" />
+					</If>
+					<If Condition="!SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<RunTo X="-996.8669" Y="-3826.07" Z="5.536246" />
+					</If>
+					<CustomBehavior File="UseTransport" TransportId="20808"
+									WaitAtX="-996.8669" WaitAtY="-3826.07" WaitAtZ="5.536246" 
+									TransportStartX="-1005.613" TransportStartY="-3841.648" TransportStartZ="0.01553879"
+									StandOnX="-997.3311" StandOnY="-3836.707" StandOnZ="6.030852"
+									TransportEndX="-14277.75" TransportEndY="582.8661" TransportEndZ="0.03330701"
+									GetOffX="-14280.88" GetOffY="566.6268" GetOffZ="6.979454" />
+				</If>
+				<!-- Deepholm, Taking portal. -->
+				<If Condition="Me.MapId == 646" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
+					<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
+					<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
+					<RunTo X="973.6232" Y="570.9096" Z="-46.0024" />
+					<CustomBehavior File="InteractWith" MobId="205272" ObjectType="Gameobject" Range="4" X="973.6232" Y="570.9096" Z="-46.0024" />
+					<CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
+				</If>
+				<!-- Pandaland, Taking portal. -->
+				<If Condition="Me.MapId == 870" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
+					<CustomBehavior File="FlyTo" X="-311.6545" Y="-1776.63" Z="62.67051" />
+					<RunTo X="-311.6545" Y="-1776.63" Z="62.67051" />
+					<CustomBehavior File="InteractWith" MobId="210805" ObjectType="Gameobject" Range="4" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+				</If>
+				<!-- Homeland, Ally Eastern Kingdom -->
+				<If Condition="Me.MapId == 0" >
+					
+					<If condition="false">
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Northerend.&quot;);" />
+					
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="-8300.08" Y="1405.158" Z="4.422395" />
+					</If>
+					<CustomBehavior File="UseTransport" TransportId="190536" 
+									WaitAtX="-8300.08" WaitAtY="1405.158" WaitAtZ="4.422395"
+									GetOffX="2234.375" GetOffY="5132.568" GetOffZ="5.343217"
+									StandOnX="-8293.091" StandOnY="1421.008" StandOnZ="9.480089"
+									TransportStartX="-8288.816" TransportStartY="1424.703" TransportStartZ="0.04" 
+									TransportEndX="2218.391" TransportEndY="5119.589" TransportEndZ="0.04" />	
+					<CustomBehavior File="WaitTimer" WaitTime="5000" />
+					</If>
+					
+					<If condition="false">
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Outland.&quot;);" />
+					
+					<While Condition="Me.MapId == 0" >
+						<If Condition="Me.MapId == 0" >
+								<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+									<CustomBehavior File="FlyTo" X="-11895.44" Y="-3206.936" Z="-14.64132" />
+								</If>
+								<RunTo X="-11895.44" Y="-3206.936" Z="-14.64132" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</If>
+							<If Condition="Me.MapId == 0" >
+								<CustomBehavior File="MyCTM" X="-11908.09" Y="-3208.854" Z="-14.83002" />
+								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+							</If>
+							<If Condition="Me.MapId == 0" >
+								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+							</If>
+					</While>
+					</If>
+					
+					<If condition="true">
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
+					
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="-14288.29" Y="549.3284" Z="8.689642" />
+					</If>
+					<If Condition="!SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<Runto X="-14288.29" Y="549.3284" Z="8.689642" />
+					</If>
+					<CustomBehavior File="ForcedDismount" />
+					<!-- BB dock to Ratchet -->
+					<CustomBehavior File="UseTransport" TransportId="20808"
+									WaitAtX="-14280.88" WaitAtY="566.6268" WaitAtZ="6.979454" 
+									TransportStartX="-14277.75" TransportStartY="582.8661" TransportStartZ="0.01553879"
+									StandOnX="-14270.46" StandOnY="579.9881" StandOnZ="6.088587"
+									TransportEndX="-1005.613" TransportEndY="-3841.648" TransportEndZ="0.03330701"
+									GetOffX="-996.8669" GetOffY="-3826.07" GetOffZ="5.536246" />
+					</If>
+					
+					<If condition="false">
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Pandaria.&quot;);" />
+					
+					<CustomBehavior File="FlyTo" X="-8200.323" Y="527.858" Z="116.7516"  />
+					<CustomBehavior File="InteractWith" MobId="215457" ObjectType="Gameobject" Range="4" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+					<!-- Going to Pandaland Stop -->
+					</If>	
+					
+					<!-- No profiles in deepholm-->
+						
+				</If>
+			</If>
+			<!-- Horde part -->
+			<If Condition="Me.IsHorde" >
+				<!-- Outland move to and use portal in shat -->
+				<If Condition="Me.MapId == 530" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
+					<While Condition="Me.MapId == 530" >
+						<CustomBehavior File="FlyTo" DestName="Org portal" X="-1956.413" Y="5383.551" Z="-12.42774" />
+						<CustomBehavior File="ForcedDismount" />
+
+						<RunTo X="-1898.169" Y="5395.958" Z="-12.42774" />
+						<CustomBehavior File="InteractWith" MobId="183323" ObjectType="Gameobject" Range="4" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" GoalText="Waiting for zone {TimeRemaining}" />
+					</While>
+					<RunTo X="1896.122" Y="-4489.93" Z="23.84045" />
+					<CustomBehavior File="FlyTo" X="1882.573" Y="-4548.733" Z="110.4602" />
+				</If>
+				<!-- Northrend, go home from borean -->
+				<If Condition="Me.MapId == 571" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
+					<If Condition="(HasSpell(54197))">
+						<CustomBehavior File="FlyTo" DestName="Borean Tundra" X="2708.396" Y="6066.991" Z="109.617" />
+						<CustomBehavior File="FlyTo" DestName="Warsong Hold, BT" X="2740.837" Y="6097.529" Z="76.88604" />
+					</If>
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Returning to Borean Zeppelin to Orgrimmar.&quot;);" />
+					<RunTo X="2829.74" Y="6179.48" Z="121.9793" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Waiting for Borean Zeppelin to Orgrimmar.&quot;);" />
+					<CustomBehavior File="UseTransport" TransportId="186238"
+									WaitAtX="2836.831" WaitAtY="6185.15" WaitAtZ="121.9923" 
+									TransportStartX="2837.908" TransportStartY="6187.443" TransportStartZ="140.1648" 
+									StandOnX="2844.171" StandOnY="6191.577" StandOnZ="122.3017" 
+									TransportEndX="1775.066" TransportEndY="-4299.745" TransportEndZ="151.0326" 
+									GetOffX="1763.203" GetOffY="-4284.529" GetOffZ="133.1072" />
+				</If>
+				<!-- From Eastern Kingdom going home -->
+				<If Condition="Me.MapId == 0" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="2039.925" Y="273.7229" Z="142.3792" />
+						<CustomBehavior File="FlyTo" X="2067.174" Y="284.9927" Z="97.03151" />
+					</If>
+					<RunTo X="2070.155" Y="289.2588" Z="97.0315" />
+					<CustomBehavior File="UseTransport"
+									TransportId="164871"
+									WaitAtX="2070.155" WaitAtY="289.2588" WaitAtZ="97.0315" 
+									TransportStartX="2062.376" TransportStartY="292.998" TransportStartZ="114.973"
+									TransportEndX="1833.509" TransportEndY="-4391.543" TransportEndZ="152.7679"
+									StandOnX="2067.979" StandOnY="295.2747" StandOnZ="97.23677" 
+									GetOffX="1840.225" GetOffY="-4390.912" GetOffZ="135.2337" />
+				</If>
+				<!-- Deepholm, Taking portal. -->
+				<If Condition="Me.MapId == 646" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
+					<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
+					<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
+					<RunTo X="990.1199" Y="457.7099" Z="-44.2598" />
+					<CustomBehavior File="InteractWith" MobId="205273" ObjectType="Gameobject" Range="4" X="990.1199" Y="457.7099" Z="-44.2598" />
+					<CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
+				</If>
+				<!-- Pandaland, Taking portal. -->
+				<If Condition="Me.MapId == 870" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Kalimdor.&quot;);" />
+				
+					<CustomBehavior File="FlyTo" X="2924.921" Y="-510.5903" Z="268.8555" />
+					<RunTo X="2924.921" Y="-510.5903" Z="268.8555" />
+					<CustomBehavior File="InteractWith" MobId="210804" ObjectType="Gameobject" Range="4" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+				</If>
+				<!-- Homeland, Horde Kalimdor -->
+				<If Condition="Me.MapId == 1" >
+
+					<If condition="false">
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Northerend.&quot;);" />
+					
+						<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+							<CustomBehavior File="FlyTo" X="1736.402" Y="-4283.072" Z="190.7621" />
+							<CustomBehavior File="FlyTo" X="1754.089" Y="-4278.742" Z="133.0416" />
+							<CustomBehavior File="ForcedDismount" />
+						</If>
+						<RunTo X="1763.389" Y="-4283.858" Z="133.1073" />
+						
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Waiting on Zeppelin.&quot;);" />
+				
+						<CustomBehavior File="UseTransport" TransportId="186238"
+										WaitAtX="1763.066" WaitAtY="-4284.396" WaitAtZ="133.1081" 
+										TransportStartX="1775.066" TransportStartY="-4299.745" TransportStartZ="151.0326" 
+										StandOnX="1770.22" StandOnY="-4292.056" StandOnZ="133.1872" 
+										TransportEndX="2837.908" TransportEndY="6187.443" TransportEndZ="140.1648" 
+										GetOffX="2836.831" GetOffY="6185.15" GetOffZ="121.9923" />
+						<RunTo X="2740.837" Y="6097.529" Z="76.88604" />
+					</If>
+					
+					<If condition="false">
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Outlands.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going by boat in Ratchet.&quot;);" />
+					
+					<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<CustomBehavior File="FlyTo" X="-996.8669" Y="-3826.07" Z="5.536246" />
+					</If>
+					<If Condition="!SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+						<RunTo X="-996.8669" Y="-3826.07" Z="5.536246" />
+					</If>
+					<CustomBehavior File="UseTransport" TransportId="20808"
+									WaitAtX="-996.8669" WaitAtY="-3826.07" WaitAtZ="5.536246" 
+									TransportStartX="-1005.613" TransportStartY="-3841.648" TransportStartZ="0.01553879"
+									StandOnX="-997.3311" StandOnY="-3836.707" StandOnZ="6.030852"
+									TransportEndX="-14277.75" TransportEndY="582.8661" TransportEndZ="0.03330701"
+									GetOffX="-14280.88" GetOffY="566.6268" GetOffZ="6.979454" />
+									<!-- Should now be in Eastern Kingdom -->
+						<While Condition="Me.MapId == 0" >
+							<If Condition="Me.MapId == 0" >
+								<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+									<CustomBehavior File="FlyTo" X="-11895.44" Y="-3206.936" Z="-14.64132" />
+								</If>
+								<RunTo X="-11895.44" Y="-3206.936" Z="-14.64132" />
+								<CustomBehavior File="WaitTimer" WaitTime="1000" />
+							</If>
+							<If Condition="Me.MapId == 0" >
+								<CustomBehavior File="MyCTM" X="-11908.09" Y="-3208.854" Z="-14.83002" />
+								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+							</If>
+							<If Condition="Me.MapId == 0" >
+								<CustomBehavior File="WaitTimer" WaitTime="5000" />
+							</If>
+						</While>
+					</If>
+					
+					<If condition="false">
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going toEastern Kingdoms.&quot;);" />
+					
+						<If Condition="SpellManager.HasSpell(&quot;Flight Master's License&quot;)">
+							<CustomBehavior File="FlyTo" X="1836.794" Y="-4383.654" Z="206.7829" />
+							<CustomBehavior File="FlyTo" X="1848.44" Y="-4398.829" Z="135.1602" />
+							<CustomBehavior File="ForcedDismount" />
+						</If>
+						<RunTo X="1840.468" Y="-4392.099" Z="135.2326" />
+						<CustomBehavior File="UseTransport" TransportId="164871"
+										WaitAtX="1838.676" WaitAtY="-4387.965" WaitAtZ="135.2332"
+										TransportStartX="1833.509" TransportStartY="-4391.543" TransportStartZ="152.7679"
+										TransportEndX="2062.376" TransportEndY="292.998" TransportEndZ="114.973"
+										StandOnX="1834.961" StandOnY="-4385.694" StandOnZ="135.0334" 
+										GetOffX="2066.773" GetOffY="288.873" GetOffZ="97.03159" />
+					</If>
+					
+					<If condition="false">
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Pandaria.&quot;);" />
+					
+						<CustomBehavior File="FlyTo" X="2012.948" Y="-4698.641" Z="28.60529" />
+						<CustomBehavior File="InteractWith" MobId="215424" ObjectType="Gameobject" Range="4" />
+						<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
+						
+					</If>	
+					
+					<!-- No profiles in deepholm-->
+						
+				</If>
+			</If>
+		<!-- 
+		End transport script credit to Bengan. 
+		With use of Kicks go to profiles.
+		Big thanks to Kick for this.
+		-->
+</While>
+
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Item hooks are now activated.&quot; + Environment.NewLine + &quot;Bot will now:&quot; + Environment.NewLine + &quot;   - Open Tiny Treasure Chests.&quot; + Environment.NewLine + &quot;   - Use Potion of Treasure Finding.&quot;);" />
+<CustomBehavior File="Hooks\DoWhen" ItemId="58488" UseWhen="!Me.HasAura(80263) &amp;&amp; HasItem(58488) &amp;&amp; Me.IsInInstance" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="Open_TChests" UseWhen="HasItem(67539)" AllowUseDuringCombat="true" > <!-- Tiny Treasure Chest -->
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Opening Tiny Treasure Chest.&quot;);" />
+	<CustomBehavior File="UseItem" ItemId="67539" NumOfTimes="500" TerminateWhen="!HasItem(67539)" />
+</CustomBehavior>
+
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomMountHook" UseWhen="(Me.CurrentTarget == null || Me.CurrentTarget.IsDead) &amp;&amp; !Me.Combat &amp;&amp; !Me.Mounted &amp;&amp; !Me.IsIndoors &amp;&amp; Me.IsInInstance &amp;&amp; !ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Any(u =&gt; u.Lootable &amp;&amp; u.Distance &lt;= 40)">
+	<CustomBehavior File="RunMacro" Macro="/cleartarget" />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting to mount...&quot;);" />
+	<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.IsMoving" />
+	<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="100" Lua="CancelShapeshiftForm(); CallCompanion(&quot;MOUNT&quot;, random(GetNumCompanions(&quot;MOUNT&quot;)))" />
+	<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.Mounted" />
+	<CustomBehavior File="WaitTimer" WaitTime="250" /> <!-- Slight lag to process if we are mounted or not for the unstuck process. -->
+	<If Condition="!Me.Mounted" >
+		<If Condition="Chance(50)" > <!-- Unstuck routine #1 -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: We couldn't mount! Attempting to unstuck...&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeRightStart();" WaitTime="750" />
+			<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeRightStop();" />
+			<Else> <!-- Unstuck routine #2 -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: We couldn't mount! Attempting to unstuck...&quot;);" />
+				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStart(); StrafeLeftStart();" WaitTime="750" />
+				<CustomBehavior File="Misc\RunLua" Lua="MoveBackwardStop(); StrafeLeftStop();" />
+			</Else>
+		</If>
+	</If>
+</CustomBehavior>
+
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 755)" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died, returning to instance.&quot;);" />
+        <CustomBehavior File="FlyTo" X="-10667.82" Y="-1303.857" Z="20.86421" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="-10680.89" Y="-1307.403" Z="17.34262" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 755" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
+
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 755) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(-10666.71, -1304.58, 17.70085)) &gt;= 15" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Instance Hub&quot;)" />
+			<CustomBehavior File="FlyTo" X="-10642.87" Y="-1298.32" Z="26.36411" />
+		</If>
+		<CustomBehavior File="MyCTM" X="-10683.19" Y="-1307.82" Z="17.43537" /> <!-- CTM due to mesh problems -->
+		<CustomBehavior File="MyCTM" X="-10688.31" Y="-1308.927" Z="17.71752" />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId == 755" />
+	</If>
+	<If Condition="(Me.MapId == 755)" >
+		<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Enable" />
+		<CustomBehavior File="Misc\RunLua" Lua="
+				ShowLoadMessage = GetMoney();
+				ShowEngageMessage = GetMoney();
+				WarningIconRight = GetTime();
+				" />
+		<CustomBehavior File="RunMacro" Macro="/sw clear" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: In-game timer started.&quot;)" />
+		<CustomBehavior File="RunMacro" Macro="/sw play" />
+
+		<CustomBehavior File="RunLikeHell" AllowCombat="false" > <!-- To Husam -->
+			<Hotspot X="-10791.07" Y="-1292.877" Z="15.3539" />
+			<Hotspot X="-10882.58" Y="-1329.57" Z="15.3539" />
+			<Hotspot X="-10858.16" Y="-1370.44" Z="15.3539" />
+			<Hotspot X="-10855.5" Y="-1408.486" Z="15.3539" />
+		</CustomBehavior>
+
+		<MoveTo X="-10874.9" Y="-1500.218" Z="6.676151" />
+
+		<CustomBehavior File="RunLikeHell" AllowCombat="false" > <!-- To Lockmaw -->
+			<Hotspot X="-10904.67" Y="-1496.047" Z="6.67643" />
+			<Hotspot X="-10964.31" Y="-1495.403" Z="6.676548" />
+			<Hotspot X="-11000.62" Y="-1580.56" Z="6.391218" /> <!-- Pull left of Augh -->
+			<Hotspot X="-10976.12" Y="-1606.659" Z="6.382169" /> <!-- Pull right of Augh -->
+			<!--<Hotspot X="-10987.58" Y="-1594.663" Z="6.228098" />  Remove two above and use me to skip left/right of Augh -->
+			<Hotspot X="-11063.35" Y="-1658.55" Z="0.746269" />
+			<Hotspot X="-11013.52" Y="-1618.593" Z="0.7447923" /> <!-- Pull away from Lockmaw to bunch up mobs quicker -->
+		</CustomBehavior>
+
+		<MoveTo X="-10965.84" Y="-1492.611" Z="6.677669" />
+
+		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+			<Hotspot X="-11001.03" Y="-1503.278" Z="6.66533" />
+			<Hotspot X="-11014.74" Y="-1473.437" Z="6.676045" />
+			<Hotspot X="-11042.54" Y="-1511.793" Z="6.676045" />
+			<Hotspot X="-11087.61" Y="-1493.245" Z="6.676885" />
+			<Hotspot X="-11103.57" Y="-1544.734" Z="6.677737" /> <!-- 3rd pull, 1/2 -->
+			<Hotspot X="-11132.98" Y="-1402.753" Z="10.80666" />
+			<Hotspot X="-11156.53" Y="-1377.363" Z="10.80722" />
+			<Hotspot X="-11102.16" Y="-1351.635" Z="10.80539" />
+			<Hotspot X="-11013.68" Y="-1292.222" Z="10.80889" /><!-- Before boss, add next coordinate if you want to include him in pull. -->
+		</CustomBehavior>
+
+		<MoveTo X="-11018.66" Y="-1256.589" Z="13.47913" /> <!-- High Prophet Barim -->
+
+		<MoveTo X="-10948.5" Y="-1399.79" Z="35.48973" /> <!-- Last boss -->
+		
+		<MoveTo X="-10858.96" Y="-1407.438" Z="15.35374" /> <!-- Walk off pedistal -->
+
+		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+			<Hotspot X="-10862.5" Y="-1405.198" Z="15.35301" />
+			<Hotspot X="-10756.66" Y="-1373.146" Z="15.35301" />
+			<Hotspot X="-10735.33" Y="-1404.763" Z="15.35301" />
+		</CustomBehavior>
+
+		<MoveTo X="-10732.21" Y="-1320.742" Z="15.35243" />
+
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+				<CustomBehavior File="WaitTimer" WaitTime="750" />
+				<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+				<CustomBehavior File="WaitTimer" WaitTime="2000" />
+				<If Condition="Me.HasAura(61425)" >
+					<CustomBehavior File="InteractWith" MobId="32639" />
+					<ElseIf Condition="Me.HasAura(61447)" >
+						<CustomBehavior File="InteractWith" MobId="32641" />
+					</ElseIf>
+					<ElseIf Condition="Me.HasAura(122708)" >
+						<CustomBehavior File="InteractWith" MobId="62822" />
+					</ElseIf>
+				</If>
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
+									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
+										UseContainerItem(buffer,s)
+									end
+								end
+							buffer=buffer+1
+							end
+						end" />
+				<CustomBehavior File="WaitTimer" WaitTime="2500" />
+				<CustomBehavior File="ForcedDismount" />
+					<Else>
+						<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
+					</Else>
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+			<CustomBehavior File="WaitTimer" WaitTime="3500" />
+			<If Condition="Me.IsAlliance" > 
+			    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+			</If> 
+			<If Condition="Me.IsHorde" > 
+			    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+			</If> 
+			<CustomBehavior File="Misc\RunLua" Lua="
+				if GuildBankFrame:IsVisible()==true then
+					MyMoney = GetMoney();
+					DepositGuildBankMoney(MyMoney);
+					print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+				else
+				print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+				end" />
+
+			<CustomBehavior File="Misc\RunLua" Lua="
+				if GuildBankFrame:IsVisible()==true then
+					print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
+					for b=0,4 do for s=1,GetContainerNumSlots(b)
+						do local n=GetContainerItemLink(b,s)
+							if n and strfind(n,&quot;53010&quot;)then
+								UseContainerItem(b,s)
+							end
+						end
+					end
+				end" />
+
+
+		</If>
+
+
+		<MoveTo X="-10693.63" Y="-1310.474" Z="17.69033" />
+
+
+		<CustomBehavior File="Misc\RunLua" Lua="
+			ShowPizzaMessage = GetMoney();
+			WarningIconChat = GetTime();
+			WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
+			ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);
+			totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);
+			print(&quot;|cFFF0F0F0Statistics so far|r:\nYou've picked up &quot;, GetCoinTextureString(ShowWipeMessage), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)
+			" />
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Skipping wait since we're going to the vendor.&quot;);" />
+			<Else>
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			</Else>
+		</If>
+		<CustomBehavior File="MyCTM" X="-10688.83" Y="-1309.427" Z="17.63992" />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId == 1" />
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		<EnableBehavior Name="Pull" />
+		<EnableBehavior Name="Combat" />
+	</If>
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+		<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+			<CustomBehavior File="WaitTimer" WaitTime="750" />
+			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+			<CustomBehavior File="WaitTimer" WaitTime="1800" />
+			<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+		</If>
+
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="FlyTo" X="-9457.354" Y="-959.7435" Z="123.8492" />
+
+			<CustomBehavior File="InteractWith" MobId="48617" />
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+			<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
+				if MerchantFrame:IsVisible()==true then
+					if buffer==nil or buffer&gt;4 then buffer=0 end
+					MerchantRepairAllButton:Click()
+					if buffer&lt;5 then
+						for s=1,GetContainerNumSlots(buffer)
+							do local n=GetContainerItemLink(buffer,s)
+								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
+									UseContainerItem(buffer,s)
+								end
+							end
+						buffer=buffer+1
+						end
+					end" />
+			<CustomBehavior File="WaitTimer" WaitTime="8500" />
+
+			<SetMailbox>
+				<Mailboxes>
+					<Mailbox Nav="Fly" X="-9426.741" Y="-967.3004" Z="111.8145" />
+				</Mailboxes>
+			</SetMailbox>
+			<CustomBehavior File="FlyTo" X="-9446.563" Y="-960.4221" Z="117.4931" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+			<CustomBehavior File="FlyTo" X="-9453.447" Y="-938.5175" Z="118.9775" />
+			<ClearMailbox />
+		</If>
+		<CustomBehavior File="Misc\RunLua" Lua="
+			AutoRespond = GetMoney();
+			WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
+			vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);
+			print(&quot;|cFFF0F0F0Statistics so far|r:\nYou've gained &quot;, GetCoinTextureString(WhisperStats), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+	</If>
+</While>
+</QuestOrder>
+</HBProfile>
