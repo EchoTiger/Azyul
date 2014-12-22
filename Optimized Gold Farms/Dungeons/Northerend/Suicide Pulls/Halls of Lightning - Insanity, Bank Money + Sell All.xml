@@ -1,5 +1,5 @@
 <HBProfile>
-<Name>Lightning Halls - Optimized Gold Farm - Deathwish [$Rev$]</Name>
+<Name>Lightning Halls - Optimized Gold Farm - Insanity [$Rev: 1064 $]</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////
 // Profile Developer(S): Mjj23 and EchoTiger
@@ -470,6 +470,12 @@
 			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(1850);" />
 		</CustomBehavior>
 	</If>
+	<If Condition="Me.Class == WoWClass.Druid" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="UseCatForm" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!Me.HasAura(768))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Shifting to cat form.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(768);" />
+		</CustomBehavior>
+	</If>
 	<If Condition="Me.Class == WoWClass.Rogue" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(2983).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(5277).Cooldown))" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
@@ -532,7 +538,7 @@
 			<If Condition="(Me.MapId == 602)" >
 
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
-				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started... you may want to re-conisder running this profile.&quot;)" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
 				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
 				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
@@ -553,6 +559,11 @@
 					<RunTo X="1439.105" Y="45.48732" Z="56.66748" /> ///
 					<RunTo X="1368.888" Y="21.05645" Z="49.83234" />
 					<RunTo X="1337.649" Y="-32.34933" Z="40.18052" />
+				<EnableBehavior Name="Combat" />
+
+				<RunTo X="1326.253" Y="-106.7844" Z="23.22605" />
+					
+				<DisableBehavior Name="Combat" />
 					<RunTo X="1316.529" Y="-167.4804" Z="23.22557" />
 					<RunTo X="1331.599" Y="-224.597" Z="36.6249" />
 					<RunTo X="1363.093" Y="-237.6061" Z="37.80626" />
@@ -589,8 +600,9 @@
 					<RunTo X="1040.782" Y="-115.5496" Z="61.25932" /> //
 					<RunTo X="1074.053" Y="-108.4413" Z="56.74244" />
 					<RunTo X="1114.542" Y="-118.3881" Z="61.26659" />
-					<RunTo X="1078.436" Y="-39.96408" Z="61.19484" /> //
 				<EnableBehavior Name="Combat" />
+
+				<RunTo X="1078.436" Y="-39.96408" Z="61.19484" /> //
 
 				<RunTo X="1066.26" Y="-18.35331" Z="61.20409" /> <!-- No mobs pulled here. -->
 				<RunTo X="1039.36" Y="24.96756" Z="58.34365" /> <!-- Mob may be pulled here. -->
@@ -637,15 +649,56 @@
 		</While>
 		<!--Vendor Code -->	
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
-			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
-
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
 			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 				<CustomBehavior File="WaitTimer" WaitTime="750" />
 				<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
 				<CustomBehavior File="WaitTimer" WaitTime="2000" />
-					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+				<If Condition="Me.HasAura(61425)" >
+					<CustomBehavior File="InteractWith" MobId="32639" />
+					<ElseIf Condition="Me.HasAura(61447)" >
+						<CustomBehavior File="InteractWith" MobId="32641" />
+					</ElseIf>
+					<ElseIf Condition="Me.HasAura(122708)" >
+						<CustomBehavior File="InteractWith" MobId="62822" />
+					</ElseIf>
 				</If>
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
+									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
+									UseContainerItem(buffer,s)
+								end
+							end
+						buffer=buffer+1
+						end
+					end" />
+				<Else>
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
+				</Else>
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+			<CustomBehavior File="WaitTimer" WaitTime="3500" />
+			<If Condition="Me.IsAlliance" > 
+			    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+			</If> 
+			<If Condition="Me.IsHorde" > 
+			    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+			</If> 
+			<CustomBehavior File="Misc\RunLua" Lua="
+				if GuildBankFrame:IsVisible()==true then
+					MyMoney = GetMoney();
+					DepositGuildBankMoney(MyMoney);
+					print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney));
+				else
+				print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+				end" />
 
 				<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="FlyTo" X="9125.889" Y="-1329.844" Z="1061.307" />
@@ -654,16 +707,23 @@
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
 			<CustomBehavior File="RunMacro" Macro="/dismount" />
 			<RunTo X="8891.013" Y="-1359.756" Z="1033.76" />
-			<SetVendor>
-				<Vendors>
-					<Vendor Name="Chester Copperpot" Entry="32477" Type="Repair" />
-					<Vendor Name="Chester Copperpot" Entry="32477" Type="Food" X="8893.612" Y="-1361.069" Z="1033.906" />
-				</Vendors>
-			</SetVendor>
-			<CustomBehavior File="WaitTimer" WaitTime="500" />
-			<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True"  />
+			<CustomBehavior File="InteractWith" MobId="32477" X="8893.612" Y="-1361.069" Z="1033.906" />
+			<CustomBehavior File="WaitTimer" WaitTime="850" />
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
+								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
+									UseContainerItem(buffer,s)
+								end
+							end
+						buffer=buffer+1
+						end
+					end" />
 			<RunTo X="8900.253" Y="-1344.676" Z="1029.835" />
-			<ClearVendor />
 
 			<If Condition="(Me.FreeBagSlots &lt; 20)" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: You're still under 20 bagslots after selling. Moving to mail.&quot;);" />
