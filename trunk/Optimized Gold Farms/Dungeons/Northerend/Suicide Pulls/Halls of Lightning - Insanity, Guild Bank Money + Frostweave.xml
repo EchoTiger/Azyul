@@ -1,5 +1,5 @@
 <HBProfile>
-<Name>Lightning Halls - Optimized Gold Farm - Deathwish [$Rev$]</Name>
+<Name>Lightning Halls - Optimized Gold Farm - Insanity [$Rev: 1078 $]</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 ///////////////////////////////////////////////////////////////////////
 // Profile Developer(S): Mjj23 and EchoTiger
@@ -470,6 +470,12 @@
 			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(1850);" />
 		</CustomBehavior>
 	</If>
+	<If Condition="Me.Class == WoWClass.Druid" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="UseCatForm" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!Me.HasAura(768))" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Shifting to cat form.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(768);" />
+		</CustomBehavior>
+	</If>
 	<If Condition="Me.Class == WoWClass.Rogue" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(2983).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(5277).Cooldown))" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
@@ -532,7 +538,7 @@
 			<If Condition="(Me.MapId == 602)" >
 
 				<CustomBehavior File="RunMacro" Macro="/sw clear" />
-				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started... you may want to re-conisder running this profile.&quot;)" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
 				<CustomBehavior File="RunMacro" Macro="/sw play" />
 				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
 				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
@@ -553,6 +559,11 @@
 					<RunTo X="1439.105" Y="45.48732" Z="56.66748" /> ///
 					<RunTo X="1368.888" Y="21.05645" Z="49.83234" />
 					<RunTo X="1337.649" Y="-32.34933" Z="40.18052" />
+				<EnableBehavior Name="Combat" />
+
+				<RunTo X="1326.253" Y="-106.7844" Z="23.22605" />
+					
+				<DisableBehavior Name="Combat" />
 					<RunTo X="1316.529" Y="-167.4804" Z="23.22557" />
 					<RunTo X="1331.599" Y="-224.597" Z="36.6249" />
 					<RunTo X="1363.093" Y="-237.6061" Z="37.80626" />
@@ -589,8 +600,9 @@
 					<RunTo X="1040.782" Y="-115.5496" Z="61.25932" /> //
 					<RunTo X="1074.053" Y="-108.4413" Z="56.74244" />
 					<RunTo X="1114.542" Y="-118.3881" Z="61.26659" />
-					<RunTo X="1078.436" Y="-39.96408" Z="61.19484" /> //
 				<EnableBehavior Name="Combat" />
+
+				<RunTo X="1078.436" Y="-39.96408" Z="61.19484" /> //
 
 				<RunTo X="1066.26" Y="-18.35331" Z="61.20409" /> <!-- No mobs pulled here. -->
 				<RunTo X="1039.36" Y="24.96756" Z="58.34365" /> <!-- Mob may be pulled here. -->
@@ -646,6 +658,33 @@
 				<CustomBehavior File="WaitTimer" WaitTime="2000" />
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+				<CustomBehavior File="WaitTimer" WaitTime="3500" />
+				<If Condition="Me.IsAlliance" > 
+				    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+				</If> 
+				<If Condition="Me.IsHorde" > 
+				    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+				</If> 
+				<CustomBehavior File="Misc\RunLua" Lua="
+					if GuildBankFrame:IsVisible()==true then
+						MyMoney = GetMoney();
+						DepositGuildBankMoney(MyMoney);
+						print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney));
+					else
+					print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+					end" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+					if GuildBankFrame:IsVisible()==true then
+						print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
+						for b=0,4 do for s=1,GetContainerNumSlots(b)
+							do local n=GetContainerItemLink(b,s)
+								if n and strfind(n,&quot;33470&quot;)then
+									UseContainerItem(b,s)
+								end
+							end
+						end
+					end" />
 
 				<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="FlyTo" X="9125.889" Y="-1329.844" Z="1061.307" />
