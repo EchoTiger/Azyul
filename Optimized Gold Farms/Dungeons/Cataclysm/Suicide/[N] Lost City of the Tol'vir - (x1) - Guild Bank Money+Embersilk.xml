@@ -575,8 +575,6 @@
 							buffer=buffer+1
 							end
 						end" />
-				<CustomBehavior File="WaitTimer" WaitTime="2500" />
-				<CustomBehavior File="ForcedDismount" />
 					<Else>
 						<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
@@ -610,11 +608,7 @@
 						end
 					end
 				end" />
-
-
 		</If>
-
-
 		<MoveTo X="-10693.63" Y="-1310.474" Z="17.69033" />
 
 
@@ -651,7 +645,6 @@
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
 			<CustomBehavior File="FlyTo" X="-9457.354" Y="-959.7435" Z="123.8492" />
-
 			<CustomBehavior File="InteractWith" MobId="48617" />
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
 			<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
@@ -668,15 +661,13 @@
 						buffer=buffer+1
 						end
 					end" />
-			<CustomBehavior File="WaitTimer" WaitTime="8500" />
-
 			<SetMailbox>
 				<Mailboxes>
 					<Mailbox Nav="Fly" X="-9426.741" Y="-967.3004" Z="111.8145" />
 				</Mailboxes>
 			</SetMailbox>
 			<CustomBehavior File="FlyTo" X="-9446.563" Y="-960.4221" Z="117.4931" />
-			<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
 			<CustomBehavior File="FlyTo" X="-9453.447" Y="-938.5175" Z="118.9775" />
 			<ClearMailbox />
 		</If>
