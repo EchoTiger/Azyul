@@ -471,8 +471,9 @@
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 755)" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
         <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died, returning to instance.&quot;);" />
-        <CustomBehavior File="FlyTo" X="-10667.82" Y="-1303.857" Z="20.86421" />
-        <CustomBehavior File="GoThruPortal" Timeout="30000" X="-10680.89" Y="-1307.403" Z="17.34262" />
+		<CustomBehavior File="FlyTo" X="-10667.82" Y="-1303.857" Z="20.86421" />
+		<CustomBehavior File="FlyTo" X="-10681.01" Y="-1307.565" Z="17.34297" />
+		<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" WaitTime="3000" />
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 755" />
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
@@ -618,7 +619,13 @@
 
 	</If>
 	
-
+		<!-- Movements to avoid OffMeshConnection -->
+		<RunTo X="-11020.26" Y="-1378.264" Z="10.80586" />
+		<RunTo X="-11107.14" Y="-1414.015" Z="10.80697" />
+		<RunTo X="-11065.03" Y="-1494.49" Z="6.676573" />
+		<RunTo X="-10960.22" Y="-1483.288" Z="6.677917" />
+		<RunTo X="-10873.88" Y="-1499.348" Z="6.67744" />
+		<!-- END Movements to avoid OffMeshConnection -->
 		<RunTo X="-10693.63" Y="-1310.474" Z="17.69033" /> // In front of portal
 
 

@@ -470,8 +470,9 @@
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 755)" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
         <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died, returning to instance.&quot;);" />
-        <CustomBehavior File="FlyTo" X="-10667.82" Y="-1303.857" Z="20.86421" />
-        <CustomBehavior File="GoThruPortal" Timeout="30000" X="-10680.89" Y="-1307.403" Z="17.34262" />
+		<CustomBehavior File="FlyTo" X="-10667.82" Y="-1303.857" Z="20.86421" />
+		<CustomBehavior File="FlyTo" X="-10681.01" Y="-1307.565" Z="17.34297" />
+		<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" WaitTime="3000" />
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 755" />
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
@@ -507,18 +508,25 @@
 			<Hotspot X="-10855.5" Y="-1408.486" Z="15.3539" />
 		</CustomBehavior>
 
+		<EnableBehavior Name="Combat" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 		<MoveTo X="-10874.9" Y="-1500.218" Z="6.676151" />
 
-		<CustomBehavior File="RunLikeHell" AllowCombat="false" > <!-- To Lockmaw -->
-			<Hotspot X="-10904.67" Y="-1496.047" Z="6.67643" />
-			<Hotspot X="-10964.31" Y="-1495.403" Z="6.676548" />
-			<Hotspot X="-11000.62" Y="-1580.56" Z="6.391218" /> <!-- Pull left of Augh -->
-			<Hotspot X="-10976.12" Y="-1606.659" Z="6.382169" /> <!-- Pull right of Augh -->
-			<!--<Hotspot X="-10987.58" Y="-1594.663" Z="6.228098" />  Remove two above and use me to skip left/right of Augh -->
-			<Hotspot X="-11063.35" Y="-1658.55" Z="0.746269" />
-			<Hotspot X="-11013.52" Y="-1618.593" Z="0.7447923" /> <!-- Pull away from Lockmaw to bunch up mobs quicker -->
-		</CustomBehavior>
+		<DisableBehavior Name="Combat" /> <!-- To Lockmaw -->
+			<RunTo X="-10904.67" Y="-1496.047" Z="6.67643" />
+			<RunTo X="-10964.31" Y="-1495.403" Z="6.676548" />
+			<RunTo X="-11000.62" Y="-1580.56" Z="6.391218" /> <!-- Pull left of Augh -->
+			<RunTo X="-10976.12" Y="-1606.659" Z="6.382169" /> <!-- Pull right of Augh -->
+			<!--<RunTo X="-10987.58" Y="-1594.663" Z="6.228098" />  Remove two above and use me to skip left/right of Augh -->
+			<RunTo X="-11063.35" Y="-1658.55" Z="0.746269" />
+			<While Condition="Unit(43614, o =&gt; !o.Aggro &amp;&amp; o.IsValid) != null" >
+				<CustomBehavior File="InteractWith" MobId="43614" WaitForNpcs="false" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" TerminateWhen="Unit(43614, o =&gt; o.Aggro) != null" />
+			</While>
+		<EnableBehavior Name="Combat" />
 
+		<EnableBehavior Name="Combat" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 		<MoveTo X="-10965.84" Y="-1492.611" Z="6.677669" />
 
 		<CustomBehavior File="RunLikeHell" AllowCombat="false" >
@@ -533,7 +541,14 @@
 			<Hotspot X="-11013.68" Y="-1292.222" Z="10.80889" /><!-- Before boss, add next coordinate if you want to include him in pull. -->
 		</CustomBehavior>
 
-		<MoveTo X="-11018.66" Y="-1256.589" Z="13.47913" /> <!-- High Prophet Barim -->
+		<EnableBehavior Name="Combat" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
+		<MoveTo X="-11018.66" Y="-1256.589" Z="13.47913" />
+
+		<CustomBehavior File="InteractWith" MobId="43612" WaitForNpcs="false" X="-11018.66" Y="-1256.589" Z="13.47913" />
+		<While Condition="Unit(43612, o =&gt; o.IsValid &amp;&amp; o.IsAlive) != null" >
+			<CustomBehavior File="InteractWith" MobId="43612" WaitForNpcs="false" X="-11018.66" Y="-1256.589" Z="13.47913" />
+		</While> <!-- High Prophet Barim -->
 
 		<MoveTo X="-10948.5" Y="-1399.79" Z="35.48973" /> <!-- Last boss -->
 		
@@ -545,6 +560,8 @@
 			<Hotspot X="-10735.33" Y="-1404.763" Z="15.35301" />
 		</CustomBehavior>
 
+		<EnableBehavior Name="Combat" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 		<MoveTo X="-10732.21" Y="-1320.742" Z="15.35243" />
 
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
@@ -568,13 +585,15 @@
 						if buffer&lt;5 then
 							for s=1,GetContainerNumSlots(buffer)
 								do local n=GetContainerItemLink(buffer,s)
-									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
+									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
 										UseContainerItem(buffer,s)
 									end
 								end
 							buffer=buffer+1
 							end
 						end" />
+				<CustomBehavior File="WaitTimer" WaitTime="2500" />
+				<CustomBehavior File="ForcedDismount" />
 					<Else>
 						<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
@@ -596,7 +615,6 @@
 				else
 				print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
 				end" />
-
 			<CustomBehavior File="Misc\RunLua" Lua="
 				if GuildBankFrame:IsVisible()==true then
 					print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
@@ -610,8 +628,6 @@
 				end" />
 		</If>
 		<MoveTo X="-10693.63" Y="-1310.474" Z="17.69033" />
-
-
 		<CustomBehavior File="Misc\RunLua" Lua="
 			ShowPizzaMessage = GetMoney();
 			WarningIconChat = GetTime();
@@ -641,10 +657,10 @@
 			<CustomBehavior File="WaitTimer" WaitTime="1800" />
 			<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 		</If>
-
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
 			<CustomBehavior File="FlyTo" X="-9457.354" Y="-959.7435" Z="123.8492" />
+
 			<CustomBehavior File="InteractWith" MobId="48617" />
 			<CustomBehavior File="WaitTimer" WaitTime="500" />
 			<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
@@ -654,7 +670,7 @@
 					if buffer&lt;5 then
 						for s=1,GetContainerNumSlots(buffer)
 							do local n=GetContainerItemLink(buffer,s)
-								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
+								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
 									UseContainerItem(buffer,s)
 								end
 							end
