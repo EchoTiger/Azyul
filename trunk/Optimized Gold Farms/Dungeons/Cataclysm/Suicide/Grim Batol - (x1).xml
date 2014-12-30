@@ -442,8 +442,11 @@
 		Big thanks to Kick for this.
 		--> 
 <!-- Activate Hooks -->
-<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]:&quot; + Environment.NewLine + &quot;Item hooks are now activated.&quot; + Environment.NewLine + &quot;Bot will now:&quot; + Environment.NewLine + &quot;   - Open Tiny Treasure Chests.&quot; + Environment.NewLine + &quot;   - Use Potion of Treasure Finding.&quot;);" />
-<CustomBehavior File="Hooks\DoWhen" ItemId="58488" UseWhen="!Me.HasAura(80263) &amp;&amp; HasItem(58488) &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsInInstance" />
+<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]:&quot; + Environment.NewLine + &quot;Item hooks are now activated.&quot; + Environment.NewLine + &quot;Bot will now:&quot; + Environment.NewLine + &quot;   - Open Tiny Treasure Chests.&quot; + Environment.NewLine + &quot;   - Use Potion of Treasure Finding.&quot;);" >
+<CustomBehavior File="Hooks\DoWhen" ActivityName="UsePotionOfTFinding" UseWhen="!Me.HasAura(80263) &amp;&amp; HasItem(58488) &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsInInstance" />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Refreshing Potion of Treasure Finding.&quot;);" />
+	<CustomBehavior File="UseItem" ItemId="58488" />
+</CustomBehavior>
 <CustomBehavior File="Hooks\DoWhen" ActivityName="Open_TChests" UseWhen="HasItem(67539)" AllowUseDuringCombat="true" > <!-- Tiny Treasure Chest -->
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Opening Tiny Treasure Chest.&quot;);" />
 	<CustomBehavior File="UseItem" ItemId="67539" NumOfTimes="500" TerminateWhen="!HasItem(67539)" />
@@ -645,7 +648,7 @@
 				<DisableBehavior Name="Combat" />
 					<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" MobState="AliveNotInCombat" WaitTime="650" MobId="39392"  X="-741.0018" Y="-862.0551" Z="232.4673" />
 					<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" MobState="AliveNotInCombat" MobId="39392" X="-695.9404" Y="-805.4003" Z="233.2325" />
-					<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" MobState="Alive" MobId="40484" X="-774.9028" Y="-827.0243" Z="233.2095" /> <!--Last boss -->
+					<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" WaitForNpcs="false" MobState="Alive" MobId="40484" X="-774.9028" Y="-827.0243" Z="233.2095" /> <!--Last boss -->
 				<EnableBehavior Name="Combat" />
 
 				<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />

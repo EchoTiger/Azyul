@@ -460,7 +460,8 @@
 		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
         <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died, returning to instance.&quot;);" />
         <RunTo X="-4057.114" Y="-3449.378" Z="281.2569" />
-        <CustomBehavior File="GoThruPortal" Timeout="30000" X="-4052.985" Y="-3448.013" Z="283.4044" />
+        <RunTo X="-4058.40" Y="-3446.81" Z="281.09" />
+        <CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" />
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 670" />
 		<EnableBehavior Name="Vendor" />
 		<EnableBehavior Name="Death" />
@@ -607,7 +608,7 @@
 					<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" MobState="AliveNotInCombat" MobId="39392" X="-695.9404" Y="-805.4003" Z="233.2325" />
 				<EnableBehavior Name="Combat" />
 
-				<CustomBehavior File="InteractWith" MobState="Alive" MobId="40484" X="-774.9028" Y="-827.0243" Z="233.2095" /> <!--Last boss -->
+				<CustomBehavior File="InteractWith" MobState="Alive" WaitForNpcs="false" MobId="40484" X="-774.9028" Y="-827.0243" Z="233.2095" /> <!--Last boss -->
 
 				<CustomBehavior File="Misc\RunLua" Lua="
 					ShowPizzaMessage = GetMoney();
