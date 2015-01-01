@@ -1,4 +1,4 @@
-<HBProfile>
+R<HBProfile>
 <Name>Azyul ~ Master Mount Farm [$Rev$]</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 <MinDurability>-1</MinDurability>
@@ -882,7 +882,7 @@
 					<MoveTo X="-122.1009" Y="286.8453" Z="26.76291" />
 					<CustomBehavior File="InteractWith" MobId="23035" X="-89.20406" Y="287.9736" Z="26.48323" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
-					<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="true" RunOnce="true" InteractByLooting="true" Range="1" X="-89.20406" Y="287.9736" Z="26.48322" />
+					<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="true" InteractByLooting="true" Range="1" X="-89.20406" Y="287.9736" Z="26.48322" />
 					<MoveTo X="-30.23629" Y="284.8479" Z="26.73051" />
 
 
@@ -1415,7 +1415,7 @@
 							<CustomBehavior File="Misc\RunLua" Lua="local item,l,i=&quot;37372&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						</If>
-						<CustomBehavior File="InteractWith" MobId="26693" WaitForNpcs="true" RunOnce="true" InteractByLooting="true" Range="1" X="477.9009" Y="-510.1298" Z="104.7232" />
+						<CustomBehavior File="InteractWith" MobId="26693" WaitForNpcs="true" InteractByLooting="true" Range="1" X="477.9009" Y="-510.1298" Z="104.7232" />
 						<RunTo X="478.0739" Y="-516.3156" Z="104.7221" /> <!-- Incase bot chased down strays -->
 					    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
 						<If Condition="(HasItem(44151))" >
@@ -1800,6 +1800,7 @@
 				<RunTo X="-1032.734" Y="-75.63425" Z="698.8443" />
 				<CustomBehavior File="RunMacro" Macro="/stopattack\n/cleartarget\n/targetenemy" />
 				<CustomBehavior File="Misc\RunLua" Lua="
+					CastSpellByID(2948);
 					CastSpellByID(44614);
 					CastSpellByID(57755);
 					CastSpellByID(115072);
@@ -1837,6 +1838,7 @@
 				<RunTo X="-1056.526" Y="-52.6046" Z="700.4836" />
 				<CustomBehavior File="RunMacro" Macro="/stopattack\n/cleartarget\n/targetenemy" />
 				<CustomBehavior File="Misc\RunLua" Lua="
+					CastSpellByID(2948);
 					CastSpellByID(44614);
 					CastSpellByID(57755);
 					CastSpellByID(115072);
@@ -1886,7 +1888,7 @@
 				<!-- -1250.4404,  72.1284  before boss-->
 				<RunTo X="-1197.9132" Y="56.4448" Z="734.1751"  />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="InteractWith" MobId="43873" WaitForNpcs="true" RunOnce="true" InteractByLooting="true" Range="1" X="-1192.84" Y="54.5626" Z="734.1742" />
+				<CustomBehavior File="InteractWith" MobId="43873" WaitForNpcs="true" InteractByLooting="true" Range="1" X="-1192.84" Y="54.5626" Z="734.1742" />
 				<RunTo X="-1207.4271" Y="82.9884" Z="734.1751"  />
 				<RunTo X="-1196.497" Y="110.3023" Z="740.7074" />
 				<CustomBehavior File="MyCTM" X="-1189.816" Y="127.4594" Z="706.5384" TerminateWhen="Me.Z &lt; 734" />
@@ -2224,8 +2226,8 @@
 					With use of Kicks go to profiles.
 					Big thanks to Kick for this.
 					--> 
+			</If>
 		</If>
-	</If>
 
 
 		<If Condition="Me.MapId != 646 &amp;&amp; (Me.MapId == 1 || Me.MapId == 0)" >
