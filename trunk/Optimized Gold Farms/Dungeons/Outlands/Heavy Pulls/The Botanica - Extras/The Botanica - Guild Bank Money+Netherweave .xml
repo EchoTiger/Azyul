@@ -118,7 +118,7 @@
 <If Condition="(Me.MapId == 553)" > <!-- The Botanica -->
 	<DisableBehavior Name="Pull" />
 	<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
-	<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
+	<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" TerminateWhen="Me.MapId != 553" /> <!--Exits Instance -->
 	<CustomBehavior File="WaitTimer" WaitTime="15000" />
 	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
 	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
@@ -439,7 +439,7 @@
 	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 		<!--Start Endless Cycle -->
 		<If Condition="!(Me.MapId == 553)" >
-			<MoveTo X="3410.782" Y="1485.11" Z="182.8369" />
+			<RunTo X="3410.782" Y="1485.11" Z="182.8369" />
 			<CustomBehavior File="MyCTM" X="3416.718" Y="1481.022" Z="182.8369" />
 			<CustomBehavior File="WaitTimer" WaitTime="15000" />
 		</If>
@@ -542,8 +542,8 @@
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				</Else>
 			</If>
-			<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" TerminateWhen="Me.MapId != 553" WaitTime="3000" /> <!--Exits Instance -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId != 553" />
 			<CustomBehavior File="Misc\RunLua" Lua="
 				local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
 				local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end

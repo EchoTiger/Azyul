@@ -467,7 +467,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 <If Condition="(Me.MapId == 553)" > <!-- The Botanica -->
 	<DisableBehavior Name="Pull" />
 	<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
-	<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
+	<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" TerminateWhen="Me.MapId != 553" WaitTime="3000" /> <!--Exits Instance -->
 	<CustomBehavior File="WaitTimer" WaitTime="15000" />
 	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
 	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
@@ -772,7 +772,26 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		Big thanks to Kick for this.
 		--> 
 </If>
-<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Portal" UseWhen="Me.Location.Distance(new WoWPoint(2979.851, 1869.982, 143.6064)) &lt;= 15" >
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died outside of the dungeon. Returning to corpse.&quot;);" />
+	<CustomBehavior File="FlyTo" X="3094.094" Y="1720.757" Z="201.8069" />
+	<CustomBehavior File="MyCTM" X="3396.883" Y="1496.01" Z="179.5677" />
+	<CustomBehavior File="RunMacro" Macro="/script RepopMe();" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Dungeon" UseWhen="Me.Location.Distance(new WoWPoint(2979.851, 1869.982, 143.6064)) &lt;= 15" >
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died inside of the dungeon. Returning to instance.&quot;);" />
+	<DisableBehavior Name="Death" />
+	<DisableBehavior Name="Vendor" />
+	<CustomBehavior File="FlyTo" X="3080.292" Y="1734.528" Z="218.1617" />
+	<CustomBehavior File="MyCTM" X="3396.883" Y="1496.01" Z="179.5677" />
+	<CustomBehavior File="MyCTM" X="3416.718" Y="1481.022" Z="182.8369" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId == 553" />
+	<EnableBehavior Name="Death" />
+	<EnableBehavior Name="Vendor" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Dungeon" Command="Disable" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Portal" Command="Enable" />
 <!--CHOP CHOP -->
 <While Condition="true">
 	<If Condition="!(Me.ZoneId == 3523)" >
@@ -805,13 +824,14 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		</If>
 		<!--Start Endless Cycle -->
 		<If Condition="!(Me.MapId == 553)" >
-			<MoveTo X="3410.782" Y="1485.11" Z="182.8369" />
+			<RunTo X="3410.782" Y="1485.11" Z="182.8369" />
 			<CustomBehavior File="MyCTM" X="3416.718" Y="1481.022" Z="182.8369" />
-			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId == 553" />
 		</If>
 		<!--Instance Navigation Start -->
 		<If Condition="(Me.MapId == 553)" >
-			<DisableBehavior Name="Death" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Dungeon" Command="Enable" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Portal" Command="Disable" />
 			<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
 			<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
 			<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
@@ -823,7 +843,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<!-- Pull executions -->
 			<!-- Heavy Pull execution -->
 			<If Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;3&quot;"> 
-				<If Condition="Me.IsAlive" >
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 						<Hotspot X="-1.132295" Y="61.46199" Z="-5.662589" />
 						<Hotspot X="-5.061379" Y="90.00092" Z="-5.650543" />
@@ -835,13 +854,9 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-4.699225" Y="254.8372" Z="-4.83915" />
 						<Hotspot X="-34.40111" Y="289.5725" Z="-1.847308" />
 					</CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<MoveTo X="-20.18953" Y="288.3877" Z="-1.830582" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Commander Sarannis -->
 						<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
 						<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
@@ -851,9 +866,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
 						<CustomBehavior File="InteractWith" MobId="17976" ObjectType="Npc" MobState="DontCare" WaitForNpcs="false" Range="2" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
 					<EnableBehavior Name="Combat" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<MoveTo X="161.3502" Y="344.174" Z="-6.860448" />
 
 					<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Botanist Freywinn -->
@@ -866,9 +879,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
 						<CustomBehavior File="InteractWith" MobId="17975" ObjectType="Npc" MobState="DontCare" WaitForNpcs="false" Range="2" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
 					<EnableBehavior Name="Combat" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<MoveTo X="128.9197" Y="502.4178" Z="-5.422901" />
 
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
@@ -879,9 +890,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<Hotspot X="-6.9636" Y="575.9285" Z="-17.89389" />
 						<Hotspot X="6.485384" Y="598.557" Z="-15.17408" />
 					</CustomBehavior>
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<MoveTo X="-49.59764" Y="560.2516" Z="-18.04433" />
 
 					<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Laj -->
@@ -896,24 +905,18 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						<CustomBehavior File="RunMacro" Macro="/target Laj\n/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Taunt \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" /> <!-- Pull Laj -->
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
 					<EnableBehavior Name="Combat" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
 					<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
-				</If>
 
-				<If Condition="Me.IsAlive" >
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 						<Hotspot X="3.693267" Y="409.3721" Z="-27.63801" />
 						<Hotspot X="17.46659" Y="369.3841" Z="-26.25432" />
 						<Hotspot X="66.04333" Y="390.6274" Z="-27.97719" />
 					</CustomBehavior>
-				</If>
 
 				<!-- Medium pull execution -->
 				<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;2&quot;" >
-					<If Condition="Me.IsAlive" >
 						<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 							<Hotspot X="-1.132295" Y="61.46199" Z="-5.662589" />
 							<Hotspot X="-5.061379" Y="90.00092" Z="-5.650543" />
@@ -921,97 +924,69 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							<Hotspot X="3.652268" Y="164.1741" Z="-5.540264" />
 							<Hotspot X="11.64091" Y="202.0575" Z="-5.540264" />
 						</CustomBehavior>
-					</If>
-					<If Condition="Me.IsAlive" >
 						<CustomBehavior File="RunLikeHell" AllowCombat="false" > //
 							<Hotspot X="-10.77896" Y="205.5492" Z="-5.540341" />
 							<Hotspot X="-5.300217" Y="215.8055" Z="-5.540341" />
 							<Hotspot X="-4.699225" Y="254.8372" Z="-4.83915" />
 							<Hotspot X="-34.40111" Y="289.5725" Z="-1.847308" />
 						</CustomBehavior>
-					</If>
-					<If Condition="Me.IsAlive" >
 						<MoveTo X="-20.18953" Y="288.3877" Z="-1.830582" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<DisableBehavior Name="Combat" /> 
 							<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
 							<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
 							<MoveTo X="107.8981" Y="287.203" Z="-6.826936" />
 						<EnableBehavior Name="Combat" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Commander Sarannis -->
 							<MoveTo X="159.7016" Y="283.7128" Z="-3.114579" />
 							<MoveTo X="164.708" Y="297.3946" Z="-4.807951" />
 							<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
 							<CustomBehavior File="InteractWith" MobId="17976" ObjectType="Npc" MobState="DontCare" WaitForNpcs="false" Range="2" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
 						<EnableBehavior Name="Combat" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<MoveTo X="161.3502" Y="344.174" Z="-6.860448" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<DisableBehavior Name="Combat" />
 							<MoveTo X="160.0694" Y="372.2791" Z="-5.387292" />
 							<MoveTo X="195.8619" Y="378.2886" Z="-5.478722" />
 							<MoveTo X="173.4993" Y="395.0775" Z="-5.387872" />
 							<MoveTo X="159.0994" Y="412.2748" Z="-5.387872" />
 						<EnableBehavior Name="Combat" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Botanist Freywinn -->
 							<MoveTo X="162.9829" Y="445.4804" Z="-6.894575" />
 							<MoveTo X="171.8593" Y="499.6241" Z="-2.300941" />
 							<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
 							<CustomBehavior File="InteractWith" MobId="17975" ObjectType="Npc" MobState="DontCare" WaitForNpcs="false" Range="2" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
 						<EnableBehavior Name="Combat" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<MoveTo X="128.9197" Y="502.4178" Z="-5.422901" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 							<Hotspot X="95.23268" Y="491.5663" Z="-6.756306" />
 							<Hotspot X="-16.26616" Y="506.0811" Z="-5.301754" />
 							<Hotspot X="-2.302615" Y="506.1841" Z="-5.304161" />
 							<Hotspot X="-16.17399" Y="481.9402" Z="-5.473525" />
 						</CustomBehavior>
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<RunTo X="25.32044" Y="539.7997" Z="-17.98305" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" > <!-- CTM to avoid mob skipping -->
 							<Hotspot X="13.46458" Y="570.8362" Z="-17.98895" />
 							<Hotspot X="4.489791" Y="597.8298" Z="-15.16989" />
 							<Hotspot X="-1.552027" Y="577.4376" Z="-17.8621" />
 						</CustomBehavior>
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<MoveTo X="-49.59764" Y="560.2516" Z="-18.04433" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<DisableBehavior Name="Combat" />
 							<MoveTo X="-112.3502" Y="541.3242" Z="-17.82489" />
 							<MoveTo X="-134.2693" Y="507.8932" Z="-17.82489" />
 							<MoveTo X="-148.4885" Y="524.0147" Z="-17.82489" />
 							<MoveTo X="-160.7684" Y="497.2664" Z="-17.82489" />
 						<EnableBehavior Name="Combat" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
 
 						<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Laj -->
@@ -1022,24 +997,18 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 							<CustomBehavior File="RunMacro" Macro="/target Laj\n/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Taunt \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" /> <!-- Pull Laj -->
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						<EnableBehavior Name="Combat" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
 						<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
-					</If>
 
-					<If Condition="Me.IsAlive" >
 						<CustomBehavior File="RunLikeHell" AllowCombat="false" >
 							<Hotspot X="3.693267" Y="409.3721" Z="-27.63801" />
 							<Hotspot X="17.46659" Y="369.3841" Z="-26.25432" />
 							<Hotspot X="66.04333" Y="390.6274" Z="-27.97719" />
 						</CustomBehavior>
-					</If>
 				</ElseIf>
 			</If>
 
-			<If Condition="Me.IsAlive" >
 				<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
 
 				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
@@ -1056,8 +1025,10 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				</Else>
 			</If>
-				<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
-				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Dungeon" Command="Disable" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Portal" Command="Enable" />
+				<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" TerminateWhen="Me.MapId != 553" /> <!--Exits Instance -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId != 553" />
 				<CustomBehavior File="Misc\RunLua" Lua="
 					local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
 					local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
@@ -1071,11 +1042,6 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 						print(&quot;|cFF3399FF[Azyul]|r: Switching the dungeon back to Normal difficulty.&quot;)" />
 				</If>
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
-			</If>
-			<If Condition="Me.IsDead" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died, returning to instance.&quot;);" />
-				<CustomBehavior File="RunMacro" Macro="/script RepopMe()" />
-			</If>
 		</If>
 		<!--Instance Coordnation Complete -->
 	</While>
