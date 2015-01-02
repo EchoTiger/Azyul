@@ -542,7 +542,7 @@
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				</Else>
 			</If>
-			<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" TerminateWhen="Me.MapId != 553" /> <!--Exits Instance -->
+			<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" TerminateWhen="Me.MapId != 553" WaitTime="3000" /> <!--Exits Instance -->
 			<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId != 553" />
 			<CustomBehavior File="Misc\RunLua" Lua="
 				local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end

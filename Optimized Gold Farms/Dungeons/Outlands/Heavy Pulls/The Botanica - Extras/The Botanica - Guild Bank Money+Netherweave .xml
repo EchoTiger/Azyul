@@ -118,7 +118,7 @@
 <If Condition="(Me.MapId == 553)" > <!-- The Botanica -->
 	<DisableBehavior Name="Pull" />
 	<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
-	<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" TerminateWhen="Me.MapId != 553" /> <!--Exits Instance -->
+	<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" TerminateWhen="Me.MapId != 553" WaitTime="3000" /> <!--Exits Instance -->
 	<CustomBehavior File="WaitTimer" WaitTime="15000" />
 	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
 	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
