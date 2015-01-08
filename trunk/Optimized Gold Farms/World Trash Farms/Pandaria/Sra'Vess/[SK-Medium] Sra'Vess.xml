@@ -235,62 +235,33 @@
 			</CustomBehavior>
 		</While>
 
-		<While Condition="(Me.Class == WoWClass.Druid)" > <!-- Druid -->
+		<While Condition="(Me.Class == WoWClass.Druid)" > <!-- Druid, 8921 *should* be backwards compatible with Sunfire but the behavior acts up, so we're using Wrath instead... -->
 			<While Condition="Me.Specialization == WoWSpec.DruidBalance" >
-				<If Condition="Me.CurrentEclipse &gt; 0" > <!-- Moonfire -->
-					<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="8921" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 8 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5 || Me.CurrentEclipse &lt; 0" >
-						<HuntingGrounds WaypointVisitStrategy="Random" >
-							<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
-							<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
-							<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
-							<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
-							<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
-							<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
-							<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
-							<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
-							<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
-							<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
-							<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
-							<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
-							<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
-							<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
-							<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
-							<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
-							<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
-							<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
-							<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
-							<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
-							<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
-						</HuntingGrounds>
-					</CustomBehavior>
-				</If>
-				<If Condition="Me.CurrentEclipse &lt; 0" > <!-- Sunfire -->
-					<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="93402" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 8 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5 || Me.CurrentEclipse &gt; 0" >
-						<HuntingGrounds WaypointVisitStrategy="Random" >
-							<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
-							<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
-							<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
-							<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
-							<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
-							<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
-							<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
-							<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
-							<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
-							<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
-							<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
-							<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
-							<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
-							<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
-							<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
-							<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
-							<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
-							<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
-							<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
-							<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
-							<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
-						</HuntingGrounds>
-					</CustomBehavior>
-				</If>
+				<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="5176" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5 || Me.CurrentEclipse &lt; 0" >
+					<HuntingGrounds WaypointVisitStrategy="Random" >
+						<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
+						<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
+						<Hotspot X="2443.767" Y="5627.568" Z="87.00724" />
+						<Hotspot X="2415.8" Y="5756.107" Z="87.01104" />
+						<Hotspot X="2367.584" Y="5869.537" Z="83.98858" />
+						<Hotspot X="2494.004" Y="5871.38" Z="81.55634" />
+						<Hotspot X="2580.537" Y="5973.243" Z="87.09047" />
+						<Hotspot X="2671.536" Y="6069.62" Z="81.07024" />
+						<Hotspot X="2780.486" Y="6134.208" Z="77.96778" />
+						<Hotspot X="2938.904" Y="6101.646" Z="87.55824" />
+						<Hotspot X="3004.983" Y="6069.708" Z="90.43016" />
+						<Hotspot X="2983.373" Y="5998.654" Z="72.93408" />
+						<Hotspot X="3025.129" Y="5858.725" Z="77.5325" />
+						<Hotspot X="3028.224" Y="5743.518" Z="78.56209" />
+						<Hotspot X="3058.817" Y="5640.473" Z="73.01015" />
+						<Hotspot X="2980.776" Y="5610.616" Z="78.79408" />
+						<Hotspot X="2922.368" Y="5544.784" Z="73.48779" />
+						<Hotspot X="2836.421" Y="5587.551" Z="72.79282" />
+						<Hotspot X="2724.329" Y="5637.653" Z="74.20296" />
+						<Hotspot X="2681.747" Y="5699.481" Z="80.60223" />
+						<Hotspot X="2564.963" Y="5728.459" Z="78.56429" />
+					</HuntingGrounds>
+				</CustomBehavior>
 			</While>
 			<While Condition="Me.Specialization == DruidFeral || Me.Specialization == DruidGuardian" > <!-- Faerie Fire -->
 				<If Condition="(Me.Specialization == DruidFeral &amp;&amp; !HasAura(768))" >
@@ -299,7 +270,7 @@
 				<If Condition="(Me.Specialization == DruidGuardian &amp;&amp; !HasAura(5487))" >
 				 	<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(5487);" />
 				</If>
-				<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="770" WaitForNpcs="False" Range="34" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 8 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="770" WaitForNpcs="False" Range="34" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
 					<HuntingGrounds WaypointVisitStrategy="Random" >
 						<Hotspot X="2489.148" Y="5355.935" Z="111.6228" />
 						<Hotspot X="2479.168" Y="5484.836" Z="118.1634" />
