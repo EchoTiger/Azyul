@@ -479,18 +479,18 @@
 
 
 			<!-- Finish off event -->
-			<CustomBehavior File="InteractWith" MobId="10439" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4032.864" Y="-3396.774" Z="117.5075" />
+			<CustomBehavior File="InteractWith" MobId="10439" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4032.864" Y="-3396.774" Z="117.5075" />
 			<RunTo X="4008.083" Y="-3405.96" Z="116.8564" />
 			<CustomBehavior File="WaitTimer" WaitTime="3000" /> <!-- Wait for skeleton Horde -->
-			<CustomBehavior File="InteractWith" MobId="10394" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4032.81" Y="-3387.44" Z="119.7416" />
+			<CustomBehavior File="InteractWith" MobId="10394" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4032.81" Y="-3387.44" Z="119.7416" />
 
 			<!-- Finale -->
 			<RunTo X="4032.853" Y="-3362.603" Z="115.0517" />
 			<While Condition="Unit(45412, u =&gt; u.IsAlive) != null" >
-				<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+				<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
 			</While>
 			<CustomBehavior File="WaitTimer" WaitTime="1500" />
-			<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="true" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+			<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="false" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
 			<If Condition="Unit(45412, u =&gt; u.CanLoot) != null" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Rivendare still seems lootable.  Enabling failsafe.&quot;);" />
 				<CustomBehavior File="UserSettings" LootMobs="true" />

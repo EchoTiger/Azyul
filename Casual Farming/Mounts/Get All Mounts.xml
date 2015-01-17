@@ -472,18 +472,18 @@
 
 
 					<!-- Finish off event -->
-					<CustomBehavior File="InteractWith" MobId="10439" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4032.864" Y="-3396.774" Z="117.5075" />
+					<CustomBehavior File="InteractWith" MobId="10439" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4032.864" Y="-3396.774" Z="117.5075" />
 					<RunTo X="4008.083" Y="-3405.96" Z="116.8564" />
 					<CustomBehavior File="WaitTimer" WaitTime="3000" /> <!-- Wait for skeleton Horde -->
-					<CustomBehavior File="InteractWith" MobId="10394" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4032.81" Y="-3387.44" Z="119.7416" />
+					<CustomBehavior File="InteractWith" MobId="10394" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4032.81" Y="-3387.44" Z="119.7416" />
 
 					<!-- Finale -->
 					<RunTo X="4032.853" Y="-3362.603" Z="115.0517" />
 					<While Condition="Unit(45412, u =&gt; u.IsAlive) != null" >
-						<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="true" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+						<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
 					</While>
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
-					<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="true" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+					<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="false" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
 					<If Condition="Unit(45412, u =&gt; u.CanLoot) != null" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Rivendare still seems lootable.  Enabling failsafe.&quot;);" />
 						<CustomBehavior File="UserSettings" LootMobs="true" />
@@ -882,7 +882,7 @@
 					<MoveTo X="-122.1009" Y="286.8453" Z="26.76291" />
 					<CustomBehavior File="InteractWith" MobId="23035" X="-89.20406" Y="287.9736" Z="26.48323" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
-					<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="true" InteractByLooting="true" Range="1" X="-89.20406" Y="287.9736" Z="26.48322" />
+					<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="false" InteractByLooting="true" Range="1" X="-89.20406" Y="287.9736" Z="26.48322" />
 					<MoveTo X="-30.23629" Y="284.8479" Z="26.73051" />
 
 
@@ -1415,7 +1415,7 @@
 							<CustomBehavior File="Misc\RunLua" Lua="local item,l,i=&quot;37372&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						</If>
-						<CustomBehavior File="InteractWith" MobId="26693" WaitForNpcs="true" InteractByLooting="true" Range="1" X="477.9009" Y="-510.1298" Z="104.7232" />
+						<CustomBehavior File="InteractWith" MobId="26693" WaitForNpcs="false" InteractByLooting="true" Range="1" X="477.9009" Y="-510.1298" Z="104.7232" />
 						<RunTo X="478.0739" Y="-516.3156" Z="104.7221" /> <!-- Incase bot chased down strays -->
 					    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
 						<If Condition="(HasItem(44151))" >
@@ -1888,7 +1888,7 @@
 				<!-- -1250.4404,  72.1284  before boss-->
 				<RunTo X="-1197.9132" Y="56.4448" Z="734.1751"  />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="InteractWith" MobId="43873" WaitForNpcs="true" InteractByLooting="true" Range="1" X="-1192.84" Y="54.5626" Z="734.1742" />
+				<CustomBehavior File="InteractWith" MobId="43873" WaitForNpcs="false" InteractByLooting="true" Range="1" X="-1192.84" Y="54.5626" Z="734.1742" />
 				<RunTo X="-1207.4271" Y="82.9884" Z="734.1751"  />
 				<RunTo X="-1196.497" Y="110.3023" Z="740.7074" />
 				<CustomBehavior File="MyCTM" X="-1189.816" Y="127.4594" Z="706.5384" TerminateWhen="Me.Z &lt; 734" />
