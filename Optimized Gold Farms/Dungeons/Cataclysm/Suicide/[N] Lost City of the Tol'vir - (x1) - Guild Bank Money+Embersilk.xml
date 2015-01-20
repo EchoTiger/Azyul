@@ -551,6 +551,7 @@
 		</While> <!-- High Prophet Barim -->
 
 		<MoveTo X="-10948.5" Y="-1399.79" Z="35.48973" /> <!-- Last boss -->
+		<CustomBehavior File="InteractWith"	MobId="44819" InteractByLooting="true" X="-10948.5" Y="-1399.79" Z="35.48973" />
 		
 		<MoveTo X="-10858.96" Y="-1407.438" Z="15.35374" /> <!-- Walk off pedistal -->
 
@@ -562,6 +563,7 @@
 
 		<EnableBehavior Name="Combat" />
 		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
+		<CustomBehavior File="InteractWith" MobId="45007" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" />
 		<MoveTo X="-10732.21" Y="-1320.742" Z="15.35243" />
 
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
@@ -627,7 +629,6 @@
 					end
 				end" />
 		</If>
-		<MoveTo X="-10693.63" Y="-1310.474" Z="17.69033" />
 		<CustomBehavior File="Misc\RunLua" Lua="
 			ShowPizzaMessage = GetMoney();
 			WarningIconChat = GetTime();
@@ -643,8 +644,8 @@
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 			</Else>
 		</If>
-		<CustomBehavior File="MyCTM" X="-10688.83" Y="-1309.427" Z="17.63992" />
-		<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId == 1" />
+		<RunTo X="-10691.06" Y="-1310.128" Z="17.61752" />
+		<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" WaitTime="3000" />
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 		<EnableBehavior Name="Pull" />
 		<EnableBehavior Name="Combat" />
