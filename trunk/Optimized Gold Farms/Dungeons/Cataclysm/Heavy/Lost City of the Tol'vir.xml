@@ -465,8 +465,7 @@
 	</If>
 </CustomBehavior>
 
-<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
-		<DisableBehavior Name="Death" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" TreeHookName="Death_Main" UseWhen="Me.IsGhost &amp;&amp; Me.CorpseMapId != Me.MapId" >
 		<DisableBehavior Name="Vendor" />
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 755)" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
@@ -476,7 +475,6 @@
         <CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" WaitTime="3000" />
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 755" />
 		<EnableBehavior Name="Vendor" />
-		<EnableBehavior Name="Death" />
 </CustomBehavior>
 <CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 
