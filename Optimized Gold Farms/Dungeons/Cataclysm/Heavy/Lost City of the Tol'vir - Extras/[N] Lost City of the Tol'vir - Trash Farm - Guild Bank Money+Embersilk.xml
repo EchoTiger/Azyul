@@ -552,72 +552,70 @@
 			<Hotspot X="-11057.53" Y="-1378.129" Z="10.81136" />
 		</CustomBehavior>
 
-	<If Condition="(Me.FreeBagSlots &lt; 17)" >
-		<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
-			<CustomBehavior File="WaitTimer" WaitTime="750" />
-			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
-			<CustomBehavior File="WaitTimer" WaitTime="2000" />
-			<If Condition="Me.HasAura(61425)" >
-				<CustomBehavior File="InteractWith" MobId="32639" />
-				<ElseIf Condition="Me.HasAura(61447)" >
-					<CustomBehavior File="InteractWith" MobId="32641" />
-				</ElseIf>
-				<ElseIf Condition="Me.HasAura(122708)" >
-					<CustomBehavior File="InteractWith" MobId="62822" />
-				</ElseIf>
-			</If>
-			<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
-				if MerchantFrame:IsVisible()==true then
-					if buffer==nil or buffer&gt;4 then buffer=0 end
-					MerchantRepairAllButton:Click()
-					if buffer&lt;5 then
-						for s=1,GetContainerNumSlots(buffer)
-							do local n=GetContainerItemLink(buffer,s)
-								if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
-									UseContainerItem(buffer,s)
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+				<CustomBehavior File="WaitTimer" WaitTime="750" />
+				<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+				<CustomBehavior File="WaitTimer" WaitTime="2000" />
+				<If Condition="Me.HasAura(61425)" >
+					<CustomBehavior File="InteractWith" MobId="32639" />
+					<ElseIf Condition="Me.HasAura(61447)" >
+						<CustomBehavior File="InteractWith" MobId="32641" />
+					</ElseIf>
+					<ElseIf Condition="Me.HasAura(122708)" >
+						<CustomBehavior File="InteractWith" MobId="62822" />
+					</ElseIf>
+				</If>
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="10" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
+									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;))  and n and not n:find(&quot;53010&quot;) then
+										UseContainerItem(buffer,s)
+									end
 								end
+							buffer=buffer+1
 							end
-						buffer=buffer+1
-						end
-					end" />
-			<CustomBehavior File="WaitTimer" WaitTime="2500" />
-			<CustomBehavior File="ForcedDismount" />
-				<Else>
-					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
-				</Else>
-		</If>
-		<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
-		<CustomBehavior File="WaitTimer" WaitTime="3500" />
-		<If Condition="Me.IsAlliance" > 
-		    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
-		</If> 
-		<If Condition="Me.IsHorde" > 
-		    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
-		</If> 
-		<CustomBehavior File="Misc\RunLua" Lua="
-			if GuildBankFrame:IsVisible()==true then
-				MyMoney = GetMoney();
-				DepositGuildBankMoney(MyMoney);
-				print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
-			else
-			print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
-			end" />
+						end" />
+				<CustomBehavior File="WaitTimer" WaitTime="2500" />
+				<CustomBehavior File="ForcedDismount" />
+					<Else>
+						<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
+					</Else>
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+			<CustomBehavior File="WaitTimer" WaitTime="3500" />
+			<If Condition="Me.IsAlliance" > 
+			    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+			</If> 
+			<If Condition="Me.IsHorde" > 
+			    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" ObjectType="GameObject" Range="10" WaitTime="2000" /> 
+			</If> 
+			<CustomBehavior File="Misc\RunLua" Lua="
+				if GuildBankFrame:IsVisible()==true then
+					MyMoney = GetMoney();
+					DepositGuildBankMoney(MyMoney);
+					print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+				else
+				print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+				end" />
 
-		<CustomBehavior File="Misc\RunLua" Lua="
-			if GuildBankFrame:IsVisible()==true then
-				print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
-				for b=0,4 do for s=1,GetContainerNumSlots(b)
-					do local n=GetContainerItemLink(b,s)
-						if n and strfind(n,&quot;53010&quot;)then
-							UseContainerItem(b,s)
+			<CustomBehavior File="Misc\RunLua" Lua="
+				if GuildBankFrame:IsVisible()==true then
+					print(&quot;|cFF3399FF[Azyul]|r: Depositing Embersilk Cloth.&quot;)
+					for b=0,4 do for s=1,GetContainerNumSlots(b)
+						do local n=GetContainerItemLink(b,s)
+							if n and strfind(n,&quot;53010&quot;)then
+								UseContainerItem(b,s)
+							end
 						end
 					end
-				end
-			end" />
-
-
-	</If>
+				end" />
+		</If>
 	
 		<!-- Movements to avoid OffMeshConnection -->
 		<RunTo X="-11020.26" Y="-1378.264" Z="10.80586" />
@@ -644,7 +642,7 @@
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 			</Else>
 		</If>
-		<CustomBehavior File="RunTo" X="-10691.06" Y="-1310.128" Z="17.61752" />
+		<RunTo X="-10691.06" Y="-1310.128" Z="17.61752" />
 		<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart()" WaitTime="3000" />
 		<CustomBehavior File="WaitTimer" WaitTime="20000" TerminateWhen="!Me.IsInInstance" />
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
