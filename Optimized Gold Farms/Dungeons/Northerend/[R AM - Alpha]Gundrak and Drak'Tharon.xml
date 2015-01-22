@@ -837,7 +837,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 <CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
 
-<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" AllowUseDuringCombat="True" AllowExecutionWhileNotAlive="true" UseWhen="Me.IsGhost" >
 		<DisableBehavior Name="Death" />
 		<DisableBehavior Name="Vendor" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
@@ -850,7 +850,7 @@ Please note also: If you make a change and it doesn't show up on ASM - then don'
 		<EnableBehavior Name="Death" />
 </CustomBehavior>
 <CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
-<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" AllowUseDuringCombat="True" UseWhen="Me.IsGhost" >
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" AllowUseDuringCombat="True" AllowExecutionWhileNotAlive="true" UseWhen="Me.IsGhost" >
 		<DisableBehavior Name="Death" />
 		<DisableBehavior Name="Vendor" />
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 604)" />
