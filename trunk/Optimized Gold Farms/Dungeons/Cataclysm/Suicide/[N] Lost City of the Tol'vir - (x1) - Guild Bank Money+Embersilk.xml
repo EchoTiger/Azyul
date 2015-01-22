@@ -545,9 +545,9 @@
 		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 		<MoveTo X="-11018.66" Y="-1256.589" Z="13.47913" />
 
-		<CustomBehavior File="Misc\BreakImmunityByKillingMobsInCloseProximity" MobId="43612" ImmunityAuraId="82320" ImmunityBreakingNpcIds="43927" X="-11018.66" Y="-1256.589" Z="13.47913" />
+		<CustomBehavior File="Misc\BreakImmunityByKillingMobsInCloseProximity" MobId="43612" ImmunityAuraId="82320" ImmunityBreakingMobId="43927"  X="-11018.66" Y="-1256.589" Z="13.47913" />
 		<While Condition="Unit(43612, o =&gt; o.IsValid &amp;&amp; o.IsAlive) != null" >
-			<CustomBehavior File="Misc\BreakImmunityByKillingMobsInCloseProximity" MobId="43612" ImmunityAuraId="82320" ImmunityBreakingNpcIds="43927" X="-11018.66" Y="-1256.589" Z="13.47913" />
+			<CustomBehavior File="InteractWith" MobId="43612" WaitForNpcs="false" MobState="Alive" X="-11018.66" Y="-1256.589" Z="13.47913" />
 		</While> <!-- High Prophet Barim -->
 
 		<MoveTo X="-10948.5" Y="-1399.79" Z="35.48973" /> <!-- Last boss -->
