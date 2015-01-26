@@ -178,14 +178,15 @@
 		<If Condition="Me.MapId == 530" > <!-- Outlands -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Outlands, using the Shattrath portal to Stormwind.&quot;);" />
 			<CustomBehavior File="FlyTo" X="-1892.768" Y="5392.862" Z="-12.4277" />
-			<While Condition="Me.MapId != 571" >
-				<CustomBehavior File="InteractWith" MobId="183325" X="-1894.189" Y="5387.939" Z="-12.42825" TerminateWhen="Me.MapId == 571" />
-				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 571 || Me.Combat" />
+			<While Condition="Me.MapId != 0" >
+				<CustomBehavior File="InteractWith" MobId="183325" X="-1894.189" Y="5387.939" Z="-12.42825" TerminateWhen="Me.MapId == 0" />
+				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || Me.Combat" />
 			</While>
 		</If>
-		<If Condition="Me.MapId == 530" > <!-- Instanced Draenei Zone -->
+		<If Condition="!(Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525)" > <!-- Instanced Draenei Zone, shares MapId with Outlands so we're using ZoneId -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're a in Azuyremyst Isle, using the Exodar portal to Darnassus.&quot;);" />
 			<RunTo X="-4040.254" Y="-11569.56" Z="-138.4055" />
-			<While Condition="Me.MapId != 571" >
+			<While Condition="Me.MapId != 1" >
 				<CustomBehavior File="InteractWith" MobId="207996" X="-4047.53" Y="-11569.33" Z="-138.4902" TerminateWhen="Me.MapId == 1" />
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1 || Me.Combat" />
 			</While>
@@ -287,7 +288,7 @@
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Outlands, using the Shattrath portal to Orgrimmar.&quot;);" />
 			<CustomBehavior File="FlyTo" X="-1898.129" Y="5395.677" Z="-12.42727" />
 			<While Condition="Me.MapId != 1" >
-				<CustomBehavior File="InteractWith" MobId="183325" X="-1894.189" Y="5387.939" Z="-12.42825" TerminateWhen="Me.MapId == 1" />
+				<CustomBehavior File="InteractWith" MobId="183323" X="-1899.45" Y="5393.01" Z="-12.42832" TerminateWhen="Me.MapId == 1" />
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1 || Me.Combat" />
 			</While>
 		</If>
@@ -295,7 +296,7 @@
 			Do we really need Horde support for this?
 		</If> -->
 		<If Condition="Me.MapId == 1116" > <!-- Draenor -->
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Draenor, using the Ashran portal to Dalaran.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Draenor, using the Ashran portal to Orgrimmar.&quot;);" />
 			<RunTo X="5266.4" Y="-4075.891" Z="21.13024" />
 			<While Condition="Me.MapId != 1" >
 				<CustomBehavior File="InteractWith" MobId="235880" X="5266.4" Y="-4075.891" Z="21.13024" TerminateWhen="Me.MapId == 1" />
