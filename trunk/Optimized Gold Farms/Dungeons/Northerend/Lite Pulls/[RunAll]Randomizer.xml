@@ -219,7 +219,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || Me.Combat" />
 			</While>
 		</If>
-		<If Condition="!(Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525)" > <!-- Instanced Draenei Zone, shares MapId with Outlands so we're using ZoneId -->
+		<If Condition="(Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525)" > <!-- Instanced Draenei Zone, shares MapId with Outlands so we're using ZoneId -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're a in Azuyremyst Isle, using the Exodar portal to Darnassus.&quot;);" />
 			<RunTo X="-4040.254" Y="-11569.56" Z="-138.4055" />
 			<While Condition="Me.MapId != 1" >
