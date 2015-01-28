@@ -317,11 +317,11 @@
 					</HuntingGrounds>
 				</CustomBehavior>
 			</While>
-			<While Condition="Me.Specialization == DruidFeral || Me.Specialization == DruidGuardian" > <!-- Faerie Fire -->
-				<If Condition="(Me.Specialization == DruidFeral &amp;&amp; !HasAura(768))" >
+			<While Condition="Me.Specialization == WoWSpec.DruidFeral || Me.Specialization == WoWSpec.DruidGuardian" > <!-- Faerie Fire -->
+				<If Condition="(Me.Specialization == WoWSpec.DruidFeral &amp;&amp; !HasAura(768))" >
 				 	<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(768);" />
 				</If>
-				<If Condition="(Me.Specialization == DruidGuardian &amp;&amp; !HasAura(5487))" >
+				<If Condition="(Me.Specialization == WoWSpec.DruidGuardian &amp;&amp; !HasAura(5487))" >
 				 	<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(5487);" />
 				</If>
 				<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="63681" MobId2="63678" MobId3="63677" MobId4="63680" MobId5="63683" InteractByCastingSpellId="770" WaitForNpcs="False" Range="34" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
