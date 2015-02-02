@@ -458,6 +458,7 @@
 		</If>
 		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
 			<If Condition="!(Me.MapId == 602)">
+				<RunTo X="9184.104" Y="-1386.851" Z="1110.216" />
 				<CustomBehavior File="MyCTM" X="9190.415" Y="-1395.566" Z="1110.215" TerminateWhen="Me.MapId == 602" />
 			</If>
 			<If Condition="(Me.MapId == 602)" >
@@ -631,11 +632,7 @@
 
 			<If Condition="(Me.FreeBagSlots &lt; 20)" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: You're still under 20 bagslots after selling. Moving to mail.&quot;);" />
-				<CustomBehavior File="FlyTo" X="8838.542" Y="-1240.169" Z="1072.359" />
-				<CustomBehavior File="FlyTo" X="8549.084" Y="-397.8126" Z="1038.629" />
 				<CustomBehavior File="FlyTo" X="8452.892" Y="-331.8914" Z="906.7128" />
-				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="RunMacro" Macro="/dismount" />
 				<SetMailbox>
 					<Mailboxes>
 						<Mailbox X="8440.736" Y="-329.4271" Z="906.5062" />
