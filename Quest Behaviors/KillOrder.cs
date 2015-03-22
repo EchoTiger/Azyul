@@ -220,7 +220,7 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
         {
             get
             {
-                return new Decorator(r => Adds != null && Boss.HasAura(AuraId), new PrioritySelector(
+                return new Decorator(r => Adds != null && Boss.Me.HasAura(AuraId), new PrioritySelector(
 
 
                     new Decorator(r => !Me.GotTarget || Me.CurrentTarget != Adds || Me.CurrentTarget.IsDead, new Action(r => Adds.Target())),
@@ -260,7 +260,7 @@ namespace Honorbuddy.Quest_Behaviors.KillOrder
         {
             get
             {
-                return new Decorator(r => Boss != null && !Boss.HasAura(AuraId), new PrioritySelector(
+                return new Decorator(r => Boss != null && !Boss.Me.HasAura(AuraId), new PrioritySelector(
 
 
                     new Decorator(r => !Me.GotTarget || Me.CurrentTarget != Boss, new Action(r => Boss.Target())),
