@@ -36,7 +36,18 @@
 </Blackspots>
 	
 <QuestOrder>
-
+<CustomBehavior File="RunCode" Code="
+System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Mounts/Reins%20of%20the%20Raven%20Lord%20-%20Daily%20Farm.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
+File.WriteAllText(ProfileManager.XmlLocation, remoteData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}
+" />
 
 <If Condition="!(Me.MapId == 556)" >
 	<If Condition="!(Me.MapId == 530)" >

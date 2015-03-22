@@ -47,7 +47,18 @@
 </Blackspots>
 
 <QuestOrder>
-
+<CustomBehavior File="RunCode" Code="
+System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Mounts/Get%20All%20Mounts.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
+File.WriteAllText(ProfileManager.XmlLocation, remoteData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}
+" />
 	<If Condition="!HasItem(13335) &amp;&amp; !Me.KnowsSpell(17481)" > <!-- Deathcharger -->
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Deathcharger.. Let's get it!&quot;);" />
 		<If Condition="(Me.MapId == 329)" >
@@ -390,7 +401,7 @@
 					</While>
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 					<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="false" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
-					<If Condition="Unit(45412, u =&gt; u.CanLoot) != null" >
+					<If Condition="Unit(45412).CanLoot != null" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Rivendare still seems lootable.  Enabling failsafe.&quot;);" />
 						<CustomBehavior File="UserSettings" LootMobs="true" />
 						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(45412, u =&gt; !u.CanLoot) != null" />
@@ -1107,23 +1118,23 @@
 					    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
 					    <!-- ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Any(u =&gt; u.Entry == 26893 &amp;&amp; u.IsValid) : Old method-->
 
-						<While Condition="Object(26893, o => o.IsValid) != null">
-							<While Condition="!HasItem(37372) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
+						<While Condition="Object(26893).IsValid != null">
+							<While Condition="!HasItem(37372) &amp;&amp; (Object(26893).IsValid != null)">
 								<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
 									<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
 								</CustomBehavior>
 								<CustomBehavior File="WaitTimer" WaitTime="500" />
-								<While Condition="(Object(192539, o => o.IsValid) != null) &amp;&amp; (Object(26893, o => o.IsValid) != null)" >
+								<While Condition="(Object(192539).IsValid != null) &amp;&amp; (Object(26893).IsValid != null)" >
 									<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" NumOfTimes="1" CollectionDistance="30" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
 								</While>
 							</While>
-							<While Condition="HasItem(37372) &amp;&amp; (Object(26893, o => o.IsValid) != null)" >
-								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 35) != null) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
+							<While Condition="HasItem(37372) &amp;&amp; (Object(26893).IsValid != null)" >
+								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 35) != null) &amp;&amp; (Object(26893).IsValid != null)">
 									<DisableBehavior Name="Combat" />
 		 							<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" MobId1="192176" MobId2="192177" X="485.5264" Y="-523.3635" Z="104.7237" />
 		 							<EnableBehavior Name="Combat" />
 								</If>
-								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 36) != null) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
+								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 36) != null) &amp;&amp; (Object(26893).IsValid != null)">
 									<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
 										<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
 									</CustomBehavior>
@@ -2016,7 +2027,7 @@
 						<CustomBehavior File="UserSettings" LootMobs="True" />
 						<CustomBehavior File="WaitTimer" WaitTime="2500" />
 						<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
-						<If Condition="Unit(43214, u =&gt; u.CanLoot) != null" >
+						<If Condition="Unit(43214).CanLoot != null" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Slabhide still seems lootable.  Enabling failsafe.&quot;);" />
 							<CustomBehavior File="UserSettings" LootMobs="true" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(43214, u =&gt; !u.CanLoot) != null" />
@@ -2031,7 +2042,7 @@
 						<If Condition="Me.Class == WoWClass.Hunter" >
 							<CustomBehavior File="InteractWith" InteractByCastingSpellId="2643" Range="39" NumOfTimes="100" MobId1="43917" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
 						</If>
-						<If Condition="!Me.Class == WoWClass.Hunter || !Me.Class == WoWClass.Warlock" >
+						<If Condition="Me.Class != WoWClass.Hunter || Me.Class != WoWClass.Warlock" >
 							<CustomBehavior File="InteractWith" MobId1="43917" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
 							<CustomBehavior File="RunMacro" Macro="/targetenemy" />
 							<CustomBehavior File="Misc\RunLua" NumOfTimes="2" Lua="
@@ -2052,7 +2063,7 @@
 					</While>
 
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<While Condition="Unit(43213, u =&gt; u.CanLoot)" >
+						<While Condition="Unit(43213).CanLoot != null" >
 							<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
 						</While>
 						<RunTo X="1307.165" Y="1232.391" Z="247.2243" />

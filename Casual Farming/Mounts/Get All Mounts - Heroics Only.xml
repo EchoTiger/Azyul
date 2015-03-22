@@ -1,5 +1,5 @@
 <HBProfile>
-<Name>Azyul ~ Master Mount Farm [$Rev$]</Name>
+<Name>Azyul ~ Master Mount Farm, Heroics Only [$Rev$]</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 <MinDurability>-1</MinDurability>
 ///////////////////////////////////////////////////////////////////////
@@ -47,6 +47,18 @@
 </Blackspots>
 
 <QuestOrder>
+<CustomBehavior File="RunCode" Code="
+System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Mounts/Get%20All%20Mounts%20-%20Heroics%20Only.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
+File.WriteAllText(ProfileManager.XmlLocation, remoteData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}
+" />
 
 	<If Condition="!HasItem(32768) &amp;&amp; !Me.KnowsSpell(41252)" > <!-- Ravenlord -->
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Ravenlord.. Let's get it!&quot;);" />
@@ -737,23 +749,23 @@
 					    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
 					    <!-- ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Any(u =&gt; u.Entry == 26893 &amp;&amp; u.IsValid) : Old method-->
 
-						<While Condition="Object(26893, o => o.IsValid) != null">
-							<While Condition="!HasItem(37372) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
+						<While Condition="Object(26893).IsValid != null">
+							<While Condition="!HasItem(37372) &amp;&amp; (Object(26893).IsValid != null)">
 								<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
 									<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
 								</CustomBehavior>
 								<CustomBehavior File="WaitTimer" WaitTime="500" />
-								<While Condition="(Object(192539, o => o.IsValid) != null) &amp;&amp; (Object(26893, o => o.IsValid) != null)" >
+								<While Condition="(Object(192539).IsValid != null) &amp;&amp; (Object(26893).IsValid != null)" >
 									<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" NumOfTimes="1" CollectionDistance="30" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
 								</While>
 							</While>
-							<While Condition="HasItem(37372) &amp;&amp; (Object(26893, o => o.IsValid) != null)" >
-								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 35) != null) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
+							<While Condition="HasItem(37372) &amp;&amp; (Object(26893).IsValid != null)" >
+								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 35) != null) &amp;&amp; (Object(26893).IsValid != null)">
 									<DisableBehavior Name="Combat" />
 		 							<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" MobId1="192176" MobId2="192177" X="485.5264" Y="-523.3635" Z="104.7237" />
 		 							<EnableBehavior Name="Combat" />
 								</If>
-								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 36) != null) &amp;&amp; (Object(26893, o => o.IsValid) != null)">
+								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 36) != null) &amp;&amp; (Object(26893).IsValid != null)">
 									<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
 										<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
 									</CustomBehavior>

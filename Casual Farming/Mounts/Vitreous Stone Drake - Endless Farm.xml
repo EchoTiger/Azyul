@@ -33,6 +33,18 @@
 </AvoidMobs>
 	
 <QuestOrder>
+<CustomBehavior File="RunCode" Code="
+System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Mounts/Vitreous%20Stone%20Drake%20-%20Endless%20Farm.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
+File.WriteAllText(ProfileManager.XmlLocation, remoteData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}
+" />
 	<If Condition="Me.MapId != 646" >
 		<If Condition="(Me.IsHorde &amp;&amp; Me.MapId != 1) || (Me.IsAlliance &amp;&amp; Me.MapId != 0)" >
 				<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
@@ -447,7 +459,7 @@
 			<If Condition="Me.IsAlive" >
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
-				<If Condition="Unit(43214, u =&gt; u.CanLoot) != null" >
+				<If Condition="Unit(43214).CanLoot != null" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Slabhide still seems lootable.  Enabling failsafe.&quot;);" />
 					<CustomBehavior File="UserSettings" LootMobs="true" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(43214, u =&gt; !u.CanLoot) != null" />

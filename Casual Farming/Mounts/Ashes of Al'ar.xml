@@ -52,7 +52,19 @@
 </AvoidMobs>
 
 		
-	<QuestOrder>
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="
+System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Mounts/Ashes%20of%20Al'ar.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
+File.WriteAllText(ProfileManager.XmlLocation, remoteData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}
+" />
 		<!-- If the bot crashes, the bot will loot only the boss by default. -->
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Awaiting user's input...&quot;);" />
 		<CustomBehavior File="Misc\RunLua" Lua="
@@ -314,7 +326,7 @@
 			<RunTo X="393.2825" Y="37.00634" Z="20.18056" />
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Killing Al'ar since we're looting.&quot;);" />
 			<CustomBehavior File="MyCTM" X="389.3027" Y="32.09601" Z="20.18089" />
-			<If Condition="Unit(19515, u => u.IsAlive)" >
+			<If Condition="Unit(19515, u => u.IsAlive) != null" >
 				<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="Unit(19514, u => u.Distance &lt;= 39.9) != null" />
 			</If>
 			<CustomBehavior File="Misc\RunLua" Lua="TargetNearestEnemy();" WaitTime="200" />
@@ -335,7 +347,7 @@
 				CastSpellByID(121733);
 				" />
 			<CustomBehavior File="UserSettings" PullDistance="150" />
-			<If Condition="Unit(19515, u => u.IsAlive)" >
+			<If Condition="Unit(19515, u => u.IsAlive) != null" >
 				<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="Unit(19514, u => u.IsValid &amp;&amp; u.IsDead) != null" />
 			</If>
 			<Else>
@@ -348,7 +360,7 @@
 		</If>
 		<If Condition="Lua.GetReturnValues(&quot;return LootBossOnly&quot;)[0] == &quot;0&quot;" >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Killing High Astromancer Solarian since we're set to loot.&quot;);" />
-			<While Condition="Unit(18805, u => uIsAlive) != null" > <!-- This boss constantly mind controlls you, Blizzard fix this sh#t... -->
+			<While Condition="Unit(18805).IsAlive != null" > <!-- This boss constantly mind controlls you, Blizzard fix this sh#t... -->
 				<RunTo X="432.7402" Y="-373.6453" Z="17.9609" />
 			</While>
 			<Else>
@@ -364,10 +376,3 @@
 	</If>
 </QuestOrder>
 </HBProfile>
-
-					
-
-
-
-
-

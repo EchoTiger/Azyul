@@ -1,5 +1,5 @@
 <HBProfile>
-<Name>Azyul ~ Master Mount Farm [$Rev$]</Name>
+<Name>Azyul ~ Master Mount Farm, Normals Only [$Rev$]</Name>
 <MinFreeBagSlots>-1</MinFreeBagSlots>
 <MinDurability>-1</MinDurability>
 ///////////////////////////////////////////////////////////////////////
@@ -47,7 +47,18 @@
 </Blackspots>
 
 <QuestOrder>
-
+<CustomBehavior File="RunCode" Code="
+System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Mounts/Get%20All%20Mounts%20-%20Normals%20Only.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
+File.WriteAllText(ProfileManager.XmlLocation, remoteData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}
+" />
 	<If Condition="!HasItem(13335) &amp;&amp; !Me.KnowsSpell(17481)" > <!-- Deathcharger -->
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Deathcharger.. Let's get it!&quot;);" />
 		<If Condition="(Me.MapId == 329)" >
@@ -385,12 +396,12 @@
 
 					<!-- Finale -->
 					<RunTo X="4032.853" Y="-3362.603" Z="115.0517" />
-					<While Condition="Unit(45412, u =&gt; u.IsAlive) != null" >
+					<While Condition="Unit(45412).IsAlive != null" >
 						<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
 					</While>
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 					<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="false" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
-					<If Condition="Unit(45412, u =&gt; u.CanLoot) != null" >
+					<If Condition="Unit(45412).CanLoot != null" >
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Rivendare still seems lootable.  Enabling failsafe.&quot;);" />
 						<CustomBehavior File="UserSettings" LootMobs="true" />
 						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(45412, u =&gt; !u.CanLoot) != null" />
@@ -1273,7 +1284,7 @@
 						<CustomBehavior File="UserSettings" LootMobs="True" />
 						<CustomBehavior File="WaitTimer" WaitTime="2500" />
 						<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
-						<If Condition="Unit(43214, u =&gt; u.CanLoot) != null" >
+						<If Condition="Unit(43214).CanLoot != null" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Slabhide still seems lootable.  Enabling failsafe.&quot;);" />
 							<CustomBehavior File="UserSettings" LootMobs="true" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(43214, u =&gt; !u.CanLoot) != null" />
@@ -1288,7 +1299,7 @@
 						<If Condition="Me.Class == WoWClass.Hunter" >
 							<CustomBehavior File="InteractWith" InteractByCastingSpellId="2643" Range="39" NumOfTimes="100" MobId1="43917" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
 						</If>
-						<If Condition="!Me.Class == WoWClass.Hunter || !Me.Class == WoWClass.Warlock" >
+						<If Condition="Me.Class != WoWClass.Hunter || Me.Class != WoWClass.Warlock" >
 							<CustomBehavior File="InteractWith" MobId1="43917" MobId2="42845" MobState="Alive" WaitForNpcs="false" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() == 0" />
 							<CustomBehavior File="RunMacro" Macro="/targetenemy" />
 							<CustomBehavior File="Misc\RunLua" NumOfTimes="2" Lua="
@@ -1309,7 +1320,7 @@
 					</While>
 
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
-						<While Condition="Unit(43213, u =&gt; u.CanLoot)" >
+						<While Condition="Unit(43213).CanLoot != null" >
 							<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
 						</While>
 						<RunTo X="1307.165" Y="1232.391" Z="247.2243" />
