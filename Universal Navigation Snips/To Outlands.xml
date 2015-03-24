@@ -2,6 +2,18 @@
 <QuestOrder>
 <!-- This is just a snip.  Copy and Paste me! -->
 <!-- Universal Nav Start -->
+<CustomBehavior File="RunCode" Code="System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/To%20Outlands.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+	int rStart = localData.IndexOf(&quot;&lt;!-- Universal Nav Start --&gt;&quot;); int rEnd = localData.IndexOf(&quot;&lt;!-- Universal Nav End --&gt;&quot;);
+	string localDataClean = localData.Substring(rStart, rEnd+1);
+if (localDataClean == remoteData) {Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: No new nav updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: A newer version of the universal navigation is availible.  Applying update...&quot;);
+localData = localData.Replace(localDataClean, remoteData); File.WriteAllText(ProfileManager.XmlLocation, localData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}" />
 <If Condition="(Me.MapId != 530 &amp;&amp; !Me.IsInInstance) || (Me.ZoneId == 7078 || Me.ZoneId == 7004) || (Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525 || Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525)" > <!-- This is a mess, but is required since some zones share the MapId with Outlands.  Zones such as Isle of Quel'danas. -->
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Going to Outlands!&quot;);" />
 	<If Condition="Me.IsAlliance" >
