@@ -401,11 +401,9 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 
 			<!-- Finale -->
 			<RunTo X="4032.853" Y="-3362.603" Z="115.0517" />
-			<While Condition="Unit(45412).IsAlive != null" >
-				<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
-			</While>
+			<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" TerminateWhen="Me.Combat" />
 			<CustomBehavior File="WaitTimer" WaitTime="1500" />
-			<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="false" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+			<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="false" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" TerminateWhen="Unit(45412).CanLoot != null" />
 			<If Condition="Unit(45412).CanLoot != null" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Rivendare still seems lootable.  Enabling failsafe.&quot;);" />
 				<CustomBehavior File="UserSettings" LootMobs="true" />
