@@ -1,0 +1,60 @@
+<HBProfile>
+
+<Name>Ashran Bonus Quests</Name>
+
+
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>3</MinFreeBagSlots>
+
+<SellGrey>true</SellGrey>
+<SellWhite>true</SellWhite>
+<SellGreen>true</SellGreen>
+<SellBlue>true</SellBlue>
+<SellPurple>false</SellPurple>
+<MailGrey>false</MailGrey>
+<MailWhite>true</MailWhite>
+<MailGreen>true</MailGreen>
+<MailBlue>true</MailBlue>
+<MailPurple>true</MailPurple>
+
+<Blackspots></Blackspots>
+<AvoidMobs></AvoidMobs>
+
+<Mailboxes></Mailboxes>
+<Vendors></Vendors>
+
+<!-- Missing:
+		Aruuna's Desolation
+		Kuuros Claim or Zagarra
+		Mor'gran Logworks or Orunai Coast
+		Zorkra's Fall
+-->
+
+<QuestOrder>
+
+	<If Condition="!IsQuestCompleted(34667)" > <!-- Court of Souls, mid Talador -->
+		<If Condition="!HasQuest(34667)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.Lime, &quot;[Profile Notification]: Heading to Court of Souls.&quot;);" />
+			<MoveTo DestName="Court of Souls" X="1977.804" Y="3149.379" Z="132.3365" />
+		</If>
+		<Objective QuestName="Bonus Objective: Court of Souls" QuestId="34667" Type="KillMob" MobId="79499" KillCount="8" />
+		<Objective QuestName="Bonus Objective: Court of Souls" QuestId="34667" Type="KillMob" MobId="79503" KillCount="10" />
+		<If Condition="!IsObjectiveComplete(3, 34667)" >
+			<CustomBehavior File="InteractWith" MobId="79523" X="1906.354" Y="3225.242" Z="133.759" TerminateWhen="Me.InVehicle" />
+			<DisableBehavior Name="Combat" />
+			<While Condition="!IsObjectiveComplete(3, 34667) &amp;&amp; Me.InVehicle" >
+				<CustomBehavior File="TargetAndMoveToMob" MobId="79514" TargetOnlyIfHealthPercentAbove="90" TerminateWhen="Me.GotTarget" />
+				<CustomBehavior File="Misc\RunLua" Lua="OverrideActionBarButton1:Click();" WaitTime="3000" />
+				<CustomBehavior File="Misc\RunLua" Lua="ClearTarget();" />
+				<If Condition="IsObjectiveComplete(3, 34667)" >
+					<CustomBehavior File="Misc\RunLua" Lua="OverrideActionBarLeaveFrameLeaveButton:Click();" />
+				</If>
+			</While>
+			<EnableBehavior Name="Combat" />
+		</If>
+	</If>
+
+</QuestOrder>
+
+
+</HBProfile>
