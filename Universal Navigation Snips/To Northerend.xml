@@ -2,40 +2,14 @@
 <QuestOrder>
 <!-- This is just a snip.  Copy and Paste me! -->
 <!-- Universal Nav Start -->
-<If Condition="(Me.MapId != 571 &amp;&amp; !Me.IsInInstance) || (Me.ZoneId == 7078 || Me.ZoneId == 7004)" >
-	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Going to Northerend!&quot;);" />
-	<If Condition="Me.IsAlliance" >
-		<!-- /// Mage Logic /// -->
-		<If Condition="SpellManager.CanCast(53140)" > <!-- Checks if we're a mage and spell is fully learnt+castable -->
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're a Mage! Teleporting to Dalaran.&quot;);" />
-			<CustomBehavior File="ForcedDismount" />
-			<While Condition="Me.MapId != 571" >
-				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(53140);" WaitTime="500" />
-				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 571 || Me.Combat || !Me.IsCasting" />
-			</While>
-		</If>
-		<!-- /// Item Teleportation Logic.   Teleport to area that has portals (Shrine/etc) or teleport to destination /// -->
-		<If Condition="(Me.MapId != 571 &amp;&amp; !(Me.ZoneId == 6553 || Me.ZoneId == 6142) &amp;&amp; Me.ZoneId != 4395) &amp;&amp; ((Me.HearthstoneAreaId == 6484 || Me.HearthstoneAreaId == 4395 || Me.HearthstoneAreaId == 4560) &amp;&amp; ((HasItem(6948) &amp;&amp; !WoWSpell.FromId(8690).Cooldown) || SpellManager.CanCast(556) || (HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown)))" > <!-- If we can Hearth/Recall to the Shrine or Dalaran -->
-			<If Condition="HasItem(6948) &amp;&amp; !WoWSpell.FromId(8690).Cooldown" > <!-- Hearth -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster to reach our destination, attempting to Hearth!&quot;);" />
-				<CustomBehavior File="ForcedDismount" />
-				<While Condition="!(Me.MapId == 870 || Me.MapId == 571)" >
-					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="500" />
-					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 870 || Me.MapId == 571 || Me.Combat || !Me.IsCasting" />
-				</While>
-			<ElseIf Condition="SpellManager.CanCast(556)" > <!-- Astral Recall -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Astrall Recall!&quot;);" />
-				<CustomBehavior File="ForcedDismount" />
-				<While Condition="!(Me.MapId == 870 || Me.MapId == 571)" ><!-- Universal Nav Start -->
 <CustomBehavior File="RunCode" Code="System.Net.WebClient webClient = new System.Net.WebClient();
 string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/To%20Northerend.xml&quot;);
 string localData = File.ReadAllText(ProfileManager.XmlLocation);
-	int rStart = localData.IndexOf(&quot;&lt;!-- Universal Nav Start --&gt;&quot;); int rEnd = localData.IndexOf(&quot;&lt;!-- Universal Nav End --&gt;&quot;);
-	string localDataClean = localData.Substring(rStart, rEnd+1);
-if (localDataClean == remoteData) {Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: No new nav updates detected, continuing profile.&quot;); }
+if (localData.Contains(remoteData)) {Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: No new nav updates detected, continuing profile.&quot;); }
 else {
 Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: A newer version of the universal navigation is availible.  Applying update...&quot;);
-localData = localData.Replace(localDataClean, remoteData); File.WriteAllText(ProfileManager.XmlLocation, localData);
+string updatedData = System.Text.RegularExpressions.Regex.Replace(localData, &quot;&lt;!-- Universal Nav Start --&gt;(.*?)&lt;!-- Universal Nav End --&gt;&quot;, remoteData, System.Text.RegularExpressions.RegexOptions.Singleline);
+File.WriteAllText(ProfileManager.XmlLocation, updatedData);
 Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Update Complete! Reloading profile...&quot;);
 ProfileManager.LoadNew(ProfileManager.XmlLocation);
 }" />
