@@ -10,8 +10,6 @@
 ///////////////////////////////////////////////////////////////////////
 
 
-<MaxLevel>96</MaxLevel>
-
 <MailGrey>False</MailGrey>
 <MailWhite>True</MailWhite>
 <MailGreen>True</MailGreen>
@@ -332,7 +330,7 @@
     <RunTo X="-228.0204" Y="237.2374" Z="-50.6403"  />
     <RunTo X="-233.3040" Y="238.8139" Z="-50.6104"  />
     
-	<CustomBehavior File="InteractWith" MobId="124371" ObjectType="Gameobject" Range="4" />
+	<CustomBehavior File="InteractWith" MobId="124371" Range="4" />
 	<CustomBehavior File="WaitTimer" WaitTime="30000" />
 	<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7228" />	<!--Pull Ironaya-->
 	
@@ -345,8 +343,10 @@
     <RunTo X="-138.5444" Y="369.3196" Z="-42.0492"  />
     <RunTo X="-140.4277" Y="392.8405" Z="-40.4593"  />
 
-	
-    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7023" />	<!--Pull Obsidian Sential-->
+	<MoveTo X="-153.0026" Y="387.273" Z="-37.69613" />
+	<CustomBehavior File="Misc\RunLua" Lua=" TargetNearestEnemy();" />
+    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MovementBy="ClickToMoveOnly" MobId="7023" />	<!--Pull Obsidian Sential-->
+    <CustomBehavior File="MyCTM" X="-152.2666" Y="386.5858" Z="-37.75948" />
 	
 
     <RunTo X="-131.5856" Y="362.9506" Z="-43.1972"  />
@@ -402,11 +402,13 @@
     <RunTo X="24.3714" Y="214.5438" Z="-30.6235"  />
     <RunTo X="26.6744" Y="236.4531" Z="-30.8110"  />
     <RunTo X="48.6769" Y="247.4595" Z="-26.5832"  />
-    <CustomBehavior File="InteractWith" MobId="124368" ObjectType="Gameobject" Range="4" />
+    <CustomBehavior File="InteractWith" MobId="124368" Range="4" />
     <RunTo X="91.8005" Y="266.2720" Z="-26.5321"  />
     <RunTo X="106.0549" Y="270.5577" Z="-26.53215" />
-    <CustomBehavior File="InteractWith" MobId="130511" ObjectType="Gameobject" Range="4" />
-	<CustomBehavior File="WaitTimer" WaitTime="30000" />
+	<CustomBehavior File="InteractWith" MobId="130511" TerminateWhen="Me.IsCasting" />
+	<CustomBehavior File="WaitTimer" WaitTime="8000" />
+	<CustomBehavior File="InteractWith" FactionId="470" WaitForNpcs="false" MobState="Alive" NumOfTimes="6" />
+	<CustomBehavior File="WaitTimer" WaitTime="1000" />
 	<RunTo X="136.6197" Y="287.9092" Z="-26.58657" />
     <RunTo X="152.7456" Y="294.9497" Z="-26.5814"  />
     <RunTo X="172.5727" Y="245.6356" Z="-29.3625"  />
@@ -414,47 +416,17 @@
     <RunTo X="81.4722" Y="203.1370" Z="-54.9782"  />
     <RunTo X="56.9521" Y="254.5527" Z="-52.1980"  />
     <RunTo X="69.5017" Y="256.7594" Z="-52.1980"  />
-    <CustomBehavior File="InteractWith" MobId="141869" ObjectType="Gameobject" Range="4" />
+    <CustomBehavior File="InteractWith" MobId="141869" Range="4" />
     <RunTo X="84.0433" Y="263.2514" Z="-52.2036"  />
     <RunTo X="97.17635" Y="267.5016" Z="-52.14868" />
-    <CustomBehavior File="InteractWith" MobId="133234" ObjectType="Gameobject" Range="4" />
-	<CustomBehavior File="WaitTimer" WaitTime="30000" />
+    <CustomBehavior File="InteractWith" MobId="133234" Range="4" TerminateWhen="Me.IsCasting" />
+	<CustomBehavior File="WaitTimer" WaitTime="20000" TerminateWhen="Me.Combat" />
 	
 	<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="2748" />	<!--Pull Archaedas-->
 	
     <RunTo X="141.7890" Y="293.3187" Z="-52.2003"  />
     <RunTo X="152.2532" Y="289.5500" Z="-52.2252"  />
-    <CustomBehavior File="InteractWith" MobId="141979" ObjectType="Gameobject" Range="4" />
-	
-	<RunTo X="93.6118" Y="279.8878" Z="-52.1487"  />
-    <RunTo X="71.5943" Y="257.7086" Z="-52.1998"  />
-    <RunTo X="71.5943" Y="257.7086" Z="-52.1998"  />
-    <RunTo X="56.1042" Y="247.4394" Z="-52.1998"  />
-    <RunTo X="82.9130" Y="203.5265" Z="-54.9783"  />
-    <RunTo X="173.6239" Y="246.6938" Z="-29.3617"  />
-    <RunTo X="150.0120" Y="294.8725" Z="-26.5815"  />
-    <RunTo X="50.6004" Y="248.7692" Z="-26.5832"  />
-    <RunTo X="50.6004" Y="248.7692" Z="-26.5832"  />
-    <RunTo X="23.9629" Y="234.5799" Z="-30.8107"  />
-    <RunTo X="2.9449" Y="276.5847" Z="-36.6433"  />
-    <RunTo X="27.9540" Y="297.4324" Z="-40.2146"  />
-    <RunTo X="25.1323" Y="326.2392" Z="-40.7484"  />
-    <RunTo X="0.5945" Y="325.4178" Z="-38.8283"  />
-    <RunTo X="-13.5669" Y="338.3549" Z="-40.7405"  />
-    <RunTo X="-55.3467" Y="374.0038" Z="-50.4364"  />
-    <RunTo X="-92.5569" Y="348.1096" Z="-49.3648"  />
-    <RunTo X="-110.9013" Y="353.5007" Z="-45.8695"  />
-    <RunTo X="-132.3002" Y="329.4603" Z="-44.1187"  />
-    <RunTo X="-156.2681" Y="319.9875" Z="-49.3160"  />
-    <RunTo X="-173.7524" Y="325.9932" Z="-51.1137"  />
-    <RunTo X="-190.9733" Y="271.6687" Z="-49.3180"  />
-    <RunTo X="-228.0767" Y="214.2713" Z="-50.0955"  />
-    <RunTo X="-227.4085" Y="166.9452" Z="-44.6294"  />
-    <RunTo X="-280.9462" Y="168.7802" Z="-47.4100"  />
-    <RunTo X="-280.3150" Y="137.7584" Z="-47.4097"  />
-    <RunTo X="-245.8185" Y="138.0158" Z="-46.7144"  />
-    <RunTo X="-245.9041" Y="91.6018" Z="-48.1190"  />
-    <RunTo X="-284.1938" Y="89.7054" Z="-48.8009"  />
+    <CustomBehavior File="InteractWith" MobId="141979" Range="4" />
     <RunTo X="-281.7576" Y="60.9141" Z="-48.8023"  />
     <RunTo X="-227.2478" Y="59.9859" Z="-46.0384"  />
 	<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />

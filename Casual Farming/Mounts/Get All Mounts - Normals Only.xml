@@ -303,7 +303,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 						<Hotspot X="3855.488" Y="-3750.037" Z="145.0924" />
 					</CustomBehavior>
 					<!-- Seek and kill any remaining Shadowcasters -->
-					<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" IgnoreCombat="True" MobId="10399" ObjectType="Npc" Range="1" NumOfTimes="5" />
+					<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" IgnoreCombat="True" MobId="10399" Range="1" NumOfTimes="5" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 					<RunTo X="3855.158" Y="-3715.788" Z="148.091" />
 
@@ -318,7 +318,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 						<Hotspot X="4063.363" Y="-3660.702" Z="132.655" />
 					</CustomBehavior>
 					<!-- Seek and kill any remaining Shadowcasters -->
-					<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" IgnoreCombat="True" MobId="10399" ObjectType="Npc" Range="1" NumOfTimes="5" />
+					<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" IgnoreCombat="True" MobId="10399" Range="1" NumOfTimes="5" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 					<RunTo X="4033.51" Y="-3645.95" Z="135.6544" />
 
@@ -361,7 +361,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 						<Hotspot X="3832.484" Y="-3503.41" Z="141.2105" />
 					</CustomBehavior>
 					<!-- Seek and kill any remaining Shadowcasters -->
-					<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" IgnoreCombat="True" MobId="10399" ObjectType="Npc" Range="1" NumOfTimes="5" />
+					<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" IgnoreCombat="True" MobId="10399" Range="1" NumOfTimes="5" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 					<RunTo X="4044.727" Y="-3462.45" Z="121.6651" />
 
@@ -381,23 +381,23 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 
 					<!-- Seek and kill any missed abominations. --> 
 					<While Condition="Object(10417, o => o.ToUnit().IsAlive) != null || Object(10416, o2 => o2.ToUnit().IsAlive) != null ">
-						<CustomBehavior File="InteractWith" CollectionDistance="200" WaitForNpcs="false" MobState="Alive" MobId1="10417" MobId2="10416" ObjectType="Npc" Range="1" />
+						<CustomBehavior File="InteractWith" CollectionDistance="200" WaitForNpcs="false" MobState="Alive" MobId1="10417" MobId2="10416" Range="1" />
 						<CustomBehavior File="WaitTimer" WaitTime="1000" />
 					</While>
 
 
 
 					<!-- Finish off event -->
-					<CustomBehavior File="InteractWith" MobId="10439" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4032.864" Y="-3396.774" Z="117.5075" />
+					<CustomBehavior File="InteractWith" MobId="10439" WaitForNpcs="false" Range="1" X="4032.864" Y="-3396.774" Z="117.5075" />
 					<RunTo X="4008.083" Y="-3405.96" Z="116.8564" />
 					<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Me.Combat" /> <!-- Wait for skeleton Horde -->
 					<CustomBehavior File="WaitTimer" WaitTime="3000" />
-					<CustomBehavior File="InteractWith" MobId="10394" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4032.81" Y="-3387.44" Z="119.7416" />
+					<CustomBehavior File="InteractWith" MobId="10394" WaitForNpcs="false" Range="1" X="4032.81" Y="-3387.44" Z="119.7416" />
 
 					<!-- Finale -->
 					<RunTo X="4032.853" Y="-3362.603" Z="115.0517" />
 					<While Condition="Unit(45412).IsAlive != null" >
-						<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" ObjectType="Npc" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
+						<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
 					</While>
 					<CustomBehavior File="WaitTimer" WaitTime="1500" />
 					<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="false" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
@@ -496,7 +496,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 							<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
 							<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
 							<RunTo X="973.6232" Y="570.9096" Z="-46.0024" />
-							<CustomBehavior File="InteractWith" MobId="205272" ObjectType="Gameobject" Range="4" X="973.6232" Y="570.9096" Z="-46.0024" />
+							<CustomBehavior File="InteractWith" MobId="205272" Range="4" X="973.6232" Y="570.9096" Z="-46.0024" />
 							<CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
 						</If>
 						<!-- Pandaland, Taking portal. -->
@@ -504,7 +504,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
 							<CustomBehavior File="FlyTo" X="-311.6545" Y="-1776.63" Z="62.67051" />
 							<RunTo X="-311.6545" Y="-1776.63" Z="62.67051" />
-							<CustomBehavior File="InteractWith" MobId="210805" ObjectType="Gameobject" Range="4" />
+							<CustomBehavior File="InteractWith" MobId="210805" Range="4" />
 							<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
 						</If>
 						<!-- Homeland, Ally Eastern Kingdom -->
@@ -569,7 +569,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Pandaria.&quot;);" />
 							
 							<CustomBehavior File="FlyTo" X="-8200.323" Y="527.858" Z="116.7516"  />
-							<CustomBehavior File="InteractWith" MobId="215457" ObjectType="Gameobject" Range="4" />
+							<CustomBehavior File="InteractWith" MobId="215457" Range="4" />
 							<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
 							<!-- Going to Pandaland Stop -->
 							</If>	
@@ -588,7 +588,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 								<CustomBehavior File="ForcedDismount" />
 
 								<RunTo X="-1898.169" Y="5395.958" Z="-12.42774" />
-								<CustomBehavior File="InteractWith" MobId="183323" ObjectType="Gameobject" Range="4" />
+								<CustomBehavior File="InteractWith" MobId="183323" Range="4" />
 								<CustomBehavior File="WaitTimer" WaitTime="15000" GoalText="Waiting for zone {TimeRemaining}" />
 							</While>
 							<RunTo X="1896.122" Y="-4489.93" Z="23.84045" />
@@ -633,7 +633,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 							<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
 							<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
 							<RunTo X="990.1199" Y="457.7099" Z="-44.2598" />
-							<CustomBehavior File="InteractWith" MobId="205273" ObjectType="Gameobject" Range="4" X="990.1199" Y="457.7099" Z="-44.2598" />
+							<CustomBehavior File="InteractWith" MobId="205273" Range="4" X="990.1199" Y="457.7099" Z="-44.2598" />
 							<CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
 						</If>
 						<!-- Pandaland, Taking portal. -->
@@ -642,7 +642,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 						
 							<CustomBehavior File="FlyTo" X="2924.921" Y="-510.5903" Z="268.8555" />
 							<RunTo X="2924.921" Y="-510.5903" Z="268.8555" />
-							<CustomBehavior File="InteractWith" MobId="210804" ObjectType="Gameobject" Range="4" />
+							<CustomBehavior File="InteractWith" MobId="210804" Range="4" />
 							<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
 						</If>
 						<!-- Homeland, Horde Kalimdor -->
@@ -725,7 +725,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Pandaria.&quot;);" />
 							
 								<CustomBehavior File="FlyTo" X="2012.948" Y="-4698.641" Z="28.60529" />
-								<CustomBehavior File="InteractWith" MobId="215424" ObjectType="Gameobject" Range="4" />
+								<CustomBehavior File="InteractWith" MobId="215424" Range="4" />
 								<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
 								
 							</If>	
@@ -975,7 +975,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 								<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
 								<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
 								<RunTo X="973.6232" Y="570.9096" Z="-46.0024" />
-								<CustomBehavior File="InteractWith" MobId="205272" ObjectType="Gameobject" Range="4" X="973.6232" Y="570.9096" Z="-46.0024" />
+								<CustomBehavior File="InteractWith" MobId="205272" Range="4" X="973.6232" Y="570.9096" Z="-46.0024" />
 								<CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
 							</If>
 							<!-- Pandaland, Taking portal. -->
@@ -983,7 +983,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Stormwind.&quot;);" />
 								<CustomBehavior File="FlyTo" X="-311.6545" Y="-1776.63" Z="62.67051" />
 								<RunTo X="-311.6545" Y="-1776.63" Z="62.67051" />
-								<CustomBehavior File="InteractWith" MobId="210805" ObjectType="Gameobject" Range="4" />
+								<CustomBehavior File="InteractWith" MobId="210805" Range="4" />
 								<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
 							</If>
 							<!-- Homeland, Ally Eastern Kingdom -->
@@ -1048,7 +1048,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Pandaria.&quot;);" />
 								
 								<CustomBehavior File="FlyTo" X="-8200.323" Y="527.858" Z="116.7516"  />
-								<CustomBehavior File="InteractWith" MobId="215457" ObjectType="Gameobject" Range="4" />
+								<CustomBehavior File="InteractWith" MobId="215457" Range="4" />
 								<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
 								<!-- Going to Pandaland Stop -->
 								</If>	
@@ -1067,7 +1067,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 									<CustomBehavior File="ForcedDismount" />
 
 									<RunTo X="-1898.169" Y="5395.958" Z="-12.42774" />
-									<CustomBehavior File="InteractWith" MobId="183323" ObjectType="Gameobject" Range="4" />
+									<CustomBehavior File="InteractWith" MobId="183323" Range="4" />
 									<CustomBehavior File="WaitTimer" WaitTime="15000" GoalText="Waiting for zone {TimeRemaining}" />
 								</While>
 								<RunTo X="1896.122" Y="-4489.93" Z="23.84045" />
@@ -1112,7 +1112,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 								<CustomBehavior File="FlyTo" X="846.4727" Y="483.7805" Z="-19.13363" />
 								<CustomBehavior File="FlyTo" X="918.0795" Y="503.5825" Z="-49.25048" />
 								<RunTo X="990.1199" Y="457.7099" Z="-44.2598" />
-								<CustomBehavior File="InteractWith" MobId="205273" ObjectType="Gameobject" Range="4" X="990.1199" Y="457.7099" Z="-44.2598" />
+								<CustomBehavior File="InteractWith" MobId="205273" Range="4" X="990.1199" Y="457.7099" Z="-44.2598" />
 								<CustomBehavior File="WaitTimer" WaitTime="8000" GoalText="Waiting for port {TimeRemaining}" />
 							</If>
 							<!-- Pandaland, Taking portal. -->
@@ -1121,7 +1121,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 							
 								<CustomBehavior File="FlyTo" X="2924.921" Y="-510.5903" Z="268.8555" />
 								<RunTo X="2924.921" Y="-510.5903" Z="268.8555" />
-								<CustomBehavior File="InteractWith" MobId="210804" ObjectType="Gameobject" Range="4" />
+								<CustomBehavior File="InteractWith" MobId="210804" Range="4" />
 								<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
 							</If>
 							<!-- Homeland, Horde Kalimdor -->
@@ -1204,7 +1204,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 								<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Going to Pandaria.&quot;);" />
 								
 									<CustomBehavior File="FlyTo" X="2012.948" Y="-4698.641" Z="28.60529" />
-									<CustomBehavior File="InteractWith" MobId="215424" ObjectType="Gameobject" Range="4" />
+									<CustomBehavior File="InteractWith" MobId="215424" Range="4" />
 									<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting for zone {TimeRemaining}" />
 									
 								</If>	
