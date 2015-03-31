@@ -377,7 +377,7 @@
 			<!-- Molten Core Instance Farm -->
 			
 			<If Condition="(Me.MapId == 409)" >
-					<TargetingDistance Value="40" />
+					<TargetingDistance Value="100" />
 			
 						<RunTo X="1135.373" Y="-535.4296" Z="-107.1947" />
 						<RunTo X="1141.288" Y="-571.0024" Z="-112.7228" />
@@ -393,6 +393,7 @@
 						<RunTo X="1094.139" Y="-1016.994" Z="-186.8083" /> <!-- Core Hound Pack #5 -->
 						<RunTo X="1132.937" Y="-1017.055" Z="-186.4149" />
 						<CustomBehavior File="InteractWith" MobId="11982" /> <!-- Pull Magmadar -->
+						<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
 						<RunTo X="898.7932" Y="-549.5908" Z="-203.8107" />
 						<CustomBehavior File="InteractWith" MobId="12259" /> <!-- Pull Gehennas -->
 						<RunTo X="673.803" Y="-502.5283" Z="-213.4892" />
@@ -409,28 +410,16 @@
 						<RunTo X="752.6776" Y="-1176.209" Z="-118.8567" />
 						<CustomBehavior File="InteractWith" MobId="12018" AuraId="20620" AddId1="11664" AddId2="11663" /> <!-- Pull Majordomo Executus -->
 						<RunTo X="754.4194" Y="-1180.436" Z="-118.4213" />
+						<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
 						<CustomBehavior File="InteractWith" MobId="179703" X="756.8968" Y="-1180.698" Z="-118.5964" /> <!-- Loot Cache of the Firelord -->
 						<RunTo X="695.109" Y="-1067.931" Z="-181.7801" />
 						<RunTo X="828.272" Y="-600.5423" Z="-202.593" />
 						<RunTo X="847.6886" Y="-818.2578" Z="-229.775" />
 						<CustomBehavior File="InteractWith" MobId="54404" NumOfTimes="1" WaitTime="1000" /> <!-- Talk to Majordomo to pull Ragnaros -->
 						<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="3" WaitTime="1000" />
-						<CustomBehavior File="WaitTimer" WaitTime="300000" />
+						<CustomBehavior File="WaitTimer" WaitTime="30000" />
+						<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="!Me.Combat" />
 			<!-- End Molten Core Instance Farm -->
-			
-			<!-- Hearth out because we're done! -->
-				<While Condition="(Me.ZoneId == 2717)" >
-						<If Condition="HasItem(6948)" >
-						<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />
-						<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
-				</If>
-				
-				<If Condition="HasItem(64488)" >
-						<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="1000" />
-						<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
-				</If>
-				
-				</While>
 				
 				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Molten Core Run Complete!\nDid You Get Lucky?" />
 				</If>
