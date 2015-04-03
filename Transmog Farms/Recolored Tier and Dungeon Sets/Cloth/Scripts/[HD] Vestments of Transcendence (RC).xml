@@ -526,7 +526,7 @@
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
 					<ClearVendor />
 					<If Condition="(Me.FreeBagSlots &lt;= 10)" >  <!-- Go to normal vendor routine if the player needs to mail -->
-						<If Condition="Me.Alliance" >
+						<If Condition="Me.IsAlliance" >
 							<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
 
 							<RunTo X="1028.695" Y="7362.311" Z="36.40272" />
@@ -540,7 +540,7 @@
 							<ClearMailbox />
 						</If>
 
-						<If Condition="Me.Horde" >
+						<If Condition="Me.IsHorde" >
 							<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
 							<CustomBehavior File="FlyTo" X="269.6143" Y="7862.054" Z="30.88758" />
 							<CustomBehavior File="ForcedDismount" />
