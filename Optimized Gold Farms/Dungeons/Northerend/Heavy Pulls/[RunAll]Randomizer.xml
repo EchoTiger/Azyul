@@ -1081,7 +1081,7 @@
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
 		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing The Nexus.&quot;);" />
 		<If Condition="!(Me.MapId == 576) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
-			<If Condition="Me.Location.Distance(new WoWPoint(3843.809, 6980.912, 86.65029)) &gt; 100" >
+			<If Condition="(Me.Location.Distance(new WoWPoint(3843.809, 6980.912, 86.65029)) &gt; 100)" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Heading to Instance.&quot;);" />
 				<CustomBehavior File="FlyTo" X="3752.128" Y="6946.389" Z="158.0456" />
 				<CustomBehavior File="FlyTo" X="3802.37" Y="6963.975" Z="102.0923" />
@@ -1234,7 +1234,7 @@
 				</If>
 
 			<If Condition="(Me.FreeBagSlots &lt; 17)" >
-				<If Condition="!Me.Location.Distance(new WoWPoint(3843.809, 6980.912, 86.65029)) &gt; 100" >
+				<If Condition="!(Me.Location.Distance(new WoWPoint(3843.809, 6980.912, 86.65029)) &gt; 100)" >
 					<RunTo X="3787.271" Y="6959.985" Z="104.8405" />
 					<CustomBehavior File="FlyTo" X="3724.287" Y="6919.871" Z="183.8073" />
 				</If>
