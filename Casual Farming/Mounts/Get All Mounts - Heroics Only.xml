@@ -749,23 +749,23 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 					    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
 					    <!-- ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Any(u =&gt; u.Entry == 26893 &amp;&amp; u.IsValid) : Old method-->
 
-						<While Condition="Object(26893).IsValid != null">
-							<While Condition="!HasItem(37372) &amp;&amp; (Object(26893).IsValid != null)">
+						<While Condition="Object(26893) != null">
+							<While Condition="!HasItem(37372) &amp;&amp; (Object(26893) != null)">
 								<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
 									<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
 								</CustomBehavior>
 								<CustomBehavior File="WaitTimer" WaitTime="500" />
-								<While Condition="(Object(192539).IsValid != null) &amp;&amp; (Object(26893).IsValid != null)" >
+								<While Condition="(Object(192539) != null) &amp;&amp; (Object(26893) != null)" >
 									<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" NumOfTimes="1" CollectionDistance="30" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
 								</While>
 							</While>
-							<While Condition="HasItem(37372) &amp;&amp; (Object(26893).IsValid != null)" >
-								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 35) != null) &amp;&amp; (Object(26893).IsValid != null)">
+							<While Condition="HasItem(37372) &amp;&amp; (Object(26893) != null)" >
+								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 35) != null) &amp;&amp; (Object(26893) != null)">
 									<DisableBehavior Name="Combat" />
 		 							<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" MobId1="192176" MobId2="192177" X="485.5264" Y="-523.3635" Z="104.7237" />
 		 							<EnableBehavior Name="Combat" />
 								</If>
-								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 36) != null) &amp;&amp; (Object(26893).IsValid != null)">
+								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 36) != null) &amp;&amp; (Object(26893) != null)">
 									<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
 										<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
 									</CustomBehavior>
