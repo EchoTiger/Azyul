@@ -458,7 +458,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 
 			<If Condition="Me.IsAlive" >
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" X="1292.352" Y="1226.478" Z="247.6368" />
+				<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" NumOfTimes="5" TerminateWhen="!Unit(43214).Lootable != null"  X="1292.352" Y="1226.478" Z="247.6368" />
 				<If Condition="Unit(43214).CanLoot != null" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Slabhide still seems lootable.  Enabling failsafe.&quot;);" />
 					<CustomBehavior File="UserSettings" LootMobs="true" />
