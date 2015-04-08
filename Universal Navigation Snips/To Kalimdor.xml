@@ -54,7 +54,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</While>
 			</ElseIf>
 			<ElseIf Condition="HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown" > <!-- Innkeeper's Daughter -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Innkeeper's Daughter!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster to reach our destination, using Innkeeper's Daughter!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="Me.MapId != 1" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(94719)" WaitTime="500" />
@@ -71,14 +71,6 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			<CustomBehavior File="WaitTimer" WaitTime="600000" TerminateWhen="!Me.OnTaxi" />
 			<CustomBehavior File="Misc\RunLua" Lua="TaxiButton1:Click();" WaitTime="1000" />
 		</If>
-		<If Condition="Me.MapId == 530" > <!-- Outlands -->
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Outlands, using the Shattrath portal to Stormwind.&quot;);" />
-			<MoveTo Nav="Fly" X="-1892.768" Y="5392.862" Z="-12.4277" />
-			<While Condition="Me.MapId != 0" >
-				<CustomBehavior File="InteractWith" MobId="183325" X="-1894.189" Y="5387.939" Z="-12.42825" TerminateWhen="Me.MapId == 0" />
-				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || Me.Combat" />
-			</While>
-		</If>
 		<If Condition="(Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525)" > <!-- Instanced Draenei Zone, shares MapId with Outlands so we're using ZoneId -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're a in Azure/Bloodmyst Isle, using the Exodar portal to Darnassus.&quot;);" />
 			<MoveTo DestName="The Vault of Lights, portal to Darnassus." X="-4040.254" Y="-11569.56" Z="-138.4055" />
@@ -87,7 +79,14 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1 || Me.Combat" />
 			</While>
 		</If>
-
+		<If Condition="Me.MapId == 530" > <!-- Outlands -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Outlands, using the Shattrath portal to Stormwind.&quot;);" />
+			<MoveTo Nav="Fly" X="-1892.768" Y="5392.862" Z="-12.4277" />
+			<While Condition="Me.MapId != 0" >
+				<CustomBehavior File="InteractWith" MobId="183325" X="-1894.189" Y="5387.939" Z="-12.42825" TerminateWhen="Me.MapId == 0" />
+				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || Me.Combat" />
+			</While>
+		</If>
 		<If Condition="Me.MapId == 646" > <!-- Deepholm -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Deepholm, using the portal for Stormwind.&quot;);" />
 			<MoveTo Nav="Fly" X="968.8371" Y="573.3804" Z="-44.5801" />
@@ -231,7 +230,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</While>
 			</ElseIf>
 			<ElseIf Condition="HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown" > <!-- Innkeeper's Daughter -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Innkeeper's Daughter!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster to reach our destination, using Innkeeper's Daughter!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="Me.MapId != 1" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(94719)" WaitTime="500" />
@@ -259,14 +258,17 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		<If Condition="Me.MapId == 571" > <!-- Northerend -->
 			<If Condition="Me.Y &gt;= 3000 &amp;&amp; Me.MapId == 571" > <!-- Western Northerend, Warsong Hold to Orgrimmar -->
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Western Northerend, using the Warsong Hold zeppelin to Orgrimmar.&quot;);" />
-				<MoveTo Nav="Fly" X="1763.389" Y="-4283.858" Z="133.1073"/>
+				<CustomBehavior File="FlyTo" X="2946.323" Y="6069.065" Z="147.4432" />
 				<DisableBehavior Name="FlightPath" />
+				<CustomBehavior File="MyCTM" X="2829.086" Y="6176.118" Z="128.0574" />
+				<CustomBehavior File="WaitTimer" WaitTime="850" /> <!-- Consider lag and CTM tolerance. -->
+				<CustomBehavior File="ForcedDismount" />
 				<CustomBehavior File="UseTransport" TransportId="186238"
-					WaitAtX="1763.203" WaitAtY="-4284.529" WaitAtZ="133.1072"
-					TransportStartX="1775.066" TransportStartY="-4299.745" TransportStartZ="151.0326"
-					StandOnX="1770.22" StandOnY="-4292.056" StandOnZ="133.1872" TransportEndX="2837.908"
-					TransportEndY="6187.443" TransportEndZ="140.1648"
-					GetOffX="2836.831" GetOffY="6185.15" GetOffZ="121.9923"
+					WaitAtX="2837.035" WaitAtY="6185.063" WaitAtZ="121.9975"
+					TransportStartX="2837.908" TransportStartY="6187.443" TransportStartZ="140.1648"
+					StandOnX="2844.346" StandOnY="6191.38" StandOnZ="122.3167"					  
+					TransportEndX="1775.066" TransportEndY="-4299.745" TransportEndZ="151.0326"
+					GetOffX="1761.337" GetOffY="-4281.487" GetOffZ="133.1072"
 				/>
 				<EnableBehavior Name="FlightPath" />
 			</If>
@@ -349,15 +351,15 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		<If Condition="Me.MapId == 0" > <!-- Eastern Kingdoms -->
 			<If Condition="Me.X &gt;= -5275 &amp;&amp; Me.MapId == 0" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Eastern Kingdoms, using the Undercity Zeppelin to Kalimdor.&quot;);" />
-				<MoveTo Nav="Fly" X="2060.415" Y="359.8524" Z="82.48592" />
+				<MoveTo Nav="Fly" X="2067.433" Y="286.6822" Z="97.03147" />
 				<CustomBehavior File="ForcedDismount" />
 				<MoveTo WaitAtX="2061.913" WaitAtY="365.0161" WaitAtZ="82.51536" />
-				<CustomBehavior File="UseTransport" TransportId="181689"
-					WaitAtX="2061.913" WaitAtY="365.0161" WaitAtZ="82.51536" 
-					TransportStartX="2056.493" TransportStartY="381.6347" TransportStartZ="100.362" 
-					StandOnX="2058.949" StandOnY="374.2945" StandOnZ="82.47006" 
-					TransportEndX="1989.353" TransportEndY="-6082.776" TransportEndZ="85.59646" 
-					GetOffX="1975.918" GetOffY="-6098.104" GetOffZ="67.14719" />
+				<CustomBehavior File="UseTransport" TransportId="164871"
+					WaitAtX="2067.045" WaitAtY="290.4988" WaitAtZ="97.03147"
+					TransportStartX="2062.376" TransportStartY="292.998" TransportStartZ="114.973" 
+					StandOnX="2067.172" StandOnY="295.6679" StandOnZ="97.18893"
+					TransportEndX="1833.509" TransportEndY="-4391.543" TransportEndZ="152.7679"
+					GetOffX="1840.091" GetOffY="-4392.189" GetOffZ="135.233" />
 			</If>
 			<If Condition="Me.X &lt; -5275 &amp;&amp; Me.MapId == 0" >
 				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Eastern Kingdoms, going to Booty Bay to take the boat to Ratchet.&quot;);" />

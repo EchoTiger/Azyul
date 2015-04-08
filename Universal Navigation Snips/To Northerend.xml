@@ -43,7 +43,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</While>
 			</ElseIf>
 			<ElseIf Condition="HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown" > <!-- Innkeeper's Daughter -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Innkeeper's Daughter!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster to reach our destination, using Innkeeper's Daughter!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="!(Me.MapId == 870 || Me.MapId == 571)" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(94719)" WaitTime="500" />
@@ -71,20 +71,20 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 571 || Me.Combat" />
 			</While>
 		</If>
-		<If Condition="Me.MapId == 530" > <!-- Outlands -->
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Outlands, using the Shattrath portal to Stormwind.&quot;);" />
-			<MoveTo Nav="Fly" X="-1892.768" Y="5392.862" Z="-12.4277" />
-			<While Condition="Me.MapId != 0" >
-				<CustomBehavior File="InteractWith" MobId="183325" X="-1894.189" Y="5387.939" Z="-12.42825" TerminateWhen="Me.MapId == 0" />
-				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || Me.Combat" />
-			</While>
-		</If>
 		<If Condition="(Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525)" > <!-- Instanced Draenei Zone, shares MapId with Outlands so we're using ZoneId -->
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're a in Azure/Bloodmyst Isle, using the Exodar portal to Darnassus.&quot;);" />
 			<MoveTo DestName="The Vault of Lights, portal to Darnassus." X="-4040.254" Y="-11569.56" Z="-138.4055" />
 			<While Condition="Me.MapId != 1" >
 				<CustomBehavior File="InteractWith" MobId="207996" X="-4047.53" Y="-11569.33" Z="-138.4902" TerminateWhen="Me.MapId == 1" />
 				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 1 || Me.Combat" />
+			</While>
+		</If>
+		<If Condition="Me.MapId == 530" > <!-- Outlands -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: We're in Outlands, using the Shattrath portal to Stormwind.&quot;);" />
+			<MoveTo Nav="Fly" X="-1892.768" Y="5392.862" Z="-12.4277" />
+			<While Condition="Me.MapId != 0" >
+				<CustomBehavior File="InteractWith" MobId="183325" X="-1894.189" Y="5387.939" Z="-12.42825" TerminateWhen="Me.MapId == 0" />
+				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || Me.Combat" />
 			</While>
 		</If>
 		<If Condition="Me.MapId == 1" > <!-- Kalimdor -->
@@ -209,7 +209,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</While>
 			</ElseIf>
 			<ElseIf Condition="HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown" > <!-- Innkeeper's Daughter -->
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Innkeeper's Daughter!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Hearthing would be faster to reach our destination, using Innkeeper's Daughter!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="!(Me.MapId == 870 || Me.MapId == 571)" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(94719)" WaitTime="500" />
