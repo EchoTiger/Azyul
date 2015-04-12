@@ -1,0 +1,327 @@
+<HBProfile>
+<Name>Azyul ~ Master Mount Farm - Heroic Runs [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+<MinDurability>-1</MinDurability>
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: EchoTiger
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+<ProtectedItems>
+</ProtectedItems>
+	
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+
+<AvoidMobs>
+	<Mob Name="Howling Gale" Entry="45572" /> 
+	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+    <Mob Name="Lurking Tempest" Entry="45704"  />
+</AvoidMobs>
+
+
+<Blackspots>
+	<Blackspot X="3868.92" Y="-3530.008" Z="137.5698" Radius="5.388495" />
+	<Blackspot X="3844.466" Y="-3538.624" Z="138.7303" Radius="2.448554" />
+	<Blackspot X="4067.023" Y="-3452.492" Z="120.4575" Radius="3.75266" /> <!-- Crate in Stratholme -->
+</Blackspots>
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="
+System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Mounts/Get%20All%20Mounts.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
+File.WriteAllText(ProfileManager.XmlLocation, remoteData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}
+" />
+<CustomBehavior File="LoadRemoteCode"/>
+
+	<If Condition="!HasItem(32768) &amp;&amp; !Me.KnowsSpell(41252)" > <!-- Ravenlord -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Ravenlord.. Let's get it!&quot;);" />
+		
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+
+			<If Condition="(Me.FreeBagSlots &gt;= 17)" >
+				<If Condition="!(Me.MapId == 556)" >
+					<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+						<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+						<CustomBehavior File="FlyTo" X="-3363.273" Y="4831.82" Z="-88.0773" />
+						<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+					</If>
+
+					<If Condition="Me.Location.Distance(new WoWPoint(-3361.789, 4704.56, -101.2225)) &gt;= 47" > <!-- Outside of pre-instance -->
+						<MoveTo Nav="Fly" X="-3362.458" Y="4756.291" Z="-101.3952" />
+						<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+					</If>
+				</If>
+			</If>
+
+			<If Condition="(Me.FreeBagSlots &gt;= 17)" >
+				<If Condition="!(Me.MapId == 556)" >
+					<RunTo X="-3361.777" Y="4658.397" Z="-101.048" />
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+					<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Sethekk Halls.&quot;);" />
+					<CustomBehavior File="MyCTM" X="-3361.715" Y="4652.886" Z="-101.048" />
+					<CustomBehavior File="WaitTimer" WaitTime="5500" />
+					<While Condition="!(StyxWoW.IsInWorld)" >
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					</While>
+				</If>
+				<!-- Begin Instance Grind -->
+				<If Condition="(Me.MapId == 556)" >
+					<CustomBehavior File="UserSettings" LootMobs="False" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="-4.224625" Y="99.62385" Z="0.007196213" />
+						<Hotspot X="-145.6521" Y="173.7392" Z="1.684951" /> // Darkweaver Syth
+					</CustomBehavior>
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="-75.30521" Y="174.733" Z="0.009280387" />
+					</CustomBehavior>
+
+					<MoveTo X="-165.7767" Y="173.741" Z="0.01082529" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="-260.4564" Y="188.8592" Z="0.03481042" />
+					</CustomBehavior>
+
+
+					<MoveTo X="-268.7367" Y="143.1127" Z="13.57411" />
+					<MoveTo X="-217.8209" Y="206.9884" Z="26.72305" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="-138.3923" Y="286.9783" Z="26.73151" />
+					</CustomBehavior>
+
+					<MoveTo X="-122.1009" Y="286.8453" Z="26.76291" />
+					<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="false" X="-89.20406" Y="287.9736" Z="26.48323" />
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="false" InteractByLooting="true" NumOfTimes="5" TerminateWhen="!Unit(23035).Lootable != null"  Range="1" X="-89.20406" Y="287.9736" Z="26.48322" />
+					<MoveTo X="-30.23629" Y="284.8479" Z="26.73051" />
+
+
+					<If Condition="(HasItem(32768))" >
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Congratulations! The Ravel Lord mount has dropped!&quot;);" />
+					</If>
+					<If Condition="(!HasItem(32768))" >
+						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: The Raven Lord did not drop.  Better luck next time though!&quot;);" />
+					</If>
+
+					<CustomBehavior File="InteractWith" MobId="18473" X="44.72272" Y="286.9597" Z="25.01321" />
+
+					<MoveTo X="44.89219" Y="139.6808" Z="0.01498942" /> //Shortcut run 1
+					<CustomBehavior File="MyCTM" X="44.83607" Y="127.225" Z="0.2093463" /> //CTM just in case
+					<RunTo X="2.589283" Y="0.3863665" Z="0.005763793" /> //Before instance
+
+
+					<CustomBehavior File="MyCTM" X="-8.710955" Y="-0.1144782" Z="0.005999689" />
+					<CustomBehavior File="WaitTimer" WaitTime="5500" />
+					<While Condition="!(StyxWoW.IsInWorld)" >
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					</While>
+				</If>
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+			</If>
+			<!-- End Instance Grind -->
+			
+			<!-- Vendor Routine -->
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-3361.962" Y="4752.981" Z="-101.3954" />
+
+				<!-- Bot ignores this vendor.
+						<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoSell="True" />
+						<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
+						<ClearVendor /> -->  
+
+
+					<If Condition="Me.IsAlliance" >
+						<MoveTo Nav="Fly" X="-2944.846" Y="4009.452" Z="5.567399" />
+						<CustomBehavior File="ForcedDismount" />
+						<MoveTo Nav="Run" X="-2933.421" Y="4009.331" Z="-1.294724" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="-2929.392" Y="4008.916" Z="-1.389165" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+						<MoveTo Nav="Run" X="-2936.408" Y="4010.14" Z="-1.248712" />
+						<ClearMailbox />
+					</If>
+					<If Condition="Me.IsHorde" >
+						<MoveTo Nav="Fly" X="-2620.939" Y="4409.075" Z="49.22842" />
+						<CustomBehavior File="ForcedDismount" />
+						<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="-2615.288" Y="4417.971" Z="35.98839" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+						<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+						<ClearMailbox />
+					</If>
+			</If>
+	</If>
+
+	<If Condition="!HasItem(44151) &amp;&amp; !Me.KnowsSpell(59996)" > <!-- Blue-Proto Drake -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Blue Proto-Drake.. Let's get it!&quot;);" />
+		<DisableBehavior Name="FlightPath" />
+
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToNorthrend.xml"/>
+
+		<If Condition="!(Me.MapId == 575) &amp;&amp; Me.Location.Distance(new WoWPoint(1260.573, -4846.633, 233.1049)) &gt;= 150 " >
+			<!-- Start GOTO dungeon code -->
+			<CustomBehavior File="FlyTo" X="1317.418" Y="-4713.524" Z="253.851" />
+			<CustomBehavior File="FlyTo" X="1244.616" Y="-4857.312" Z="217.2103" />
+			<!-- Infront of Instance Portal -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Starting Blue Proto-Drake - Daily Farm.&quot;);" />
+			<!-- Enable Loot -->
+			<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+			<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</If>
+		<If Condition="!(Me.MapId == 575)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="MyCTM" X="1231.992" Y="-4860.223" Z="218.2878" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				</If>
+					<!--Instance Navigation Start -->
+					<If Condition="Me.MapId == 575" >
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" />
+					    <RunTo X="549.7104" Y="-327.2530" Z="110.2379"  />
+					    <RunTo X="519.1378" Y="-326.6814" Z="109.6088"  />
+					    <RunTo X="480.1424" Y="-297.1634" Z="104.7108"  />
+					    <RunTo X="480.6522" Y="-266.8499" Z="104.7234"  />
+					    <RunTo X="473.5574" Y="-252.0636" Z="104.5205"  />
+					    <RunTo X="457.2629" Y="-247.5769" Z="104.7716"  />
+					    <RunTo X="396.5730" Y="-247.6785" Z="104.9244"  />
+					    <RunTo X="354.1042" Y="-242.1342" Z="104.7084"  />
+					    <RunTo X="336.3930" Y="-244.2848" Z="104.8721"  />
+					    <RunTo X="314.4727" Y="-259.3076" Z="104.6439"  />
+					    <RunTo X="314.3481" Y="-265.9623" Z="104.7293"  />
+					    <RunTo X="313.1069" Y="-291.0924" Z="104.7165"  />
+					    <RunTo X="275.0621" Y="-289.8811" Z="104.7161"  />
+					    <RunTo X="274.3768" Y="-309.4502" Z="95.4770"  />
+					    <RunTo X="271.6772" Y="-346.0948" Z="86.4449"  />
+					    <RunTo X="253.8774" Y="-345.6357" Z="84.6786"  />
+					    <RunTo X="236.8543" Y="-345.0736" Z="80.7362"  />
+					    <RunTo X="236.4365" Y="-368.3031" Z="75.0807"  />
+					    <RunTo X="259.1963" Y="-401.3184" Z="81.6342"  />
+					    <RunTo X="279.8812" Y="-396.6331" Z="89.9887"  />
+					    <RunTo X="278.7823" Y="-383.1464" Z="90.0726"  />
+					    <RunTo X="252.3037" Y="-381.2644" Z="103.5730"  />
+					    <RunTo X="236.6855" Y="-401.1435" Z="104.7508"  />
+					    <RunTo X="235.9616" Y="-428.7502" Z="104.7404"  />
+					    <RunTo X="267.8144" Y="-452.9744" Z="104.7015"  />
+					    <RunTo X="300.3060" Y="-452.0946" Z="104.7349"  />
+					    <RunTo X="310.6154" Y="-469.5724" Z="104.7145"  />
+					    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
+
+
+
+					    <RunTo X="309.4785" Y="-508.1805" Z="104.381" />
+					    <If Condition="Chance(28.0)"> <!-- Random easteregg code to make the bot more human-like -->
+						    <CustomBehavior File="NoCombatMoveTo" X="370.7579" Y="-511.7003" Z="104.875" />
+						    <CustomBehavior File="RunMacro" Macro="/y LEEERROOOOOYYY JEENNNKIINNNS" />
+						</If>
+					    <CustomBehavior File="NoCombatMoveTo" X="476.2533" Y="-503.8509" Z="104.7238" />
+					    <!-- ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().Any(u =&gt; u.Entry == 26893 &amp;&amp; u.IsValid) : Old method-->
+
+						<While Condition="Object(26893) != null">
+							<While Condition="!HasItem(37372) &amp;&amp; (Object(26893) != null)">
+								<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
+									<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
+								</CustomBehavior>
+								<CustomBehavior File="WaitTimer" WaitTime="500" />
+								<While Condition="(Object(192539) != null) &amp;&amp; (Object(26893) != null)" >
+									<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" NumOfTimes="1" CollectionDistance="30" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
+								</While>
+							</While>
+							<While Condition="HasItem(37372) &amp;&amp; (Object(26893) != null)" >
+								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &lt;= 35) != null) &amp;&amp; (Object(26893) != null)">
+									<DisableBehavior Name="Combat" />
+		 							<CustomBehavior File="InteractWith" WaitForNpcs="false" NumOfTimes="3" MobId1="192176" MobId2="192177" X="485.5264" Y="-523.3635" Z="104.7237" />
+		 							<EnableBehavior Name="Combat" />
+								</If>
+								<If Condition="(Object(26893, o => o.Location.Distance(new WoWPoint(520.4827, -541.5633, 119.8416)) &gt; 36) != null) &amp;&amp; (Object(26893) != null)">
+									<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" >
+										<Hotspot X="477.2179" Y="-504.6097" Z="104.7244" /><!-- Relocate -->
+									</CustomBehavior>
+									<CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="true" CollectionDistance="20" MobId="192539" X="476.2533" Y="-503.8509" Z="104.7238" />
+									<CustomBehavior File="WaitTimer" WaitTime="500" />
+								</If>
+							</While>
+						</While>
+						<EnableBehavior Name="Combat" />
+						<EnableBehavior Name="Pull" />
+						<If Condition="(HasItem(37372))" >
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Throwing away extra harpoons.&quot;);" />
+							<CustomBehavior File="Misc\RunLua" Lua="local item,l,i=&quot;37372&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
+							<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						</If>
+						<CustomBehavior File="InteractWith" MobId="26693" WaitForNpcs="false" InteractByLooting="true" NumOfTimes="5" TerminateWhen="!Unit(26693).Lootable != null"  Range="1" X="477.9009" Y="-510.1298" Z="104.7232" />
+						<RunTo X="478.0739" Y="-516.3156" Z="104.7221" /> <!-- Incase bot chased down strays -->
+					    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
+						<If Condition="(HasItem(44151))" >
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Congratulations! The Blue Proto-Drake mount has dropped!&quot;);" />
+						</If>
+						<If Condition="(!HasItem(44151))" >
+							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: The Blue Proto-Drake did not drop.  Better luck next time though!&quot;);" />
+						</If>
+
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" />
+					    <RunTo X="310.6154" Y="-469.5724" Z="104.7145"  />
+					    <RunTo X="267.8144" Y="-452.9744" Z="104.7015"  />
+					    <RunTo X="237.7455" Y="-458.7974" Z="105.4818"  />
+					    <RunTo X="578.2748" Y="-327.8182" Z="110.1424"  />
+					    <CustomBehavior File="MyCTM" X="590.7843" Y="-328.0943" Z="110.1454"  />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<!-- Instance Coordination Complete -->
+						<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+					</If>
+	</If>
+
+</QuestOrder>
+</HBProfile>

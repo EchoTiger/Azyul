@@ -46,82 +46,11 @@
 
 
 <QuestOrder>
-		<CustomBehavior File="Misc\RunLua" Lua="
-			SLASH_SHOWSTATS1 = '/stats';
-			SLASH_SHOWSTATS2 = '/statter';
-			SLASH_SHOWSTATS3 = '/statter!';
 
-			SLASH_RESET1 = '/statsreset';
-			SLASH_TIMERRESET1 = '/timerreset';
 
-			starttime = GetTime();
-			currtime = GetTime();
+<CustomBehavior File="LoadRemoteCode"/>
 
-			beginningmoney = GetMoney();
-
-			function calculate()
-				local itemSellPrice = 0
-				local itemID = 0
-				local itemBagCount = 1
-				local itemStackCount = 1
-				total_value_of_bags = 0
-				for i = 0, NUM_BAG_SLOTS do
-				bagslots = GetContainerNumSlots(i)
-				for bagslotscounter = 1, bagslots do
-				itemID = GetContainerItemID(i, bagslotscounter)
-
-				if (itemID == nil)  or (itemSellPrice == nill) then
-					else
-						itemSellPrice = select(11, GetItemInfo(itemID))
-						if (itemSellPrice == nil) then
-							itemSellPrice = 0
-						end
-							itemBagCount = select(2, GetContainerItemInfo(i, bagslotscounter))
-							total_value_of_bags = total_value_of_bags + (itemSellPrice * itemBagCount)
-						end
-					end
-				end
-				totals = GetCoinTextureString(total_value_of_bags);
-
-				currmoney = GetMoney();
-				currtime = GetTime();
-				tdiftime = (currtime - starttime);
-
-				tHours = string.format(&quot;%02.f&quot;, math.floor(tdiftime/3600)); 
-				tMins = string.format(&quot;%02.f&quot;, math.floor(tdiftime/60 - (tHours*60))); 
-				tSecs = string.format(&quot;%02.f&quot;, math.floor(tdiftime - tHours*3600 - tMins *60)); 
-
-				difmoney = math.floor(currmoney-beginningmoney)
-				completetotal = math.floor(difmoney+total_value_of_bags)
-				farmscore = math.floor((difmoney/tdiftime)/10)
-				farmscore2 = math.floor((completetotal/tdiftime)/10)
-
-				gph = GetCoinTextureString(math.floor(difmoney/(tdiftime/3600))) 
-				gph2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/3600)))
-				gpm = GetCoinTextureString(math.floor(difmoney/(tdiftime/60 - (tHours*60))))
-				gpm2 = GetCoinTextureString(math.floor(completetotal/(tdiftime/60 - (tHours*60))))
-			end
-
-			function SlashCmdList.SHOWSTATS()
-				calculate()
-				print(&quot;|cFF00CCFF~Total Stats!|r\n|cFF85C2FFTime since activation:|r &quot;, tHours .. &quot;h,&quot;, tMins .. &quot;m,&quot;, tSecs .. &quot;s \n|cFF85C2FFObtained Gold:|r &quot;, GetCoinTextureString(difmoney), &quot;\n|cFF85C2FFBag Loot Value:|r &quot;, totals, &quot;\n|cFF85C2FFTotal Obtained + Bag Loot:|r &quot;, GetCoinTextureString(completetotal));
-				print(&quot;|cFF00CCFF~Estimates!|r\n|cFF85C2FFGPH:|r &quot;, gph, &quot; \n|cFF85C2FFGPH (+ Bag Value):|r &quot;, gph2, &quot;\n|cFF85C2FFGPM:|r &quot;, gpm, &quot;\n|cFF85C2FFGPM (+ Bag Value):|r &quot;, gpm2,  &quot;\n|cFF85C2FFFarm Score:|r &quot;, farmscore,  &quot;\n|cFF85C2FFFarm Score (+Bag Value)|r &quot;, farmscore2);
-			end
-
-			function SlashCmdList.RESET()
-				starttime = GetTime();
-				currtime = GetTime();
-				beginningmoney = GetMoney();
-				print(&quot;|cFF00CCFFStatter!|r has been reset.&quot;);
-			end
-
-			function SlashCmdList.TIMERRESET()
-				starttime = GetTime();
-				print(&quot;|cFF00CCFFStatter!|r timers have been reset.&quot;);
-			end
-
-			print(&quot;|cFF00CCFFStatter! is now active.|r\nType |cFF00CCFF/stats|r to show statistics!\nYou may also use |cFF00CCFF/statsreset|r to reset the stats!\nAlso, using |cFF00CCFF/timerreset|r will reset the timer.\nTo cleanly disable Statter! use the command |cFF00CCFF/reload|r.\n&quot;);
-			" />
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to farm location.&quot;);" />
 	<CustomBehavior File="FlyTo" X="2101.268" Y="-3045.307" Z="44.21409" />
 	<CustomBehavior File="Misc\RunLua" Lua="
