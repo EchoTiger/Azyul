@@ -39,6 +39,19 @@
 	
 	
 <QuestOrder>
+<CustomBehavior File="RunCode" Code="
+System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Garrison%20Materials/Frostfire%20Ridge%2C%20Ogre%20Waystones.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
+File.WriteAllText(ProfileManager.XmlLocation, remoteData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}
+" />
+
 <If Condition="(Me.MapId != 1116 &amp;&amp; Me.MapId != 1331 &amp;&amp; !Me.IsInInstance) &amp;&amp; !(Me.ZoneId == 7078 || Me.ZoneId == 7004)" >
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Going to Draenor!&quot;);" />
 

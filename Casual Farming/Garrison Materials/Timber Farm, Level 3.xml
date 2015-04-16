@@ -32,9 +32,22 @@
 	<Blackspot X="2873.102" Y="6109.63" Z="110.8853" Radius="9.59908" /> <!-- Small Timber on Hill -->
 	<Blackspot X="2602.061" Y="6172.754" Z="93.7818" Radius="5.211864" /> <!-- Small Timber on Hill -->
 	<Blackspot X="2571.573" Y="6158.937" Z="79.59093" Radius="7.704871" /> <!-- Large Timber on Hill -->
+	<Blackspot X="2426.086" Y="5390.303" Z="145.3224" Radius="4.769608" /> <!-- Timber on Hill -->
 </Blackspots>
 
 <QuestOrder>
+<CustomBehavior File="RunCode" Code="
+System.Net.WebClient webClient = new System.Net.WebClient();
+string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Garrison%20Materials/Timber%20Farm%2C%20Level%203.xml&quot;);
+string localData = File.ReadAllText(ProfileManager.XmlLocation);
+if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
+else {
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
+File.WriteAllText(ProfileManager.XmlLocation, remoteData);
+Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
+ProfileManager.LoadNew(ProfileManager.XmlLocation);
+}
+" />
 
 <While Condition="true" >
 	<DisableBehavior Name="Pull" />
