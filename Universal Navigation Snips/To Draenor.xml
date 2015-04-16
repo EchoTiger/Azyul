@@ -13,7 +13,7 @@ File.WriteAllText(ProfileManager.XmlLocation, updatedData);
 Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Update Complete! Reloading profile...&quot;);
 ProfileManager.LoadNew(ProfileManager.XmlLocation);
 }" />
-<If Condition="(Me.MapId != 1116 &amp;&amp; Me.MapId != 1331 &amp;&amp; !Me.IsInInstance) || !(Me.ZoneId == 7078 || Me.ZoneId == 7004)" >
+<If Condition="(Me.MapId != 1116 &amp;&amp; Me.MapId != 1331 &amp;&amp; !Me.IsInInstance) &amp;&amp; !(Me.ZoneId == 7078 || Me.ZoneId == 7004)" >
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Going to Draenor!&quot;);" />
 
 	<If Condition="IsQuestCompleted(34378) || IsQuestCompleted(34586)" >
