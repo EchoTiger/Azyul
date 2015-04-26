@@ -2,6 +2,8 @@
 <Name>Nightslayer Armor (RC) Auto-Loader [$Rev$]</Name>
 	
 	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
 <!-- Enable Loot -->
 	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Nightslayer Armor (RC) Farm.\nThis profile will grind through every dungeon (starting with heroic dungeons, then normal dungeons) that drops the set pieces.\n\nEnsure that your bags are clean before starting!  Your personal items MAY be sold if not.\n\n*Note* The bot will ONLY loot mobs that drop the set pieces unless you change the LootMobs setting inside the profile.  It will also skip bosses that DO NOT drop the pieces for this specific set." />

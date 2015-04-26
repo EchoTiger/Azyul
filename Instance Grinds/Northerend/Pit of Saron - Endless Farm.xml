@@ -52,6 +52,8 @@
 
 
 <QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
 
 <!-- Instance Precheck -->
 <If Condition="(Me.MapId == 632) &amp;&amp; Me.Location.Distance(new WoWPoint(4913.565, 2193.538, 638.733)) &lt;= 350" >

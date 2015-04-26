@@ -50,6 +50,8 @@
 
 
 <QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
 <CustomBehavior File="RunCode" Code="
 System.Net.WebClient webClient = new System.Net.WebClient();
 string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Mounts/Blue%20Proto%20Drake%20-%20Daily%20Farm.xml&quot;);

@@ -38,6 +38,8 @@
 	<Blackspots></Blackspots>
 	
 	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
 		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Battlegear of Might (RC) Farm.\nThis profile will grind through every dungeon that drops the set pieces.\n\nEnsure that your bags are clean before starting!\n\n*Note* The bot will only loot mobs that drop the set pieces unless you change the LootMobs setting inside the profile." />
 		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
 		<!-- Sets Dungeon Difficult to Heroic -->

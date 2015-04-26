@@ -62,6 +62,8 @@
       
 
 <QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
       <CustomBehavior File="UserDialog" SoundCue="Exclamation" SoundCueInterval="1" Text="*WARNING* - As of patch 6.0.2, the Chess event behavior has been broken, the bot will stop at this point and wait for you to complete it manually.\n\nOnce I get time, I will fix this issue." />
       <If Condition="!(Me.MapId == 409)" >
             <CustomBehavior File="LoadRemoteCode"/>

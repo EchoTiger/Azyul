@@ -2,6 +2,8 @@
 <Name>Lawbringer Armor (RC) Auto-Loader [$Rev$]</Name>
 	
 <QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
 	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
 	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Lawbringer Armor (RC) Farm.\nThis profile will grind through every dungeon that drops the set pieces.\n\nIf you want to only farm the Normal drop items, then load the [N] profile in the script folder.\n\nEnsure that your bags are clean before starting! Your personal items MAY be sold if not." />
 	<If Condition="(!HasItem(27505)) || (!HasItem(27844)) || (!HasItem(28337)) || (!HasItem(27755)) || (!HasItem(27798))" >

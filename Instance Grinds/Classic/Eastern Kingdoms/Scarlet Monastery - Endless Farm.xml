@@ -54,6 +54,8 @@
 </Blacklist>
 
 <QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
 <If Condition="!(Me.ZoneId == 6109)" >
 
 <CustomBehavior File="LoadRemoteCode"/>
