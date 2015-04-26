@@ -48,51 +48,347 @@
 <!-- 
 HOW TO: A quick documentation of adding your default settings.
 
-	At the top of the code below, you should see the words:   [[Define Variables]].
-	In this section, the defaults of the ASM are set.   You can change any of these variables to your preference.
+        At the top of the code below, you should see the words:   [[Define Variables]].
+        In this section, the defaults of the ASM are set.   You can change any of these variables to your preference.
 
 
 ATTRIBUTES:
 
-	RangeFrameSound1
-		This code tells the game that ASM is active so more than one ASM will not appear on the game screen.
-		DO NOT CHANGE THIS VALUE.
+        RangeFrameSound1
+                This code tells the game that ASM is active so more than one ASM will not appear on the game screen.
+                DO NOT CHANGE THIS VALUE.
 
-	RangeFrameSound2
-		0 = Run the dungeon as normal difficulty.
-		1 = Run the dungeon as heroic difficulty.
-		After the dungeon has been ran as heroic, ASM will automatically switch it back to normal.
+        RangeFrameSound2
+                0 = Run the dungeon as normal difficulty.
+                1 = Run the dungeon as heroic difficulty.
+                After the dungeon has been ran as heroic, ASM will automatically switch it back to normal.
 
-	RangeFrameLocked
-		# = The minimum bagslots before the bot starts the vendor routine.
+        RangeFrameLocked
+                # = The minimum bagslots before the bot starts the vendor routine.
 
-	RangeFrameRadarPoint
-		# = The minimum bagslots before the bot starts the mailing routine.
-		The mailing routine is only checked after the vendor routine is completed.
+        RangeFrameRadarPoint
+                # = The minimum bagslots before the bot starts the mailing routine.
+                The mailing routine is only checked after the vendor routine is completed.
 
-	RangeFrameRadarX
-		1 = The bot will run the dungeon with Lite pulls.
-		2 = The bot will run the dungeon with Medium pulls.
-		3 = The bot will run the dungeon with Heavy pulls.
-		This value cannot be set to 0.  If it is set to 0, the bot won't run the dungeon properly.
+        RangeFrameRadarX
+                1 = The bot will run the dungeon with Lite pulls.
+                2 = The bot will run the dungeon with Medium pulls.
+                3 = The bot will run the dungeon with Heavy pulls.
+                This value cannot be set to 0.  If it is set to 0, the bot won't run the dungeon properly.
 
-	RangeFrameRadarY
-		0 = The bot will sell using Honorbuddy's routine.  All protected items are protected, and any vendor rules apply.
-		1 = The bot will sell using a Lua script.  Everything in the player's bags WILL BE sold except for Frostweave IF it's checked to be deposited.
+        RangeFrameRadarY
+                0 = The bot will sell using Honorbuddy's routine.  All protected items are protected, and any vendor rules apply.
+                1 = The bot will sell using a Lua script.  Everything in the player's bags WILL BE sold except for Frostweave IF it's checked to be deposited.
 
-	InfoFramePoint
-		0 = The bot will not deposit any obtained Frostweave that's obtained while running the profile.
-		1 = The bot will deposit any obtained Frostweave that's obtained.  Also, the Frostweave will be protected from the Lua sell script.
-		The deposit routine is called once the vendoring routine starts.
+        InfoFramePoint
+                0 = The bot will not deposit any obtained Frostweave that's obtained while running the profile.
+                1 = The bot will deposit any obtained Frostweave that's obtained.  Also, the Frostweave will be protected from the Lua sell script.
+                The deposit routine is called once the vendoring routine starts.
 
-	InfoFrameX
-		0 = The bot will NOT deposit all of its gold into the mobile guild.
-		1 = The bot will deposit all of its gold into the mobile guild bank.
-		The deposit routine is called once the vendoring routine starts.
+        InfoFrameX
+                0 = The bot will NOT deposit all of its gold into the mobile guild.
+                1 = The bot will deposit all of its gold into the mobile guild bank.
+                The deposit routine is called once the vendoring routine starts.
 
 After any of these settings are applied, you must reload the profile for them to take effect.
 Please note also: If you make a change and it doesn't show up on ASM - then don't worry, the change HAS been made.
 -->
+<CustomBehavior File="Misc\RunLua" Lua="
+        --[[Define Variables]]
+                RangeFrameSound2 = 0;
+                RangeFrameLocked = 17;
+                RangeFrameRadarPoint = 20;
+                RangeFrameRadarX = 3;
+                RangeFrameRadarY = 0;
+                InfoFramePoint = 0;
+                InfoFrameX = 0;
+
+        if (RangeFrameSound1 == nil or RangeFrameSound1 == &apos;&apos;) then
+                RangeFrameSound1 = 1;
+                SLASH_HEALBOT1 = '/ashow';
+
+
+                --[[Functions]]
+                        --[[Azyul Show]]
+                                function HideAzyul_OnClick()
+                                        AzyulManager:Hide();
+                                        print(&quot;|cFF3399FF[Azyul]|r: Azyul Manager is now hidden.  Type  /ashow to bring it back up.&quot;)
+                                end
+                                function SlashCmdList.HEALBOT()
+                                        AzyulManager:Show();
+                                end
+                        --[[Dungeon Properties]]
+                                function HeroicMode_OnClick()
+                                        if (HeroicMode:GetChecked() == true) then
+                                                RangeFrameSound2 = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran as Heroic.&quot;)
+                                        else
+                                                RangeFrameSound2 = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran as Normal.&quot;)
+                                        end
+                                end
+                                function HeavyPull_OnClick() 
+                                        if (HeavyPull:GetChecked() == true) then
+                                                RangeFrameRadarX = 3;
+                                                MediumPull:SetChecked(false);
+                                                LitePull:SetChecked(false);
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Heavy Pulls.&quot;)
+                                        else
+                                                HeavyPull:SetChecked(true);
+                                        end
+                                end
+                                function MediumPull_OnClick() 
+                                        if (MediumPull:GetChecked() == true) then
+                                                RangeFrameRadarX = 2;
+                                                HeavyPull:SetChecked(false);
+                                                LitePull:SetChecked(false);
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Medium Pulls.&quot;)
+                                        else
+                                                MediumPull:SetChecked(true);
+                                        end
+                                end
+                                function LitePull_OnClick() 
+                                        if (LitePull:GetChecked() == true) then
+                                                RangeFrameRadarX = 1;
+                                                MediumPull:SetChecked(false);
+                                                HeavyPull:SetChecked(false);
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Lite Pulls.&quot;)
+                                        else
+                                                LitePull:SetChecked(true);
+                                        end
+                                end
+                        --[[Bagslot Manager]]
+                                function SellEverything_OnClick()
+                                        if (SellEverything:GetChecked() == true) then
+                                                RangeFrameRadarY = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will now sell everything using a Lua script.&quot;)
+                                        else
+                                                RangeFrameRadarY = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will no longer sell using the Lua script.&quot;)
+                                        end
+                                end
+                                function DepositGold_OnClick()
+                                        if (DepositGold:GetChecked() == true) then
+                                                InfoFrameX = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will now use the Mobile Guild Bank to deposit the Gold we obtain.&quot;)
+                                        else
+                                                InfoFrameX = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will no longer deposit the Gold we obtain.&quot;)
+                                        end
+                                end
+                                function DepositCloth_OnClick()
+                                        if (DepositCloth:GetChecked() == true) then
+                                                InfoFramePoint = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will now use the Mobile Guild Bank to deposit the Cloth we obtain.&quot;)
+                                        else
+                                                InfoFramePoint = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will no longer deposit the Cloth we obtain.&quot;)
+                                        end
+                                end
+
+
+
+                --[[Create Master Frame]]
+                                AzyulManager = CreateFrame(&quot;StatusBar&quot;, nil, UIParent)
+                                AzyulManager:SetStatusBarTexture(&quot;Interface\\DialogFrame\\UI-DialogBox-Background&quot;)
+                                AzyulManager:SetWidth(425)
+                                AzyulManager:SetHeight(120)
+                                AzyulManager:SetPoint(&quot;CENTER&quot;,UIParent,&quot;CENTER&quot;)
+                                AzyulManager:SetMovable(true);
+                                AzyulManager:EnableMouse(true);
+                                AzyulManager:SetScript(&quot;OnUpdate&quot;, function () 
+                                        AzyulManager:SetScript(&quot;OnMouseUp&quot;, function()
+                                                AzyulManager:StopMovingOrSizing();
+                                        end);
+
+                                        AzyulManager:SetScript(&quot;OnMouseDown&quot;, function()
+                                                AzyulManager:StartMoving();
+                                        end);
+                                end);
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;Azyul Manager&quot;);
+                                TitleLabel:SetTextColor(.9, .9, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 18, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOP&quot;, 0, -5);
+                        --[[Hide Button]]
+                                                HideAzyul = CreateFrame(&quot;Button&quot;, &quot;HideAzyul&quot;, AzyulManager, &quot;UIPanelButtonTemplate&quot;);
+                                                HideAzyul:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, 0, 0);
+                                                HideAzyul:SetScript(&quot;PostClick&quot;, HideAzyul_OnClick);
+                                                HideAzyul:SetScale(1);
+                                                HideAzyul:SetWidth(23)
+                                                HideAzyul:SetHeight(25)
+                                                HideAzyul:SetText(&quot;X&quot;)
+                                                HideAzyul:SetHitRectInsets(1, 1, 1, 1)
+                --[[Dungeon Properties]]
+                        --[[Difficulties]]
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;- Pull Density -&quot;);
+                                TitleLabel:SetTextColor(.85, .85, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 15, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 10, -30);
+                                        LitePull = CreateFrame(&quot;CheckButton&quot;, &quot;LitePull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        LitePull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 10, -38);
+                                        LitePull:SetScript(&quot;PostClick&quot;, LitePull_OnClick);
+                                        LitePull:SetScale(1.3);
+                                        LitePull:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;L&quot;);
+                                                TitleLabel:SetTextColor(.5, 1, .5, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 20, -70);
+                                        MediumPull = CreateFrame(&quot;CheckButton&quot;, &quot;MediumPull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        MediumPull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 30, -38);
+                                        MediumPull:SetScript(&quot;PostClick&quot;, MediumPull_OnClick);
+                                        MediumPull:SetScale(1.3);
+                                        MediumPull:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;M&quot;);
+                                                TitleLabel:SetTextColor(1, 1, .5, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 47, -70);
+                                        HeavyPull = CreateFrame(&quot;CheckButton&quot;, &quot;HeavyPull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        HeavyPull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 50, -38);
+                                        HeavyPull:SetScript(&quot;PostClick&quot;, HeavyPull_OnClick);
+                                        HeavyPull:SetScale(1.3);
+                                        HeavyPull:SetHitRectInsets(1, 1, 1, 1)
+
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;H&quot;);
+                                                TitleLabel:SetTextColor(1, .5, .5, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 73, -70);
+                                        HeroicMode = CreateFrame(&quot;CheckButton&quot;, &quot;HeroicCheck&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        HeroicMode:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 65, -73);
+                                        HeroicMode:SetScript(&quot;PostClick&quot;, HeroicMode_OnClick);
+                                        HeroicMode:SetScale(1.3);
+                                        HeroicMode:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Heroic Mode:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 5, -100);
+                        --[[Bagslots]]
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;- Bagslot Management -&quot;);
+                                TitleLabel:SetTextColor(.85, .85, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 15, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, 0, -30);
+                                        local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                        TitleLabel:SetText(&quot;Vendor Min:&quot;);
+                                        TitleLabel:SetTextColor(1, 1, 1, 1);
+                                        TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                        TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -16, -56);
+                                                BagSlotCheck = CreateFrame(&quot;EditBox&quot;, &quot;BagSlotCheck&quot;, AzyulManager, &quot;InputBoxTemplate&quot;);
+                                                BagSlotCheck:SetPoint(&quot;TOP&quot;, AzyulManager, 38, -39);
+                                                BagSlotCheck:SetHitRectInsets(0, 0, 6, 7)
+                                                BagSlotCheck:SetNumeric(true)
+                                                BagSlotCheck:SetMaxLetters(2)
+                                                BagSlotCheck:SetText(RangeFrameLocked)
+                                                BagSlotCheck:SetWidth(20)
+                                                BagSlotCheck:EnableMouse(true)
+                                                BagSlotCheck:SetAutoFocus(false)
+                                                BagSlotCheck:SetHeight(50)
+                                                BagSlotCheck:SetScript(&quot;OnChar&quot;, function(self,userInput,...) RangeFrameLocked = BagSlotCheck:GetNumber() end);
+                                        local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                        TitleLabel:SetText(&quot;Mailing Min:&quot;);
+                                        TitleLabel:SetTextColor(1, 1, 1, 1);
+                                        TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                        TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -16, -79);
+                                                MailingCheck = CreateFrame(&quot;EditBox&quot;, &quot;MailingCheck&quot;, AzyulManager, &quot;InputBoxTemplate&quot;);
+                                                MailingCheck:SetPoint(&quot;TOP&quot;, AzyulManager, 38, -62);
+                                                MailingCheck:SetHitRectInsets(0, 0, 8, 9)
+                                                MailingCheck:SetNumeric(true)
+                                                MailingCheck:SetMaxLetters(2)
+                                                MailingCheck:SetText(RangeFrameRadarPoint)
+                                                MailingCheck:SetWidth(20)
+                                                MailingCheck:EnableMouse(true)
+                                                MailingCheck:SetAutoFocus(false)
+                                                MailingCheck:SetHeight(50)
+                                                MailingCheck:SetScript(&quot;OnChar&quot;, function(self,userInput,...) RangeFrameRadarPoint = MailingCheck:GetNumber() end);
+                                        SellEverything = CreateFrame(&quot;CheckButton&quot;, &quot;SellEverything&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        SellEverything:SetPoint(&quot;TOP&quot;, AzyulManager, 27, -73);
+                                        SellEverything:SetScript(&quot;PostClick&quot;, SellEverything_OnClick);
+                                        SellEverything:SetScale(1.3);
+                                        SellEverything:SetChecked(nil);
+                                        SellEverything:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Sell All:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -28, -100);
+                        --[[Deposit Method]]
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;- Mobile Bank -&quot;);
+                                TitleLabel:SetTextColor(.85, .85, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 15, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -10, -30);
+                                        DepositGold = CreateFrame(&quot;CheckButton&quot;, &quot;DepositGold&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        DepositGold:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -5, -37);
+                                        DepositGold:SetScript(&quot;PostClick&quot;, DepositGold_OnClick);
+                                        DepositGold:SetScale(1.3);
+                                        DepositGold:SetChecked(nil);
+                                        DepositGold:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Deposit Gold:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -35, -54);
+                                        DepositCloth = CreateFrame(&quot;CheckButton&quot;, &quot;DepositCloth&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        DepositCloth:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -5, -55);
+                                        DepositCloth:SetScript(&quot;PostClick&quot;, DepositCloth_OnClick);
+                                        DepositCloth:SetScale(1.3);
+                                        DepositCloth:SetChecked(nil);
+                                        DepositCloth:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Deposit Cloth:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -35, -77);
+        end;
+
+                --[[Adjust Visuals]]
+                        if (RangeFrameSound2 == 1) then
+                                HeroicMode:SetChecked(1)
+                                else
+                                HeroicMode:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarX == 3) then
+                                HeavyPull:SetChecked(1)
+                                MediumPull:SetChecked(nil)
+                                LitePull:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarX == 2) then
+                                MediumPull:SetChecked(1)
+                                HeavyPull:SetChecked(nil)
+                                LitePull:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarX == 1) then
+                                LitePull:SetChecked(1)
+                                HeavyPull:SetChecked(nil)
+                                MediumPull:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarY == 1) then
+                                SellEverything:SetChecked(1)
+                                else
+                                SellEverything:SetChecked(nil)
+                        end
+
+                        if (InfoFramePoint == 1) then
+                                DepositCloth:SetChecked(1)
+                                else
+                                DepositCloth:SetChecked(nil)
+                        end
+
+                        if (InfoFrameX == 1) then
+                                DepositGold:SetChecked(1)
+                                else
+                                DepositGold:SetChecked(nil)
+                        end
+" />
 
 
 <CustomBehavior File="LoadRemoteCode"/>
