@@ -111,8 +111,9 @@ catch(Exception) {}"/>
 			<RunTo X="93.55686" Y="-316.1818" Z="-7.870862" /> <!-- Hydromancer Thespia -->
 
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<CustomBehavior File="InteractWith" MobId="184125" Range="3" X="98.81569" Y="-316.3364" Z="-6.683962" />
-			<CustomBehavior File="InteractWith" MobId="184125" WaitForNpcs="false" Range="2.5" X="98.81569" Y="-316.3364" Z="-6.683962" /> <!-- Double-tap just in case -->
+			<While Condition="Object(184125, o => o.ToGameObject().State == WoWGameObjectState.Ready) != null" >
+				<CustomBehavior File="InteractWith" MobId="184125" WaitForNpcs="false" WaitTime="2000" Range="2.5" X="98.81569" Y="-316.3364" Z="-6.683962" />
+			</While>
 			<CustomBehavior File="WaitTimer" WaitTime="1500" />
 
 			<RunTo X="44.39193" Y="-304.8427" Z="-8.965962" />
