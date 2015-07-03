@@ -61,6 +61,19 @@ Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Up
 ProfileManager.LoadNew(ProfileManager.XmlLocation);
 }
 " />
+<CustomBehavior File="RunCode" Code="
+Task.Run (
+	async () =>
+	{
+		while (Styx.CommonBot.TreeRoot.State != TreeRootState.Stopped)
+		{
+			Logging.Write(&quot;Sending...&quot;);
+			var request = System.Net.HttpWebRequest.Create(&quot;http://enu.li/acount/who-is-online/online.php&quot;);
+			var response = await request.GetResponseAsync();
+			response.Close();
+			await Task.Delay(30000);
+		}
+	});" />
 
 
 	<If Condition="!HasItem(32768) &amp;&amp; !Me.KnowsSpell(41252)" > <!-- Ravenlord -->

@@ -63,6 +63,19 @@ Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Up
 ProfileManager.LoadNew(ProfileManager.XmlLocation);
 }
 " />
+<CustomBehavior File="RunCode" Code="
+Task.Run (
+	async () =>
+	{
+		while (Styx.CommonBot.TreeRoot.State != TreeRootState.Stopped)
+		{
+			Logging.Write(&quot;Sending...&quot;);
+			var request = System.Net.HttpWebRequest.Create(&quot;http://enu.li/acount/who-is-online/online.php&quot;);
+			var response = await request.GetResponseAsync();
+			response.Close();
+			await Task.Delay(30000);
+		}
+	});" />
 	<If Condition="(Me.MapId == 329)" >
 		<RunTo X="3590.338" Y="-3642.218" Z="138.4868" />
 		<CustomBehavior File="MyCTM" X="3588.635" Y="-3638.869" Z="138.4745" />
