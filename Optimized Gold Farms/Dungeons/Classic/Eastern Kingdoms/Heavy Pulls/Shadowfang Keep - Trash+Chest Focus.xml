@@ -49,12 +49,12 @@ catch(Exception) {}"/>
 <TargetingDistance Value="100" />
 <!-- Travel to Shadowfang Keep --> 
 <While Condition="true" >
-	<If Condition="Me.Location.Distance(new WoWPoint(-235.0984, 1561.617, 76.88466)) &gt; 50 " >
-		<CustomBehavior File="Message" Text="Moving to Shadowfang Keep Location." LogColor="Lime" />
-		<MoveTo Nav="Fly" DestName="Shadowfang Keep" X="-241.0746" Y="1545.169" Z="78.49139" />
-		<CustomBehavior File="ForcedDismount" />
-	</If>
 	<While Condition="(Me.MapId == 0)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(-235.0984, 1561.617, 76.88466)) &gt; 50 " >
+			<CustomBehavior File="Message" Text="Moving to Shadowfang Keep Location." LogColor="Lime" />
+			<MoveTo Nav="Fly" DestName="Shadowfang Keep" X="-241.0746" Y="1545.169" Z="78.49139" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
 		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 		<MoveTo X="-233.6329" Y="1564.978" Z="76.88455" />
 		<CustomBehavior File="MyCTM" X="-232.8982" Y="1572.929" Z="76.8845" TerminateWhen="Me.IsInInstance" /> <!-- Enters instance if not already inside -->
