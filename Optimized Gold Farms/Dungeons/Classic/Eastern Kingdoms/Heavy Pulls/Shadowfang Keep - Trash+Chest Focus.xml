@@ -26,8 +26,8 @@
 	</Vendors>
 
 	<Mailboxes>
-		<Mailbox X="947.6384" Y="-1460.586" Z="62.53422" /> <!-- Chillwind Camp Vendor -->
-		<Mailbox X="1843.379" Y="1584.786" Z="93.73871"/> <!-- Deathknell Mailbox -->
+		<Mailbox X="947.6384" Y="-1460.586" Z="62.53422" UsableWhen="Me.IsAlliance" /> <!-- Chillwind Camp Vendor -->
+		<Mailbox X="1843.379" Y="1584.786" Z="93.73871" UsableWhen="Me.IsAlliance" /> <!-- Deathknell Mailbox -->
 	</Mailboxes>
 
 	<AvoidMobs>
@@ -229,7 +229,8 @@ catch(Exception) {}"/>
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" />
 				<If Condition="Me.FreeBagSlots &lt;= 15" >
 					<!-- add mailbox and maybe more vendors -->
-					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" />
+					<MoveTo Nav="Fly" X="948.2783" Y="-1461.225" Z="62.47374" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="False" DoSell="False" />
 				</If>
 			</If>
 
