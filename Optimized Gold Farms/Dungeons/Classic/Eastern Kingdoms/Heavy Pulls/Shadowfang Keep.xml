@@ -51,7 +51,7 @@ catch(Exception) {}"/>
 <While Condition="true" >
 	<While Condition="(Me.MapId == 0)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(-235.0984, 1561.617, 76.88466)) &gt; 50 " >
-			<CustomBehavior File="Message" Text="Moving to Shadowfang Keep Location." LogColor="Lime" />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Shadowfang Keep Location.&quot;);" />
 			<MoveTo Nav="Fly" DestName="Shadowfang Keep" X="-241.0746" Y="1545.169" Z="78.49139" />
 			<CustomBehavior File="ForcedDismount" />
 		</If>
@@ -149,7 +149,7 @@ catch(Exception) {}"/>
 			<CustomBehavior File="MyCTM" X="-139.974" Y="2164.758" Z="94.04194" />
 			<MoveTo X="-183.5272" Y="2164.163" Z="97.39023" /> <!-- Crates to shortcut jump down -->
 			<CustomBehavior File="MyCTM" X="-207.9089" Y="2174.063" Z="79.76516" />
-			<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Reset Instance.&quot;);" />
 			<MoveTo X="-228.3606" Y="2109.246" Z="76.88993" />
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" /> 
 			<CustomBehavior File="MyCTM" X="-230.1028" Y="2103.024" Z="76.8905" TerminateWhen="!Me.IsInInstance" />
@@ -168,18 +168,19 @@ catch(Exception) {}"/>
 			</If>
 				
 			<If Condition="Me.IsAlliance" >
-				<CustomBehavior File="Message" Text="Moving to Wallace the Blind" LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Wallace the Blind to sell and repair.&quot;);" />
 				<CustomBehavior File="FlyTo" DestName="Wallace the Blind" X="1170.844" Y="2062.825" Z="5.249851" />
 				<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" />
 				<If Condition="Me.FreeBagSlots &lt;= 15" >
 					<!-- add mailbox and maybe more vendors -->
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: We're still low on bagslots, going to the closest mailbox.&quot;);" />
 					<MoveTo Nav="Fly" X="948.2783" Y="-1461.225" Z="62.47374" />
 					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="False" DoSell="False" />
 				</If>
 			</If>
 
 			<If Condition="Me.IsHorde" >
-				<CustomBehavior File="Message" Text="Moving to Deathknell Mailbox" LogColor="Lime" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail in Deathknell.&quot;);" />
 				<CustomBehavior File="FlyTo" DestName="Deathknell" X="1843.379" Y="1584.786" Z="93.73871" />
 				<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
 			</If>
