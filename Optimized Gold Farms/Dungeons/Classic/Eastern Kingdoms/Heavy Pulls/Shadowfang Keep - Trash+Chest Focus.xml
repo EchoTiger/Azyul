@@ -20,8 +20,9 @@
 	</ProtectedItems>
 		
 	<Vendors>
-		<Vendor Name="Leonard Porter" Entry="12942" Type="Repair" X="949.8846" Y="-1435.649" Z="62.59014" /> <!-- Chillwind Camp Vendor -->
-		<Vendor Name="Archibald Kava" Entry="2113" Type="Repair" X="1860.848" Y="1568.365" Z="94.31361"/> <!-- Deathknell Vendor-->
+		<Vendor Name="Wallace the Blind" Entry="3534" Type="Repair" Nav="Fly" X="1168.14" Y="2063.05" Z="5.396649" UsableWhen="Me.IsAlliance" />
+		<Vendor Name="Leonard Porter" Entry="12942" Type="Repair" X="949.8846" Y="-1435.649" Z="62.59014" UsableWhen="Me.IsAlliance" /> <!-- Chillwind Camp Vendor -->
+		<Vendor Name="Archibald Kava" Entry="2113" Type="Repair" X="1860.848" Y="1568.365" Z="94.31361" UsableWhen="Me.IsHorde" /> <!-- Deathknell Vendor-->
 	</Vendors>
 
 	<Mailboxes>
@@ -52,9 +53,9 @@ catch(Exception) {}"/>
 		<While Condition="(Me.MapId == 0)" >
 			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
 			<CustomBehavior File="Message" Text="Moving to Shadowfang Keep Location." LogColor="Lime" />
-			<MoveTo DestName="Shadowfang Keep" X="-233.8452" Y="1564.721" Z="76.8845" />
+			<MoveTo Nav="Fly" DestName="Shadowfang Keep" X="-233.8452" Y="1564.721" Z="76.8845" />
 			<CustomBehavior File="ForcedDismount" />
-			<MoveTo X="-233.6329" Y="1564.978" Z="76.88455" />
+			<MoveTo  X="-233.6329" Y="1564.978" Z="76.88455" />
 			<CustomBehavior File="MyCTM" X="-232.8982" Y="1572.929" Z="76.8845" TerminateWhen="Me.IsInInstance" /> <!-- Enters instance if not already inside -->
 			<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.IsInInstance" />
 		</While>
