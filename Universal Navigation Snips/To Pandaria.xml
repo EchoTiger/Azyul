@@ -5,20 +5,20 @@
 <CustomBehavior File="RunCode" Code="System.Net.WebClient webClient = new System.Net.WebClient();
 string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/To%20Pandaria.xml&quot;);
 string localData = File.ReadAllText(ProfileManager.XmlLocation);
-if (localData.Contains(remoteData)) {Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;No new nav updates detected, continuing profile.&quot;); }
+if (localData.Contains(remoteData)) {Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;No new nav updates detected, continuing profile.&quot;); }
 else {
-Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;A newer version of the universal navigation is availible.  Applying update...&quot;);
+Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;A newer version of the universal navigation is availible.  Applying update...&quot;);
 string updatedData = System.Text.RegularExpressions.Regex.Replace(localData, &quot;&lt;!-- Universal Nav Start --&gt;(.*?)&lt;!-- Universal Nav End --&gt;&quot;, remoteData, System.Text.RegularExpressions.RegexOptions.Singleline);
 File.WriteAllText(ProfileManager.XmlLocation, updatedData);
-Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Update Complete! Reloading profile...&quot;);
+Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Update Complete! Reloading profile...&quot;);
 ProfileManager.LoadNew(ProfileManager.XmlLocation);
 }" />
 <If Condition="(Me.MapId != 870 &amp;&amp; !Me.IsInInstance) || (Me.ZoneId == 7078 || Me.ZoneId == 7004)" >
-	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Pandaria!&quot;);" />
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Pandaria!&quot;);" />
 	<If Condition="Me.IsAlliance" >
 		<!-- /// Mage Logic /// -->
 		<If Condition="SpellManager.CanCast(132621)" > <!-- Checks if we're a mage and spell is fully learnt+castable -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're a Mage! Teleporting to Pandaria.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're a Mage! Teleporting to Pandaria.&quot;);" />
 			<CustomBehavior File="ForcedDismount" />
 			<While Condition="Me.MapId != 870" >
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(132621);" WaitTime="500" />
@@ -28,14 +28,14 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		<!-- /// Item Teleportation Logic.   Teleport to area that has portals (Shrine/etc) or teleport to destination /// -->
 		<If Condition="!(Me.MapId == 870 || Me.ZoneId == 1519) &amp;&amp; ((Me.HearthstoneAreaId == 6484 || Me.HearthstoneAreaId == 5148 || Me.HearthstoneAreaId == 5150) &amp;&amp; ((HasItem(6948) &amp;&amp; !WoWSpell.FromId(8690).Cooldown) || SpellManager.CanCast(556) || (HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown)))" > <!-- If we can Hearth/Recall to the Shrine or Dalaran -->
 			<If Condition="HasItem(6948) &amp;&amp; !WoWSpell.FromId(8690).Cooldown" > <!-- Hearth -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, attempting to Hearth!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, attempting to Hearth!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="!(Me.MapId == 870 || Me.MapId == 1519)" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="500" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 870 || Me.ZoneId == 1519 || Me.ZoneId == 1519 || Me.Combat || !Me.IsCasting" />
 				</While>
 			<ElseIf Condition="SpellManager.CanCast(556)" > <!-- Astral Recall -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Astrall Recall!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Astrall Recall!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="!(Me.MapId == 870 || Me.ZoneId == 1519)" >
 					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(556);" WaitTime="500" />
@@ -43,7 +43,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</While>
 			</ElseIf>
 			<ElseIf Condition="HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown" > <!-- Innkeeper's Daughter -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, using Innkeeper's Daughter!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, using Innkeeper's Daughter!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="!(Me.MapId == 870 || Me.ZoneId == 1519)" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="500" />
@@ -54,14 +54,14 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		</If>
 		<!-- /// Generic Logic /// -->
 		<If Condition="Me.ZoneId == 4080" > <!-- Isle of Quel'Danas -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Isle of Quel'Danas, using the Flight Master to Stormwind.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Isle of Quel'Danas, using the Flight Master to Stormwind.&quot;);" />
 			<MoveTo DestName="Ohura, the flight master." X="13009.74" Y="-6910.024" Z="9.584676" />
 			<CustomBehavior File="InteractWith" MobId="26560" X="13012.39" Y="-6911.189" Z="9.586156" WaitTime="850" />
 			<CustomBehavior File="WaitTimer" WaitTime="600000" TerminateWhen="!Me.OnTaxi" />
 			<CustomBehavior File="Misc\RunLua" Lua="TaxiButton1:Click();" WaitTime="1000" />
 		</If>
 		<If Condition="(Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525)" > <!-- Instanced Draenei Zone, shares MapId with Outlands so we're using ZoneId -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're a in Azure/Bloodmyst Isle, using the Exodar portal to Darnassus.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're a in Azure/Bloodmyst Isle, using the Exodar portal to Darnassus.&quot;);" />
 			<MoveTo DestName="The Vault of Lights, portal to Darnassus." X="-4040.254" Y="-11569.56" Z="-138.4055" />
 			<While Condition="Me.MapId != 1" >
 				<CustomBehavior File="InteractWith" MobId="207996" X="-4047.53" Y="-11569.33" Z="-138.4902" TerminateWhen="Me.MapId == 1" />
@@ -69,7 +69,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</While>
 		</If>
 		<If Condition="Me.MapId == 530" > <!-- Outlands -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Outlands, using the Shattrath portal to Stormwind.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Outlands, using the Shattrath portal to Stormwind.&quot;);" />
 			<MoveTo Nav="Fly" X="-1892.768" Y="5392.862" Z="-12.4277" />
 			<While Condition="Me.MapId != 0" >
 				<CustomBehavior File="InteractWith" MobId="183325" X="-1894.189" Y="5387.939" Z="-12.42825" TerminateWhen="Me.MapId == 0" />
@@ -77,7 +77,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</While>
 		</If>
 		<If Condition="Me.MapId == 646" > <!-- Deepholm -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Deepholm, using the portal for Stormwind.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Deepholm, using the portal for Stormwind.&quot;);" />
 			<MoveTo Nav="Fly" X="968.8371" Y="573.3804" Z="-44.5801" />
 			<While Condition="Me.MapId != 0" >
 				<CustomBehavior File="InteractWith" MobId="205272" X="965.25" Y="577.229" Z="-44.2583" TerminateWhen="Me.MapId == 0" />
@@ -85,7 +85,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</While>
 		</If>
 		<If Condition="Me.MapId == 1116 || Me.ZoneId == 7078" > <!-- Draenor, ZoneId applies for all Alliance Garrisons. -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Draenor, using the Ashran portal to Stormwind.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Draenor, using the Ashran portal to Stormwind.&quot;);" />
 			<If Condition="Me.ZoneId != 7332 || Me.ZoneId != 7333 || Me.ZoneId != 6941" > <!-- Not in Ashran -->
 				<If Condition="Me.BagItems.FirstOrDefault(h => h.Entry == 110560).CooldownTimeLeft.TotalMilliseconds == 0 &amp;&amp; Me.ZoneId != 7078" > <!-- Can cast G-Hearth and Outside of Garrison. -->
 					<While Condition="Me.ZoneId != 7078" >
@@ -120,7 +120,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 
 		<If Condition="Me.MapId == 1" > <!-- Kalimdor -->
 			<If Condition="Me.X &gt;= 4555 &amp;&amp; Me.MapId == 1" >  <!-- Northern Kalimdor, Rut'theran Village to Stormwind -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Northern Kalimdor, using the Rut'theran Village boat to Stormwind.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Northern Kalimdor, using the Rut'theran Village boat to Stormwind.&quot;);" />
 				<MoveTo Nav="Fly" X="8181.456" Y="1002.158" Z="7.062304" />
 				<CustomBehavior File="ForcedDismount" />
 				<CustomBehavior File="UseTransport" TransportId="176310"
@@ -132,7 +132,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				/>
 			</If>
 			<If Condition="Me.X &lt; 4555 &amp;&amp; Me.MapId == 1" > <!-- Southern Kalimdor, Ratchet to Booty Bay -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Kalimdor, using the Ratchet boat to Booty Bay.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Kalimdor, using the Ratchet boat to Booty Bay.&quot;);" />
 				<MoveTo Nav="Fly" X="-995.5635" Y="-3827.638" Z="5.630721" />
 				<CustomBehavior File="UseTransport" TransportId="20808"
 					WaitAtX="-996.8669" WaitAtY="-3826.07" WaitAtZ="5.536246" 
@@ -145,7 +145,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		</If>
 		<If Condition="Me.MapId == 571" > <!-- Northerend -->
 			<If Condition="Me.Y &gt;= 3000 &amp;&amp; Me.MapId == 571" > <!-- Western Northerend, Valiance Keep to Stormwind -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Western Northerend, using the Valiance Keep boat to Stormwind.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Western Northerend, using the Valiance Keep boat to Stormwind.&quot;);" />
 				<MoveTo Nav="Fly" X="2232.81" Y="5135.507" Z="5.343734" />
 				<CustomBehavior File="ForcedDismount" />
 				<DisableBehavior Name="FlightPath" />
@@ -159,7 +159,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				<EnableBehavior Name="FlightPath" />
 			</If>
 			<If Condition="Me.Y &lt; 3000 &amp;&amp; Me.Y &gt; -2200 &amp;&amp; Me.MapId == 571" > <!-- Middle Northerend, Dalaran to Stormwind -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Mid-Northerend, using the Dalaran portal to Stormwind.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Mid-Northerend, using the Dalaran portal to Stormwind.&quot;);" />
 				<MoveTo Nav="Fly" X="5719.701" Y="722.6963" Z="641.6025" />
 				<While Condition="Me.MapId != 0" >
 					<CustomBehavior File="InteractWith" MobId="190960" X="5719.184" Y="719.6667" Z="641.7278" TerminateWhen="Me.MapId == 0" />
@@ -167,7 +167,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</While>
 			</If>
 			<If Condition="Me.Y &lt;= -2200 &amp;&amp; Me.MapId == 571" > <!-- Eastern Northerend, Valgarde Port to Stormwind -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Northerend, using the Valgarde Port boat to Menethil Harbor.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Northerend, using the Valgarde Port boat to Menethil Harbor.&quot;);" />
 				<MoveTo X="589.7719" Y="-5100.328" Z="5.261706" />
 				<DisableBehavior Name="FlightPath" />
 				<CustomBehavior File="UseTransport" TransportId="181688"
@@ -181,7 +181,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</If>
 		</If>
 		<If Condition="Me.MapId == 0" > <!-- Eastern Kingdoms -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Kingdoms, using the Stormwind portal to Paw'don Village.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Kingdoms, using the Stormwind portal to Paw'don Village.&quot;);" />
 			<MoveTo Nav="Fly" X="-8197.712" Y="529.0491" Z="117.1995" />
 			<CustomBehavior File="InteractWith" MobId="215457" X="-8194.479" Y="528.1129" Z="117.2901" />
 		</If>
@@ -190,7 +190,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 	<If Condition="Me.IsHorde" >
 		<!-- /// Mage Logic /// -->
 		<If Condition="SpellManager.CanCast(132627)" > <!-- Checks if we're a mage and spell is fully learnt+castable -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're a Mage! Teleporting to Pandaria.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're a Mage! Teleporting to Pandaria.&quot;);" />
 			<CustomBehavior File="ForcedDismount" />
 			<While Condition="Me.MapId != 870" >
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(132627);" WaitTime="500" />
@@ -200,14 +200,14 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		<!-- /// Item Teleportation Logic.   Teleport to area that has portals (Shrine/etc) or teleport to destination /// -->
 		<If Condition="!(Me.MapId == 870 || Me.ZoneId == 1637) &amp;&amp; ((Me.HearthstoneAreaId == 6519 || Me.HearthstoneAreaId == 5170 || Me.HearthstoneAreaId == 5168) &amp;&amp; ((HasItem(6948) &amp;&amp; !WoWSpell.FromId(8690).Cooldown) || SpellManager.CanCast(556) || (HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown)))" > <!-- If we can Hearth/Recall to the Shrine or Dalaran -->
 			<If Condition="HasItem(6948) &amp;&amp; !WoWSpell.FromId(8690).Cooldown" > <!-- Hearth -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, attempting to Hearth!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, attempting to Hearth!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="!(Me.MapId == 870 || Me.ZoneId == 1637)" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="500" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 870 || Me.ZoneId == 1637 || Me.Combat || !Me.IsCasting" />
 				</While>
 			<ElseIf Condition="SpellManager.CanCast(556)" > <!-- Astral Recall -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Astrall Recall!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Astrall Recall!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="!(Me.MapId == 870 || Me.ZoneId == 1637)" >
 					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(556);" WaitTime="500" />
@@ -215,7 +215,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</While>
 			</ElseIf>
 			<ElseIf Condition="HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown" > <!-- Innkeeper's Daughter -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, using Innkeeper's Daughter!&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, using Innkeeper's Daughter!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
 				<While Condition="!(Me.MapId == 870 || Me.ZoneId == 1637)" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="500" />
@@ -226,7 +226,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		</If>
 		<!-- /// Generic Logic /// -->
 		<If Condition="Me.ZoneId == 6455 || Me.ZoneId == 3430 || Me.ZoneId == 3487 || Me.ZoneId == 3433" > <!-- Sunstrider Isle, Eversong Woods, Silvermoon City, Ghostlands -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in northen Eastern Kingdoms.  Using the Orb of Translocation to enter Undercity.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in northen Eastern Kingdoms.  Using the Orb of Translocation to enter Undercity.&quot;);" />
 			<MoveTo DestName="Inner Sanctum" X="10039.12" Y="-7000.733" Z="61.95295" />
 			<While Condition="Me.ZoneId != 85" >
 				<CustomBehavior File="InteractWith" MobId="184502" X="10032.36" Y="-7000.288" Z="61.30979" WaitTime="2500" />
@@ -234,7 +234,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</While>
 		</If>
 		<If Condition="Me.ZoneId == 4080" > <!-- Isle of Quel'Danas -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Isle of Quel'Danas, using the Flight Master to Undercity.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Isle of Quel'Danas, using the Flight Master to Undercity.&quot;);" />
 			<MoveTo DestName="Ohura, the flight master." X="13009.74" Y="-6910.024" Z="9.584676" />
 			<CustomBehavior File="InteractWith" MobId="26560" X="13012.39" Y="-6911.189" Z="9.586156" WaitTime="850" />
 			<CustomBehavior File="WaitTimer" WaitTime="600000" TerminateWhen="!Me.OnTaxi" />
@@ -242,7 +242,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		</If>
 		<If Condition="Me.MapId == 571" > <!-- Northerend -->
 			<If Condition="Me.Y &gt;= 3000 &amp;&amp; Me.MapId == 571" > <!-- Western Northerend, Warsong Hold to Orgrimmar -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Western Northerend, using the Warsong Hold zeppelin to Orgrimmar.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Western Northerend, using the Warsong Hold zeppelin to Orgrimmar.&quot;);" />
 				<CustomBehavior File="FlyTo" X="2946.323" Y="6069.065" Z="147.4432" />
 				<DisableBehavior Name="FlightPath" />
 				<CustomBehavior File="MyCTM" X="2829.086" Y="6176.118" Z="128.0574" />
@@ -258,7 +258,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				<EnableBehavior Name="FlightPath" />
 			</If>
 			<If Condition="Me.Y &lt; 3000 &amp;&amp; Me.Y &gt; -2200 &amp;&amp; Me.MapId == 571" > <!-- Middle Northerend, Dalaran to Orgrimmar -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Northerend, using the Dalaran portal to Orgrimmar.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Northerend, using the Dalaran portal to Orgrimmar.&quot;);" />
 				<MoveTo Nav="Fly" X="5923.893" Y="589.9543" Z="639.8708" />
 				<While Condition="Me.MapId != 1" >
 					<CustomBehavior File="InteractWith" MobId="191009" X="5925.874" Y="593.1875" Z="640.5933" TerminateWhen="Me.MapId == 1" />
@@ -266,7 +266,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</While>
 			</If>
 			<If Condition="Me.Y &lt;= -2200 &amp;&amp; Me.MapId == 571" > <!-- Eastern Northerend, Vengeance Landing to Thunder Bluff -->
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Northerend, using the Vengeance Landing zeppelin to Undercity.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Northerend, using the Vengeance Landing zeppelin to Undercity.&quot;);" />
 				<MoveTo Nav="Fly" X="1974.872" Y="-6098.991" Z="67.15174" />
 				<DisableBehavior Name="FlightPath" />
 				<CustomBehavior File="UseTransport" TransportId="181689"
@@ -280,7 +280,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</If>
 		</If>
 		<If Condition="Me.MapId == 530" > <!-- Outlands -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Outlands, using the Shattrath portal to Orgrimmar.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Outlands, using the Shattrath portal to Orgrimmar.&quot;);" />
 			<MoveTo Nav="Fly" X="-1898.129" Y="5395.677" Z="-12.42727" />
 			<While Condition="Me.MapId != 1" >
 				<CustomBehavior File="InteractWith" MobId="183323" X="-1899.45" Y="5393.01" Z="-12.42832" TerminateWhen="Me.MapId == 1" />
@@ -288,7 +288,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</While>
 		</If>
 		<If Condition="Me.MapId == 1116 || Me.ZoneId == 7004" > <!-- Draenor -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Draenor, using the Ashran portal to Orgrimmar.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Draenor, using the Ashran portal to Orgrimmar.&quot;);" />
 			<If Condition="Me.ZoneId != 7332 || Me.ZoneId != 7333 || Me.ZoneId != 6941" > <!-- Not in Ashran -->
 				<If Condition="Me.BagItems.FirstOrDefault(h => h.Entry == 110560).CooldownTimeLeft.TotalMilliseconds == 0 &amp;&amp; Me.ZoneId != 7004" > <!-- Can cast G-Hearth and Outside of Garrison. -->
 					<While Condition="Me.ZoneId != 7004" >
@@ -322,7 +322,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</While>
 		</If>
 		<If Condition="Me.MapId == 646" > <!-- Deepholm -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Deepholm, using the portal for Orgrimmar.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Deepholm, using the portal for Orgrimmar.&quot;);" />
 			<MoveTo Nav="Fly" X="991.8574" Y="458.2401" Z="-44.27066" />
 			<While Condition="Me.MapId != 1" >
 				<CustomBehavior File="InteractWith" MobId="205273" X="990.495" Y="454.457" Z="-44.2477" TerminateWhen="Me.MapId == 1" />
@@ -335,7 +335,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		</If> -->
 		<If Condition="Me.MapId == 0" > <!-- Eastern Kingdoms -->
 			<If Condition="Me.X &gt;= -5275 &amp;&amp; Me.MapId == 0" >
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Kingdoms, using the Undercity Zeppelin to Kalimdor.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Kingdoms, using the Undercity Zeppelin to Kalimdor.&quot;);" />
 				<MoveTo Nav="Fly" X="2067.433" Y="286.6822" Z="97.03147" />
 				<CustomBehavior File="ForcedDismount" />
 				<MoveTo WaitAtX="2061.913" WaitAtY="365.0161" WaitAtZ="82.51536" />
@@ -347,7 +347,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 					GetOffX="1840.091" GetOffY="-4392.189" GetOffZ="135.233" />
 			</If>
 			<If Condition="Me.X &lt; -5275 &amp;&amp; Me.MapId == 0" >
-				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Kingdoms, going to Booty Bay to take the boat to Ratchet.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Eastern Kingdoms, going to Booty Bay to take the boat to Ratchet.&quot;);" />
 				<MoveTo Nav="Fly" X="-14284.1" Y="558.6824" Z="8.684329" />
 				<CustomBehavior File="ForcedDismount" />
 				<CustomBehavior File="UseTransport" TransportId="20808"
@@ -359,12 +359,12 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</If>
 		</If>
 		<If Condition="Me.MapId == 1" > <!-- Kalimdor -->
-			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Kalimdor, using the Orgrimmar portal to Honeydew Village.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We're in Kalimdor, using the Orgrimmar portal to Honeydew Village.&quot;);" />
 			<MoveTo Nav="Fly" X="2014.179" Y="-4695.949" Z="28.53738" />
 			<CustomBehavior File="InteractWith" MobId="215424" X="2014.819" Y="-4700.274" Z="28.62439" />
 		</If>
 	</If>
-	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We have reached Northerend!&quot;);" />
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;We have reached Northerend!&quot;);" />
 </If>
 <!-- Universal Nav End -->
 </QuestOrder>
