@@ -76,7 +76,7 @@ Task.Run (
 
 
 	<If Condition="!HasItem(32768) &amp;&amp; !Me.KnowsSpell(41252)" > <!-- Ravenlord -->
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Ravenlord.. Let's get it!&quot;);" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Looks like we don't have the Ravenlord.. Let's get it!&quot;);" />
 		
 		<If Condition="(Me.MapId != 530 &amp;&amp; !Me.IsInInstance) || (Me.ZoneId == 7078 || Me.ZoneId == 7004) || (Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525 || Me.ZoneId == 3557 || Me.ZoneId == 3524 || Me.ZoneId == 6456 || Me.ZoneId == 3525)" > <!-- This is a mess, but is required since some zones share the MapId with Outlands.  Zones such as Isle of Quel'danas. -->
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: Going to Outlands!&quot;);" />
@@ -530,7 +530,7 @@ Task.Run (
 			
 			<!-- Vendor Routine -->
 			<If Condition="(Me.FreeBagSlots &lt; 17)" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 				<CustomBehavior File="MyCTM" X="-3361.962" Y="4752.981" Z="-101.3954" />
 
 				<!-- Bot ignores this vendor.
@@ -578,7 +578,7 @@ Task.Run (
 	</If>
 
 	<If Condition="!HasItem(44151) &amp;&amp; !Me.KnowsSpell(59996)" > <!-- Blue-Proto Drake -->
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Blue Proto-Drake.. Let's get it!&quot;);" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Looks like we don't have the Blue Proto-Drake.. Let's get it!&quot;);" />
 		<DisableBehavior Name="FlightPath" />
 
 		<If Condition="(Me.MapId != 571 &amp;&amp; !Me.IsInInstance) || (Me.ZoneId == 7078 || Me.ZoneId == 7004)" >

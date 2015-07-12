@@ -98,7 +98,7 @@
 </If>
 
 <If Condition="(Me.MapId == 600)" >
-	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Bot started inside of instance. Moving out.&quot;);" />
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
 	<RunTo X="-515.2283" Y="-500.0652" Z="11.0231"  />
 	<CustomBehavior File="MyCTM" X="-525.4516" Y="-474.7986" Z="10.98291" TerminateWhen="Me.MapId != 600" />
 </If>
@@ -111,7 +111,7 @@
 		<DisableBehavior Name="Death" />
 		<DisableBehavior Name="Vendor" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
-        <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died, returning to instance.&quot;);" />
+        <CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Looks like we died, returning to instance.&quot;);" />
 		<RunTo X="4436.68" Y="-1981.023" Z="159.1304" />
 		<RunTo X="4762.348" Y="-2044.422" Z="229.3993" />
 		<RunTo X="4774.139" Y="-2032.782" Z="229.3779" />
@@ -124,13 +124,13 @@
 <!-- Declare movement buff and defensive hooks -->
 	<If Condition="Me.Class == WoWClass.Mage" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!WoWSpell.FromId(11426).Cooldown &amp;&amp; Me.KnowsSpell(11426))" > <!-- (!WoWSpell.FromId(1953).Cooldown) ||  -->
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
 			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(11426);" />
 		</CustomBehavior>
 	</If>
 	<If Condition="Me.Class == WoWClass.Priest" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive)	&amp;&amp; ((!WoWSpell.FromId(139).Cooldown &amp;&amp; !Me.HasAura(139)) || (!WoWSpell.FromId(17).Cooldown &amp;&amp; !Me.HasAura(17) &amp;&amp; Me.KnowsSpell(17) &amp;&amp; !Me.HasAura(6788)))" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
 			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(139); CastSpellByID(17);" />
 		</CustomBehavior>
 	</If>
@@ -140,7 +140,7 @@
 	</If> May use Burning Rush here -->
 	<If Condition="Me.Class == WoWClass.Druid" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((Me.HasAura(768) &amp;&amp; !WoWSpell.FromId(1850).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(22812).Cooldown))" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
 			<If Condition="Me.HealthPercent &lt;= 20" >
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(22812);" />
 			</If>
@@ -149,7 +149,7 @@
 	</If>
 	<If Condition="Me.Class == WoWClass.Rogue" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(2983).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(5277).Cooldown))" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
 			<If Condition="Me.HealthPercent &lt;= 20" >
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(5277);" />
 			</If>
@@ -158,13 +158,13 @@
 	</If>
 	<If Condition="Me.Class == WoWClass.Monk" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (Me.HealthPercent &lt;= 70 &amp;&amp; !WoWSpell.FromId(115072).Cooldown)" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
 			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(115072);" />
 		</CustomBehavior>
 	</If>
 	<If Condition="Me.Class == WoWClass.Hunter" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(13809).Cooldown) || (Me.HealthPercent &lt;= 30 &amp;&amp; !WoWSpell.FromId(19263).Cooldown))" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
 			<If Condition="Me.HealthPercent &lt;= 30" >
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(19263);" />
 			</If>
@@ -176,7 +176,7 @@
 	</If>
 	<If Condition="Me.Class == WoWClass.Shaman" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!Me.HasAura(2645))" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
 			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2645);" />
 		</CustomBehavior>
 	</If>
@@ -186,7 +186,7 @@
 	</If>  Perhaps use of Enraged healing. -->
 	<If Condition="Me.Class == WoWClass.Paladin" >
 		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)) || (Me.HealthPercent &lt;= 10 &amp;&amp; !WoWSpell.FromId(633).Cooldown))" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
 			<If Condition="Me.HealthPercent &lt;= 10" >
 				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(633);" />
 			</If>
@@ -206,7 +206,7 @@
 				<CustomBehavior File="MyCTM" X="4772.893" Y="-2036.125" Z="229.3822" />
 			</If>
 			<If Condition="Me.Location.Distance(new WoWPoint(4775.771, -2045.906, 229.4198)) &gt;= 150" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Heading to Instance.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Heading to Instance.&quot;);" />
 				<CustomBehavior File="FlyTo" X="4922.837" Y="-2046.354" Z="279.7324" />
 				<CustomBehavior File="MyCTM"  X="4868.813" Y="-2034.23" Z="250.0712" />
 				<CustomBehavior File="MyCTM" X="4815.126" Y="-2040.735" Z="245.4605" />
@@ -372,7 +372,7 @@
 				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
 					
 				<If Condition="(Me.FreeBagSlots &lt; 17)" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Skipping wait since we're going to the vendor.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
 					<Else>
 						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 					</Else>
@@ -384,7 +384,7 @@
 			<!-- Force Town Sell -->
 			<If Condition="(Me.FreeBagSlots &lt; 17)" >
 				<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 				<If Condition="Me.Location.Distance(new WoWPoint(4775.771, -2045.906, 229.4198)) &lt;= 150" > <!-- If just came out instance -->
 					<MoveTo X="4781.665" Y="-2042.948" Z="229.428" />
 					<MoveTo X="4844.876" Y="-2034.98" Z="250.072" />

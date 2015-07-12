@@ -506,7 +506,7 @@ Task.Run (
 			</If>
 
 			<If Condition="Me.IsDead" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died, returning to instance.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Looks like we died, returning to instance.&quot;);" />
 				<CustomBehavior File="RunMacro" Macro="/script RepopMe()" />
 				<CustomBehavior File="MyCTM" X="993.4387" Y="717.355" Z="158.3469" />
 				<CustomBehavior File="MyCTM" X="1014.872" Y="656.0049" Z="156.6734" /> 
@@ -520,7 +520,7 @@ Task.Run (
 
 	<!-- Vendor Routine -->
 	<If Condition="(Me.FreeBagSlots &lt; 17) &amp;&amp; Me.IsAlive" >
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 		<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 			<CustomBehavior File="WaitTimer" WaitTime="750" />
 			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />

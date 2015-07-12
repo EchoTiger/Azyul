@@ -124,10 +124,16 @@ catch(Exception) {}"/>
 				<MoveTo X="-250.0064" Y="2307.767" Z="95.86662" />
 				<MoveTo X="-220.5468" Y="2305.947" Z="94.67667" />
 				<MoveTo X="-231.4664" Y="2293.339" Z="95.86674" />
-				<If Condition="(Object(75293, o =&gt; o.Distance &lt;= 45) != null) || (Object(75298, o =&gt; o.Distance &lt;= 45) != null)" >
+				<If Condition="(Object(75293, o =&gt; o.Distance &lt;= 45) != null)" >
 					<MoveTo X="-210.563" Y="2292.351" Z="95.89753" /> <!-- Grab a patrolling mob and wait for LoS -->
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Halting pull to loot nearby chest.&quot;);" />
 					<CustomBehavior File="WaitTimer" WaitTime="2500" GoalText="Waiting for LoS: {TimeRemaining}" />
+					<EnableBehavior Name="Combat" />
+					<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
+					<DisableBehavior Name="Combat" />
+				</If>
+				<If Condition="(Object(75298, o =&gt; o.Distance &lt;= 45) != null)" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Halting pull to loot nearby chest.&quot;);" />
 					<EnableBehavior Name="Combat" />
 					<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 					<CustomBehavior File="InteractWith" MobId="75298" WaitForNpcs="false" X="-236.728" Y="2299.61" Z="94.6765" />

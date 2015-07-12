@@ -39,7 +39,7 @@
 
 <If Condition="(Me.MapId == 540)" > <!-- Shattered Halls -->
 	<DisableBehavior Name="Pull" />
-	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Bot started inside of instance. Moving out.&quot;);" />
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
 	<RunTo X="-41.76889" Y="-21.58352" Z="-13.68016" />
 	<CustomBehavior File="MyCTM" X="-42.50687" Y="-27.9767" Z="-13.50718" />
 	<CustomBehavior File="WaitTimer" WaitTime="15000" />
@@ -187,7 +187,7 @@
 
 
 			<If Condition="(Me.FreeBagSlots &lt; 17)" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Skipping wait since we're going to the vendor.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
 				<Else>
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				</Else>
@@ -205,7 +205,7 @@
 	<If Condition="(Me.FreeBagSlots &lt; 17)" >
 		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 <!-- Force town sell. -->
 		<CustomBehavior File="MyCTM" X="-310.3208" Y="3079.639" Z="-3.630647" />
 		<CustomBehavior File="InteractWith" MobId="184912" X="-309.6581" Y="3078.957" Z="-3.545551" />

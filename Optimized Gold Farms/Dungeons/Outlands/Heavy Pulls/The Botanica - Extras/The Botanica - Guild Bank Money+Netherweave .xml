@@ -176,7 +176,7 @@
 
 
 			<If Condition="(Me.FreeBagSlots &lt; 17)" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Skipping wait since we're going to the vendor.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
 				<Else>
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				</Else>
@@ -218,7 +218,7 @@
 			<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="3500" Lua="DynSell();" />
 			<Else>
 				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Vendor mount not detected.&quot;);" />
 			</Else>
 		</If>
 

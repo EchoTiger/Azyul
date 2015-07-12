@@ -47,7 +47,7 @@
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
 
 <If Condition="(Me.MapId == 670)" >
-	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Bot started inside of instance. Moving out.&quot;);" />
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
 	<RunTo X="-624.7546" Y="-185.558" Z="272.062" />
 	<CustomBehavior File="MyCTM" X="-627.3558" Y="-175.5583" Z="272.1352" />
 				<CustomBehavior File="WaitTimer" WaitTime="5500" />
@@ -74,7 +74,7 @@
 		<DisableBehavior Name="Vendor" />
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 670)" />
 		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
-        <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died, returning to instance.&quot;);" />
+        <CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Looks like we died, returning to instance.&quot;);" />
         <RunTo X="-4057.114" Y="-3449.378" Z="281.2569" />
         <CustomBehavior File="GoThruPortal" Timeout="30000" X="-4052.985" Y="-3448.013" Z="283.4044" />
 		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 670" />
@@ -86,7 +86,7 @@
 	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
 		<While Condition="(Me.FreeBagSlots &gt;= 17)">
 			<If Condition="!(Me.MapId == 670)" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Instance Location.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Instance Location.&quot;);" />
 				<CustomBehavior File="FlyTo" X="-4064.753" Y="-3452.003" Z="287.0812" ArrivalTolerance="15" />
 				<If Condition="Me.Mounted" >
 					<CustomBehavior File="MyCTM" X="-4035.729" Y="-3440.709" Z="283.5173" TerminateWhen="Me.MapId == 670" />
@@ -227,7 +227,7 @@
 				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
 
 				<If Condition="(Me.FreeBagSlots &lt; 17)" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Skipping wait since we're going to the vendor.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
 				<Else>
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 				</Else>
@@ -239,7 +239,7 @@
 			</If>
 		</While>
 		<While Condition="(Me.FreeBagSlots &lt; 17)">
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
 			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 				<CustomBehavior File="WaitTimer" WaitTime="750" />
@@ -249,7 +249,7 @@
 				<CustomBehavior File="WaitTimer" WaitTime="5500" />
 				<Else>
 					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Vendor mount not detected.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Vendor mount not detected.&quot;);" />
 				</Else>
 			</If>
 
@@ -264,7 +264,7 @@
 					</SetVendor>
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
 					<If Condition="(Me.FreeBagSlots &lt; 20)">
-						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: You're still under 20 bagslots after selling. Moving to mail.&quot;);" />
+						<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;You're still under 20 bagslots after selling. Moving to mail.&quot;);" />
 						<CustomBehavior File="FlyTo" X="-3669.523" Y="-5285.55" Z="48.18324" />
 						<CustomBehavior File="WaitTimer" WaitTime="500" />
 						<SetMailbox>
@@ -284,7 +284,7 @@
 					</SetVendor>
 					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
 					<If Condition="(Me.FreeBagSlots &lt; 20)">
-						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: You're still under 20 bagslots after selling. Moving to mail.&quot;);" />
+						<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;You're still under 20 bagslots after selling. Moving to mail.&quot;);" />
 						<CustomBehavior File="FlyTo" X="-5361.541" Y="-2951.45" Z="324.0776" />
 						<SetMailbox>
 							<Mailboxes>

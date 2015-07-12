@@ -60,7 +60,7 @@
 <While Condition="true" >
 	<If Condition="!(Me.MapId == 657) &amp;&amp; (Me.FreeBagSlots &gt;= 17)" >
 		<If Condition="Me.Location.Distance(new WoWPoint(-11414.14, -2282.823, 640.3994)) &gt;= 150" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Instance Hub&quot;)" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to instance hub.&quot;);" />
 			<CustomBehavior File="FlyTo" X="-11065.5" Y="-2100.08" Z="253.8059" />
 			<CustomBehavior File="MyCTM" X="-11473.84" Y="-2305.7" Z="604.3729" />
 			<CustomBehavior File="MyCTM" X="-11499.96" Y="-2298.713" Z="607.1202" />
@@ -221,7 +221,7 @@
 			print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))
 			" />
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Skipping wait since we're going to the vendor.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
 			<Else>
 				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
 			</Else>
@@ -240,7 +240,7 @@
 		</If>
 		
 		<If Condition="(Me.FreeBagSlots &lt; 17)" >
-			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 			<CustomBehavior File="FlyTo" X="-9457.354" Y="-959.7435" Z="123.8492" />
 			<SetVendor>
 				<Vendors>

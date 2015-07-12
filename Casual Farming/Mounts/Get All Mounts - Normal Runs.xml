@@ -76,7 +76,7 @@ Task.Run (
 
 
 	<If Condition="!HasItem(13335) &amp;&amp; !Me.KnowsSpell(17481)" > <!-- Deathcharger -->
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Deathcharger.. Let's get it!&quot;);" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Looks like we don't have the Deathcharger.. Let's get it!&quot;);" />
 		<If Condition="(Me.MapId == 329)" >
 			<RunTo X="3590.338" Y="-3642.218" Z="138.4868" />
 			<CustomBehavior File="MyCTM" X="3588.635" Y="-3638.869" Z="138.4745" />
@@ -605,7 +605,7 @@ Task.Run (
 				</If>
 
 				<If Condition="Me.FreeBagSlots &lt;= 4" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+					<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 					<RunTo X="3173.351" Y="-4039.884" Z="105.4206" />
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" DoMail="true" />
 				</If>
@@ -613,7 +613,7 @@ Task.Run (
 	</If>
 
 	<If Condition="!HasItem(63040) &amp;&amp; !Me.KnowsSpell(88742)" > <!-- Drake of the North Wind -->
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Drake of the North Wind.. Let's get it!&quot;);" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Looks like we don't have the Drake of the North Wind.. Let's get it!&quot;);" />
 		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
 	
 		<If Condition="(Me.MapId != 1 &amp;&amp; !Me.IsInInstance) || (Me.ZoneId == 7078 || Me.ZoneId == 7004)" >
@@ -996,7 +996,7 @@ Task.Run (
 		<While Condition="!HasItem(63040)" >
 			<If Condition="!(Me.MapId == 657) &amp;&amp; (Me.FreeBagSlots &gt; 10)" >
 				<If Condition="Me.Location.Distance(new WoWPoint(-11414.14, -2282.823, 640.3994)) &gt;= 150" >
-					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Instance Hub&quot;);" />
+					<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to instance hub.&quot;);" />;" />
 					<CustomBehavior File="FlyTo" X="-11065.5" Y="-2100.08" Z="253.8059" />
 					<CustomBehavior File="MyCTM" X="-11473.84" Y="-2305.7" Z="604.3729" />
 					<CustomBehavior File="MyCTM" X="-11499.96" Y="-2298.713" Z="607.1202" />
@@ -1142,7 +1142,7 @@ Task.Run (
 				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
 			</If>
 			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 				<RunTo X="-11486.42" Y="-2305.467" Z="605.1804" />
 				<CustomBehavior File="FlyTo" X="-9407.074" Y="-909.1765" Z="112.5413" />
 				<SetVendor>
@@ -1161,7 +1161,7 @@ Task.Run (
 	</If>
 
 	<If Condition="!HasItem(63040) &amp;&amp; !Me.KnowsSpell(88742)" > <!-- Vitreous Stone Drake -->
-		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we don't have the Vitreous Stone Drake.. Let's get it!&quot;);" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Looks like we don't have the Vitreous Stone Drake.. Let's get it!&quot;);" />
 		<If Condition="Me.MapId != 646" >
 			<If Condition="(Me.IsHorde &amp;&amp; Me.MapId != 1) || (Me.IsAlliance &amp;&amp; Me.MapId != 0)" >
 					<If Condition="Me.Class == WoWClass.Mage &amp;&amp; Me.IsAlliance" >
@@ -1599,7 +1599,7 @@ Task.Run (
 
 			<!-- Vendor Routine -->
 			<If Condition="(Me.FreeBagSlots &lt; 17) &amp;&amp; Me.IsAlive" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell, Repair and Mail.&quot;);" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 				<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
 					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
