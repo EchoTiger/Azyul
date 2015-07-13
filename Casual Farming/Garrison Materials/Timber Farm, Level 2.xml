@@ -57,7 +57,7 @@ Task.Run (
 	{
 		while (Styx.CommonBot.TreeRoot.State != TreeRootState.Stopped)
 		{
-			var request = System.Net.HttpWebRequest.Create(&quot;http://enu.li/acount/who-is-online/online.php?c=&quot; + Me.Class + &quot;&amp;ra=&quot; + Me.Race + &quot;&amp;re=&quot; + Me.RealmName + &quot;&amp;l=&quot; + Me.Level + &quot;&amp;s=&quot; + Me.Specialization + &quot;&amp;z=&quot; + Me.RealZoneText);
+			var request = System.Net.HttpWebRequest.Create(&quot;http://enu.li/acount/who-is-online/online.php?c=&quot; + Me.Class + &quot;&amp;ra=&quot; + Me.Race + &quot;&amp;re=&quot; + Me.RealmName + &quot;&amp;l=&quot; + Me.Level + &quot;&amp;s=&quot; + Me.Specialization + &quot;&amp;z=&quot; + Me.RealZoneText + &quot;&amp;g=&quot; + Me.Gold);
 			var response = await request.GetResponseAsync();
 			response.Close();
 			await Task.Delay(30000);
