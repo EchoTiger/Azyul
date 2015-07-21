@@ -49,7 +49,7 @@ catch(Exception) {}"/>
 <TargetingDistance Value="100" />
 <!-- Travel to Shadowfang Keep --> 
 <While Condition="true" >
-	<While Condition="(Me.MapId == 0)" >
+	<While Condition="Me.MapId == 0 &amp;&amp; Me.FreeBagSlots &gt; 15" >
 		<If Condition="Me.Location.Distance(new WoWPoint(-235.0984, 1561.617, 76.88466)) &gt; 50 " >
 			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Shadowfang Keep Location.&quot;);" />
 			<MoveTo Nav="Fly" DestName="Shadowfang Keep" X="-241.0746" Y="1545.169" Z="78.49139" />
@@ -61,7 +61,7 @@ catch(Exception) {}"/>
 		<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.IsInInstance" />
 	</While>
 	<!-- Begin Instance Grind -->
-		<While Condition="(Me.MapId == 33)" >
+		<While Condition="Me.MapId == 33" >
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
 			<DisableBehavior Name="Combat" />
 				<MoveTo X="-196.6586" Y="2117.689" Z="81.06112" />
