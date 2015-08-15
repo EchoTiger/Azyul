@@ -41,14 +41,14 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			<If Condition="HasItem(6948) &amp;&amp; !WoWSpell.FromId(8690).Cooldown" > <!-- Hearth -->
 				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, attempting to Hearth!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
-				<While Condition="Me.MapId != 0 || Me.MapId != 870 || Me.MapId != 571" >
+				<While Condition="!(Me.MapId == 0 || Me.MapId == 870 || Me.MapId == 571)" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="500" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || Me.MapId == 870 || Me.MapId == 571 || Me.Combat || !Me.IsCasting" />
 				</While>
 			<ElseIf Condition="SpellManager.CanCast(556)" > <!-- Astral Recall -->
 				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster, but our Hearthstone is on cooldown.  Attempting to Astrall Recall!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
-				<While Condition="Me.MapId != 0 || Me.MapId != 870 || Me.MapId != 571" >
+				<While Condition="!(Me.MapId == 0 || Me.MapId == 870 || Me.MapId == 571)" >
 					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(556);" WaitTime="500" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || Me.MapId == 870 || Me.MapId == 571 || Me.Combat || !Me.IsCasting" />
 				</While>
@@ -56,7 +56,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			<ElseIf Condition="HasItem(64488) &amp;&amp; !WoWSpell.FromId(94719).Cooldown" > <!-- Innkeeper's Daughter -->
 				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Hearthing would be faster to reach our destination, using Innkeeper's Daughter!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
-				<While Condition="Me.MapId != 0 || Me.MapId != 870 || Me.MapId != 571" >
+				<While Condition="!(Me.MapId == 0 || Me.MapId == 870 || Me.MapId == 571)" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="500" />
 					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || Me.MapId == 870 || Me.MapId == 571 || Me.Combat || !Me.IsCasting" />
 				</While>
