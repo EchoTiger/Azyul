@@ -184,7 +184,12 @@
 		<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="!Me.Combat" />
 		
 
-		<CustomBehavior File="InteractWith" MobId="43612" WaitForNpcs="false" X="-11018.66" Y="-1256.589" Z="13.47913" /> <!-- High Prophet Barim -->
+		<CustomBehavior File="KillUntilComplete" ImmediatelySwitchToHighestPriorityTarget="true" X="-11018.6" Y="-1261.16" Z="13.32593" TerminateWhen="Unit(43612).IsDead != null" >
+			<PursuitList>
+				<PursueUnit Id="43927" Priority="9999" />
+				<PursueUnit Id="43612" Priority="1" />
+			</PursuitList>
+		</CustomBehavior>
 
 		<MoveTo X="-10948.5" Y="-1399.79" Z="35.48973" /> <!-- Last boss -->
 		<CustomBehavior File="InteractWith"	MobId="44819" InteractByLooting="true" X="-10948.5" Y="-1399.79" Z="35.48973" />
