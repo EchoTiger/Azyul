@@ -25,16 +25,16 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			<If Condition="Me.BagItems.FirstOrDefault(h => h.Entry == 110560).CooldownTimeLeft.TotalMilliseconds &gt; 120000" >
 				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Garrison Hearth is on cooldown!  Traveling to Draenor manually...&quot;);" />
 			</If>
-			<If Condition="Me.BagItems.FirstOrDefault(h => h.Entry == 110560).CooldownTimeLeft.TotalMilliseconds &lt;= 120000" >
+			<If Condition="Me.BagItems.FirstOrDefault(h => h.Entry == 110560).CooldownTimeLeft.TotalMilliseconds &lt;= 120000 &amp;&amp; Me.BagItems.FirstOrDefault(h => h.Entry == 110560).CooldownTimeLeft.TotalMilliseconds &gt; 0" >
 				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Garrison Hearth is on cooldown! Waiting until it's off...&quot;);" />
 				<CustomBehavior File="WaitTimer" WaitTime="130000" TerminateWhen="Me.BagItems.FirstOrDefault(h => h.Entry == 110560).CooldownTimeLeft.TotalMilliseconds == 0" />
 			</If>
 			<If Condition="Me.BagItems.FirstOrDefault(h => h.Entry == 110560).CooldownTimeLeft.TotalMilliseconds == 0" >
 				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Navigator]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Using our Garrison Hearthstone to reach Draenor!&quot;);" />
 				<CustomBehavior File="ForcedDismount" />
-				<While Condition="(Me.ZoneId != 7078 || Me.ZoneId != 7004)" >
+				<While Condition="!(Me.ZoneId == 7078 || Me.ZoneId == 7004)" >
 					<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(110560);" WaitTime="500" />
-					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="(Me.ZoneId != 7078 || Me.ZoneId != 7004) || Me.Combat || !Me.IsCasting" />
+					<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.ZoneId == 7078 || Me.ZoneId == 7004) || Me.Combat || !Me.IsCasting" />
 				</While>
 			</If>
 		</If>
