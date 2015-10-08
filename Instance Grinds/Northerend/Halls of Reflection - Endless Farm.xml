@@ -48,6 +48,9 @@
 <Blackspots>
 </Blackspots>
 
+<Blacklist>
+ 	<Mob Name="The Lich King" Id="36954" Flags="Pull,Combat" /> 
+</Blacklist>
 
 
 
@@ -193,15 +196,14 @@ catch(Exception) {}"/>
 
 		<!-- Lich King Encounter -->
 		
-		<If Condition="Me.IsAlliance" >
-			<CustomBehavior File="InteractWith" MobId="36955" GossipOptions="1" X="5577.04" Y="2235.75" Z="733.0127" />
-			<CustomBehavior File="EncounterUtility" BossId="36954" AddId1="37069" AddId2="36940" AddId3="36941" AuraId="69857" FollowMobId1="36955" />
-		</If>
-		
-		<If Condition="Me.IsHorde" >
-			<CustomBehavior File="InteractWith" MobId="37554" GossipOptions="1" X="5577.04" Y="2235.75" Z="733.0127" />
-			<CustomBehavior File="EncounterUtility" BossId="36954" AddId1="37069" AddId2="36940" AddId3="36941" AuraId="69857" FollowMobId1="37554" />
-		</If>
+			<If Condition="Me.IsAlliance" >
+				<CustomBehavior File="InteractWith" MobId="36955" GossipOptions="1" X="5577.04" Y="2235.75" Z="733.0127" />
+				<CustomBehavior File="Escort" MobId="36955" EscortUntil="DestinationReached"  X="5577.04" Y="2235.75" Z="733.0127" EscortDestX="5255.84" EscortDestY="1668.89" EscortDestZ="784.3005" />
+			</If>
+			<If Condition="Me.IsHorde" >
+				<CustomBehavior File="InteractWith" MobId="37554" GossipOptions="1" X="5577.04" Y="2235.75" Z="733.0127" />
+				<CustomBehavior File="Escort" MobId="37554" EscortUntil="DestinationReached"  X="5577.04" Y="2235.75" Z="733.0127" EscortDestX="5255.84" EscortDestY="1668.89" EscortDestZ="784.3005" />
+			</If>
 		
 		<!-- End Lich King Encounter -->
 		
