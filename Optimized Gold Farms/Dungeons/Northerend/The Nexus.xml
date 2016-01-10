@@ -1,0 +1,55 @@
+<HBProfile>
+<Name>The Nexus - Remote Version</Name>
+
+<QuestOrder>
+	<!--
+	Here you can protect items, delete items, or pick which items to deposit into the guild bank.
+	Simply input the item name into the array where  it says example.
+	You can add more items by adding a comma and wrapping the word with quotes  {"ex1", "ex2", "ex3"}
+	You can also disable and enable depositing of gold by changing the "true" to "false"
+	-->
+	<CustomBehavior File="RunCode" Type="Definition">
+	<![CDATA[
+		string[] ProtectedItems = {"example", "example 2"};
+		string[] DepositItems = {"example", "example 2"};
+		string[] DeleteItems = {"example", "example 2"};
+
+		bool DepositGold = false;
+	]]>
+	</CustomBehavior> 
+
+	<CustomBehavior File="RunCode" > <!-- Do we have the behaviors? -->
+		<![CDATA[
+			if (!File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs") || !File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs")) {
+				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Downloading quest behaviors... your bot will automatically restart!");
+				System.Net.WebClient Client = new System.Net.WebClient ();
+				Client.DownloadFile("http://enu.li/Snips/LoadRemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs");
+				Client.DownloadFile("http://enu.li/Snips/RemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs");
+				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Restarting bot!");
+				System.Diagnostics.Process.Start(Utilities.AssemblyDirectory + "\\Honorbuddy.exe", "/autostart");
+				TreeRoot.Shutdown();
+			}
+		]]>
+	</CustomBehavior>
+
+
+	<CustomBehavior File="LoadRemoteCode" />
+
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ProfileSettings.xml" /> <!-- Activate Profile Settings -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/UniversalNav/ToNorthrend.xml" /> <!-- Go to Northrend -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/DefensiveHooks.xml" /> <!-- Activate Defensive Manuvers -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
+
+
+	<While Condition="true" >
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonEnter/TheNexus.xml" /> <!-- Enter TheNexus -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonRun/TheNexus.xml" /> <!-- Run TheNexus -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/GuildBank.xml" /> <!-- Guild Bank Stuff -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/DeleteItems.xml" /> <!-- Delete Items -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonExit/TheNexus.xml" /> <!-- Exit TheNexus -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonVendor/ItemsAndMounts.xml" /> <!-- Vendor by Mounts/Items/Etc -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonVendor/TheNexus.xml" /> <!-- Vendor by TheNexus Vendors -->
+	</While>
+
+</QuestOrder>
+</HBProfile>

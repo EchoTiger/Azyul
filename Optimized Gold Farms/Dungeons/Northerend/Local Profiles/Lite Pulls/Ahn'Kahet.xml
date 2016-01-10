@@ -1,0 +1,409 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo
+// Farm zone: Ahn'Kahet: The Old Kingdom
+// Farm mobs: Full Run
+///////////////////////////////////////////////////////////////////////
+
+<Name>Ahn'Kahet - Gold Optimized Farm - Medium Pulls [$Rev$]</Name>
+
+
+
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+</ProtectedItems>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+	<Mailbox X="3474.537" Y="2005.075" Z="64.83272" />
+	<Mailbox X="3827.806" Y="1533.658" Z="89.69917" />
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+	<Mob Name="Channel Image Target" Entry="30413" />
+	<Mob Name="Ahn'Kahar Swarm Egg" Entry="30172" />
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+
+
+
+<QuestOrder>
+
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
+
+<If Condition="(Me.MapId == 619)" >
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+	<MoveTo X="339.9675" Y="-1105.186" Z="63.50312" />
+	<CustomBehavior File="MyCTM" X="332.6724" Y="-1110.448" Z="69.77464" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+</If>
+
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToNorthrend.xml"/>
+
+<!-- ALLIANCE CHECK - RIDING -->
+<If Condition="(!HasSpell(54197))  &amp;&amp; (Me.IsAlliance)" >
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Training Cold Weather Flying.&quot;);" />
+				
+	<If Condition="Me.Gold &gt;= 401" >
+		<RunTo X="2274.391" Y="5174.106" Z="11.17985" />
+		<CustomBehavior File="InteractWith"  MobId="35133" WaitTime="1000" CollectionDistance="50" X="2274.391" Y="5174.106" Z="11.17985" />
+		<CustomBehavior File="ForceTrainRiding" MobId="35133" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
+	</If>
+</If>
+<!-- HORDE CHECK - RIDING -->
+<If Condition="(!HasSpell(54197)) &amp;&amp; (Me.IsHorde)">
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Training Cold Weather Flying.&quot;);" />
+
+	<!-- Elevator -->
+	<If Condition="(Me.Z &lt; 190)" >
+		<RunTo X="2869.177" Y="6215.224" Z="104.2853" />
+		<CustomBehavior File="UseTransport" TransportId="188521" 
+					WaitAtX="2869.177" WaitAtY="6215.224" WaitAtZ="104.2853"
+					GetOffX="2880.96" GetOffY="6225.813" GetOffZ="208.7495" 
+					TransportStartX="2877.649" TransportStartY="6223.188" TransportStartZ="104.8859" 
+					TransportEndX="2892.18" TransportEndY="6236.337" TransportEndZ="208.908"
+					StandOnX="2878.604" StandOnY="6223.707" StandOnZ="105.3792"  />
+ 	</If>
+	<If Condition="Me.Gold &gt;= 401" >
+		<RunTo X="2773.588" Y="6144.316" Z="208.7535" />
+		<CustomBehavior File="InteractWith"  MobId="35135" WaitTime="1000" CollectionDistance="50" X="2773.588" Y="6144.316" Z="208.7535" />
+		<CustomBehavior File="ForceTrainRiding" MobId="35135" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
+	</If>
+</If>
+
+<!--Flying notification -->
+<If Condition="(!HasSpell(54197))">
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" StopOnContinue="True" Text="You don't have enough gold to train Cold Weather Flying!\nYou must have Cold Weather Flying to continue." />
+</If>
+
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+
+<!-- Declare movement buff and defensive hooks -->
+	<If Condition="Me.Class == WoWClass.Mage" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!WoWSpell.FromId(11426).Cooldown &amp;&amp; Me.KnowsSpell(11426))" > <!-- (!WoWSpell.FromId(1953).Cooldown) ||  -->
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(11426);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Priest" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive)	&amp;&amp; ((!WoWSpell.FromId(139).Cooldown &amp;&amp; !Me.HasAura(139)) || (!WoWSpell.FromId(17).Cooldown &amp;&amp; !Me.HasAura(17) &amp;&amp; Me.KnowsSpell(17) &amp;&amp; !Me.HasAura(6788)))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(139); CastSpellByID(17);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.Warlock" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving)" >
+		</CustomBehavior>
+	</If> May use Burning Rush here -->
+	<If Condition="Me.Class == WoWClass.Druid" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((Me.HasAura(768) &amp;&amp; !WoWSpell.FromId(1850).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(22812).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(22812);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(1850);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Rogue" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(2983).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(5277).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(5277);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2983);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Monk" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (Me.HealthPercent &lt;= 70 &amp;&amp; !WoWSpell.FromId(115072).Cooldown)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(115072);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Hunter" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(13809).Cooldown) || (Me.HealthPercent &lt;= 30 &amp;&amp; !WoWSpell.FromId(19263).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 30" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(19263);" />
+			</If>
+			<If Condition="Me.HasAura(77769)" >
+				<CustomBehavior File="Misc\RunLua" Lua="CancelUnitBuff(&quot;player&quot;,&quot;Trap Launcher&quot;);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(13809);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Shaman" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!Me.HasAura(2645))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2645);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.DeathKnight" >
+	</If> Hmm.... -->
+	<!-- <If Condition="Me.Class == WoWClass.Warrior" >
+	</If>  Perhaps use of Enraged healing. -->
+	<If Condition="Me.Class == WoWClass.Paladin" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)) || (Me.HealthPercent &lt;= 10 &amp;&amp; !WoWSpell.FromId(633).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 10" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(633);" />
+			</If>
+			<If Condition="!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)" >
+				<CustomBehavior File="Misc\RunLua" Lua="TargetNearestEnemy(); CastSpellByID(20271);" />
+			</If>
+		</CustomBehavior>
+	</If>
+<!-- END Declare movement buff hooks -->
+
+<While Condition="true" >
+
+	<If Condition="!(Me.MapId == 619)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(3700.083, 2147.2, 35.71764)) &gt; 100 ||  Me.Location.Distance(new WoWPoint(3650.257, 2052.651, 1.787716)) &gt; 120">	
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Heading to Instance.&quot;);" />
+			<CustomBehavior File="FlyTo" X="3694.782" Y="2294.216" Z="224.947" />
+			<CustomBehavior File="FlyTo" X="3721.947" Y="2145.785" Z="52.86993" />
+			<RunTo X="3751.606" Y="2130.644" Z="46.54139" />
+			<RunTo X="3709.008" Y="2151.853" Z="37.00673" />
+			<RunTo X="3683.676" Y="2117.896" Z="26.34149" />
+		</If>
+	</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 619)" >
+				<MoveTo X="3644.882" Y="2040.105" Z="1.787762" />
+				<CustomBehavior File="MyCTM" X="3639.663" Y="2027.607" Z="2.518004" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<!--Instance Navigation Start -->
+			<If Condition="(Me.MapId == 619)" >
+
+				<CustomBehavior File="RunMacro" Macro="/sw clear" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw play" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<DisableBehavior Name="Combat" />
+
+				<MoveTo X="452.1915" Y="-1034.2" Z="29.7841" />
+
+				<MoveTo X="504.5302" Y="-1037.181" Z="30.35317" />
+				<MoveTo X="481.3041" Y="-1011.203" Z="30.3519" />
+				<MoveTo X="496.138" Y="-972.3867" Z="30.35218" />
+
+
+				<DisableBehavior Name="Combat" />
+					<RunTo X="490.2238" Y="-1004.301" Z="30.3529" />
+					<RunTo X="550.4992" Y="-1003.801" Z="37.93991" />
+				<EnableBehavior Name="Combat" />
+
+
+				<DisableBehavior Name="Combat" /> //
+					<RunTo X="565.9688" Y="-1015.411" Z="37.9385" />
+					<RunTo X="549.9363" Y="-973.0606" Z="37.93736" />
+				<EnableBehavior Name="Combat" />
+
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="548.456" Y="-913.4817" Z="22.44852" />
+
+
+				<DisableBehavior Name="Combat" />
+					<RunTo X="559.6146" Y="-872.9589" Z="22.69209" />
+					<RunTo X="603.268" Y="-910.7541" Z="22.44853" />
+					<RunTo X="631.9755" Y="-880.8329" Z="22.44851" />
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="658.3256" Y="-875.9893" Z="22.87346" />
+
+
+				<DisableBehavior Name="Combat" />
+					<RunTo X="683.3986" Y="-864.4448" Z="9.431746" />
+					<RunTo X="661.5158" Y="-830.2519" Z="-3.274278" />
+					<RunTo X="607.4096" Y="-844.7309" Z="-3.272071" />
+				<EnableBehavior Name="Combat" />
+
+
+				<DisableBehavior Name="Combat" /> //
+					<RunTo X="563.2316" Y="-812.1907" Z="-3.272071" />
+					<RunTo X="622.6695" Y="-788.5225" Z="-2.747248" />
+					<RunTo X="695.9979" Y="-786.883" Z="17.97837" />
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="689.3633" Y="-783.4963" Z="17.97832" />
+			    <CustomBehavior File="WaitTimer" WaitTime="1000" />
+			    <CustomBehavior File="InteractWith" MobId="193094" WaitForNpcs="false" X="692.4652" Y="-783.9114" Z="18.02638" />
+
+			    <MoveTo X="659.7007" Y="-720.4401" Z="17.97827" />
+
+
+			    <CustomBehavior File="WaitTimer" WaitTime="1000" />
+			    <CustomBehavior File="InteractWith" MobId="193093" WaitForNpcs="false" X="655.7294" Y="-719.0492" Z="18.02638" />
+
+			    
+			    <MoveTo X="534.402" Y="-804.5891" Z="4.70351" />
+			    <MoveTo X="527.983" Y="-848.8638" Z="11.16894" /> <!-- First boss. -->
+			    <CustomBehavior File="WaitTimer" WaitTime="5000"/>
+
+			    <MoveTo X="548.4804" Y="-862.8893" Z="10.4542" />
+
+			    
+				<MoveTo X="553.6356" Y="-879.3311" Z="3.400094" />
+				<MoveTo X="526.212" Y="-872.262" Z="-2.293729" />
+				<MoveTo X="511.0645" Y="-838.8326" Z="-16.76061" />
+				<MoveTo X="513.7563" Y="-821.7189" Z="-21.95565" />
+				<MoveTo X="493.6754" Y="-802.0946" Z="-24.28858" />
+				<MoveTo X="504.3292" Y="-789.9609" Z="-24.07919" />
+
+
+			   <DisableBehavior Name="Combat" />
+					<RunTo X="501.8446" Y="-768.6512" Z="-31.65459" />
+					<RunTo X="464.9075" Y="-765.8749" Z="-31.67026" />
+					<RunTo X="472.6755" Y="-763.9572" Z="-31.67026" />
+				<EnableBehavior Name="Combat" />
+
+
+			    <DisableBehavior Name="Combat" /> //
+					<RunTo X="473.0989" Y="-739.9521" Z="-31.67026" />
+					<RunTo X="445.6839" Y="-717.188" Z="-27.78134" />
+					<RunTo X="387.9178" Y="-699.7448" Z="-16.181" />
+					<RunTo X="360.9338" Y="-718.9777" Z="-16.181" />
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="375.0802" Y="-707.8635" Z="-16.181" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+
+
+			   <DisableBehavior Name="Combat" />
+					<RunTo X="404.0738" Y="-780.0747" Z="-31.65137" />
+					<RunTo X="422.2006" Y="-801.1339" Z="-31.67037" />
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="531.2178" Y="-732.3764" Z="-30.65046" />
+				<MoveTo X="525.0428" Y="-578.1506" Z="27.30646" />
+
+
+			   <DisableBehavior Name="Combat" />
+					<RunTo X="524.7744" Y="-543.7261" Z="26.42578" />
+					<RunTo X="483.6364" Y="-503.1805" Z="26.35603" />
+					<RunTo X="522.2768" Y="-450.9974" Z="26.35603" />
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="516.2031" Y="-354.2806" Z="45.94658" />
+				<MoveTo X="523.0122" Y="-309.9897" Z="60.57951" />
+
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw pause" />
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />  
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+					<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+					<Else>
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+					</Else>
+				</If>
+				<CustomBehavior File="MyCTM" X="523.33" Y="-299.5683" Z="68.36054" />
+			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			    <MoveTo X="3766.764" Y="2059.474" Z="19.73799" />
+			    <MoveTo X="3773.85" Y="2135.026" Z="32.66523" />
+			</If>
+			<!--Instance Coordnation Complete -->
+		</While>
+					<!-- Force town sell. -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<RunTo X="3732.481" Y="2124.925" Z="41.21062" />
+			<RunTo X="3750.99" Y="2132.471" Z="46.86636" />
+			<RunTo X="3746.578" Y="2151.833" Z="50.47399" />
+			<RunTo X="3709.337" Y="2140.31" Z="55.26149" />
+			
+				<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+					<CustomBehavior File="WaitTimer" WaitTime="2000" />
+					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+				</If>
+
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<If Condition="Me.IsAlliance">
+					<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
+					<CustomBehavior File="FlyTo" X="3493.006" Y="2001.989" Z="65.05994" />
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+					<RunTo X="3514.716" Y="2000.593" Z="64.89097" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Sentinel Amberline" Entry="27055" Type="Repair" X="3514.701" Y="1999.156" Z="64.8862" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<ClearVendor />
+					<RunTo X="3476.981" Y="2004.02" Z="64.86568" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+				</If>
+				<If Condition="Me.IsHorde" >
+					<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
+					<CustomBehavior File="FlyTo" X="3608.472" Y="2025.38" Z="167.7302" />
+					<CustomBehavior File="FlyTo" X="3845.488" Y="1572.724" Z="86.69903" />
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+					<SetVendor>
+						<Vendor>
+							<Vendor Name="Siegesmith Gulda" Entry="27019" Type="Repair" X="3845.488" Y="1572.724" Z="86.69914" />
+						</Vendor>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+					<ClearVendor />
+					<RunTo X="3825.224" Y="1533.922" Z="89.72506" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail -->
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<CustomBehavior File="FlyTo" X="3766.959" Y="1540.819" Z="189.2775" />
+				</If>
+
+				<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+			</If>
+
+		</If>
+</While>
+</QuestOrder>
+</HBProfile>

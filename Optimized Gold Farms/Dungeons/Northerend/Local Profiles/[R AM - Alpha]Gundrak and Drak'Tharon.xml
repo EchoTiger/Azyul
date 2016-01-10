@@ -1,0 +1,2032 @@
+<HBProfile>
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo
+// Farm zone: Drak'Tharon Keep and Gundrak
+// Farm mobs: Partial randomized runs.
+///////////////////////////////////////////////////////////////////////
+
+<Name>Drak'Tharon and Gundrak - Optimized Gold Farm - R, AM [$Rev$]</Name>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+<MinDurability>-1</MinDurability>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+</ProtectedItems>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+<Blacklist>
+   <Mob Name="Drakkari Frenzy" Id="29834" Flags="Pull,Combat" />
+   <Mob Name="Small Frog" Id="13321" Flags="Pull,Combat" /> 
+</Blacklist>
+
+<QuestOrder>	
+<If Condition="(Me.MapId == 600)" >
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+	<RunTo X="-515.2283" Y="-500.0652" Z="11.0231"  />
+	<CustomBehavior File="MyCTM" X="-525.4516" Y="-474.7986" Z="10.98291" TerminateWhen="Me.MapId != 600" />
+				<CustomBehavior File="WaitTimer" WaitTime="1100" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
+</If>
+<If Condition="(Me.MapId == 604)" >
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+	<MoveTo X="1889.699" Y="643.147" Z="176.6776" />
+	<CustomBehavior File="MyCTM" X="1897.259" Y="657.8406" Z="176.6371" />
+				<CustomBehavior File="WaitTimer" WaitTime="1100" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
+</If>
+<!-- 
+HOW TO: A quick documentation of adding your default settings.
+
+        At the top of the code below, you should see the words:   [[Define Variables]].
+        In this section, the defaults of the ASM are set.   You can change any of these variables to your preference.
+
+
+ATTRIBUTES:
+
+        RangeFrameSound1
+                This code tells the game that ASM is active so more than one ASM will not appear on the game screen.
+                DO NOT CHANGE THIS VALUE.
+
+        RangeFrameSound2
+                0 = Run the dungeon as normal difficulty.
+                1 = Run the dungeon as heroic difficulty.
+                After the dungeon has been ran as heroic, ASM will automatically switch it back to normal.
+
+        RangeFrameLocked
+                # = The minimum bagslots before the bot starts the vendor routine.
+
+        RangeFrameRadarPoint
+                # = The minimum bagslots before the bot starts the mailing routine.
+                The mailing routine is only checked after the vendor routine is completed.
+
+        RangeFrameRadarX
+                1 = The bot will run the dungeon with Lite pulls.
+                2 = The bot will run the dungeon with Medium pulls.
+                3 = The bot will run the dungeon with Heavy pulls.
+                This value cannot be set to 0.  If it is set to 0, the bot won't run the dungeon properly.
+
+        RangeFrameRadarY
+                0 = The bot will sell using Honorbuddy's routine.  All protected items are protected, and any vendor rules apply.
+                1 = The bot will sell using a Lua script.  Everything in the player's bags WILL BE sold except for Frostweave IF it's checked to be deposited.
+
+        InfoFramePoint
+                0 = The bot will not deposit any obtained Frostweave that's obtained while running the profile.
+                1 = The bot will deposit any obtained Frostweave that's obtained.  Also, the Frostweave will be protected from the Lua sell script.
+                The deposit routine is called once the vendoring routine starts.
+
+        InfoFrameX
+                0 = The bot will NOT deposit all of its gold into the mobile guild.
+                1 = The bot will deposit all of its gold into the mobile guild bank.
+                The deposit routine is called once the vendoring routine starts.
+
+        azgundrakset
+                # = A chance percentage that the Gundrak will be ran after the vendoring routine of the last dungeon is completed.
+
+        azdraktharonset
+                # = A chance percentage that the Drak'Tharon will be ran after the vendoring routine of the last dungeon is completed.
+
+After any of these settings are applied, you must reload the profile for them to take effect.
+Please note also: If you make a change and it doesn't show up on ASM - then don't worry, the change HAS been made.
+-->
+<CustomBehavior File="Misc\RunLua" Lua="
+        --[[Define Variables]]
+                RangeFrameSound2 = 0;
+                RangeFrameLocked = 17;
+                RangeFrameRadarPoint = 20;
+                RangeFrameRadarX = 3;
+                RangeFrameRadarY = 0;
+                InfoFramePoint = 0;
+                InfoFrameX = 0;
+                azgundrakset = 50;
+                azdraktharonset = 50;
+
+        if (RangeFrameSound1 == nil or RangeFrameSound1 == &apos;&apos;) then
+                RangeFrameSound1 = 1;
+                SLASH_HEALBOT1 = '/ashow';
+
+
+                --[[Functions]]
+                        --[[Azyul Show]]
+                                function HideAzyul_OnClick()
+                                        AzyulManager:Hide();
+                                        print(&quot;|cFF3399FF[Azyul]|r: Azyul Manager is now hidden.  Type  /ashow to bring it back up.&quot;)
+                                end
+                                function SlashCmdList.HEALBOT()
+                                        AzyulManager:Show();
+                                end
+                        --[[Dungeon Properties]]
+                                function HeroicMode_OnClick()
+                                        if (HeroicMode:GetChecked() == true) then
+                                                RangeFrameSound2 = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran as Heroic.&quot;)
+                                        else
+                                                RangeFrameSound2 = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran as Normal.&quot;)
+                                        end
+                                end
+                                function HeavyPull_OnClick() 
+                                        if (HeavyPull:GetChecked() == true) then
+                                                RangeFrameRadarX = 3;
+                                                MediumPull:SetChecked(false);
+                                                LitePull:SetChecked(false);
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Heavy Pulls.&quot;)
+                                        else
+                                                HeavyPull:SetChecked(true);
+                                        end
+                                end
+                                function MediumPull_OnClick() 
+                                        if (MediumPull:GetChecked() == true) then
+                                                RangeFrameRadarX = 2;
+                                                HeavyPull:SetChecked(false);
+                                                LitePull:SetChecked(false);
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Medium Pulls.&quot;)
+                                        else
+                                                MediumPull:SetChecked(true);
+                                        end
+                                end
+                                function LitePull_OnClick() 
+                                        if (LitePull:GetChecked() == true) then
+                                                RangeFrameRadarX = 1;
+                                                MediumPull:SetChecked(false);
+                                                HeavyPull:SetChecked(false);
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Lite Pulls.&quot;)
+                                        else
+                                                LitePull:SetChecked(true);
+                                        end
+                                end
+                        --[[Bagslot Manager]]
+                                function SellEverything_OnClick()
+                                        if (SellEverything:GetChecked() == true) then
+                                                RangeFrameRadarY = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will now sell everything using a Lua script.&quot;)
+                                        else
+                                                RangeFrameRadarY = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will no longer sell using the Lua script.&quot;)
+                                        end
+                                end
+                                function DepositGold_OnClick()
+                                        if (DepositGold:GetChecked() == true) then
+                                                InfoFrameX = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will now use the Mobile Guild Bank to deposit the Gold we obtain.&quot;)
+                                        else
+                                                InfoFrameX = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will no longer deposit the Gold we obtain.&quot;)
+                                        end
+                                end
+                                function DepositCloth_OnClick()
+                                        if (DepositCloth:GetChecked() == true) then
+                                                InfoFramePoint = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will now use the Mobile Guild Bank to deposit the Cloth we obtain.&quot;)
+                                        else
+                                                InfoFramePoint = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will no longer deposit the Cloth we obtain.&quot;)
+                                        end
+                                end
+
+
+
+                --[[Create Master Frame]]
+                                AzyulManager = CreateFrame(&quot;StatusBar&quot;, nil, UIParent)
+                                AzyulManager:SetStatusBarTexture(&quot;Interface\\DialogFrame\\UI-DialogBox-Background&quot;)
+                                AzyulManager:SetWidth(425)
+                                AzyulManager:SetHeight(120)
+                                AzyulManager:SetPoint(&quot;CENTER&quot;,UIParent,&quot;CENTER&quot;)
+                                AzyulManager:SetMovable(true);
+                                AzyulManager:EnableMouse(true);
+                                AzyulManager:SetScript(&quot;OnUpdate&quot;, function () 
+                                        AzyulManager:SetScript(&quot;OnMouseUp&quot;, function()
+                                                AzyulManager:StopMovingOrSizing();
+                                        end);
+
+                                        AzyulManager:SetScript(&quot;OnMouseDown&quot;, function()
+                                                AzyulManager:StartMoving();
+                                        end);
+                                end);
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;Azyul Manager&quot;);
+                                TitleLabel:SetTextColor(.9, .9, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 18, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOP&quot;, 0, -5);
+                        --[[Hide Button]]
+                                                HideAzyul = CreateFrame(&quot;Button&quot;, &quot;HideAzyul&quot;, AzyulManager, &quot;UIPanelButtonTemplate&quot;);
+                                                HideAzyul:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, 0, 0);
+                                                HideAzyul:SetScript(&quot;PostClick&quot;, HideAzyul_OnClick);
+                                                HideAzyul:SetScale(1);
+                                                HideAzyul:SetWidth(23)
+                                                HideAzyul:SetHeight(25)
+                                                HideAzyul:SetText(&quot;X&quot;)
+                                                HideAzyul:SetHitRectInsets(1, 1, 1, 1)
+
+
+                --[[Create Randomizer Frame]]
+                                --[[Randomize Button]]
+                                                        RandomizeButton = CreateFrame(&quot;Button&quot;, &quot;RandomizeButton&quot;, AzyulManager, &quot;UIPanelButtonTemplate&quot;);
+                                                        RandomizeButton:SetPoint(&quot;BOTTOMRIGHT&quot;, AzyulManager, 0, 0);
+                                                        RandomizeButton:SetScript(&quot;PostClick&quot;, function () RandomizerFrame:Show(); end);
+                                                        RandomizeButton:SetScale(1);
+                                                        RandomizeButton:SetWidth(105)
+                                                        RandomizeButton:SetHeight(20)
+                                                        RandomizeButton:SetText(&quot;Randomizer&quot;)
+                                                        RandomizeButton:SetHitRectInsets(1, 1, 1, 1)
+                                --[[Randomize Frame]]
+                                        RandomizerFrame = CreateFrame(&quot;StatusBar&quot;, nil, UIParent)
+                                        RandomizerFrame:SetStatusBarTexture(&quot;Interface\\DialogFrame\\UI-DialogBox-Background&quot;)
+                                        RandomizerFrame:SetWidth(125)
+                                        RandomizerFrame:SetHeight(75)
+                                        RandomizerFrame:SetPoint(&quot;CENTER&quot;,UIParent,&quot;CENTER&quot;)
+                                        RandomizerFrame:SetMovable(true);
+                                        RandomizerFrame:EnableMouse(true);
+                                        RandomizerFrame:SetScript(&quot;OnUpdate&quot;, function () 
+                                                RandomizerFrame:SetScript(&quot;OnMouseUp&quot;, function()
+                                                        RandomizerFrame:StopMovingOrSizing();
+                                                end);
+
+                                                RandomizerFrame:SetScript(&quot;OnMouseDown&quot;, function()
+                                                        RandomizerFrame:StartMoving();
+                                                end);
+                                        end);
+                                        RandomizerFrame:Hide();
+                                        local TitleLabel = RandomizerFrame:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                        TitleLabel:SetText(&quot;Chances&quot;);
+                                        TitleLabel:SetTextColor(.9, .9, 1, 1);
+                                        TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 18, &quot;NONE&quot;);
+                                        TitleLabel:SetPoint(&quot;TOP&quot;, -5, -5);
+
+                                --[[Randomizer Hide Button]]
+                                                        HideRandomizer = CreateFrame(&quot;Button&quot;, &quot;HideRandomizer&quot;, RandomizerFrame, &quot;UIPanelButtonTemplate&quot;);
+                                                        HideRandomizer:SetPoint(&quot;TOPRIGHT&quot;, RandomizerFrame, 0, 0);
+                                                        HideRandomizer:SetScript(&quot;PostClick&quot;, function () RandomizerFrame:Hide(); end);
+                                                        HideRandomizer:SetScale(1);
+                                                        HideRandomizer:SetWidth(23)
+                                                        HideRandomizer:SetHeight(25)
+                                                        HideRandomizer:SetText(&quot;X&quot;)
+                                                        HideRandomizer:SetHitRectInsets(1, 1, 1, 1)
+                                --[[Randomizer Variables]]
+                                        local TitleLabel = RandomizerFrame:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                        TitleLabel:SetText(&quot;Gundrak:&quot;);
+                                        TitleLabel:SetTextColor(1, 1, 1, 1);
+                                        TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                        TitleLabel:SetPoint(&quot;TOP&quot;, RandomizerFrame, -7, -33);
+                                                AZGundrak = CreateFrame(&quot;EditBox&quot;, &quot;AZGundrak&quot;, RandomizerFrame, &quot;InputBoxTemplate&quot;);
+                                                AZGundrak:SetPoint(&quot;TOP&quot;, RandomizerFrame, 38, -14);
+                                                AZGundrak:SetHitRectInsets(0, 0, 6, 7)
+                                                AZGundrak:SetNumeric(true)
+                                                AZGundrak:SetMaxLetters(2)
+                                                AZGundrak:SetText(azgundrakset)
+                                                AZGundrak:SetWidth(20)
+                                                AZGundrak:EnableMouse(true)
+                                                AZGundrak:SetAutoFocus(false)
+                                                AZGundrak:SetHeight(50)
+                                                AZGundrak:SetScript(&quot;OnChar&quot;, function(self,userInput,...) azgundrakset = AZGundrak:GetNumber() end);
+                                        local TitleLabel = RandomizerFrame:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                        TitleLabel:SetText(&quot;Drak'Tharon:&quot;);
+                                        TitleLabel:SetTextColor(1, 1, 1, 1);
+                                        TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                        TitleLabel:SetPoint(&quot;TOP&quot;, RandomizerFrame, -16, -58);
+                                                AZDrakTharon = CreateFrame(&quot;EditBox&quot;, &quot;AZDrakTharon&quot;, RandomizerFrame, &quot;InputBoxTemplate&quot;);
+                                                AZDrakTharon:SetPoint(&quot;TOP&quot;, RandomizerFrame, 38, -38);
+                                                AZDrakTharon:SetHitRectInsets(0, 0, 8, 9)
+                                                AZDrakTharon:SetNumeric(true)
+                                                AZDrakTharon:SetMaxLetters(2)
+                                                AZDrakTharon:SetText(azdraktharonset)
+                                                AZDrakTharon:SetWidth(20)
+                                                AZDrakTharon:EnableMouse(true)
+                                                AZDrakTharon:SetAutoFocus(false)
+                                                AZDrakTharon:SetHeight(50)
+                                                AZDrakTharon:SetScript(&quot;OnChar&quot;, function(self,userInput,...) azdraktharonset = AZDrakTharon:GetNumber() end);
+
+                --[[Dungeon Properties]]
+                        --[[Difficulties]]
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;- Pull Density -&quot;);
+                                TitleLabel:SetTextColor(.85, .85, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 15, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 10, -30);
+                                        LitePull = CreateFrame(&quot;CheckButton&quot;, &quot;LitePull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        LitePull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 10, -38);
+                                        LitePull:SetScript(&quot;PostClick&quot;, LitePull_OnClick);
+                                        LitePull:SetScale(1.3);
+                                        LitePull:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;L&quot;);
+                                                TitleLabel:SetTextColor(.5, 1, .5, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 20, -70);
+                                        MediumPull = CreateFrame(&quot;CheckButton&quot;, &quot;MediumPull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        MediumPull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 30, -38);
+                                        MediumPull:SetScript(&quot;PostClick&quot;, MediumPull_OnClick);
+                                        MediumPull:SetScale(1.3);
+                                        MediumPull:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;M&quot;);
+                                                TitleLabel:SetTextColor(1, 1, .5, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 47, -70);
+                                        HeavyPull = CreateFrame(&quot;CheckButton&quot;, &quot;HeavyPull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        HeavyPull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 50, -38);
+                                        HeavyPull:SetScript(&quot;PostClick&quot;, HeavyPull_OnClick);
+                                        HeavyPull:SetScale(1.3);
+                                        HeavyPull:SetHitRectInsets(1, 1, 1, 1)
+
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;H&quot;);
+                                                TitleLabel:SetTextColor(1, .5, .5, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 73, -70);
+                                        HeroicMode = CreateFrame(&quot;CheckButton&quot;, &quot;HeroicCheck&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        HeroicMode:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 65, -73);
+                                        HeroicMode:SetScript(&quot;PostClick&quot;, HeroicMode_OnClick);
+                                        HeroicMode:SetScale(1.3);
+                                        HeroicMode:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Heroic Mode:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 5, -100);
+                        --[[Bagslots]]
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;- Bagslot Management -&quot;);
+                                TitleLabel:SetTextColor(.85, .85, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 15, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, 0, -30);
+                                        local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                        TitleLabel:SetText(&quot;Vendor Min:&quot;);
+                                        TitleLabel:SetTextColor(1, 1, 1, 1);
+                                        TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                        TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -16, -56);
+                                                BagSlotCheck = CreateFrame(&quot;EditBox&quot;, &quot;BagSlotCheck&quot;, AzyulManager, &quot;InputBoxTemplate&quot;);
+                                                BagSlotCheck:SetPoint(&quot;TOP&quot;, AzyulManager, 38, -39);
+                                                BagSlotCheck:SetHitRectInsets(0, 0, 6, 7)
+                                                BagSlotCheck:SetNumeric(true)
+                                                BagSlotCheck:SetMaxLetters(2)
+                                                BagSlotCheck:SetText(RangeFrameLocked)
+                                                BagSlotCheck:SetWidth(20)
+                                                BagSlotCheck:EnableMouse(true)
+                                                BagSlotCheck:SetAutoFocus(false)
+                                                BagSlotCheck:SetHeight(50)
+                                                BagSlotCheck:SetScript(&quot;OnChar&quot;, function(self,userInput,...) RangeFrameLocked = BagSlotCheck:GetNumber() end);
+                                        local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                        TitleLabel:SetText(&quot;Mailing Min:&quot;);
+                                        TitleLabel:SetTextColor(1, 1, 1, 1);
+                                        TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                        TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -16, -79);
+                                                MailingCheck = CreateFrame(&quot;EditBox&quot;, &quot;MailingCheck&quot;, AzyulManager, &quot;InputBoxTemplate&quot;);
+                                                MailingCheck:SetPoint(&quot;TOP&quot;, AzyulManager, 38, -62);
+                                                MailingCheck:SetHitRectInsets(0, 0, 8, 9)
+                                                MailingCheck:SetNumeric(true)
+                                                MailingCheck:SetMaxLetters(2)
+                                                MailingCheck:SetText(RangeFrameRadarPoint)
+                                                MailingCheck:SetWidth(20)
+                                                MailingCheck:EnableMouse(true)
+                                                MailingCheck:SetAutoFocus(false)
+                                                MailingCheck:SetHeight(50)
+                                                MailingCheck:SetScript(&quot;OnChar&quot;, function(self,userInput,...) RangeFrameRadarPoint = MailingCheck:GetNumber() end);
+                                        SellEverything = CreateFrame(&quot;CheckButton&quot;, &quot;SellEverything&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        SellEverything:SetPoint(&quot;TOP&quot;, AzyulManager, 27, -73);
+                                        SellEverything:SetScript(&quot;PostClick&quot;, SellEverything_OnClick);
+                                        SellEverything:SetScale(1.3);
+                                        SellEverything:SetChecked(nil);
+                                        SellEverything:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Sell All:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -28, -100);
+                        --[[Deposit Method]]
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;- Mobile Bank -&quot;);
+                                TitleLabel:SetTextColor(.85, .85, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 15, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -10, -30);
+                                        DepositGold = CreateFrame(&quot;CheckButton&quot;, &quot;DepositGold&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        DepositGold:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -5, -37);
+                                        DepositGold:SetScript(&quot;PostClick&quot;, DepositGold_OnClick);
+                                        DepositGold:SetScale(1.3);
+                                        DepositGold:SetChecked(nil);
+                                        DepositGold:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Deposit Gold:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -35, -54);
+                                        DepositCloth = CreateFrame(&quot;CheckButton&quot;, &quot;DepositCloth&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        DepositCloth:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -5, -55);
+                                        DepositCloth:SetScript(&quot;PostClick&quot;, DepositCloth_OnClick);
+                                        DepositCloth:SetScale(1.3);
+                                        DepositCloth:SetChecked(nil);
+                                        DepositCloth:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Deposit Cloth:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -35, -77);
+        end;
+
+                --[[Adjust Visuals]]
+                        if (RangeFrameSound2 == 1) then
+                                HeroicMode:SetChecked(1)
+                                else
+                                HeroicMode:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarX == 3) then
+                                HeavyPull:SetChecked(1)
+                                MediumPull:SetChecked(nil)
+                                LitePull:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarX == 2) then
+                                MediumPull:SetChecked(1)
+                                HeavyPull:SetChecked(nil)
+                                LitePull:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarX == 1) then
+                                LitePull:SetChecked(1)
+                                HeavyPull:SetChecked(nil)
+                                MediumPull:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarY == 1) then
+                                SellEverything:SetChecked(1)
+                                else
+                                SellEverything:SetChecked(nil)
+                        end
+
+                        if (InfoFramePoint == 1) then
+                                DepositCloth:SetChecked(1)
+                                else
+                                DepositCloth:SetChecked(nil)
+                        end
+
+                        if (InfoFrameX == 1) then
+                                DepositGold:SetChecked(1)
+                                else
+                                DepositGold:SetChecked(nil)
+                        end
+" />
+
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
+			
+<If Condition="!(Me.MapId == 600) || !(Me.MapId == 604)" >
+
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />				
+
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToNorthrend.xml"/> 
+		
+
+<!-- ALLIANCE CHECK - RIDING -->
+<If Condition="(!HasSpell(54197))  &amp;&amp; (Me.IsAlliance)" >
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Training Cold Weather Flying.&quot;);" />
+				
+	<If Condition="Me.Gold &gt;= 401" >
+		<RunTo X="2274.391" Y="5174.106" Z="11.17985" />
+		<CustomBehavior File="InteractWith"  MobId="35133" WaitTime="1000" CollectionDistance="50" X="2274.391" Y="5174.106" Z="11.17985" />
+		<CustomBehavior File="ForceTrainRiding" MobId="35133" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
+	</If>
+</If>
+<!-- HORDE CHECK - RIDING -->
+<If Condition="(!HasSpell(54197)) &amp;&amp; (Me.IsHorde)">
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Training Cold Weather Flying.&quot;);" />
+
+	<!-- Elevator -->
+	<If Condition="(Me.Z &lt; 190)" >
+		<RunTo X="2869.177" Y="6215.224" Z="104.2853" />
+		<CustomBehavior File="UseTransport" TransportId="188521" 
+					WaitAtX="2869.177" WaitAtY="6215.224" WaitAtZ="104.2853"
+					GetOffX="2880.96" GetOffY="6225.813" GetOffZ="208.7495" 
+					TransportStartX="2877.649" TransportStartY="6223.188" TransportStartZ="104.8859" 
+					TransportEndX="2892.18" TransportEndY="6236.337" TransportEndZ="208.908"
+					StandOnX="2878.604" StandOnY="6223.707" StandOnZ="105.3792"  />
+ 	</If>
+	<If Condition="Me.Gold &gt;= 401" >
+		<RunTo X="2773.588" Y="6144.316" Z="208.7535" />
+		<CustomBehavior File="InteractWith"  MobId="35135" WaitTime="1000" CollectionDistance="50" X="2773.588" Y="6144.316" Z="208.7535" />
+		<CustomBehavior File="ForceTrainRiding" MobId="35135" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
+	</If>
+</If>
+
+<!--Flying notification -->
+<If Condition="(!HasSpell(54197))">
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" StopOnContinue="True" Text="You don't have enough gold to train Cold Weather Flying!\nYou must have Cold Weather Flying to continue." />
+</If>
+
+<!-- END OF COLD WEATHER FLYING CHECK -->
+
+</If>
+
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" AllowUseDuringCombat="True" AllowExecutionWhileNotAlive="true" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Looks like we died, returning to instance.&quot;);" />
+		<RunTo X="4436.68" Y="-1981.023" Z="159.1304" />
+		<RunTo X="4762.348" Y="-2044.422" Z="229.3993" />
+		<RunTo X="4774.139" Y="-2032.782" Z="229.3779" />
+		<CustomBehavior File="GoThruPortal" Timeout="30000" X="4774.691" Y="-2015.088" Z="229.3516" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" AllowUseDuringCombat="True" AllowExecutionWhileNotAlive="true" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 604)" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Looks like we died, returning to instance.&quot;);" />
+        <RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="6968.59" Y="-4404.028" Z="442.5896" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 604" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Disable" />
+
+<!-- Declare movement buff and defensive hooks -->
+	<If Condition="Me.Class == WoWClass.Mage" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!WoWSpell.FromId(11426).Cooldown &amp;&amp; Me.KnowsSpell(11426))" > <!-- (!WoWSpell.FromId(1953).Cooldown) ||  -->
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(11426);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Priest" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive)	&amp;&amp; ((!WoWSpell.FromId(139).Cooldown &amp;&amp; !Me.HasAura(139)) || (!WoWSpell.FromId(17).Cooldown &amp;&amp; !Me.HasAura(17) &amp;&amp; Me.KnowsSpell(17) &amp;&amp; !Me.HasAura(6788)))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(139); CastSpellByID(17);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.Warlock" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving)" >
+		</CustomBehavior>
+	</If> May use Burning Rush here -->
+	<If Condition="Me.Class == WoWClass.Druid" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((Me.HasAura(768) &amp;&amp; !WoWSpell.FromId(1850).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(22812).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(22812);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(1850);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Rogue" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(2983).Cooldown) || (Me.HealthPercent &lt;= 20 &amp;&amp; !WoWSpell.FromId(5277).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 20" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(5277);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2983);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Monk" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (Me.HealthPercent &lt;= 70 &amp;&amp; !WoWSpell.FromId(115072).Cooldown)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(115072);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Hunter" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(13809).Cooldown) || (Me.HealthPercent &lt;= 30 &amp;&amp; !WoWSpell.FromId(19263).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 30" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(19263);" />
+			</If>
+			<If Condition="Me.HasAura(77769)" >
+				<CustomBehavior File="Misc\RunLua" Lua="CancelUnitBuff(&quot;player&quot;,&quot;Trap Launcher&quot;);" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(13809);" />
+		</CustomBehavior>
+	</If>
+	<If Condition="Me.Class == WoWClass.Shaman" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; (!Me.HasAura(2645))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(2645);" />
+		</CustomBehavior>
+	</If>
+	<!-- <If Condition="Me.Class == WoWClass.DeathKnight" >
+	</If> Hmm.... -->
+	<!-- <If Condition="Me.Class == WoWClass.Warrior" >
+	</If>  Perhaps use of Enraged healing. -->
+	<If Condition="Me.Class == WoWClass.Paladin" >
+		<CustomBehavior File="Hooks\DoWhen" ActivityName="MoveDefHook" AllowUseDuringCombat="True" UseWhen="(Me.Combat &amp;&amp; Me.IsMoving &amp;&amp; Me.IsInInstance &amp;&amp; Me.IsAlive) &amp;&amp; ((!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)) || (Me.HealthPercent &lt;= 10 &amp;&amp; !WoWSpell.FromId(633).Cooldown))" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;Attempting use of passive defensive maneuvers.&quot;);" />
+			<If Condition="Me.HealthPercent &lt;= 10" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(633);" />
+			</If>
+			<If Condition="!WoWSpell.FromId(20271).Cooldown &amp;&amp; Me.KnowsSpell(87172)" >
+				<CustomBehavior File="Misc\RunLua" Lua="TargetNearestEnemy(); CastSpellByID(20271);" />
+			</If>
+		</CustomBehavior>
+	</If>
+<!-- END Declare movement buff hooks -->
+
+<While Condition="true" >
+
+
+	<If Condition="Chance((Lua.GetReturnVal&lt;uint&gt;(&quot;return azdraktharonset&quot;, 0)))"> <!-- Drak'Tharon -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Drak'Tharon.&quot;);" />
+
+		<If Condition="!(Me.MapId == 600) &amp;&amp; (Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+			<If Condition="Me.Location.Distance(new WoWPoint(4893.181, -2042.959, 248.309 )) &lt; 17" > <!-- If we just used Traveler's Mammoth -->
+				<CustomBehavior File="MyCTM" X="4872.786" Y="-2032.948" Z="250.0702" />
+				<CustomBehavior File="MyCTM" X="4824.002" Y="-2037.679" Z="250.1376" />
+				<CustomBehavior File="MyCTM" X="4772.893" Y="-2036.125" Z="229.3822" />
+			</If>
+			<If Condition="Me.Location.Distance(new WoWPoint(4775.771, -2045.906, 229.4198)) &gt;= 150" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Heading to Instance.&quot;);" />
+				<CustomBehavior File="FlyTo" X="4922.837" Y="-2046.354" Z="279.7324" />
+				<CustomBehavior File="MyCTM"  X="4868.813" Y="-2034.23" Z="250.0712" />
+				<CustomBehavior File="MyCTM" X="4815.126" Y="-2040.735" Z="245.4605" />
+				<MoveTo X="4775.389" Y="-2034.485" Z="229.3875" />
+			</If>
+			<Else>
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Profile started with full bags.&quot;);" />
+			</Else>
+		</If>
+		<If Condition="(Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+
+			<!-- AzyulManager Setting -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameSound2&quot;)[0] == &quot;0&quot;)"> 
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+			</If>
+
+			<If Condition="Lua.GetReturnValues(&quot;return RangeFrameSound2&quot;)[0] == &quot;1&quot;"> 
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+			</If>
+			<!--                    -->
+
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+			<If Condition="!(Me.MapId == 600)" >
+				<RunTo X="4774.621" Y="-2029.685" Z="229.3802" />
+				<CustomBehavior File="MyCTM" X="4774.691" Y="-2015.088" Z="229.3516" TerminateWhen="Me.MapId == 600" />
+				<CustomBehavior File="WaitTimer" WaitTime="20000" TerminateWhen="Me.MapId == 600" />
+			</If>
+			<If Condition="(Me.MapId == 600)" >
+				<DisableBehavior Name="Combat" /> <!-- Avoid spiders on second level -->
+
+				<CustomBehavior File="RunMacro" Macro="/sw clear" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw play" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+
+ 				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Disable" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Enable" />
+			    <RunTo X="-515.2283" Y="-500.0652" Z="11.0231"  />
+			    <RunTo X="-508.0701" Y="-514.1385" Z="11.0453"  />
+			    <RunTo X="-537.1221" Y="-551.0976" Z="2.2656"  />
+
+		<!-- Heavy Pull execution -->
+			<If Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;3&quot;">
+
+					<DisableBehavior Name="Combat" />
+					    <RunTo X="-537.1692" Y="-578.1137" Z="1.9140"  />
+					    <RunTo X="-544.5040" Y="-579.6451" Z="1.0251"  />
+					    <RunTo X="-517.4600" Y="-599.9984" Z="1.0250"  />
+					    <RunTo X="-483.5866" Y="-606.0858" Z="1.4814"  />
+					    <RunTo X="-469.5986" Y="-599.4240" Z="1.6413"  />
+					    <RunTo X="-413.5121" Y="-603.0125" Z="1.0249"  />
+					    <RunTo X="-384.3532" Y="-602.3880" Z="1.0249"  />
+					    <RunTo X="-363.6618" Y="-608.0938" Z="2.2632"  />
+						<RunTo X="-322.1031" Y="-647.5912" Z="10.9239"  />
+						<RunTo X="-325.0045" Y="-658.7132" Z="10.3809"  />
+					    <RunTo X="-324.2822" Y="-671.5656" Z="10.9238"  />
+					    <RunTo X="-300.2212" Y="-667.8179" Z="10.9238"  />
+					    <RunTo X="-278.3122" Y="-658.3167" Z="18.9390"  />
+					    <RunTo X="-268.0731" Y="-659.5375" Z="26.5084"  />
+					<EnableBehavior Name="Combat" />
+
+				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
+
+				    <DisableBehavior Name="Combat" />
+				    	<RunTo X="-257.2279" Y="-712.0146" Z="27.1521" />
+						<RunTo X="-245.5512" Y="-723.813" Z="27.37361" />
+						<RunTo X="-289.179" Y="-728.0784" Z="27.29649" />
+						<RunTo X="-279.2386" Y="-711.1038" Z="27.29188" />
+				    <EnableBehavior Name="Combat" />
+
+
+				    <RunTo X="-292.9587" Y="-716.4481" Z="27.53353" />
+				    <MoveTo X="-338.6151" Y="-720.4265" Z="28.57711" />
+				    <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: This boss isn't worth it.&quot;);" />
+				    <CustomBehavior File="MyCTM" X="-393.7734" Y="-721.4113" Z="28.59065" />
+				    <CustomBehavior File="MyCTM" X="-409.0117" Y="-729.8685" Z="28.58064" />
+
+				    <MoveTo X="-424.5214" Y="-695.5582" Z="28.57602" />
+
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-402.5685" Y="-670.2057" Z="26.64206" />
+						<RunTo X="-454.369" Y="-652.0738" Z="28.42467" />
+						<RunTo X="-501.23" Y="-651.8302" Z="30.22856" />
+						<RunTo X="-497.2484" Y="-718.712" Z="30.24763" />
+						<RunTo X="-512.645" Y="-725.9342" Z="30.24763" />
+						<RunTo X="-533.1378" Y="-714.5676" Z="30.24775" />
+						<RunTo X="-544.3643" Y="-704.096" Z="30.2448" />
+						<RunTo X="-554.3542" Y="-689.1397" Z="30.70627" />
+						<RunTo X="-543.3079" Y="-670.9773" Z="30.34695" />
+						<RunTo X="-531.3521" Y="-660.9335" Z="30.28404" />
+						<RunTo X="-530.1593" Y="-697.5297" Z="30.24668" />
+				    <EnableBehavior Name="Combat" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+				    <MoveTo X="-508.7027" Y="-727.5312" Z="30.24722" />
+				    <MoveTo X="-487.2624" Y="-709.7524" Z="30.24722" />
+				    <MoveTo X="-472.4294" Y="-631.804" Z="72.60222" />
+			
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-447.0287" Y="-603.547" Z="72.60651" />
+						<RunTo X="-416.5739" Y="-595.7975" Z="72.60668" />
+						<RunTo X="-405.4579" Y="-608.7828" Z="72.60668" />
+						<RunTo X="-345.2475" Y="-611.0251" Z="72.60713" />
+						<RunTo X="-342.2566" Y="-592.2085" Z="72.60779" />
+						<RunTo X="-305.9066" Y="-612.2153" Z="72.59185" />
+						<RunTo X="-288.0025" Y="-699.2864" Z="101.7704" />
+						<RunTo X="-274.4177" Y="-728.6484" Z="101.7957" />
+						<RunTo X="-268.0679" Y="-726.1499" Z="102.7696" />
+				    <EnableBehavior Name="Combat" />
+
+		<!-- Medium pull execution -->
+			<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;2&quot;" >
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+				    <DisableBehavior Name="Combat" />
+					    <RunTo X="-537.1692" Y="-578.1137" Z="1.9140"  />
+					    <RunTo X="-544.5040" Y="-579.6451" Z="1.0251"  />
+					    <RunTo X="-517.4600" Y="-599.9984" Z="1.0250"  />
+					    <RunTo X="-483.5866" Y="-606.0858" Z="1.4814"  />
+					    <RunTo X="-469.5986" Y="-599.4240" Z="1.6413"  />
+					    <RunTo X="-413.5121" Y="-603.0125" Z="1.0249"  />
+					    <RunTo X="-384.3532" Y="-602.3880" Z="1.0249"  />
+					    <RunTo X="-363.6618" Y="-608.0938" Z="2.2632"  />
+						<RunTo X="-322.1031" Y="-647.5912" Z="10.9239"  />
+						<RunTo X="-325.0045" Y="-658.7132" Z="10.3809"  />
+					    <RunTo X="-324.2822" Y="-671.5656" Z="10.9238"  />
+					    <RunTo X="-300.2212" Y="-667.8179" Z="10.9238"  />
+					    <RunTo X="-278.3122" Y="-658.3167" Z="18.9390"  />
+					    <RunTo X="-268.0731" Y="-659.5375" Z="26.5084"  />
+					<EnableBehavior Name="Combat" />
+
+				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
+
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+				    <DisableBehavior Name="Combat" />
+				    	<RunTo X="-257.2279" Y="-712.0146" Z="27.1521" />
+						<RunTo X="-245.5512" Y="-723.813" Z="27.37361" />
+				    <EnableBehavior Name="Combat" />
+
+					<DisableBehavior Name="Combat" />
+						<RunTo X="-289.179" Y="-728.0784" Z="27.29649" />
+						<RunTo X="-279.2386" Y="-711.1038" Z="27.29188" />
+				    <EnableBehavior Name="Combat" />
+
+				    <RunTo X="-292.9587" Y="-716.4481" Z="27.53353" />
+				    <MoveTo X="-338.6151" Y="-720.4265" Z="28.57711" />
+				    <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: This boss isn't worth it.&quot;);" />
+				    <CustomBehavior File="MyCTM" X="-393.7734" Y="-721.4113" Z="28.59065" />
+				    <CustomBehavior File="MyCTM" X="-409.0117" Y="-729.8685" Z="28.58064" />
+
+				    <MoveTo X="-424.5214" Y="-695.5582" Z="28.57602" />
+
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-402.5685" Y="-670.2057" Z="26.64206" />
+						<RunTo X="-454.369" Y="-652.0738" Z="28.42467" />
+						<RunTo X="-501.23" Y="-651.8302" Z="30.22856" />
+						<RunTo X="-497.2484" Y="-718.712" Z="30.24763" />
+						<RunTo X="-512.645" Y="-725.9342" Z="30.24763" />
+				    <EnableBehavior Name="Combat" />
+
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+					<DisableBehavior Name="Combat" />
+						<RunTo X="-536.3608" Y="-718.7067" Z="30.24651" />
+						<RunTo X="-544.3643" Y="-704.096" Z="30.2448" />
+						<RunTo X="-554.3542" Y="-689.1397" Z="30.70627" />
+						<RunTo X="-543.3079" Y="-670.9773" Z="30.34695" />
+						<RunTo X="-531.3521" Y="-660.9335" Z="30.28404" />
+						<RunTo X="-530.1593" Y="-697.5297" Z="30.24668" />
+				    <EnableBehavior Name="Combat" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+				    <MoveTo X="-508.7027" Y="-727.5312" Z="30.24722" />
+				    <MoveTo X="-487.2624" Y="-709.7524" Z="30.24722" />
+				    <MoveTo X="-472.4294" Y="-631.804" Z="72.60222" />
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-447.0287" Y="-603.547" Z="72.60651" />
+						<RunTo X="-416.5739" Y="-595.7975" Z="72.60668" />
+						<RunTo X="-405.4579" Y="-608.7828" Z="72.60668" />
+						<RunTo X="-345.2475" Y="-611.0251" Z="72.60713" />
+						<RunTo X="-342.2566" Y="-592.2085" Z="72.60779" />
+						<RunTo X="-305.9066" Y="-612.2153" Z="72.59185" />
+				    <EnableBehavior Name="Combat" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-288.0025" Y="-699.2864" Z="101.7704" />
+						<RunTo X="-274.4177" Y="-728.6484" Z="101.7957" />
+						<RunTo X="-268.0679" Y="-726.1499" Z="102.7696" />
+				    <EnableBehavior Name="Combat" />
+			</ElseIf>
+		<!-- Lite pull execution -->
+			<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;1&quot;" >
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+				    <DisableBehavior Name="Combat" />
+					    <RunTo X="-537.1692" Y="-578.1137" Z="1.9140"  />
+					    <RunTo X="-544.5040" Y="-579.6451" Z="1.0251"  />
+					    <RunTo X="-517.4600" Y="-599.9984" Z="1.0250"  />
+					    <RunTo X="-483.5866" Y="-606.0858" Z="1.4814"  />
+					    <RunTo X="-469.5986" Y="-599.4240" Z="1.6413"  />
+					    <RunTo X="-413.5121" Y="-603.0125" Z="1.0249"  />
+					    <RunTo X="-384.3532" Y="-602.3880" Z="1.0249"  />
+					    <RunTo X="-363.6618" Y="-608.0938" Z="2.2632"  />
+						<RunTo X="-322.1031" Y="-647.5912" Z="10.9239"  />
+						<RunTo X="-325.0045" Y="-658.7132" Z="10.3809"  />
+					    <RunTo X="-324.2822" Y="-671.5656" Z="10.9238"  />
+					    <RunTo X="-300.2212" Y="-667.8179" Z="10.9238"  />
+					    <RunTo X="-278.3122" Y="-658.3167" Z="18.9390"  />
+					    <RunTo X="-268.0731" Y="-659.5375" Z="26.5084"  />
+					<EnableBehavior Name="Combat" />
+
+				    <MoveTo X="-260.1227" Y="-679.8981" Z="26.52317" />
+
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+				    <DisableBehavior Name="Combat" />
+				    	<RunTo X="-257.2279" Y="-712.0146" Z="27.1521" />
+						<RunTo X="-245.5512" Y="-723.813" Z="27.37361" />
+				    <EnableBehavior Name="Combat" />
+
+					<DisableBehavior Name="Combat" />
+						<RunTo X="-289.179" Y="-728.0784" Z="27.29649" />
+						<RunTo X="-279.2386" Y="-711.1038" Z="27.29188" />
+				    <EnableBehavior Name="Combat" />
+
+				    <RunTo X="-292.9587" Y="-716.4481" Z="27.53353" />
+				    <MoveTo X="-338.6151" Y="-720.4265" Z="28.57711" />
+				    <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: This boss isn't worth it.&quot;);" />
+				    <CustomBehavior File="MyCTM" X="-393.7734" Y="-721.4113" Z="28.59065" />
+				    <CustomBehavior File="MyCTM" X="-409.0117" Y="-729.8685" Z="28.58064" />
+
+				    <MoveTo X="-424.5214" Y="-695.5582" Z="28.57602" />
+
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-402.5685" Y="-670.2057" Z="26.64206" />
+						<RunTo X="-454.369" Y="-652.0738" Z="28.42467" />
+					<EnableBehavior Name="Combat" />
+
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+				    <DisableBehavior Name="Combat" /> //
+						<RunTo X="-501.23" Y="-651.8302" Z="30.22856" />
+						<RunTo X="-497.2484" Y="-718.712" Z="30.24763" />
+						<RunTo X="-512.645" Y="-725.9342" Z="30.24763" />
+				    <EnableBehavior Name="Combat" />
+
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+					<DisableBehavior Name="Combat" />
+						<RunTo X="-536.3608" Y="-718.7067" Z="30.24651" />
+						<RunTo X="-544.3643" Y="-704.096" Z="30.2448" />
+						<RunTo X="-554.3542" Y="-689.1397" Z="30.70627" />
+					<EnableBehavior Name="Combat" />
+
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+					<DisableBehavior Name="Combat" /> //
+						<RunTo X="-543.3079" Y="-670.9773" Z="30.34695" />
+						<RunTo X="-531.3521" Y="-660.9335" Z="30.28404" />
+						<RunTo X="-530.1593" Y="-697.5297" Z="30.24668" />
+				    <EnableBehavior Name="Combat" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+				    <MoveTo X="-508.7027" Y="-727.5312" Z="30.24722" />
+				    <MoveTo X="-487.2624" Y="-709.7524" Z="30.24722" />
+				    <MoveTo X="-472.4294" Y="-631.804" Z="72.60222" />
+
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-447.0287" Y="-603.547" Z="72.60651" />
+						<RunTo X="-416.5739" Y="-595.7975" Z="72.60668" />
+						<RunTo X="-405.4579" Y="-608.7828" Z="72.60668" />
+					<EnableBehavior Name="Combat" />
+
+				    <CustomBehavior File="Misc\RunLua" Lua="
+						CastSpellByID(2645);
+						CastSpellByID(2983);
+						CastSpellByID(17);
+						CastSpellByID(85499);
+						CastSpellByID(108843);
+						CastSpellByID(1850);
+						CastSpellByID(108212);
+					" />
+
+				    <DisableBehavior Name="Combat" /> //
+						<RunTo X="-345.2475" Y="-611.0251" Z="72.60713" />
+						<RunTo X="-342.2566" Y="-592.2085" Z="72.60779" />
+						<RunTo X="-305.9066" Y="-612.2153" Z="72.59185" />
+				    <EnableBehavior Name="Combat" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="Misc\RunLua" Lua="if not IsMounted() then local m,t,f=&quot;mount&quot;,{{},{}} for i=2,GetNumCompanions(m) do tinsert(t[bit.band(2,select(6,GetCompanionInfo(m,i)))==0 and 1 or 2],i) end f=IsFlyableArea() and 2 or 1 CallCompanion(m,t[f][random(#t[f])]) else Dismount() end" />
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+				    <DisableBehavior Name="Combat" />
+						<RunTo X="-288.0025" Y="-699.2864" Z="101.7704" />
+						<RunTo X="-274.4177" Y="-728.6484" Z="101.7957" />
+						<RunTo X="-268.0679" Y="-726.1499" Z="102.7696" />
+				    <EnableBehavior Name="Combat" />
+			</ElseIf>
+			</If>
+				    <MoveTo X="-245.4132" Y="-730.9987" Z="116.4721" />
+				    <MoveTo X="-237.274" Y="-698.6867" Z="131.1712" />
+				    <MoveTo X="-236.8188" Y="-676.8137" Z="131.8641" />
+				    <MoveTo X="-244.5186" Y="-620.9827" Z="116.4726" />
+
+				    <CustomBehavior File="MyCTM" X="-266.3696" Y="-618.3034" Z="88.80046" />
+				    <CustomBehavior File="MyCTM" X="-254.1121" Y="-620.0305" Z="90.78832" />
+				    <CustomBehavior File="MyCTM" X="-240.4345" Y="-624.7491" Z="90.783" />
+				    <CustomBehavior File="MyCTM" X="-240.6464" Y="-643.9133" Z="62.07785" />
+				    <CustomBehavior File="MyCTM" X="-239.9168" Y="-621.88" Z="64.68836" />
+				    <CustomBehavior File="MyCTM" X="-238.0628" Y="-592.0763" Z="11.15806" />
+				    <CustomBehavior File="MyCTM" X="-238.3158" Y="-577.2864" Z="11.04181" />
+
+				    <MoveTo X="-317.2586" Y="-577.3348" Z="11.00636" />
+				    <MoveTo X="-372.7647" Y="-595.0178" Z="2.462813" />
+				    <MoveTo X="-460.0569" Y="-600.3992" Z="1.956773" />
+				    <MoveTo X="-529.5821" Y="-588.1884" Z="2.457371" />
+				    <MoveTo X="-531.9599" Y="-539.5211" Z="3.328138" />
+				    <MoveTo X="-507.212" Y="-511.9265" Z="11.04625" />
+				    <MoveTo X="-516.8404" Y="-487.5807" Z="11.00653" />
+
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
+					<CustomBehavior File="RunMacro" Macro="/sw pause" />
+
+					<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+					<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+					<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+					<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+					<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+					<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
+					<If Condition="(Me.FreeBagSlots &lt; 17)" >
+						<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+						<Else>
+							<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+						</Else>
+					</If>
+					<CustomBehavior File="MyCTM" X="-525.4516" Y="-474.7986" Z="10.98291" TerminateWhen="Me.MapId != 600" />
+					<EnableBehavior Name="Death" />
+					<CustomBehavior File="WaitTimer" WaitTime="11000" />
+					<While Condition="!(StyxWoW.IsInWorld)" >
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					</While>
+					    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+					<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameSound2&quot;)[0] == &quot;1&quot;)"> 
+						<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+						<CustomBehavior File="Misc\RunLua" Lua="
+							RangeFrameSound2 = 0;
+							HeroicMode:SetChecked(nil);
+							print(&quot;|cFF3399FF[Azyul]|r: Switching the dungeon back to Normal difficulty.&quot;)" />
+					</If>
+			</If>
+		</If>
+		<!-- Force Sell -->
+			<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+				<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+				<If Condition="Me.Location.Distance(new WoWPoint(4775.771, -2045.906, 229.4198)) &lt;= 150" > <!-- If just came out instance -->
+					<MoveTo X="4781.665" Y="-2042.948" Z="229.428" />
+					<MoveTo X="4844.876" Y="-2034.98" Z="250.072" />
+					<MoveTo X="4884.797" Y="-2036.033" Z="250.0502" />
+					<CustomBehavior File="MyCTM" X="4895.741" Y="-2039.486" Z="248.3093" />
+				</If>
+
+		<!-- ////////////////////////////////////START GUILD BANK DETECTION/////////////////////////////////////////////-->
+		<!-- Deposit Gold and Frostweave -->
+			<If Condition="(Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+				<CustomBehavior File="WaitTimer" WaitTime="3500" />
+				<If Condition="Me.IsAlliance" > 
+				    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+				</If> 
+				<If Condition="Me.IsHorde" > 
+				    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+				</If> 
+				<CustomBehavior File="Misc\RunLua" Lua="
+					if GuildBankFrame:IsVisible()==true then
+						MyMoney = GetMoney();
+						DepositGuildBankMoney(MyMoney);
+						print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+					else
+					print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+					end" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+					if GuildBankFrame:IsVisible()==true then
+						print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
+						for b=0,4 do for s=1,GetContainerNumSlots(b)
+							do local n=GetContainerItemLink(b,s)
+								if n and strfind(n,&quot;33470&quot;)then
+									UseContainerItem(b,s)
+								end
+							end
+						end
+					end" />
+
+			<!-- Deposit Frostweave -->
+				<ElseIf Condition="(Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
+						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+						<CustomBehavior File="WaitTimer" WaitTime="3500" />
+						<If Condition="Me.IsAlliance" > 
+						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+						</If> 
+						<If Condition="Me.IsHorde" > 
+						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+						</If> 
+							<CustomBehavior File="Misc\RunLua" Lua="
+								if GuildBankFrame:IsVisible()==true then
+									print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
+									for b=0,4 do for s=1,GetContainerNumSlots(b)
+										do local n=GetContainerItemLink(b,s)
+											if n and strfind(n,&quot;33470&quot;)then
+												UseContainerItem(b,s)
+											end
+										end
+									end
+								end" />
+				</ElseIf>
+			<!-- END Deposit Frostweave -->
+
+			<!-- Deposit Gold -->
+				<ElseIf Condition="(Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)">
+						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+						<CustomBehavior File="WaitTimer" WaitTime="3500" />
+						<If Condition="Me.IsAlliance" > 
+						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+						</If> 
+						<If Condition="Me.IsHorde" > 
+						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+						</If> 
+						<CustomBehavior File="Misc\RunLua" Lua="
+							if GuildBankFrame:IsVisible()==true then
+								MyMoney = GetMoney();
+								DepositGuildBankMoney(MyMoney);
+								print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+							else
+							print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+							end" />
+				</ElseIf>
+			<!-- END Deposit Gold -->
+				<ElseIf Condition="((Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) || (Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;)) &amp;&amp; (WoWSpell.FromId(83958).Cooldown)"> 
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Your mobile bank is on cooldown.  Continuing run.&quot;)" />
+				</ElseIf>
+			</If>
+
+		<!-- ////////////////////////////////////END GUILD BANK DETECTION/////////////////////////////////////////////-->
+
+
+		<!-- ////////////////////////////////////START MOUNT VENDORS///////////////////////////////////////////////////-->
+
+		<!-- Lua Sell, Keep Frostweave -->
+		<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;)"> 
+			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+				<CustomBehavior File="WaitTimer" WaitTime="750" />
+				<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+				<CustomBehavior File="WaitTimer" WaitTime="2000" />
+				<If Condition="Me.HasAura(61425)" >
+					<CustomBehavior File="InteractWith" MobId="32639" />
+					<ElseIf Condition="Me.HasAura(61447)" >
+						<CustomBehavior File="InteractWith" MobId="32641" />
+					</ElseIf>
+					<ElseIf Condition="Me.HasAura(122708)" >
+						<CustomBehavior File="InteractWith" MobId="62822" />
+					</ElseIf>
+				</If>
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="3500" Lua="DynSell();" />
+				<Else>
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
+					<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Vendor mount not detected.&quot;);" />
+				</Else>
+			</If>
+		</If>
+		<!-- END Lua Sell, Keep Frostweave -->
+
+		<!-- Lua Sell, Everything -->
+		<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)"> 
+			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+				<CustomBehavior File="WaitTimer" WaitTime="750" />
+				<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+				<CustomBehavior File="WaitTimer" WaitTime="2000" />
+				<If Condition="Me.HasAura(61425)" >
+					<CustomBehavior File="InteractWith" MobId="32639" />
+					<ElseIf Condition="Me.HasAura(61447)" >
+						<CustomBehavior File="InteractWith" MobId="32641" />
+					</ElseIf>
+					<ElseIf Condition="Me.HasAura(122708)" >
+						<CustomBehavior File="InteractWith" MobId="62822" />
+					</ElseIf>
+				</If>
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="3500" Lua="DynSell();" />
+				<Else>
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
+					<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Vendor mount not detected.&quot;);" />
+				</Else>
+			</If>
+		</If>
+		<!-- END Lua Sell, Everything -->
+
+		<!-- Honorbuddy Routine Mount Sell -->
+		<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;0&quot;)"> 
+			<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+				<CustomBehavior File="WaitTimer" WaitTime="750" />
+				<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+				<CustomBehavior File="WaitTimer" WaitTime="2000" />
+					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+				</If>
+		</If>
+			<!-- END Honorbuddy Routine Mount Sell -->
+
+			<!-- ////////////////////////////////////END MOUNT VENDORS///////////////////////////////////////////////////-->
+
+			<!-- ////////////////////////////////////START TOWN VENDORS///////////////////////////////////////////////////-->
+
+			<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+				<CustomBehavior File="FlyTo" X="5077.122" Y="-2249.123" Z="430.6839" />
+				<CustomBehavior File="FlyTo" X="5384.368" Y="-2631.522" Z="329.4101" />
+				<CustomBehavior File="FlyTo" X="5405.227" Y="-2655.048" Z="303.9551" />
+
+		<!-- Lua Sell, Keep Frostweave -->
+				<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;)"> 
+					<CustomBehavior File="InteractWith" MobId="28796" X="5410.7" Y="-2658.249" Z="303.9539" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="3500" Lua="DynSell();" />
+				</If>
+		<!-- END Lua Sell, Keep Frostweave -->
+
+		<!-- Lua Sell, Everything -->
+				<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)">
+					<CustomBehavior File="InteractWith" MobId="28796" X="5410.7" Y="-2658.249" Z="303.9539" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="3500" Lua="DynSell();" />
+				</If>
+		<!-- END Lua Sell, Everything -->
+
+
+		<!-- Normal Sell -->
+				<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;0&quot;)"> 
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Arlen Brighthammer" Entry="28796" Type="Repair" X="5410.7" Y="-2658.249" Z="303.9539" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<ClearVendor />
+				</If>
+		<!-- END Normal Sell -->
+				<RunTo X="5397.145" Y="-2639.515" Z="303.9551" />
+				<RunTo X="5416.015" Y="-2622.577" Z="306.9517" />
+		<!-- Generic Mail Routine -->
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="5417.155" Y="-2620.26" Z="307.0088" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+				<RunTo X="5396.842" Y="-2617.582" Z="303.9539" />
+				<ClearMailbox />
+		<!-- END Generic Mail Routine -->
+
+				<CustomBehavior File="FlyTo" X="5377.773" Y="-2611.433" Z="321.3243" />
+
+				<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+			</If>
+		</If>
+	</If>
+
+
+	<If Condition="Chance((Lua.GetReturnVal&lt;uint&gt;(&quot;return azgundrakset&quot;, 0)))"> <!-- Gundrak -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Gundrak.&quot;);" />
+		<If Condition="Me.Location.Distance(new WoWPoint(4822.283, -2039.614, 239.7233)) &lt;= 65" > <!-- If just came out of Drak'tharon -->
+			<CustomBehavior File="MyCTM" X="4779.117" Y="-2037.057" Z="229.4113" />
+			<CustomBehavior File="MyCTM" X="4841.16" Y="-2037.29" Z="250.0716" />
+			<CustomBehavior File="MyCTM" X="4895.43" Y="-2032.036" Z="248.31" />		
+		</If>
+		<If Condition="!(Me.MapId == 604) &amp;&amp; (Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+			<If Condition="Me.Location.Distance(new WoWPoint(6944.809, -4426.977, 450.8831)) &gt; 100 " >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Heading to Instance.&quot;);" />
+				<CustomBehavior File="FlyTo" X="6869.925" Y="-4472.948" Z="511.2688" />
+				<CustomBehavior File="FlyTo" X="6954.726" Y="-4416.813" Z="450.0275" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+			</If>
+		</If>
+		<If Condition="(Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))"> 
+			<!-- AzyulManager Setting -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameSound2&quot;)[0] == &quot;0&quot;) &amp;&amp; Me.IsAlive"> 
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+			</If>
+
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameSound2&quot;)[0] == &quot;1&quot;) &amp;&amp; Me.IsAlive"> 
+				<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+			</If>
+			<!--                    -->
+
+			<If Condition="!(Me.MapId == 604)" >
+				<RunTo X="6962.967" Y="-4409.615" Z="446.2835" />
+				<!--<CustomBehavior File="MyCTM" X="6973.58" Y="-4400.046" Z="441.5751" />-->
+				<CustomBehavior File="MyCTM" X="7025.931" Y="-4345.251" Z="449.7054" TerminateWhen="Me.IsMoving" />
+				<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="Me.MapId == 604" />
+			</If>
+			<If Condition="(Me.MapId == 604)" >
+				<DisableBehavior Name="Death" />
+				<CustomBehavior File="RunMacro" Macro="/sw clear" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: In-game timer started.&quot;)" />
+				<CustomBehavior File="RunMacro" Macro="/sw play" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Enable" />
+				<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookDrakTharon" Command="Disable" />
+
+				<MoveTo X="1854.622" Y="640.1485" Z="175.8663" />
+				<MoveTo X="1853.228" Y="638.6234" Z="175.802" />
+				<CustomBehavior File="MyCTM" X="1840.902" Y="631.1052" Z="126.2862" />
+				<MoveTo X="1824.368" Y="632.9717" Z="129.3592" />
+
+			<!-- Heavy Pull execution -->
+				<If Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;3&quot;">
+					<If Condition="Me.IsAlive" >
+	 					<CustomBehavior File="Misc\RunLua" Lua="
+							CastSpellByID(2645);
+							CastSpellByID(2983);
+							CastSpellByID(17);
+							CastSpellByID(85499);
+							CastSpellByID(108843);
+							CastSpellByID(1850);
+							CastSpellByID(108212);
+						" />
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1805.276" Y="633.3484" Z="129.1355" />
+							<RunTo X="1789.081" Y="630.5768" Z="124.4691" />
+							<RunTo X="1775.437" Y="610.9134" Z="124.6004" />
+							<RunTo X="1763.212" Y="624.6196" Z="124.4669" />
+							<RunTo X="1775.782" Y="650.1952" Z="124.4696" />
+							<RunTo X="1775.17" Y="675.1672" Z="129.2167" />
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+						<MoveTo X="1777.956" Y="676.9604" Z="129.2174" />
+
+						<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="(Object(192518, o => o.ToGameObject().State == 0) != null) || (Object(192518, o => o.ToGameObject().CanUse()) != null)" />
+						<While Condition="!(Object(192518, o =&gt; o.ToGameObject().State == 0) != null)">
+							<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
+							<CustomBehavior File="WaitTimer" WaitTime="1200" />
+						</While>
+
+						<MoveTo X="1765.704" Y="644.8124" Z="124.4661" />
+						<MoveTo X="1726.359" Y="632.9615" Z="129.1971" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1694.117" Y="633.3572" Z="128.4503" />
+							<RunTo X="1673.767" Y="633.6954" Z="127.5972" />
+							<RunTo X="1663.43" Y="625.3335" Z="128.0307" />
+							<RunTo X="1664.98" Y="649.3254" Z="127.0745" />
+							<RunTo X="1640.559" Y="639.2423" Z="126.216" />
+							<RunTo X="1639.297" Y="659.866" Z="124.4361" />
+							<RunTo X="1626.241" Y="695.3307" Z="142.1719" />
+							<RunTo X="1626.227" Y="744.3055" Z="142.7861" />
+							<RunTo X="1680.791" Y="743.1531" Z="142.7869" />
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+						<MoveTo X="1689.662" Y="743.3555" Z="142.781" />
+
+						<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="(Object(192520, o => o.ToGameObject().State == 0) != null) || (Object(192520, o => o.ToGameObject().CanUse()) != null)" />
+						<While Condition="!(Object(192520, o =&gt; o.ToGameObject().State == 0) != null)">
+							<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
+							<CustomBehavior File="WaitTimer" WaitTime="1200" />
+						</While>
+
+						<MoveTo X="1627.208" Y="751.5085" Z="142.7861" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1625.227" Y="790.0083" Z="142.7824" />
+							<RunTo X="1575.291" Y="833.7738" Z="153.3104" />
+							<RunTo X="1585.866" Y="883.0992" Z="151.4873" />
+							<RunTo X="1643.559" Y="894.985" Z="143.8395" />
+							<RunTo X="1663.692" Y="873.1186" Z="138.2952" /> <!-- Coordinate not same as other pull densities. -->
+				<RunTo X="1662.971" Y="888.4821" Z="139.6259" /> <!-- Pull away from ledge. -->
+							<RunTo X="1686.498" Y="894.6101" Z="133.4067" />
+							<RunTo X="1715.809" Y="854.1606" Z="129.1983" />
+							<RunTo X="1746.728" Y="858.087" Z="129.1924" />
+							<RunTo X="1776.924" Y="850.5671" Z="123.1936" />
+							<RunTo X="1797.481" Y="856.8885" Z="129.1889" />
+							<RunTo X="1772.675" Y="810.5074" Z="129.2168" /> <!-- Third boss -->
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+						<MoveTo X="1772.236" Y="808.7632" Z="129.2166" />
+
+						<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="(Object(192519, o => o.ToGameObject().State == 0) != null) || (Object(192519, o => o.ToGameObject().CanUse()) != null)" />
+						<While Condition="!(Object(192519, o =&gt; o.ToGameObject().State == 0) != null)">
+							<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
+							<CustomBehavior File="WaitTimer" WaitTime="1200" />
+						</While>
+
+					    <RunTo X="1769.452" Y="801.0773" Z="129.2167" />
+					    <RunTo X="1739.418" Y="758.1852" Z="113.3648" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+					    <MoveTo X="1751.777" Y="743.4966" Z="118.9603" />
+
+
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1847.016" Y="742.9401" Z="135.9356" />
+							<RunTo X="1880.714" Y="757.1185" Z="135.9769" />
+							<RunTo X="1882.871" Y="728.2493" Z="135.9563" />
+							<RunTo X="1919.834" Y="743.6863" Z="136.5191" />
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+					</If>
+
+			<!-- Medium pull execution -->
+				<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;2&quot;" >
+						<If Condition="Me.IsAlive" >
+
+							<DisableBehavior Name="Combat" />
+								<RunTo X="1805.276" Y="633.3484" Z="129.1355" />
+								<RunTo X="1789.081" Y="630.5768" Z="124.4691" />
+								<RunTo X="1775.437" Y="610.9134" Z="124.6004" />
+								<RunTo X="1763.212" Y="624.6196" Z="124.4669" />
+								<RunTo X="1775.782" Y="650.1952" Z="124.4696" />
+								<RunTo X="1775.17" Y="675.1672" Z="129.2167" />
+							<EnableBehavior Name="Combat" />
+						</If>
+
+						<If Condition="Me.IsAlive" >
+							<MoveTo X="1777.956" Y="676.9604" Z="129.2174" />
+
+							<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="(Object(192518, o => o.ToGameObject().State == 0) != null) || (Object(192518, o => o.ToGameObject().CanUse()) != null)" />
+							<While Condition="!(Object(192518, o =&gt; o.ToGameObject().State == 0) != null)">
+								<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
+								<CustomBehavior File="WaitTimer" WaitTime="1200" />
+							</While>
+
+							<MoveTo X="1765.704" Y="644.8124" Z="124.4661" />
+							<MoveTo X="1726.359" Y="632.9615" Z="129.1971" />
+						</If>
+
+						<If Condition="Me.IsAlive" >
+
+							<DisableBehavior Name="Combat" />
+								<RunTo X="1694.117" Y="633.3572" Z="128.4503" />
+								<RunTo X="1673.767" Y="633.6954" Z="127.5972" />
+								<RunTo X="1663.43" Y="625.3335" Z="128.0307" />
+								<RunTo X="1664.98" Y="649.3254" Z="127.0745" />
+								<RunTo X="1640.559" Y="639.2423" Z="126.216" />
+								<RunTo X="1639.297" Y="659.866" Z="124.4361" />
+								<RunTo X="1626.241" Y="695.3307" Z="142.1719" />
+								<RunTo X="1626.227" Y="744.3055" Z="142.7861" />
+								<RunTo X="1680.791" Y="743.1531" Z="142.7869" />
+							<EnableBehavior Name="Combat" />
+						</If>
+
+						<If Condition="Me.IsAlive" >						
+							<MoveTo X="1689.662" Y="743.3555" Z="142.781" />
+
+							<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="(Object(192520, o => o.ToGameObject().State == 0) != null) || (Object(192520, o => o.ToGameObject().CanUse()) != null)" />
+							<While Condition="!(Object(192520, o =&gt; o.ToGameObject().State == 0) != null)">
+								<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
+								<CustomBehavior File="WaitTimer" WaitTime="1200" />
+							</While>
+
+							<MoveTo X="1627.208" Y="751.5085" Z="142.7861" />
+						</If>
+
+						<If Condition="Me.IsAlive" >
+
+							<DisableBehavior Name="Combat" />
+								<RunTo X="1625.227" Y="790.0083" Z="142.7824" />
+								<RunTo X="1575.291" Y="833.7738" Z="153.3104" />
+								<RunTo X="1585.866" Y="883.0992" Z="151.4873" />
+								<RunTo X="1643.559" Y="894.985" Z="143.8395" />
+								<RunTo X="1663.692" Y="873.1186" Z="138.2952" /> <!-- Coordinate not same as other pull densities. -->
+				<RunTo X="1662.971" Y="888.4821" Z="139.6259" /> <!-- Pull away from ledge. -->
+							<EnableBehavior Name="Combat" />
+						</If>
+
+						<If Condition="Me.IsAlive" >						
+
+							<DisableBehavior Name="Combat" />
+								<RunTo X="1686.498" Y="894.6101" Z="133.4067" />
+								<RunTo X="1715.809" Y="854.1606" Z="129.1983" />
+								<RunTo X="1746.728" Y="858.087" Z="129.1924" />
+								<RunTo X="1776.924" Y="850.5671" Z="123.1936" />
+								<RunTo X="1797.481" Y="856.8885" Z="129.1889" />
+								<RunTo X="1772.675" Y="810.5074" Z="129.2168" /> <!-- Third boss -->
+							<EnableBehavior Name="Combat" />
+						</If>
+
+						<If Condition="Me.IsAlive" >
+							<MoveTo X="1772.236" Y="808.7632" Z="129.2166" />
+
+							<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="(Object(192519, o => o.ToGameObject().State == 0) != null) || (Object(192519, o => o.ToGameObject().CanUse()) != null)" />
+							<While Condition="!(Object(192519, o =&gt; o.ToGameObject().State == 0) != null)">
+								<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
+								<CustomBehavior File="WaitTimer" WaitTime="1200" />
+							</While>
+						</If>
+
+						<If Condition="Me.IsAlive" >
+						    <RunTo X="1769.452" Y="801.0773" Z="129.2167" />
+						    <RunTo X="1739.418" Y="758.1852" Z="113.3648" />
+						</If>
+
+						<If Condition="Me.IsAlive" >
+						    <MoveTo X="1751.777" Y="743.4966" Z="118.9603" />
+
+
+							<DisableBehavior Name="Combat" />
+								<RunTo X="1847.016" Y="742.9401" Z="135.9356" />
+								<RunTo X="1880.714" Y="757.1185" Z="135.9769" />
+								<RunTo X="1882.871" Y="728.2493" Z="135.9563" />
+								<RunTo X="1919.834" Y="743.6863" Z="136.5191" />
+							<EnableBehavior Name="Combat" />
+						</If>
+				</ElseIf>
+
+			<!-- Lite pull execution -->
+				<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;1&quot;" >
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1805.276" Y="633.3484" Z="129.1355" />
+							<RunTo X="1789.081" Y="630.5768" Z="124.4691" />
+							<RunTo X="1775.437" Y="610.9134" Z="124.6004" />
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1763.212" Y="624.6196" Z="124.4669" />
+							<RunTo X="1775.782" Y="650.1952" Z="124.4696" />
+							<RunTo X="1775.17" Y="675.1672" Z="129.2167" />
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+						<MoveTo X="1777.956" Y="676.9604" Z="129.2174" />
+
+						<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="(Object(192518, o => o.ToGameObject().State == 0) != null) || (Object(192518, o => o.ToGameObject().CanUse()) != null)" />
+						<While Condition="!(Object(192518, o =&gt; o.ToGameObject().State == 0) != null)">
+							<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192518" X="1775.293" Y="679.6804" Z="129.2361" />
+							<CustomBehavior File="WaitTimer" WaitTime="1200" />
+						</While>
+					</If>
+
+					<If Condition="Me.IsAlive" >
+						<MoveTo X="1765.704" Y="644.8124" Z="124.4661" />
+						<MoveTo X="1726.359" Y="632.9615" Z="129.1971" />
+
+
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1694.117" Y="633.3572" Z="128.4503" />
+							<RunTo X="1673.767" Y="633.6954" Z="127.5972" />
+							<RunTo X="1663.43" Y="625.3335" Z="128.0307" />
+							<RunTo X="1664.98" Y="649.3254" Z="127.0745" />
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" /> //
+							<RunTo X="1640.559" Y="639.2423" Z="126.216" />
+							<RunTo X="1639.297" Y="659.866" Z="124.4361" />
+							<RunTo X="1626.241" Y="695.3307" Z="142.1719" />
+							<RunTo X="1626.227" Y="744.3055" Z="142.7861" />
+							<RunTo X="1680.791" Y="743.1531" Z="142.7869" />
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+						<MoveTo X="1689.662" Y="743.3555" Z="142.781" />
+
+					
+						<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="(Object(192520, o => o.ToGameObject().State == 0) != null) || (Object(192520, o => o.ToGameObject().CanUse()) != null)" />
+						<While Condition="!(Object(192520, o =&gt; o.ToGameObject().State == 0) != null)">
+							<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192520" X="1693.509" Y="743.595" Z="142.7876" />
+							<CustomBehavior File="WaitTimer" WaitTime="1200" />
+						</While>
+
+						<MoveTo X="1627.208" Y="751.5085" Z="142.7861" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1625.227" Y="790.0083" Z="142.7824" />
+							<RunTo X="1575.291" Y="833.7738" Z="153.3104" />
+							<RunTo X="1585.866" Y="883.0992" Z="151.4873" />
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" /> //
+							<RunTo X="1643.559" Y="894.985" Z="143.8395" />
+							<RunTo X="1663.692" Y="873.1186" Z="138.2952" /> <!-- Coordinate not same as other pull densities. -->
+				<RunTo X="1662.971" Y="888.4821" Z="139.6259" /> <!-- Pull away from ledge. -->
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1686.498" Y="894.6101" Z="133.4067" />
+							<RunTo X="1715.809" Y="854.1606" Z="129.1983" />
+							<RunTo X="1746.728" Y="858.087" Z="129.1924" />
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" /> //
+							<RunTo X="1776.924" Y="850.5671" Z="123.1936" />
+							<RunTo X="1797.481" Y="856.8885" Z="129.1889" />
+							<RunTo X="1772.675" Y="810.5074" Z="129.2168" /> <!-- Third boss -->
+						<EnableBehavior Name="Combat" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+						<MoveTo X="1772.236" Y="808.7632" Z="129.2166" />
+
+						<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!Me.Combat" />
+						<While Condition="!(Object(192519, o =&gt; o.ToGameObject().State == 0) != null)">
+							<CustomBehavior File="InteractWith" WaitForNpcs="false" CollectionDistance="5" MobId="192519" X="1772.219" Y="804.9631" Z="129.2361" />
+							<CustomBehavior File="WaitTimer" WaitTime="1200" />
+						</While>
+					</If>
+
+					<If Condition="Me.IsAlive" >
+					    <RunTo X="1769.452" Y="801.0773" Z="129.2167" />
+					    <RunTo X="1739.418" Y="758.1852" Z="113.3648" />
+
+					    <MoveTo X="1751.777" Y="743.4966" Z="118.9603" />
+					</If>
+
+					<If Condition="Me.IsAlive" >
+
+						<DisableBehavior Name="Combat" />
+							<RunTo X="1847.016" Y="742.9401" Z="135.9356" />
+							<RunTo X="1880.714" Y="757.1185" Z="135.9769" />
+							<RunTo X="1882.871" Y="728.2493" Z="135.9563" />
+							<RunTo X="1919.834" Y="743.6863" Z="136.5191" />
+						<EnableBehavior Name="Combat" />
+					</If>
+				</ElseIf>
+				</If>
+				<CustomBehavior File="InteractWith" MobId="29306" MobState="Alive" IgnoreCombat="true" WaitForNpcs="false" /> <!-- Pull Gal'darah just in case he was missed. -->
+				<If Condition="Me.IsAlive" >
+					<MoveTo X="1947.211" Y="681.9457" Z="135.4161" />
+					<MoveTo X="1945.433" Y="663.1171" Z="135.2176" />
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Instance completed, in-game timer paused.&quot;)" />
+
+					<CustomBehavior File="Misc\RunLua" Lua="
+						ShowPizzaMessage = GetMoney();
+						WarningIconChat = GetTime();
+						WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
+						ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);
+						totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);
+						print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))
+					" /> 
+
+					<CustomBehavior File="RunMacro" Macro="/sw pause" />
+					<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHookGundrak" Command="Disable" />
+
+					<If Condition="(Me.FreeBagSlots &lt; 17)" >
+						<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+						<Else>
+							<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+						</Else>
+					</If>
+				    <CustomBehavior File="MyCTM" X="1905.168" Y="640.1153" Z="176.6356" TerminateWhen="Me.MapId != 604" />
+				    <EnableBehavior Name="Death" />
+					<CustomBehavior File="WaitTimer" WaitTime="11000" />
+					<While Condition="!(StyxWoW.IsInWorld)" >
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					</While>
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+					<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameSound2&quot;)[0] == &quot;1&quot;)"> 
+						<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+						<CustomBehavior File="Misc\RunLua" Lua="
+							RangeFrameSound2 = 0;
+							HeroicMode:SetChecked(nil);
+							print(&quot;|cFF3399FF[Azyul]|r: Switching the dungeon back to Normal difficulty.&quot;)" />
+					</If>
+				</If>
+
+				<If Condition="Me.IsDead" >
+					<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Looks like we died, returning to instance.&quot;);" />
+					<CustomBehavior File="RunMacro" Macro="/script RepopMe()" />
+				</If>
+
+			</If>
+			<!--Instance Coordination Complete-->
+		</If>
+
+		<!-- Vendor, Mail, Bank and Routine -->
+		<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+		<!-- ////////////////////////////////////START GUILD BANK DETECTION/////////////////////////////////////////////-->
+			<!-- Deposit Gold and Frostweave -->
+				<If Condition="(Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
+					<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+					<CustomBehavior File="WaitTimer" WaitTime="3500" />
+					<If Condition="Me.IsAlliance" > 
+					    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+					</If> 
+					<If Condition="Me.IsHorde" > 
+					    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+					</If> 
+					<CustomBehavior File="Misc\RunLua" Lua="
+						if GuildBankFrame:IsVisible()==true then
+							MyMoney = GetMoney();
+							DepositGuildBankMoney(MyMoney);
+							print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+						else
+						print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+						end" />
+					<CustomBehavior File="Misc\RunLua" Lua="
+						if GuildBankFrame:IsVisible()==true then
+							print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
+							for b=0,4 do for s=1,GetContainerNumSlots(b)
+								do local n=GetContainerItemLink(b,s)
+									if n and strfind(n,&quot;33470&quot;)then
+										UseContainerItem(b,s)
+									end
+								end
+							end
+						end" />
+
+				<!-- Deposit Frostweave -->
+					<ElseIf Condition="(Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
+							<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+							<CustomBehavior File="WaitTimer" WaitTime="3500" />
+							<If Condition="Me.IsAlliance" > 
+							    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+							</If> 
+							<If Condition="Me.IsHorde" > 
+							    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+							</If> 
+								<CustomBehavior File="Misc\RunLua" Lua="
+									if GuildBankFrame:IsVisible()==true then
+										print(&quot;|cFF3399FF[Azyul]|r: Depositing Frostweave Cloth.&quot;)
+										for b=0,4 do for s=1,GetContainerNumSlots(b)
+											do local n=GetContainerItemLink(b,s)
+												if n and strfind(n,&quot;33470&quot;)then
+													UseContainerItem(b,s)
+												end
+											end
+										end
+									end" />
+					</ElseIf>
+				<!-- END Deposit Frostweave -->
+
+				<!-- Deposit Gold -->
+					<ElseIf Condition="(Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)">
+							<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+							<CustomBehavior File="WaitTimer" WaitTime="3500" />
+							<If Condition="Me.IsAlliance" > 
+							    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+							</If> 
+							<If Condition="Me.IsHorde" > 
+							    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+							</If> 
+							<CustomBehavior File="Misc\RunLua" Lua="
+								if GuildBankFrame:IsVisible()==true then
+									MyMoney = GetMoney();
+									DepositGuildBankMoney(MyMoney);
+									print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney))UseContainerItem(b,s);
+								else
+								print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+								end" />
+					</ElseIf>
+				<!-- END Deposit Gold -->
+					<ElseIf Condition="((Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) || (Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;)) &amp;&amp; (WoWSpell.FromId(83958).Cooldown)"> 
+						<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Your mobile bank is on cooldown.  Continuing run.&quot;)" />
+					</ElseIf>
+				</If>
+
+		<!-- ////////////////////////////////////END GUILD BANK DETECTION/////////////////////////////////////////////-->
+
+
+		<!-- ////////////////////////////////////START MOUNT VENDORS///////////////////////////////////////////////////-->
+
+		<!-- Lua Sell, Keep Frostweave -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;)"> 
+				<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+					<CustomBehavior File="WaitTimer" WaitTime="2000" />
+					<If Condition="Me.HasAura(61425)" >
+						<CustomBehavior File="InteractWith" MobId="32639" />
+						<ElseIf Condition="Me.HasAura(61447)" >
+							<CustomBehavior File="InteractWith" MobId="32641" />
+						</ElseIf>
+						<ElseIf Condition="Me.HasAura(122708)" >
+							<CustomBehavior File="InteractWith" MobId="62822" />
+						</ElseIf>
+					</If>
+					<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="3500" Lua="DynSell();" />
+					<Else>
+						<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
+						<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Vendor mount not detected.&quot;);" />
+					</Else>
+				</If>
+			</If>
+		<!-- END Lua Sell, Keep Frostweave -->
+
+		<!-- Lua Sell, Everything -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)"> 
+				<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+					<CustomBehavior File="WaitTimer" WaitTime="2000" />
+					<If Condition="Me.HasAura(61425)" >
+						<CustomBehavior File="InteractWith" MobId="32639" />
+						<ElseIf Condition="Me.HasAura(61447)" >
+							<CustomBehavior File="InteractWith" MobId="32641" />
+						</ElseIf>
+						<ElseIf Condition="Me.HasAura(122708)" >
+							<CustomBehavior File="InteractWith" MobId="62822" />
+						</ElseIf>
+					</If>
+					<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="3500" Lua="DynSell();" />
+					<Else>
+						<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
+						<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Vendor mount not detected.&quot;);" />
+					</Else>
+				</If>
+			</If>
+		<!-- END Lua Sell, Everything -->
+
+		<!-- Honorbuddy Routine Mount Sell -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;0&quot;)"> 
+				<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+					<CustomBehavior File="WaitTimer" WaitTime="2000" />
+						<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+					</If>
+			</If>
+		<!-- END Honorbuddy Routine Mount Sell -->
+
+		<!-- ////////////////////////////////////END MOUNT VENDORS///////////////////////////////////////////////////-->
+
+		<!-- ////////////////////////////////////START TOWN VENDORS///////////////////////////////////////////////////-->
+
+				<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+					<CustomBehavior File="FlyTo" X="5870.244" Y="-3906.165" Z="493.8217" />
+					<CustomBehavior File="FlyTo" X="5850.354" Y="-3643.215" Z="398.8691" />
+					<CustomBehavior File="FlyTo" X="5780.249" Y="-3583.092" Z="400.9279" />
+					<CustomBehavior File="FlyTo" X="5779.767" Y="-3573.306" Z="386.5177" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+					<RunTo X="5770.711" Y="-3573.024" Z="387.1675" />
+
+			<!-- Lua Sell, Keep Frostweave -->
+					<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;)"> 
+						<CustomBehavior File="InteractWith" MobId="28855" X="5769.661" Y="-3572.947" Z="387.2394" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+						<CustomBehavior File="Misc\RunLua" NumOfTimes="5" WaitTime="3500" Lua="DynSell();" />
+					</If>
+			<!-- END Lua Sell, Keep Frostweave -->
+
+			<!-- Lua Sell, Everything -->
+					<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)">
+						<CustomBehavior File="InteractWith" MobId="28855" X="5769.661" Y="-3572.947" Z="387.2394" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+						<CustomBehavior File="Misc\RunLua" NumOfTimes="10" Lua="
+						if MerchantFrame:IsVisible()==true then
+							MerchantRepairAllButton:Click()
+							 for b=0,4 do for s=1,GetContainerNumSlots(b)
+								do local n=GetContainerItemLink(b,s)
+									if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
+										UseContainerItem(buffer,s)
+									end
+								end
+							buffer=buffer+1
+							end
+						end" />
+					</If>
+			<!-- END Lua Sell, Everything -->
+
+			<!-- Normal Sell -->
+					<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;0&quot;)"> 
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Ba'kari" Entry="28855" Type="Repair" X="5769.661" Y="-3572.947" Z="387.2385" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<ClearVendor />
+					</If>
+			<!-- END Normal Sell -->
+
+			<!-- Generic Mail Routine -->
+					<RunTo X="5780.233" Y="-3568.455" Z="386.5152" />
+					<If Condition="(Me.FreeBagSlots &lt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameRadarPoint&quot;, 0)))" >
+						<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;You're still under 20 bagslots after selling. Moving to mail.&quot;);" />
+						<CustomBehavior File="FlyTo" X="5546.134" Y="-3194.041" Z="440.3812" />
+						<CustomBehavior File="FlyTo" X="5525.695" Y="-2623.592" Z="319.2954" />
+						<RunTo X="5490.855" Y="-2640.885" Z="305.896" />
+						<CustomBehavior File="RunMacro" Macro="/dismount" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="5417.155" Y="-2620.26" Z="307.0088" />
+							</Mailboxes>
+						</SetMailbox>
+						<RunTo X="5416.015" Y="-2622.577" Z="306.9517" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" />
+						<RunTo X="5396.842" Y="-2617.582" Z="303.9539" />
+						<ClearMailbox />
+						<CustomBehavior File="FlyTo" X="5377.773" Y="-2611.433" Z="321.3243" />
+					</If>
+
+					<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+					<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+					<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+					<CustomBehavior File="FlyTo" X="6002.019" Y="-3651.332" Z="491.8026" />
+				</If>
+			<!-- END Generic Mail Routine -->
+		<!-- ////////////////////////////////////END TOWN VENDORS///////////////////////////////////////////////////-->
+
+		</If>
+	</If>
+
+</While>
+
+
+</QuestOrder>
+</HBProfile>
