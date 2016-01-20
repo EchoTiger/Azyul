@@ -1,0 +1,956 @@
+<HBProfile>
+<Name>Botanica - Gold Optimized - AM [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+<MinDurability>-1</MinDurability>
+///////////////////////////////////////////////////////////////////////////////////////////
+// Profile Maker: EchoTiger
+// Farm zone: The Botanica
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+<ProtectedItems>
+</ProtectedItems>
+		
+<Vendors>
+	<Vendor Nav="Fly" Name="Kerpow Blastwrench" Entry="22491" Type="Repair" X="2955.032" Y="1802.131" Z="139.1213" />
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+</AvoidMobs>
+
+	
+<QuestOrder>
+
+<!-- 
+HOW TO: A quick documentation of adding your default settings.
+
+        At the top of the code below, you should see the words:   [[Define Variables]].
+        In this section, the defaults of the ASM are set.   You can change any of these variables to your preference.
+
+
+ATTRIBUTES:
+
+        RangeFrameSound1
+                This code tells the game that ASM is active so more than one ASM will not appear on the game screen.
+                DO NOT CHANGE THIS VALUE.
+
+        RangeFrameSound2
+                0 = Run the dungeon as normal difficulty.
+                1 = Run the dungeon as heroic difficulty.
+                After the dungeon has been ran as heroic, ASM will automatically switch it back to normal.
+
+        RangeFrameLocked
+                # = The minimum bagslots before the bot starts the vendor routine.
+
+        RangeFrameRadarPoint
+                # = The minimum bagslots before the bot starts the mailing routine.
+                The mailing routine is only checked after the vendor routine is completed.
+
+        RangeFrameRadarX
+                1 = The bot will run the dungeon with Lite pulls.
+                2 = The bot will run the dungeon with Medium pulls.
+                3 = The bot will run the dungeon with Heavy pulls.
+                This value cannot be set to 0.  If it is set to 0, the bot won't run the dungeon properly.
+
+        RangeFrameRadarY
+                0 = The bot will sell using Honorbuddy's routine.  All protected items are protected, and any vendor rules apply.
+                1 = The bot will sell using a Lua script.  Everything in the player's bags WILL BE sold except for Netherweave IF it's checked to be deposited.
+
+        InfoFramePoint
+                0 = The bot will not deposit any obtained Netherweave that's obtained while running the profile.
+                1 = The bot will deposit any obtained Netherweave that's obtained.  Also, the Netherweave will be protected from the Lua sell script.
+                The deposit routine is called once the vendoring routine starts.
+
+        InfoFrameX
+                0 = The bot will NOT deposit all of its gold into the mobile guild.
+                1 = The bot will deposit all of its gold into the mobile guild bank.
+                The deposit routine is called once the vendoring routine starts.
+
+After any of these settings are applied, you must reload the profile for them to take effect.
+Please note also: If you make a change and it doesn't show up on ASM - then don't worry, the change HAS been made.
+-->
+
+<CustomBehavior File="Misc\RunLua" Lua="
+        --[[Define Variables]]
+                RangeFrameSound2 = 0;
+                RangeFrameLocked = 17;
+                RangeFrameRadarPoint = 20;
+                RangeFrameRadarX = 3;
+                RangeFrameRadarY = 0;
+                InfoFramePoint = 0;
+                InfoFrameX = 0;
+
+
+        if (RangeFrameSound1 == nil or RangeFrameSound1 == &apos;&apos;) then
+                RangeFrameSound1 = 1;
+                SLASH_HEALBOT1 = '/ashow';
+
+
+                --[[Functions]]
+                        --[[Azyul Show]]
+                                function HideAzyul_OnClick()
+                                        AzyulManager:Hide();
+                                        print(&quot;|cFF3399FF[Azyul]|r: Azyul Manager is now hidden.  Type  /ashow to bring it back up.&quot;)
+                                end
+                                function SlashCmdList.HEALBOT()
+                                        AzyulManager:Show();
+                                end
+                        --[[Dungeon Properties]]
+                                function HeroicMode_OnClick()
+                                        if (HeroicMode:GetChecked() == true) then
+                                                RangeFrameSound2 = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran as Heroic.&quot;)
+                                        else
+                                                RangeFrameSound2 = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran as Normal.&quot;)
+                                        end
+                                end
+                                function HeavyPull_OnClick() 
+                                        if (HeavyPull:GetChecked() == true) then
+                                                RangeFrameRadarX = 3;
+                                                MediumPull:SetChecked(false);
+                                                LitePull:SetChecked(false);
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Heavy Pulls.&quot;)
+                                        else
+                                                HeavyPull:SetChecked(true);
+                                        end
+                                end
+                                function MediumPull_OnClick() 
+                                        if (MediumPull:GetChecked() == true) then
+                                                RangeFrameRadarX = 2;
+                                                HeavyPull:SetChecked(false);
+                                                LitePull:SetChecked(false);
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Medium Pulls.&quot;)
+                                        else
+                                                MediumPull:SetChecked(true);
+                                        end
+                                end
+                                function LitePull_OnClick() 
+                                        if (LitePull:GetChecked() == true) then
+                                                RangeFrameRadarX = 1;
+                                                MediumPull:SetChecked(false);
+                                                HeavyPull:SetChecked(false);
+                                                print(&quot;|cFF3399FF[Azyul]|r: Our next run will be ran with Lite Pulls.&quot;)
+                                        else
+                                                LitePull:SetChecked(true);
+                                        end
+                                end
+                        --[[Bagslot Manager]]
+                                function SellEverything_OnClick()
+                                        if (SellEverything:GetChecked() == true) then
+                                                RangeFrameRadarY = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will now sell everything using a Lua script.&quot;)
+                                        else
+                                                RangeFrameRadarY = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will no longer sell using the Lua script.&quot;)
+                                        end
+                                end
+                                function DepositGold_OnClick()
+                                        if (DepositGold:GetChecked() == true) then
+                                                InfoFrameX = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will now use the Mobile Guild Bank to deposit the Gold we obtain.&quot;)
+                                        else
+                                                InfoFrameX = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will no longer deposit the Gold we obtain.&quot;)
+                                        end
+                                end
+                                function DepositCloth_OnClick()
+                                        if (DepositCloth:GetChecked() == true) then
+                                                InfoFramePoint = 1
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will now use the Mobile Guild Bank to deposit the Cloth we obtain.&quot;)
+                                        else
+                                                InfoFramePoint = 0
+                                                print(&quot;|cFF3399FF[Azyul]|r: We will no longer deposit the Cloth we obtain.&quot;)
+                                        end
+                                end
+
+
+
+                --[[Create Frame]]
+                                AzyulManager = CreateFrame(&quot;StatusBar&quot;, nil, UIParent)
+                                AzyulManager:SetStatusBarTexture(&quot;Interface\\DialogFrame\\UI-DialogBox-Background&quot;)
+                                AzyulManager:SetWidth(425)
+                                AzyulManager:SetHeight(120)
+                                AzyulManager:SetPoint(&quot;CENTER&quot;,UIParent,&quot;CENTER&quot;)
+                                AzyulManager:SetMovable(true);
+                                AzyulManager:EnableMouse(true);
+                                AzyulManager:SetScript(&quot;OnUpdate&quot;, function () 
+                                        AzyulManager:SetScript(&quot;OnMouseUp&quot;, function()
+                                                AzyulManager:StopMovingOrSizing();
+                                        end);
+
+                                        AzyulManager:SetScript(&quot;OnMouseDown&quot;, function()
+                                                AzyulManager:StartMoving();
+                                        end);
+                                end);
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;Azyul Manager&quot;);
+                                TitleLabel:SetTextColor(.9, .9, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 18, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOP&quot;, 0, -5);
+                --[[Hide Button]]
+                                        HideAzyul = CreateFrame(&quot;Button&quot;, &quot;HideAzyul&quot;, AzyulManager, &quot;UIPanelButtonTemplate&quot;);
+                                        HideAzyul:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, 0, 0);
+                                        HideAzyul:SetScript(&quot;PostClick&quot;, HideAzyul_OnClick);
+                                        HideAzyul:SetScale(1);
+                                        HideAzyul:SetWidth(23)
+                                        HideAzyul:SetHeight(25)
+                                        HideAzyul:SetText(&quot;X&quot;)
+                                        HideAzyul:SetHitRectInsets(1, 1, 1, 1)
+
+                --[[Dungeon Properties]]
+                        --[[Difficulties]]
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;- Pull Density -&quot;);
+                                TitleLabel:SetTextColor(.85, .85, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 15, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 10, -30);
+                                        LitePull = CreateFrame(&quot;CheckButton&quot;, &quot;LitePull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        LitePull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 10, -38);
+                                        LitePull:SetScript(&quot;PostClick&quot;, LitePull_OnClick);
+                                        LitePull:SetScale(1.3);
+                                        LitePull:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;L&quot;);
+                                                TitleLabel:SetTextColor(.5, 1, .5, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 20, -70);
+                                        MediumPull = CreateFrame(&quot;CheckButton&quot;, &quot;MediumPull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        MediumPull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 30, -38);
+                                        MediumPull:SetScript(&quot;PostClick&quot;, MediumPull_OnClick);
+                                        MediumPull:SetScale(1.3);
+                                        MediumPull:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;M&quot;);
+                                                TitleLabel:SetTextColor(1, 1, .5, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 47, -70);
+                                        HeavyPull = CreateFrame(&quot;CheckButton&quot;, &quot;HeavyPull&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        HeavyPull:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 50, -38);
+                                        HeavyPull:SetScript(&quot;PostClick&quot;, HeavyPull_OnClick);
+                                        HeavyPull:SetScale(1.3);
+                                        HeavyPull:SetHitRectInsets(1, 1, 1, 1)
+
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;H&quot;);
+                                                TitleLabel:SetTextColor(1, .5, .5, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 73, -70);
+                                        HeroicMode = CreateFrame(&quot;CheckButton&quot;, &quot;HeroicCheck&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        HeroicMode:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 65, -73);
+                                        HeroicMode:SetScript(&quot;PostClick&quot;, HeroicMode_OnClick);
+                                        HeroicMode:SetScale(1.3);
+                                        HeroicMode:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Heroic Mode:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPLEFT&quot;, AzyulManager, 5, -100);
+                        --[[Bagslots]]
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;- Bagslot Management -&quot;);
+                                TitleLabel:SetTextColor(.85, .85, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 15, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, 0, -30);
+                                        local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                        TitleLabel:SetText(&quot;Vendor Min:&quot;);
+                                        TitleLabel:SetTextColor(1, 1, 1, 1);
+                                        TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                        TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -16, -56);
+                                                BagSlotCheck = CreateFrame(&quot;EditBox&quot;, &quot;BagSlotCheck&quot;, AzyulManager, &quot;InputBoxTemplate&quot;);
+                                                BagSlotCheck:SetPoint(&quot;TOP&quot;, AzyulManager, 38, -39);
+                                                BagSlotCheck:SetHitRectInsets(0, 0, 6, 7)
+                                                BagSlotCheck:SetNumeric(true)
+                                                BagSlotCheck:SetMaxLetters(2)
+                                                BagSlotCheck:SetText(RangeFrameLocked)
+                                                BagSlotCheck:SetWidth(20)
+                                                BagSlotCheck:EnableMouse(true)
+                                                BagSlotCheck:SetAutoFocus(false)
+                                                BagSlotCheck:SetHeight(50)
+                                                BagSlotCheck:SetScript(&quot;OnChar&quot;, function(self,userInput,...) RangeFrameLocked = BagSlotCheck:GetNumber() end);
+                                        local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                        TitleLabel:SetText(&quot;Mailing Min:&quot;);
+                                        TitleLabel:SetTextColor(1, 1, 1, 1);
+                                        TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                        TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -16, -79);
+                                                MailingCheck = CreateFrame(&quot;EditBox&quot;, &quot;MailingCheck&quot;, AzyulManager, &quot;InputBoxTemplate&quot;);
+                                                MailingCheck:SetPoint(&quot;TOP&quot;, AzyulManager, 38, -62);
+                                                MailingCheck:SetHitRectInsets(0, 0, 8, 9)
+                                                MailingCheck:SetNumeric(true)
+                                                MailingCheck:SetMaxLetters(2)
+                                                MailingCheck:SetText(RangeFrameRadarPoint)
+                                                MailingCheck:SetWidth(20)
+                                                MailingCheck:EnableMouse(true)
+                                                MailingCheck:SetAutoFocus(false)
+                                                MailingCheck:SetHeight(50)
+                                                MailingCheck:SetScript(&quot;OnChar&quot;, function(self,userInput,...) RangeFrameRadarPoint = MailingCheck:GetNumber() end);
+                                        SellEverything = CreateFrame(&quot;CheckButton&quot;, &quot;SellEverything&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        SellEverything:SetPoint(&quot;TOP&quot;, AzyulManager, 27, -73);
+                                        SellEverything:SetScript(&quot;PostClick&quot;, SellEverything_OnClick);
+                                        SellEverything:SetScale(1.3);
+                                        SellEverything:SetChecked(nil);
+                                        SellEverything:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Sell All:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOP&quot;, AzyulManager, -28, -100);
+                        --[[Deposit Method]]
+                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                TitleLabel:SetText(&quot;- Mobile Bank -&quot;);
+                                TitleLabel:SetTextColor(.85, .85, 1, 1);
+                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 15, &quot;NONE&quot;);
+                                TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -10, -30);
+                                        DepositGold = CreateFrame(&quot;CheckButton&quot;, &quot;DepositGold&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        DepositGold:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -5, -37);
+                                        DepositGold:SetScript(&quot;PostClick&quot;, DepositGold_OnClick);
+                                        DepositGold:SetScale(1.3);
+                                        DepositGold:SetChecked(nil);
+                                        DepositGold:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Deposit Gold:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -35, -54);
+                                        DepositCloth = CreateFrame(&quot;CheckButton&quot;, &quot;DepositCloth&quot;, AzyulManager, &quot;ChatConfigSmallCheckButtonTemplate&quot;);
+                                        DepositCloth:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -5, -55);
+                                        DepositCloth:SetScript(&quot;PostClick&quot;, DepositCloth_OnClick);
+                                        DepositCloth:SetScale(1.3);
+                                        DepositCloth:SetChecked(nil);
+                                        DepositCloth:SetHitRectInsets(1, 1, 1, 1)
+                                                local TitleLabel = AzyulManager:CreateFontString(nil, &quot;HIGH&quot;, &quot;GameFontNormal&quot;);
+                                                TitleLabel:SetText(&quot;Deposit Cloth:&quot;);
+                                                TitleLabel:SetTextColor(1, 1, 1, 1);
+                                                TitleLabel:SetFont(&quot;Fonts\\ARIALN.TTF&quot;, 14, &quot;NONE&quot;);
+                                                TitleLabel:SetPoint(&quot;TOPRIGHT&quot;, AzyulManager, -35, -77);
+
+
+        end;
+
+                --[[Adjust Visuals]]
+                        if (RangeFrameSound2 == 1) then
+                                HeroicMode:SetChecked(1)
+                                else
+                                HeroicMode:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarX == 3) then
+                                HeavyPull:SetChecked(1)
+                                MediumPull:SetChecked(nil)
+                                LitePull:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarX == 2) then
+                                MediumPull:SetChecked(1)
+                                HeavyPull:SetChecked(nil)
+                                LitePull:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarX == 1) then
+                                LitePull:SetChecked(1)
+                                HeavyPull:SetChecked(nil)
+                                MediumPull:SetChecked(nil)
+                        end
+
+                        if (RangeFrameRadarY == 1) then
+                                SellEverything:SetChecked(1)
+                                else
+                                SellEverything:SetChecked(nil)
+                        end
+
+                        if (InfoFramePoint == 1) then
+                                DepositCloth:SetChecked(1)
+                                else
+                                DepositCloth:SetChecked(nil)
+                        end
+
+                        if (InfoFrameX == 1) then
+                                DepositGold:SetChecked(1)
+                                else
+                                DepositGold:SetChecked(nil)
+                        end
+" />
+
+
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
+
+<If Condition="(Me.MapId == 553)" > <!-- The Botanica -->
+	<DisableBehavior Name="Pull" />
+	<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+	<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" TerminateWhen="Me.MapId != 553" WaitTime="3000" /> <!--Exits Instance -->
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions and Arcane Tombs.&quot;);" />
+	<EnableBehavior Name="Pull" />
+</If>
+
+<If Condition="!(Me.MapId == 553)" >
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+</If>
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Portal" UseWhen="Me.Location.Distance(new WoWPoint(2979.851, 1869.982, 143.6064)) &lt;= 15" >
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died outside of the dungeon. Returning to corpse.&quot;);" />
+	<CustomBehavior File="FlyTo" X="3094.094" Y="1720.757" Z="201.8069" />
+	<CustomBehavior File="MyCTM" X="3396.883" Y="1496.01" Z="179.5677" />
+	<CustomBehavior File="RunMacro" Macro="/script RepopMe();" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Dungeon" UseWhen="Me.Location.Distance(new WoWPoint(2979.851, 1869.982, 143.6064)) &lt;= 15" >
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we died inside of the dungeon. Returning to instance.&quot;);" />
+	<DisableBehavior Name="Death" />
+	<DisableBehavior Name="Vendor" />
+	<CustomBehavior File="FlyTo" X="3080.292" Y="1734.528" Z="218.1617" />
+	<CustomBehavior File="MyCTM" X="3396.883" Y="1496.01" Z="179.5677" />
+	<CustomBehavior File="MyCTM" X="3416.718" Y="1481.022" Z="182.8369" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId == 553" />
+	<EnableBehavior Name="Death" />
+	<EnableBehavior Name="Vendor" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Dungeon" Command="Disable" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Portal" Command="Enable" />
+<!--CHOP CHOP -->
+<While Condition="true">
+	<If Condition="!(Me.ZoneId == 3523)" >
+		<CustomBehavior File="FlyTo" X="589.3289" Y="3427.308" Z="291.0131" />
+		<CustomBehavior File="MyCTM" X="2945.934" Y="1784.823" Z="206.9143" />
+	</If>
+	<!-- <If Condition="!(Me.MapId == 552)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(3291.662, 1384.015, 503.9863)) &gt;= 55" >				
+			<CustomBehavior File="FlyTo" X="3187.521" Y="1654.452" Z="194.4471" />
+			<CustomBehavior File="MyCTM" X="3398.964" Y="1494.088" Z="182.7867" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
+	</If> -->
+	<If Condition="!(Me.MapId == 553) &amp;&amp; (Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+		<If Condition="Me.Location.Distance(new WoWPoint(3366.32, 1518.864, 182.6719)) &gt;= 56" >
+			<MoveTo Nav="Fly" X="3403.443" Y="1489.909" Z="182.8369" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
+	</If>
+
+<!-- Dungeon Routine -->
+	<While Condition="(Me.FreeBagSlots &gt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+		<!-- AzyulManager Setting -->
+		<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameSound2&quot;)[0] == &quot;0&quot;)"> 
+			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+		</If>
+
+		<If Condition="Lua.GetReturnValues(&quot;return RangeFrameSound2&quot;)[0] == &quot;1&quot;"> 
+			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+		</If>
+		<!--Start Endless Cycle -->
+		<If Condition="!(Me.MapId == 553)" >
+                        <RunTo X="3402.128" Y="1492.116" Z="181.5073" />
+                        <RunTo X="3412.253" Y="1484.314" Z="182.8368" />
+                        <CustomBehavior File="MyCTM" X="3417.772" Y="1480.286" Z="182.8368" TerminateWhen="Me.IsInInstance" />
+                        <CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.IsInInstance" />
+		</If>
+		<!--Instance Navigation Start -->
+		<If Condition="(Me.MapId == 553)" >
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Dungeon" Command="Enable" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Portal" Command="Disable" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+			<MoveTo X="1.399361" Y="19.53091" Z="-5.708767" />
+
+		<!-- Pull executions -->
+			<!-- Heavy Pull execution -->
+			<If Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;3&quot;"> 
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+						<Hotspot X="-1.132295" Y="61.46199" Z="-5.662589" />
+						<Hotspot X="-5.061379" Y="90.00092" Z="-5.650543" />
+						<Hotspot X="-0.8882984" Y="121.8921" Z="-5.540264" />
+						<Hotspot X="3.652268" Y="164.1741" Z="-5.540264" />
+						<Hotspot X="11.64091" Y="202.0575" Z="-5.540264" />
+						<Hotspot X="-10.77896" Y="205.5492" Z="-5.540341" />
+						<Hotspot X="-5.300217" Y="215.8055" Z="-5.540341" />
+						<Hotspot X="-4.699225" Y="254.8372" Z="-4.83915" />
+						<Hotspot X="-34.40111" Y="289.5725" Z="-1.847308" />
+					</CustomBehavior>
+
+					<MoveTo X="-20.18953" Y="288.3877" Z="-1.830582" />
+
+					<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Commander Sarannis -->
+						<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
+						<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
+						<MoveTo X="107.8981" Y="287.203" Z="-6.826936" />
+						<MoveTo X="159.7016" Y="283.7128" Z="-3.114579" />
+						<MoveTo X="164.708" Y="297.3946" Z="-4.807951" />
+						<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
+						<CustomBehavior File="InteractWith" MobId="17976" MobState="DontCare" WaitForNpcs="false" Range="2" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
+					<EnableBehavior Name="Combat" />
+
+					<MoveTo X="161.3502" Y="344.174" Z="-6.860448" />
+
+					<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Botanist Freywinn -->
+						<MoveTo X="160.0694" Y="372.2791" Z="-5.387292" />
+						<MoveTo X="195.8619" Y="378.2886" Z="-5.478722" />
+						<MoveTo X="173.4993" Y="395.0775" Z="-5.387872" />
+						<MoveTo X="159.0994" Y="412.2748" Z="-5.387872" />
+						<MoveTo X="162.9829" Y="445.4804" Z="-6.894575" />
+						<MoveTo X="171.8593" Y="499.6241" Z="-2.300941" />
+						<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
+						<CustomBehavior File="InteractWith" MobId="17975" MobState="DontCare" WaitForNpcs="false" Range="2" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
+					<EnableBehavior Name="Combat" />
+
+					<MoveTo X="128.9197" Y="502.4178" Z="-5.422901" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+						<Hotspot X="95.23268" Y="491.5663" Z="-6.756306" />
+						<Hotspot X="-2.302615" Y="506.1841" Z="-5.304161" />
+						<Hotspot X="-16.17399" Y="481.9402" Z="-5.473525" />
+						<Hotspot X="18.12697" Y="574.5814" Z="-17.94993" />
+						<Hotspot X="-6.9636" Y="575.9285" Z="-17.89389" />
+						<Hotspot X="6.485384" Y="598.557" Z="-15.17408" />
+					</CustomBehavior>
+
+					<MoveTo X="-49.59764" Y="560.2516" Z="-18.04433" />
+
+					<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Laj -->
+						<MoveTo X="-112.3502" Y="541.3242" Z="-17.82489" />
+						<MoveTo X="-134.2693" Y="507.8932" Z="-17.82489" />
+						<MoveTo X="-148.4885" Y="524.0147" Z="-17.82489" />
+						<MoveTo X="-160.7684" Y="497.2664" Z="-17.82489" />
+						<MoveTo X="-173.5526" Y="405.0211" Z="-17.69368" />
+						<MoveTo X="-155.3918" Y="398.094" Z="-17.79432" />
+						<MoveTo X="-173.3446" Y="369.5784" Z="-17.69936" />
+						<MoveTo X="-193.35" Y="369.8827" Z="-15.1717" /> <!-- Face Laj -->
+						<CustomBehavior File="RunMacro" Macro="/target Laj" />
+						<CustomBehavior File="WaitTimer" WaitTime="250" />
+						<CustomBehavior File="RunMacro" Macro="/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Taunt \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot \n/cast Heroic Throw \n/cast Arcane Barrage" /> <!-- Pull Laj -->
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<EnableBehavior Name="Combat" />
+
+					<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
+					<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+						<Hotspot X="3.693267" Y="409.3721" Z="-27.63801" />
+						<Hotspot X="17.46659" Y="369.3841" Z="-26.25432" />
+						<Hotspot X="66.04333" Y="390.6274" Z="-27.97719" />
+					</CustomBehavior>
+
+				<!-- Medium pull execution -->
+				<ElseIf Condition="Lua.GetReturnValues(&quot;return RangeFrameRadarX&quot;)[0] == &quot;2&quot;" >
+						<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+							<Hotspot X="-1.132295" Y="61.46199" Z="-5.662589" />
+							<Hotspot X="-5.061379" Y="90.00092" Z="-5.650543" />
+							<Hotspot X="-0.8882984" Y="121.8921" Z="-5.540264" />
+							<Hotspot X="3.652268" Y="164.1741" Z="-5.540264" />
+							<Hotspot X="11.64091" Y="202.0575" Z="-5.540264" />
+						</CustomBehavior>
+						<CustomBehavior File="RunLikeHell" AllowCombat="false" > //
+							<Hotspot X="-10.77896" Y="205.5492" Z="-5.540341" />
+							<Hotspot X="-5.300217" Y="215.8055" Z="-5.540341" />
+							<Hotspot X="-4.699225" Y="254.8372" Z="-4.83915" />
+							<Hotspot X="-34.40111" Y="289.5725" Z="-1.847308" />
+						</CustomBehavior>
+						<MoveTo X="-20.18953" Y="288.3877" Z="-1.830582" />
+
+						<DisableBehavior Name="Combat" /> 
+							<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
+							<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
+							<MoveTo X="107.8981" Y="287.203" Z="-6.826936" />
+						<EnableBehavior Name="Combat" />
+
+						<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Commander Sarannis -->
+							<MoveTo X="159.7016" Y="283.7128" Z="-3.114579" />
+							<MoveTo X="164.708" Y="297.3946" Z="-4.807951" />
+							<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
+							<CustomBehavior File="InteractWith" MobId="17976" MobState="DontCare" WaitForNpcs="false" Range="2" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
+						<EnableBehavior Name="Combat" />
+
+						<MoveTo X="161.3502" Y="344.174" Z="-6.860448" />
+
+						<DisableBehavior Name="Combat" />
+							<MoveTo X="160.0694" Y="372.2791" Z="-5.387292" />
+							<MoveTo X="195.8619" Y="378.2886" Z="-5.478722" />
+							<MoveTo X="173.4993" Y="395.0775" Z="-5.387872" />
+							<MoveTo X="159.0994" Y="412.2748" Z="-5.387872" />
+						<EnableBehavior Name="Combat" />
+
+						<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Botanist Freywinn -->
+							<MoveTo X="162.9829" Y="445.4804" Z="-6.894575" />
+							<MoveTo X="171.8593" Y="499.6241" Z="-2.300941" />
+							<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
+							<CustomBehavior File="InteractWith" MobId="17975" MobState="DontCare" WaitForNpcs="false" Range="2" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
+						<EnableBehavior Name="Combat" />
+
+						<MoveTo X="128.9197" Y="502.4178" Z="-5.422901" />
+
+						<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+							<Hotspot X="95.23268" Y="491.5663" Z="-6.756306" />
+							<Hotspot X="-16.26616" Y="506.0811" Z="-5.301754" />
+							<Hotspot X="-2.302615" Y="506.1841" Z="-5.304161" />
+							<Hotspot X="-16.17399" Y="481.9402" Z="-5.473525" />
+						</CustomBehavior>
+
+						<RunTo X="25.32044" Y="539.7997" Z="-17.98305" />
+
+						<CustomBehavior File="RunLikeHell" AllowCombat="false" UseCTM="true" > <!-- CTM to avoid mob skipping -->
+							<Hotspot X="13.46458" Y="570.8362" Z="-17.98895" />
+							<Hotspot X="4.489791" Y="597.8298" Z="-15.16989" />
+							<Hotspot X="-1.552027" Y="577.4376" Z="-17.8621" />
+						</CustomBehavior>
+
+						<MoveTo X="-49.59764" Y="560.2516" Z="-18.04433" />
+
+						<DisableBehavior Name="Combat" />
+							<MoveTo X="-112.3502" Y="541.3242" Z="-17.82489" />
+							<MoveTo X="-134.2693" Y="507.8932" Z="-17.82489" />
+							<MoveTo X="-148.4885" Y="524.0147" Z="-17.82489" />
+							<MoveTo X="-160.7684" Y="497.2664" Z="-17.82489" />
+						<EnableBehavior Name="Combat" />
+
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+						<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Laj -->
+							<MoveTo X="-173.5526" Y="405.0211" Z="-17.69368" />
+							<MoveTo X="-155.3918" Y="398.094" Z="-17.79432" />
+							<MoveTo X="-173.3446" Y="369.5784" Z="-17.69936" />
+							<MoveTo X="-193.35" Y="369.8827" Z="-15.1717" /> <!-- Face Laj -->
+							<CustomBehavior File="RunMacro" Macro="/target Laj" />
+							<CustomBehavior File="WaitTimer" WaitTime="250" />
+							<CustomBehavior File="RunMacro" Macro="/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Taunt \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot \n/cast Heroic Throw \n/cast Arcane Barrage" /> <!-- Pull Laj -->
+							<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<EnableBehavior Name="Combat" />
+
+						<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
+						<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
+
+						<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+							<Hotspot X="3.693267" Y="409.3721" Z="-27.63801" />
+							<Hotspot X="17.46659" Y="369.3841" Z="-26.25432" />
+							<Hotspot X="66.04333" Y="390.6274" Z="-27.97719" />
+						</CustomBehavior>
+				</ElseIf>
+			</If>
+
+				<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+				<RunTo X="157.4785" Y="391.5843" Z="-35.20412" />
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Dungeon" Command="Disable" />
+			<CustomBehavior File="Hooks\DoWhen" ActivityName="DeathRun-Portal" Command="Enable" />
+				<While Condition="Me.IsInInstance" >
+					<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+					<CustomBehavior File="MyCTM" X="160.2607" Y="391.3514" Z="-35.81748" TerminateWhen="Me.MapId != 553" />
+					<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" />
+					<CustomBehavior File="WaitTimer" WaitTime="35000" TerminateWhen="Me.MapId != 553" />
+				</While>
+				<CustomBehavior File="Misc\RunLua" Lua="
+					local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+					local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+					local item,l,i=&quot;29739&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end " />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions and Arcane Tombs.&quot;);" />
+				<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameSound2&quot;)[0] == &quot;1&quot;)"> 
+					<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+					<CustomBehavior File="Misc\RunLua" Lua="
+						RangeFrameSound2 = 0;
+						HeroicMode:SetChecked(nil);
+						print(&quot;|cFF3399FF[Azyul]|r: Switching the dungeon back to Normal difficulty.&quot;)" />
+				</If>
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!--Instance Coordnation Complete -->
+	</While>
+
+<!-- Vendor Routine -->
+	<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
+<!-- ////////////////////////////////////START GUILD BANK DETECTION/////////////////////////////////////////////-->
+		<!-- Deposit Gold and Frostweave -->
+			<If Condition="(Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+				<CustomBehavior File="WaitTimer" WaitTime="3500" />
+				<If Condition="Me.IsAlliance" > 
+				    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+				</If> 
+				<If Condition="Me.IsHorde" > 
+				    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+				</If> 
+				<CustomBehavior File="Misc\RunLua" Lua="
+					if GuildBankFrame:IsVisible()==true then
+						MyMoney = GetMoney();
+						DepositGuildBankMoney(MyMoney);
+						print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney));
+					else
+					print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+					end" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+					if GuildBankFrame:IsVisible()==true then
+						print(&quot;|cFF3399FF[Azyul]|r: Depositing Netherweave Cloth.&quot;)
+						for b=0,4 do for s=1,GetContainerNumSlots(b)
+							do local n=GetContainerItemLink(b,s)
+								if n and strfind(n,&quot;21877&quot;)then
+									UseContainerItem(b,s)
+								end
+							end
+						end
+					end" />
+
+			<!-- Deposit Netherweave -->
+				<ElseIf Condition="(Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)"> 
+						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+						<CustomBehavior File="WaitTimer" WaitTime="3500" />
+						<If Condition="Me.IsAlliance" > 
+						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+						</If> 
+						<If Condition="Me.IsHorde" > 
+						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+						</If> 
+							<CustomBehavior File="Misc\RunLua" Lua="
+								if GuildBankFrame:IsVisible()==true then
+									print(&quot;|cFF3399FF[Azyul]|r: Depositing Netherweave Cloth.&quot;)
+									for b=0,4 do for s=1,GetContainerNumSlots(b)
+										do local n=GetContainerItemLink(b,s)
+											if n and strfind(n,&quot;21877&quot;)then
+												UseContainerItem(b,s)
+											end
+										end
+									end
+								end" />
+				</ElseIf>
+			<!-- END Deposit Netherweave -->
+
+			<!-- Deposit Gold -->
+				<ElseIf Condition="(Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;) &amp;&amp; (!WoWSpell.FromId(83958).Cooldown)">
+						<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(83958);" />
+						<CustomBehavior File="WaitTimer" WaitTime="3500" />
+						<If Condition="Me.IsAlliance" > 
+						    <CustomBehavior File="InteractWith" MobId="206602" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+						</If> 
+						<If Condition="Me.IsHorde" > 
+						    <CustomBehavior File="InteractWith" MobId="206603" WaitForNpcs="false" Range="10" WaitTime="2000" /> 
+						</If> 
+						<CustomBehavior File="Misc\RunLua" Lua="
+							if GuildBankFrame:IsVisible()==true then
+								MyMoney = GetMoney();
+								DepositGuildBankMoney(MyMoney);
+								print(&quot;|cFF3399FF[Azyul]|r: Depositing &quot;..GetCoinTextureString(MyMoney));
+							else
+							print(&quot;|cFF3399FF[Azyul]|r: Your mobile guild bank wasn't detected, continuing run.&quot;)
+							end" />
+				</ElseIf>
+			<!-- END Deposit Gold -->
+				<ElseIf Condition="((Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;) || (Lua.GetReturnValues(&quot;return InfoFrameX&quot;)[0] == &quot;1&quot;)) &amp;&amp; (WoWSpell.FromId(83958).Cooldown)"> 
+					<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Your mobile bank is on cooldown.  Continuing run.&quot;)" />
+				</ElseIf>
+			</If>
+
+<!-- ////////////////////////////////////END GUILD BANK DETECTION/////////////////////////////////////////////-->
+
+
+<!-- ////////////////////////////////////START MOUNT VENDORS///////////////////////////////////////////////////-->
+		<!-- Lua Sell, Keep Netherweave -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;)"> 
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+					<CustomBehavior File="WaitTimer" WaitTime="2000" />
+					<If Condition="Me.HasAura(61425) || Me.HasAura(61447) || Me.HasAura(122708)" >
+						<If Condition="Me.HasAura(61425)" >
+							<CustomBehavior File="InteractWith" MobId="32639" />
+							<ElseIf Condition="Me.HasAura(61447)" >
+								<CustomBehavior File="InteractWith" MobId="32641" />
+							</ElseIf>
+							<ElseIf Condition="Me.HasAura(122708)" >
+								<CustomBehavior File="InteractWith" MobId="62822" />
+							</ElseIf>
+						</If>
+						<CustomBehavior File="Misc\RunLua" NumOfTimes="15" WaitTime="2000" Lua="
+							if MerchantFrame:IsVisible()==true then
+								if buffer==nil or buffer&gt;4 then buffer=0 end
+								MerchantRepairAllButton:Click()
+								if buffer&lt;5 then
+									for s=1,GetContainerNumSlots(buffer)
+										do local n=GetContainerItemLink(buffer,s)
+											if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;21877&quot;) then
+												UseContainerItem(buffer,s)
+											end
+										end
+									buffer=buffer+1
+									end
+								end" />
+						<Else>
+							<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
+							<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Vendor mount not detected.&quot;);" />
+						</Else>
+					</If>
+			</If>
+		<!-- END Lua Sell, Keep Netherweave -->
+
+		<!-- Lua Sell, Everything -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)"> 
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+					<CustomBehavior File="WaitTimer" WaitTime="2000" />
+					<If Condition="Me.HasAura(61425) || Me.HasAura(61447) || Me.HasAura(122708)" >
+						<If Condition="Me.HasAura(61425)" >
+							<CustomBehavior File="InteractWith" MobId="32639" />
+							<ElseIf Condition="Me.HasAura(61447)" >
+								<CustomBehavior File="InteractWith" MobId="32641" />
+							</ElseIf>
+							<ElseIf Condition="Me.HasAura(122708)" >
+								<CustomBehavior File="InteractWith" MobId="62822" />
+							</ElseIf>
+						</If>
+						<CustomBehavior File="Misc\RunLua" NumOfTimes="15" WaitTime="2000" Lua="
+							if MerchantFrame:IsVisible()==true then
+								if buffer==nil or buffer&gt;4 then buffer=0 end
+								MerchantRepairAllButton:Click()
+								if buffer&lt;5 then
+									for s=1,GetContainerNumSlots(buffer)
+										do local n=GetContainerItemLink(buffer,s)
+											if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
+												UseContainerItem(buffer,s)
+											end
+										end
+									buffer=buffer+1
+									end
+								end" />
+						<Else>
+							<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Vendor mount wasn't detected, continuing run.&quot;)" />
+							<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Vendor mount not detected.&quot;);" />
+						</Else>
+					</If>
+			</If>
+		<!-- END Lua Sell, Everything -->
+
+		<!-- Honorbuddy Routine Mount Sell -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;0&quot;)"> 
+					<CustomBehavior File="WaitTimer" WaitTime="750" />
+					<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<If Condition="(Me.HasAura(122708)) || (Me.HasAura(61425) || Me.HasAura(61447))" >
+							<CustomBehavior File="WaitTimer" WaitTime="1100" />
+							<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+						</If>
+			</If>
+		<!-- END Honorbuddy Routine Mount Sell -->
+<!-- ////////////////////////////////////END MOUNT VENDORS///////////////////////////////////////////////////-->
+	</If>
+
+<!-- ////////////////////////////////////START TOWN VENDORS///////////////////////////////////////////////////-->
+		<If Condition="(Me.FreeBagSlots &lt; (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameLocked&quot;, 0)))" >
+
+		<!-- Lua Sell, Keep Netherweave -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;1&quot;)"> 
+				<CustomBehavior File="ForcedMount" MountType="Flying" />
+				<CustomBehavior	File="FlyTo" X="2955.032" Y="1802.131" Z="139.1213" />
+				<CustomBehavior File="InteractWith" MobId="22491" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="15" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
+							if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) and n and not n:find(&quot;21877&quot;) then
+						UseContainerItem(buffer,s)
+					end
+				end
+			buffer=buffer+1
+			end
+		end" />
+			</If>
+		<!-- END Lua Sell, Keep Netherweave -->
+
+		<!-- Lua Sell, Everything -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;1&quot;) &amp;&amp; (Lua.GetReturnValues(&quot;return InfoFramePoint&quot;)[0] == &quot;0&quot;)">
+				<CustomBehavior File="ForcedMount" MountType="Flying" />
+				<CustomBehavior	File="FlyTo" X="2955.032" Y="1802.131" Z="139.1213" />
+				<CustomBehavior File="InteractWith" MobId="22491" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="Misc\RunLua" NumOfTimes="15" WaitTime="2000" Lua="
+					if MerchantFrame:IsVisible()==true then
+						if buffer==nil or buffer&gt;4 then buffer=0 end
+						MerchantRepairAllButton:Click()
+						if buffer&lt;5 then
+							for s=1,GetContainerNumSlots(buffer)
+								do local n=GetContainerItemLink(buffer,s)
+							if (n and strfind(n, &quot;ff9d9d9d&quot;) or n and strfind(n, &quot;ffffffff&quot;) or n and strfind(n, &quot;ff1eff00&quot;) or n and strfind(n, &quot;ff0070dd&quot;)) then
+						UseContainerItem(buffer,s)
+					end
+				end
+			buffer=buffer+1
+			end
+		end" />
+			</If>
+		<!-- END Lua Sell, Everything -->
+
+		<!-- Normal Sell -->
+			<If Condition="(Lua.GetReturnValues(&quot;return RangeFrameRadarY&quot;)[0] == &quot;0&quot;)"> 
+				<CustomBehavior File="ForcedMount" MountType="Flying" />
+				<CustomBehavior	File="FlyTo" X="2955.032" Y="1802.131" Z="139.1213" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</If>
+		<!-- END Normal Sell -->
+<!-- ////////////////////////////////////END TOWN VENDORS///////////////////////////////////////////////////-->
+
+<!-- ////////////////////////////////////START MAIL ROUTINE///////////////////////////////////////////////////-->
+
+		<!-- Generic Mail Routine -->
+			<If Condition="(Me.FreeBagSlots &lt;= (Lua.GetReturnVal&lt;uint&gt;(&quot;return RangeFrameRadarPoint&quot;, 0)))" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Mail.&quot;);" />
+				<CustomBehavior File="FlyTo" X="3056.502" Y="3687.034" Z="142.7493" />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+				<ClearMailbox />
+			</If>
+		<!-- END Generic Mail Routine -->
+
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+	</If>
+</While>
+</QuestOrder>
+</HBProfile>
+

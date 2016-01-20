@@ -1,0 +1,87 @@
+<HBProfile>
+<Name>Karazhan - Trash Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Developed by EchoTiger
+// Farm zone: Karazhan
+// Farm mobs: Trash Mobs: 16173, 16175, 16171, 16170
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+      <!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+      
+      <ProtectedItems>     
+      </ProtectedItems>
+            
+      <Vendors>
+      </Vendors>
+
+      <Mailboxes>
+      </Mailboxes>
+
+
+      <AvoidMobs>
+            <Mob Name="Summon Enabler Stalker" Entry="53488" />
+      </AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+      
+<QuestOrder>
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/> 
+<While Condition="true" >
+      <If Condition="Me.Location.Distance(new WoWPoint(-11118.43, -2009.858, 47.08143)) &gt; 20"  >
+            <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Karazhan.&quot;)" />
+            <CustomBehavior File="FlyTo" DestName="Karazhan" X="-11119.49" Y="-2011.505" Z="47.08839" />
+      </If>
+      <If Condition="Me.FreeBagSlots &gt; 1" >
+            <If Condition="!(Me.MapId == 532)" >
+                  <CustomBehavior File="MyCTM" X="-11111.52" Y="-2005.111" Z="49.33202" />
+                  <CustomBehavior File="InteractWith" MobId="184164" X="-11104.98" Y="-1999.039" Z="49.33244" />
+                  <CustomBehavior File="MyCTM" X="-11100.48" Y="-1995.885" Z="49.33115" TerminateWhen="Me.MapId == 532" />
+            </If>
+
+            <If Condition="(Me.MapId == 532)" >
+                  <DisableBehavior Name="Combat" /> <!-- Pull #1 -->
+                        <RunTo X="-11044.72" Y="-2005.828" Z="49.90887" />
+                        <RunTo X="-11012.71" Y="-1992.072" Z="49.77979" />
+                        <RunTo X="-11023.4" Y="-1967.726" Z="48.52845" />
+                        <RunTo X="-10960.82" Y="-1971.781" Z="45.96403" />
+                        <RunTo X="-10982.59" Y="-1938.31" Z="46.66734" />
+                        <RunTo X="-10910.95" Y="-1950.547" Z="49.48084" />
+                        <RunTo X="-10940.83" Y="-1996.409" Z="49.47385" />
+                        <RunTo X="-10931.45" Y="-2044.91" Z="49.47385" />
+                        <RunTo X="-10886.98" Y="-2012.222" Z="49.47385" />
+                        <RunTo X="-10899.22" Y="-2085.751" Z="49.47385" />
+                  <EnableBehavior Name="Combat" />
+                  <RunTo X="-10902.98" Y="-2007.544" Z="49.47385" />
+                  <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Seeking and killing any remaining mobs.&quot;);" />
+                  <CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="True" NumOfTimes="10" MobState="Alive" MobId1="16173" MobId2="16175" MobId3="16171" MobId4="16170" X="-10917.63" Y="-2005.389" Z="49.47495" />
+                  <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Seeking and killing any remaining mobs.&quot;);" />
+                  <CustomBehavior File="InteractWith" WaitForNpcs="false" IgnoreCombat="True" NumOfTimes="10" MobState="Alive" MobId1="16173" MobId2="16175" MobId3="16171" MobId4="16170" X="-11063.32" Y="-2005.462" Z="49.89573" />
+                  <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Seek completed, moving to reset the raid.&quot;);" />
+                  <RunTo X="-11106.69" Y="-2001.263" Z="49.89205" />
+                  <CustomBehavior File="MyCTM" X="-11115.98" Y="-2010.074" Z="49.89205" TerminateWhen="Me.MapId != 532" />
+                  <CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+            </If>
+      </If>
+</While>
+
+</QuestOrder>
+</HBProfile>

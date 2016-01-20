@@ -1,0 +1,239 @@
+<HBProfile>
+<Name>Botanica - Gold Optimized - Medium Pulls [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////////////////////////
+// Profile Maker: EchoTiger
+// Farm zone: The Botanica
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+<ProtectedItems>
+</ProtectedItems>
+		
+<Vendors>
+	<Vendor Nav="Fly" Name="Kerpow Blastwrench" Entry="22491" Type="Repair" X="2955.032" Y="1802.131" Z="139.1213" />
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+</AvoidMobs>
+
+	
+<QuestOrder>
+
+
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
+
+<If Condition="(Me.MapId == 553)" > <!-- The Botanica -->
+	<DisableBehavior Name="Pull" />
+	<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+	<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" TerminateWhen="Me.MapId != 553" WaitTime="3000" /> <!--Exits Instance -->
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions and Arcane Tombs.&quot;);" />
+	<EnableBehavior Name="Pull" />
+</If>
+
+<If Condition="!(Me.MapId == 553)" >
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+</If>
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+<!--CHOP CHOP -->
+<While Condition="true">
+	<If Condition="!(Me.ZoneId == 3523)" >
+		<CustomBehavior File="FlyTo" X="589.3289" Y="3427.308" Z="291.0131" />
+		<CustomBehavior File="MyCTM" X="2945.934" Y="1784.823" Z="206.9143" />
+	</If>
+	<If Condition="!(Me.MapId == 553)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(3366.32, 1518.864, 182.6719)) &gt;= 56" >
+			<MoveTo Nav="Fly" X="3403.443" Y="1489.909" Z="182.8369" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
+	</If>
+	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+		<!--Start Endless Cycle -->
+		<If Condition="!(Me.MapId == 553)" >
+			<RunTo X="3402.128" Y="1492.116" Z="181.5073" />
+			<RunTo X="3412.253" Y="1484.314" Z="182.8368" />
+			<CustomBehavior File="MyCTM" X="3417.772" Y="1480.286" Z="182.8368" TerminateWhen="Me.IsInInstance" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.IsInInstance" />
+		</If>
+		<!--Instance Navigation Start -->
+		<If Condition="(Me.MapId == 553)" >
+			<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+			<MoveTo X="1.399361" Y="19.53091" Z="-5.708767" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="-1.132295" Y="61.46199" Z="-5.662589" />
+				<Hotspot X="-5.061379" Y="90.00092" Z="-5.650543" />
+				<Hotspot X="-0.8882984" Y="121.8921" Z="-5.540264" />
+				<Hotspot X="3.652268" Y="164.1741" Z="-5.540264" />
+				<Hotspot X="11.64091" Y="202.0575" Z="-5.540264" />
+			</CustomBehavior>
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" > //
+				<Hotspot X="-10.77896" Y="205.5492" Z="-5.540341" />
+				<Hotspot X="-5.300217" Y="215.8055" Z="-5.540341" />
+				<Hotspot X="-4.699225" Y="254.8372" Z="-4.83915" />
+				<Hotspot X="-34.40111" Y="289.5725" Z="-1.847308" />
+			</CustomBehavior>
+
+			<MoveTo X="-20.18953" Y="288.3877" Z="-1.830582" />
+
+			<DisableBehavior Name="Combat" /> 
+				<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
+				<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
+				<MoveTo X="107.8981" Y="287.203" Z="-6.826936" />
+			<EnableBehavior Name="Combat" />
+
+			<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Commander Sarannis -->
+				<MoveTo X="159.7016" Y="283.7128" Z="-3.114579" />
+				<MoveTo X="164.708" Y="297.3946" Z="-4.807951" />
+				<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
+				<CustomBehavior File="InteractWith" MobId="17976" MobState="DontCare" WaitForNpcs="false" Range="2" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
+			<EnableBehavior Name="Combat" />
+
+			<MoveTo X="161.3502" Y="344.174" Z="-6.860448" />
+
+			<DisableBehavior Name="Combat" />
+				<MoveTo X="160.0694" Y="372.2791" Z="-5.387292" />
+				<MoveTo X="195.8619" Y="378.2886" Z="-5.478722" />
+				<MoveTo X="173.4993" Y="395.0775" Z="-5.387872" />
+				<MoveTo X="159.0994" Y="412.2748" Z="-5.387872" />
+			<EnableBehavior Name="Combat" />
+
+			<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Botanist Freywinn -->
+				<MoveTo X="162.9829" Y="445.4804" Z="-6.894575" />
+				<MoveTo X="171.8593" Y="499.6241" Z="-2.300941" />
+				<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
+				<CustomBehavior File="InteractWith" MobId="17975" MobState="DontCare" WaitForNpcs="false" Range="2" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
+			<EnableBehavior Name="Combat" />
+
+			<MoveTo X="128.9197" Y="502.4178" Z="-5.422901" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="95.23268" Y="491.5663" Z="-6.756306" />
+				<Hotspot X="-16.26616" Y="506.0811" Z="-5.301754" />
+				<Hotspot X="-2.302615" Y="506.1841" Z="-5.304161" />
+				<Hotspot X="-16.17399" Y="481.9402" Z="-5.473525" />
+			</CustomBehavior>
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" > //
+				<Hotspot X="18.12697" Y="574.5814" Z="-17.94993" />
+				<Hotspot X="-6.9636" Y="575.9285" Z="-17.89389" />
+				<Hotspot X="6.485384" Y="598.557" Z="-15.17408" />
+			</CustomBehavior>
+
+			<MoveTo X="-49.59764" Y="560.2516" Z="-18.04433" />
+
+			<DisableBehavior Name="Combat" />
+				<MoveTo X="-112.3502" Y="541.3242" Z="-17.82489" />
+				<MoveTo X="-134.2693" Y="507.8932" Z="-17.82489" />
+				<MoveTo X="-148.4885" Y="524.0147" Z="-17.82489" />
+				<MoveTo X="-160.7684" Y="497.2664" Z="-17.82489" />
+			<EnableBehavior Name="Combat" />
+
+			<DisableBehavior Name="Combat" /> // <!-- Using different pull method to grab Laj -->
+				<MoveTo X="-173.5526" Y="405.0211" Z="-17.69368" />
+				<MoveTo X="-155.3918" Y="398.094" Z="-17.79432" />
+				<MoveTo X="-173.3446" Y="369.5784" Z="-17.69936" />
+				<MoveTo X="-193.35" Y="369.8827" Z="-15.1717" /> <!-- Face Laj -->
+				<CustomBehavior File="RunMacro" Macro="/target Laj\n/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Taunt \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot \n/cast Heroic Throw" /> <!-- Pull Laj -->
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<EnableBehavior Name="Combat" />
+
+			<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
+			<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="3.693267" Y="409.3721" Z="-27.63801" />
+				<Hotspot X="17.46659" Y="369.3841" Z="-26.25432" />
+				<Hotspot X="66.04333" Y="390.6274" Z="-27.97719" />
+			</CustomBehavior>
+
+			<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+
+			<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've picked up &quot;, GetCoinTextureString(ShowWipeMessage), &quot; from this run.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(totalmoney), &quot; total.&quot;)" />
+
+
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+			<While Condition="Me.IsInInstance" >
+				<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+				<CustomBehavior File="MyCTM" X="160.2607" Y="391.3514" Z="-35.81748" TerminateWhen="Me.MapId != 553" />
+				<CustomBehavior File="Misc\RunLua" Lua="MoveForwardStart();" />
+				<CustomBehavior File="WaitTimer" WaitTime="35000" TerminateWhen="Me.MapId != 553" />
+			</While>
+			<CustomBehavior File="Misc\RunLua" Lua="
+				local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+				local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+				local item,l,i=&quot;29739&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end " />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions and Arcane Tombs.&quot;);" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!--Instance Coordnation Complete -->
+	</While>
+
+	<!-- Vendor Routine -->
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
+		<CustomBehavior File="ForcedMount" MountType="Flying" />
+		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<If Condition="(Me.FreeBagSlots &lt; 17)" > <!-- Mail if player still has 10 or less slots -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Mail.&quot;);" />
+			<SetMailbox>
+				<Mailboxes>
+						<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+				</Mailboxes>
+			</SetMailbox>
+			<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+			<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+			<ClearMailbox />
+		</If>
+		<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+		<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+		<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+		<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFFF0F0F0Statistics so far:|r\nYou've gained &quot;, GetCoinTextureString(WhisperStats), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+	</If>
+</While>
+</QuestOrder>
+</HBProfile>
+

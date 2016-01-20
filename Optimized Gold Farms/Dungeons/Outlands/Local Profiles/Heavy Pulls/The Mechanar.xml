@@ -1,0 +1,214 @@
+<HBProfile>
+<Name>The Mechanar - Gold Optimized Farm - Heavy Pulls [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////////////////////////
+// Profile Maker: EchoTiger
+// Farm zone: The Mechanar
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+<ProtectedItems>
+</ProtectedItems>
+		
+<Vendors>
+	<Vendor Nav="Fly" Name="Kerpow Blastwrench" Entry="22491" Type="Repair" X="2955.032" Y="1802.131" Z="139.1213" />
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+</AvoidMobs>
+
+	
+<QuestOrder>
+
+
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
+
+<If Condition="(Me.MapId == 554)" > <!-- The Mechanar -->
+	<DisableBehavior Name="Pull" />
+	<If Condition="(Me.Z &lt;= 15)" > <!-- Pre-Elevator -->
+		<RunTo X="-27.85911" Y="0.642262" Z="-1.8124" />
+		<CustomBehavior File="MyCTM" X="-39.77523" Y="-0.3285326" Z="-1.8124" />
+	</If>
+	<If Condition="(Me.Z &gt;= 15)" > <!-- Post-Elevator -->
+		<RunTo X="82.74458" Y="149.4814" Z="25.58112" /> <!-- In front of exit portal -->
+		<CustomBehavior File="MyCTM" X="72.03339" Y="149.8745" Z="25.58112" /> <!--Exits Instance -->
+	</If>
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Energy&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Bottled Nethergon Vapor&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="Misc\RunLua" Lua="for bag = 0,4,1 do for slot = 1, 32, 1 do local name = GetContainerItemLink(bag,slot); if name and string.find(name,&quot;Arcane Tome&quot;) then PickupContainerItem(bag,slot); DeleteCursorItem(); end; end; end " />
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions and Arcane Tombs.&quot;);" />
+	<EnableBehavior Name="Pull" />
+</If>
+
+<If Condition="!(Me.MapId == 554)" >
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+</If>
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+<!--CHOP CHOP -->
+<While Condition="true">
+	<If Condition="!(Me.ZoneId == 3523)" >
+		<CustomBehavior File="FlyTo" X="589.3289" Y="3427.308" Z="291.0131" />
+		<CustomBehavior File="MyCTM" X="2945.934" Y="1784.823" Z="206.9143" />
+	</If>
+	<If Condition="!(Me.MapId == 552)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(2868.389, 1551.293, 252.1595)) &gt;= 55" >	
+			<CustomBehavior File="FlyTo" X="3024.063" Y="1728.797" Z="239.4702" />
+			<CustomBehavior File="MyCTM" X="2952.151" Y="1627.577" Z="264.385" />
+			<CustomBehavior File="MyCTM" X="2877.254" Y="1559.525" Z="248.8978" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
+	</If>
+	<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+		<!--Start Endless Cycle -->
+		<If Condition="!(Me.MapId == 554)" >
+			<MoveTo X="2872.403" Y="1555.394" Z="252.1594" />
+			<CustomBehavior File="MyCTM" X="2860.746" Y="1544.512" Z="252.1594" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+		<!--Instance Navigation Start -->
+		<If Condition="(Me.MapId == 554)" >
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+			<CustomBehavior File="Misc\RunLua" Lua="
+				ShowLoadMessage = GetMoney();
+				ShowEngageMessage = GetMoney();
+				WarningIconRight = GetTime();
+				" />
+
+			<DisableBehavior Name="Combat" /> <!-- Mobs will be skipped if we use RunLikeHell -->
+				<RunTo X="23.53066" Y="21.9005" Z="7.293187E-06" />  <!-- May need to be reduced due to stunlock -->
+				<RunTo X="30.91353" Y="25.19507" Z="0.002577872" />
+				<RunTo X="38.10012" Y="57.45896" Z="0.161921" />
+				<RunTo X="29.97257" Y="2.146563" Z="0.000255685" />
+				<RunTo X="23.50609" Y="-20.3346" Z="0.000255685" />
+				<RunTo X="38.54005" Y="-53.13917" Z="0.162091" />
+				<RunTo X="77.86571" Y="-60.89853" Z="14.91168" />
+				<RunTo X="108.4764" Y="-54.69272" Z="14.92465" />
+				<RunTo X="98.89085" Y="-77.65843" Z="14.92665" />
+				<RunTo X="112.4377" Y="-78.69029" Z="14.92755" />
+			<EnableBehavior Name="Combat" />
+
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+			<DisableBehavior Name="Combat" /> <!-- Using DisableBehavior to handle the InteractWith -->
+				<CustomBehavior File="InteractWith" MobId="19710" Range="1" X="158.7155" Y="-77.64128" Z="3.751891" /> <!-- Pull Gatewatcher Iron-Hand -->
+				<RunTo X="167.2265" Y="-73.50605" Z="1.228704" />
+				<RunTo X="209.635" Y="-90.94837" Z="0.0006642168" />
+				<RunTo X="222.1569" Y="-57.52505" Z="0.0007092925" />
+				<CustomBehavior File="InteractWith" MobId="19219" Range="1" X="208.7709" Y="-12.25523" Z="-2.191832" /> <!-- Pull Mechano-Lord Capacitus -->
+			<EnableBehavior Name="Combat" /> <!-- Due to Mechano-Lord's stun, we have to seperate this and the next group because Honorbuddy will bug out when it's stunned... -->
+
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+			<DisableBehavior Name="Combat" /> <!-- Honorbuddy will skip all of this if we use RunLikeHell. -->
+				<RunTo X="166.3622" Y="-12.85282" Z="0.008215792" />
+				<RunTo X="135.18" Y="-38.08644" Z="0.00126394" />
+				<RunTo X="153.2415" Y="53.37263" Z="0.009587551" />
+				<RunTo X="195.8077" Y="38.67438" Z="-0.006228269" />
+				<RunTo X="163.6501" Y="78.6971" Z="2.284306" />
+				<RunTo X="118.9817" Y="69.1852" Z="14.92563" />
+				<RunTo X="104.5937" Y="49.58189" Z="14.92499" />
+				<RunTo X="83.41408" Y="18.20289" Z="14.92213" /> <!-- Gatewatcher Gyro-Kill -->
+			<EnableBehavior Name="Combat" />
+
+			<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+			<RunTo X="221.7706" Y="67.15894" Z="-0.005279055" />
+			<CustomBehavior File="InteractWith" MobId="184465" Range="3" X="222.5428" Y="70.61063" Z="-0.004793386" /> <!-- Cache of the Legion -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+
+			<RunTo X="227.4841" Y="52.41269" Z="-0.004534741" />
+			<!-- Mesh for elevator is buggy -->
+			<CustomBehavior File="MyCTM" X="256.9976" Y="52.33585" Z="-1.609371" />
+			<While Condition="(Me.Z &lt;= 24)" >
+				<CustomBehavior File="Misc\RunLua" Lua="JumpOrAscendStart();" WaitTime="800" />
+			</While>
+			<CustomBehavior File="MyCTM" X="276.9625" Y="51.89132" Z="25.38633" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="291.5837" Y="28.44842" Z="25.38633" />
+				<Hotspot X="327.0511" Y="12.76751" Z="27.83662" /> <!-- Nethermancer Sepethrea -->
+			</CustomBehavior>
+			
+			<RunTo X="272.9961" Y="-22.63708" Z="26.32841" />
+			<RunTo X="140.3194" Y="142.4154" Z="25.57935" /> 
+			<CustomBehavior File="InteractWith" MobId="19220" Range="1"  X="132.7828" Y="151.2504" Z="25.58078" /> <!-- Pathaleon the Calculator -->
+
+			<RunTo X="82.74458" Y="149.4814" Z="25.58112" /> <!-- In front of exit portal -->
+			<CustomBehavior File="Misc\RunLua" Lua="
+				ShowPizzaMessage = GetMoney();
+				WarningIconChat = GetTime();
+				WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
+				ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);
+				totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);
+				print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))
+				" />
+
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+			<CustomBehavior File="MyCTM" X="72.03339" Y="149.8745" Z="25.58112" /> <!--Exits Instance -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="Misc\RunLua" Lua="
+				local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+				local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions.&quot;);" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!--Instance Coordnation Complete -->
+	</While>
+
+	<!-- Vendor Routine -->
+	<If Condition="(Me.FreeBagSlots &lt; 17)" >
+		<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
+		<CustomBehavior File="ForcedMount" MountType="Flying" />
+		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<If Condition="(Me.FreeBagSlots &lt; 17)" > <!-- Mail if player still has 10 or less slots -->
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Mail.&quot;);" />
+			<SetMailbox>
+				<Mailboxes>
+						<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+				</Mailboxes>
+			</SetMailbox>
+			<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+			<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+			<ClearMailbox />
+		</If>
+		<CustomBehavior File="Misc\RunLua" Lua="
+			AutoRespond = GetMoney();
+			WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
+			vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);
+			print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+
+	</If>
+</While>
+</QuestOrder>
+</HBProfile>
+

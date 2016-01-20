@@ -1,0 +1,2700 @@
+<HBProfile>
+<Name>[Run All] Randomizer - Heavy Pulls [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: EchoTiger
+// Farm zone: Randomized Outlands Dungeons
+// Farm mobs: Variety
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+//Protected Items list, can add to these as you see fit, if you are looking for specific items.
+<ProtectedItems>
+</ProtectedItems>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+	<Mob Name="Underbog Frenzy" Entry="20465" />
+</AvoidMobs>
+	
+<QuestOrder>
+
+<If Condition="(Me.MapId == 542)" > <!-- Blood Furnace -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+		<RunTo X="-3.076933" Y="20.59763" Z="-44.7897" /> // front of instance
+		<CustomBehavior File="MyCTM" X="0.3323504" Y="26.54314" Z="-44.81076" />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 543)" > <!-- Hellfire Ramparts -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+		<RunTo X="-1350.486" Y="1647.54" Z="68.60976" />
+		<CustomBehavior File="MyCTM" X="-1358.846" Y="1634.4" Z="68.48954" />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 540)" > <!-- Shattered Halls -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+		<RunTo X="-41.76889" Y="-21.58352" Z="-13.68016" />
+		<CustomBehavior File="MyCTM" X="-42.50687" Y="-27.9767" Z="-13.50718" />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<CustomBehavior File="MyCTM" X="-310.3208" Y="3079.639" Z="-3.630647" />
+		<CustomBehavior File="InteractWith" MobId="184912" X="-309.6581" Y="3078.957" Z="-3.545551" />
+		<CustomBehavior File="MyCTM" X="-305.6588" Y="3057.463" Z="-2.565235" />
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 547)" > <!-- Slave Pens -->
+	<DisableBehavior Name="Pull" />
+		<RunTo X="121.3587" Y="-130.6102" Z="-0.9406101" /> <!-- Last long run coordinate -->
+		<CustomBehavior File="MyCTM" X="119.4756" Y="-138.2408" Z="-0.5430195" />
+		<CustomBehavior File="WaitTimer" WaitTime="11000" />
+		<While Condition="!(StyxWoW.IsInWorld)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</While>
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 546)" > <!-- Underbog -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+		<RunTo X="8.428388" Y="-18.08784" Z="-2.754004" /> <!-- Run to in front of instance -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+			<Else>
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			</Else>
+		</If>
+	    <CustomBehavior File="MyCTM" X="4.744936" Y="-10.7971" Z="-2.753272" />
+	    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 545)" > <!-- The Steamvault -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+			<RunTo X="-18.25499" Y="4.630092" Z="-4.275887" /> <!-- Long run back to entrance -->
+			<CustomBehavior File="MyCTM" X="-24.65424" Y="4.902905" Z="-4.296989" />
+			<CustomBehavior File="WaitTimer" WaitTime="1100" />
+			<While Condition="!(StyxWoW.IsInWorld)" >
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</While>
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 555)" > <!-- Shadow Labyrinth -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+		<RunTo X="-0.3524668" Y="-0.2714353" Z="-1.129797" /> <!-- Run back to the instance entrance -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+			<Else>
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			</Else>
+		</If>
+		<CustomBehavior File="MyCTM" X="8.625723" Y="-0.285159" Z="-1.129767" />
+		<CustomBehavior File="WaitTimer" WaitTime="11000" />
+		<While Condition="!(StyxWoW.IsInWorld)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</While>
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 558)" > <!-- Auchenai Crypts -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+		<RunTo X="-22.57451" Y="0.7706324" Z="-0.1192664" /> <!-- Long run to entrance -->
+		<CustomBehavior File="MyCTM" X="-29.3374" Y="0.3493616" Z="-0.1192664" />
+		<CustomBehavior File="WaitTimer" WaitTime="11000" />
+		<While Condition="!(StyxWoW.IsInWorld)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</While>
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 557)" > <!-- Mana Tombs -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+		<RunTo X="-22.57451" Y="0.7706324" Z="-0.1192664" /> <!-- Long run to entrance -->
+		<CustomBehavior File="MyCTM" X="-29.3374" Y="0.3493616" Z="-0.1192664" />
+		<CustomBehavior File="WaitTimer" WaitTime="11000" />
+		<While Condition="!(StyxWoW.IsInWorld)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</While>
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 556)" > <!-- Sethekk Halls -->
+	<DisableBehavior Name="Pull" />
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Bot started inside of instance. Moving out.&quot;);" />
+		<RunTo X="2.589283" Y="0.3863665" Z="0.005763793" /> 
+		<CustomBehavior File="MyCTM" X="-8.710955" Y="-0.1144782" Z="0.005999689" />
+		<CustomBehavior File="WaitTimer" WaitTime="11000" />
+		<While Condition="!(StyxWoW.IsInWorld)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		</While>
+	<EnableBehavior Name="Pull" />
+</If>
+<If Condition="(Me.MapId == 553)" > <!-- The Botanica -->
+	<DisableBehavior Name="Pull" />
+	<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+	<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+</If>
+
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+
+<While Condition="true" >
+
+	<If Condition="Chance(7.69)" > <!-- Blood Furnace -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Blood Furnace.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="!(Me.MapId == 542)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(301.0435, 3160.816, 31.69807)) &gt; 50" >
+				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+				<CustomBehavior File="FlyTo" DestName="Blood Furnace" X="-300.1603" Y="3159.839" Z="31.68681" />
+				<CustomBehavior File="ForcedDismount" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 542)" >
+				<RunTo X="-300.1603" Y="3159.839" Z="31.68681" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Blood Furnace.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-307.1952" Y="3169.764" Z="29.37688" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 542)" >
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="7.414839" Y="-54.36414" Z="-41.3403" />
+					<Hotspot X="-13.65627" Y="-81.26894" Z="-41.33458" />
+					<Hotspot X="4.913551" Y="-84.82957" Z="-41.33128" />
+					<Hotspot X="27.786" Y="-82.38058" Z="-40.99796" />
+					<Hotspot X="50.42345" Y="-74.83198" Z="-39.83932" />
+					<Hotspot X="195.5927" Y="-78.98607" Z="9.616326" />
+					<Hotspot X="228.5695" Y="-96.1877" Z="9.618876" />
+					<Hotspot X="229.056" Y="-73.23717" Z="9.618803" />
+					<Hotspot X="246.0742" Y="-63.78553" Z="9.624695" />
+					<Hotspot X="247.7027" Y="-27.58046" Z="6.952242" />
+					<Hotspot X="286.0409" Y="-8.175566" Z="9.154942" />
+					<Hotspot X="314.5207" Y="10.59063" Z="9.616748" />
+					<Hotspot X="338.127" Y="4.17969" Z="9.617012" />
+					<Hotspot X="330.8773" Y="28.92477" Z="9.621761" />
+					<Hotspot X="329.9184" Y="69.61333" Z="9.613991" />
+					<Hotspot X="319.9046" Y="93.73685" Z="9.615495" />
+					<Hotspot X="338.1127" Y="96.79599" Z="9.617128" />
+					<Hotspot X="327.481" Y="134.3709" Z="9.616546" /> //First boss
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="319.1566" Y="181.2381" Z="9.614828" />
+					<Hotspot X="305.0569" Y="167.2818" Z="9.616645" />
+					<Hotspot X="348.2625" Y="193.1552" Z="9.606102" />
+					<Hotspot X="372.9948" Y="188.5283" Z="9.599682" />
+					<Hotspot X="404.5976" Y="189.2656" Z="9.596346" />
+					<Hotspot X="437.7708" Y="192.5099" Z="9.606613" />
+					<Hotspot X="482.8837" Y="175.5251" Z="9.620012" />
+					<Hotspot X="480.9954" Y="94.1746" Z="9.622114" />
+					<Hotspot X="449.0607" Y="100.0155" Z="9.61551" />
+					<Hotspot X="468.172" Y="60.40864" Z="9.611184" />
+					<Hotspot X="440.9545" Y="59.93634" Z="9.611332" />
+				</CustomBehavior>
+
+				<RunTo X="458.7253" Y="61.84747" Z="9.614225" /> //lever - second boss
+
+				<CustomBehavior File="InteractWith" MobId="181982" X="456.0855" Y="60.34892" Z="9.47833" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="InteractWith"  MobId="17380" MobState="Dontcare" WaitForNpcs="false" Range="1" X="459.3484" Y="61.32819" Z="9.614701" />  <!-- Get boss -->
+
+				<RunTo X="455.4205" Y="21.31718" Z="9.551927" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="423.5845" Y="-83.76239" Z="9.616058" />
+					<Hotspot X="349.7664" Y="-176.3916" Z="-25.52129" />
+					<Hotspot X="326.8768" Y="-189.1981" Z="-25.51024" />
+					<Hotspot X="320.062" Y="-168.0013" Z="-25.50184" />
+				</CustomBehavior>
+
+
+				<RunTo X="327.2821" Y="-149.4359" Z="-25.46661" /> // coordinate before boss event
+				<RunTo X="316.0663" Y="-107.1946" Z="-24.68061" /> // aggro mobs around boss
+				<CustomBehavior File="InteractWith" MobId="17377" MobState="Dontcare" WaitForNpcs="false" />
+
+				<RunTo X="305.3157" Y="-102.5977" Z="-24.67721" /> // assuming boss is dead, leave coordinate
+				<RunTo X="269.3188" Y="-127.5226" Z="-25.15705" />
+				<RunTo X="-2.634235" Y="-100.845" Z="-41.33091" /> // other side of tunnel
+
+				<RunTo X="-3.076933" Y="20.59763" Z="-44.7897" /> // front of instance
+
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+
+
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="0.3323504" Y="26.54314" Z="-44.81076" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</While>
+		<!-- End Instance Grind -->
+
+		<!-- Checks if bags are full -->	
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<!-- Force town sell. -->
+			<If Condition="Me.IsAlliance">
+				<CustomBehavior File="FlyTo" X="-706.9598" Y="2622.356" Z="89.74428" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<RunTo X="-714.2572" Y="2608.813" Z="91.01031" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<ClearVendor />
+				<RunTo X="-709.0159" Y="2620.78" Z="89.70387" />
+				<CustomBehavior File="FlyTo" X="-707.691" Y="2699.656" Z="94.40236" />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="-706.5545" Y="2700.936" Z="94.53797" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" />
+				<RunTo X="-708.5986" Y="2695.111" Z="94.19513" />
+				<ClearMailbox />
+			</If>
+
+			<If Condition="Me.IsHorde" >
+				<CustomBehavior File="FlyTo" X="173.5389" Y="2625.896" Z="87.10639" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<RunTo X="179.7871" Y="2605.4" Z="87.28379" />
+				<SetVendor>
+					<Vendor>
+						<Vendor Name="Reagan Mancuso" Entry="22225" Type="Repair" X="179.7871" Y="2605.4" Z="87.28379" />
+					</Vendor>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<ClearVendor />
+				<RunTo X="179.7871" Y="2605.4" Z="87.28379" />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="172.7261" Y="2623.055" Z="86.8361" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" />
+				<RunTo X="181.3871" Y="2634.12" Z="87.11672" />
+				<ClearMailbox />
+				<CustomBehavior File="ForceSetVendor" DoMail="True" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+
+		</If>
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- Hellfire Ramparts -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Hellfire Ramparts.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="!(Me.MapId == 543)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-365.5185, 3082.94, 14.648)) &gt;= 17" >
+				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+				<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-362.5798" Y="3074.1" Z="-15.07973" />
+				<CustomBehavior File="ForcedDismount" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 543)" >
+				<RunTo X="-361.8816" Y="3074.594" Z="-15.06141" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Hellfire Ramparts.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-364.5978" Y="3084.308" Z="-14.6655" /> <!-- Enters instance if not already inside -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 543)" >
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="-1327.783" Y="1658.816" Z="69.02531" />
+					<Hotspot X="-1286.658" Y="1670.126" Z="68.85224" />
+					<Hotspot X="-1269.697" Y="1654.359" Z="69.01041" />
+					<Hotspot X="-1246.154" Y="1642.782" Z="67.99894" />
+					<Hotspot X="-1242.782" Y="1615.589" Z="68.50784" />
+					<Hotspot X="-1277.144" Y="1536.638" Z="68.56718" />
+					<Hotspot X="-1283.451" Y="1484.417" Z="68.59309" />
+					<Hotspot X="-1227.096" Y="1471.908" Z="68.56191" />
+					<Hotspot X="-1197.323" Y="1438.084" Z="68.50845" />
+					<Hotspot X="-1173.902" Y="1448.243" Z="68.42118" />
+					<Hotspot X="-1180.059" Y="1484.618" Z="68.45656" />
+					<Hotspot X="-1156.76" Y="1492.668" Z="68.42524" />
+					<Hotspot X="-1210.77" Y="1536.615" Z="68.56165" />
+					<Hotspot X="-1216.448" Y="1524.082" Z="68.78717" />
+				</CustomBehavior>
+
+				// stairs up
+				<RunTo X="-1237.639" Y="1543.673" Z="90.41658" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="-1241.293" Y="1568.899" Z="91.25544" />
+					<Hotspot X="-1265.418" Y="1589.205" Z="92.42994" />
+					<Hotspot X="-1299.254" Y="1588.31" Z="91.7769" />
+					<Hotspot X="-1315.771" Y="1616.452" Z="91.74995" />
+					<Hotspot X="-1286.966" Y="1636.029" Z="91.73589" />
+					<Hotspot X="-1271.274" Y="1625.361" Z="91.67679" />
+				</CustomBehavior>
+
+				<RunTo X="-1127.371" Y="1715.692" Z="89.5407" /> //boss front
+				<RunTo X="-1120.016" Y="1719.72" Z="89.42169" /> //boss back
+				<RunTo X="-1385.165" Y="1712.253" Z="82.65675" /> // two mobs before boss
+				<RunTo X="-1409.182" Y="1739.18" Z="81.06302" /> // boss
+				<RunTo X="-1429.184" Y="1771.122" Z="81.99654" /> // in front of loot chest
+
+				<CustomBehavior File="InteractWith" MobId="185168" MobState="DontCare" WaitForNpcs="false" X="-1429.81" Y="1772.916" Z="82.0765" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="InteractWith" MobId="185169" MobState="DontCare" WaitForNpcs="false" X="-1429.81" Y="1772.916" Z="82.0765" />  <!-- Heroic version of chest -->
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+
+				<!-- Leave dungeon -->
+				<RunTo X="-1313.081" Y="1634.123" Z="91.74801" />
+				<CustomBehavior File="MyCTM" X="-1350.454" Y="1649.72" Z="68.70227" />
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="-1358.809" Y="1635.626" Z="68.50739" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</While>
+		<!-- End Instance Grind -->
+
+		<!-- Checks if bags are full -->	
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+			<!-- Force town sell. -->
+			<If Condition="Me.IsAlliance">
+				<CustomBehavior File="FlyTo" X="-706.9598" Y="2622.356" Z="89.74428" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<RunTo X="-714.2572" Y="2608.813" Z="91.01031" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<ClearVendor />
+				<RunTo X="-709.0159" Y="2620.78" Z="89.70387" />
+				<CustomBehavior File="FlyTo" X="-707.691" Y="2699.656" Z="94.40236" />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="-706.5545" Y="2700.936" Z="94.53797" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" />
+				<RunTo X="-708.5986" Y="2695.111" Z="94.19513" />
+				<ClearMailbox />
+			</If>
+
+			<If Condition="Me.IsHorde" >
+				<CustomBehavior File="FlyTo" X="173.5389" Y="2625.896" Z="87.10639" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<RunTo X="179.7871" Y="2605.4" Z="87.28379" />
+				<SetVendor>
+					<Vendor>
+						<Vendor Name="Reagan Mancuso" Entry="22225" Type="Repair" X="179.7871" Y="2605.4" Z="87.28379" />
+					</Vendor>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<ClearVendor />
+				<RunTo X="179.7871" Y="2605.4" Z="87.28379" />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="172.7261" Y="2623.055" Z="86.8361" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" />
+				<RunTo X="181.3871" Y="2634.12" Z="87.11672" />
+				<ClearMailbox />
+				<CustomBehavior File="ForceSetVendor" DoMail="True" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+
+		</If>
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- Shattered Halls -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Shattered Halls.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="!(Me.MapId == 540) &amp;&amp; Me.FreeBagSlots &gt;= 17" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-309.7233, 3077.926, -3.641827)) &gt; 25" >
+				<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-299.862" Y="3020.822" Z="6.165497" />
+				<CustomBehavior File="FlyTo" DestName="Shattered Halls" X="-303.6577" Y="3046.832" Z="-4.586812" />
+				<CustomBehavior File="ForcedDismount" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 542)" >
+				<RunTo X="-309.2963" Y="3076.825" Z="-3.645569" />
+				<CustomBehavior File="InteractWith" MobId="184912" X="-309.6581" Y="3078.957" Z="-3.545551" />
+				<RunTo X="-310.0607" Y="3081.636" Z="-3.705267" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Shattered Halls.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-309.5081" Y="3089.006" Z="-4.079539" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 540)" >
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+				<RunTo X="-6.887658" Y="1.269876" Z="-13.20117" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="13.17112" Y="-2.436876" Z="-13.20898" />
+					<Hotspot X="23.99797" Y="7.550211" Z="-13.19831" />
+					<Hotspot X="57.79525" Y="3.740786" Z="-13.20503" />
+					<Hotspot X="66.89086" Y="44.02871" Z="-13.22156" />
+					<Hotspot X="56.63627" Y="79.59594" Z="-13.22298" />
+					<Hotspot X="77.19499" Y="82.90537" Z="-13.22298" />
+					<Hotspot X="82.7926" Y="75.95638" Z="-13.22298" />
+					<Hotspot X="73.8502" Y="97.79764" Z="-13.22298" />
+					<Hotspot X="71.63753" Y="262.5831" Z="-13.20006" />
+					<Hotspot X="100.1498" Y="266.8936" Z="-13.22271" />
+					<Hotspot X="113.3796" Y="258.1164" Z="-13.22087" /> //LOS
+				</CustomBehavior>
+
+
+				<RunTo X="123.2967" Y="257.0708" Z="-13.45786" /> //Before jump into hole
+				<CustomBehavior File="MyCTM" X="123.2172" Y="232.369" Z="-46.67575" /> //Jump into hole
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="123.2172" Y="232.369" Z="-46.67575" />
+					<Hotspot X="126.0666" Y="203.6981" Z="-48.66307" />
+					<Hotspot X="147.1593" Y="180.6897" Z="-44.70436" />
+					<Hotspot X="195.146" Y="160.3623" Z="-42.36845" />
+				</CustomBehavior>
+
+
+				<RunTo X="176.3361" Y="185.6294" Z="-33.40644" /> // Run out of hole
+				<RunTo X="178.7517" Y="244.1802" Z="-14.73902" /> // Before netherkurse
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="164.182" Y="267.5016" Z="-13.19498" />  //Adds in front of Netherkurse
+					<Hotspot X="196.5051" Y="267.1118" Z="-13.17735" />
+				</CustomBehavior>
+
+				<CustomBehavior File="InteractWith" Range="1" MobId="16807" X="193.5504" Y="268.7236" Z="-13.19248" />
+
+				<RunTo X="293.4147" Y="316.04" Z="1.916794" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="514.7968" Y="315.3378" Z="1.934975" />
+				</CustomBehavior>
+
+				<RunTo X="518.2218" Y="279.7864" Z="1.91704" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="552.1165" Y="226.8909" Z="0.2611506" />
+					<Hotspot X="522.5391" Y="222.9452" Z="1.92967" />
+					<Hotspot X="485.9933" Y="229.1581" Z="0.2583271" />
+					<Hotspot X="518.3529" Y="173.944" Z="1.941186" />
+					<Hotspot X="518.8812" Y="150.6398" Z="1.930282" />
+					<Hotspot X="551.7672" Y="141.6794" Z="0.2552367" />
+					<Hotspot X="484.4099" Y="145.524" Z="0.2499073" />
+					<Hotspot X="517.2573" Y="124.1982" Z="1.919351" />
+					<Hotspot X="517.9753" Y="123.7084" Z="1.916567" />
+					<Hotspot X="517.914" Y="86.12634" Z="1.933533" />
+					<Hotspot X="495.1732" Y="65.96227" Z="1.930056" />
+				</CustomBehavior>
+
+
+
+				<RunTo X="475.9195" Y="59.41596" Z="1.930984" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="448.3889" Y="62.8599" Z="1.934261" />
+					<Hotspot X="372.0871" Y="57.31403" Z="-7.320482" /> // Ogre boss
+				</CustomBehavior>
+
+				<RunTo X="373.7285" Y="12.73867" Z="1.105464" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="378.7624" Y="-9.562923" Z="1.913295" />
+					<Hotspot X="372.5128" Y="-71.50995" Z="1.908466" />
+					<Hotspot X="355.1585" Y="-83.86179" Z="1.925266" />
+					<Hotspot X="280.0462" Y="-89.62786" Z="1.962766" />
+					<Hotspot X="229.163" Y="-83.62787" Z="4.938707" />
+				</CustomBehavior>
+
+
+
+				<RunTo X="252.0706" Y="-84.40177" Z="4.938631" /> // Start run back
+				<RunTo X="-18.54666" Y="0.3401806" Z="-13.16298" />
+				<RunTo X="-41.76889" Y="-21.58352" Z="-13.68016" />
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+
+				<CustomBehavior File="MyCTM" X="-42.50687" Y="-27.9767" Z="-13.50718" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			</If>
+		</While>
+		<!-- End Instance Grind -->
+
+		<!-- Checks if bags are full -->	
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<!-- Force town sell. -->
+			<CustomBehavior File="MyCTM" X="-310.3208" Y="3079.639" Z="-3.630647" />
+			<CustomBehavior File="InteractWith" MobId="184912" X="-309.6581" Y="3078.957" Z="-3.545551" />
+			<CustomBehavior File="MyCTM" X="-305.6588" Y="3057.463" Z="-2.565235" />
+
+			<If Condition="Me.IsAlliance">
+				<CustomBehavior File="FlyTo" X="-706.9598" Y="2622.356" Z="89.74428" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<RunTo X="-714.2572" Y="2608.813" Z="91.01031" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Humphry" Entry="16823" Type="Repair" X="-717.32" Y="2607.58" Z="91.01" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<ClearVendor />
+				<RunTo X="-709.0159" Y="2620.78" Z="89.70387" />
+				<CustomBehavior File="FlyTo" X="-707.691" Y="2699.656" Z="94.40236" />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="-706.5545" Y="2700.936" Z="94.53797" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" />
+				<RunTo X="-708.5986" Y="2695.111" Z="94.19513" />
+				<ClearMailbox />
+			</If>
+
+			<If Condition="Me.IsHorde" >
+				<CustomBehavior File="FlyTo" X="173.5389" Y="2625.896" Z="87.10639" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="RunMacro" Macro="/dismount" />
+				<RunTo X="179.7871" Y="2605.4" Z="87.28379" />
+				<SetVendor>
+					<Vendor>
+						<Vendor Name="Reagan Mancuso" Entry="22225" Type="Repair" X="179.7871" Y="2605.4" Z="87.28379" />
+					</Vendor>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<ClearVendor />
+				<RunTo X="179.7871" Y="2605.4" Z="87.28379" />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox X="172.7261" Y="2623.055" Z="86.8361" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" />
+				<RunTo X="181.3871" Y="2634.12" Z="87.11672" />
+				<ClearMailbox />
+				<CustomBehavior File="ForceSetVendor" DoMail="True" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+
+		</If>
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- Slave Pens -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Slave Pens.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &gt;= 145" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering the Reservoir.&quot;);" />
+			<CustomBehavior File="FlyTo" X="564.1914" Y="6945.826" Z="21.38907" />
+			<CustomBehavior File="ForcedDismount" />
+			<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+			<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+			<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+			<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+			<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+			<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+			<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+			<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+			<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+		</If>
+
+
+		<If Condition="!(Me.MapId == 547)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(730.9965, 7016.488, -70.92312)) &gt;= 55.331" >
+				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+				<RunTo X="732.1893" Y="7014.443" Z="-71.79589" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 547)" >
+				<RunTo X="736.4616" Y="7016.011" Z="-71.63489" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Slave Pens.&quot;);" />
+				<CustomBehavior File="MyCTM" X="741.925" Y="7015.214" Z="-72.47427" /> <!-- Enters instance if not already inside -->
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 547)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" /> 
+
+				<DisableBehavior Name="Combat" /> <!-- Using DisableBehavior so we can interact with patrolling mobs -->
+				<RunTo X="118.1042" Y="-102.39" Z="-1.590525" />
+				<CustomBehavior File="InteractWith" MobId="17817" Range="1" X="101.6064" Y="-98.12775" Z="-1.590544" />
+				<RunTo X="39.92308" Y="-40.62141" Z="-1.189432" />
+				<RunTo X="-15.53932" Y="-36.77771" Z="-3.819154" />
+				<RunTo X="-27.62923" Y="-1.800619" Z="-1.258406" />
+				<RunTo X="-52.46247" Y="7.377698" Z="-1.590555" />
+				<RunTo X="-53.63044" Y="-25.64511" Z="-1.88328" />
+				<RunTo X="-63.44542" Y="-2.943695" Z="-3.30511" />
+				<RunTo X="-94.87167" Y="-4.130733" Z="-8.061378" />
+				<RunTo X="-115.3996" Y="-34.32959" Z="-5.401043" />
+				<RunTo X="-118.9852" Y="-154.8884" Z="-1.977494" />
+				<RunTo X="-84.16342" Y="-186.5786" Z="-2.962896" />
+				<RunTo X="-53.63064" Y="-172.8776" Z="-2.837073" />
+				<RunTo X="-9.696423" Y="-203.8" Z="-1.580446" />
+				<RunTo X="18.80836" Y="-243.0284" Z="1.191821" />
+				<RunTo X="-45.83874" Y="-288.4629" Z="-1.422785" />
+				<RunTo X="-4.724365" Y="-297.7731" Z="3.106714" />
+				<RunTo X="122.9266" Y="-305.0891" Z="3.036324" />
+				<RunTo X="84.8453" Y="-362.6009" Z="3.036324" />
+				<RunTo X="44.74523" Y="-367.5669" Z="3.036324" />
+				<RunTo X="34.31722" Y="-381.5069" Z="3.036324" />
+				<RunTo X="17.56726" Y="-381.3828" Z="3.036324" />
+				<EnableBehavior Name="Combat" />
+
+				<CustomBehavior File="InteractWith" MobId="17941" MobState="DontCare" Range="1" X="53.91827" Y="-380.2251" Z="3.035571" /> <!-- Pull Menuu the Betrayer -->
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="126.8301" Y="-380.1393" Z="30.55235" />
+					<Hotspot X="126.8301" Y="-380.1393" Z="30.55235" />
+					<Hotspot X="-179.6351" Y="-412.1234" Z="59.41035" />
+				</CustomBehavior>
+
+				<RunTo X="-184.5109" Y="-410.8602" Z="56.28623" />
+				<CustomBehavior File="MyCTM" X="-202.8567" Y="-381.2597" Z="6.641048" />
+				<CustomBehavior File="MyCTM" X="-213.7921" Y="-380.2842" Z="8.352066" />
+
+				<DisableBehavior Name="Combat" /> 
+				<RunTo X="-295.9606" Y="-379.7179" Z="30.51878" />
+				<RunTo X="-271.0598" Y="-362.47" Z="3.035677" /> <!-- This coordinate needs to be CTM.  However, due to a core-issue - I cannot CTM it. -->
+				<RunTo X="-227.3959" Y="-366.8987" Z="3.035677" />
+				<RunTo X="-226.7543" Y="-380.474" Z="3.035677" />
+				<RunTo X="-239.9095" Y="-403.2938" Z="3.035567" />
+				<RunTo X="-268.275" Y="-419.9712" Z="3.035567" />
+				<RunTo X="-155.2189" Y="-448.1804" Z="2.660903" />
+				<RunTo X="-151.6033" Y="-440.9401" Z="-1.515822" />
+				<EnableBehavior Name="Combat" />
+
+
+				<RunTo X="-127.2724" Y="-477.0715" Z="-1.037717" />
+
+				<CustomBehavior File="InteractWith" MobId="17991" Range="1" X="-51.13907" Y="-454.6285" Z="-1.591317" /> <!-- Pull Rokmar the Crackler -->
+				<RunTo X="-79.64259" Y="-463.8453" Z="-1.59198" />
+
+				<!-- We can't pull the boss too far because he will reset. -->
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="-85.94574" Y="-503.3324" Z="-1.593391" />
+					<Hotspot X="-70.05527" Y="-547.6409" Z="-1.199252" />
+					<Hotspot X="-81.63867" Y="-586.8754" Z="1.519899" />
+					<Hotspot X="-118.9221" Y="-592.6797" Z="7.383237" />
+					<Hotspot X="-158.0641" Y="-737.005" Z="37.89234" />
+					<Hotspot X="-189.2044" Y="-772.5355" Z="43.79937" />
+				</CustomBehavior>
+
+				<RunTo X="-252.5504" Y="-703.7756" Z="36.8893" /> <!-- Avoid swimming -->
+				<CustomBehavior File="MyCTM" X="-251.6965" Y="-690.3016" Z="30.62204" />
+				<CustomBehavior File="InteractWith" MobId="17942" Range="1" X="-273.3637" Y="-689.0301" Z="34.90844" /> <!-- Pull Quagmirran -->
+				<CustomBehavior File="MyCTM" X="-197.7341" Y="-708.9185" Z="37.8924" />
+
+				<RunTo X="-84.43185" Y="-442.025" Z="-1.590477" /> <!-- First long run back -->
+				<CustomBehavior File="MyCTM" X="-87.84837" Y="-321.3455" Z="-1.5785" /> <!-- Shortcut CTM -->
+				<RunTo X="-105.2105" Y="-295.7466" Z="-1.575601" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >  <!-- Missed mobs from beginning -->
+					<Hotspot X="-77.04773" Y="-280.1825" Z="-1.154799" />
+					<Hotspot X="-52.30706" Y="-248.971" Z="-3.433634" />
+					<Hotspot X="-107.7158" Y="-252.0313" Z="-1.447358" />
+					<Hotspot X="-113.0564" Y="-200.0343" Z="-1.434184" />
+					<Hotspot X="-96.06853" Y="-208.5814" Z="-1.206511" />
+					<Hotspot X="-96.13169" Y="-150.2327" Z="-2.086486" />
+				</CustomBehavior>
+
+				<RunTo X="121.3587" Y="-130.6102" Z="-0.9406101" /> <!-- Last long run coordinate -->
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="119.4756" Y="-138.2408" Z="-0.5430195" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</While>
+		<!-- End Instance Grind -->
+
+		<!-- Vendor routine -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+
+			<If Condition="Me.GetReputationLevelWith(942) &gt;= Styx.WoWUnitReaction.Exalted" >
+				<RunTo X="746.1917" Y="6882.73" Z="-64.28456" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Mortog Steamhead" Entry="23373" Type="Repair" X="748.8289" Y="6883.973" Z="-63.92867" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<ClearVendor />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >  <!-- Go to normal vendor routine if the player needs to mail -->
+					<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+					<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+					<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+					<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+					<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+					<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+					<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+					<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+					<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+					<CustomBehavior File="MyCTM" X="541.8995" Y="6924.533" Z="21.45897" />
+					<CustomBehavior File="FlyTo" X="530.1228" Y="6855.305" Z="40.78453" />
+					<If Condition="Me.IsAlliance" >
+						<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
+
+						<RunTo X="1028.695" Y="7362.311" Z="36.40272" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="1029.868" Y="7362.129" Z="36.40354" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+						<ClearMailbox />
+					</If>
+
+					<If Condition="Me.IsHorde" >
+						<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
+						<CustomBehavior File="FlyTo" X="269.6143" Y="7862.054" Z="30.88758" />
+						<CustomBehavior File="ForcedDismount" />
+						<RunTo X="259.7481" Y="7869.413" Z="23.19135" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="258.9098" Y="7870.717" Z="23.01399" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+						<ClearMailbox />
+					</If>
+				</If>
+			</If>
+
+			<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &lt;= 144 &amp;&amp; Me.GetReputationLevelWith(942) &lt; Styx.WoWUnitReaction.Exalted &amp;&amp; Me.FreeBagSlots &lt; 17" >
+				<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+				<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+				<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+				<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+				<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+				<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+				<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+				<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+				<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+				<CustomBehavior File="MyCTM" X="541.8995" Y="6924.533" Z="21.45897" />
+				<CustomBehavior File="FlyTo" X="530.1228" Y="6855.305" Z="40.78453" />
+
+				<If Condition="Me.IsAlliance" >
+					<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
+					<If Condition="(Me.FreeBagSlots &lt; 17)" >
+						<CustomBehavior File="FlyTo" X="1019.702" Y="7383.811" Z="36.24001" />
+						<CustomBehavior File="ForcedDismount" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Maktu" Entry="18010" Type="Repair" X="1020.835" Y="7383.452" Z="36.24143" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+						<ClearVendor />
+					</If>
+
+					<RunTo X="1028.695" Y="7362.311" Z="36.40272" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="1029.868" Y="7362.129" Z="36.40354" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+					<ClearMailbox />
+				</If>
+
+				<If Condition="Me.IsHorde" >
+					<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
+					<If Condition="(Me.FreeBagSlots &lt; 17)" >
+						<CustomBehavior File="FlyTo" X="319.7794" Y="7840.998" Z="24.84016" />
+						<CustomBehavior File="ForcedDismount" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Captured Gnome" Entry="19383" Type="Repair" X="323.0882" Y="7839.829" Z="22.08481" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+						<ClearVendor />
+					</If>
+					<CustomBehavior File="FlyTo" X="269.6143" Y="7862.054" Z="30.88758" />
+					<CustomBehavior File="ForcedDismount" />
+					<RunTo X="259.7481" Y="7869.413" Z="23.19135" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="258.9098" Y="7870.717" Z="23.01399" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+					<ClearMailbox />
+				</If>
+
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" /> 
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+		</If>
+		<!-- End vendor routine -->
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- Underbog -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Underbog.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &gt;= 145" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering the Reservoir.&quot;);" />
+			<CustomBehavior File="FlyTo" X="564.1914" Y="6945.826" Z="21.38907" />
+			<CustomBehavior File="ForcedDismount" />
+			<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+			<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+			<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+			<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+			<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+			<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+			<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+			<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+			<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+		</If>
+
+
+		<If Condition="!(Me.MapId == 546)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(781.315, 6750.161, -72.53608)) &gt;= 27.55703" >
+				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+				<RunTo X="780.1097" Y="6756.982" Z="-72.53467" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 546)" >
+				<RunTo X="780.1097" Y="6756.982" Z="-72.53467" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Underbog.&quot;);" />
+				<CustomBehavior File="MyCTM" X="781.21" Y="6742.084" Z="-72.53749" /> <!-- Enters instance if not already inside -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 546)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" /> 
+
+				<RunTo X="34.93365" Y="-32.59196" Z="-2.74918" />
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="68.34762" Y="-62.57074" Z="-2.749357" />
+					<Hotspot X="51.41389" Y="-108.735" Z="-2.873632" />
+					<Hotspot X="-9.107972" Y="-107.3677" Z="-4.532805" />
+					<Hotspot X="1.529547" Y="-183.1827" Z="-4.532805" />
+					<Hotspot X="64.00975" Y="-164.1344" Z="-2.885405" />
+					<Hotspot X="-57.89448" Y="-254.5788" Z="-4.535978" />
+				</CustomBehavior>
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="-122.6568" Y="-283.6617" Z="5.951205" />
+					<Hotspot X="-96.12928" Y="-354.6925" Z="33.60533" />
+					<Hotspot X="-124.0515" Y="-391.9363" Z="37.31304" />
+				</CustomBehavior>
+
+
+				<RunTo X="-49.52848" Y="-387.7764" Z="30.90817" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="9.753038" Y="-381.0246" Z="27.03967" />
+					<Hotspot X="13.5409" Y="-312.1578" Z="31.62473" />
+					<Hotspot X="90.91814" Y="-288.5521" Z="32.15626" />
+					<Hotspot X="88.68713" Y="-353.4487" Z="32.74835" />
+					<Hotspot X="69.24289" Y="-388.1682" Z="33.22964" />
+					<Hotspot X="157.4525" Y="-424.2674" Z="48.05613" />
+					<Hotspot X="162.0749" Y="-444.7644" Z="48.18772" />
+					<Hotspot X="206.3038" Y="-380.0845" Z="48.13628" />
+					<Hotspot X="237.2998" Y="-372.4174" Z="48.18421" />
+				</CustomBehavior>
+
+
+				<RunTo X="207.6948" Y="-371.596" Z="48.08506" />
+				<RunTo X="242.7003" Y="-363.9607" Z="72.25624" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="263.0662" Y="-369.4756" Z="72.16271" />  <!-- can be connected with previous RunLikeHell, just include RunTo as Hotspots -->
+					<Hotspot X="198.0971" Y="-388.3126" Z="72.37636" />
+					<Hotspot X="184.2133" Y="-406.917" Z="72.47261" />
+					<Hotspot X="173.3624" Y="-406.031" Z="72.30122" />
+					<Hotspot X="161.1462" Y="-435.9129" Z="72.36136" />
+				</CustomBehavior>
+
+
+				<RunTo X="158.3553" Y="-476.7667" Z="74.69814" />
+				<CustomBehavior File="InteractWith" MobId="18105" Range="1" X="176.8558" Y="-485.8806" Z="67.233" /> <!-- Pull Ghaz'an -->
+
+				<RunTo X="332.9549" Y="-476.7554" Z="51.18067" /> <!-- Go to jump off point -->
+				<CustomBehavior File="MyCTM" X="355.3692" Y="-461.4476" Z="25.81182" />
+				<RunTo X="331.5108" Y="-379.9814" Z="42.90995" /> <!-- Before tunnel, near the druid -->
+
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="340.7482" Y="-356.2289" Z="31.8756" />
+					<Hotspot X="320.9735" Y="-326.1217" Z="19.92394" />
+					<Hotspot X="298.3599" Y="-307.1082" Z="18.79762" />
+					<Hotspot X="265.6313" Y="-255.7094" Z="26.1498" />
+					<Hotspot X="271.307" Y="-211.3889" Z="29.03616" />
+					<Hotspot X="274.6667" Y="-184.5704" Z="28.92237" />
+					<Hotspot X="245.6014" Y="-172.7069" Z="27.35434" />
+					<Hotspot X="282.2851" Y="-119.6726" Z="29.78412" /> <!-- Pull Swamplord Musel'ek, may need to InteractWith -->
+				</CustomBehavior>
+
+				<!--<CustomBehavior File="InteractWith" MobId="17826" Range="1" X="276.4823" Y="-133.4032" Z="29.8374" />  Pull Swamplord Musel'ek -->
+
+				<RunTo X="239.5188" Y="-131.4814" Z="26.8652" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="175.9951" Y="-131.6216" Z="27.43178" />
+					<Hotspot X="156.2424" Y="-89.75751" Z="26.69074" />
+					<Hotspot X="151.0934" Y="15.69729" Z="26.83924" />
+				</CustomBehavior>
+
+				<CustomBehavior File="InteractWith" MobId="17882" Range="1" X="152.6805" Y="22.8634" Z="26.88107" /> <!-- Pull The Black Stalker -->
+
+				<RunTo X="42.79779" Y="-22.72954" Z="19.40195" /> <!-- Run to shortcut back -->
+				<CustomBehavior File="MyCTM" X="16.76894" Y="-28.83331" Z="-2.751752" /> <!-- Jump down -->
+				<RunTo X="8.428388" Y="-18.08784" Z="-2.754004" /> <!-- Run to in front of instance -->
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="4.744936" Y="-10.7971" Z="-2.753272" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</While>
+		<!-- End Instance Grind -->
+
+		<!-- Vendor routine -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+			<If Condition="Me.GetReputationLevelWith(942) &gt;= Styx.WoWUnitReaction.Exalted" >
+				<RunTo X="746.1917" Y="6882.73" Z="-64.28456" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Mortog Steamhead" Entry="23373" Type="Repair" X="748.8289" Y="6883.973" Z="-63.92867" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<ClearVendor />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+					<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+					<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+					<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+					<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+					<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+					<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+					<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+					<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+					<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+					<CustomBehavior File="MyCTM" X="541.8995" Y="6924.533" Z="21.45897" />
+					<CustomBehavior File="FlyTo" X="530.1228" Y="6855.305" Z="40.78453" />
+					<If Condition="Me.IsAlliance" >
+						<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
+						<RunTo X="1028.695" Y="7362.311" Z="36.40272" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="1029.868" Y="7362.129" Z="36.40354" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+						<ClearMailbox />
+					</If>
+
+					<If Condition="Me.IsHorde" >
+						<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
+						<CustomBehavior File="FlyTo" X="269.6143" Y="7862.054" Z="30.88758" />
+						<CustomBehavior File="ForcedDismount" />
+						<RunTo X="259.7481" Y="7869.413" Z="23.19135" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="258.9098" Y="7870.717" Z="23.01399" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+						<ClearMailbox />
+					</If>
+				</If>
+			</If>
+
+			<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &lt;= 144 &amp;&amp; Me.GetReputationLevelWith(942) &lt; Styx.WoWUnitReaction.Exalted &amp;&amp; Me.FreeBagSlots &lt; 17" >
+				<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+				<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+				<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+				<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+				<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+				<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+				<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+				<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+				<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+				<CustomBehavior File="MyCTM" X="541.8995" Y="6924.533" Z="21.45897" />
+				<CustomBehavior File="FlyTo" X="530.1228" Y="6855.305" Z="40.78453" />
+
+				<If Condition="Me.IsAlliance" >
+					<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
+					<If Condition="(Me.FreeBagSlots &lt; 17)" >
+						<CustomBehavior File="FlyTo" X="1019.702" Y="7383.811" Z="36.24001" />
+						<CustomBehavior File="ForcedDismount" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Maktu" Entry="18010" Type="Repair" X="1020.835" Y="7383.452" Z="36.24143" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+						<ClearVendor />
+					</If>
+
+					<RunTo X="1028.695" Y="7362.311" Z="36.40272" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="1029.868" Y="7362.129" Z="36.40354" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+					<ClearMailbox />
+				</If>
+
+				<If Condition="Me.IsHorde" >
+					<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
+					<If Condition="(Me.FreeBagSlots &lt; 17)" >
+						<CustomBehavior File="FlyTo" X="319.7794" Y="7840.998" Z="24.84016" />
+						<CustomBehavior File="ForcedDismount" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Captured Gnome" Entry="19383" Type="Repair" X="323.0882" Y="7839.829" Z="22.08481" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+						<ClearVendor />
+					</If>
+					<CustomBehavior File="FlyTo" X="269.6143" Y="7862.054" Z="30.88758" />
+					<CustomBehavior File="ForcedDismount" />
+					<RunTo X="259.7481" Y="7869.413" Z="23.19135" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="258.9098" Y="7870.717" Z="23.01399" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+					<ClearMailbox />
+				</If>
+
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" /> 
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+		</If>
+		<!-- End vendor routine -->
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- Steamvaults -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Steamvaults.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &gt;= 145" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering the Reservoir.&quot;);" />
+			<CustomBehavior File="FlyTo" X="564.1914" Y="6945.826" Z="21.38907" />
+			<CustomBehavior File="ForcedDismount" />
+			<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+			<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+			<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+			<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+			<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+			<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+			<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+			<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+			<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+		</If>
+
+
+		<If Condition="!(Me.MapId == 545)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(818.7408, 6940.374, -80.54651)) &gt;= 40.5" >
+				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+				<RunTo X="818.2902" Y="6940.515" Z="-80.59582" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 546)" >
+				<RunTo X="818.3602" Y="6944.097" Z="-80.6101" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Steamvaults.&quot;);" />
+				<CustomBehavior File="MyCTM" X="818.3083" Y="6949.203" Z="-80.61127" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 545)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" /> 
+
+				<!-- We're not running big pulls due to the NPC's rooting effects. -->
+
+				<RunTo X="-4.927965" Y="-41.4993" Z="-13.38089" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="2.414358" Y="-65.65152" Z="-19.92268" />
+					<Hotspot X="-22.9332" Y="-128.4626" Z="-21.63839" />
+					<Hotspot X="5.386344" Y="-120.4111" Z="-20.67036" />
+					<Hotspot X="10.23402" Y="-151.3775" Z="-22.19109" />
+					<Hotspot X="37.40704" Y="-162.4987" Z="-22.64245" />
+					<Hotspot X="61.48024" Y="-127.4158" Z="-22.70903" />
+					<Hotspot X="54.77165" Y="-94.3282" Z="-22.08577" />
+				</CustomBehavior>
+
+				<RunTo X="19.68694" Y="-154.7329" Z="-22.5016" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="-19.09227" Y="-188.7674" Z="-21.72519" />
+					<Hotspot X="14.56917" Y="-211.5863" Z="-22.41748" />
+					<Hotspot X="57.98174" Y="-199.8617" Z="-22.61268" />
+					<Hotspot X="27.8168" Y="-241.0909" Z="-22.63592" />
+					<Hotspot X="22.86558" Y="-264.7419" Z="-22.18851" />
+					<Hotspot X="3.807139" Y="-252.5113" Z="-22.41646" />
+				</CustomBehavior>
+
+				<RunTo X="21.64385" Y="-278.752" Z="-20.7142" />
+				<RunTo X="52.33093" Y="-310.0943" Z="-7.909786" /> <!-- Potential patroll pull -->
+				<RunTo X="93.55686" Y="-316.1818" Z="-7.870862" /> <!-- Hydromancer Thespia -->
+
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<While Condition="Object(184125, o => o.ToGameObject().State == WoWGameObjectState.Ready) != null" >
+					<CustomBehavior File="InteractWith" MobId="184125" WaitForNpcs="false" WaitTime="2000" Range="2.5" X="98.81569" Y="-316.3364" Z="-6.683962" />
+				</While>
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+				<RunTo X="44.39193" Y="-304.8427" Z="-8.965962" />
+				<RunTo X="-16.07344" Y="-222.0191" Z="-20.77236" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="-40.32677" Y="-217.5239" Z="-18.54405" />
+					<Hotspot X="-67.12644" Y="-222.1965" Z="-18.52853" />
+					<Hotspot X="-89.98559" Y="-257.0517" Z="-11.99186" />
+					<Hotspot X="-107.3581" Y="-328.4673" Z="-7.601346" />
+					<Hotspot X="-52.14304" Y="-335.3224" Z="-7.767296" />
+					<Hotspot X="-42.50834" Y="-363.5179" Z="-7.767296" />
+				</CustomBehavior>
+
+				<RunTo X="-145.4961" Y="-313.3735" Z="-7.343466" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="-171.9692" Y="-282.7629" Z="-8.129466" />
+					<Hotspot X="-210.4486" Y="-261.5057" Z="-8.06614" />
+					<Hotspot X="-232.4261" Y="-246.6202" Z="-7.870497" />
+					<Hotspot X="-236.4879" Y="-189.4515" Z="-6.429196" />
+					<Hotspot X="-330.961" Y="-119.9782" Z="-7.994863" /> <!-- Mekgineer Steamrigger -->
+				</CustomBehavior>
+
+
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="InteractWith" MobId="184126" Range="4" X="-332.35" Y="-117.1587" Z="-6.707662" />
+				<CustomBehavior File="InteractWith" MobId="184126" WaitForNpcs="false" Range="3" X="-332.35" Y="-117.1587" Z="-6.707662" /> <!-- Double-tap just in case -->
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+				<RunTo X="-234.2965" Y="-195.6791" Z="-7.367794" />
+				<RunTo X="-94.99045" Y="-368.7374" Z="-7.767335" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="-92.57953" Y="-472.3958" Z="8.040115" />
+					<Hotspot X="-81.46619" Y="-503.5" Z="8.280326" />
+					<Hotspot X="-111.1178" Y="-497.4321" Z="8.217874" />
+					<Hotspot X="-96.95229" Y="-558.7578" Z="8.18825" /> <!-- Warlord Kalithresh -->
+				</CustomBehavior>
+
+				<RunTo X="-18.25499" Y="4.630092" Z="-4.275887" /> <!-- Long run back to entrance -->
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="-24.65424" Y="4.902905" Z="-4.296989" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</While>
+		<!-- End Instance Grind -->
+
+		<!-- Vendor routine -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+			<If Condition="Me.GetReputationLevelWith(942) &gt;= Styx.WoWUnitReaction.Exalted" >
+				<RunTo X="746.1917" Y="6882.73" Z="-64.28456" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Mortog Steamhead" Entry="23373" Type="Repair" X="748.8289" Y="6883.973" Z="-63.92867" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+				<ClearVendor />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >  <!-- Go to normal vendor routine if the player needs to mail -->
+					<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+					<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+					<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+					<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+					<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+					<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+					<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+					<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+					<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+					<CustomBehavior File="MyCTM" X="541.8995" Y="6924.533" Z="21.45897" />
+					<CustomBehavior File="FlyTo" X="530.1228" Y="6855.305" Z="40.78453" />
+					<If Condition="Me.IsAlliance" >
+						<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
+
+						<RunTo X="1028.695" Y="7362.311" Z="36.40272" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="1029.868" Y="7362.129" Z="36.40354" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+						<ClearMailbox />
+					</If>
+
+					<If Condition="Me.IsHorde" >
+						<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
+						<CustomBehavior File="FlyTo" X="269.6143" Y="7862.054" Z="30.88758" />
+						<CustomBehavior File="ForcedDismount" />
+						<RunTo X="259.7481" Y="7869.413" Z="23.19135" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="258.9098" Y="7870.717" Z="23.01399" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+						<ClearMailbox />
+					</If>
+				</If>
+			</If>
+
+			<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &lt;= 144 &amp;&amp; Me.GetReputationLevelWith(942) &lt; Styx.WoWUnitReaction.Exalted &amp;&amp; Me.FreeBagSlots &lt; 17" >
+				<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+				<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+				<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+				<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+				<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+				<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+				<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+				<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+				<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+				<CustomBehavior File="MyCTM" X="541.8995" Y="6924.533" Z="21.45897" />
+				<CustomBehavior File="FlyTo" X="530.1228" Y="6855.305" Z="40.78453" />
+
+				<If Condition="Me.IsAlliance" >
+					<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
+					<If Condition="(Me.FreeBagSlots &lt; 17)" >
+						<CustomBehavior File="FlyTo" X="1019.702" Y="7383.811" Z="36.24001" />
+						<CustomBehavior File="ForcedDismount" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Maktu" Entry="18010" Type="Repair" X="1020.835" Y="7383.452" Z="36.24143" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+						<ClearVendor />
+					</If>
+
+					<RunTo X="1028.695" Y="7362.311" Z="36.40272" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="1029.868" Y="7362.129" Z="36.40354" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+					<ClearMailbox />
+				</If>
+
+				<If Condition="Me.IsHorde" >
+					<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
+					<If Condition="(Me.FreeBagSlots &lt; 17)" >
+						<CustomBehavior File="FlyTo" X="319.7794" Y="7840.998" Z="24.84016" />
+						<CustomBehavior File="ForcedDismount" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Captured Gnome" Entry="19383" Type="Repair" X="323.0882" Y="7839.829" Z="22.08481" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+						<ClearVendor />
+					</If>
+					<CustomBehavior File="FlyTo" X="269.6143" Y="7862.054" Z="30.88758" />
+					<CustomBehavior File="ForcedDismount" />
+					<RunTo X="259.7481" Y="7869.413" Z="23.19135" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="258.9098" Y="7870.717" Z="23.01399" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+					<ClearMailbox />
+				</If>
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" /> 
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+		</If>
+		<!-- End vendor routine -->
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- Shadow Labyrinth -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Shadow Labyrinth.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="!(Me.MapId == 555)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+				<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+				<CustomBehavior File="FlyTo" X="-3531.432" Y="4943.946" Z="-101.3962" />
+			</If>
+
+			<If Condition="Me.Location.Distance(new WoWPoint(-3535.028, 4942.239, -101.3962)) &lt;= 25" > <!-- If we just vendored -->
+				<CustomBehavior File="MyCTM" X="-3553.89" Y="4943.018" Z="-101.3958" />
+				<CustomBehavior File="ForcedDismount" />
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+				<CustomBehavior File="InteractWith" MobId="183294" MobState="DontCare" X="-3556.407" Y="4943.071" Z="-101.1189" />
+				<CustomBehavior File="MyCTM" X="-3617.92" Y="4942.742" Z="-101.0486" />
+			</If>
+		</If>
+
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 555)" >
+				<RunTo X="-3644.636" Y="4943.016" Z="-101.048" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Shadow Labyrinth.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-3658.981" Y="4943.221" Z="-101.0483" TerminateWhen="Me.MapId == 555" />
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 555)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" /> 
+
+
+				<RunTo X="-27.07503" Y="0.1348429" Z="-1.12795" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="-58.36637" Y="16.83826" Z="-1.129571" />
+					<Hotspot X="-86.88229" Y="11.11363" Z="-1.129571" />
+					<Hotspot X="-59.42251" Y="-25.79194" Z="-1.130082" />
+					<Hotspot X="-77.62769" Y="-37.6753" Z="-1.130095" />
+					<Hotspot X="-73.45036" Y="-50.971" Z="-1.130095" />
+					<Hotspot X="-45.23825" Y="-35.62411" Z="-1.129781" />
+					<Hotspot X="-36.73963" Y="-85.09788" Z="-1.12978" />
+					<Hotspot X="-74.38319" Y="-76.95082" Z="-1.134051" />
+					<Hotspot X="-91.24065" Y="-87.63718" Z="-1.128278" />
+					<Hotspot X="-83.91674" Y="-78.45952" Z="-1.139927" /> //LoS
+				</CustomBehavior>
+
+				<RunTo X="-63.12197" Y="-97.46471" Z="-1.12826" />
+				<RunTo X="-155.2914" Y="-102.0209" Z="8.072185" />
+				<DisableBehavior Name="Combat" /> <!-- Using DisableBehavior due to Honorbuddy's Smart-Nav skipping coordinates -->
+				<RunTo X="-168.6227" Y="-76.38097" Z="8.066394" />
+				<RunTo X="-169.8285" Y="-77.88277" Z="8.064063" />
+				<RunTo X="-154.5018" Y="-62.54964" Z="8.071632" />
+				<RunTo X="-144.1296" Y="-79.32704" Z="8.065796" />
+				<RunTo X="-150.6941" Y="-17.2215" Z="8.071649" />
+				<RunTo X="-145.055" Y="1.665004" Z="8.071649" />
+				<RunTo X="-178.8765" Y="0.2296398" Z="8.073044" />
+				<EnableBehavior Name="Combat" />
+
+				<CustomBehavior File="InteractWith" MobId="18731" MobState="DontCare" Range="1" X="-156.6754" Y="4.982729" Z="8.073087" /> <!-- Pull Ambassador Hellmaw -->
+
+				<RunTo X="-190.683" Y="-38.30504" Z="8.073039" />
+				<RunTo X="-226.2947" Y="-38.76897" Z="8.073039" />
+
+				<DisableBehavior Name="Combat" />
+				<RunTo X="-305.519" Y="-38.63936" Z="8.072944" />
+				<CustomBehavior File="InteractWith" MobId="18667" MobState="DontCare" Range="1" X="-322.3477" Y="-47.91201" Z="12.68885" /> <!-- Pull Blackheart the Inciter -->
+				<EnableBehavior Name="Combat" />
+
+				<RunTo X="-348.2052" Y="-38.85544" Z="12.68886" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="-431.2047" Y="-98.43049" Z="12.68969" />
+					<Hotspot X="-440.593" Y="-114.0275" Z="16.02175" />
+					<Hotspot X="-425.4536" Y="-148.0698" Z="13.27492" />
+					<Hotspot X="-417.2423" Y="-191.836" Z="15.01276" />
+					<Hotspot X="-445.4976" Y="-190.0845" Z="12.68918" />
+				</CustomBehavior>
+
+				<RunTo X="-431.7294" Y="-198.7609" Z="12.68918" />
+				<RunTo X="-384.2078" Y="-264.5964" Z="12.68723" />
+
+				<DisableBehavior Name="Combat" />
+				<RunTo X="-255.5998" Y="-263.6966" Z="17.08641" /> 
+				<CustomBehavior File="InteractWith" MobId="18732" MobState="DontCare" Range="1" X="-255.5998" Y="-263.6966" Z="17.08641" />  <!-- Pull Grandmaster Vorpil -->
+				<EnableBehavior Name="Combat" />
+
+				<RunTo X="-221.2239" Y="-263.5849" Z="17.08631" />
+				<RunTo X="-157.8642" Y="-290.0771" Z="17.08449" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="-152.2766" Y="-327.8733" Z="17.08484" />
+					<Hotspot X="-156.7327" Y="-378.297" Z="17.08201" />
+					<Hotspot X="-156.6276" Y="-463.6895" Z="17.07778" />
+					<Hotspot X="-158.0217" Y="-502.6627" Z="15.78184" /> // Murmur
+				</CustomBehavior>
+
+				<RunTo  X="-156.4783" Y="-459.0098" Z="17.0773" />
+				<RunTo X="-0.3524668" Y="-0.2714353" Z="-1.129797" /> <!-- Run back to the instance entrance -->
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="8.625723" Y="-0.285159" Z="-1.129767" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</While>
+		<!-- End Instance Grind -->
+
+		<!-- Vendor Routine -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+		<!-- Bot ignores this vendor.
+				<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" />
+				<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
+				<ClearVendor /> -->  
+
+
+				<If Condition="Me.IsAlliance" >
+					<MoveTo Nav="Fly" X="-2944.846" Y="4009.452" Z="5.567399" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2933.421" Y="4009.331" Z="-1.294724" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2929.392" Y="4008.916" Z="-1.389165" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2936.408" Y="4010.14" Z="-1.248712" />
+					<ClearMailbox />
+				</If>
+				<If Condition="Me.IsHorde" >
+					<MoveTo Nav="Fly" X="-2620.939" Y="4409.075" Z="49.22842" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2615.288" Y="4417.971" Z="35.98839" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<ClearMailbox />
+				</If>
+				<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+			</If>
+			<!-- End Vendor Routine -->
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- Auchenai Crypts -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Auchenai Crypts.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="!(Me.MapId == 558)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+				<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+				<CustomBehavior File="FlyTo" X="-3363.058" Y="5047.969" Z="-79.39336" />
+				<CustomBehavior File="MyCTM" X="-3361.46" Y="5170.593" Z="-101.0491" />
+			</If>
+
+			<If Condition="Me.Location.Distance(new WoWPoint(-3535.028, 4942.239, -101.3962)) &lt;= 20" > <!-- If we just vendored -->
+				<CustomBehavior File="FlyTo" X="-3363.058" Y="5047.969" Z="-79.39336" />
+				<CustomBehavior File="MyCTM" X="-3361.46" Y="5170.593" Z="-101.0491" />
+			</If>
+		</If>
+
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 558)" >
+				<RunTo X="-3361.847" Y="5218.072" Z="-101.0482" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Auchenai Crypts.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-3362.656" Y="5233.142" Z="-101.048" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 558)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" /> 
+
+				<RunTo X="33.74844" Y="-0.630427" Z="-0.1248157" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="85.48123" Y="39.70464" Z="4.262386" />
+					<Hotspot X="89.28381" Y="8.471476" Z="-0.06451596" />
+					<Hotspot X="76.3402" Y="-10.28817" Z="0.2821189" />
+					<Hotspot X="92.00609" Y="-39.50627" Z="4.261407" />
+					<Hotspot X="125.7242" Y="5.015305" Z="-0.1297353" />
+					<Hotspot X="149.733" Y="39.40773" Z="4.259059" />
+					<Hotspot X="188.8549" Y="3.964344" Z="-0.1232965" />
+					<Hotspot X="238.0906" Y="13.98984" Z="-0.0640922" />
+					<Hotspot X="248.4002" Y="-11.97912" Z="-0.07495958" />
+					<Hotspot X="262.194" Y="8.858376" Z="4.136531" /> //LoS
+				</CustomBehavior>
+
+
+				<RunTo X="267.8954" Y="29.45913" Z="13.43622" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="225.2872" Y="-165.6645" Z="26.59217" />
+					<Hotspot X="113.8322" Y="-163.0328" Z="14.17562" />
+					<Hotspot X="-73.3963" Y="-162.7334" Z="26.54875" /> <!-- Shirrak the Dead Watcher -->
+					<Hotspot X="-64.43861" Y="-183.3418" Z="26.28424" /> //LoS
+				</CustomBehavior>
+
+
+				<RunTo X="-86.33018" Y="-162.9736" Z="26.58985" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="-125.3437" Y="-166.7451" Z="26.58985" />
+					<Hotspot X="-137.3347" Y="-252.3579" Z="26.60792" />
+					<Hotspot X="-160.5051" Y="-277.7302" Z="26.75698" />
+					<Hotspot X="-139.2198" Y="-312.7704" Z="26.59216" />
+					<Hotspot X="-145.1646" Y="-339.703" Z="26.59216" />
+					<Hotspot X="-142.3699" Y="-385.0722" Z="26.59075" />
+					<Hotspot X="-60.58965" Y="-401.9025" Z="29.25527" />
+					<Hotspot X="-32.30061" Y="-365.6765" Z="26.5876" />
+					<Hotspot X="-10.90886" Y="-402.7732" Z="23.24094" />
+					<Hotspot X="15.01026" Y="-369.0821" Z="25.96285" />
+					<Hotspot X="70.46895" Y="-389.265" Z="26.58933" /> <!-- Exarch Maladaar -->
+				</CustomBehavior>
+
+				<RunTo X="-22.57451" Y="0.7706324" Z="-0.1192664" /> <!-- Long run to entrance -->
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="-29.3374" Y="0.3493616" Z="-0.1192664" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</While>
+		<!-- End Instance Grind -->
+
+		<!-- Vendor Routine -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+		<!-- Bot ignores this vendor.
+				<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" />
+				<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
+				<ClearVendor /> -->  
+
+
+				<If Condition="Me.IsAlliance" >
+					<MoveTo Nav="Fly" X="-2944.846" Y="4009.452" Z="5.567399" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2933.421" Y="4009.331" Z="-1.294724" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2929.392" Y="4008.916" Z="-1.389165" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2936.408" Y="4010.14" Z="-1.248712" />
+					<ClearMailbox />
+				</If>
+				<If Condition="Me.IsHorde" >
+					<MoveTo Nav="Fly" X="-2620.939" Y="4409.075" Z="49.22842" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2615.288" Y="4417.971" Z="35.98839" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<ClearMailbox />
+				</If>
+				<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+			</If>
+			<!-- End Vendor Routine -->
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- Mana Tombs -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Mana Tombs.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="!(Me.MapId == 557)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+				<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+				<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+			</If>
+			<If Condition="Me.Location.Distance(new WoWPoint(-3122.694, 4942.846, -101.2213)) &gt;= 46.01732" >
+				<CustomBehavior File="FlyTo" X="-3231.709" Y="4943.628" Z="-93.40585" />
+				<CustomBehavior File="MyCTM" X="-3116.793" Y="4945.298" Z="-101.9928" />
+			</If>
+		</If>
+
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 557)" >
+				<MoveTo X="-3082.419" Y="4943.42" Z="-101.0463" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Mana Tombs.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-3072.468" Y="4943.154" Z="-101.0463" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 557)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" /> 
+
+				<DisableBehavior Name="Combat" />
+				<RunTo X="-16.80901" Y="1.030072" Z="-0.954329" />
+				<RunTo X="-68.0435" Y="-136.9184" Z="-0.9722393" /> //Boss
+				<EnableBehavior Name="Combat" />
+
+				<RunTo X="-68.3775" Y="-144.6523" Z="-0.9561071" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="-61.43065" Y="-174.031" Z="-1.009858" />
+					<Hotspot X="-63.12685" Y="-191.2188" Z="-1.703829" />
+					<Hotspot X="-38.37562" Y="-198.4327" Z="-0.2362401" />
+					<Hotspot X="-28.22877" Y="-219.2819" Z="0.1598396" />
+					<Hotspot X="-98.29636" Y="-240.179" Z="0.2557542" />
+					<Hotspot X="-118.4999" Y="-198.8715" Z="-1.125831" />
+					<Hotspot X="-156.9006" Y="-223.5131" Z="-0.9543628" />
+					<Hotspot X="-191.3721" Y="-226.9792" Z="-0.9543628" />
+					<Hotspot X="-221.8884" Y="-217.1153" Z="-0.6970484" />
+					<Hotspot X="-253.1384" Y="-177.5203" Z="-0.9527512" />
+					<Hotspot X="-253.0494" Y="-162.5546" Z="-0.8904037" />
+					<Hotspot X="-297.0168" Y="-203.995" Z="-1.683555" />
+					<Hotspot X="-327.7555" Y="-225.4176" Z="-0.9572976" />
+				</CustomBehavior>
+
+				<RunTo X="-356.417" Y="-223.2754" Z="-0.9587091" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1" >
+					<Hotspot X="-373.3704" Y="-107.2118" Z="-0.9600735" />
+					<Hotspot X="-391.1584" Y="-64.5545" Z="-0.9784701" />
+					<Hotspot X="-354.8347" Y="-69.68562" Z="-0.9602346" />
+					<Hotspot X="-372.945" Y="-38.24996" Z="-0.9602063" />
+					<Hotspot X="-372.7962" Y="7.895702" Z="7.917375" />
+					<Hotspot X="-284.1698" Y="-8.572141" Z="16.68573" />
+					<Hotspot X="-252.9226" Y="10.58179" Z="16.89592" />
+					<Hotspot X="-183.3848" Y="8.853148" Z="16.73916" />
+				</CustomBehavior>
+
+				<RunTo X="-165.0837" Y="8.724791" Z="16.78777" />
+				<RunTo X="-95.39121" Y="-51.76127" Z="16.78783" />
+				<CustomBehavior File="MyCTM" X="-78.64133" Y="-62.85951" Z="-0.6658678" />
+
+				<RunTo X="-0.7623158" Y="1.010749" Z="-0.9534453" />
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+				<CustomBehavior File="MyCTM" X="8.765326" Y="0.9056869" Z="-0.9534453" TerminateWhen="!Me.IsInInstance" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</While>
+		<!-- End Instance Grind -->
+
+		<!-- Vendor Routine -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+		<!-- Bot ignores this vendor.
+				<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="WaitTimer" WaitTime="1500" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" />
+				<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
+				<ClearVendor /> -->  
+
+
+				<If Condition="Me.IsAlliance" >
+					<MoveTo Nav="Fly" X="-2944.846" Y="4009.452" Z="5.567399" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2933.421" Y="4009.331" Z="-1.294724" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2929.392" Y="4008.916" Z="-1.389165" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2936.408" Y="4010.14" Z="-1.248712" />
+					<ClearMailbox />
+				</If>
+				<If Condition="Me.IsHorde" >
+					<MoveTo Nav="Fly" X="-2620.939" Y="4409.075" Z="49.22842" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2615.288" Y="4417.971" Z="35.98839" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<ClearMailbox />
+				</If>
+				<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" /> 
+				<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+			</If>
+			<!-- End Vendor Routine -->
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- Sethekk Halls -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing Sethekk Halls.&quot;);" />
+
+		<If Condition="(Me.ZoneId == 3523)" > <!-- Leave Netherstorm -->
+			<CustomBehavior File="FlyTo" X="2206.726" Y="2582.525" Z="189.8195" />
+			<CustomBehavior File="MyCTM" X="959.9617" Y="2475.524" Z="484.664" />
+		</If>
+
+		<If Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 556)" >
+				<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+					<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+					<CustomBehavior File="FlyTo" X="-3363.273" Y="4831.82" Z="-88.0773" />
+					<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+				</If>
+
+				<If Condition="Me.Location.Distance(new WoWPoint(-3361.789, 4704.56, -101.2225)) &gt;= 47" > <!-- Outside of pre-instance -->
+					<MoveTo Nav="Fly" X="-3362.458" Y="4756.291" Z="-101.3952" />
+					<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+				</If>
+			</If>
+		</If>
+
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<If Condition="!(Me.MapId == 556)" >
+				<RunTo X="-3361.777" Y="4658.397" Z="-101.048" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Entering Sethekk Halls.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-3361.715" Y="4652.886" Z="-101.048" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<!-- Begin Instance Grind -->
+			<If Condition="(Me.MapId == 556)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="34.69081" Y="5.413301" Z="0.007501781" />
+					<Hotspot X="48.36903" Y="9.68751" Z="0.006521898" />
+					<Hotspot X="48.09462" Y="37.10941" Z="0.006521898" />
+					<Hotspot X="40.50118" Y="54.85978" Z="0.008236584" />
+					<Hotspot X="57.18841" Y="81.54958" Z="0.1006965" />
+					<Hotspot X="91.45097" Y="104.9588" Z="0.09504719" />
+					<Hotspot X="78.77827" Y="115.371" Z="0.3606897" />
+					<Hotspot X="45.37663" Y="129.9144" Z="0.111539" />
+					<Hotspot X="35.98505" Y="98.7487" Z="0.152171" />
+					<Hotspot X="20.70102" Y="78.93299" Z="0.1397577" />
+					<Hotspot X="13.28848" Y="102.2512" Z="0.4245679" />
+					<Hotspot X="-4.224625" Y="99.62385" Z="0.007196213" />
+				</CustomBehavior>
+
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="-58.57725" Y="113.621" Z="0.007198472" />
+					<Hotspot X="-73.62135" Y="130.7694" Z="0.007198472" />
+					<Hotspot X="-81.37254" Y="104.0018" Z="0.005770877" />
+					<Hotspot X="-74.59031" Y="86.34686" Z="0.005770877" />
+				</CustomBehavior>
+
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="-75.30521" Y="174.733" Z="0.009280387" />
+					<Hotspot X="-102.9638" Y="177.3365" Z="0.009330166" />
+					<Hotspot X="-145.6521" Y="173.7392" Z="1.684951" /> // Darkweaver Syth
+				</CustomBehavior>
+
+				<MoveTo X="-165.7767" Y="173.741" Z="0.01082529" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="-207.3654" Y="169.5351" Z="0.01081628" />
+					<Hotspot X="-246.5658" Y="164.8777" Z="0.07046875" />
+					<Hotspot X="-235.3842" Y="186.6611" Z="1.654184" />
+					<Hotspot X="-260.4564" Y="188.8592" Z="0.03481042" />
+				</CustomBehavior>
+
+
+				<MoveTo X="-268.7367" Y="143.1127" Z="13.57411" />
+				<MoveTo X="-217.8209" Y="206.9884" Z="26.72305" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+					<Hotspot X="-238.5152" Y="211.3012" Z="26.85367" />
+					<Hotspot X="-230.3229" Y="332.5485" Z="27.44311" />
+					<Hotspot X="-202.1697" Y="337.6573" Z="26.63684" />
+					<Hotspot X="-184.9221" Y="327.1726" Z="26.02925" />
+					<Hotspot X="-169.9905" Y="281.2778" Z="26.65026" />
+					<Hotspot X="-138.3923" Y="286.9783" Z="26.73151" />
+					<Hotspot X="-94.78539" Y="304.3615" Z="26.48407" />
+					<Hotspot X="-116.1496" Y="270.7401" Z="27.06446" />
+					<Hotspot X="-82.0468" Y="275.8988" Z="26.80795" />
+					<Hotspot X="-51.59872" Y="284.6563" Z="26.89509" />
+					<Hotspot X="-60.42244" Y="309.0039" Z="26.86884" />
+					<Hotspot X="48.26407" Y="286.874" Z="25.01391" />  //Boss
+				</CustomBehavior>
+
+				<MoveTo X="44.59258" Y="274.3501" Z="25.01361" />
+
+
+				<MoveTo X="44.89219" Y="139.6808" Z="0.01498942" /> //Shortcut run 1
+				<CustomBehavior File="MyCTM" X="44.83607" Y="127.225" Z="0.2093463" /> //CTM just in case
+				<RunTo X="2.589283" Y="0.3863665" Z="0.005763793" /> //Before instance
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="-8.710955" Y="-0.1144782" Z="0.005999689" />
+				<CustomBehavior File="WaitTimer" WaitTime="11000" />
+				<While Condition="!(StyxWoW.IsInWorld)" >
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				</While>
+			</If>
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</While>
+		<!-- End Instance Grind -->
+		
+		<!-- Vendor Routine -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
+			<CustomBehavior File="MyCTM" X="-3361.962" Y="4752.981" Z="-101.3954" />
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+			<!-- Bot ignores this vendor.
+					<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoSell="True" />
+					<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
+					<ClearVendor /> -->  
+
+
+				<If Condition="Me.IsAlliance" >
+					<MoveTo Nav="Fly" X="-2944.846" Y="4009.452" Z="5.567399" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2933.421" Y="4009.331" Z="-1.294724" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2929.392" Y="4008.916" Z="-1.389165" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2936.408" Y="4010.14" Z="-1.248712" />
+					<ClearMailbox />
+				</If>
+				<If Condition="Me.IsHorde" >
+					<MoveTo Nav="Fly" X="-2620.939" Y="4409.075" Z="49.22842" />
+					<CustomBehavior File="ForcedDismount" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox X="-2615.288" Y="4417.971" Z="35.98839" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+					<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+					<ClearMailbox />
+				</If>
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" /> 
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(WhisperStats), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)" />
+		</If>
+		<!-- End Vendor Routine -->
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- The Botanica -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing The Botanica.&quot;);" />
+
+		<If Condition="!(Me.ZoneId == 3523)" >
+			<CustomBehavior File="FlyTo" X="589.3289" Y="3427.308" Z="291.0131" />
+			<CustomBehavior File="MyCTM" X="2945.934" Y="1784.823" Z="206.9143" />
+		</If>
+		<If Condition="!(Me.MapId == 552)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(3291.662, 1384.015, 503.9863)) &gt;= 55" >				
+				<CustomBehavior File="FlyTo" X="3187.521" Y="1654.452" Z="194.4471" />
+				<CustomBehavior File="MyCTM" X="3398.964" Y="1494.088" Z="182.7867" />
+				<CustomBehavior File="ForcedDismount" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<!--Start Endless Cycle -->
+			<If Condition="!(Me.MapId == 553)" >
+				<MoveTo X="3410.782" Y="1485.11" Z="182.8369" />
+				<CustomBehavior File="MyCTM" X="3416.718" Y="1481.022" Z="182.8369" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<!--Instance Navigation Start -->
+			<If Condition="(Me.MapId == 553)" >
+				<CustomBehavior File="Misc\RunLua" Lua="ShowLoadMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowEngageMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconRight = GetTime();" />
+
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+				<MoveTo X="1.399361" Y="19.53091" Z="-5.708767" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="-1.132295" Y="61.46199" Z="-5.662589" />
+					<Hotspot X="-5.061379" Y="90.00092" Z="-5.650543" />
+					<Hotspot X="-0.8882984" Y="121.8921" Z="-5.540264" />
+					<Hotspot X="3.652268" Y="164.1741" Z="-5.540264" />
+					<Hotspot X="11.64091" Y="202.0575" Z="-5.540264" />
+					<Hotspot X="-10.77896" Y="205.5492" Z="-5.540341" />
+					<Hotspot X="-5.300217" Y="215.8055" Z="-5.540341" />
+					<Hotspot X="-4.699225" Y="254.8372" Z="-4.83915" />
+					<Hotspot X="-34.40111" Y="289.5725" Z="-1.847308" />
+				</CustomBehavior>
+
+				<MoveTo X="-20.18953" Y="288.3877" Z="-1.830582" />
+
+				<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Commander Sarannis -->
+				<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
+				<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
+				<MoveTo X="107.8981" Y="287.203" Z="-6.826936" />
+				<MoveTo X="159.7016" Y="283.7128" Z="-3.114579" />
+				<MoveTo X="164.708" Y="297.3946" Z="-4.807951" />
+				<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
+				<CustomBehavior File="InteractWith" MobId="17976" MobState="DontCare" WaitForNpcs="false" Range="2" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="161.3502" Y="344.174" Z="-6.860448" />
+
+				<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Botanist Freywinn -->
+				<MoveTo X="160.0694" Y="372.2791" Z="-5.387292" />
+				<MoveTo X="195.8619" Y="378.2886" Z="-5.478722" />
+				<MoveTo X="173.4993" Y="395.0775" Z="-5.387872" />
+				<MoveTo X="159.0994" Y="412.2748" Z="-5.387872" />
+				<MoveTo X="162.9829" Y="445.4804" Z="-6.894575" />
+				<MoveTo X="171.8593" Y="499.6241" Z="-2.300941" />
+				<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
+				<CustomBehavior File="InteractWith" MobId="17975" MobState="DontCare" WaitForNpcs="false" Range="2" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="128.9197" Y="502.4178" Z="-5.422901" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="95.23268" Y="491.5663" Z="-6.756306" />
+					<Hotspot X="-2.302615" Y="506.1841" Z="-5.304161" />
+					<Hotspot X="-16.17399" Y="481.9402" Z="-5.473525" />
+					<Hotspot X="18.12697" Y="574.5814" Z="-17.94993" />
+					<Hotspot X="-6.9636" Y="575.9285" Z="-17.89389" />
+					<Hotspot X="6.485384" Y="598.557" Z="-15.17408" />
+				</CustomBehavior>
+
+				<MoveTo X="-49.59764" Y="560.2516" Z="-18.04433" />
+
+				<DisableBehavior Name="Combat" /> <!-- Using different pull method to grab Laj -->
+				<MoveTo X="-112.3502" Y="541.3242" Z="-17.82489" />
+				<MoveTo X="-134.2693" Y="507.8932" Z="-17.82489" />
+				<MoveTo X="-148.4885" Y="524.0147" Z="-17.82489" />
+				<MoveTo X="-160.7684" Y="497.2664" Z="-17.82489" />
+				<MoveTo X="-173.5526" Y="405.0211" Z="-17.69368" />
+				<MoveTo X="-155.3918" Y="398.094" Z="-17.79432" />
+				<MoveTo X="-173.3446" Y="369.5784" Z="-17.69936" />
+				<MoveTo X="-193.35" Y="369.8827" Z="-15.1717" /> <!-- Face Laj -->
+				<CustomBehavior File="RunMacro" Macro="/target Laj\n/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n\n/cast Taunt/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot" /> <!-- Pull Laj -->
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<EnableBehavior Name="Combat" />
+
+				<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
+				<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="3.693267" Y="409.3721" Z="-27.63801" />
+					<Hotspot X="17.46659" Y="369.3841" Z="-26.25432" />
+					<Hotspot X="66.04333" Y="390.6274" Z="-27.97719" />
+				</CustomBehavior>
+
+				<MoveTo X="152.0139" Y="391.3595" Z="-34.01377" />
+
+				<CustomBehavior File="Misc\RunLua" Lua="ShowPizzaMessage = GetMoney();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconChat = GetTime();" />
+				<CustomBehavior File="Misc\RunLua" Lua="WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)" />
+				<CustomBehavior File="Misc\RunLua" Lua="ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);" />
+				<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))" />
+
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="161.1456" Y="391.4538" Z="-36.01253" /> <!--Exits Instance -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+				local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+				local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+				local item,l,i=&quot;29739&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end " />
+
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions and Arcane Tombs.&quot;);" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			</If>
+			<!--Instance Coordnation Complete -->
+		</While>
+
+		<!-- Vendor Routine -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
+			<CustomBehavior File="ForcedMount" MountType="Flying" />
+			<SetVendor>
+				<Vendors>
+					<Vendor Nav="Fly" Name="Kerpow Blastwrench" Entry="22491" Type="Repair" X="2955.032" Y="1802.131" Z="139.1213" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<If Condition="(Me.FreeBagSlots &lt; 17)" > <!-- Mail if player still has 10 or less slots -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Mail.&quot;);" />
+				<SetMailbox>
+					<Mailboxes>
+						<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+				<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+				<ClearMailbox />
+			</If>
+			<CustomBehavior File="Misc\RunLua" Lua="AutoRespond = GetMoney();" />
+			<CustomBehavior File="Misc\RunLua" Lua="WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);" />
+			<CustomBehavior File="Misc\RunLua" Lua="print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+		</If>
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- The Mechanar -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing The Mechanar.&quot;);" />
+
+		<If Condition="!(Me.ZoneId == 3523)" >
+			<CustomBehavior File="FlyTo" X="589.3289" Y="3427.308" Z="291.0131" />
+			<CustomBehavior File="MyCTM" X="2945.934" Y="1784.823" Z="206.9143" />
+		</If>
+		<If Condition="!(Me.MapId == 552)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(2868.389, 1551.293, 252.1595)) &gt;= 55" >	
+				<CustomBehavior File="FlyTo" X="3024.063" Y="1728.797" Z="239.4702" />
+				<CustomBehavior File="MyCTM" X="2952.151" Y="1627.577" Z="264.385" />
+				<CustomBehavior File="MyCTM" X="2877.254" Y="1559.525" Z="248.8978" />
+				<CustomBehavior File="ForcedDismount" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<!--Start Endless Cycle -->
+			<If Condition="!(Me.MapId == 554)" >
+				<MoveTo X="2872.403" Y="1555.394" Z="252.1594" />
+				<CustomBehavior File="MyCTM" X="2860.746" Y="1544.512" Z="252.1594" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<!--Instance Navigation Start -->
+			<If Condition="(Me.MapId == 554)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+					ShowLoadMessage = GetMoney();
+					ShowEngageMessage = GetMoney();
+					WarningIconRight = GetTime();
+					" />
+
+				<DisableBehavior Name="Combat" /> <!-- Mobs will be skipped if we use RunLikeHell -->
+				<RunTo X="23.53066" Y="21.9005" Z="7.293187E-06" />  <!-- May need to be reduced due to stunlock -->
+				<RunTo X="30.91353" Y="25.19507" Z="0.002577872" />
+				<RunTo X="38.10012" Y="57.45896" Z="0.161921" />
+				<RunTo X="29.97257" Y="2.146563" Z="0.000255685" />
+				<RunTo X="23.50609" Y="-20.3346" Z="0.000255685" />
+				<RunTo X="38.54005" Y="-53.13917" Z="0.162091" />
+				<RunTo X="77.86571" Y="-60.89853" Z="14.91168" />
+				<RunTo X="108.4764" Y="-54.69272" Z="14.92465" />
+				<RunTo X="98.89085" Y="-77.65843" Z="14.92665" />
+				<RunTo X="112.4377" Y="-78.69029" Z="14.92755" />
+				<EnableBehavior Name="Combat" />
+
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+				<DisableBehavior Name="Combat" /> <!-- Using DisableBehavior to handle the InteractWith -->
+				<CustomBehavior File="InteractWith" MobId="19710" Range="1" X="158.7155" Y="-77.64128" Z="3.751891" /> <!-- Pull Gatewatcher Iron-Hand -->
+				<RunTo X="167.2265" Y="-73.50605" Z="1.228704" />
+				<RunTo X="209.635" Y="-90.94837" Z="0.0006642168" />
+				<RunTo X="222.1569" Y="-57.52505" Z="0.0007092925" />
+				<CustomBehavior File="InteractWith" MobId="19219" Range="1" X="208.7709" Y="-12.25523" Z="-2.191832" /> <!-- Pull Mechano-Lord Capacitus -->
+				<EnableBehavior Name="Combat" /> <!-- Due to Mechano-Lord's stun, we have to seperate this and the next group because Honorbuddy will bug out when it's stunned... -->
+
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+				<DisableBehavior Name="Combat" /> <!-- Honorbuddy will skip all of this if we use RunLikeHell. -->
+				<RunTo X="166.3622" Y="-12.85282" Z="0.008215792" />
+				<RunTo X="135.18" Y="-38.08644" Z="0.00126394" />
+				<RunTo X="153.2415" Y="53.37263" Z="0.009587551" />
+				<RunTo X="195.8077" Y="38.67438" Z="-0.006228269" />
+				<RunTo X="163.6501" Y="78.6971" Z="2.284306" />
+				<RunTo X="118.9817" Y="69.1852" Z="14.92563" />
+				<RunTo X="104.5937" Y="49.58189" Z="14.92499" />
+				<RunTo X="83.41408" Y="18.20289" Z="14.92213" /> <!-- Gatewatcher Gyro-Kill -->
+				<EnableBehavior Name="Combat" />
+
+				<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+				<RunTo X="221.7706" Y="67.15894" Z="-0.005279055" />
+				<CustomBehavior File="InteractWith" MobId="184465" Range="3" X="222.5428" Y="70.61063" Z="-0.004793386" /> <!-- Cache of the Legion -->
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+
+				<RunTo X="227.4841" Y="52.41269" Z="-0.004534741" />
+				<!-- Mesh for elevator is buggy -->
+				<CustomBehavior File="MyCTM" X="256.9976" Y="52.33585" Z="-1.609371" />
+				<While Condition="(Me.Z &lt;= 24)" >
+					<CustomBehavior File="Misc\RunLua" Lua="JumpOrAscendStart();" WaitTime="800" />
+				</While>
+				<CustomBehavior File="MyCTM" X="276.9625" Y="51.89132" Z="25.38633" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="291.5837" Y="28.44842" Z="25.38633" />
+					<Hotspot X="327.0511" Y="12.76751" Z="27.83662" /> <!-- Nethermancer Sepethrea -->
+				</CustomBehavior>
+
+				<RunTo X="272.9961" Y="-22.63708" Z="26.32841" />
+				<RunTo X="140.3194" Y="142.4154" Z="25.57935" /> 
+				<CustomBehavior File="InteractWith" MobId="19220" Range="1"  X="132.7828" Y="151.2504" Z="25.58078" /> <!-- Pathaleon the Calculator -->
+
+				<RunTo X="82.74458" Y="149.4814" Z="25.58112" /> <!-- In front of exit portal -->
+				<CustomBehavior File="Misc\RunLua" Lua="
+					ShowPizzaMessage = GetMoney();
+					WarningIconChat = GetTime();
+					WarningIconLeft = math.floor(WarningIconChat-WarningIconRight)
+					ShowWipeMessage = math.floor(ShowPizzaMessage-ShowLoadMessage);
+					totalmoney = math.floor(ShowPizzaMessage-ShowKillMessage);
+					print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nPicked up: &quot;, GetCoinTextureString(ShowWipeMessage), &quot;\nTotals:  &quot;, GetCoinTextureString(totalmoney))
+					" />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="72.03339" Y="149.8745" Z="25.58112" /> <!--Exits Instance -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+					local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+					local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions.&quot;);" />
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				</If>
+				<!--Instance Coordnation Complete -->
+			</While>
+
+			<!-- Vendor Routine -->
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="Misc\RunLua" Lua="ShowRecoveryMessage = GetMoney();" />
+
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
+				<CustomBehavior File="ForcedMount" MountType="Flying" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Nav="Fly" Name="Kerpow Blastwrench" Entry="22491" Type="Repair" X="2955.032" Y="1802.131" Z="139.1213" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<ClearVendor />
+				<If Condition="(Me.FreeBagSlots &lt; 17)" > <!-- Mail if player still has 10 or less slots -->
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Mail.&quot;);" />
+					<SetMailbox>
+						<Mailboxes>
+							<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+					<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+					<ClearMailbox />
+				</If>
+				<CustomBehavior File="Misc\RunLua" Lua="
+					AutoRespond = GetMoney();
+					WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
+					vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);
+					print(&quot;|cFF3399FF[Azyul]|r: Quick Stats!\nYou Vendored: &quot;, GetCoinTextureString(WhisperStats), &quot;\nTotals: &quot;, GetCoinTextureString(vendortotalmoney))" />
+			</If>
+	</If>
+
+	<If Condition="Chance(7.69)" > <!-- The Arcatraz -->
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Randomizing dungeons...&quot;);" />
+		<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Choosing The Arcatraz.&quot;);" />
+
+		<If Condition="!(Me.ZoneId == 3523)" >
+			<CustomBehavior File="FlyTo" X="589.3289" Y="3427.308" Z="291.0131" />
+			<CustomBehavior File="MyCTM" X="2945.934" Y="1784.823" Z="206.9143" />
+		</If>
+		<If Condition="!(Me.MapId == 552)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(3366.32, 1518.864, 182.6719)) &gt;= 55" >				
+				<CustomBehavior File="FlyTo" X="3211.36" Y="1702.123" Z="257.0714" />
+				<CustomBehavior File="MyCTM" X="3262.718" Y="1458.447" Z="513.5992" />
+				<CustomBehavior File="MyCTM" X="3304.598" Y="1351.14" Z="502.2926" />
+				<CustomBehavior File="ForcedDismount" />
+			</If>
+		</If>
+		<While Condition="(Me.FreeBagSlots &gt;= 17)" >
+			<!--Start Endless Cycle -->
+			<If Condition="!(Me.MapId == 552)" >
+				<MoveTo X="3310.654" Y="1335.361" Z="505.5604" />
+				<CustomBehavior File="WaitTimer" WaitTime="100" />
+				<CustomBehavior File="InteractWith" MobId="184320" Range="4" X="3311.218" Y="1333.716" Z="506.5972" />
+				<CustomBehavior File="MyCTM" X="3313.152" Y="1328.679" Z="505.5583" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+			<!--Instance Navigation Start -->
+			<If Condition="(Me.MapId == 552)" >
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+				<MoveTo X="40.06908" Y="0.2844397" Z="-0.3992822" />
+
+				<!-- Not no-combat pulling due to ridiculous 10 second root. -->
+				<MoveTo X="75.89242" Y="17.51129" Z="-10.17308" /> 
+				<MoveTo X="71.59758" Y="-15.51212" Z="-10.17307" />
+				<MoveTo X="103.7019" Y="-0.3404537" Z="-10.17306" /> 
+
+
+				<MoveTo X="122.5889" Y="-0.334416" Z="-10.10375" />
+				<MoveTo X="168.0333" Y="0.5574814" Z="-10.09867" />
+
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="193.1425" Y="4.202607" Z="-10.1021" />
+					<Hotspot X="204.7027" Y="-24.54355" Z="-10.0984" />
+					<Hotspot X="213.769" Y="-129.4589" Z="-10.11904" />
+					<Hotspot X="257.3596" Y="-162.685" Z="-10.10445" />
+					<Hotspot X="274.3254" Y="-121.0592" Z="-10.12259" /> <!-- Zereketh the Unbound -->
+				</CustomBehavior>
+
+
+
+				<MoveTo X="225.9872" Y="-160.472" Z="-10.11075" />
+				<MoveTo X="268.0805" Y="-84.2822" Z="22.46306" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="275.0542" Y="5.855163" Z="22.44212" />
+					<Hotspot X="297.0744" Y="15.28206" Z="21.26496" />
+					<Hotspot X="277.6928" Y="42.5273" Z="22.44119" />
+					<Hotspot X="301.007" Y="129.9909" Z="22.22757" />
+					<Hotspot X="288.6372" Y="149.4156" Z="22.23215" />
+					<Hotspot X="301.7706" Y="145.6024" Z="22.22555" />
+					<Hotspot X="195.7514" Y="147.3351" Z="22.43452" />
+					<Hotspot X="146.3994" Y="146.0355" Z="20.81491" />
+					<Hotspot X="134.9758" Y="125.8763" Z="22.44103" />
+					<Hotspot X="133.186" Y="176.3057" Z="22.44119" />
+				</CustomBehavior>
+
+				
+				<MoveTo X="199.7356" Y="123.8968" Z="22.48768" />
+				<MoveTo X="312.4378" Y="22.23558" Z="48.34902" />
+
+				<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+					<Hotspot X="335.9995" Y="28.68357" Z="48.33578" />
+					<Hotspot X="396.4203" Y="17.92206" Z="48.21363" />
+					<Hotspot X="431.1593" Y="8.550097" Z="48.20776" />
+					<Hotspot X="441.2957" Y="19.20039" Z="48.21096" />
+					<Hotspot X="434.6971" Y="-76.10105" Z="48.3954" />
+					<Hotspot X="458.9969" Y="-76.95219" Z="48.3954" />
+					<Hotspot X="430.0691" Y="-116.6169" Z="43.10014" />
+					<Hotspot X="444.5343" Y="-169.4772" Z="43.05242" />
+					<Hotspot X="446.1396" Y="-171.0828" Z="43.04562" /> //Last Boss
+				</CustomBehavior>
+
+
+				<DisableBehavior Name="Combat" />
+				<MoveTo X="4.971334" Y="0.8803384" Z="-0.2067001" /> //Before Instance
+				<EnableBehavior Name="Combat" />
+
+
+				<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Skipping wait since we're going to the vendor.&quot;);" />
+				<Else>
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				</Else>
+			</If>
+				<CustomBehavior File="MyCTM" X="-4.845096" Y="0.7352772" Z="-0.2067001" /> <!--Exits Instance -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="Misc\RunLua" Lua="
+					local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+					local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Deleting all Bottled Nethergon potions.&quot;);" />
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			</If>
+			<!--Instance Coordnation Complete -->
+		</While>
+
+		<!-- Vendor Routine -->
+		<If Condition="(Me.FreeBagSlots &lt; 17)" >
+			<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
+			<CustomBehavior File="ForcedMount" MountType="Flying" />
+			<SetVendor>
+				<Vendors>
+					<Vendor Nav="Fly" Name="Kerpow Blastwrench" Entry="22491" Type="Repair" X="2955.032" Y="1802.131" Z="139.1213" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<If Condition="(Me.FreeBagSlots &lt; 17)" > <!-- Mail if player still has 10 or less slots -->
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Mail.&quot;);" />
+				<SetMailbox>
+					<Mailboxes>
+							<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+					</Mailboxes>
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+				<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+				<ClearMailbox />
+			</If>
+		</If>
+	</If>
+
+</While>
+</QuestOrder>
+</HBProfile>

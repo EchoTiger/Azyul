@@ -1,0 +1,45 @@
+<HBProfile>
+<Name>Shadowfang Keep, Trash+Chest Focus - Remote Version</Name>
+
+<Blacklist>
+	<Mob Name="Drakkari Frenzy" Id="29834" Flags="Pull,Combat" />
+	<Mob Name="Small Frog" Id="13321" Flags="Pull,Combat" /> 
+</Blacklist>
+
+<QuestOrder>
+
+	<CustomBehavior File="RunCode" > <!-- Do we have the behaviors? -->
+		<![CDATA[
+			if (!File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs") || !File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs")) {
+				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Downloading quest behaviors... your bot will automatically restart!");
+				System.Net.WebClient Client = new System.Net.WebClient ();
+				Client.DownloadFile("http://enu.li/Snips/LoadRemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs");
+				Client.DownloadFile("http://enu.li/Snips/RemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs");
+				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Restarting bot!");
+				System.Diagnostics.Process.Start(Utilities.AssemblyDirectory + "\\Honorbuddy.exe", "/autostart");
+				TreeRoot.Shutdown();
+			}
+		]]>
+	</CustomBehavior>
+
+	<CustomBehavior File="LoadRemoteCode" />
+
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ProfileSettings.xml" /> <!-- Activate Profile Settings -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/UniversalNav/ToEasternKingdoms.xml" /> <!-- Go to EasternKingdoms -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/DefensiveHooks.xml" /> <!-- Activate Defensive Manuvers -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/Extras.xml" /> <!-- Stats, GPH, etc. -->
+
+
+	<While Condition="true" >
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonEnter/ShadowfangKeep.xml" /> <!-- Enter Dungeon -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonRun/ShadowfangKeep-TrashChestFocus.xml" /> <!-- Run Dungeon -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/GuildBank.xml" /> <!-- Guild Bank Stuff -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/DeleteItems.xml" /> <!-- Delete Items -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonExit/ShadowfangKeep.xml" /> <!-- Exit Dungeon -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonVendor/ItemsAndMounts.xml" /> <!-- Vendor by Mounts/Items/Etc -->
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/DungeonVendor/ShadowfangKeep.xml" /> <!-- Vendor by Shadowfang Keep Vendors -->
+	</While>
+
+</QuestOrder>
+</HBProfile>
