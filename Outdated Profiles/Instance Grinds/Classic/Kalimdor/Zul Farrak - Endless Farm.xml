@@ -1,0 +1,182 @@
+<HBProfile>
+<Name>Mjj23's Zul Farrak Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Zul Farrak
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Tyrant's Plate (Chest, Legs) Jade Plate (Belt, Gloves, Boots) Various Transmog
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		<Item Name = "Tyrant's Chestpiece" Entry = "14835"/>
+		<Item Name = "Tyrant's Breastplate" Entry = "14840"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Krinkle Goodsteel" Entry="5411" Type="Repair" X="-7232.01" Y="-3751.71" Z="9.092834" />
+	
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-7082.707" Y="-3851.493" Z="9.774841" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+	<Blackspot X="1485.6520" Y="807.7772" Z="8.8910" Radius="5" />
+</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 209)" >	
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+</If>
+		<!-- Travel to Zul'Darrak --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 209)" >	
+		<While Condition="(Me.MapId == 1)" >
+		
+						<CustomBehavior File="Message" Text="Moving to Zul'Farrak Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Zul'Farrak" X="-6795.347" Y="-2891.102" Z="8.883102" />
+						<CustomBehavior File="MyCTM" X="-6788.347" Y="-2891.102" Z="8.883102" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
+		<!-- Begin Instance Grind -->	
+		<While Condition="(Me.MapId == 209)" >
+		
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+						<RunTo X="1250.8098" Y="846.5090" Z="9.0183"  />
+						<RunTo X="1294.3468" Y="818.1006" Z="9.7063"  />
+						<RunTo X="1321.0272" Y="832.7029" Z="8.9168"  />
+						<RunTo X="1350.0903" Y="821.2907" Z="9.0076"  />
+						<RunTo X="1425.4629" Y="806.1148" Z="9.4246"  />
+						<RunTo X="1471.1803" Y="819.6530" Z="8.8909"  />
+						<RunTo X="1506.9709" Y="833.8889" Z="8.8909"  />
+						<RunTo X="1531.0487" Y="833.5791" Z="8.8909"  />
+						<RunTo X="1556.2346" Y="843.0098" Z="8.8918"  />
+						<RunTo X="1561.6190" Y="861.5362" Z="9.0333"  />
+						<RunTo X="1582.0879" Y="856.0583" Z="9.0250"  />
+						<RunTo X="1605.3590" Y="891.8087" Z="9.2765"  />
+						<RunTo X="1621.1859" Y="864.6057" Z="10.1445"  />
+						<RunTo X="1651.6429" Y="898.7952" Z="8.8771"  />
+						<RunTo X="1654.4100" Y="931.5935" Z="8.8770"  />
+						<RunTo X="1581.1167" Y="989.5755" Z="9.2746"  />  
+
+						<RunTo X="1561.8914" Y="995.8893" Z="9.0801"  />
+						<RunTo X="1570.0959" Y="1012.3794" Z="8.8768"  />
+						<RunTo X="1584.4092" Y="1076.0903" Z="8.8770"  />
+						<RunTo X="1597.5734" Y="1109.7711" Z="8.8769"  />
+						<CustomBehavior File="InteractWith" MobId="141832" WaitForNpcs="false" X="1648.02" Y="1169.574" Z="8.978505" />
+						<RunTo X="1622.81" Y="1191.272" Z="8.970698" />
+						<RunTo X="1663.711" Y="1255.225" Z="10.23362" />
+						<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7273" /> <!-- Pull Gahz'rilla -->
+						<RunTo X="1690.3849" Y="1239.1527" Z="8.8866"  />
+						<RunTo X="1703.7422" Y="1199.7332" Z="9.5889"  />
+						<RunTo X="1682.3787" Y="1166.2745" Z="8.8785"  />
+						<RunTo X="1886.799" Y="1269.618" Z="41.63361" />
+						<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7274" /> <!-- Pull Executioner -->
+						<RunTo X="1879.636" Y="1296.464" Z="46.30863" />
+
+						<CustomBehavior File="InteractWith" MobId="141071" WaitForNpcs="False" X="1886.067" Y="1297.517" Z="48.24273" />
+
+						<MoveTo X="1886.782" Y="1264.664" Z="41.50404" />
+
+						<DisableBehavior Name="Combat" />
+							<MoveTo X="1897.391" Y="1212.823" Z="8.876872" />
+							<MoveTo X="1876.268" Y="1214.351" Z="8.916135" />
+							<MoveTo X="1886.497" Y="1268.206" Z="41.60099" />
+						<EnableBehavior Name="Combat" />
+
+						<CustomBehavior File="EscortGroup" StartNpcId="7604"
+							EscortNpcId1="7604" EscortNpcId2="7607" EscortNpcId3="7605" EscortNpcId4="7606" EscortNpcId5="7608"
+							EscortCompleteWhen="DestinationReached" EscortCompleteX="1885.295" EscortCompleteY="1202.984" EscortCompleteZ="8.877229" />
+
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+
+						<CustomBehavior File="InteractWith" MobId="7604" GossipOptions="1" WaitForNpcs="False" /> <!-- Pull Sergeant Bly -->
+						<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" /> <!-- Just in case -->
+
+										
+						
+						<RunTo X="1857.458" Y="1145.359" Z="15.77392" />
+						<RunTo X="1745.094" Y="1039.88" Z="49.86219" />
+						<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7267" /> <!-- Pull Chief Ukorz Sandscalp -->
+						<RunTo X="1865.256" Y="1153.263" Z="12.49146" />
+						
+						<RunTo X="1833.7318" Y="1187.4781" Z="8.9878"  />
+						<RunTo X="1865.3508" Y="1178.2245" Z="8.9902"  />
+						<RunTo X="1865.9014" Y="1145.2209" Z="13.0178"  />
+						<RunTo X="1892.9172" Y="1143.1705" Z="8.9136"  />
+						<RunTo X="1906.446" Y="1014.892" Z="11.51565" />
+						<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7271" /> <!-- Pull Witch Doctor Zum'rah -->
+						<RunTo X="1910.2111" Y="1186.7925" Z="8.8783"  />
+						<RunTo X="1886.5385" Y="1281.0375" Z="42.6357"  />
+						<RunTo X="1868.5060" Y="1098.0472" Z="8.9156"  />
+						<RunTo X="1864.2316" Y="1032.6967" Z="8.8768"  />
+						<RunTo X="1860.8385" Y="972.2949" Z="9.0475"  />
+						<RunTo X="1831.0056" Y="928.5922" Z="8.8820"  />
+						<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7272" /> <!-- Pull Theka the Martyr -->
+						<RunTo X="1794.4396" Y="844.3710" Z="8.8908"  />
+						<RunTo X="1805.7704" Y="808.7660" Z="13.1289"  />
+						<RunTo X="1799.0278" Y="751.1656" Z="14.6040"  />
+						<RunTo X="1829.5947" Y="725.5672" Z="16.5102"  />
+						<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="8127" /> <!-- Pull Antu'sul -->
+						<RunTo X="1812.4108" Y="686.4406" Z="14.5980"  />
+						<RunTo X="1226.841" Y="852.6934" Z="12.48615" />
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						<RunTo X="1212.67" Y="842.04" Z="8.93346" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+						<CustomBehavior File="MyCTM" X="1205.67" Y="842.04" Z="8.93346" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<!-- End Instance Grind -->
+		</While>	
+		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+					<CustomBehavior File="Message" Text="Moving to Tanaris Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Zul'Farrak" X="-7082.707" Y="-3851.493" Z="9.774841" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+		<!-- End bag check -->
+			
+			
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

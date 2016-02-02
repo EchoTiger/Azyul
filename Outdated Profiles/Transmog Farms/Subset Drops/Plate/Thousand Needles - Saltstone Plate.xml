@@ -1,0 +1,123 @@
+<HBProfile>
+<Name>Mjj23's Saltstone Plate Transmog Grind [$Rev$]</Name>
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Thousand Needles
+// Farm mobs: Den Whomper
+// Grind Speed: 
+// Grind what? Saltstone Plate
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<ProtectedItems>
+		<Item Name = "Saltstone Gauntlets" Entry = "14897"/>
+		<Item Name = "Saltstone Armsplints" Entry = "14903"/>
+		<Item Name = "Saltstone Sabatons" Entry = "14896"/>
+		<Item Name = "Saltstone Legplates" Entry = "14900"/>
+		<Item Name = "Saltstone Girdle" Entry = "14898"/>
+		<Item Name = "Saltstone Surcoat" Entry = "14895"/>
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Krinkle Goodsteel" Entry="5411" Type="Repair" X="-7232.01" Y="-3751.71" Z="9.092834" />
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-7082.707" Y="-3851.493" Z="9.774841" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Tony Two Tusk" Entry="40958" />
+		<Mob Name="Southsea Sailor" Entry="40092"/>
+		<Mob Name="Southsea Sailor" Entry="40432"/>
+		<Mob Name="Savage Parrot" Entry="40431"/>
+		</AvoidMobs>
+
+
+<Blackspots>
+	
+</Blackspots>
+	
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="25" KillBetweenHotspots="True" LogoutForInactivity="False" />
+
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+	
+
+		<While Condition="Me.MapId == 1">
+		
+		<If Condition="(Me.MapId == 1) &amp;&amp; !HasItem(14895) || !HasItem(14898) || !HasItem(14900) || !HasItem(14896) || !HasItem(14903) || !HasItem(14897)" >
+						<CustomBehavior File="Message" Text="Moving to Southsea Holdfast Farm Location.  Farming for: Saltstone Plate" LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Thousand Needles" X="-6396.681" Y="-4466.374" Z="86.93233" />
+						<CustomBehavior File="WaitTimer" WaitTime="6000" />
+						<CustomBehavior File="ForcedDismount" />
+		
+		
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Saltstone Plate Grind [$Rev$]</Name>
+					<Factions>230</Factions>
+					<TargetMinLevel>30</TargetMinLevel>
+					<TargetMaxLevel>50</TargetMaxLevel>
+					<Hotspots>
+						<Hotspot X="-6406.413" Y="-4479.763" Z="88.10549" />
+						<Hotspot X="-6400.187" Y="-4535.513" Z="80.80886" />
+						<Hotspot X="-6415.933" Y="-4580.11" Z="79.18819" />
+						<Hotspot X="-6434.826" Y="-4615.455" Z="77.88801" />
+						<Hotspot X="-6407.82" Y="-4620.39" Z="79.9082" />
+						<Hotspot X="-6381.535" Y="-4622.827" Z="80.68795" />
+						<Hotspot X="-6381.353" Y="-4650.708" Z="76.13725" />
+						<Hotspot X="-6354.392" Y="-4662.718" Z="78.04712" />
+						<Hotspot X="-6324.853" Y="-4644.657" Z="74.49817" />
+						<Hotspot X="-6352.307" Y="-4609.777" Z="66.52293" />
+						<Hotspot X="-6336.908" Y="-4588.607" Z="68.85438" />
+						<Hotspot X="-6305.03" Y="-4557.958" Z="77.18765" />
+						<Hotspot X="-6365.135" Y="-4538.632" Z="83.07478" />
+						<Hotspot X="-6382.166" Y="-4543.553" Z="83.02656" />
+						<Hotspot X="-6375.525" Y="-4577.566" Z="75.34045" />
+						<Hotspot X="-6360.362" Y="-4564.479" Z="80.29293" />
+
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) || (HasItem(14897) &amp;&amp; HasItem(14903) &amp;&amp; HasItem(14896) &amp;&amp; HasItem(14900) &amp;&amp; HasItem(14898) &amp;&amp; HasItem(14895))"/>
+			
+			<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+					<CustomBehavior File="Message" Text="Moving to Tanaris Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="-7082.707" Y="-3851.493" Z="9.774841" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			</If>
+        </While>    
+				
+	</QuestOrder>
+
+</HBProfile>

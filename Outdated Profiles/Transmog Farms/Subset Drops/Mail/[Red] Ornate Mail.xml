@@ -1,0 +1,130 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo Tiger :3
+// Farm zone: Bottom-Mid Blasted Lands
+// Farm mobs: Bloodwash Naga
+// Farm set: [Red] Ornate Mail
+///////////////////////////////////////////////////////////////////////
+
+<Name>[Red] Ornate Mail [$Rev$]</Name>
+
+<!-- With this setting, 
+ this profile requires you
+ to manually add your own 
+ custom vendor code!! -->
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>False</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+	<Item Name = "Engraved Girdle" Entry = "10233"/>
+	<Item Name = "Engraved Boots" Entry = "10234"/>
+	<Item Name = "Engraved Bracers" Entry = "10229"/>
+	<Item Name = "Engraved Gauntlets" Entry = "10232"/>
+	<Item Name = "Engraved Leggings" Entry = "10236"/>
+	<Item Name = "Engraved Breastplate" Entry = "10230"/>
+</ProtectedItems>
+
+<Vendors>
+	<Vendor Name="Grazlix" Entry="3493" Type="Repair" X="-982.7128" Y="-3680.532" Z="9.554882" />
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+
+
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />				
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/> 
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="45" />				
+		
+<While Condition="!HasItem(10233) || !HasItem(10234) || !HasItem(10229) || !HasItem(10232) || !HasItem(10230) || !HasItem(41386)">
+
+	<If Condition="Me.Location.Distance(new WoWPoint(-12067.1, -3812.355, 7.182417)) &gt; 35" >
+		<CustomBehavior File="Message" Text="Moving to farm: Ornate Mail" LogColor="Lime" />
+		<CustomBehavior File="FlyTo" X="-12067.1" Y="-3812.355" Z="7.182417" />
+		<CustomBehavior File="WaitTimer" WaitTime="6000" />
+		<CustomBehavior File="ForcedDismount" />
+	</If>
+
+	<SetGrindArea>
+		<GrindArea>
+			<Name>[Red] Ornate Mail [$Rev$]</Name>
+			<Factions>2245, 2205</Factions>
+			<MaxDistance>45</MaxDistance>
+			<Hotspots>
+				<Hotspot X="-12078.55" Y="-3837.601" Z="1.835709" />
+				<Hotspot X="-12208.82" Y="-3718.081" Z="9.207329" />
+				<Hotspot X="-12368.64" Y="-3581.375" Z="19.13458" />
+				<Hotspot X="-12412.94" Y="-3644.006" Z="19.89984" />
+				<Hotspot X="-12441.96" Y="-3418.06" Z="16.35818" />
+				<Hotspot X="-12315.21" Y="-3400.851" Z="20.81293" />
+				<Hotspot X="-12139.21" Y="-3440.623" Z="30.87695" />
+				<Hotspot X="-12047.42" Y="-3445.751" Z="20.74977" />
+			</Hotspots>
+		</GrindArea>
+	</SetGrindArea>
+	<GrindTo Condition="(Me.FreeBagSlots &lt;= 6)" />
+	<If Condition="Me.IsAlliance" >
+		<CustomBehavior File="FlyTo" X="-11774.62" Y="-3221.023" Z="12.95492" />
+		<CustomBehavior File="FlyTo" X="-11806.64" Y="-3224.286" Z="-30.58852" />
+		<CustomBehavior File="ForcedDismount" />
+		<SetVendor>
+			<Vendors>
+				<Vendor Name="Quartermaster Apone" Entry="44344" Type="Food" X="-11806.4" Y="-3227.13" Z="-30.32579" />
+			</Vendors>
+		</SetVendor>
+		<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+		<ClearVendor />
+		<CustomBehavior File="FlyTo" X="-12053.8" Y="-3805.67" Z="20.42023" />
+	</If>
+	<If Condition="Me.IsHorde" >
+		<CustomBehavior File="FlyTo" X="-11774.62" Y="-3221.023" Z="12.95492" />
+		<CustomBehavior File="FlyTo" X="-11783.56" Y="-3171.962" Z="-29.11077" />
+		<CustomBehavior File="ForcedDismount" />
+		<SetVendor>
+			<Vendors>
+				<Vendor Name="Quartermaster Dekrok" Entry="44343" Type="Food" X="-11781.4" Y="-3170.5" Z="-28.91289" />
+			</Vendors>
+		</SetVendor>
+		<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+		<ClearVendor />
+		<CustomBehavior File="FlyTo" X="-12053.8" Y="-3805.67" Z="20.42023" />
+	</If>
+</While>
+
+
+<If Condition="HasItem(10233) &amp;&amp; HasItem(10234) &amp;&amp; HasItem(10229) &amp;&amp; HasItem(10232) &amp;&amp; HasItem(10230) &amp;&amp; HasItem(41386)">
+	<CustomBehavior File="Message" Text="It seems that all items have been obtained.\n\nIf you wish to farm the mobs again, put the items of this set into your bank then run the profile again." />
+</If>
+</QuestOrder>
+</HBProfile>

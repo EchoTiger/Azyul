@@ -1,0 +1,227 @@
+<HBProfile>
+<Name>Mjj23's Jade Plate Transmog Grind [$Rev$]</Name>
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Felwood
+// Farm mobs: Timbermaw
+// Grind Speed: 200 mobs/h (with 90 mage)
+// Grind what? Jade Plate
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<ProtectedItems>
+		<Item Name = "Jade Greaves" Entry = "14913"/>
+		<Item Name = "Jade Breastplate" Entry = "14915"/>
+		<Item Name = "Jade Bracers" Entry = "14914"/>
+		<Item Name = "Jade Belt" Entry = "14918"/>
+		<Item Name = "Jade Epaulets" Entry = "14921"/>
+		<Item Name = "Jade Gauntlets" Entry = "14917"/>
+		<Item Name = "Jade Legplates" Entry = "14920"/>
+		<Item Name = "Jade Circlet" Entry = "14919"/>
+		<Item Name = "Tainted Ooze" Entry = "20769"/>
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Ciana" Entry="48577" Type="Repair" X="6086.02" Y="-817.925" Z="414.802" />
+		<Vendor Name="Wixxrak" Entry="11184" Type="Repair" X="6733.39" Y="-4699.038" Z="721.37" />
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="6076.33" Y="-888.965" Z="411.797" />
+		<Mailbox X="6705.105" Y="-4667.351" Z="721.2368" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		</AvoidMobs>
+
+
+<Blackspots>
+	
+</Blackspots>
+	
+
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+	
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+		<While Condition="Me.MapId == 1">
+		
+		<If Condition="(Me.MapId == 1) &amp;&amp; !HasItem(14914) || !HasItem(14918)" >
+						<CustomBehavior File="Message" Text="Moving to Jaedenar Farm Location.  Farming for: Belt and Bracers" LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Jaedenar" X="4849.004" Y="-707.3585" Z="291.9121" />
+						<CustomBehavior File="ForcedDismount" />
+		
+		
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Jade Grind Part I - Bracers and Belt [$Rev$]</Name>
+					<Factions>1434 14</Factions>
+					<Hotspots>
+						<Hotspot X="4849.004" Y="-707.3585" Z="291.9121" />
+						<Hotspot X="4983.385" Y="-672.2867" Z="292.4374" />
+						<Hotspot X="5027.933" Y="-660.2374" Z="291.9138" />
+						<Hotspot X="5046.678" Y="-624.3735" Z="293.5266" />
+						<Hotspot X="4915.029" Y="-638.7364" Z="308.1754" />
+						<Hotspot X="4883.148" Y="-592.578" Z="308.8611" />
+						<Hotspot X="4839.167" Y="-597.4839" Z="308.2662" />
+						<Hotspot X="4839.981" Y="-612.4406" Z="298.0098" />
+						<Hotspot X="4833.003" Y="-593.9636" Z="290.4716" />
+						<Hotspot X="4760.72" Y="-554.3404" Z="284.5638" />
+						<Hotspot X="4764.461" Y="-582.4489" Z="279.8617" />
+						<Hotspot X="4784.571" Y="-557.9753" Z="274.7962" />
+						<Hotspot X="4815.505" Y="-544.2177" Z="272.5294" />
+						<Hotspot X="4797.664" Y="-571.1951" Z="285.6332" />
+						<Hotspot X="4861.099" Y="-609.4668" Z="307.0166" />
+						<Hotspot X="4838.134" Y="-554.8907" Z="312.5204" />
+						<Hotspot X="4813.116" Y="-536.4267" Z="316.9775" />
+						<Hotspot X="4792.524" Y="-506.2306" Z="323.9931" />
+						<Hotspot X="4778.306" Y="-456.764" Z="338.2989" />
+						<Hotspot X="4798.734" Y="-419.3633" Z="346.7319" />
+						<Hotspot X="4805.436" Y="-377.1807" Z="349.3871" />
+						<Hotspot X="4848.384" Y="-359.7936" Z="353.1274" />
+						<Hotspot X="4851.062" Y="-395.8664" Z="351.2068" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) || (HasItem(14914) &amp;&amp; HasItem(14918))"/>
+			
+			<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+					<CustomBehavior File="Message" Text="Moving to Felwood Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="6076.33" Y="-888.965" Z="411.797" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+				<ElseIf Condition="(Me.MapId == 1) &amp;&amp; !HasItem(14913) || !HasItem(14921) || !HasItem(14917)" >
+						<CustomBehavior File="Message" Text="Moving to Timbermaw Hold Farm Location.  Farming for: Boots/Shoulders/Gloves" LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Timbermaw Hold" X="6589.816" Y="-1899.906" Z="543.7785" />
+						<CustomBehavior File="WaitTimer" WaitTime="6000" />
+						<CustomBehavior File="ForcedDismount" />
+		
+		
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Jade Grind Part II - Gloves, Boots and Shoulders [$Rev$]</Name>
+					<Factions>82</Factions>
+					<Hotspots>
+						<Hotspot X="6589.816" Y="-1899.906" Z="543.7785" />
+						<Hotspot X="6621.846" Y="-1942.316" Z="549.7465" />
+						<Hotspot X="6622.596" Y="-1978.382" Z="551.3301" />
+						<Hotspot X="6665.77" Y="-1957.346" Z="550.831" />
+						<Hotspot X="6695.985" Y="-1969.059" Z="554.2421" />
+						<Hotspot X="6701.482" Y="-1988.665" Z="560.9294" />
+						<Hotspot X="6735.481" Y="-1961.286" Z="550.8043" />
+						<Hotspot X="6788.327" Y="-1955.508" Z="551.463" />
+						<Hotspot X="6789.993" Y="-2001.875" Z="565.8234" />
+						<Hotspot X="6823.133" Y="-1966.335" Z="551.6033" />
+						<Hotspot X="6847.614" Y="-1887.245" Z="550.7531" />
+						<Hotspot X="6801.666" Y="-1857.128" Z="550.9204" />
+						<Hotspot X="6891.198" Y="-1815.981" Z="568.6233" />
+						<Hotspot X="6756.993" Y="-1880.003" Z="550.6758" />
+						<Hotspot X="6715.344" Y="-1892.505" Z="549.2213" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			
+			<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) || (HasItem(14913) &amp;&amp; HasItem(14921) &amp;&amp; HasItem(14917))"/>
+			
+			<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+					<CustomBehavior File="Message" Text="Moving to Felwood Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="6076.33" Y="-888.965" Z="411.797" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			</ElseIf>
+					
+			<ElseIf Condition="(Me.MapId == 1) &amp;&amp; !HasItem(14915) || !HasItem(14919) || !HasItem(14920)" >
+						<CustomBehavior File="Message" Text="Moving to Winterspring (Yeti Cave) Farm Location.  Farming for: Helm, Legs, Breastplate" LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Winterspring" X="6616.079" Y="-4880.215" Z="706.605" />
+						<CustomBehavior File="WaitTimer" WaitTime="6000" />
+						<CustomBehavior File="ForcedDismount" />
+			
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Jade Grind Part III - Helm, Breastplate and Legs [$Rev$]</Name>
+					<Factions>16</Factions>
+					<Hotspots>
+						<Hotspot X="6616.079" Y="-4880.215" Z="706.605" />
+						<Hotspot X="6570.478" Y="-4941.77" Z="707.1873" />
+						<Hotspot X="6540.006" Y="-4931.345" Z="711.941" />
+						<Hotspot X="6493.828" Y="-4974.774" Z="727.7378" />
+						<Hotspot X="6506.811" Y="-5008.055" Z="732.309" />
+						<Hotspot X="6551.227" Y="-5024.771" Z="720.4126" />
+						<Hotspot X="6500.263" Y="-5093.895" Z="759.3783" />
+						<Hotspot X="6551.396" Y="-5104.027" Z="769.7938" />
+						<Hotspot X="6579.344" Y="-5179.228" Z="769.4801" />
+						<Hotspot X="6590.396" Y="-5199.583" Z="765.7965" />
+						<Hotspot X="6645.359" Y="-5267.143" Z="753.2308" />
+						<Hotspot X="6633.458" Y="-5290.409" Z="753.7708" />
+						<Hotspot X="6620.352" Y="-5311.024" Z="753.5085" />
+						<Hotspot X="6552.201" Y="-5276.046" Z="751.4962" />
+						<Hotspot X="6598.848" Y="-5356.612" Z="758.2189" />
+						<Hotspot X="6640.938" Y="-5407.907" Z="760.0527" />
+						<Hotspot X="6664.369" Y="-5395.135" Z="760.6044" />
+						<Hotspot X="6690.788" Y="-5352.958" Z="748.7693" />
+						<Hotspot X="6738.429" Y="-5278.007" Z="746.014" />
+						<Hotspot X="6754.448" Y="-5314.696" Z="747.8676" />
+						<Hotspot X="6717.467" Y="-5318.27" Z="750.6517" />
+						<Hotspot X="6688.227" Y="-5372.478" Z="753.0902" />
+						<Hotspot X="6669.615" Y="-5397.24" Z="761.1326" />
+						<Hotspot X="6697.916" Y="-5381.062" Z="766.1998" />
+						<Hotspot X="6740.415" Y="-5366.45" Z="766.9569" />
+						<Hotspot X="6751.104" Y="-5353.173" Z="767.4938" />
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) || (HasItem(14915) &amp;&amp; HasItem(14919) &amp;&amp; HasItem(14920))"/>
+			
+			<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+					<CustomBehavior File="Message" Text="Moving to Winterspring Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="6705.105" Y="-4667.351" Z="721.2368" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			</ElseIf>
+			
+			</If>
+        </While>    
+				
+	</QuestOrder>
+
+</HBProfile>

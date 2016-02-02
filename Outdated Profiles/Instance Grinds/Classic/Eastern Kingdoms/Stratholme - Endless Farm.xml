@@ -1,0 +1,156 @@
+<HBProfile>
+<Name>Mjj23's Stratholme Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Stratholme
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Righteous Orb/Some Transmog
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		<Item Name = "Righteous Orb" Entry = "12811"/>
+		<Item Name = "Plans: Heartseeker" Entry = "12839"/>
+		<Item Name = "Recipe: Flask of Distilled Wisdom" Entry = "13520"/>
+		<Item Name = "Pattern: Truefaith Vestments" Entry = "14512"/>
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Kathryn Humphries" Entry="47149" Type="Repair" X="2252.36" Y="-4456.02" Z="114.2962" />
+	
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="2290.59" Y="-5321.227" Z="90.1806" /> <!-- Alliance Mailbox -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 329)" >
+
+		<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/> 
+</If>
+	<!-- Travel to Stratholme --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 329)" >
+		<While Condition="(Me.MapId == 0)" >
+		
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+						<CustomBehavior File="Message" Text="Moving to Stratholme Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Stratholme" X="3392.69" Y="-3406.686" Z="142.2462"  />
+						<CustomBehavior File="MyCTM" X="3392.69" Y="-3397.686" Z="142.2462" /> <!-- Enters instance if not already inside -->
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
+	<!-- Begin Instance Grind -->
+		<While Condition="(Me.MapId == 329)" >
+						
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+						<RunTo X="3393.27" Y="-3392" Z="143.151" />
+						<RunTo X="3430.071" Y="-3379.998" Z="141.2938" />
+						<RunTo X="3468.177" Y="-3379.279" Z="136.9507" />
+						<RunTo X="3547.472" Y="-3382.261" Z="132.7074" />
+						<RunTo X="3572.633" Y="-3341.464" Z="128.9703" />
+						<RunTo X="3612.686" Y="-3335.573" Z="124.0596" />
+						<RunTo X="3681.194" Y="-3370.586" Z="128.7636" />
+						<RunTo X="3690.793" Y="-3410.316" Z="132.9824" />
+						<RunTo X="3706.671" Y="-3385.812" Z="132.7728" />
+						<RunTo X="3714.559" Y="-3428.02" Z="131.2282" />
+						<RunTo X="3728.52" Y="-3454.355" Z="130.152" />
+						<RunTo X="3677.708" Y="-3491.098" Z="135.0682" />
+						<RunTo X="3635.107" Y="-3518.886" Z="136.4567" />
+						<RunTo X="3603.916" Y="-3490.184" Z="136.0356" /> <!-- Check for rare spawn Skul -->
+						<RunTo X="3641.876" Y="-3477.204" Z="138.3814" />
+						<RunTo X="3712.077" Y="-3430.729" Z="130.8808" />
+						<RunTo X="3668.278" Y="-3317.312" Z="124.8689" />
+						<RunTo X="3673.451" Y="-3266.326" Z="127.7892" />
+						<RunTo X="3729.883" Y="-3261.637" Z="128.0933" /> <!-- Timmy the Cruel -->
+						<RunTo X="3679.141" Y="-3209.613" Z="127.1956" />
+						<RunTo X="3665.752" Y="-3189.119" Z="126.2409" />
+						<RunTo X="3680.136" Y="-3151.524" Z="127.2636" />
+						<RunTo X="3660.383" Y="-3161.126" Z="128.0278" />
+						<RunTo X="3647.406" Y="-3139.314" Z="134.7778" />
+						<CustomBehavior File="InteractWith" MobId="175967" WaitTime="0" X="3645.559" Y="-3136.764" Z="134.7599" /> <!-- Opens Service Entrance Gate -->
+						<RunTo X="3659.478" Y="-3095.516" Z="134.1173" />
+						<RunTo X="3641.631" Y="-3080.326" Z="134.1212" />
+						<RunTo X="3619.716" Y="-3125.214" Z="135.6637" /> <!-- Commander Malor -->
+						<RunTo X="3578.661" Y="-3087.25" Z="135.9857" />
+						<RunTo X="3593.545" Y="-3066.93" Z="135.988" />
+						<RunTo X="3568.501" Y="-3052.52" Z="135.0227" />
+						<CustomBehavior File="InteractWith" MobId="175968" WaitTime="0" X="3667.938" Y="-3050.766" Z="135.6509" /> <!-- Opens Hoard Door -->
+						<RunTo X="3545.79" Y="-2988.167" Z="125.0007" />
+						<RunTo X="3531.314" Y="-2965.78" Z="125.0009" />
+						<RunTo X="3571.63" Y="-2938.654" Z="125.001" /> <!-- Willey Hopebreaker -->
+						<RunTo X="3572.113" Y="-3056.627" Z="134.9969" />
+						<RunTo X="3542.524" Y="-3070.52" Z="135.2535" />
+						<CustomBehavior File="InteractWith" MobId="176194" WaitTime="0" X="3541.941" Y="-3068.55" Z="135.6575" /> <!-- Opens Hall of the High Command -->
+						<RunTo X="3530.804" Y="-3059.179" Z="134.9976" />
+						<RunTo X="3503.075" Y="-3093.462" Z="135.6681" />
+						<RunTo X="3440.469" Y="-3088.709" Z="135.0017" />
+						<RunTo X="3457.156" Y="-3102.762" Z="136.5441" /> <!-- Instructor Galford -->
+						<RunTo X="3416.435" Y="-3045.994" Z="136.5078" /> <!-- Balnazzar -->
+						<RunTo X="3610.576" Y="-3335.794" Z="124.3295" />
+						<RunTo X="3393.624" Y="-3363.924" Z="142.9473" />
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						<RunTo X="3391.606" Y="-3397.712" Z="142.9976" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" /> 
+						<CustomBehavior File="MyCTM" X="3391.615" Y="-3402.453" Z="142.8649"  />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<!-- End Instance Grind -->
+		</While>
+	<!-- Checks if bags are full -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Light's Hope Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="2290.59" Y="-5321.227" Z="90.1806" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Light's Hope Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Light's Hope" X="2290.59" Y="-5321.227" Z="90.1806" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+	<!-- End bag check -->
+	
+</While>
+				
+				
+</QuestOrder>
+
+</HBProfile>

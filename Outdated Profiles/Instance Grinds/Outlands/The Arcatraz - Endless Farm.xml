@@ -1,0 +1,156 @@
+<HBProfile>
+<Name>Endless Arcatraz Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////////////////////////
+// Profile Maker: EchoTiger
+// Farm zone: The Arcatraz
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+<ProtectedItems>
+</ProtectedItems>
+		
+<Vendors>
+	<Vendor Nav="Fly" Name="Kerpow Blastwrench" Entry="22491" Type="Repair" X="2955.032" Y="1802.131" Z="139.1213" />
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+</AvoidMobs>
+
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 552)" >
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+</If>
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+<!--CHOP CHOP -->
+<While Condition="true">
+	<If Condition="!(Me.MapId == 552)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(3291.662, 1384.015, 503.9863)) &gt;= 55" >				
+			<MoveTo Nav="Fly" X="3307.26" Y="1343.292" Z="505.5608" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
+	</If>
+	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
+		<!--Start Endless Cycle -->
+		<If Condition="!(Me.MapId == 552)" >
+			<MoveTo X="3310.654" Y="1335.361" Z="505.5604" />
+			<CustomBehavior File="WaitTimer" WaitTime="100" />
+			<CustomBehavior File="InteractWith" MobId="184320" Range="4" X="3311.218" Y="1333.716" Z="506.5972" />
+			<CustomBehavior File="MyCTM" X="3313.152" Y="1328.679" Z="505.5583" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+		<!--Instance Navigation Start -->
+		<If Condition="(Me.MapId == 552)" >
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+			<MoveTo X="40.06908" Y="0.2844397" Z="-0.3992822" />
+
+				<MoveTo X="75.89242" Y="17.51129" Z="-10.17308" /> <!-- Small pull due to 10 second root -->
+				<MoveTo X="71.59758" Y="-15.51212" Z="-10.17307" />
+				<MoveTo X="103.7019" Y="-0.3404537" Z="-10.17306" /> 
+
+
+			<MoveTo X="122.5889" Y="-0.334416" Z="-10.10375" />
+			<MoveTo X="168.0333" Y="0.5574814" Z="-10.09867" />
+
+
+				<MoveTo X="193.1425" Y="4.202607" Z="-10.1021" />
+				<MoveTo X="204.7027" Y="-24.54355" Z="-10.0984" />
+				<MoveTo X="213.769" Y="-129.4589" Z="-10.11904" />
+				<MoveTo X="257.3596" Y="-162.685" Z="-10.10445" />
+				<MoveTo X="274.3254" Y="-121.0592" Z="-10.12259" /> <!-- Zereketh the Unbound -->
+
+
+
+			<MoveTo X="225.9872" Y="-160.472" Z="-10.11075" />
+			<MoveTo X="268.0805" Y="-84.2822" Z="22.46306" />
+
+				<MoveTo X="275.0542" Y="5.855163" Z="22.44212" />
+				<MoveTo X="297.0744" Y="15.28206" Z="21.26496" />
+				<MoveTo X="277.6928" Y="42.5273" Z="22.44119" />
+				<MoveTo X="301.007" Y="129.9909" Z="22.22757" />
+				<MoveTo X="288.6372" Y="149.4156" Z="22.23215" />
+				<MoveTo X="301.7706" Y="145.6024" Z="22.22555" />
+				<MoveTo X="195.7514" Y="147.3351" Z="22.43452" />
+				<MoveTo X="146.3994" Y="146.0355" Z="20.81491" />
+				<MoveTo X="134.9758" Y="125.8763" Z="22.44103" />
+				<MoveTo X="133.186" Y="176.3057" Z="22.44119" />
+
+			
+			<MoveTo X="199.7356" Y="123.8968" Z="22.48768" />
+			<MoveTo X="312.4378" Y="22.23558" Z="48.34902" />
+
+				<MoveTo X="335.9995" Y="28.68357" Z="48.33578" />
+				<MoveTo X="396.4203" Y="17.92206" Z="48.21363" />
+				<MoveTo X="431.1593" Y="8.550097" Z="48.20776" />
+				<MoveTo X="441.2957" Y="19.20039" Z="48.21096" />
+				<MoveTo X="434.6971" Y="-76.10105" Z="48.3954" />
+				<MoveTo X="458.9969" Y="-76.95219" Z="48.3954" />
+				<MoveTo X="430.0691" Y="-116.6169" Z="43.10014" />
+				<MoveTo X="444.5343" Y="-169.4772" Z="43.05242" />
+
+				<CustomBehavior File="WaitTimer" WaitTime="210000" />
+				<CustomBehavior File="InteractWith" MobId="20912" MobState="Dead" WaitForNpcs="True" X="446.0855" Y="-182.5062" Z="44.0019" />
+				<CustomBehavior File="InteractWith" MobId="21467" WaitForNpcs="False" X="446.0855" Y="-182.5062" Z="44.0019" />
+				<CustomBehavior File="InteractWith" MobId="21466" WaitForNpcs="False" X="446.0855" Y="-182.5062" Z="44.0019" />
+
+			<MoveTo X="4.971334" Y="0.8803384" Z="-0.2067001" /> //Before Instance
+
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			<CustomBehavior File="MyCTM" X="-4.845096" Y="0.7352772" Z="-0.2067001" /> <!--Exits Instance -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="Misc\RunLua" Lua="
+				local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+				local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
+			<CustomBehavior File="Message" Text="Deleting all Bottled Nethergon potions." LogColor="Azure" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!--Instance Coordnation Complete -->
+	</While>
+
+	<!-- Vendor Routine -->
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair" LogColor="Lime" />
+		<CustomBehavior File="ForcedMount" MountType="Flying" />
+		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<If Condition="(Me.FreeBagSlots &lt;= 10)" > <!-- Mail if player still has 10 or less slots -->
+			<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
+			<SetMailbox>
+				<Mailboxes>
+						<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+				</Mailboxes>
+			</SetMailbox>
+			<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+			<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+			<ClearMailbox />
+		</If>
+	</If>
+</While>
+</QuestOrder>
+</HBProfile>
+

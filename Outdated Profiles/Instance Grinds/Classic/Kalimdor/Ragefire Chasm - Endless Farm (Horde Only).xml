@@ -1,0 +1,168 @@
+<HBProfile>
+<Name>Frostfever's Razorfen Kraul Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Frostfever
+// Farm zone: Razorfen Kraul
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Tyrant's Plate (Chest, Legs) Jade Plate (Belt, Gloves, Boots) Various Transmog
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		<Item Name = "Tyrant's Chestpiece" Entry = "14835"/>
+		<Item Name = "Tyrant's Breastplate" Entry = "14840"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+
+	
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="4731.473" Y="-871.0468" Z="343.4691" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+
+</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<If Condition="!(Me.MapId == 389)" >	
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+</If>
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 389)" >	
+		<While Condition="(Me.MapId == 1)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(1812.6056, -4414.9482, -18.2505)) &gt; 30" >		
+						<CustomBehavior File="Message" Text="Moving to Ragefire Chasm Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" X="1717.9219" Y="-4383.3540" Z="100.5766"  />
+						<CustomBehavior File="FlyTo" X="1711.8235" Y="-4312.9229" Z="31.3244"  />
+						<RunTo X="1731.4744" Y="-4275.6133" Z="18.1241"  />
+						<RunTo X="1747.3368" Y="-4301.0986" Z="12.8514"  />
+						<RunTo X="1808.0386" Y="-4337.4526" Z="-10.9288"  />
+						<RunTo X="1785.9686" Y="-4360.6333" Z="-14.6991"  />
+						<RunTo X="1808.9850" Y="-4408.1284" Z="-18.7096"  />
+						<CustomBehavior File="ForcedDismount" />
+						</If>
+						<CustomBehavior File="MyCTM" X="1816.54" Y="-4422.11" Z="-17.44"  />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						
+		</While>
+	</If>
+		<!-- Begin Instance Grind -->	
+		<While Condition="(Me.MapId == 389)" >
+	<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+	<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="50" />
+
+    <RunTo X="-14.5121" Y="-57.0493" Z="-21.4270"  />
+    <RunTo X="-64.5410" Y="-34.8805" Z="-17.9068"  />
+    <RunTo X="-127.3260" Y="-39.5029" Z="-32.8690"  />
+    <RunTo X="-150.8996" Y="-28.9235" Z="-35.5500"  />
+    <RunTo X="-209.3200" Y="-38.6321" Z="-51.6346"  />
+    <RunTo X="-243.6327" Y="-40.5708" Z="-58.1744"  />
+    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="61408" />	<!--Adarogg-->
+    <RunTo X="-260.2659" Y="-51.0741" Z="-60.6998"  />
+    <RunTo X="-308.2840" Y="-22.8067" Z="-58.9200"  />
+    <RunTo X="-281.2974" Y="9.4696" Z="-47.5984"  />
+    <RunTo X="-116.6844" Y="12.9890" Z="-18.9994"  />
+    <RunTo X="-91.1437" Y="67.3985" Z="-18.6823"  />
+    <RunTo X="-104.0159" Y="54.5586" Z="-18.3909"  />
+    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="61412" />	<!--Dark Shaman Koranthal-->
+    <RunTo X="-200.8513" Y="85.3000" Z="-24.5464"  />
+    <RunTo X="-187.9801" Y="157.1578" Z="-25.2199"  />
+    <RunTo X="-182.4066" Y="195.6202" Z="-25.7394"  />
+    <RunTo X="-230.8116" Y="208.0354" Z="-24.8837"  />
+    <RunTo X="-295.7652" Y="208.8010" Z="-25.5093"  />
+    <RunTo X="-317.6850" Y="223.7269" Z="-21.9797"  />
+    <RunTo X="-334.4624" Y="218.3203" Z="-20.5605"  />
+    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="61528" />	<!--Lava Guard Gordoth-->
+    <RunTo X="-375.2843" Y="187.1078" Z="-21.8510"  />
+    <RunTo X="-296.9546" Y="213.4064" Z="-25.5106"  />
+    <RunTo X="-298.8637" Y="148.4974" Z="-24.9868"  />
+    <RunTo X="-288.5506" Y="137.7675" Z="-25.4315"  />
+    <RunTo X="-242.5911" Y="159.5907" Z="-18.7187"  />
+    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="61463" />	<!--Slagmaw-->
+    <RunTo X="-265.4910" Y="100.3496" Z="-25.0278"  />
+    <RunTo X="-202.5763" Y="83.4362" Z="-24.3300"  />
+    <RunTo X="-97.0313" Y="49.2682" Z="-17.6620"  />
+    <RunTo X="-128.7879" Y="7.4627" Z="-20.5861"  />
+    <RunTo X="-173.2545" Y="7.0373" Z="-30.5346"  />
+    <RunTo X="-243.6669" Y="9.0362" Z="-47.5428"  />
+    <RunTo X="-301.4773" Y="6.6925" Z="-48.1059"  />
+    <RunTo X="-287.2983" Y="-58.9394" Z="-60.4414"  />
+    <RunTo X="-214.9930" Y="-34.0570" Z="-53.3915"  />
+    <RunTo X="-122.8655" Y="-35.0550" Z="-33.0347"  />
+    <RunTo X="-50.1657" Y="-35.1969" Z="-21.1605"  />
+    <RunTo X="-9.8162" Y="-49.7554" Z="-21.8637"  />
+    <RunTo X="2.9172" Y="-4.9444" Z="-14.4569"  />
+    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+
+   
+	<!-- End Instance Grind -->
+		</While>	
+		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+		<!-- Navigation Code -->	
+		<RunTo X="1819.0138" Y="-4304.4072" Z="-12.1869"  />
+		<!-- Navigation Code -->
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Katis" Entry="5816" Type="Repair" X="1821.53" Y="-4300.29" Z="-12.18761" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			 <RunTo X="1833.9709" Y="-4406.0229" Z="5.1407"  /><!-- Mailbox -->
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+			<RunTo X="1801.9698" Y="-4395.7744" Z="-17.8955"  />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
+		
+		
+			
+		<!-- End bag check -->
+			
+			
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

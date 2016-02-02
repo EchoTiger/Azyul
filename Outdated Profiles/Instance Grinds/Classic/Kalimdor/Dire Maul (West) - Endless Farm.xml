@@ -1,0 +1,196 @@
+<HBProfile>
+<Name>Mjj23's Dire Maul West Endless Farm [$Rev$]</Name>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Dire Maul (West)
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Saltstone Plate/Various Transmog
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		<Item Name = "Tyrant's Chestpiece" Entry = "14835"/>
+		<Item Name = "Tyrant's Breastplate" Entry = "14840"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Afran" Entry="40967" Type="Repair" X="-3183.528" Y="1878.203" Z="48.42564" /> <!-- Alliance -->
+		<Vendor Name="Cawind Trueaim" Entry="9548" Type="Repair" X="-4484.554" Y="233.5269" Z="48.3927" /> <!-- Horde -->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-3198.365" Y="1898.748" Z="49.33393" /> <!-- Alliance -->
+		<Mailbox X="-4404.685" Y="238.3757" Z="26.78822" /> <!-- Horde -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		<Mob Name="Gordok Spirit" Entry="11446" />
+		</AvoidMobs>
+
+
+<Blackspots>
+	<Blackspot X="1485.6520" Y="807.7772" Z="8.8910" Radius="5" />
+	<Blackspot X="-155.8887" Y="733.7756" Z="-24.57982" Radius="8.095413" />
+	<Blackspot X="78.55539" Y="737.4548" Z="-23.90022" Radius="7.83217" />
+</Blackspots>
+	
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 429)" >	
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+		
+		<!-- Travel to Halls of Lightning --> 
+</If>
+<While Condition="true" >	
+	<If Condition="!(Me.MapId == 429)" >	
+
+		<While Condition="(Me.MapId == 1)" >
+		
+						<CustomBehavior File="Message" Text="Moving to Dire Maul (West) Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Dire Maul (West)" X="-3789.978" Y="1214.869" Z="154.2941" />
+						<RunTo X="-3765.768" Y="1250.452" Z="160.2727" />
+						<CustomBehavior File="MyCTM" X="-3759.301" Y="1249.58" Z="160.2727" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
+		<!-- Begin Instance Grind -->	
+		<While Condition="(Me.MapId == 429)" >
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+						<RunTo X="33.1083" Y="158.977" Z="-3.47126" />
+						<RunTo X="133.3874" Y="202.3625" Z="-4.985773" />
+						<RunTo X="127.5726" Y="348.4698" Z="-4.985773" />
+						<RunTo X="-38.07376" Y="410.1382" Z="-3.589173" />
+						<RunTo X="-29.1148" Y="505.6878" Z="-3.565512" />
+						
+						<If Condition="Me.Location.Distance(new WoWPoint(-29.1148, 505.678, -3.565512)) &lt; 10" >
+						<CustomBehavior File="InteractWith" NumOfTimes="3" MobId="11483" WaitForNpcs="False" CollectionDistance="20"> <!-- First Mana Pylon -->
+							<HuntingGrounds>
+								<Hotspot X="22.07117" Y="283.5807" Z="-8.678964" />
+							</HuntingGrounds>
+						</CustomBehavior>
+						</If>
+						
+						<RunTo X="51.68802" Y="507.0815" Z="-3.566712" />
+						<RunTo X="14.96884" Y="408.5961" Z="-3.604883" />
+						<CustomBehavior File="InteractWith" MobId="11489" NumOfTimes="1" MobState="DontCare" Range="100"  X="14.92" Y="472.95" Z="-23.30" /> <!-- Kill Tendris Warpwood -->
+						<RunTo X="87.30753" Y="443.054" Z="-3.571968" />
+						<RunTo X="118.0194" Y="437.1952" Z="-4.396028" />
+						<RunTo X="103.1915" Y="511.2757" Z="-4.397186" />
+						<RunTo X="61.16873" Y="543.9943" Z="-4.397186" />
+						
+						<CustomBehavior File="InteractWith"  MovementBy="ClickToMoveOnly" MobState="Dontcare" MobId="11487" X="27.11" Y="571.26" Z="-4.39" Range="1" WaitForNpcs="False" IgnoreCombat="True" /> <!-- Kill Magister Kalendris -->
+						<RunTo X="134.4004" Y="477.9008" Z="-4.399031" />
+						
+						<If Condition="Me.Location.Distance(new WoWPoint(134.4004, 477.9008, -4.397186)) &lt; 10" >
+						<CustomBehavior File="InteractWith" NumOfTimes="4" MobId="11483" MobState="Alive"  WaitForNpcs="False" CollectionDistance="20" MovementBy="NavigatorPreferred"> <!-- Second Mana Pylon -->
+							<HuntingGrounds>
+								<Hotspot X="119.4392" Y="444.0107" Z="28.60047" />
+							</HuntingGrounds>
+						</CustomBehavior>
+						</If>
+						
+						<RunTo X="-75.1298" Y="518.9064" Z="28.60287" />
+						<CustomBehavior File="InteractWith" MobId="11488" NumOfTimes="1" MobState="DontCare" X="-62.09" Y="540.65" Z="28.61" CollectionDistance="500"/> <!-- Kill Illyana Ravenoak -->
+						
+						<If Condition="Me.Location.Distance(new WoWPoint(-62.09, 540.65, 28.61)) &lt; 200" >
+						<CustomBehavior File="InteractWith" NumOfTimes="4" MobId="11483" MobState="Alive"  WaitForNpcs="False" CollectionDistance="20" MovementBy="NavigatorPreferred"> <!-- Third Mana Pylon -->
+							<HuntingGrounds>
+								<Hotspot X="-91.98518" Y="455.1368" Z="28.60213" />
+							</HuntingGrounds>
+						</CustomBehavior>
+						</If>
+						
+						<RunTo X="-86.18695" Y="397.6116" Z="28.60104" />
+						<RunTo X="132.3796" Y="539.6293" Z="28.59712" />
+						<RunTo X="76.04156" Y="438.9123" Z="-3.570324" />
+						<RunTo X="50.64116" Y="499.9721" Z="-23.29906" />
+						<CustomBehavior File="InteractWith" MobId="177221" Range="4"  X="50.58" Y="501.94" Z="-23.149" /> <!-- Open Door -->
+						<CustomBehavior File="UserSettings" PullDistance="3" />				
+						<RunTo X="-122.9441" Y="698.601" Z="-24.58028" />
+						<CustomBehavior File="MyCTM" X="-142.6317" Y="736.4753" Z="-24.57999" /> <!-- Navigation Problems for 4th and 5th Mana Pylons -->
+						<CustomBehavior File="MyCTM" X="-156.9704" Y="745.7817" Z="-24.57999" />
+						<CustomBehavior File="MyCTM" X="-166.9071" Y="729.3936" Z="-24.58043" />
+						<CustomBehavior File="MyCTM" X="-154.6662" Y="723.797" Z="-24.57923" />
+						<CustomBehavior File="MyCTM" X="-137.1399" Y="720.6894" Z="-24.57946" />
+						<CustomBehavior File="MyCTM" X="-101.143" Y="688.0423" Z="-24.57946" />
+						<CustomBehavior File="MyCTM" X="-96.48621" Y="683.385" Z="-24.58181" />
+						<CustomBehavior File="MyCTM" X="-3.399578" Y="680.871" Z="-24.5817" />
+						<CustomBehavior File="MyCTM" X="36.6631" Y="684.8022" Z="-24.5815" />
+						<CustomBehavior File="MyCTM" X="64.76552" Y="718.4504" Z="-24.57916" />
+						<CustomBehavior File="MyCTM" X="81.49528" Y="725.0048" Z="-24.57849" />
+						<CustomBehavior File="MyCTM" X="89.87604" Y="738.6079" Z="-24.5799" />
+						<CustomBehavior File="MyCTM" X="75.52393" Y="748.6786" Z="-24.58035" />
+						<CustomBehavior File="MyCTM" X="68.1339" Y="734.2601" Z="-24.58031" />
+						<RunTo X="35.07977" Y="771.283" Z="-23.21221" />
+						<RunTo X="35.86443" Y="769.0756" Z="-23.21207" />
+						<CustomBehavior File="InteractWith" MovementBy="ClickToMoveOnly" NumOfTimes="1" MobId="11496" MobState="Alive" WaitForNpcs="False" CollectionDistance="200"/> <!-- Kill Immolthar -->
+						<CustomBehavior File="MyCTM" X="-0.1839731" Y="781.7339" Z="-31.54293" />
+						<CustomBehavior File="MyCTM" X="20.27175" Y="744.5392" Z="-23.21212" />
+						<CustomBehavior File="MyCTM" X="64.22107" Y="647.769" Z="-24.58036" />
+						<CustomBehavior File="UserSettings" PullDistance="25" />				
+						<RunTo X="122.0171" Y="620.4088" Z="-27.85571" />
+						<RunTo X="131.8707" Y="487.0013" Z="-48.46746" />
+						<RunTo X="173.3887" Y="603.4737" Z="-48.46452" />
+						<CustomBehavior File="InteractWith" NumOfTimes="1" MobId="11486" MobState="DontCare"  /> <!-- Kill Prince Tortheldrin -->
+						<RunTo X="157.3775" Y="474.3652" Z="-48.46574" />
+						<RunTo X="129.3075" Y="574.6551" Z="-27.97317" />
+						<RunTo X="49.69064" Y="655.3344" Z="-24.57912" />
+						<RunTo X="-36.86693" Y="617.2897" Z="-24.58937" />
+						<RunTo X="42.97273" Y="479.3677" Z="-23.28715" />
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						<RunTo X="33.1083" Y="158.977" Z="-3.47126" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+						<CustomBehavior File="MyCTM" X="27.681" Y="159.7841" Z="-3.472685" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+		</While>	
+		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Feralas Alliance Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Feralas" X="-3198.365" Y="1898.748" Z="49.33393" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Feralas Horde Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Feralas" X="-4404.685" Y="238.3757" Z="26.78822" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+		<!-- End bag check -->
+			
+			
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

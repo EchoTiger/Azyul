@@ -1,0 +1,717 @@
+<HBProfile>
+<Name>Frostfever's Weekly Kara Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Frostfever
+// Profile Sub-Dev: Mjj23
+// Re-built by EchoTiger
+//
+// Farm zone: Karazhan
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Transmog/Recipes/Rep
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+      <!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+      
+      <ProtectedItems>
+            
+      </ProtectedItems>
+            
+      <Vendors>
+      </Vendors>
+
+      <Mailboxes>
+            <Mailbox X="-10995.47" Y="-3389.044" Z="62.09529" /> <!-- Blasted Lands -->
+            <Mailbox X="-10461.98" Y="-3265.855" Z="20.1791" />  <!-- Swamp of Sorrow -->
+      </Mailboxes>
+
+
+            <AvoidMobs>
+			<Mob Name="Summon Enabler Stalker" Entry="53488" />
+            </AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+
+<Quest Id="9824" Name="Arcane Disturbances">
+	<Objective Type="UseObject" ObjectId="24474" UseCount="2" >
+		<RunTos>
+            <RunTo X="-11162.75" Y="-1920.702" Z="-17.7695" />
+            <RunTo X="-11368.67" Y="-2161.313" Z="22.27925" />
+		</RunTos>
+    </Objective>
+</Quest>
+
+      
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+      <CustomBehavior File="UserDialog" SoundCue="Exclamation" SoundCueInterval="1" Text="*WARNING* - As of patch 6.0.2, the Chess event behavior has been broken, the bot will stop at this point and wait for you to complete it manually.\n\nOnce I get time, I will fix this issue." />
+      <If Condition="!(Me.MapId == 409)" >
+            <CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/>
+
+</If>
+
+<If Condition="!(Me.MapId == 532)" >
+        <If Condition="(Me.MapId == 0)" >
+
+            <CustomBehavior File="Message" Text="Heading to Kara." LogColor="Green" />
+            <CustomBehavior File="FlyTo" DestName="Karazan" X="-11125.32" Y="-2016.662" Z="47.15016" />
+
+
+				<If Condition="Me.GetReputationLevelWith(967) &gt;= WoWUnitReaction.Honored" > 
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Koren" Entry="16388" Type="Repair" X="-11090.44" Y="-1908.379" Z="49.86682"/>
+						</Vendors>
+					</SetVendor>
+				</If>
+					<RunTo X="-11079.7139" Y="-1956.3754" Z="49.5973"  />
+					<RunTo X="-11100.6250" Y="-1940.8827" Z="49.8892"  />
+					<RunTo X="-11122.3447" Y="-1957.0823" Z="49.8895"  />
+					<RunTo X="-11153.8867" Y="-1933.4104" Z="49.8894"  />
+					<RunTo X="-11138.0566" Y="-1909.3210" Z="49.8910"  />
+					<CustomBehavior File="InteractWith" MobId="16151" NumOfTimes="1" WaitForNpcs="False" MobState="DontCare" X="-11126.7637" Y="-1927.7058" Z="49.2343"  /> <!-- Pull Midnight -->
+					<RunTo X="-11126.7637" Y="-1927.7058" Z="49.2343"  />
+					<RunTo X="-11098.0146" Y="-1911.4934" Z="49.8906"  />
+					<RunTo X="-11120.1943" Y="-1897.7151" Z="49.8906"  />
+					<RunTo X="-11103.9756" Y="-1891.9762" Z="49.8629"  />
+					<RunTo X="-11124.7510" Y="-1880.4681" Z="58.6220"  />
+					<RunTo X="-11157.4590" Y="-1894.3051" Z="74.3560"  />
+					<RunTo X="-11159.3486" Y="-1929.9117" Z="74.4160"  />
+					<RunTo X="-11143.5488" Y="-1958.7697" Z="74.4040"  />
+					<RunTo X="-11109.6914" Y="-1957.2604" Z="74.3938"  />
+					<RunTo X="-11093.4766" Y="-1938.9485" Z="74.4399"  />
+					<RunTo X="-11074.6650" Y="-1944.8654" Z="77.2674"  />
+					<RunTo X="-11047.4971" Y="-1922.3308" Z="77.2689"  />
+					<RunTo X="-11020.2500" Y="-1924.3755" Z="78.8686"  />
+					<RunTo X="-11008.1514" Y="-1901.8096" Z="78.8666"  />
+					<RunTo X="-10985.9961" Y="-1917.4241" Z="78.8692"  />
+					<RunTo X="-10973.2959" Y="-1903.4312" Z="78.9270"  />
+					<RunTo X="-10985.2021" Y="-1896.2621" Z="79.0317"  />
+					<RunTo X="-10981.5234" Y="-1876.0918" Z="81.7282"  /> <!-- Pull Moroes and his Crew -->
+					<RunTo X="-10985.0361" Y="-1906.5038" Z="78.8690"  />
+					<RunTo X="-10948.0928" Y="-1918.8333" Z="78.8677"  />
+					<RunTo X="-10967.1162" Y="-1931.7229" Z="78.8811"  />
+					<RunTo X="-10967.6914" Y="-1967.3983" Z="79.9731"  />
+					<RunTo X="-10955.4795" Y="-1988.7068" Z="79.9736"  />
+					<RunTo X="-10980.3271" Y="-1991.5189" Z="79.9741"  />
+					<RunTo X="-10967.7861" Y="-2001.2686" Z="79.9730"  />
+					<RunTo X="-10985.9502" Y="-2019.7991" Z="79.9738"  />
+					<RunTo X="-10957.2539" Y="-2021.4882" Z="79.9746"  />
+					<RunTo X="-10942.0010" Y="-2016.9739" Z="79.9746"  />
+					<RunTo X="-10932.1602" Y="-2018.0039" Z="79.9746"  />
+					<RunTo X="-10935.4355" Y="-2040.4944" Z="86.0715"  />
+					<RunTo X="-10924.0205" Y="-2041.5480" Z="86.0732"  />
+					<RunTo X="-10917.9648" Y="-1985.1691" Z="92.1834"  />
+					<RunTo X="-10931.6348" Y="-1971.3273" Z="92.1814"  />
+					<RunTo X="-10938.5635" Y="-1931.4675" Z="93.8198"  />
+					<RunTo X="-10917.5537" Y="-1951.8475" Z="92.1848"  />
+					<RunTo X="-10908.9268" Y="-1895.4324" Z="92.1817"  />
+					<RunTo X="-10908.6133" Y="-1867.2574" Z="94.6260"  />
+					<RunTo X="-10928.0723" Y="-1803.9709" Z="91.5731"  />
+					<RunTo X="-10867.3066" Y="-1810.0983" Z="91.5369"  />
+					<RunTo X="-10880.7412" Y="-1837.5948" Z="93.1098"  />
+					<RunTo X="-10904.9717" Y="-1865.1628" Z="94.5300"  />
+					<RunTo X="-10915.7744" Y="-1960.7123" Z="92.1776"  />
+					<RunTo X="-10879.2178" Y="-1965.1632" Z="92.1717"  />
+					<RunTo X="-10886.8164" Y="-1993.0782" Z="92.1730"  />
+					<RunTo X="-10897.7959" Y="-2019.6010" Z="92.1754"  />
+					<RunTo X="-10920.1631" Y="-2066.9126" Z="92.1896"  />
+					<CustomBehavior File="InteractWith" MobId="16457" NumOfTimes="1" MobState="DontCare"  X="-10950.7598" Y="-2109.2625" Z="92.7105"  WaitForNpcs="False" /> <!-- Pull Maiden of Virtue -->
+					<RunTo X="-10950.7598" Y="-2109.2625" Z="92.7105"  />
+					<RunTo X="-10909.9004" Y="-2061.2224" Z="92.1717"  />
+					<RunTo X="-10893.8740" Y="-2079.6362" Z="92.1654"  />
+					<RunTo X="-10867.0186" Y="-2081.5815" Z="90.4957"  />
+					<RunTo X="-10852.7881" Y="-2102.0608" Z="92.1631"  />
+					<RunTo X="-10909.7666" Y="-2060.7451" Z="92.1719"  />
+					<RunTo X="-10886.7646" Y="-2015.5631" Z="92.1746"  />
+					<RunTo X="-10858.5977" Y="-2030.8699" Z="92.1753"  />
+					<RunTo X="-10838.5479" Y="-2038.6862" Z="90.9252"  />
+					<RunTo X="-10862.7217" Y="-2023.1450" Z="92.1760"  />
+					<RunTo X="-10887.7305" Y="-2014.4749" Z="92.1745"  />
+					<RunTo X="-10879.1846" Y="-1986.9512" Z="92.1728"  />
+					<RunTo X="-10850.0176" Y="-1988.6771" Z="92.1613"  />
+					<RunTo X="-10828.4414" Y="-2005.6019" Z="92.1604"  />
+					<RunTo X="-10838.0068" Y="-1980.9043" Z="92.4605"  />
+					<RunTo X="-10829.3613" Y="-1961.0302" Z="93.3598"  />
+					<RunTo X="-10845.3135" Y="-1994.7661" Z="92.1602"  />
+					<RunTo X="-10881.1504" Y="-1987.8929" Z="92.1713"  />
+					<RunTo X="-10879.9521" Y="-1965.0890" Z="92.1698"  />
+					<RunTo X="-10917.5938" Y="-1961.1978" Z="92.1757"  />
+					<RunTo X="-10905.3438" Y="-1877.1079" Z="94.8593"  />
+					<RunTo X="-10873.5459" Y="-1873.1160" Z="97.1277"  />
+					<RunTo X="-10854.0605" Y="-1833.0673" Z="95.3605"  />
+					<RunTo X="-10849.5283" Y="-1791.3257" Z="88.7607"  />
+					<RunTo X="-10836.7881" Y="-1794.0862" Z="83.8649"  />
+					<RunTo X="-10838.0029" Y="-1803.7379" Z="83.8649"  />
+					<RunTo X="-10878.4277" Y="-1787.3569" Z="78.3941"  />
+					<RunTo X="-10920.7715" Y="-1769.8650" Z="78.3940"  />
+					<RunTo X="-10917.1250" Y="-1726.9552" Z="90.4767"  />
+					<RunTo X="-10886.6543" Y="-1737.4562" Z="90.4716"  />
+					<RunTo X="-10874.8867" Y="-1726.8452" Z="90.4694"  />
+					<RunTo X="-10854.3008" Y="-1746.5178" Z="89.4796"  />
+					<RunTo X="-10866.3135" Y="-1779.5607" Z="90.4683"  />
+					<CustomBehavior File="InteractWith" MobId="16812" X="-10866.3135" Y="-1779.5607" Z="90.4683"  /> <!-- Interact with Barnes to start Opera Event -->
+                              <CustomBehavior File="WaitTimer" WaitTime="500" />
+                              <CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" />  <!-- We're using a manual macro instead of InteractWith's tunable due to rare issues. -->
+                              <CustomBehavior File="WaitTimer" WaitTime="500" />
+                              <CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" />
+                              <CustomBehavior File="WaitTimer" WaitTime="500" />
+
+					<RunTo X="-10893.56" Y="-1779.654" Z="90.47752" />
+					<CustomBehavior File="WaitTimer" WaitTime="120000" />
+					
+						<!-- Opera Event Pull Logic, especially for Big Bad Wolf Event -->
+						<CustomBehavior File="RunMacro" Macro="/target Grandmother" />
+						<If Condition="(Me.CurrentTarget != null) &amp;&amp; (Me.CurrentTarget.Entry == 17603)" >
+							<CustomBehavior File="InteractWith" MobId="17603" X="-10893.25" Y="-1756.57" Z="90.48" /> <!-- Talk to Grandmother to start Big Bad Wolf -->
+                                          <CustomBehavior File="WaitTimer" WaitTime="500" />
+                                          <CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" />  <!-- We're using a manual macro instead of InteractWith's tunable due to rare issues. -->
+                                          <CustomBehavior File="WaitTimer" WaitTime="500" />
+                                          <CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" />
+                                          <CustomBehavior File="WaitTimer" WaitTime="500" />
+                                          <CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" />
+                                          <CustomBehavior File="WaitTimer" WaitTime="500" />
+							<CustomBehavior File="WaitTimer" WaitTime="5000" />
+						</If>
+					
+					
+					<RunTo X="-10918.0205" Y="-1774.9141" Z="90.4776"  />
+					<RunTo X="-10932.1084" Y="-1767.3372" Z="95.5745"  />
+					<RunTo X="-10947.7793" Y="-1783.8723" Z="103.5489"  />
+					<RunTo X="-10941.5078" Y="-1803.6348" Z="107.6649"  />
+					<RunTo X="-10947.9561" Y="-1842.8574" Z="109.2671"  />
+					<RunTo X="-10936.8467" Y="-1872.4624" Z="110.5178"  />
+					<RunTo X="-10878.4346" Y="-1882.9078" Z="110.5178"  />
+					<RunTo X="-10867.6777" Y="-1864.1968" Z="110.5160"  />
+					<RunTo X="-10853.7217" Y="-1852.7079" Z="111.8419"  />
+					<RunTo X="-10846.7939" Y="-1845.8380" Z="115.1318"  />
+					<RunTo X="-10855.1006" Y="-1862.0040" Z="123.3036"  />
+					<RunTo X="-10861.5352" Y="-1856.5596" Z="123.3036"  />
+					<RunTo X="-10897.0537" Y="-1884.2114" Z="125.4186"  />
+					<RunTo X="-10936.3174" Y="-1871.4005" Z="124.5584"  />
+					<RunTo X="-10984.3184" Y="-1907.4652" Z="124.5665"  />
+					<RunTo X="-11002.8076" Y="-1884.8865" Z="120.0884"  />
+					<RunTo X="-10998.4180" Y="-1908.5543" Z="117.0432"  />
+					<RunTo X="-11003.3633" Y="-1923.8879" Z="117.0023"  />
+					<RunTo X="-11047.63" Y="-1973.386" Z="104.3933" />
+					<RunTo X="-11047.84" Y="-1986.358" Z="101.5938" />
+					<CustomBehavior File="InteractWith" MobId="184275" NumOfTimes="1" X="-11047.47" Y="-1987.171" Z="103.0275" />
+					<RunTo X="-11054.9063" Y="-1977.7863" Z="101.4231"  />
+					<RunTo X="-11067.6504" Y="-1997.0803" Z="97.1031"  />
+					<RunTo X="-11085.3398" Y="-1971.4279" Z="92.5793"  />
+					<RunTo X="-11090.5322" Y="-1947.0928" Z="92.5454"  />
+						<If Condition="(!HasQuest(9644) &amp;&amp; IsQuestCompleted(9644)) || (HasQuest(9644) &amp;&amp; !IsQuestCompleted(9644))" >
+								<RunTo X="-11076.6494" Y="-1929.7559" Z="91.4678"  />
+								<RunTo X="-11089.1953" Y="-1906.7468" Z="91.4718"  />
+								<RunTo X="-11128.7998" Y="-1878.7224" Z="91.4718"  />
+								<CustomBehavior File="InteractWith" MobId="194092"  X="-11126.9" Y="-1874.433" Z="91.96606" /> <!-- Pull Nightbane if we are attuned -->
+								<CustomBehavior File="WaitTimer" WaitTime="45000" />
+								<RunTo X="-11168.4756" Y="-1910.6339" Z="91.4718"  />
+								<RunTo X="-11150.8242" Y="-1961.9518" Z="91.4718"  />
+								<RunTo X="-11085.9141" Y="-1969.1606" Z="92.5743"  />
+								<RunTo X="-11083.9521" Y="-1953.8275" Z="92.5465"  />
+								<RunTo X="-11089.8301" Y="-1947.0999" Z="92.5465"  />
+						</If>
+					<RunTo X="-11101.4854" Y="-1965.7086" Z="99.7979"  />
+					<RunTo X="-11087.0684" Y="-1997.6027" Z="111.3429"  />
+					<RunTo X="-11069.2158" Y="-1998.1017" Z="115.2265"  />
+					<RunTo X="-11072.5645" Y="-2026.9233" Z="115.1806"  />
+					<RunTo X="-11030.8008" Y="-1998.2556" Z="125.8078"  />
+					<RunTo X="-11020.0254" Y="-1983.7699" Z="126.5254"  />
+					<RunTo X="-11075.0566" Y="-1956.9816" Z="124.4512"  />
+					<RunTo X="-11054.7803" Y="-1983.1229" Z="129.2796"  />
+					<RunTo X="-11071.5664" Y="-1970.6403" Z="136.1694"  />
+					<RunTo X="-11068.8584" Y="-1977.2886" Z="138.8543"  />
+					<RunTo X="-11052.4600" Y="-1984.6628" Z="143.0781"  />
+					<RunTo X="-11051.8516" Y="-1955.3059" Z="144.4851"  />
+					<RunTo X="-11067.1279" Y="-1939.4664" Z="146.8772"  />
+					<RunTo X="-11081.3203" Y="-1964.2322" Z="147.0861"  />
+					<RunTo X="-11049.8359" Y="-1980.4513" Z="158.1903"  />
+					<RunTo X="-11025.6309" Y="-1937.0511" Z="161.2266"  />
+					<RunTo X="-11019.3350" Y="-1876.7126" Z="165.7654"  />
+					<RunTo X="-11030.8154" Y="-1846.1420" Z="165.7654"  />
+					<RunTo X="-11044.2646" Y="-1819.2185" Z="165.7654"  />
+					<RunTo X="-11087.7051" Y="-1847.2739" Z="165.7655"  />
+					<CustomBehavior File="InteractWith" MobId="15691" NumOfTimes="1" WaitForNpcs="False" MobState="Dead"  X="-11087.7051" Y="-1847.2739" Z="165.7655"  /> <!-- Pull The Curator -->
+					<RunTo X="-11133.7412" Y="-1878.4438" Z="165.7655"  />
+					<RunTo X="-11170.7393" Y="-1906.7235" Z="165.7655"  />
+					<RunTo X="-11216.9043" Y="-1847.9301" Z="152.0554"  />
+					<RunTo X="-11223.7705" Y="-1898.1260" Z="148.7188"  />
+					<RunTo X="-11254.4375" Y="-1874.2406" Z="135.9435"  />
+					<RunTo X="-11231.7666" Y="-1832.2822" Z="136.0221"  />
+
+						<If Condition="HasQuest(9630) &amp;&amp; IsQuestCompleted(9630) ">
+							<RunTo X="-11185.28" Y="-1803.396" Z="136.0222" />
+							<TurnIn QuestName="Medivh's Journal" QuestId="9630" TurnInName="Wravien" TurnInId="16813" />
+						</If>
+						
+						<If Condition="HasQuestAvailable(16813) &amp;&amp; !HasQuest(9638) &amp;&amp; !IsQuestCompleted(9638) " > <!-- Picks up Quest "In Good Hands" from Wraiven -->
+							<CustomBehavior File="InteractWith" MobId="16813" NumOfTimes="1" WaitTime="1000" />
+							<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+							<CustomBehavior File="Misc\RunLua" Lua="AcceptQuest()" WaitTime="100" />
+							<RunTo X="-11231.19" Y="-1761.516" Z="135.9488" />
+							<RunTo X="-11189.21" Y="-1731.188" Z="136.0251" />
+							<TurnIn QuestName="In Good Hands" QuestId="9638" TurnInName="Gradav" TurnInId="16814" />
+						</If>	
+								
+						<If Condition="HasQuestAvailable(16814) &amp;&amp; !HasQuest(9639) &amp;&amp; !IsQuestCompleted(9639) " > <!-- Picks up Quest "Kamsis" from Gradav -->
+							<CustomBehavior File="InteractWith" MobId="16814" NumOfTimes="1" WaitTime="1000" />
+							<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+							<CustomBehavior File="Misc\RunLua" Lua="AcceptQuest()" WaitTime="100" />
+							<RunTo X="-11249.9" Y="-1771.413" Z="135.7313" />
+							<RunTo X="-11257.42" Y="-1722.444" Z="136.0223" />
+							<TurnIn QuestName="Kamsis" QuestId="9639" TurnInName="Kamsis" TurnInId="16815" />
+						</If>
+						
+						<If Condition="HasQuestAvailable(16815) &amp;&amp; !HasQuest(9640) &amp;&amp; !IsQuestCompleted(9640) " > <!-- Picks up Quest "The Shade of Aran" from Kamsis -->
+							<CustomBehavior File="InteractWith" MobId="16815" NumOfTimes="1" WaitTime="1000" />
+							<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+							<CustomBehavior File="Misc\RunLua" Lua="AcceptQuest()" WaitTime="100" />
+							<RunTo X="-11260.6123" Y="-1740.9858" Z="135.9653"  />
+							<RunTo X="-11291.1299" Y="-1830.1182" Z="154.7303"  />
+							<RunTo X="-11316.9414" Y="-1839.8993" Z="162.5064"  />
+							<RunTo X="-11387.4150" Y="-1841.9188" Z="178.6641"  />
+							<RunTo X="-11360.5010" Y="-1795.6553" Z="179.7341"  />
+							<RunTo X="-11251.2939" Y="-1716.8770" Z="210.9188"  />
+							<RunTo X="-11233.6113" Y="-1704.2264" Z="210.8789"  />
+							<RunTo X="-11173.0557" Y="-1772.0234" Z="201.2287"  />
+							<RunTo X="-11152.2783" Y="-1755.0758" Z="201.2299"  />
+							<RunTo X="-11236.7344" Y="-1821.6036" Z="223.9431"  />
+							<RunTo X="-11226.4004" Y="-1834.3313" Z="223.9436"  />
+							<RunTo X="-11188.9766" Y="-1881.6586" Z="231.9507"  />
+							<CustomBehavior File="InteractWith" MobId="184517" NumOfTimes="1" X="-11188.9766" Y="-1881.6586" Z="231.9507"  />
+							<RunTo X="-11164.8828" Y="-1911.6781" Z="232.0074"  />
+							<CustomBehavior File="InteractWith" MobId="16524" NumOfTimes="1" WaitForNpcs="False" MobState="DontCare"  X="-11164.8828" Y="-1911.6781" Z="232.0074"  /> <!-- Pull Shade of Aran -->
+							<RunTo X="-11188.4854" Y="-1882.5457" Z="231.9515"  />
+							<CustomBehavior File="InteractWith" MobId="184517" NumOfTimes="1" X="-11188.9766" Y="-1881.6586" Z="231.9507"  />
+							<RunTo X="-11224.85" Y="-1837.978" Z="223.9442" />
+							<RunTo X="-11222.71" Y="-1809.093" Z="223.9422" />
+							<RunTo X="-11179.78" Y="-1773.91" Z="201.2188" />
+							<RunTo X="-11186.52" Y="-1751.65" Z="201.7396" />
+							<RunTo X="-11230.2" Y="-1698.978" Z="210.8799" />
+							<RunTo X="-11393.68" Y="-1832.921" Z="179.3546" />
+							<RunTo X="-11315.41" Y="-1846.762" Z="162.671" />
+							<RunTo X="-11273.01" Y="-1773.325" Z="136.552" />
+							<RunTo X="-11258.4" Y="-1723.627" Z="136.0209" />
+							<TurnIn QuestName="The Shade of Aran" QuestId="9640" TurnInName="Kamsis" TurnInId="16815" />
+						</If>
+						
+						<If Condition="HasQuestAvailable(16815) &amp;&amp; !HasQuest(9645) &amp;&amp; !IsQuestCompleted(9645) " > <!-- Picks up Quest "The Master's Terrace" from Kamsis -->
+							<CustomBehavior File="InteractWith" MobId="16815" NumOfTimes="1" WaitTime="1000" />
+							<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+							<CustomBehavior File="Misc\RunLua" Lua="AcceptQuest()" WaitTime="100" />
+						</If>
+					
+					<RunTo X="-11260.6123" Y="-1740.9858" Z="135.9653"  />
+					<RunTo X="-11291.1299" Y="-1830.1182" Z="154.7303"  />
+					<RunTo X="-11316.9414" Y="-1839.8993" Z="162.5064"  />
+					<RunTo X="-11387.4150" Y="-1841.9188" Z="178.6641"  />
+					<RunTo X="-11360.5010" Y="-1795.6553" Z="179.7341"  />
+					<RunTo X="-11251.2939" Y="-1716.8770" Z="210.9188"  />
+					<RunTo X="-11233.6113" Y="-1704.2264" Z="210.8789"  />
+					<RunTo X="-11173.0557" Y="-1772.0234" Z="201.2287"  />
+					<RunTo X="-11152.2783" Y="-1755.0758" Z="201.2299"  />
+					<CustomBehavior File="InteractWith" MobId="184453" WaitTime="1500" X="-11152.28" Y="-1755.076" Z="201.2299" /> <!-- Perplexing Bookshelf -->
+					<RunTo X="-11139.6777" Y="-1746.0853" Z="201.1558"  />
+					<RunTo X="-11198.5205" Y="-1672.7158" Z="179.2693"  />
+					<RunTo X="-11213.2158" Y="-1684.8446" Z="179.2477"  />
+					<CustomBehavior File="InteractWith" MobId="15688" NumOfTimes="1" WaitForNpcs="False" MobState="DontCare"  X="-11244.8340" Y="-1707.1649" Z="179.2381"  /> <!-- Pull Terrestian Illhoof --> 
+					<RunTo X="-11244.8340" Y="-1707.1649" Z="179.2381"  />
+					<RunTo X="-11198.5986" Y="-1672.7410" Z="179.2675"  />
+					<RunTo X="-11140.7275" Y="-1745.0957" Z="201.1565"  />
+					<RunTo X="-11149.7588" Y="-1752.4734" Z="201.1695"  />  
+					<CustomBehavior File="InteractWith" MobId="184453" WaitTime="1500" X="-11152.28" Y="-1755.076" Z="201.2299" /> <!-- Perplexing Bookshelf -->
+					<RunTo X="-11236.7344" Y="-1821.6036" Z="223.9431"  />
+					<RunTo X="-11226.4004" Y="-1834.3313" Z="223.9436"  />
+					<RunTo X="-11188.9766" Y="-1881.6586" Z="231.9507"  />
+					<CustomBehavior File="InteractWith" MobId="184517" WaitTime="1500" X="-11188.98" Y="-1881.659" Z="231.9507" /> <!-- Private Library Door -->
+					<RunTo X="-11164.8828" Y="-1911.6781" Z="232.0074"  />
+					<CustomBehavior File="InteractWith" MobId="16524" NumOfTimes="1" WaitForNpcs="False" MobState="DontCare" X="-11164.8828" Y="-1911.6781" Z="232.0074"  /> <!-- Pull Shade of Aran -->
+					<RunTo X="-11188.4854" Y="-1882.5457" Z="231.9515"  />
+					<CustomBehavior File="InteractWith" MobId="184517" WaitTime="1500" X="-11188.98" Y="-1881.659" Z="231.9507" /> <!-- Private Library Door -->
+					<RunTo X="-11229.5449" Y="-1833.5452" Z="223.9441"  />
+					<RunTo X="-11276.3350" Y="-1874.6210" Z="242.2685"  />
+					<RunTo X="-11244.9277" Y="-1912.1825" Z="242.2685"  />
+					<RunTo X="-11292.7578" Y="-1946.2736" Z="240.4700"  />
+					<RunTo X="-11388.2148" Y="-1826.7117" Z="260.8971"  />
+					<RunTo X="-11329.1309" Y="-1780.4890" Z="265.1654"  />
+					<RunTo X="-11294.9219" Y="-1744.2708" Z="265.1667"  />
+					<RunTo X="-11251.6582" Y="-1710.4707" Z="290.3493"  />
+					<RunTo X="-11211.9355" Y="-1686.9911" Z="289.9615"  />
+					<RunTo X="-11153.9980" Y="-1641.7305" Z="278.2383"  />
+					<RunTo X="-11124.2988" Y="-1620.1761" Z="278.7938"  />
+					<CustomBehavior File="InteractWith" MobId="15689" Range="1"  X="-11124.2988" Y="-1620.1761" Z="278.7938"  /> <!-- Pull Netherspike -->
+					<RunTo X="-11228.3975" Y="-1697.4521" Z="290.3489"  />
+					<RunTo X="-11263.2305" Y="-1718.8186" Z="290.3484"  />
+					<RunTo X="-11295.8955" Y="-1744.9956" Z="265.1671"  />
+					<RunTo X="-11285.5195" Y="-1756.3738" Z="265.1673"  />
+					<RunTo X="-11227.3213" Y="-1708.7710" Z="240.9783"  />
+					<RunTo X="-11177.3564" Y="-1774.2693" Z="251.1707"  />
+					<RunTo X="-11129.3438" Y="-1812.4937" Z="238.1683"  />
+					<RunTo X="-11119.5869" Y="-1826.7051" Z="238.2660"  />
+					<CustomBehavior File="InteractWith" MobId="184276" WaitTime="1500" X="-11119.59" Y="-1826.705" Z="238.266" />
+					<RunTo X="-11107.46" Y="-1842.692" Z="229.6244" />
+					<RunTo X="-11125.65" Y="-1857.435" Z="223.6604" />
+					<RunTo X="-11117" Y="-1867.676" Z="221.0701" />
+					<RunTo X="-11099.1" Y="-1853.092" Z="221.0701" />
+					<RunTo X="-11080.64" Y="-1876.642" Z="220.6669" />
+	
+					<!-- BEGIN CHESS EVENT -->
+		
+	
+					<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="1" Text="Chess Event!\n\nAs of 6.0.2, the Chess behavior has been broken.  Please do it manually.\n\nA fix for this will be created soon.\n\nAfter you've completed the Chess Event, click Continue on this dialog." />
+					
+     <!-- CHESS CODE, FIX ME.
+
+      Alliance Chess Code
+
+     <If Condition="(Me.IsAlliance)">
+
+            Check to see if we have won the game already
+
+           <CustomBehavior File="InteractWith" MobId="21752" GossipOptions="1" WaitForNpcs="False" />
+
+           <If Condition="(Me.HasAura(30019)) ">
+            <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+            <RunTo X="-11053.33" Y="-1910.427" Z="229.6251" />
+      </If>
+
+      <While Condition="(Me.Location.Distance(new WoWPoint(-11053.33, -1910.427, 229.6251)) &gt; 5)" > 
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+            <CustomBehavior File="InteractWith" MobId="21684" GossipOptions="1" X="-11093.84" Y="-1890.47" Z="220.67" />
+            <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+            <CustomBehavior File="MyCTM" X="-11099.16" Y="-1853.011" Z="221.0707" />
+            <CustomBehavior File="MyCTM" X="-11089.70" Y="-1887.11" Z="220.67" />
+            <CustomBehavior File="WaitTimer" WaitTime="500" />
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+             Move First Pawn
+            <CustomBehavior File="InteractWith" MobId="17211" GossipOptions="1" X="-11089.70" Y="-1887.11" Z="220.67" />
+            <CustomBehavior File="WaitTimer" WaitTime="1000" />
+            <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11085.04" ClickToY="-1883.556" ClickToZ="220.6671" />
+            <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+            <CustomBehavior File="MyCTM" X="-11099.16" Y="-1853.011" Z="221.0707" />
+            <CustomBehavior File="MyCTM" X="-11093.3" Y="-1882.538" Z="220.6672" />
+            <CustomBehavior File="WaitTimer" WaitTime="500" />
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+             Move Second Pawn
+            <CustomBehavior File="InteractWith" MobId="17211" GossipOptions="1" X="-11093.3" Y="-1882.538" Z="220.6672" />
+            <CustomBehavior File="WaitTimer" WaitTime="1000" />
+            <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11088.78" ClickToY="-1879.139" ClickToZ="220.6672" />
+            <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+            <CustomBehavior File="MyCTM" X="-11099.16" Y="-1853.011" Z="221.0707" />
+            <CustomBehavior File="MyCTM" X="-11086.32" Y="-1891.587" Z="220.6676" />
+            <CustomBehavior File="WaitTimer" WaitTime="1000" />
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+             Move Third Pawn
+            <CustomBehavior File="InteractWith" MobId="17211" GossipOptions="1" X="-11086.32" Y="-1891.587" Z="220.6676" />
+            <CustomBehavior File="WaitTimer" WaitTime="1000" />
+            <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11081.83" ClickToY="-1888.277" ClickToZ="220.6676" />
+            <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+            <CustomBehavior File="MyCTM" X="-11099.16" Y="-1853.011" Z="221.0707" />
+            <CustomBehavior File="MyCTM" X="-11089.70" Y="-1887.11" Z="220.67" />
+            <CustomBehavior File="WaitTimer" WaitTime="1000" />
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+             Move King and Fight
+            <CustomBehavior File="InteractWith" MobId="21684" />
+            <CustomBehavior File="WaitTimer" WaitTime="500" />
+            <CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+            <While Condition="(Me.HasAura(39331))" >
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11089.81" ClickToY="-1887.104" ClickToZ="220.668" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11093.84" ClickToY="-1890.47" ClickToZ="220.67" />
+              <CustomBehavior File="WaitTimer" WaitTime="15000" />
+              <CustomBehavior File="Chess" AttackButton="2" UseType="PointToPoint" ClickToX="-11086.17" ClickToY="-1891.182" ClickToZ="220.667" />
+              <CustomBehavior File="WaitTimer" WaitTime="1000" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+              <CustomBehavior File="Chess" AttackButton="4" />
+              <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+        </While>
+
+        <CustomBehavior File="WaitTimer" WaitTime="15000" />
+
+         Recheck before looping to see if we won this time 
+
+        <CustomBehavior File="InteractWith" MobId="21752" GossipOptions="1" WaitForNpcs="False" />
+
+        <If Condition="(Me.HasAura(30019)) ">
+            <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+            <RunTo X="-11053.33" Y="-1910.427" Z="229.6251" />
+      </If>
+
+
+</While>
+
+</If>
+
+ Horde Chess Code 
+
+<If Condition="(Me.IsHorde)">
+
+  Check to see if we have won the game already 
+
+ <CustomBehavior File="InteractWith" MobId="21684" GossipOptions="1" WaitForNpcs="False" />
+
+ <If Condition="(Me.HasAura(30019)) ">
+      <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+      <RunTo X="-11053.33" Y="-1910.427" Z="229.6251" />
+</If>
+
+<While Condition="(Me.Location.Distance(new WoWPoint(-11053.33, -1910.427, 229.6251)) &gt; 5)" > 
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+      <CustomBehavior File="InteractWith" MobId="21752" GossipOptions="1" X="-11063.64" Y="-1866.36" Z="220.67" />
+      <CustomBehavior File="WaitTimer" WaitTime="1000" />
+      <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+      <CustomBehavior File="MyCTM" X="-11099.16" Y="-1853.011" Z="221.0707" />
+      <CustomBehavior File="MyCTM" X="-11068.56" Y="-1870.376" Z="220.668" />
+      <CustomBehavior File="WaitTimer" WaitTime="500" />
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+       Move First Pawn 
+      <CustomBehavior File="InteractWith" MobId="17469" GossipOptions="1" X="-11068.56" Y="-1870.376" Z="220.668" />
+      <CustomBehavior File="WaitTimer" WaitTime="1000" />
+      <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11072.38" ClickToY="-1873.177" ClickToZ="220.668" />
+      <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+      <CustomBehavior File="MyCTM" X="-11099.16" Y="-1853.011" Z="221.0707" />
+      <CustomBehavior File="MyCTM" X="-11072.06" Y="-1865.563" Z="220.668" />
+      <CustomBehavior File="WaitTimer" WaitTime="500" />
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+       Move Second Pawn 
+      <CustomBehavior File="InteractWith" MobId="17469" GossipOptions="1" X="-11072.06" Y="-1865.563" Z="220.668" />
+      <CustomBehavior File="WaitTimer" WaitTime="1000" />
+      <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11075.93" ClickToY="-1869.172" ClickToZ="220.668" />
+      <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+      <CustomBehavior File="MyCTM" X="-11099.16" Y="-1853.011" Z="221.0707" />
+      <CustomBehavior File="MyCTM" X="-11075.07" Y="-1861.425" Z="220.668" />
+      <CustomBehavior File="WaitTimer" WaitTime="500" />
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+       Move Third Pawn 
+      <CustomBehavior File="InteractWith" MobId="17469" GossipOptions="1" X="-11075.07" Y="-1861.425" Z="220.668" />
+      <CustomBehavior File="WaitTimer" WaitTime="1000" />
+      <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11079.42" ClickToY="-1864.297" ClickToZ="220.668" />
+      <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+      <CustomBehavior File="MyCTM" X="-11099.16" Y="-1853.011" Z="221.0707" />
+      <CustomBehavior File="MyCTM" X="-11067.82" Y="-1869.384" Z="220.668" />
+      <CustomBehavior File="WaitTimer" WaitTime="500" />
+
+            <While Condition="(Me.HasAura(30529)) ">
+                  <CustomBehavior File="WaitTimer" WaitTime="500" />
+            </While>
+
+       Move King and Fight 
+      <CustomBehavior File="InteractWith" MobId="21752" />
+      <CustomBehavior File="WaitTimer" WaitTime="500" />
+      <CustomBehavior File="RunMacro" Macro="/click GossipTitleButton1" />
+      <While Condition="(Me.HasAura(39331))" >
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11068.56" ClickToY="-1870.376" ClickToZ="220.668" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="1" UseType="PointToPoint" ClickToX="-11063.64" ClickToY="-1866.36" ClickToZ="220.67" />
+          <CustomBehavior File="WaitTimer" WaitTime="15000" />
+          <CustomBehavior File="Chess" AttackButton="2" UseType="PointToPoint" ClickToX="-11068.56" ClickToY="-1870.376" ClickToZ="220.668" />
+          <CustomBehavior File="WaitTimer" WaitTime="1000" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+          <CustomBehavior File="Chess" AttackButton="4" />
+          <CustomBehavior File="Chess" NumOfTimes="2" AttackButton="3" />
+    </While>
+
+    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+
+
+
+
+     Recheck before looping to see if we won this time 
+
+    <CustomBehavior File="InteractWith" MobId="21684" GossipOptions="1" WaitForNpcs="False" />
+
+    <If Condition="(Me.HasAura(30019)) ">
+      <CustomBehavior File="RunMacro" Macro="/cancelaura Control Piece" />
+      <RunTo X="-11053.33" Y="-1910.427" Z="229.6251" />
+</If>
+
+</While>
+
+</If>
+
+END CHESS CODE, FIX ME! :P -->
+
+<RunTo X="-11101.31" Y="-1850.609" Z="221.0693" />
+<CustomBehavior File="InteractWith" MobId="185119" X="-11102.74" Y=" -1848.975" Z="221.0697" /> <!-- Loot -->
+<CustomBehavior File="WaitTimer" WaitTime="1000" />
+
+<RunTo X="-11043.05" Y="-1886.27" Z="221.0697" />
+<RunTo X="-11036.61" Y="-1894.357" Z="223.6602" />
+<RunTo X="-11053.8" Y="-1909.004" Z="229.6248" />
+<RunTo X="-11043.46" Y="-1921.968" Z="232.2571" />
+<RunTo X="-11035.64" Y="-1940.449" Z="232.257" />
+<RunTo X="-11073.08" Y="-1974.354" Z="232.1201" />
+<RunTo X="-11082.8" Y="-1989.485" Z="239.1337" />
+<RunTo X="-11070.44" Y="-1991.177" Z="245.1023" />
+<RunTo X="-11076.36" Y="-1975.366" Z="249.9173" />
+<RunTo X="-11081.72" Y="-1991.232" Z="257.4784" />
+<RunTo X="-11066.88" Y="-1985.699" Z="262.0758" />
+<RunTo X="-11080.55" Y="-1981.125" Z="267.4606" />
+<RunTo X="-11078.29" Y="-1992.258" Z="273.221" />
+<RunTo X="-11071.46" Y="-1989.184" Z="273.5524" />
+<RunTo X="-11058.68" Y="-1951.171" Z="272.789" />
+<RunTo X="-11024.2" Y="-1951.708" Z="274.936" />
+<RunTo X="-11012.17" Y="-1984.083" Z="275.1522" />
+<RunTo X="-10971.01" Y="-1991.289" Z="275.2976" />
+<CustomBehavior File="InteractWith" MobId="15690" NumOfTimes="1" MobState="Alive"  X="-10971.01" Y="-1991.289" Z="275.2976" />
+
+<While Condition="(Me.ZoneId == 3457)" >
+      <If Condition="HasItem(6948)" >
+           <CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />
+           <CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+     </If>
+
+     <If Condition="HasItem(64488)" >
+           <CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="1000" />
+           <CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+     </If>         
+</While>
+
+<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Karazhan Run Complete!\nDid You Get Lucky?" />
+    </If>
+	</If>
+
+</QuestOrder>
+</HBProfile>

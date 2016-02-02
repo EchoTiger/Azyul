@@ -1,0 +1,149 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo Tiger :3
+// Farm zone: Fray Island
+// Farm mobs: Southsea Pirates
+// Farm set: [Red] War Pain Mail
+///////////////////////////////////////////////////////////////////////
+
+<Name>[Red] War Paint Mail [$Rev$]</Name>
+
+<!-- With this setting, 
+ this profile requires you
+ to manually add your own 
+ custom vendor code!! -->
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>False</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+	<Item Name = "Bloodspattered Sabatons" Entry = "15489"/>
+	<Item Name = "Bloodspattered Sash" Entry = "15492"/>
+	<Item Name = "Bloodspattered Wristbands" Entry = "15495"/>
+	<Item Name = "Bloodspattered Loincloth" Entry = "15493"/>
+	<Item Name = "Bloodspattered Gloves" Entry = "15491"/>
+	<Item Name = "Bloodspattered Surcoat" Entry = "15488"/>
+</ProtectedItems>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+
+
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />				
+<If Condition="!Me.MapId= 1" >
+
+		<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/>
+</If>
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="45" />				
+		
+<While Condition="!HasItem(15489) || !HasItem(15492) || !HasItem(15495) || !HasItem(15493) || !HasItem(15491) || !HasItem(15488)">
+
+	<If Condition="Me.Location.Distance(new WoWPoint(-1631.744, -4112.131, 0.4087588)) &gt; 35" >
+		<CustomBehavior File="Message" Text="Moving to farm: Shoes, Belt, Wrist, Legs, Gloves" LogColor="Lime" />
+		<CustomBehavior File="FlyTo" X="-1631.744" Y="-4112.131" Z="0.4087588" />
+		<CustomBehavior File="WaitTimer" WaitTime="6000" />
+		<CustomBehavior File="ForcedDismount" />
+	</If>
+
+	<SetGrindArea>
+		<GrindArea>
+			<Name>[Red] War Paint Mail (No Chest) [$Rev$]</Name>
+			<Factions>230</Factions>
+			<TargetMinLevel>12</TargetMinLevel>
+			<TargetMaxLevel>19</TargetMaxLevel>
+			<MaxDistance>45</MaxDistance>
+			<Hotspots>
+				<Hotspot X="-1631.744" Y="-4112.131" Z="0.4087588" />
+				<Hotspot X="-1656.906" Y="-4202.494" Z="4.421063" />
+				<Hotspot X="-1646.486" Y="-4227.469" Z="2.573347" />
+				<Hotspot X="-1619.096" Y="-4264.994" Z="6.835206" />
+				<Hotspot X="-1604.98" Y="-4274.301" Z="9.497437" />
+				<Hotspot X="-1671.723" Y="-4283.986" Z="4.712181" />
+				<Hotspot X="-1678.979" Y="-4384.846" Z="10.70362" />
+				<Hotspot X="-1672.499" Y="-4377.674" Z="5.307803" />
+				<Hotspot X="-1685.354" Y="-4216.984" Z="6.398086" />
+			</Hotspots>
+		</GrindArea>
+	</SetGrindArea>
+	<GrindTo Condition="(Me.FreeBagSlots &lt;= 6)" GoalText="Moving to sell or repair." />
+	<CustomBehavior File="FlyTo" X="-962.0323" Y="-3713.359" Z="30.74289" />
+	<CustomBehavior File="FlyTo" X="-970.5015" Y="-3674.429" Z="9.202509" />
+	<CustomBehavior File="ForcedDismount" />
+	<RunTo X="-981.8179" Y="-3679.934" Z="9.558919" />
+	<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+	<RunTo X="-957.6277" Y="-3671.418" Z="9.106023" />
+	<CustomBehavior File="FlyTo" X="-986.8872" Y="-3745.81" Z="48.0413" />
+</While>
+<!-- CHEST -->
+<While Condition="!HasItem(15488)">
+	<CustomBehavior File="Message" Text="All items except the chest has been obtained.\nMoving to farm chest." />
+	<If Condition="Me.Location.Distance(new WoWPoint(2998.52, -111.0723, 98.48192)) &gt; 155" >
+		<CustomBehavior File="Message" Text="Moving to farm: Chest" LogColor="Lime" />
+		<CustomBehavior File="FlyTo" X="2873.232" Y="-107.9522" Z="101.1192" />
+		<CustomBehavior File="WaitTimer" WaitTime="6000" />
+		<CustomBehavior File="ForcedDismount" />
+	</If>
+
+	<SetGrindArea>
+		<GrindArea>
+			<Name>[Red] War Paint Mail (Chest) [$Rev$]</Name>
+			<Factions>230</Factions>
+			<TargetMinLevel>12</TargetMinLevel>
+			<TargetMaxLevel>19</TargetMaxLevel>
+			<MaxDistance>45</MaxDistance>
+			<Hotspots>
+				<Hotspot X="2957.617" Y="-99.93696" Z="97.07763" />
+				<Hotspot X="3010.663" Y="-60.84028" Z="94.10484" />
+				<Hotspot X="3036.552" Y="-166.7226" Z="102.2652" />
+				<Hotspot X="3125.184" Y="-170.1388" Z="105.7948" />
+				<Hotspot X="3190.298" Y="-118.4119" Z="103.1301" />
+				<Hotspot X="3189.553" Y="-257.27" Z="119.4402" />
+			</Hotspots>
+		</GrindArea>
+	</SetGrindArea>
+	<GrindTo Condition="(Me.FreeBagSlots &lt;= 6)" GoalText="Moving to sell or repair." />
+	<CustomBehavior File="FlyTo" X="-962.0323" Y="-3713.359" Z="30.74289" />
+	<CustomBehavior File="FlyTo" X="-970.5015" Y="-3674.429" Z="9.202509" />
+	<CustomBehavior File="ForcedDismount" />
+	<RunTo X="-981.8179" Y="-3679.934" Z="9.558919" />
+	<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+	<RunTo X="-957.6277" Y="-3671.418" Z="9.106023" />
+	<CustomBehavior File="FlyTo" X="-986.8872" Y="-3745.81" Z="48.0413" />
+</While>
+<If Condition="HasItem(15489) &amp;&amp; HasItem(15492) &amp;&amp; HasItem(15495) &amp;&amp; HasItem(15493) &amp;&amp; HasItem(15491) &amp;&amp; HasItem(15488)">
+	<CustomBehavior File="Message" Text="It seems that all items have been obtained.\n\nIf you wish to farm the mobs again, put the items of this set into your bank then run the profile again." />
+</If>
+</QuestOrder>
+</HBProfile>

@@ -1,0 +1,255 @@
+<HBProfile>
+<Name>Frostfever's Maraudon Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Frostfever
+// Farm zone: Maraudon
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what?
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		<Item Name = "Tyrant's Chestpiece" Entry = "14835"/>
+		<Item Name = "Tyrant's Breastplate" Entry = "14840"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+
+	
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-1040.387" Y="1659.219" Z="59.86695" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+	
+</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<If Condition="!(Me.MapId == 209)" >	
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+</If>
+		<!-- Travel to Zul'Darrak --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 349)" >	
+		<While Condition="(Me.MapId == 1)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(-1182.8860, 2869.7612, 85.6747)) &gt; 50" >		
+						<CustomBehavior File="Message" Text="Moving to Maraudon Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Maraudon" X="-1040.528" Y="1667.939" Z="59.85822" />
+						<CustomBehavior File="ForcedDismount" />
+						<RunTo X="-1046.49" Y="1681.976" Z="60.13868" />
+						<CustomBehavior File="SetHearthstone" MobId="43872" AreaId="2100" />
+						<RunTo X="-1040.528" Y="1667.939" Z="59.85822" />
+						<CustomBehavior File="FlyTo" DestName="Maraudon" X="-1420.5061" Y="2877.3914" Z="131.8798"  />
+						<CustomBehavior File="ForcedDismount" />
+						<RunTo X="-1422.9944" Y="2924.8684" Z="136.3444"  />
+						<RunTo X="-1428.0844" Y="2984.0557" Z="133.1497"  />
+						<RunTo X="-1403.9818" Y="2981.5010" Z="130.0604"  />
+						<RunTo X="-1398.9393" Y="2958.5249" Z="127.0380"  />
+						<RunTo X="-1443.9159" Y="2970.0549" Z="124.1862"  />
+						<RunTo X="-1495.4568" Y="2951.5205" Z="121.3949"  />
+						<RunTo X="-1475.5247" Y="2982.0007" Z="117.5573"  />
+						<RunTo X="-1438.6288" Y="3000.1604" Z="115.2811"  />
+						<RunTo X="-1396.0425" Y="2988.3210" Z="106.2989"  />
+						<RunTo X="-1429.7631" Y="2975.7078" Z="100.3145"  />
+						<RunTo X="-1431.9614" Y="2933.1565" Z="94.3218"  />
+						<RunTo X="-1384.3984" Y="2921.4480" Z="92.8224"  />
+						<RunTo X="-1374.5735" Y="2867.5911" Z="90.2401"  />
+						<RunTo X="-1344.5853" Y="2845.9019" Z="87.6867"  />
+						<RunTo X="-1303.8973" Y="2904.7573" Z="88.4295"  />
+						<RunTo X="-1281.0385" Y="2922.3970" Z="87.9764"  />
+						<RunTo X="-1261.3920" Y="2900.0981" Z="87.4538"  />
+						<RunTo X="-1218.1591" Y="2902.9109" Z="86.7090"  />
+						<RunTo X="-1185.6802" Y="2881.4150" Z="85.9191"  />
+						
+						</If>
+						<CustomBehavior File="MyCTM" X="-1182.8860" Y="2869.7612" Z="85.6747"  />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
+		<!-- Begin Instance Grind -->	
+		<While Condition="(Me.MapId == 349)" >	
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+				<RunTo X="770.4977" Y="-600.7321" Z="-32.5817"  />
+				<RunTo X="802.2023" Y="-586.3517" Z="-32.4332"  />
+				<RunTo X="744.7382" Y="-546.4397" Z="-33.0708"  />
+				<RunTo X="737.2303" Y="-498.4916" Z="-40.8102"  />
+				<RunTo X="769.9403" Y="-464.4066" Z="-41.3032"  />
+				<RunTo X="796.5348" Y="-493.7080" Z="-39.8661"  />
+				<RunTo X="805.7332" Y="-525.2736" Z="-43.1499"  />
+				<RunTo X="760.6528" Y="-514.1344" Z="-53.0889"  />
+				<RunTo X="816.5767" Y="-480.4960" Z="-55.2370"  />
+				<RunTo X="831.2656" Y="-443.5429" Z="-56.2795"  />
+				<RunTo X="896.7191" Y="-413.3812" Z="-52.6983"  />
+				<RunTo X="873.5416" Y="-358.3492" Z="-52.0486"  />
+				<RunTo X="872.8812" Y="-332.8050" Z="-49.4051"  />
+				<RunTo X="849.7753" Y="-343.9419" Z="-52.0496"  />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="13601" />	<!--Pull Tinkerer Gizlock-->
+				<RunTo X="806.7914" Y="-347.2270" Z="-51.7907"  />
+				<RunTo X="779.0175" Y="-322.9257" Z="-50.0037"  />
+				<RunTo X="683.5759" Y="-346.7174" Z="-52.2106"  />
+				<RunTo X="654.3271" Y="-336.5441" Z="-52.0193"  />
+				<RunTo X="631.2010" Y="-255.1497" Z="-52.9745"  />
+				<RunTo X="631.5115" Y="-204.1906" Z="-64.5015"  />
+				<RunTo X="685.7307" Y="-196.2033" Z="-60.5173"  />
+				<RunTo X="683.2829" Y="-270.8052" Z="-52.5863"  />
+				<RunTo X="702.9968" Y="-240.0156" Z="-49.3889"  />
+				<RunTo X="702.7106" Y="-220.5016" Z="-47.3174"  />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="12236" />	<!--Pull Lord Vyletonque-->
+				<RunTo X="698.3171" Y="-164.9181" Z="-48.5366"  />
+				<RunTo X="595.1564" Y="-147.7012" Z="-55.1874"  />
+				<RunTo X="617.6298" Y="-138.1014" Z="-54.6902"  />
+				<RunTo X="633.2204" Y="-110.7422" Z="-55.9687"  />
+				<RunTo X="721.8311" Y="-100.0839" Z="-56.1974"  />
+				<RunTo X="776.8248" Y="-143.1052" Z="-56.0963"  />
+				<RunTo X="771.8970" Y="-179.9483" Z="-57.6635"  />
+				<RunTo X="780.4608" Y="-216.9171" Z="-64.7642"  />
+				<RunTo X="798.6306" Y="-238.5470" Z="-63.8025"  />
+				<RunTo X="821.4161" Y="-263.5893" Z="-60.1770"  />
+				<RunTo X="902.9875" Y="-203.8227" Z="-52.5395"  />
+				<RunTo X="917.1977" Y="-183.5120" Z="-57.7388"  />
+				<RunTo X="897.6201" Y="-141.8159" Z="-60.4488"  />
+				<RunTo X="917.2157" Y="-108.7491" Z="-61.7758"  />
+				<RunTo X="891.3733" Y="-64.6589" Z="-59.1655"  />
+				<RunTo X="935.9316" Y="-59.0232" Z="-61.3573"  />
+				<RunTo X="958.1170" Y="-69.6813" Z="-61.9244"  />
+				<RunTo X="976.6150" Y="-41.8021" Z="-62.0057"  />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="12258" />	<!--Pull Razorlash-->
+				<RunTo X="956.5667" Y="-84.7164" Z="-62.1044"  />
+				<RunTo X="964.6172" Y="-112.8544" Z="-63.6305"  />
+				<RunTo X="945.7985" Y="-138.7504" Z="-60.9381"  />
+				<RunTo X="961.9990" Y="-163.8695" Z="-58.9294"  />
+				<RunTo X="980.2911" Y="-183.9014" Z="-67.9097"  />
+				<RunTo X="1024.0122" Y="-213.1458" Z="-69.8032"  />
+				<RunTo X="1065.9832" Y="-223.6193" Z="-72.5684"  />
+				<RunTo X="1124.5958" Y="-216.7726" Z="-79.2643"  />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="13282" />	<!--Pull Noxxion-->
+				<RunTo X="1037.5306" Y="-232.2198" Z="-72.2755"  />
+				<RunTo X="971.6142" Y="-178.8879" Z="-66.9069"  />
+				<RunTo X="933.4026" Y="-168.3851" Z="-61.8296"  />
+				<RunTo X="968.1895" Y="-92.4160" Z="-63.1073"  />
+				<RunTo X="932.8897" Y="-56.7345" Z="-60.9640"  />
+				<RunTo X="895.2537" Y="-75.2171" Z="-59.4729"  />
+				<RunTo X="919.5610" Y="-118.9761" Z="-62.0661"  />
+				<RunTo X="887.8018" Y="-141.4914" Z="-61.0670"  />
+				<CustomBehavior File="MyCTM" X="881.0349" Y="-121.6234" Z="-86.4627"  />
+				<RunTo X="831.8676" Y="-32.0493" Z="-86.8227"  />
+				<RunTo X="804.4630" Y="75.9289" Z="-86.7234"  />
+				<CustomBehavior File="MyCTM" X="749.2976" Y="75.4187" Z="-86.6881"  />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="12225" />	<!--Pull Celebras the Cursed-->
+				<RunTo X="650.8103" Y="83.2794" Z="-86.8299"  />
+				<RunTo X="584.7863" Y="120.6153" Z="-95.3717"  />
+				<RunTo X="551.6785" Y="81.2408" Z="-96.3128"  />
+				<RunTo X="574.3620" Y="17.9748" Z="-96.3128"  />
+				<RunTo X="498.8459" Y="22.6019" Z="-96.3122"  />
+				<RunTo X="383.4670" Y="8.9694" Z="-130.9339"  />
+				<RunTo X="220.3583" Y="-50.8798" Z="-130.9835"  />
+				<RunTo X="222.5736" Y="-94.2438" Z="-129.6067"  />
+				<RunTo X="261.1288" Y="-101.7134" Z="-129.6136"  />
+				<RunTo X="213.0518" Y="-212.6387" Z="-131.1591"  />
+				<RunTo X="234.8619" Y="-267.3400" Z="-131.1587"  />
+				<RunTo X="291.7863" Y="-258.9030" Z="-120.5005"  />
+				<RunTo X="246.9558" Y="-193.6379" Z="-111.0307"  />
+				<RunTo X="239.8226" Y="-105.2893" Z="-87.4927"  />
+				<RunTo X="294.7831" Y="-137.8648" Z="-74.4470"  />
+				<RunTo X="298.7897" Y="-193.7018" Z="-59.9003"  />
+				<RunTo X="326.8953" Y="-178.9769" Z="-59.9003"  />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="12203" />	<!--Pull Landslide-->
+				<RunTo X="298.8064" Y="-172.5939" Z="-59.8991"  />
+				<RunTo X="236.7390" Y="-113.4444" Z="-88.4818"  />
+				<RunTo X="194.3524" Y="-152.5707" Z="-107.5112"  />
+				<RunTo X="148.0749" Y="-275.8830" Z="-108.6765"  />
+				<RunTo X="70.8452" Y="-252.5956" Z="-108.6779"  />
+				<RunTo X="16.9570" Y="-96.8918" Z="-124.1843"  />
+				<RunTo X="27.9658" Y="-20.7869" Z="-127.4255"  />
+				<RunTo X="29.2548" Y="35.6209" Z="-125.8474"  />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="12201" />	<!--Pull Princess Theradras-->
+				<RunTo X="32.6881" Y="-36.4735" Z="-128.1871"  />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				<CustomBehavior File="MyCTM" X="46.2142" Y="-71.7555" Z="-198.0918"  />
+				<RunTo X="39.3086" Y="-103.3230" Z="-198.0521"  />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="13596" />	<!--Pull Rotgrip-->
+				
+				<While Condition="(Me.MapId == 349)" >
+						<If Condition="HasItem(6948)" >
+							<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />
+							<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+						</If>
+								
+						<If Condition="HasItem(64488)" >
+							<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="1000" />
+							<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+						</If>         
+					</While>
+					
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+
+   
+	<!-- End Instance Grind -->
+		</While>	
+		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= )" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+		<!-- Navigation Code -->	
+
+		<RunTo X="-1040.387" Y="1659.219" Z="59.86695" />
+		<RunTo X="-997.0727" Y="1598.306" Z="59.86497" />
+		<!-- Navigation Code -->
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Howah Deeptan" Entry="43880" Type="Repair" X="-994.738" Y="1597.01" Z="59.86528" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<RunTo X="-1040.387" Y="1659.219" Z="59.86695" /> <!-- Mailbox -->
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+		</If>
+		
+		
+			
+		<!-- End bag check -->
+			
+			
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

@@ -1,0 +1,208 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo Tiger :3
+// Farm zone: Duskwood
+// Farm mobs: Splinterfist Ogres,  Rotting Horrors
+// Farm set: Buccaneer's Regalia
+///////////////////////////////////////////////////////////////////////
+
+<Name>Buccaneer's Regalia Farm [$Rev$]</Name>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>False</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+	<Item Name = "Buccaneer's Vest" Entry = "14175"/>
+	<Item Name = "Buccaneer's Pants" Entry = "14171"/>
+	<Item Name = "Buccaneer's Cord" Entry = "14173"/>
+	<Item Name = "Buccaneer's Bracers" Entry = "14166"/>
+	<Item Name = "Buccaneer's Boots" Entry = "14174"/>
+</ProtectedItems>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />				
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/> 
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="45" KillBetweenHotspots="True" />
+	
+
+<While Condition="!HasItem(14175) || !HasItem(14171) || !HasItem(14166) || !HasItem(14173) || !HasItem(14174)">
+	<CustomBehavior File="Message" Text="Heading to farm hub." LogColor="Green" />
+	<If Condition="Me.Location.Distance(new WoWPoint(-10544.6, -1169.417, 133.7712)) &gt; 10" >
+		<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
+	</If>
+	<CustomBehavior File="Message" Text="Randomizing farm location..." LogColor="Fuchsia" />
+<!-- Chest and Pants -->
+	<If Condition="Chance(50.0)">
+
+		<If Condition="!HasItem(14175) || !HasItem(14171)" >
+			<CustomBehavior File="Message" Text="Moving to farm: Chest and Pants" LogColor="Lime" />
+			<CustomBehavior File="FlyTo" X="-10917.99" Y="-360.7995" Z="117.2663" />
+			<CustomBehavior File="FlyTo" X="-10970.49" Y="-262.8875" Z="20.95861" />
+			<CustomBehavior File="WaitTimer" WaitTime="2000" />
+			<CustomBehavior File="ForcedDismount" />
+		</If>
+
+		<SetGrindArea>
+			<GrindArea>
+				<Name>Chest and Pants [$Rev$]</Name>
+				<Factions>45</Factions>
+				<MaxDistance>45</MaxDistance>
+				<Hotspots>
+					<Hotspot X="-10980.42" Y="-233.3678" Z="16.9684" />
+					<Hotspot X="-11055.33" Y="-221.1434" Z="18.49694" />
+					<Hotspot X="-11037.93" Y="-118.9426" Z="16.29831" />
+					<Hotspot X="-10999.26" Y="-58.04308" Z="15.38556" />
+					<Hotspot X="-11120.09" Y="-104.2443" Z="11.73441" />
+					<Hotspot X="-11170.12" Y="-142.1123" Z="6.264967" />
+					<Hotspot X="-11119.36" Y="-163.9315" Z="11.66897" />
+					<Hotspot X="-11156.32" Y="-195.0362" Z="13.62103" />
+				</Hotspots>
+			</GrindArea>
+		</SetGrindArea>
+		<GrindTo Condition="(Me.FreeBagSlots &lt;= 6)" />
+			<If Condition="Me.IsAlliance" >
+				<CustomBehavior File="Message" Text="Moving to sell and repair." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" X="-10979.56" Y="-176.4285" Z="102.6337" />
+				<CustomBehavior File="FlyTo" X="-10661.45" Y="-1155.178" Z="59.21758" />
+				<CustomBehavior File="FlyTo" X="-10606.28" Y="-1156.525" Z="29.87168" />
+				<CustomBehavior File="ForcedDismount" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Gavin Gnarltree" Entry="225" Type="Repair" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoRepair="true" DoSell="true" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<ClearVendor />
+				<RunTo X="-10611.79" Y="-1153.962" Z="27.92402" />
+				<RunTo X="-10614.79" Y="-1164.581" Z="26.6403" />
+				<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
+			</If>
+			<If Condition="Me.IsHorde" >
+				<CustomBehavior File="Message" Text="Moving to sell." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" X="-10979.56" Y="-176.4285" Z="102.6337" />
+				<CustomBehavior File="FlyTo" X="-10074.3" Y="-1373.596" Z="30.33298" />
+				<CustomBehavior File="ForcedDismount" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Kzixx" Entry="3134" Type="Repair" X="-10072.49" Y="-1375.859" Z="30.13093" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoRepair="false" DoSell="true" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<ClearVendor />
+				<CustomBehavior File="FlyTo" X="-10632.99" Y="-1148.343" Z="40.99533" />
+				<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
+			</If>
+	</If>
+<!--END-->
+
+<!-- Boots, Belt, Bracers -->
+	<If Condition="Chance(50.0)">
+
+		<If Condition="!HasItem(14166) || !HasItem(14173) || !HasItem(14174)" >
+			<CustomBehavior File="Message" Text="Moving to farm: Boots, Belt, Bracers" LogColor="Lime" />
+			<CustomBehavior File="FlyTo" X="-10735.19" Y="-1300.327" Z="48.8654" />
+			<CustomBehavior File="ForcedDismount" />
+			<CustomBehavior File="WaitTimer" WaitTime="2000" />
+		</If>
+
+		<SetGrindArea>
+			<GrindArea>
+				<Name>Bracers, Belt, Boots [$Rev$]</Name>
+				<Factions>21, 22</Factions>
+				<MaxDistance>60</MaxDistance>
+				<Hotspots>
+					<Hotspot X="-10780.83" Y="-1335.22" Z="37.83132" />
+					<Hotspot X="-10811.91" Y="-1376.419" Z="42.70263" />
+					<Hotspot X="-10794.84" Y="-1311.396" Z="35.57222" />
+					<Hotspot X="-10822.44" Y="-1242.141" Z="34.11192" />
+					<Hotspot X="-10805.16" Y="-1185.084" Z="34.24391" />
+					<Hotspot X="-10863.93" Y="-1170.268" Z="34.97666" />
+					<Hotspot X="-10689.47" Y="-1316.528" Z="42.43002" />
+					<Hotspot X="-10665.2" Y="-1380.037" Z="47.93091" />
+					<Hotspot X="-10735.37" Y="-1376.999" Z="37.0193" />
+				</Hotspots>
+			</GrindArea>
+		</SetGrindArea>
+		<GrindTo Condition="(Me.FreeBagSlots &lt;= 6)" />
+			<If Condition="Me.IsAlliance">
+				<CustomBehavior File="Message" Text="Moving to sell and repair." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" X="-10806.34" Y="-1286.173" Z="127.4832" />
+				<CustomBehavior File="FlyTo" X="-10661.45" Y="-1155.178" Z="59.21758" />
+				<CustomBehavior File="FlyTo" X="-10606.28" Y="-1156.525" Z="29.87168" />
+				<CustomBehavior File="ForcedDismount" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Gavin Gnarltree" Entry="225" Type="Repair" X="-10596.89" Y="-1154.147" Z="30.06044" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoRepair="true" DoSell="true" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<ClearVendor />
+				<RunTo X="-10611.79" Y="-1153.962" Z="27.92402" />
+				<RunTo X="-10614.79" Y="-1164.581" Z="26.6403" />
+				<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
+			</If>
+			<If Condition="Me.IsHorde" >
+				<CustomBehavior File="Message" Text="Moving to sell." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" X="-10806.34" Y="-1286.173" Z="127.4832" />
+				<CustomBehavior File="FlyTo" X="-10074.3" Y="-1373.596" Z="30.33298" />
+				<CustomBehavior File="ForcedDismount" />
+				<SetVendor>
+					<Vendors>
+						<Vendor Name="Kzixx" Entry="3134" Type="Repair" X="-10072.49" Y="-1375.859" Z="30.13093" />
+					</Vendors>
+				</SetVendor>
+				<CustomBehavior File="ForceSetVendor" DoRepair="false" DoSell="true" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<ClearVendor />
+				<CustomBehavior File="FlyTo" X="-10544.6" Y="-1169.417" Z="133.7712" />
+			</If>
+	</If>
+<!--END-->
+
+
+</While>
+
+
+<If Condition="HasItem(14175) &amp;&amp; HasItem(14171) &amp;&amp; HasItem(14166) &amp;&amp; HasItem(14173) &amp;&amp; HasItem(14174)">
+	<CustomBehavior File="Message" Text="It seems that all items have been obtained.\n\nIf you wish to farm the mobs again, put the items of this set into your bank then run the profile again." />
+</If>
+</QuestOrder>
+</HBProfile>

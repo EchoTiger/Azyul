@@ -1,0 +1,119 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>[N] Lawbringer Armor (Recolor) [$Rev$]</Name>
+	
+
+
+   	
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+	
+<MailGrey>False</MailGrey>
+<MailWhite>False</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+   
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+   
+<TargetElites>True</TargetElites>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+</AvoidMobs>
+
+<ProtectedItems>
+	<Item Name="Ruby Helm of the Just" Entry="27505" /> <!--Helm-->
+	<Item Name="Pauldrons of Swift Retribution" Entry="27844" /> <!--Shoulder-->
+	<Item Name="Breastplate of Righteous Fury" Entry="28337" /> <!--Chest-->
+	<Item Name="Girdle of Gallantry" Entry="27755" /> <!--Belt-->
+	<Item Name="Ornate Leggings of the Venerated" Entry="27839" /> <!--Legs-->
+	<Item Name="Ornate Boots of the Sanctified" Entry="27884" /> <!--Boots-->
+	<!--Wrists cannot be seen on set, so they won't be farmed. -->
+	<Item Name="Gauntlets of Vindication" Entry="27798" /> <!--Hands-->
+</ProtectedItems>
+	
+<Blackspots></Blackspots>
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+	<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Lime" />
+	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />	
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+
+<If Condition="(!HasItem(27884)) || (!HasItem(27893))" > <!-- Boots+Legs. Shadow Labrynth. Ambassador Hellmaw+Blackheart the Inciter. -->
+	<CustomBehavior File="Message" Text="Going to the Auchindoun Hub for the Boots/Legs" LogColor="LightBlue" />
+	<CustomBehavior File="FlyTo" X="-3254.878" Y="4991.973" Z="72.28487" />
+	<CustomBehavior File="FlyTo" X="-3356.63" Y="4925.704" Z="-36.0411" />
+	<CustomBehavior File="Message" Text="Boots OR Legs not detected.  Running Shadow Labrynth." LogColor="LightBlue" />
+	<CustomBehavior File="FlyTo" X="-3548.71" Y="4943.423" Z="-101.3946" />
+	<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<RunTo X="-3555.24" Y="4943.221" Z="-101.3954" />
+	<CustomBehavior File="InteractWith" MobId="183294" Range="3" X="-3556.407" Y="4943.071" Z="-101.1189" />
+	<CustomBehavior File="MyCTM" X="-3641.083" Y="4943.198" Z="-101.0486" />
+	<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+	<While Condition="(!HasItem(27884)) || (!HasItem(27893))" >
+		<CustomBehavior File="MyCTM" X="-3651.754" Y="4943.155" Z="-101.0482" /> <!-- Enter Instance -->
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+		<RunTo X="-35.56681" Y="0.1483596" Z="-1.12795" />
+		<RunTo X="-49.54019" Y="-23.04371" Z="-1.129543" />
+		<RunTo X="-70.00356" Y="-126.2723" Z="1.021207" />
+		<RunTo X="-124.9705" Y="-139.8957" Z="3.828798" />
+		<RunTo X="-154.8597" Y="-103.5073" Z="8.07305" />
+		<If Condition="(!HasItem(27884))" > <!-- Boots, Ambassador Hellmaw -->
+			<CustomBehavior File="UserSettings" PullDistance="5" />
+			<CustomBehavior File="Message" Text="Killing Ambassador Hellmaw for Boots." LogColor="LightBlue" />
+			<RunTo X="-168.6242" Y="-76.54182" Z="8.067259" /> <!-- Pull Orc Mob 1 -->
+			<RunTo X="-144.0296" Y="-77.85866" Z="8.066967" /> <!-- Pull Orc Mob 2 -->
+			<RunTo X="-156.5109" Y="-63.97397" Z="8.071402" /> <!-- Pull Orc Mob 3 -->
+			<RunTo X="-149.3661" Y="-62.73195" Z="8.07165" />
+			<RunTo X="-150.9343" Y="-18.29978" Z="8.07165" />  <!-- Pull Orc Mob 4 -->
+			<RunTo X="-138.8102" Y="-6.650589" Z="8.073051" /> <!-- Pull Orc Mob 5 -->
+			<RunTo X="-168.9376" Y="0.6861959" Z="8.073051" /> <!-- Pull Orc Mob 6 -->
+			<CustomBehavior File="UserSettings" LootMobs="True" />
+			<CustomBehavior File="InteractWith" MobId="18731" CollectionDistance="200" /> <!-- Pull Ambassador Hellmaw -->
+			<RunTo X="-156.5198" Y="4.859318" Z="8.073051" />
+			<CustomBehavior File="WaitTimer" WaitTime="1500" />
+			<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="0" />
+		</If>
+		<If Condition="(!HasItem(27893))" > <!-- Legs, Blackheart the Inciter -->
+			<CustomBehavior File="Message" Text="Killing Blackheart the Inciter for Legs." LogColor="LightBlue" />
+			<RunTo X="-188.571" Y="-38.54536" Z="8.073074" />
+			<RunTo X="-305.8823" Y="-38.63635" Z="8.072851" />
+			<CustomBehavior File="UserSettings" LootMobs="True" />
+			<CustomBehavior File="InteractWith" MobId="18667" CollectionDistance="200" /> <!-- Pull Blackheart the Inciter -->
+			<CustomBehavior File="WaitTimer" WaitTime="1500" />
+			<CustomBehavior File="UserSettings" LootMobs="False" />
+			<RunTo X="-295.1339" Y="-39.53478" Z="8.072851" />
+		</If>
+		<RunTo X="-189.7442" Y="-39.74497" Z="8.072851" />
+		<RunTo X="-163.4306" Y="-75.92382" Z="8.071245" />
+		<RunTo X="-145.8221" Y="-133.8235" Z="5.540375" />
+		<RunTo X="-87.07306" Y="-141.8899" Z="3.036389" />
+		<RunTo X="-65.4262" Y="-111.8137" Z="-0.4299929" />
+		<RunTo X="-45.80699" Y="-11.33976" Z="-1.128263" />
+		<RunTo X="-21.77431" Y="0.1414852" Z="-1.129643" />
+		<RunTo X="1.272313" Y="-0.2185655" Z="-1.12958" />
+		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+		<CustomBehavior File="MyCTM" X="9.147711" Y="-0.05483413" Z="-1.129549" />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<If Condition="(!HasItem(27884))" >
+			<CustomBehavior File="Message" Text="Boots not obtained. Running the instance again." LogColor="Red" />
+		</If>
+		<If Condition="(!HasItem(27893))" >
+			<CustomBehavior File="Message" Text="Legs not obtained. Running the instance again." LogColor="Red" />
+		</If>
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+	</While>
+	<If Condition="(HasItem(27884)) &amp;&amp; (HasItem(27893))" >
+		<CustomBehavior File="Message" Text="Boots and Legs obtained.  Normal farm complete." LogColor="LightBlue" />
+	</If>
+</If>
+</QuestOrder>
+</HBProfile>

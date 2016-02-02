@@ -1,0 +1,118 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>[ND] Nightslayer Armor (RC) [$Rev$]</Name>
+	
+	
+	
+   
+	<MinDurability>0.001</MinDurability>
+	<MinFreeBagSlots>1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>True</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+    </AvoidMobs>
+
+	<ProtectedItems>
+		<Item Name="Savage Mask of the Lynx Lord" Entry="27938" />
+		<Item Name="Sun-Gilded Shouldercaps" Entry="27995" />
+		<Item Name="Chestguard of the Prowler" Entry="27461" />
+		<Item Name="Belt of the Raven Lord" Entry="32769" />
+		<Item Name="Mennu's Scaled Leggings" Entry="27545" />
+		<Item Name="Silent-Strider Kneeboots" Entry="27467" />
+		<Item Name="Predatory Gloves" Entry="27825" />
+	</ProtectedItems>
+	
+	<Blackspots></Blackspots>
+
+	<QuestOrder IgnoreCheckpoints = "False">
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Lime" />
+		<!-- Enable Loot -->
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+	<If Condition="!HasItem(27995)">
+		<CustomBehavior File="Message" Text="Going to Caverns of Time for the Shoulders." LogColor="DarkBlue" />
+<!-- Leaves Outlands -->
+		<If Condition="(Me.MapId == 466)">
+			<CustomBehavior File="FlyTo" DestName="Leaving Outlands" X="-232.59" Y="1266.096" Z="386.9434" />
+			<CustomBehavior File="FlyTo" DestName="Leaving Outlands" X="-245.816" Y="903.2711" Z="84.3497" />
+			<CustomBehavior File="MyCTM" DestName="Leaving Outlands" X="-245.816" Y="893.2711" Z="84.3497" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" X="-11793.75" Y="-3179.089" Z="22.92073" />
+			<CustomBehavior File="FlyTo" X="-12549.05" Y="-587.8281" Z="227.3418" />
+			<CustomBehavior File="FlyTo" X="-14306.7" Y="432.5402" Z="122.6811" />
+			<CustomBehavior File="FlyTo" X="-14288.27" Y="552.2994" Z="8.692417" />
+			<CustomBehavior File="UseTransport" Entry="-14280.88, 566.6268, 6.979454" Exit="-996.8669, -3826.07, 5.536246" Start="-14277.75, 582.8661, 0.01553879" End="-1005.613, -3841.648, 0.03330701" StandOnX="-14270.46" StandOnY="579.9881" StandOnZ="6.088587" TransportId="20808" />
+			<CustomBehavior File="FlyTo" DestName="Ratchet" X="-923.6409" Y="-3658.172" Z="124.3123" />
+		</If>	
+<!-- Eastern Kingdoms to Blasted Lands to Ratchet  -->
+		<If Condition="(Me.IsAlliance) &amp;&amp; (Me.MapId == 0)">
+			<CustomBehavior File="FlyTo" DestName="Mage Tower" X="-8999.616" Y="862.2393" Z="129.4042" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="-9005.53" Y="869.2928" Z="129.693" />
+			<CustomBehavior File="InteractWith" MobId="195141" X="9007.58" Y="871.8698" Z="129.6922" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" X="-11793.75" Y="-3179.089" Z="22.92073" />
+			<CustomBehavior File="FlyTo" X="-12549.05" Y="-587.8281" Z="227.3418" />
+			<CustomBehavior File="FlyTo" X="-14306.7" Y="432.5402" Z="122.6811" />
+			<CustomBehavior File="FlyTo" X="-14286.05" Y="557.1917" Z="8.68909" />
+			<CustomBehavior File="WaitTimer" WaitTime="2000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="UseTransport" TransportId="20808" WaitAtX="-14280.88" WaitAtY="566.6268"  WaitAtZ="6.979454" GetOffX="-996.8669" GetOffY="3826.07" GetOffZ="5.536246" StandOnX="-14270.46" StandOnY="579.9881" StandOnZ="6.088587" TransportStartX="-14277.75" TransportStartY="582.8661" TransportStartZ="0.01553879" TransportEndX="-1005.613" TransportEndY="-3841.648" TransportEndZ="0.03330701" />
+			<CustomBehavior File="FlyTo" DestName="Ratchet" X="-923.6409" Y="-3658.172" Z="124.3123" />
+		</If>
+<!-- Kalimdor to Ratchet -->
+		<If Condition="(Me.IsHorde) &amp;&amp; (Me.MapId == 1)">
+			<CustomBehavior File="FlyTo" DestName="Above Orgrimmar" X="1697.172" Y="-4407.247" Z="273.0503" />
+			<CustomBehavior File="FlyTo" DestName="Ratchet" X="-923.6409" Y="-3658.172" Z="124.3123" />
+		</If>
+<!-- From Ratchet to Caverns of Time -->
+		<If Condition="Me.ZoneId == 17">
+			<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8188.568" Y="-4587.595" Z="162.7603" />
+		<ElseIf Condition="Me.ZoneId != 17">
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Something went wrong when trying to navigate.\n\nPlease put your character in Ratchet, then push &quot;Continue.&quot;)" />
+			<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8188.568" Y="-4587.595" Z="162.7603" />
+			</ElseIf>
+		</If>
+<!-- This is for the shoulders -->
+		<If Condition="Me.ZoneId == 440">
+			<CustomBehavior File="Message" Text="Going to The Black Morass for the Shoulders." LogColor="DarkBlue" />
+			<CustomBehavior File="FlyTo" X="-8173.311" Y="-4723.936" Z="31.71398" />
+			<CustomBehavior File="FlyTo" X="-8163.811" Y="-4829.636" Z="42.03972" />
+			<CustomBehavior File="MyCTM" X="-8180.302" Y="-4873.598" Z="38.93711" />
+			<CustomBehavior File="MyCTM" X="-8103.451" Y="-4891.116" Z="31.31675" />
+			<CustomBehavior File="MyCTM" X="-8082.334" Y="-4847.617" Z="-7.509529" />
+			<CustomBehavior File="MyCTM" X="-8117.136" Y="-4839.248" Z="-7.881186" />
+			<CustomBehavior File="MyCTM" X="-8151.312" Y="-4876.944" Z="-25.83177" />
+			<CustomBehavior File="MyCTM" X="-8130.657" Y="-4910.589" Z="-36.10578" />
+			<CustomBehavior File="MyCTM" X="-8083.274" Y="-4903.63" Z="-46.36756" />
+			<CustomBehavior File="MyCTM" X="-8075.979" Y="-4814.996" Z="-65.03946" />
+			<CustomBehavior File="MyCTM" X="-8116.368" Y="-4688.533" Z="-92.45673" />
+			<CustomBehavior File="MyCTM" X="-8306.677" Y="-4587.895" Z="-147.8652" />
+			<CustomBehavior File="MyCTM" X="-8473.307" Y="-4662.058" Z="-189.0079" />
+			<CustomBehavior File="MyCTM" X="-8526.152" Y="-4581.554" Z="-201.8963" />
+			<CustomBehavior File="MyCTM" X="-8501.41" Y="-4486.723" Z="-201.4148" />
+			<CustomBehavior File="MyCTM" X="-8700.688" Y="-4237.828" Z="-203.3836" />
+			<CustomBehavior File="MyCTM" X="-8748.378" Y="-4206.161" Z="-209.4964" />
+			<CustomBehavior File="MyCTM" X="-8771.876" Y="-4167.72" Z="-210.2355" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="At the moment, this dungeon does not have a script wrote for it.\n\nYou must complete it manually until I can write one out." />
+		</If>
+	</If>
+	</QuestOrder>
+</HBProfile>

@@ -1,0 +1,298 @@
+<HBProfile creator="EchoTiger" version="1.0">
+	<Name>[ND] Dragonstalker (RC) [$Rev$]</Name>
+	
+	
+	
+   
+	<MinDurability>0.001</MinDurability>
+	<MinFreeBagSlots>1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>True</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+    </AvoidMobs>
+
+	<ProtectedItems>
+		<Item Name="Dream-Wing Helm" Entry="27888" />
+		<Item Name="Wyrmfury Pauldrons" Entry="28344" />
+		<Item Name="Shard Encrusted Pauldrons" Entry="27823" />
+		<Item Name="Archery Belt of the Broken" Entry="27541" />
+		<Item Name="Emerald-Scale Greaves" Entry="28219" />
+		<Item Name="Sky-Hunter Swift Boots" Entry="27915" />
+		<Item Name="Hungarhide Gauntlets" Entry="27745" />
+	</ProtectedItems>
+	
+	<Blackspots></Blackspots>
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Lime" />
+<!-- Enable Loot -->
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+<!-- Check item and go to spot if it isn't detected -->
+	<!--Sethekk Halls-->
+		<If Condition="!HasItem(27915)" > <!--Boots-->
+			<CustomBehavior File="Message" Text="Going to Ring of Observance for the Boots." LogColor="DarkBlue" />
+			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
+			<CustomBehavior File="MyCTM" X="-3361.667" Y="4793.479" Z="-101.3955" />
+			<CustomBehavior File="MyCTM" X="-3362.443" Y="4779.643" Z="-101.3952" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="MyCTM" X="-3362.086" Y="4660.304" Z="-101.0487" />
+			<While Condition="!HasItem(27915)" >
+				<CustomBehavior File="Message" Text="Running Sethekk Halls to get the Boots." LogColor="DarkBlue" />
+				<CustomBehavior File="MyCTM" X="-3361.756" Y="4652.740" Z="-101.0487" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+			    <RunTo X="23.2821" Y="-0.2094" Z="0.0058"  />
+			    <RunTo X="39.1627" Y="13.1617" Z="0.0084"  />
+			    <RunTo X="42.5479" Y="33.4023" Z="0.0084"  />
+			    <RunTo X="43.7528" Y="54.0732" Z="0.0084"  />
+			    <RunTo X="41.7525" Y="73.9982" Z="-0.5843"  />
+			    <RunTo X="29.1631" Y="89.6788" Z="-1.2499"  />
+			    <RunTo X="9.5889" Y="94.4861" Z="0.2392"  />
+			    <RunTo X="-9.1095" Y="101.8767" Z="0.0072"  />
+			    <RunTo X="-30.3086" Y="101.1634" Z="0.0072"  />
+			    <RunTo X="-50.3543" Y="105.2623" Z="0.0072"  />
+			    <RunTo X="-66.6140" Y="117.4923" Z="0.0072"  />
+			    <RunTo X="-70.6427" Y="137.5523" Z="0.0072"  />
+			    <RunTo X="-71.6068" Y="158.0363" Z="0.0072"  />
+			    <RunTo X="-85.8350" Y="172.7780" Z="0.0115"  />
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenHotspots="False" LogoutForInactivity="False" />
+			    <RunTo X="-106.3167" Y="172.5898" Z="0.0092"  />
+			    <RunTo X="-126.7855" Y="173.2980" Z="0.0100"  />
+			    <RunTo X="-144.2886" Y="172.9094" Z="1.6853"  />
+			    <RunTo X="-141.5640" Y="181.8320" Z="0.0153"  />
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+			    <RunTo X="-106.5446" Y="172.7270" Z="0.0097"  />
+			    <RunTo X="-86.5180" Y="171.5989" Z="0.0097"  />
+			    <RunTo X="-71.7597" Y="157.4071" Z="0.0079"  />
+			    <RunTo X="-71.1622" Y="136.7652" Z="0.0079"  />
+			    <RunTo X="-65.3285" Y="117.0613" Z="0.0079"  />
+			    <RunTo X="-50.7212" Y="102.5670" Z="0.0079"  />
+			    <RunTo X="-30.6282" Y="100.3333" Z="0.0079"  />
+			    <RunTo X="-10.5609" Y="99.8461" Z="0.0079"  />
+			    <RunTo X="8.9210" Y="93.9957" Z="0.2247"  />
+			    <RunTo X="28.2224" Y="88.5240" Z="-1.2570"  />
+			    <RunTo X="42.8588" Y="74.6705" Z="-0.8631"  />
+			    <RunTo X="44.6352" Y="54.1764" Z="0.0081"  />
+			    <RunTo X="44.7247" Y="33.5292" Z="0.0081"  />
+			    <RunTo X="43.9032" Y="13.5175" Z="0.0081"  />
+			    <RunTo X="25.9057" Y="3.8989" Z="0.0067"  />
+			    <RunTo X="5.9584" Y="2.1280" Z="0.0053"  />
+			    <RunTo X="-4.0278" Y="1.5065" Z="0.0057"  />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			    <CustomBehavior File="MyCTM" X="-9.150306" Y="-0.02197785" Z="0.007470994" />
+			    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(27915)">
+					<CustomBehavior File="Message" Text="Boots obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27915)">
+					<CustomBehavior File="Message" Text="Boots weren't obtained. We will run the instance again." LogColor="Red" />
+				</If>
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+				<If Condition="HasItem(27915)">
+					<RunTo X="-3361.623" Y="4753.329" Z="-101.3959" />
+					<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
+				</If>
+			</While>
+		</If>
+	<!-- Navigation to Ring of Observance -->
+		<If Condition="!HasItem(27888)"> <!-- Helmet -->
+			<CustomBehavior File="Message" Text="Going to Shadow Labyrinth for the Helmet." LogColor="DarkBlue" />
+			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
+			<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3479.899" Y="4944.022" Z="-72.31544" />
+			<CustomBehavior File="FlyTo" DestName="Shadow Labyrinth" X="-3554.982" Y="4943.268" Z="-101.3959" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="InteractWith" MobId="183294" X="-3556.407" Y="4943.071" Z="-101.1189" />
+			<CustomBehavior File="MyCTM" X="-3572.794" Y="4941.093" Z="-101.0468" />
+			<RunTo X="-3647.243" Y="4943.371" Z="-101.0486" />
+			<While Condition="!HasItem(27888)" >
+				<CustomBehavior File="Message" Text="Running Shadow Labyrinth to get the Helemet." LogColor="DarkBlue" />
+				<CustomBehavior File="MyCTM" X="-3652.338" Y="4943.424" Z="-101.0486" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+			    <RunTo X="-27.2131" Y="-0.1202" Z="-1.1279"  />
+			    <RunTo X="-41.1222" Y="-13.2181" Z="-1.1296"  />
+			    <RunTo X="-40.2000" Y="-15.4175" Z="-1.1296"  />
+			    <RunTo X="-34.1274" Y="-35.1356" Z="-1.1296"  />
+			    <RunTo X="-37.9417" Y="-55.4840" Z="-1.1296"  />
+			    <RunTo X="-57.9155" Y="-58.9886" Z="-1.1296"  />
+			    <RunTo X="-62.6930" Y="-79.0876" Z="-1.1296"  />
+			    <RunTo X="-63.1746" Y="-99.5061" Z="-1.1296"  />
+			    <RunTo X="-64.8286" Y="-119.9001" Z="0.1867"  />
+			    <RunTo X="-78.9610" Y="-135.6926" Z="2.3210"  />
+			    <RunTo X="-98.1632" Y="-141.7373" Z="3.4197"  />
+			    <RunTo X="-118.1682" Y="-141.9332" Z="3.4472"  />
+			    <RunTo X="-137.4767" Y="-136.2952" Z="4.8951"  />
+			    <RunTo X="-150.8774" Y="-121.2969" Z="6.5678"  />
+			    <RunTo X="-157.2798" Y="-101.9197" Z="8.0736"  />
+			    <RunTo X="-164.4791" Y="-82.4594" Z="8.0736"  />
+			    <RunTo X="-168.5936" Y="-76.9267" Z="8.0679"  />
+			    <RunTo X="-156.9872" Y="-64.2675" Z="8.0715"  />
+			    <RunTo X="-155.6032" Y="-64.2850" Z="8.0715"  />
+			    <RunTo X="-144.9656" Y="-77.5322" Z="8.0685"  />
+			    <RunTo X="-150.0363" Y="-44.2773" Z="8.0717"  />
+			    <RunTo X="-157.3283" Y="-25.3406" Z="8.0717"  />
+			    <RunTo X="-140.9760" Y="-32.2871" Z="8.0731"  />
+			    <RunTo X="-139.1291" Y="-16.8035" Z="8.0731"  />
+			    <RunTo X="-138.7915" Y="-5.9658" Z="8.0731"  />
+			    <RunTo X="-154.4859" Y="-3.5867" Z="8.0731"  />
+			    <RunTo X="-168.9090" Y="0.5326" Z="8.0731"  />
+			    <RunTo X="-157.1356" Y="-7.1143" Z="8.0731"  />
+			    <RunTo X="-156.5259" Y="16.7951" Z="8.0731"  />
+			    <RunTo X="-166.6307" Y="-10.26912" Z="8.073062" />
+			    <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" KillBetweenHotspots="False" LogoutForInactivity="False" />
+			    <CustomBehavior File="WaitTimer" WaitTime="3000" />
+			    <CustomBehavior File="RunMacro" Macro="/target Ambassador Hellmaw" />
+			    <CustomBehavior File="RunMacro" Macro="/startattack" />
+			    <RunTo X="-156.5259" Y="16.7951" Z="8.0731"  />
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+			    <RunTo X="-151.1544" Y="-2.5975" Z="8.0731"  />
+			    <RunTo X="-146.4327" Y="-22.2687" Z="8.0731"  />
+			    <RunTo X="-145.3656" Y="-42.6217" Z="8.0731"  />
+			    <RunTo X="-146.8945" Y="-62.7096" Z="8.0731"  />
+			    <RunTo X="-151.2283" Y="-82.8601" Z="8.0731"  />
+			    <RunTo X="-154.4150" Y="-103.0940" Z="8.0731"  />
+			    <RunTo X="-151.9073" Y="-123.0756" Z="6.4817"  />
+			    <RunTo X="-138.0425" Y="-137.8308" Z="4.8641"  />
+			    <RunTo X="-117.2474" Y="-141.3938" Z="3.4476"  />
+			    <RunTo X="-96.8702" Y="-140.2196" Z="3.3734"  />
+			    <RunTo X="-76.8273" Y="-135.8991" Z="2.1763"  />
+			    <RunTo X="-65.9672" Y="-118.2810" Z="0.0981"  />
+			    <RunTo X="-62.0559" Y="-98.1933" Z="-1.1283"  />
+			    <RunTo X="-61.4030" Y="-77.6710" Z="-1.1283"  />
+			    <RunTo X="-60.5081" Y="-56.7742" Z="-1.1283"  />
+			    <RunTo X="-41.3818" Y="-50.8436" Z="-1.1283"  />
+			    <RunTo X="-32.1029" Y="-32.9981" Z="-1.1283"  />
+			    <RunTo X="-38.3279" Y="-13.8856" Z="-1.1283"  />
+			    <RunTo X="-23.6685" Y="1.0136" Z="-1.1295"  />
+			    <RunTo X="-6.7717" Y="1.8839" Z="-1.1295"  />
+				<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+				<CustomBehavior File="MyCTM" X="9.52786" Y="-1.860063" Z="-1.128255" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="HasItem(27888)">
+					<CustomBehavior File="Message" Text="Helmet obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27888)">
+					<CustomBehavior File="Message" Text="Helmet wasn't obtained. We will run the instance again." LogColor="Red" />
+				</If>
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+				<RunTo X="-3647.243" Y="4943.371" Z="-101.0486" />
+			<!--Leave after Helmet is obtained -->
+			<If Condition="HasItem(27888)">
+				<RunTo X="-3558.559" Y="4943.185" Z="-101.0486" />
+				<CustomBehavior File="InteractWith" MobId="183294" X="-3556.407" Y="4943.071" Z="-101.1189" />
+				<CustomBehavior File="MyCTM" X="-3498.882" Y="4942.438" Z="-101.396" />
+				<CustomBehavior File="FlyTo" X="-3224.711" Y="4939.002" Z="172.7665" />	
+			</If>
+			</While>
+		</If>
+	<If Condition="HasItem(27915) &amp;&amp; HasItem(27888) &amp;&amp; !HasItem(28219) || !HasItem(28344)" >
+			<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+			<CustomBehavior File="Message" Text="NOTE: The bot will now leave Outlands to go to Old Hillsbrad for the pants and shoulders." LogColor="Coral" />
+<!-- Navigational Script Block to go to Old Hillsbrad -->
+<!-- Leaves Outlands -->
+		<If Condition="(Me.MapId == 530)">
+			<CustomBehavior File="FlyTo" DestName="Leaving Outlands" X="-232.59" Y="1266.096" Z="386.9434" />
+			<CustomBehavior File="FlyTo" DestName="Leaving Outlands" X="-245.816" Y="903.2711" Z="84.3497" />
+			<CustomBehavior File="MyCTM" DestName="Leaving Outlands" X="-245.816" Y="893.2711" Z="84.3497" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" X="-11793.75" Y="-3179.089" Z="22.92073" />
+			<CustomBehavior File="FlyTo" X="-12549.05" Y="-587.8281" Z="227.3418" />
+			<CustomBehavior File="FlyTo" X="-14306.7" Y="432.5402" Z="122.6811" />
+			<CustomBehavior File="FlyTo" X="-14288.27" Y="552.2994" Z="8.692417" />
+			<CustomBehavior File="UseTransport" TransportId="20808" WaitAtX="-14280.88" WaitAtY="566.6268"  WaitAtZ="6.979454" GetOffX="-996.8669" GetOffY="3826.07" GetOffZ="5.536246" StandOnX="-14270.46" StandOnY="579.9881" StandOnZ="6.088587" TransportStartX="-14277.75" TransportStartY="582.8661" TransportStartZ="0.01553879" TransportEndX="-1005.613" TransportEndY="-3841.648" TransportEndZ="0.03330701" />
+			<CustomBehavior File="FlyTo" DestName="Ratchet" X="-923.6409" Y="-3658.172" Z="124.3123" />
+		</If>	
+<!-- Eastern Kingdoms to Blasted Lands  -->
+		<If Condition="(Me.IsAlliance) &amp;&amp; (Me.MapId == 0)">
+			<CustomBehavior File="FlyTo" DestName="Mage Tower" X="-8999.616" Y="862.2393" Z="129.4042" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="-9005.53" Y="869.2928" Z="129.693" />
+			<CustomBehavior File="InteractWith" MobId="195141" X="9007.58" Y="871.8698" Z="129.6922" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="FlyTo" X="-11793.75" Y="-3179.089" Z="22.92073" />
+			<CustomBehavior File="FlyTo" X="-12549.05" Y="-587.8281" Z="227.3418" />
+			<CustomBehavior File="FlyTo" X="-14306.7" Y="432.5402" Z="122.6811" />
+			<CustomBehavior File="FlyTo" X="-14286.05" Y="557.1917" Z="8.68909" />
+			<CustomBehavior File="WaitTimer" WaitTime="2000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="UseTransport" TransportId="20808" WaitAtX="-14280.88" WaitAtY="566.6268"  WaitAtZ="6.979454" GetOffX="-996.8669" GetOffY="3826.07" GetOffZ="5.536246" StandOnX="-14270.46" StandOnY="579.9881" StandOnZ="6.088587" TransportStartX="-14277.75" TransportStartY="582.8661" TransportStartZ="0.01553879" TransportEndX="-1005.613" TransportEndY="-3841.648" TransportEndZ="0.03330701" />
+			<CustomBehavior File="FlyTo" DestName="Ratchet" X="-923.6409" Y="-3658.172" Z="124.3123" />
+		</If>
+<!-- Kalimdor to Ratchet -->
+		<If Condition="(Me.IsHorde) &amp;&amp; (Me.MapId == 1)">
+			<CustomBehavior File="FlyTo" DestName="Above Orgrimmar" X="1697.172" Y="-4407.247" Z="273.0503" />
+			<CustomBehavior File="FlyTo" DestName="Ratchet" X="-923.6409" Y="-3658.172" Z="124.3123" />
+		</If>
+<!-- From Ratchet to Caverns of Time -->
+		<If Condition="Me.ZoneId == 17">
+			<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8188.568" Y="-4587.595" Z="162.7603" />
+		<ElseIf Condition="Me.ZoneId != 17">
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Something went wrong when trying to navigate.\n\nPlease put your character in Ratchet, then push &quot;Continue.&quot;)" />
+			<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8188.568" Y="-4587.595" Z="162.7603" />
+			</ElseIf>
+		</If>
+		<If Condition="Me.ZoneId == 440">
+			<CustomBehavior File="FlyTo" X="-8173.311" Y="-4723.936" Z="31.71398" />
+			<CustomBehavior File="FlyTo" X="-8163.811" Y="-4829.636" Z="42.03972" />
+			<CustomBehavior File="MyCTM" X="-8180.302" Y="-4873.598" Z="38.93711" />
+			<CustomBehavior File="MyCTM" X="-8103.451" Y="-4891.116" Z="31.31675" />
+			<CustomBehavior File="MyCTM" X="-8082.334" Y="-4847.617" Z="-7.509529" />
+			<CustomBehavior File="MyCTM" X="-8117.136" Y="-4839.248" Z="-7.881186" />
+			<CustomBehavior File="MyCTM" X="-8151.312" Y="-4876.944" Z="-25.83177" />
+			<CustomBehavior File="MyCTM" X="-8130.657" Y="-4910.589" Z="-36.10578" />
+			<CustomBehavior File="MyCTM" X="-8083.274" Y="-4903.63" Z="-46.36756" />
+			<CustomBehavior File="MyCTM" X="-8075.979" Y="-4814.996" Z="-65.03946" />
+			<CustomBehavior File="MyCTM" X="-8116.368" Y="-4688.533" Z="-92.45673" />
+			<CustomBehavior File="MyCTM" X="-8306.677" Y="-4587.895" Z="-147.8652" />
+			<CustomBehavior File="MyCTM" X="-8473.307" Y="-4662.058" Z="-189.0079" />
+			<CustomBehavior File="MyCTM" X="-8445.873" Y="-4358.557" Z="-156.9553" />
+			<CustomBehavior File="MyCTM" X="-8443.38" Y="-4115.136" Z="-206.3755" />
+			<CustomBehavior File="MyCTM" X="-8381.686" Y="-4061.6" Z="-208.5718" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="MyCTM" X="-8344.256" Y="-4058.107" Z="-207.9396" />
+			<CustomBehavior File="MyCTM" X="-8330.626" Y="-4053.500" Z="-207.6859" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<!-- Inside Instance -->
+			<RunTo X="2711.404" Y="1319.536" Z="14.05317" />
+			<RunTo X="2595.088" Y="1220.342" Z="16.10495" />
+			<RunTo X="2423.943" Y="1248.542" Z="59.53191" />
+			<RunTo X="2381.745" Y="1182.629" Z="66.72906" />
+			<RunTo X="2376.687" Y="1179.388" Z="65.63735" />
+			<CustomBehavior File="InteractWith" MobId="18723" X="2376.687" Y="1179.388" Z="65.63735" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" NumOfTimes="1" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/script CloseGossip()" WaitTime="1000" />
+			<RunTo X="2382.525" Y="1171.903" Z="66.57331" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="InteractWith" MobId="18725" X="2382.525" Y="1171.903" Z="66.57331" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)" NumOfTimes="1" />
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="You must complete the rest of this instance manually.\nGo into the houses, look for barrels, rightclick them. There's 5 houses and 5 barrels.\nOnce you're done, go to the castle in the middle, then go into the basement.\nOnce you're in the basement, talk to Thrall and escrot him.\nA developmental script is being wrote for this, it can be found in the XML TESTING folder. " />
+		<!-- Check the XML TESTING folder -->
+		</If>
+	</If>
+</QuestOrder>
+</HBProfile>

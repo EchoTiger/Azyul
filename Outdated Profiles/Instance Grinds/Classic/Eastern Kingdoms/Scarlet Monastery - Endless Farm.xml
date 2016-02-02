@@ -1,0 +1,147 @@
+<HBProfile>
+<Name>Mjj23's Scarlet Monastery Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Scarlet Monastery
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Silk Cloth/Transmog items
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Leonard Porter" Entry="12942" Type="Repair" X="949.8846" Y="-1435.649" Z="62.59014" /> <!-- Chillwind Camp Vendor -->
+		<Vendor Name="Archibald Kava" Entry="2113" Type="Repair" X="1860.848" Y="1568.365" Z="94.31361"/> <!-- Deathknell Vendor-->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="947.6384" Y="-1460.586" Z="62.53422" /> <!-- Chillwind Camp Vendor -->
+		<Mailbox X="1843.379" Y="1584.786" Z="93.73871"/> <!-- Deathknell Mailbox -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+<Blacklist>
+	<Mob Name="Training Dummy" Id="64446" Flags="Combat,Pull" />
+	<Mob Name="Training Dummy" Id="60197" Flags="Combat,Pull" />
+</Blacklist>
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.ZoneId == 6109)" >
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/> 
+		
+</If>
+	<!-- Travel to Scarlet Halls --> 
+<While Condition="true" >
+	<If Condition="!(Me.ZoneId == 6109)" >
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+		<CustomBehavior File="Message" Text="Moving to Scarlet Monastery Location." LogColor="Lime" />
+		<CustomBehavior File="FlyTo" DestName="Scarlet Monastery" X="2820.969" Y="-699.184" Z="137.4398" />
+		<CustomBehavior File="ForcedDismount" />
+		<RunTo X="2912.714" Y="-802.7842" Z="160.333" />
+		<CustomBehavior File="MyCTM" X="2918.915" Y="-801.9002" Z="160.333" /> <!-- Enters instance if not already inside -->
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	</If>				
+	<!-- Begin Instance Grind -->
+	<If Condition="(Me.ZoneId == 6109)" >
+		<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+		<RunTo X="1124.644" Y="512.467" Z="0.989549" />
+		<RunTo X="1106.242" Y="544.0167" Z="0.0500363" />
+		<RunTo X="1140.303" Y="557.7011" Z="0.265174" />
+		<RunTo X="1127.501" Y="580.817" Z="1.697153" />
+		<RunTo X="1137.596" Y="614.2972" Z="0.3233197" />
+		<RunTo X="1160.397" Y="671.4531" Z="1.801069" />
+		<RunTo X="1091.045" Y="671.4394" Z="0.5062754" />
+		<RunTo X="1124.811" Y="686.7112" Z="1.278597" /> <!-- Pull Thalanos the Soulrender -->
+		<CustomBehavior File="InteractWith" MobId="59789" MobState="Alive" WaitForNpcs="false" />
+		<RunTo X="1057.035" Y="652.348" Z="0.995855" />
+		<RunTo X="1034.865" Y="637.7167" Z="0.3460962" />
+		<RunTo X="1035.158" Y="598.6147" Z="0.3450096" />
+		<RunTo X="985.9124" Y="597.5627" Z="0.6839631" />
+		<RunTo X="985.0001" Y="613.1309" Z="0.6839631" />
+		<RunTo X="997.6886" Y="630.3215" Z="0.9425787" />
+		<RunTo X="995.476" Y="578.9769" Z="1.267596" />
+		<RunTo X="970.4528" Y="566.5346" Z="1.160946" />
+		<RunTo X="948.6735" Y="583.158" Z="0.6841602" />
+		<RunTo X="939.0543" Y="625.1101" Z="1.160435" />
+		<RunTo X="970.1127" Y="643.9813" Z="1.163208" />
+		<RunTo X="915.5872" Y="642.5089" Z="9.886548" />
+		<RunTo X="916.0742" Y="661.3508" Z="11.63519" />
+		<RunTo X="888.3187" Y="630.6021" Z="11.33823" />
+		<RunTo X="862.0593" Y="625.569" Z="10.0504" />
+		<RunTo X="859.0952" Y="584.7045" Z="9.989969" />
+		<CustomBehavior File="InteractWith" MobId="59223" X="860.72" Y="588.25" Z="10.01" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" /> <!-- Pull Brother Korloff -->
+		<RunTo X="836.4715" Y="605.2682" Z="13.26284" />
+		<RunTo X="811.1169" Y="625.0687" Z="12.80538" />
+		<RunTo X="806.0803" Y="616.992" Z="12.79948" />
+		<RunTo X="812.2612" Y="583.3394" Z="12.80545" />
+		<RunTo X="792.9446" Y="582.5624" Z="12.80699" />
+		<RunTo X="786.3499" Y="596.3389" Z="12.80081" />
+		<RunTo X="761.9916" Y="551.3666" Z="12.80551" />
+		<RunTo X="760.2312" Y="660.0514" Z="12.80423" />
+		<RunTo X="749.5308" Y="605.6639" Z="15.02725" /> <!-- Pull Commander Durand and High Inquisitor Whitemane -->
+		<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+		<RunTo X="1124.644" Y="512.467" Z="0.989549" />
+		<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" /> 
+		<CustomBehavior File="MyCTM" X="1124.379" Y="503.5885" Z="0.9895217" />   />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+		<!-- End Instance Grind -->
+	</If>
+	<!-- Checks if bags are full -->	
+	<If Condition="HasSpell(61447) || HasSpell(61425)" >
+		<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+	</If>
+			
+	<If Condition="(Me.FreeBagSlots &lt;= 10) &amp;&amp; (Me.IsAlliance)" >
+		<CustomBehavior File="Message" Text="Moving to Chillwind Camp Mailbox" LogColor="Lime" />
+		<RunTo X="2912.714" Y="-802.7842" Z="160.333" />
+		<CustomBehavior File="FlyTo" DestName="Chillwind Camp" X="947.6384" Y="-1460.586" Z="62.53422" />
+		<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+	</If>
+			
+	<If Condition="(Me.FreeBagSlots &lt;= 10) &amp;&amp; (Me.IsHorde)" >
+		<CustomBehavior File="Message" Text="Moving to Deathknell Mailbox" LogColor="Lime" />
+		<RunTo X="2912.714" Y="-802.7842" Z="160.333" />
+		<CustomBehavior File="FlyTo" DestName="Deathknell" X="1843.379" Y="1584.786" Z="93.73871" />
+		<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+	</If>
+			
+	<!-- End bag check -->
+	
+</While>				
+				
+</QuestOrder>
+
+</HBProfile>

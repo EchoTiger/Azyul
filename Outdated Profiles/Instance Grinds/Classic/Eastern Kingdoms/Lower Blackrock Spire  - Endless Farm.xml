@@ -1,0 +1,181 @@
+<HBProfile>
+<Name>Mjj23's Lower Blackrock Spire Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Lower Blackrock Spire
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Large Brilliant Shards/Recipes/Transmog
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Fergus Gravelsmash" Entry="47937" Type="Repair" X="-7093.68" Y="-1268.31" Z="270.485" />
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-7112.238" Y="-1199.937" Z="306.9844" /> <!-- Iron Summit -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 229)" >
+
+		<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/> 
+</If>		
+	<!-- Travel to Blackrock Mountain --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 229)" >
+		<While Condition="(Me.MapId == 0)" >
+			<!-- Navigation to deal with being inside mountain -->
+			<If Condition="Me.ZoneId != 25" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Looks like we're outside of the mounting.  Entering it from the north.&quot;);" />
+				<CustomBehavior File="FlyTo" X="-7346.831" Y="-1098.501" Z="280.8842" />
+				<CustomBehavior File="MyCTM" X="-7406.253" Y="-1104.503" Z="281.3838" />
+				<CustomBehavior File="MyCTM" X="-7424.696" Y="-1060.343" Z="275.2023" />
+				<CustomBehavior File="MyCTM" X="-7495.707" Y="-1076.849" Z="264.9199" />
+			</If>
+			<If Condition="Me.ZoneId == 25" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: I think we're in the mountain now.  Going to instance portal.&quot;);" />
+				<If Condition="Me.Location.Distance(new WoWPoint(-7514.638, -1334.04, 291.6871)) &gt;= 60" >
+					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Flying causes issues in this area.  Attempting to run instead.&quot;);" />
+					<RunTo X="-7527.242" Y="-1225.861" Z="285.7321" />
+					<CustomBehavior File="MyCTM" X="-7520.856" Y="-1239.994" Z="286.877" />
+					<CustomBehavior File="MyCTM" X="-7508.81" Y="-1318.492" Z="291.6873" />
+					<CustomBehavior File="MyCTM" X="-7511.87" Y="-1331.722" Z="291.6815" />
+				</If>
+				<CustomBehavior File="MyCTM" X="-7525.648" Y="-1334.353" Z="289.8185" TerminateWhen="Me.MapId == 229" /> <!-- Enters instance if not already inside -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId == 229" />
+			</If>
+		</While>
+	</If>
+	<!-- Begin Instance Grind -->
+		<While Condition="(Me.MapId == 229)" >
+						
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+						<RunTo X="47.56035" Y="-260.798" Z="65.3494" />
+						<RunTo X="13.07125" Y="-260.489" Z="65.34661" />
+						<RunTo X="19.91747" Y="-321.4225" Z="48.86771" />
+						<RunTo X="35.89954" Y="-398.6806" Z="48.66474" />
+						<RunTo X="66.35777" Y="-437.8861" Z="41.58094" />
+						<RunTo X="54.58681" Y="-459.7733" Z="24.42554" />
+						<RunTo X="56.99454" Y="-505.8832" Z="29.19505" />
+						<RunTo X="57.48524" Y="-562.578" Z="30.58922" />
+						<RunTo X="-35.76619" Y="-584.1786" Z="29.19088" />
+						<RunTo X="-34.04535" Y="-563.9985" Z="29.19088" />
+						<RunTo X="-65.74818" Y="-533.8641" Z="29.19088" />
+						<RunTo X="-37.56787" Y="-501.0093" Z="29.15779" />
+						<RunTo X="-36.75502" Y="-408.9257" Z="31.56449" />
+						<RunTo X="-35.52452" Y="-371.4105" Z="31.61827" />
+						<RunTo X="-25.36402" Y="-346.8853" Z="31.61827" />
+						<RunTo X="-46.95684" Y="-325.2504" Z="42.8935" />
+						<RunTo X="-26.73856" Y="-305.4387" Z="31.61661" /> <!-- High Lord Omokk -->
+						<RunTo X="-0.2307441" Y="-522.6486" Z="29.27687" />
+						<RunTo X="-50.31767" Y="-452.1209" Z="16.40199" />
+						<RunTo X="-51.08762" Y="-486.3429" Z="16.25525" />
+						<RunTo X="-116.8228" Y="-481.8478" Z="24.52526" />
+						<RunTo X="-38.46026" Y="-547.6671" Z="16.12449" />
+						<RunTo X="-34.8586" Y="-485.2154" Z="-18.78623" />
+						<RunTo X="-44.24519" Y="-523.9489" Z="-18.81132" />
+						<RunTo X="-17.8281" Y="-556.5281" Z="-18.77751" />
+						<RunTo X="-71.86403" Y="-576.1794" Z="-18.85627" />
+						<RunTo X="-59.59029" Y="-456.9776" Z="-18.64425" />
+						<RunTo X="-12.69461" Y="-457.6503" Z="-18.64425" /> <!-- War Master Voone -->
+						<RunTo X="19.22284" Y="-578.5579" Z="-18.60154" />
+						<RunTo X="27.14918" Y="-552.9596" Z="-18.60154" /> <!-- Make sure bot gets through small gap -->
+						<RunTo X="28.88027" Y="-532.0402" Z="-18.60154" />
+						<RunTo X="22.79866" Y="-511.7235" Z="-18.58941" /> <!-- Done -->
+						<RunTo X="26.66781" Y="-476.5891" Z="-18.52622" />
+						<RunTo X="-23.04701" Y="-412.7581" Z="-18.93495" />
+						<RunTo X="-39.68845" Y="-422.2999" Z="-18.93495" />
+						<RunTo X="-81.45041" Y="-451.6027" Z="-18.93495" />
+						<RunTo X="-98.99741" Y="-436.5693" Z="-18.93495" />
+						<RunTo X="-112.1312" Y="-481.3074" Z="-18.45637" />
+						<RunTo X="-138.3517" Y="-508.6295" Z="-18.45641" />
+						<RunTo X="-155.4883" Y="-499.9082" Z="-18.45638" />
+						<RunTo X="-111.8702" Y="-548.5732" Z="2.40712" /> <!-- Mother Smolderweb -->
+						<RunTo X="-138.386" Y="-484.0776" Z="11.5647" /> <!-- Stop for rare spawn Crystal Fang -->
+						<RunTo X="-89.35365" Y="-401.4827" Z="37.52789" />
+						<RunTo X="-41.53049" Y="-373.0183" Z="50.41431" />
+						<RunTo X="-18.54184" Y="-388.2628" Z="48.69742" />
+						<RunTo X="-166.7009" Y="-368.441" Z="64.40096" />
+						<RunTo X="-169.8849" Y="-456.0733" Z="87.39027" />
+						<RunTo X="-201.2407" Y="-456.0627" Z="87.39027" />
+						<RunTo X="-196.6066" Y="-472.6129" Z="87.39027" /> <!-- Quartermaster Zigris -->
+						<RunTo X="-206.3342" Y="-481.851" Z="87.39027" />
+						<RunTo X="-192.1593" Y="-325.3607" Z="64.42539" /> <!-- Halcyon -->
+						<RunTo X="-175.9525" Y="-325.7746" Z="64.40189" /> <!-- Gizrul the Slavener -->
+						<RunTo X="-122.8303" Y="-349.9557" Z="70.95246" />
+						<RunTo X="-121.4249" Y="-298.1371" Z="70.95246" />
+						<RunTo X="-48.92275" Y="-301.5529" Z="70.94068" />
+						<RunTo X="-53.17622" Y="-427.7367" Z="77.75019" />
+						<RunTo X="-55.41947" Y="-481.798" Z="77.91508" />
+						<RunTo X="-80.53194" Y="-521.5865" Z="82.43058" />
+						<RunTo X="-24.96272" Y="-486.8489" Z="90.63306" /> <!-- Overlord Wyrmthalak -->
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						<RunTo X="58.40748" Y="-325.1075" Z="53.91624" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+                        <CustomBehavior File="MyCTM" X="64.15419" Y="-325.098" Z="54.03779" TerminateWhen="Me.MapId != 229" />
+                        <CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.MapId != 229" />
+                        <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<!-- End Instance Grind -->
+		</While>
+	<!-- Checks if bags are full -->
+			<If Condition="Me.FreeBagSlots &lt;= 15" >
+				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to Sell and Repair.&quot;);" />
+				<CustomBehavior File="MyCTM" X="-7511.293" Y="-1301.714" Z="296.6021" />
+				<CustomBehavior File="MyCTM" X="-7521.717" Y="-1234.427" Z="285.7122" />
+				<CustomBehavior File="MyCTM" X="-7534.948" Y="-1211.68" Z="285.4543" />
+				<RunTo X="-7488.923" Y="-1074.555" Z="265.2351" />
+				<CustomBehavior File="MyCTM" X="-7426.333" Y="-1060.413" Z="273.7263" />
+				<CustomBehavior File="MyCTM" X="-7408.079" Y="-1104.025" Z="278.0757" />
+				<CustomBehavior File="MyCTM" X="-7343.334" Y="-1098.286" Z="277.23" />
+				<If Condition="Me.IsAlliance" >
+						<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+				</If>
+				<If Condition="Me.IsHorde" >
+						<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+				</If>
+			</If>			
+	<!-- End bag check -->
+	
+</While>
+				
+				
+</QuestOrder>
+
+</HBProfile>

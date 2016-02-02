@@ -1,0 +1,142 @@
+<HBProfile>
+<Name>Mjj23's Bonechewer Leather Transmog Grind [$Rev$]</Name>
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Hellfire Peninsula	
+// Farm mobs: Bonechewer
+// Grind Speed: 200 mobs/h (with 90 mage)
+// Grind what? Bonechewer Leather
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<ProtectedItems>
+		<Item Name = "Bonechewer Skincloak" Entry = "24697"/>
+		<Item Name = "Bonechewer Chestpiece" Entry = "24695"/>
+		<Item Name = "Bonechewer Ripleggings" Entry = "24698"/>
+		<Item Name = "Bonechewer Bands" Entry = "24700"/>
+		<Item Name = "Bonechewer Shoulderguards" Entry = "24699"/>
+		<Item Name = "Bonechewer Pelt-Girdle" Entry = "24693"/>
+		<Item Name = "Bonechewer Shredboots" Entry = "24694"/>
+		<Item Name = "Bonechewer Spikegloves" Entry = "24696"/>
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Rohok" Entry="16583" Type="Repair" X="167.2784" Y="2795.669" Z="113.3654" /> // Horde Repair
+		<Vendor Name="Markus Scylan" Entry="22227" Type="Repair" X="-707.8071" Y="2716.121" Z="94.73695" /> // Alliance Repair
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="171.0556" Y="2625.222" Z="87.16559" /> // Horde Mailbox
+		<Mailbox X="-706.6517" Y="2699.225" Z="94.43571" /> // Alliance Mailbox
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		</AvoidMobs>
+
+
+<Blackspots>
+	
+</Blackspots>
+	
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+	
+
+		<While Condition="(Me.MapId == 530)">
+				<While Condition="(Me.MapId == 530) &amp;&amp; (!HasItem(24693) || !HasItem(24694) || !HasItem(24695) || !HasItem(24696) || !HasItem(24697) || !HasItem(24698) || !HasItem(24699) || !HasItem(24700))">
+						<CustomBehavior File="Message" Text="Moving to Hellfire Peninsula Location" LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Hellfire Peninsula" X="-512.6298" Y="2990.226" Z="10.83725" />
+						<CustomBehavior File="WaitTimer" WaitTime="6000" />
+						<CustomBehavior File="ForcedDismount" />
+		
+		
+			<SetGrindArea>
+				<GrindArea>
+					<Name>Bonechewer Transmog Grind [$Rev$]</Name>
+					<Factions>1662</Factions>
+					<TargetMinLevel>57</TargetMinLevel>
+					<TargetMaxLevel>62</TargetMaxLevel>
+					<Hotspots>
+						<Hotspot X="-512.6298" Y="2990.226" Z="10.83725" />
+						<Hotspot X="-472.1049" Y="2945.679" Z="19.60705" />
+						<Hotspot X="-432.4988" Y="2962.974" Z="7.292051" />
+						<Hotspot X="-426.1092" Y="2909.929" Z="19.80767" />
+						<Hotspot X="-483.755" Y="2899.712" Z="31.51213" />
+						<Hotspot X="-399.9985" Y="2899.916" Z="11.52204" />
+						<Hotspot X="-372.758" Y="2820.145" Z="8.79358" />
+						<Hotspot X="-330.7367" Y="2734.577" Z="22.24634" />
+						<Hotspot X="-343.6291" Y="2687.094" Z="33.98387" />
+						<Hotspot X="-330.7874" Y="2604.692" Z="43.09659" />
+						<Hotspot X="-324.2527" Y="2571.4" Z="44.46466" />
+						<Hotspot X="-322.8495" Y="2523.195" Z="42.04469" />
+						<Hotspot X="-301.4482" Y="2473.259" Z="40.64686" />
+						<Hotspot X="-298.1133" Y="2437.952" Z="43.36177" />
+						<Hotspot X="-318.065" Y="2416.419" Z="43.82423" />
+						<Hotspot X="-285.5714" Y="2379.351" Z="49.2611" />
+						<Hotspot X="-275.2187" Y="2360.976" Z="51.25264" />
+						<Hotspot X="-277.4909" Y="2330.993" Z="53.65047" />
+						<Hotspot X="-283.2336" Y="2247.388" Z="64.11977" />
+						<Hotspot X="-167.5869" Y="2299.355" Z="67.11823" />
+						<Hotspot X="-172.4243" Y="2340.98" Z="59.86039" />
+						<Hotspot X="-170.0841" Y="2358.002" Z="57.0633" />
+						<Hotspot X="-170.8579" Y="2380.351" Z="53.25071" />
+						<Hotspot X="-145.9064" Y="2409.416" Z="48.08712" />
+						<Hotspot X="-145.2829" Y="2418.827" Z="48.57395" />
+						<Hotspot X="-130.2334" Y="2463.143" Z="47.43765" />
+						<Hotspot X="-151.2092" Y="2498.938" Z="44.90348" />
+						<Hotspot X="-171.5621" Y="2500.095" Z="43.06289" />
+						<Hotspot X="-132.4277" Y="2519.031" Z="46.05212" />
+						<Hotspot X="-145.5528" Y="2538.665" Z="43.40423" />
+						<Hotspot X="-160.2382" Y="2587.191" Z="40.35173" />
+						<Hotspot X="-166.8107" Y="2631.455" Z="41.20694" />
+						<Hotspot X="-167.3519" Y="2684.999" Z="43.00128" />
+						<Hotspot X="-139.0832" Y="2778.034" Z="40.41083" />
+						<Hotspot X="-143.5716" Y="2810.573" Z="37.00082" />
+						<Hotspot X="-160.4257" Y="2838.425" Z="27.50223" />
+
+					</Hotspots>
+				</GrindArea>
+			</SetGrindArea>
+			<GrindTo Condition="(Me.FreeBagSlots &lt;= 6) ||  (HasItem(24693) &amp;&amp; HasItem(24694) &amp;&amp; HasItem(24695) &amp;&amp; HasItem(24696) &amp;&amp; !HasItem(24697) &amp;&amp; !HasItem(24698) &amp;&amp; !HasItem(24699) &amp;&amp; HasItem(24700))"/>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0  &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Thrallmar Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="171.0556" Y="2625.222" Z="87.16559" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &gt; 20.0  &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Honor Hold Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" X="-706.6517" Y="2699.225" Z="94.43571" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+		
+        </While>    
+		</While>
+				
+	</QuestOrder>
+
+</HBProfile>

@@ -1,0 +1,134 @@
+<HBProfile>
+<Name>Mjj23's Scarlet Halls Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Scarlet Halls
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Silk Cloth/Transmog items
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Leonard Porter" Entry="12942" Type="Repair" X="949.8846" Y="-1435.649" Z="62.59014" /> <!-- Chillwind Camp Vendor -->
+		<Vendor Name="Archibald Kava" Entry="2113" Type="Repair" X="1860.848" Y="1568.365" Z="94.31361"/> <!-- Deathknell Vendor-->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="947.6384" Y="-1460.586" Z="62.53422" /> <!-- Chillwind Camp Vendor -->
+		<Mailbox X="1843.379" Y="1584.786" Z="93.73871"/> <!-- Deathknell Mailbox -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.ZoneId == 6052)" >
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/>  
+</If>
+	<!-- Travel to Scarlet Halls --> 
+<While Condition="true" >
+	<If Condition="!(Me.ZoneId == 6052)" >
+			<While Condition="(Me.MapId == 0)" >
+				
+							<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+							<CustomBehavior File="Message" Text="Moving to Scarlet Monastery Location." LogColor="Lime" />
+							<CustomBehavior File="FlyTo" DestName="Scarlet Monastery" X="2820.969" Y="-699.184" Z="137.4398" />
+							<CustomBehavior File="ForcedDismount" />
+							<RunTo X="2871.466" Y="-820.1647" Z="160.3326" />
+							<CustomBehavior File="MyCTM" X="2865.655" Y="-821.7447" Z="160.3326" /> <!-- Enters instance if not already inside -->
+							<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</While>
+	</If>
+		<!-- Begin Instance Grind -->
+	<While Condition="(Me.ZoneId == 6052)" >
+							<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+							<RunTo X="820.743" Y="607.8125" Z="13.63888" />
+							<RunTo X="838.5411" Y="558.5486" Z="12.81223" />
+							<RunTo X="851.7104" Y="553.1015" Z="13.4873" />
+							<CustomBehavior File="InteractWith" MobId="59163" X="864.9913" Y="537.9496" Z="12.90997" CollectionDistance="200" /> <!-- Pick up Shield -->
+							<CustomBehavior File="RunLikeHell" NumOfTimes="1" UseCTM="True" >
+							<Hotspot X="934.9882" Y="535.9525" Z="12.90587" />
+							</CustomBehavior>
+							<RunTo X="985.7662" Y="535.8728" Z="13.48854" />
+							<RunTo X="986.7923" Y="515.2928" Z="13.48854" />
+							<RunTo X="1008.277" Y="514.0673" Z="12.90636" /> <!-- Pull Houndmaster Braun -->
+							<RunTo X="1070.534" Y="505.3835" Z="2.822071" />
+							<RunTo X="1072.327" Y="485.5903" Z="2.806516" />
+							<RunTo X="1096.851" Y="475.2554" Z="2.821958" />
+							<RunTo X="1127.028" Y="468.46" Z="2.822089" />
+							<RunTo X="1123.749" Y="444.9704" Z="2.822262" />
+							<RunTo X="1205.758" Y="444.3151" Z="0.9877673" /> <!-- Pull Armsmaster Harlan -->
+							<RunTo X="1168.716" Y="505.654" Z="12.81847" />
+							<RunTo X="1189.809" Y="515.6321" Z="12.82621" />
+							<RunTo X="1189.144" Y="540.1186" Z="12.81575" />
+							<RunTo X="1229.409" Y="550.1929" Z="12.79413" />
+							<RunTo X="1251.247" Y="549.4538" Z="12.7911" />
+							<RunTo X="1303.794" Y="549.7339" Z="12.80463" />
+							<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+							<RunTo X="820.743" Y="607.8125" Z="13.63888" />
+							<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" /> 
+							<CustomBehavior File="MyCTM" X="820.2064" Y="617.4401" Z="13.51544" />   />
+							<CustomBehavior File="WaitTimer" WaitTime="15000" />
+							<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+							<!-- End Instance Grind -->
+	</While>
+	<!-- Checks if bags are full -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Chillwind Camp Mailbox" LogColor="Lime" />
+					<RunTo X="2912.714" Y="-802.7842" Z="160.333" />
+					<CustomBehavior File="FlyTo" DestName="Chillwind Camp" X="947.6384" Y="-1460.586" Z="62.53422" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Deathknell Mailbox" LogColor="Lime" />
+					<RunTo X="2912.714" Y="-802.7842" Z="160.333" />
+					<CustomBehavior File="FlyTo" DestName="Deathknell" X="1843.379" Y="1584.786" Z="93.73871" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+	<!-- End bag check -->
+	
+</While>
+				
+				
+</QuestOrder>
+
+</HBProfile>

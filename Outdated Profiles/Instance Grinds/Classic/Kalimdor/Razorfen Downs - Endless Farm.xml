@@ -1,0 +1,192 @@
+<HBProfile>
+<Name>Mjj23's Razorfen Downs Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Razorfen Downs
+// Farm mobs: All
+// Grind Speed: N/A
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		<Item Name = "Tyrant's Chestpiece" Entry = "14835"/>
+		<Item Name = "Tyrant's Breastplate" Entry = "14840"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Krinkle Goodsteel" Entry="5411" Type="Repair" X="-7232.01" Y="-3751.71" Z="9.092834" />
+	
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-7082.707" Y="-3851.493" Z="9.774841" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+	<Blackspot X="1485.6520" Y="807.7772" Z="8.8910" Radius="5" />
+</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<If Condition="!(Me.MapId == 209)" >	
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+</If>
+		<!-- Travel to Zul'Darrak --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 129)" >	
+		<While Condition="(Me.MapId == 1)" >
+		
+						<CustomBehavior File="Message" Text="Moving to Razorfen Downs Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Razorfen Downs " X="-4640.753" Y="-2481.379" Z="85.48923" />
+						<CustomBehavior File="MyCTM" X="-4661.156" Y="-2532.165" Z="82.12328" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
+		<!-- Begin Instance Grind -->	
+		<While Condition="(Me.MapId == 129)" >
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+			<RunTo X="2592.7605" Y="1080.2809" Z="54.9465"  />
+			<RunTo X="2595.8345" Y="1040.0573" Z="52.5953"  />
+			<RunTo X="2563.3872" Y="1007.8085" Z="52.0392"  />
+			<RunTo X="2575.2991" Y="944.7675" Z="53.4094"  />
+			<RunTo X="2547.5334" Y="979.0460" Z="49.8324"  />
+			<RunTo X="2519.4050" Y="932.9871" Z="47.6536"  />
+			<RunTo X="2501.3660" Y="942.7253" Z="48.8917"  />
+			<RunTo X="2542.6450" Y="879.9821" Z="47.7638"  />
+			<RunTo X="2546.7324" Y="854.0009" Z="51.2636"  />
+			<RunTo X="2545.0234" Y="853.6961" Z="51.3201"  />
+			 <RunTo X="2495.037" Y="858.0161" Z="47.99905" />
+	
+			<CustomBehavior File="InteractWith" MobId="148917" Range="5" NumOfTimes="1"  />
+			<Custombehavior File="KillOrder" KillOrder1="7349" />
+			<RunTo X="2488.337" Y="803.2507" Z="43.0411" />
+			
+			
+			<CustomBehavior File="InteractWith" MobId="148917" Range="5" NumOfTimes="1"  />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<RunTo X="2533.047" Y="852.9536" Z="49.08681" />
+			<RunTo X="2526.445" Y="867.541" Z="47.67834" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<RunTo X="2546.076" Y="892.949" Z="47.81307" />
+
+			<CustomBehavior File="InteractWith" MobId="148917" Range="5" NumOfTimes="1"  />
+			<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7355" /> <!-- Pull Tuten'kash -->
+			
+			<RunTo X="2504.3606" Y="853.7534" Z="47.6786"  />
+			<RunTo X="2487.4138" Y="806.0436" Z="43.0063"  />
+			<RunTo X="2533.9629" Y="785.0749" Z="46.7078"  />
+			<RunTo X="2553.6716" Y="739.0954" Z="54.2732"  />
+			<RunTo X="2529.1648" Y="799.5313" Z="45.3445"  />
+			<RunTo X="2497.9963" Y="784.2292" Z="39.4365"  />
+			<RunTo X="2521.9263" Y="727.5555" Z="40.2618"  />
+			<RunTo X="2479.83" Y="677.6871" Z="55.30336" />
+
+			<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7357" /> <!-- Pull Morderesh Fire Eye -->
+			
+			<RunTo X="2478.6621" Y="763.5942" Z="46.1015"  />
+			<RunTo X="2442.1746" Y="790.8679" Z="43.1922"  />
+			<RunTo X="2469.2385" Y="918.2549" Z="26.0244"  />
+			<RunTo X="2474.2275" Y="991.4086" Z="23.3012"  />
+			<RunTo X="2446.4658" Y="1035.8593" Z="24.5329"  />
+			<RunTo X="2349.1292" Y="1023.3545" Z="25.1699"  />
+			
+			<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="8567" /> <!-- Pull Glutton -->
+			
+			<RunTo X="2320.5015" Y="963.1300" Z="26.8208"  />
+			<RunTo X="2356.5957" Y="916.3298" Z="28.4680"  />
+			<RunTo X="2379.1755" Y="903.9089" Z="28.9487"  />
+			<RunTo X="2447.6890" Y="943.1490" Z="35.8268"  />
+			<RunTo X="2446.9285" Y="1004.4048" Z="38.7656"  />
+			<RunTo X="2419.8435" Y="1020.2457" Z="36.7209"  />
+			<RunTo X="2370.9285" Y="1009.9884" Z="37.4855"  />
+			<RunTo X="2352.8975" Y="978.5025" Z="39.4841"  />
+			<RunTo X="2349.3840" Y="954.0823" Z="43.0717"  />
+			<RunTo X="2399.5928" Y="929.2380" Z="42.1396"  />
+			<RunTo X="2417.6436" Y="931.1963" Z="44.1327"  />
+			<RunTo X="2430.2224" Y="987.0653" Z="48.9093"  />
+			<RunTo X="2378.0532" Y="987.4797" Z="54.5412"  />
+			
+			<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="7358" /> <!-- Pull Amnennar the Coldbringer -->
+			
+			<RunTo X="2402.4412" Y="997.7482" Z="52.1699"  />
+			<RunTo X="2405.1902" Y="1018.8113" Z="37.0656"  />
+			<RunTo X="2405.7874" Y="1043.9088" Z="25.0587"  />
+			<RunTo X="2366.0059" Y="1042.0575" Z="25.3179"  />
+			<RunTo X="2395.7395" Y="1070.9595" Z="29.0534"  />
+			<RunTo X="2399.4563" Y="1096.2534" Z="31.5186"  />
+			<RunTo X="2472.4014" Y="1060.4901" Z="47.9500"  />
+			<RunTo X="2500.6230" Y="1058.6368" Z="47.5189"  />
+			<RunTo X="2566.1987" Y="1057.3710" Z="53.0114"  />
+			<RunTo X="2567.6992" Y="1078.0465" Z="53.2904"  />
+			<RunTo X="2592.4993" Y="1080.5514" Z="54.8517"  />
+			
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+						<CustomBehavior File="MyCTM" X="2592.6338" Y="1116.0023" Z="50.4595"  />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<!-- End Instance Grind -->
+		</While>	
+		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+		<!-- Navigation Code -->	
+					<RunTo X="-4661.156" Y="-2532.165" Z="82.12328" />	
+					<CustomBehavior File="FlyTo" DestName="Mudsprocket" X="-4590.159" Y="-3171.527" Z="34.14507" />
+		<!-- Navigation Code -->
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Razbo Rustgear" Entry="23571" Type="Repair" X="-4603.661" Y="-3210.939" Z="34.92581" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<RunTo X="-4598.771" Y="-3180.247" Z="34.91457" /> <!-- Mailbox -->
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+		</If>
+		
+		
+			
+		<!-- End bag check -->
+			
+			
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

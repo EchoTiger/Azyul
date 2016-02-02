@@ -1,0 +1,168 @@
+<HBProfile>
+<Name>Mjj23's Dire Maul North Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Dire Maul (North)
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Saltstone Plate/Various Transmog
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		<Item Name = "Tyrant's Chestpiece" Entry = "14835"/>
+		<Item Name = "Tyrant's Breastplate" Entry = "14840"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Afran" Entry="40967" Type="Repair" X="-3183.528" Y="1878.203" Z="48.42564" /> <!-- Alliance -->
+		<Vendor Name="Cawind Trueaim" Entry="9548" Type="Repair" X="-4484.554" Y="233.5269" Z="48.3927" /> <!-- Horde -->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-3198.365" Y="1898.748" Z="49.33393" /> <!-- Alliance -->
+		<Mailbox X="-4404.685" Y="238.3757" Z="26.78822" /> <!-- Horde -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		<Mob Name="Gordok Spirit" Entry="11446" />
+		</AvoidMobs>
+
+
+<Blackspots>
+	<Blackspot X="1485.6520" Y="807.7772" Z="8.8910" Radius="5" />
+</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<If Condition="!(Me.MapId == 429)" >
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+		
+		<!-- Travel to Dire Maul (North) --> 
+</If>
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 429)" >
+ 		<While Condition="(Me.MapId == 1)" >
+		
+						<CustomBehavior File="Message" Text="Moving to Dire Maul (North) Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Dire Maul (North)" X="-3519.844" Y="1098.864" Z="161.026" />
+						<CustomBehavior File="MyCTM" X="-3519.844" Y="1094.864" Z="161.026" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
+		<!-- Begin Instance Grind -->	
+		<While Condition="(Me.MapId == 429)" >
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+						<RunTo X="259.7697" Y="-31.65197" Z="-2.5596" />
+						<RunTo X="295.1591" Y="-68.91334" Z="-3.886934" />
+						<RunTo X="352.2098" Y="-107.4893" Z="-3.886914" />
+						<RunTo X="467.0609" Y="-64.8165" Z="-3.886914" />
+						<RunTo X="464.4155" Y="0.5903826" Z="-3.907092" />
+						<RunTo X="407.5555" Y="25.23149" Z="-25.43948" />
+						<RunTo X="358.5423" Y="30.26973" Z="-24.93585" />
+						<RunTo X="357.6159" Y="-57.33456" Z="-25.96548" />
+						<RunTo X="411.8119" Y="-48.66768" Z="-23.15144" />
+						<RunTo X="377.4171" Y="-12.89994" Z="-25.18369" /> <!-- Kill 1st Boss -->
+						<RunTo X="412.14" Y="-1.868421" Z="-24.62733" />
+						<RunTo X="468.8189" Y="10.48983" Z="-3.915042" />
+						<RunTo X="470.7666" Y="63.42831" Z="-3.886911" />
+						<RunTo X="489.7404" Y="96.21218" Z="-2.581882" /> <!-- Kill 2nd Boss -->
+						<RunTo X="396.7097" Y="106.1529" Z="-3.886382" />
+						<RunTo X="383.5477" Y="137.7518" Z="-2.403335" />
+						<RunTo X="407.9969" Y="176.8091" Z="2.852952" />
+						<RunTo X="443.7772" Y="135.6291" Z="-2.584653" />
+						<RunTo X="482.5298" Y="174.8879" Z="2.852973" />
+						<RunTo X="474.7742" Y="252.6805" Z="3.659423" />
+						<RunTo X="481.986" Y="317.993" Z="2.852417" />
+						<RunTo X="445.9945" Y="349.4344" Z="2.852417" />
+						<RunTo X="406.618" Y="334.8925" Z="2.850941" />
+						<RunTo X="387.0246" Y="314.8111" Z="11.22241" />
+						<RunTo X="383.0612" Y="259.9407" Z="11.43955" /> <!-- Begin Kill 3rd Boss -->
+						<RunTo X="339.3554" Y="210.1805" Z="11.20366" />
+						<RunTo X="382.3431" Y="200.9193" Z="11.21689" />
+						<RunTo X="385.8849" Y="253.5398" Z="11.43954" />
+						<RunTo X="325.7581" Y="299.0823" Z="11.20399" />
+						<RunTo X="441.4382" Y="300.9695" Z="11.20338" />
+						<RunTo X="388.1885" Y="257.6944" Z="11.43957" />
+						<RunTo X="420.9334" Y="202.4041" Z="11.21093" />
+						<RunTo X="384.8456" Y="313.1972" Z="11.22001" /> <!-- End Kill 3rd Boss -->
+						<RunTo X="383.5557" Y="369.3245" Z="-0.1871943" />
+						<CustomBehavior File="InteractWith" MobId="177219" X="385.3268" Y="374.2315" Z="-0.1840135" /> <!-- Open Door -->
+						<RunTo X="385.4897" Y="394.073" Z="-1.67664" />
+						<RunTo X="383.9091" Y="462.8903" Z="-7.232197" />
+						<RunTo X="420.3491" Y="540.4078" Z="-18.34318" />
+						<RunTo X="478.0688" Y="542.9188" Z="-25.36841" />
+						<RunTo X="580.9041" Y="545.3105" Z="-25.39972" /> <!-- Kill 4th Boss -->
+						<RunTo X="530.5211" Y="584.3451" Z="-25.40266" />
+						<RunTo X="569.2982" Y="601.7975" Z="-4.754638" />
+						<RunTo X="581.075" Y="569.9071" Z="-4.754638" />
+						<RunTo X="484.3763" Y="562.8719" Z="27.91177" />
+						<RunTo X="486.0189" Y="528.3035" Z="27.91302" />
+						<RunTo X="490.7765" Y="518.1264" Z="29.46263" />
+						<CustomBehavior File="InteractWith" MobId="177217" X="491.2043" Y="515.1331" Z="29.46753" /> <!-- Open Inner Door -->
+						<RunTo X="491.522" Y="497.2397" Z="29.46263" />
+						<RunTo X="563.5868" Y="480.7864" Z="29.46277" />
+						<RunTo X="621.4722" Y="481.5169" Z="29.46277" /> <!-- Kill 5th Boss -->
+						<RunTo X="666.9857" Y="466.5146" Z="29.45624" />
+						<RunTo X="683.8406" Y="503.2158" Z="29.46092" />
+						<RunTo X="720.4388" Y="488.9828" Z="28.17859" />
+						<RunTo X="740.0137" Y="434.5104" Z="28.18003" />
+						<RunTo X="827.6661" Y="484.6625" Z="37.31861" /> <!-- Kill Last Boss -->
+						<RunTo X="284.575" Y="36.7755" Z="-2.763682" />
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						<RunTo X="255.522" Y="-15.48237" Z="-2.560003"  />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+						<CustomBehavior File="MyCTM" X="255.5269" Y="-11.92353" Z="-2.560003" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+		</While>	
+		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Feralas Alliance Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Feralas" X="-3198.365" Y="1898.748" Z="49.33393" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Feralas Horde Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Feralas" X="-4404.685" Y="238.3757" Z="26.78822" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+		<!-- End bag check -->
+			
+			
+			
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

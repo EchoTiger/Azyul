@@ -1,0 +1,357 @@
+<HBProfile>
+<Name>Naxxramas Full Clear Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Frostfever
+// QB Developer: Mjj23
+// Farm zone: Naxxramas
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Transmog/Companions
+///////////////////////////////////////////////////////////////////////
+
+
+<!-- With this setting, 
+ this profile requires you
+ to manually add your own 
+ custom vendor code!! -->
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+</ProtectedItems>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+	<Mailbox X="5483.014" Y="-2644.763" Z="307.0358" />
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+
+
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 604)" >
+
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToNorthrend.xml"/> 
+		
+
+<!-- ALLIANCE CHECK - RIDING -->
+<If Condition="(!HasSpell(54197))  &amp;&amp; (Me.IsAlliance)" >
+	<CustomBehavior File="Message" Text="Training Riding" LogColor="Cornflowerblue" />
+				
+	<If Condition="Me.Gold &gt;= 401" >
+		<RunTo X="2274.391" Y="5174.106" Z="11.17985" />
+		<CustomBehavior File="InteractWith"  MobId="35133" WaitTime="1000" CollectionDistance="50" X="2274.391" Y="5174.106" Z="11.17985" />
+		<CustomBehavior File="ForceTrainRiding" MobId="35133" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
+	</If>
+</If>
+<!-- HORDE CHECK - RIDING -->
+<If Condition="(!HasSpell(54197)) &amp;&amp; (Me.IsHorde)">
+	<CustomBehavior File="Message" Text="Training Riding" LogColor="Cornflowerblue" />
+
+	<!-- Elevator -->
+	<If Condition="(Me.Z &lt; 190)" >
+		<RunTo X="2869.177" Y="6215.224" Z="104.2853" />
+		<CustomBehavior File="UseTransport" TransportId="188521" 
+					WaitAtX="2869.177" WaitAtY="6215.224" WaitAtZ="104.2853"
+					GetOffX="2880.96" GetOffY="6225.813" GetOffZ="208.7495" 
+					TransportStartX="2877.649" TransportStartY="6223.188" TransportStartZ="104.8859" 
+					TransportEndX="2892.18" TransportEndY="6236.337" TransportEndZ="208.908"
+					StandOnX="2878.604" StandOnY="6223.707" StandOnZ="105.3792"  />
+ 	</If>
+	<If Condition="Me.Gold &gt;= 401" >
+		<RunTo X="2773.588" Y="6144.316" Z="208.7535" />
+		<CustomBehavior File="InteractWith"  MobId="35135" WaitTime="1000" CollectionDistance="50" X="2773.588" Y="6144.316" Z="208.7535" />
+		<CustomBehavior File="ForceTrainRiding" MobId="35135" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
+	</If>
+</If>
+
+<!--Flying notification -->
+<If Condition="(!HasSpell(54197))">
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" StopOnContinue="True" Text="You don't have enough gold to train Cold Weather Flying!\nYou must have Cold Weather Flying to continue." />
+</If>
+
+<!-- END OF COLD WEATHER FLYING CHECK -->
+
+</If>
+
+			
+
+<If Condition="Me.Location.Distance(new WoWPoint(3668.428, -1265.881, 244.4986)) &gt; 25 " > <!-- Change this -->
+			<CustomBehavior File="Message" Text="Heading to instance." LogColor="Green" />
+			<CustomBehavior File="FlyTo" X="3671.773" Y="-1050.953" Z="204.5384" /> <!-- CTM into Instance --><!-- Change this -->
+			<CustomBehavior File="FlyTo" X="3667.963" Y="-1261.979" Z="249.9422" />
+			<CustomBehavior File="ForcedDismount" />
+			<CustomBehavior File="MyCTM" X="3659.335" Y="-1282.362" Z="243.8112" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+<!-- CHOP CHOP D: -->
+<While Condition="true" >
+
+		<If Condition="(Me.MapId == 533)" >
+		    
+			    <RunTo X="3001.8191" Y="-3473.6331" Z="298.2192"  />
+				<RunTo X="2965.6343" Y="-3472.6274" Z="297.6235"  />
+				<RunTo X="2938.8828" Y="-3507.9434" Z="297.6282"  />
+				<RunTo X="2874.9585" Y="-3548.5151" Z="297.6151"  />
+				<RunTo X="2892.4900" Y="-3481.8472" Z="297.6194"  />
+				<RunTo X="2835.5496" Y="-3486.5974" Z="297.8647"  />
+				<RunTo X="2727.8867" Y="-3491.2778" Z="262.1205"  />
+			
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="15954" />	<!--Noth the Plaguebringer-->
+				
+				<RunTo X="2683.8760" Y="-3554.3650" Z="261.8213"  />
+				<RunTo X="2685.5569" Y="-3600.3738" Z="261.6116"  />
+				<RunTo X="2740.4727" Y="-3597.9036" Z="257.8673"  />
+				<RunTo X="2804.7993" Y="-3564.9502" Z="252.0363"  />
+				<RunTo X="2808.6174" Y="-3598.7593" Z="257.0222"  />
+				<RunTo X="2839.6580" Y="-3597.7266" Z="259.3291"  />
+				<RunTo X="2879.9324" Y="-3604.7378" Z="268.7133"  />
+				<RunTo X="2860.4880" Y="-3638.7156" Z="269.5502"  />
+				<RunTo X="2890.3799" Y="-3640.5667" Z="274.9667"  />
+				<RunTo X="2894.7285" Y="-3689.5574" Z="284.0607"  />
+				<RunTo X="2869.7019" Y="-3704.4392" Z="284.2530"  />
+				<RunTo X="2819.9624" Y="-3684.7910" Z="273.6213"  />
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="15936" />	<!--Pull Heigan the Unclean-->
+				
+				<!--No Kill Between RunTos-->
+				<RunTo X="2767.5896" Y="-3748.8379" Z="273.6198"  />
+				<RunTo X="2806.5876" Y="-3748.2283" Z="273.8609"  />
+				<RunTo X="2851.5176" Y="-3746.4199" Z="273.5780"  />
+				<RunTo X="2920.8093" Y="-3748.5251" Z="273.5770"  />
+				<RunTo X="2910.2202" Y="-3810.2722" Z="273.6103"  />
+				<RunTo X="2909.7644" Y="-3954.0488" Z="273.6026"  />
+				<!--No Kill Between RunTos-->
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="16011" />	<!--Pull Loatheb-->
+				
+				<RunTo X="2908.458" Y="-4023.706" Z="274.543" />
+				<CustomBehavior File="InteractWith" MobId="181577" Range="4" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				
+				<RunTo X="3041.7617" Y="-3470.2153" Z="298.2176"  />
+				<RunTo X="3090.1973" Y="-3516.4961" Z="287.0797"  />
+				<RunTo X="3141.5073" Y="-3502.8323" Z="287.0661"  />
+				<RunTo X="3181.0063" Y="-3477.9487" Z="287.0820"  />
+				<RunTo X="3239.2336" Y="-3475.4182" Z="287.0758"  />
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="15956" />	<!--Pull Anub'Rekhan-->
+				
+				<RunTo X="3155.2158" Y="-3476.1963" Z="287.0855"  />
+				<RunTo X="3136.5071" Y="-3506.8655" Z="287.0690"  />
+				<RunTo X="3139.9695" Y="-3588.9932" Z="287.0788"  />
+				<RunTo X="3137.2795" Y="-3609.1260" Z="287.0742"  />
+				<RunTo X="3147.4775" Y="-3628.3459" Z="287.0856"  />
+				<RunTo X="3147.4768" Y="-3643.9155" Z="287.0813"  />
+				<RunTo X="3170.2839" Y="-3642.0186" Z="287.1103"  />
+				<RunTo X="3187.8494" Y="-3651.6587" Z="287.0759"  />
+				<RunTo X="3215.7234" Y="-3644.1995" Z="287.0688"  />
+				<RunTo X="3252.4631" Y="-3690.7048" Z="286.4531"  />
+				<RunTo X="3318.4060" Y="-3706.9983" Z="264.1653"  />
+				<RunTo X="3329.0200" Y="-3671.1072" Z="259.0829"  />
+				<RunTo X="3371.3103" Y="-3670.2749" Z="259.0815"  />
+				<RunTo X="3370.0039" Y="-3654.6353" Z="259.0815"  />
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="15953" />	<!--Pull Grand Widow Faerlina-->
+				
+				<RunTo X="3310.6030" Y="-3724.2632" Z="267.7895"  />
+				<RunTo X="3244.6531" Y="-3734.3418" Z="279.9832"  />
+				<RunTo X="3223.5388" Y="-3794.8335" Z="273.9466"  />
+				<RunTo X="3101.5745" Y="-3791.9666" Z="274.2535"  />
+				<RunTo X="3102.6748" Y="-3882.2852" Z="267.5931"  />
+				<RunTo X="3309.8579" Y="-3882.5020" Z="294.6610"  />
+				<RunTo X="3362.7593" Y="-3833.8760" Z="294.6610"  />
+				<RunTo X="3397.8857" Y="-3826.2014" Z="294.7194"  />
+				<RunTo X="3451.3826" Y="-3862.4661" Z="307.9672"  />
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="15952" />	<!--Pull Maexxna-->
+				
+				<RunTo X="3466.548" Y="-3938.502" Z="305.885" />
+				<CustomBehavior File="InteractWith" MobId="181575" Range="4" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				
+				<RunTo X="3084.1477" Y="-3366.2625" Z="298.3184"  />
+				<RunTo X="3102.8928" Y="-3327.3582" Z="293.6289"  />
+				<RunTo X="3135.5928" Y="-3239.7493" Z="294.0701"  />
+				<RunTo X="3095.1238" Y="-3216.9016" Z="294.0945"  />
+				<RunTo X="3083.3699" Y="-3220.1626" Z="294.1166"  />
+				<!-- Jump -->
+				<RunTo X="3049.5908" Y="-3228.2661" Z="293.9788"  />
+				<RunTo X="3049.5908" Y="-3228.2661" Z="293.9788"  />
+				<RunTo X="3010.0535" Y="-3243.4573" Z="294.0629"  />
+				<!-- Jump -->
+				<RunTo X="3028.8230" Y="-3148.3831" Z="294.0746"  />
+				<RunTo X="3069.2339" Y="-3106.6279" Z="294.0759"  />
+				<RunTo X="3095.4324" Y="-3092.0693" Z="294.0711"  />
+				<RunTo X="3048.5911" Y="-3125.7734" Z="294.0637"  />
+				<RunTo X="3062.2839" Y="-3147.5215" Z="293.8424"  />
+				
+				
+				
+				<RunTo X="3061.706" Y="-3197.237" Z="294.0633" />
+				<CustomBehavior File="WaitTimer" WaitTime="120000" />
+				<RunTo X="3104.082" Y="-3146.589" Z="294.0633" />
+				<CustomBehavior File="WaitTimer" WaitTime="180000" />
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="16028" /> <!-- Pull Patchwerk -->
+				<!-- IW Patchwork to avoid pulling in the middle of the slimes -->
+				
+				
+				<RunTo X="3142.6824" Y="-3135.9497" Z="294.0627"  />
+				<RunTo X="3259.7798" Y="-3234.7686" Z="294.0627"  />
+				<RunTo X="3318.0925" Y="-3231.4275" Z="294.0623"  />
+				<RunTo X="3318.1931" Y="-3254.7808" Z="293.7861"  />
+				<RunTo X="3327.5161" Y="-3304.1160" Z="292.5955"  />
+				<RunTo X="3277.7219" Y="-3350.1338" Z="292.5955"  />
+				<RunTo X="3208.8162" Y="-3297.8540" Z="292.5958"  />
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="15931" />	<!--Pull Grobbulus-->
+				
+				<RunTo X="3216.3018" Y="-3388.5820" Z="311.3294"  />
+				<RunTo X="3203.7246" Y="-3305.6096" Z="320.3307"  />
+				<RunTo X="3173.8149" Y="-3300.6377" Z="319.7961"  />
+				<RunTo X="3174.1338" Y="-3291.8899" Z="319.3988"  />
+				<RunTo X="3176.7048" Y="-3286.0330" Z="320.0544"  />
+				<RunTo X="3167.0659" Y="-3273.6147" Z="318.8510"  />
+				<RunTo X="3177.0598" Y="-3269.0132" Z="317.6172"  />
+				<RunTo X="3253.7219" Y="-3191.3140" Z="318.3410"  />
+				<CustomBehavior File="MyCTM" X="3335.172" Y="-3105.786" Z="297.8156" />
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="15932" />	<!--Pull Gluth-->	
+				
+				<RunTo X="3432.6077" Y="-3007.2314" Z="295.6080"  />
+				
+				<CustomBehavior File="Thaddeus" BossId="15928" AddId1="15929" AddId2="15930" JumpFromX="3459.957" JumpFromY="-2921.311" JumpFromZ="312.0325" />
+				
+				<RunTo X="3535.066" Y="-2939.777" Z="302.7468" />
+				<CustomBehavior File="InteractWith" MobId="181576" Range="4" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				
+				<RunTo X="2923.1140" Y="-3360.3772" Z="298.1438"  />
+				<RunTo X="2894.5664" Y="-3328.4915" Z="298.1439"  />
+				<RunTo X="2879.3950" Y="-3202.7354" Z="298.1475"  />
+				<RunTo X="2835.3706" Y="-3208.8447" Z="298.2494"  />
+				<RunTo X="2822.0923" Y="-3163.7585" Z="298.1466"  />
+				<RunTo X="2797.6826" Y="-3166.5337" Z="298.1466"  />
+				<RunTo X="2776.3372" Y="-3185.5913" Z="298.1466"  />
+				<RunTo X="2777.1365" Y="-3218.8433" Z="285.5569"  />
+				<RunTo X="2812.4651" Y="-3219.0432" Z="273.7877"  />
+				<RunTo X="2812.1040" Y="-3207.5022" Z="273.7877"  />
+				<RunTo X="2779.9834" Y="-3162.8892" Z="273.7877"  />
+				<RunTo X="2819.6904" Y="-3114.9060" Z="273.8452"  />
+				<RunTo X="2819.2405" Y="-3097.3667" Z="273.8500"  />
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="16061" />	<!--Pull Instructor Razuvious-->
+				
+				<RunTo X="2712.7507" Y="-3095.4575" Z="267.6844"  />
+				<RunTo X="2736.7395" Y="-3145.9028" Z="267.5984"  />
+				<RunTo X="2739.0107" Y="-3243.2170" Z="267.6372"  />
+				<RunTo X="2788.6414" Y="-3272.2925" Z="267.8127"  />
+				<RunTo X="2791.8083" Y="-3391.1206" Z="267.6851"  />
+				<RunTo X="2723.495" Y="-3336.101" Z="267.6837" />
+				<RunTo X="2662.765" Y="-3385.431" Z="267.6833" />
+				<CustomBehavior File="WaitTimer" WaitTime="20000" />
+				
+				<CustomBehavior File="RangePullBoss" BossId="16060" AddId1="16124" AddId2="16125" AddId3="16126" AddId4="16127" AddId5="16148" AddId6="16149" /> <!-- Pull Gothik the Harvester -->
+				
+				<RunTo X="2689.9351" Y="-3392.1804" Z="267.6839"  />
+				<RunTo X="2684.4758" Y="-3317.5942" Z="267.6840"  />
+				<RunTo X="2595.9973" Y="-3344.4236" Z="267.6009"  />
+				<RunTo X="2556.7412" Y="-3284.4868" Z="267.5939"  />
+				<RunTo X="2557.0383" Y="-3127.0254" Z="240.5249"  />
+				<RunTo X="2628.8125" Y="-3059.6260" Z="240.5280"  />
+				<RunTo X="2577.8916" Y="-3008.3333" Z="241.4729"  />
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="16063" />	<!--Pull Sir Zeliek-->
+				
+				<RunTo X="2500.728" Y="-2929.601" Z="241.2771" />
+				<RunTo X="2515.32" Y="-2944.955" Z="245.5519" />
+				<CustomBehavior File="InteractWith" MobId="181366" X="2516.595" Y=" -2946.82" Z="245.5516" />
+				<RunTo X="2495.767" Y="-2925.094" Z="241.8552" />
+				<CustomBehavior File="InteractWith" MobId="181578" Range="4" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				
+				<RunTo X="2999.621" Y="-3437.079" Z="304.5409" />
+				<CustomBehavior File="InteractWith" MobId="202278" Range="4" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				
+				<RunTo X="3509.5" Y="-5298.077" Z="138.1077" />
+				<CustomBehavior File="WaitTimer" WaitTime="45000" />
+				
+				<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="15989" />	<!--Pull Sir Zeliek--><!--Pull Sapphiron-->
+				<!-- <CustomBehavior File="GetOutOfGroundEffectAndAuras" StartNpcId="15989" EventCompleteWhen="SpecificMobsDead" EventCompleteDeadMobId="15989" 
+				  EventX="3509.5" EventY="-5298.077" EventZ="138.1077"
+				  MoveOutOfGroundEffectAuraId1="28547"
+				  MoveAwayFromMobCastingSpellId1="28547"
+				  MoveAwayFromMobWithAuraId1="28547"
+				  MoveAwayFromMobWithAuraId2="28547">
+					<Safespots>				  
+						<Hotspot X="3517.786" Y="-5256.746" Z="137.2989" />
+						<Hotspot X="3540.292" Y="-5242.929" Z="137.5349" />
+						<Hotspot X="3525.933" Y="-5217.624" Z="137.298" />
+						<Hotspot X="3501.657" Y="-5231.116" Z="137.298" />
+						<Hotspot X="3509.47" Y="-5254.067" Z="137.2982" />						
+					</Safespots>
+				</CustomBehavior> -->
+				
+				<RunTo X="3546.969" Y="-5118.973" Z="143.2347" />
+				<RunTo X="3603.69" Y="-5082.352" Z="143.2312" />
+				<RunTo X="3693.51" Y="-5101.835" Z="142.0314" />
+				
+				<CustomBehavior File="KelThuzad" BossId="15990" AddId1="23561" AddId2="16427" AddId3="23562" AddId4="16428" AddId5="23563" AddId6="16429" />
+
+				
+				<While Condition="(Me.MapId == 533)" >
+						<If Condition="HasItem(6948)" >
+							<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />
+							<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+						</If>
+								
+						<If Condition="HasItem(64488)" >
+							<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="1000" />
+							<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+						</If>         
+					</While>
+                
+				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Naxxramas Run Complete!\nDid You Get Lucky?" />
+
+				
+		</If>
+		<!--Instance Coordination Complete-->
+	</While>
+				<!-- Force town sell. -->
+	
+
+</QuestOrder>
+</HBProfile>

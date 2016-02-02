@@ -1,0 +1,214 @@
+<HBProfile>
+<Name>Frostfever's Temptest Keep [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////////////////////////
+// Profile Maker: Frostfever
+// Farm zone: Temptest Keep
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Patterns
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		<Item Name = "Sunfury Signets" Entry = "30810"/>
+		<Item Name = "Arcane Tome" Entry = "29739"/>
+		<Item Name = "Plans: Earthpeace Brestplate" Entry = "23617"/>
+		<Item Name = "Design: Coronet of Verdant Flame" Entry = "24172"/>
+		<Item Name = "Pattern: Battlecast Pants" Entry = "24310"/>
+		<Item Name = "Pattern: Whitemend Hood" Entry = "24311"/>
+		<Item Name = "Formula: Enchant Chest - Greater Stats" Entry = "16253"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Blazzle" Entry="28344" Type="Repair" X="3060.962" Y="3676.073" Z="142.7287" />
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="3054.635" Y="3687.431" Z="142.5689" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+	<Factions>16</Factions>
+	
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+
+		
+
+
+<If Condition="Me.Location.Distance(new WoWPoint(3086.6145, 1365.5248, 184.1301)) &gt; 30" >
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />				
+	<!-- Start GOTO dungeon code -->
+	<CustomBehavior File="Message" Text="Very far Away" LogColor="Coral" />
+	<CustomBehavior File="FlyTo" DestName="the Long way to Netherstorm" X="3124.004" Y="2386.716" Z="200.9901" />
+
+	<CustomBehavior File="FlyTo" DestName="Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
+	<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3129.077" Y="1580.786" Z="249.9725" />
+	<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3098.596" Y="1517.308" Z="190.3002" />
+	<CustomBehavior File="RunMacro" Macro="/dismount" />
+	<!-- Infront of Instance Portal -->
+	<CustomBehavior File="Message" Text="Starting Endless Farm - Tempest Keep" LogColor="Lime" />
+	<!-- Enable Loot -->
+	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+	<!-- Sets Dungeon Difficulty to Normal and resets all dungeons. -->
+	<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+	<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+</If>
+		
+		
+
+<!--CHOP CHOP -->
+<While Condition="true">
+	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+			<!--Start Endless Cycle -->
+				<CustomBehavior File="Message" Text="Close Enough" LogColor="Coral" />
+				<CustomBehavior File="MyCTM" X="3087.0145" Y="1366.0248" Z="184.1301" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+
+	<!-- Begin Instance Grind -->
+	
+		<If Condition="(Me.ZoneId == 3845)" >
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />		
+			<RunTo X="58.0452" Y="-0.1422" Z="-2.4296"  />
+			<RunTo X="113.6455" Y="-1.5770" Z="-2.3182"  />
+			<RunTo X="192.9297" Y="-1.1964" Z="-2.4298"  />
+			<RunTo X="273.4905" Y="-0.9902" Z="-2.3906"  />
+			<RunTo X="283.9447" Y="50.2369" Z="2.4045"  />
+			<RunTo X="369.4104" Y="83.5109" Z="19.8939"  />
+			<RunTo X="337.1489" Y="60.94683" Z="18.00825" />    
+			<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="19514" />	<!--Pull A'lar-->
+			
+			<RunTo X="332.3732" Y="-0.7445555" Z="-2.389467" />
+			
+			<!-- <CustomBehavior File="GetOutOfGroundEffectAndAuras" 
+					StartNpcIdN="19514" 
+					EventCompleteWhen="SpecificMobsDead" 
+					EventCompleteDeadMobIds="19514" 
+					MoveOutOfGroundEffectAuraId1="20602" >
+			  <Safespots>
+				<Hotspot X="341.524" Y="30.75543" Z="-2.388173" />
+				<Hotspot X="366.6827" Y="14.13559" Z="-2.38926" />
+				<Hotspot X="373.5355" Y="-15.0625" Z="-2.388959" />
+				<Hotspot X="348.0477" Y="-34.61012" Z="-2.388913" />
+				<Hotspot X="307.4803" Y="-26.44571" Z="-2.388913" />
+				<Hotspot X="295.641" Y="11.35724" Z="-2.388913" />
+				<Hotspot X="332.3732" Y="-0.7445555" Z="-2.389467" />
+          </Safespots>
+      </CustomBehavior> -->
+			
+			<RunTo X="410.2317" Y="41.3524" Z="20.1781"  />
+			<RunTo X="487.0995" Y="87.0254" Z="20.3867"  />
+			<RunTo X="517.6785" Y="167.0776" Z="20.2457"  />
+			<RunTo X="514.5154" Y="239.7262" Z="20.2471"  />
+			<RunTo X="466.8691" Y="314.7376" Z="18.1765"  />
+			<RunTo X="458.7556" Y="335.0172" Z="15.3639"  />
+			<RunTo X="418.7437" Y="323.1911" Z="16.0037"  />
+			<RunTo X="388.7176" Y="359.5822" Z="15.5543"  />
+			<RunTo X="418.7437" Y="323.1911" Z="16.0037"  />
+			<RunTo X="458.7556" Y="335.0172" Z="15.3639"  />
+			<RunTo X="477.3319" Y="389.2239" Z="15.7321"  />
+			
+			<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="19516" />	<!--Pull Void Reaver-->
+			
+			<RunTo X="482.5483" Y="281.6102" Z="20.1802"  />
+			<RunTo X="513.5410" Y="218.0332" Z="20.2882"  />
+			<RunTo X="532.9162" Y="138.4957" Z="21.1098"  />
+			<RunTo X="600.2628" Y="125.9938" Z="38.5853"  />
+			<RunTo X="648.9242" Y="84.7310" Z="46.8079"  />
+			<RunTo X="682.4763" Y="31.7709" Z="46.7797"  />
+			<RunTo X="719.3409" Y="41.6474" Z="46.7797"  />
+			
+			<CustomBehavior File="KaelThas" BossId="19622" AddId1="21270" AddId2="21269" AddId3="21268" AddId4="21271" AddId5="21272" AddId6="21273" AddId7="21274" 
+							ThaladredFightX="647.8159" ThaladredFightY="33.54127" ThaladredFightZ="46.77886"
+							SanguinarFightX="710.8145" SanguinarFightY="-69.7039" SanguinarFightZ="46.7789"
+							CapernianFightX="789.914" CapernianFightY="-45.44182" CapernianFightZ="46.77895"
+							TellonicusFightX="810.4791" TellonicusFightY="41.20256" TellonicusFightZ="46.77884" />
+			
+			<RunTo X="639.1072" Y="-1.7013" Z="46.7788"  />
+			<RunTo X="727.0541" Y="-40.4114" Z="46.7788"  />
+			<RunTo X="678.4929" Y="-39.3560" Z="46.7788"  />
+			<RunTo X="649.0879" Y="-84.2041" Z="46.7965"  />
+			<RunTo X="598.4469" Y="-120.7404" Z="38.8963"  />
+			<RunTo X="532.3937" Y="-154.9077" Z="20.2761"  />
+			<RunTo X="505.7724" Y="-155.4091" Z="20.2729"  />
+			<RunTo X="522.1253" Y="-192.7900" Z="20.2882"  />
+			<RunTo X="505.9222" Y="-239.4492" Z="20.2875"  />
+			<RunTo X="477.5235" Y="-294.7309" Z="20.0219"  />
+			<RunTo X="532.0023" Y="-374.2420" Z="22.0168"  />
+			<RunTo X="515.6226" Y="-421.0974" Z="22.0170"  />
+			<RunTo X="434.3732" Y="-473.2636" Z="22.0170"  />
+			<RunTo X="383.3876" Y="-454.4849" Z="22.0173"  />
+			<RunTo X="336.0437" Y="-375.0865" Z="22.0164"  />
+			<RunTo X="351.6682" Y="-322.3910" Z="22.0169"  />
+			<RunTo X="433.5537" Y="-275.4671" Z="22.0170"  />
+			<RunTo X="478.9381" Y="-295.4649" Z="20.0236"  />
+			
+			<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="18805" />	<!--Pull High Astromancer Solarian-->
+		
+			<RunTo X="524.8072" Y="-212.3702" Z="20.2884"  />
+			<RunTo X="490.0634" Y="-89.4048" Z="20.3779"  />
+			<RunTo X="406.1906" Y="-42.7980" Z="20.1783"  />
+			<RunTo X="352.7445" Y="-96.1850" Z="20.2086"  />
+			<RunTo X="278.6449" Y="-35.1272" Z="-2.3891"  />
+			<RunTo X="357.4143" Y="-49.7284" Z="-2.3855"  />
+			<RunTo X="336.9101" Y="51.6980" Z="-2.3876"  />
+			<RunTo X="269.2256" Y="-1.2384" Z="-2.3894"  />
+			<RunTo X="1.4544" Y="-1.1396" Z="-2.4293"  />
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			<CustomBehavior File="MyCTM" X="-16.9592" Y="-0.8995" Z="-2.4297" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+
+			<If Condition="(Me.FreeBagSlots &lt;= 10) || (Me.LowestDurabilityPercent &lt;= 20.0)" >
+					<CustomBehavior File="Message" Text="Moving to Area 52's Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Storm Peaks" X="3060.962" Y="3676.073" Z="142.7287" />
+					<CustomBehavior File="ForcedDismount" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+					<CustomBehavior File="FlyTo" DestName="Tempest Keep" X="3160.741" Y="1702.501" Z="138.615" />
+					<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3129.077" Y="1580.786" Z="249.9725" />
+					<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3098.596" Y="1517.308" Z="190.3002" />
+					<CustomBehavior File="MyCTM" DestName="Tempest Keep" X="3086.6145" Y="1365.5248" Z="184.1301" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+				</If>				
+			</If>
+		<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 			
+	</While>
+</While>
+</QuestOrder>
+</HBProfile>
+
+					
+
+
+
+
+

@@ -1,0 +1,244 @@
+<HBProfile>
+<Name>Frostfever's Blackfathom Deeps Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Frostfever
+// Farm zone: Blackfathom Deeps
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what?
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		<Item Name = "Tyrant's Chestpiece" Entry = "14835"/>
+		<Item Name = "Tyrant's Breastplate" Entry = "14840"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+
+	
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="4731.473" Y="-871.0468" Z="343.4691" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+
+</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+<If Condition="!(Me.MapId == 209)" >	
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+</If>
+		<!-- Travel to Zul'Darrak --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 48)" >	
+		<While Condition="(Me.MapId == 1)" >
+			<If Condition="Me.Location.Distance(new WoWPoint(4250.7168, 749.8843, -22.9865)) &gt; 50" >		
+						<CustomBehavior File="Message" Text="Moving to Blackfathom Deeps." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Blackfathom Deeps" X="4104.8486" Y="893.9443" Z="9.5014"  />
+						<CustomBehavior File="MyCTM" X="4135.1499" Y="884.1558" Z="-19.0893"  />
+						<CustomBehavior File="MyCTM" X="4153.0708" Y="906.0768" Z="-20.9103"  />
+						<RunTo X="4159.1885" Y="921.4302" Z="-16.8011"  />
+						<RunTo X="4175.1997" Y="941.6346" Z="-16.2705"  />
+						<RunTo X="4247.8135" Y="892.7510" Z="-9.6211"  />
+						<RunTo X="4315.0815" Y="913.3965" Z="-16.6510"  />
+						<RunTo X="4322.5791" Y="883.4016" Z="-15.0137"  />
+						<RunTo X="4308.7358" Y="863.9666" Z="-14.9728"  />
+						<RunTo X="4264.4331" Y="838.4072" Z="-3.8515"  />
+						<RunTo X="4230.0698" Y="784.3724" Z="-19.0352"  />
+						<RunTo X="4219.0771" Y="745.4650" Z="-24.1594"  />
+						<RunTo X="4246.6382" Y="737.5994" Z="-26.0872"  />
+						</If>
+						<CustomBehavior File="MyCTM" X="4250.7168" Y="749.8843" Z="-22.9865"  />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
+		<!-- Begin Instance Grind -->	
+		<While Condition="(Me.MapId == 48)" >
+	<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+    <RunTo X="-164.6584" Y="73.1557" Z="-46.0285"  />
+    <RunTo X="-255.5974" Y="40.3092" Z="-55.6461"  />
+    <RunTo X="-357.0971" Y="75.6175" Z="-57.9035"  />
+    <CustomBehavior File="MyCTM" X="-350.1938" Y="94.7732" Z="-44.5989"  />
+    <CustomBehavior File="MyCTM" X="-357.1308" Y="109.3499" Z="-48.0526"  />
+    <CustomBehavior File="MyCTM" X="-355.4307" Y="127.3082" Z="-51.9718"  />
+    <RunTo X="-425.5231" Y="203.2946" Z="-52.9524"  />
+    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="4887" />	<!--Pull Ghamoo-Ra-->
+    <CustomBehavior File="MyCTM" X="-353.2428" Y="298.4310" Z="-67.0663"  />
+    <CustomBehavior File="MyCTM" X="-339.8177" Y="333.9849" Z="-54.6483"  />
+    <RunTo X="-302.2208" Y="412.2445" Z="-57.1519"  />
+    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="4831" />	<!--Pull Lady Sarevess-->
+    <RunTo X="-345.3045" Y="344.0305" Z="-53.6952"  />
+    <CustomBehavior File="MyCTM" X="-375.2782" Y="269.5130" Z="-70.1408"  />
+    <CustomBehavior File="MyCTM" X="-410.1267" Y="235.4787" Z="-54.7452"  />
+    <RunTo X="-577.7389" Y="229.5721" Z="-54.1232"  />
+    <RunTo X="-622.1593" Y="214.7029" Z="-51.6134"  />
+    <RunTo X="-608.8322" Y="166.7118" Z="-55.8720"  />
+    <RunTo X="-637.8002" Y="138.3369" Z="-58.2076"  />
+    <RunTo X="-630.3390" Y="84.6704" Z="-56.7193"  />
+    <RunTo X="-562.5986" Y="-0.5962" Z="-45.7850"  />
+    <RunTo X="-487.6537" Y="-7.5480" Z="-46.9897"  />
+    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="6243" />	<!--Pull Gelihast-->
+    <RunTo X="-437.4238" Y="16.6380" Z="-48.0523"  />
+    <RunTo X="-509.9906" Y="-8.6697" Z="-44.7485"  />
+    <RunTo X="-511.2308" Y="-35.5550" Z="-43.1589"  />
+    <RunTo X="-449.7714" Y="-38.0035" Z="-31.5888"  />
+    <RunTo X="-507.4070" Y="-50.6015" Z="-42.1092"  />
+    <RunTo X="-504.1200" Y="-76.3747" Z="-44.1527"  />
+    <RunTo X="-473.5027" Y="-87.7741" Z="-39.5815"  />
+    <RunTo X="-500.3783" Y="-82.8684" Z="-44.1509"  />
+    <RunTo X="-509.8074" Y="-42.9125" Z="-43.0969"  />
+    <RunTo X="-546.6783" Y="-45.6464" Z="-38.8628"  />
+    <RunTo X="-707.9517" Y="41.2116" Z="-30.5467"  />
+    <RunTo X="-723.7056" Y="6.8372" Z="-30.0332"  />
+    <RunTo X="-720.0394" Y="-28.9491" Z="-37.7351"  />
+    <RunTo X="-720.2626" Y="-58.2434" Z="-37.7350"  />
+    <RunTo X="-818.3499" Y="-57.1121" Z="-29.6830"  />
+    <RunTo X="-812.6463" Y="-100.2428" Z="-25.7880"  />
+    <RunTo X="-818.8517" Y="-100.3478" Z="-25.8526"  />
+    <RunTo X="-818.3221" Y="-108.5388" Z="-25.8687"  />
+    <RunTo X="-800.5829" Y="-111.1016" Z="-25.8687"  />
+    <RunTo X="-793.2941" Y="-130.2850" Z="-25.8687"  />
+    <RunTo X="-843.0933" Y="-130.3830" Z="-25.8687"  />
+    <RunTo X="-819.5850" Y="-153.4946" Z="-25.9004"  />
+    <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="4832" />	<!--Pull Twilight Lord Kelris-->
+    <RunTo X="-812.7722" Y="-157.7933" Z="-24.9547"  />
+    <CustomBehavior File="InteractWith" MobId="21119" NumOfTimes="1" WaitForNpcs="False" MobState="Dontcare"  X="-812.1187" Y="-170.7394" Z="-24.9547"  />
+    <RunTo X="-812.1187" Y="-170.7394" Z="-24.9547"  />
+    <CustomBehavior File="InteractWith" MobId="21120" NumOfTimes="1" WaitForNpcs="False" MobState="Dontcare"  X="-824.8729" Y="-171.1290" Z="-24.9548"  />
+    <RunTo X="-824.8729" Y="-171.1290" Z="-24.9548"  />
+    <CustomBehavior File="InteractWith" MobId="21121" NumOfTimes="1" WaitForNpcs="False" MobState="Dontcare"  X="-824.9277" Y="-157.3470" Z="-24.9545"  />
+    <RunTo X="-824.9277" Y="-157.3470" Z="-24.9545"  />
+    <CustomBehavior File="InteractWith" MobId="21118" NumOfTimes="1" WaitForNpcs="False" MobState="Dontcare"  X="-819.6190" Y="-173.3217" Z="-25.8744"  />
+	<CustomBehavior File="WaitTimer" WaitTime="20000" />
+    <RunTo X="-819.6190" Y="-173.3217" Z="-25.8744"  />
+	<CustomBehavior File="WaitTimer" WaitTime="5000" />
+    <RunTo X="-818.0424" Y="-235.2912" Z="-25.8761"  />
+    <RunTo X="-843.8246" Y="-276.6915" Z="-26.5855"  />
+        <CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="4829" />	<!--Pull Aku'mai-->
+    <RunTo X="-844.3281" Y="-277.9749" Z="-26.5903"  />
+    <RunTo X="-819.2222" Y="-219.2552" Z="-25.8817"  />
+    <RunTo X="-812.3089" Y="-178.2773" Z="-25.9118"  />
+    <RunTo X="-813.0062" Y="-144.2644" Z="-25.8712"  />
+    <RunTo X="-837.5490" Y="-108.3614" Z="-25.8712"  />
+    <RunTo X="-818.7635" Y="-107.0169" Z="-25.8700"  />
+    <RunTo X="-814.7375" Y="-71.4173" Z="-29.7274"  />
+	<CustomBehavior File="MyCTM" X="-789.0445" Y="-86.38407" Z="-33.36642" />
+	<CustomBehavior File="MyCTM" X="-797.7487" Y="-147.4167" Z="-33.36128" />
+	<CustomBehavior File="MyCTM" X="-755.3065" Y="-162.2086" Z="-48.87335" />
+	<CustomBehavior File="InteractWith" WaitForNpcs="false" MobState="Alive" MobId="4830" />	<!--Pull Old Serra'kis-->
+	<CustomBehavior File="MyCTM" X="-799.5425" Y="-151.2936" Z="-35.33377" />
+	<CustomBehavior File="MyCTM" X="-784.8618" Y="-60.62964" Z="-39.28144" />
+	<CustomBehavior File="MyCTM" X="-773.7562" Y="-13.40408" Z="-30.27586" />
+    <RunTo X="-726.1672" Y="32.5692" Z="-30.3281"  />
+    <RunTo X="-692.3595" Y="32.5356" Z="-31.1015"  />
+    <RunTo X="-675.3255" Y="15.6386" Z="-27.5650"  />
+    <RunTo X="-646.5841" Y="-19.8708" Z="-17.8116"  />
+    <RunTo X="-507.7874" Y="-46.3342" Z="-42.5229"  />
+    <RunTo X="-519.1302" Y="-6.8807" Z="-43.2681"  />
+    <RunTo X="-570.1472" Y="3.1243" Z="-47.5307"  />
+    <RunTo X="-589.0148" Y="47.3045" Z="-51.7455"  />
+    <RunTo X="-626.2250" Y="70.1031" Z="-55.6524"  />
+    <RunTo X="-635.6413" Y="159.9570" Z="-56.9471"  />
+    <RunTo X="-614.7209" Y="194.4262" Z="-52.1993"  />
+    <RunTo X="-618.9050" Y="225.1450" Z="-51.1382"  />
+    <RunTo X="-616.9246" Y="251.5025" Z="-49.8330"  />
+    <RunTo X="-583.6193" Y="229.1712" Z="-53.0013"  />
+    <RunTo X="-467.1197" Y="208.0234" Z="-53.1052"  />
+    <RunTo X="-424.7035" Y="178.8191" Z="-54.0524"  />
+    <RunTo X="-349.7076" Y="132.0358" Z="-50.9851"  />
+    <RunTo X="-304.7573" Y="120.9602" Z="-52.1001"  />
+    <RunTo X="-287.8659" Y="82.7988" Z="-52.1865"  />
+    <CustomBehavior File="MyCTM" X="-268.3857" Y="67.6647" Z="-57.0049"  />
+    <RunTo X="-234.8824" Y="34.2632" Z="-54.4307"  />
+    <RunTo X="-180.2331" Y="56.1174" Z="-50.0656"  />
+    <RunTo X="-152.6641" Y="87.9680" Z="-43.6661"  />
+    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+    <CustomBehavior File="MyCTM" X="-149.3402" Y="113.3009" Z="-40.5122"  />
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+
+   
+	<!-- End Instance Grind -->
+		</While>	
+		<!-- Check bags to see if full.  Vendor using Mammoth if available before flying to mailbox -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+		<!-- Navigation Code -->	
+		<RunTo X="4245.5356" Y="736.0781" Z="-26.3696"  />
+		<RunTo X="4221.0869" Y="746.3660" Z="-24.3543"  />
+		<RunTo X="4253.9785" Y="821.2427" Z="-7.1962"  />
+		<RunTo X="4313.1016" Y="866.8547" Z="-15.1750"  />
+		<RunTo X="4312.6509" Y="915.4074" Z="-16.7901"  />
+		<RunTo X="4245.0874" Y="892.8038" Z="-9.2654"  />
+		<RunTo X="4165.0156" Y="944.0756" Z="-18.5252"  />
+		<RunTo X="4158.3135" Y="916.9775" Z="-17.1707"  />
+		<CustomBehavior File="MyCTM" X="4160.6235" Y="898.3915" Z="-21.9637"  />
+		<RunTo X="4154.9302" Y="871.6439" Z="-18.1150"  />
+		<RunTo X="4144.0430" Y="861.6340" Z="-18.1150"  />
+		<RunTo X="4116.4956" Y="869.9874" Z="-12.5630"  />
+		<RunTo X="4125.7915" Y="904.2643" Z="-7.0069"  />
+		<RunTo X="4161.4629" Y="895.9553" Z="-1.4518"  />
+		<RunTo X="4151.5088" Y="860.7044" Z="4.0787"  />
+		<RunTo X="4126.0654" Y="866.2887" Z="9.7173"  />
+		<RunTo X="4104.8486" Y="893.9443" Z="9.5014"  />
+		<CustomBehavior File="FlyTo" DestName="Emerald Sanctuary" X="3985.288" Y="-1311.536" Z="245.2727" />
+		<!-- Navigation Code -->
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Kamar" Entry="48608" Type="Repair" X="4003.65" Y="-1319.84" Z="246.2255" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<CustomBehavior File="FlyTo" DestName="Wildheart Point" X="4731.473" Y="-871.0468" Z="343.4691" /> <!-- Mailbox -->
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+		</If>
+		
+		
+			
+		<!-- End bag check -->
+			
+			
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

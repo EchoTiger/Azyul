@@ -1,0 +1,139 @@
+<HBProfile>
+<Name>Mjj23's Stockades Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Stockades
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Wool Cloth
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Marda Weller" Entry="1287" Type="Repair" X="-8787.688" Y="609.6306" Z="96.77328" /> <!-- Stormwind Repair Vendor -->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-8811.284" Y="838.1646" Z="92.02881" /> <!-- Stormwind Mailbox -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 34)" >
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/> 
+</If>
+	<!-- Travel to Stockades --> 
+
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 34)" >
+		<While Condition="(Me.MapId == 0)" >
+			
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+						<CustomBehavior File="Message" Text="Moving to Stockades Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Stockades" X="-8809.942" Y="872.7402" Z="99.06523" />
+						<CustomBehavior File="ForcedDismount" />
+						<RunTo X="-8767.298" Y="844.3109" Z="88.62131" />
+						<CustomBehavior File="MyCTM" X="-8761.478" Y="846.2836" Z="86.3347"  /> <!-- Enters instance if not already inside -->
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</While>
+	</If>				
+	<!-- Begin Instance Grind -->
+		<While Condition="(Me.MapId == 34)" >
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+						<RunTo X="48.9849" Y="0.483882" Z="-16.40323" />
+						<RunTo X="84.35617" Y="0.6135466" Z="-25.60623" />
+						<RunTo X="100.6767" Y="0.671719" Z="-25.60623" />
+						<RunTo X="110.5305" Y="20.78487" Z="-26.52288" />
+						<RunTo X="110.5156" Y="-15.1152" Z="-26.52289" />
+						<RunTo X="105.2427" Y="-28.63591" Z="-26.52289" />
+						<RunTo X="131.5101" Y="1.172995" Z="-25.60623" />
+						<RunTo X="153.8422" Y="-0.8611071" Z="-25.60623" />
+						<RunTo X="160.5941" Y="4.626989" Z="-25.60623" />
+						<RunTo X="171.2095" Y="-1.420264" Z="-25.60623" /> <!-- Pull Randolph Moloch -->
+						<RunTo X="130.3829" Y="39.86386" Z="-33.93955" />
+						<RunTo X="148.5485" Y="42.81375" Z="-34.85614" />
+						<RunTo X="113.1309" Y="46.73219" Z="-34.85615" />
+						<RunTo X="131.292" Y="57.52659" Z="-33.93956" />
+						<RunTo X="136.3227" Y="65.65733" Z="-33.93956" />
+						<RunTo X="150.7717" Y="63.25991" Z="-34.85623" />
+						<RunTo X="116.1732" Y="73.51202" Z="-34.85613" />
+						<RunTo X="144.2662" Y="110.8728" Z="-35.18956" />
+						<RunTo X="160.3335" Y="99.36755" Z="-35.18956" />
+						<RunTo X="157.6383" Y="115.5484" Z="-35.18956" /> <!-- Pull Hogger -->
+						<RunTo X="166.7614" Y="133.9344" Z="-33.93953" />
+						<RunTo X="127.2649" Y="-49.39463" Z="-33.93956" />
+						<RunTo X="145.5665" Y="-44.51688" Z="-34.8562" />
+						<RunTo X="111.5938" Y="-42.01105" Z="-34.85612" />
+						<RunTo X="101.1127" Y="-39.9325" Z="-34.85612" />
+						<RunTo X="107.1647" Y="-60.74767" Z="-34.8562" />
+						<RunTo X="145.1166" Y="-71.92934" Z="-34.8562" />
+						<RunTo X="119.1516" Y="-78.44725" Z="-33.93956" />
+						<RunTo X="107.9998" Y="-99.97417" Z="-35.18956" />
+						<RunTo X="100.2501" Y="-115.703" Z="-35.18956" /> <!-- Pull Lord Overheat -->
+						<RunTo X="48.9849" Y="0.483882" Z="-16.40323" />
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+						<CustomBehavior File="MyCTM" X="45.06303" Y="0.5672811" Z="-15.08994" />   />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<!-- End Instance Grind -->
+		</While>
+	<!-- Checks if bags are full -->	
+			<If Condition="(HasSpell(61447)) || (HasSpell(61425))" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Stormwind Mailbox" LogColor="Lime" />
+					<RunTo X="2820.969" Y="-699.184" Z="137.4398" />
+					<CustomBehavior File="FlyTo" DestName="Stormwind" X="-8811.284" Y="838.1646" Z="92.02881" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Deathknell Mailbox" LogColor="Lime" />
+					<RunTo X="2912.714" Y="-802.7842" Z="160.333" />
+					<CustomBehavior File="FlyTo" DestName="Deathknell" X="1843.379" Y="1584.786" Z="93.73871" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+	<!-- End bag check -->
+	
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

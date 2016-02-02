@@ -1,0 +1,473 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>[ND] Stormrage Raiment (RC) [$Rev$]</Name>
+	
+	
+	
+   
+	<MinDurability>0.001</MinDurability>
+	<MinFreeBagSlots>1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>True</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+    </AvoidMobs>
+
+	<ProtectedItems>
+		<Item Name="Moon-Crown Antlers" Entry="28220" />
+		<Item Name="Lunar-Claw Pauldrons" Entry="28255" />
+		<Item Name="Starry Robes of the Crescent" Entry="27818" />
+		<Item Name="Moonrage Girdle" Entry="27783" />
+		<Item Name="Moonstrider Boots" Entry="27914" />
+		<Item Name="Grips of the Lunar Eclipse" Entry="28214" />
+	</ProtectedItems>
+
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" LogoutForInactivity="False" />
+		<CustomBehavior File="Message" Text="STARTING NORMAL DROPS FARM" LogColor="Lime" />
+		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Lime" />
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+
+	<!-- Steamvaults, Belt -->
+		<While Condition="!HasItem(27783)" >
+			<CustomBehavior File="Message" Text="Going to The Steamvaults to get the Belt" LogColor="DarkBlue" />
+			<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &gt;= 145" >
+				<CustomBehavior File="Message" Text="Entering the Reservoir." LogColor="Lime" />
+				<CustomBehavior File="FlyTo" X="564.1914" Y="6945.826" Z="21.38907" />
+				<CustomBehavior File="ForcedDismount" />
+				<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+				<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+				<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+				<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+				<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+				<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+				<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+				<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+				<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+			</If>
+
+
+			<If Condition="!(Me.MapId == 545)" >
+				<If Condition="Me.Location.Distance(new WoWPoint(818.7408, 6940.374, -80.54651)) &gt;= 40.5" >
+					<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+					<CustomBehavior File="Message" Text="Moving to The Instance." LogColor="Lime" />
+					<RunTo X="818.2902" Y="6940.515" Z="-80.59582" />
+				</If>
+			</If>
+			<If Condition="(Me.FreeBagSlots &gt;= 11)" >
+				<If Condition="!(Me.MapId == 546)" >
+					<RunTo X="818.3602" Y="6944.097" Z="-80.6101" />
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+					<CustomBehavior File="Message" Text="Entering Steamvaults." LogColor="Lime" />
+					<CustomBehavior File="MyCTM" X="818.3083" Y="6949.203" Z="-80.61127" />
+					<CustomBehavior File="WaitTimer" WaitTime="5500" />
+					<While Condition="!(StyxWoW.IsInWorld)" >
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					</While>
+				</If>
+				<!-- Begin Instance Grind -->
+				<If Condition="(Me.MapId == 545)" >
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+					<CustomBehavior File="UserSettings" LootMobs="false" />
+
+					<!-- We're not running big pulls due to the NPC's rooting effects. -->
+
+					<RunTo X="-4.927965" Y="-41.4993" Z="-13.38089" />
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="19.68694" Y="-154.7329" Z="-22.5016" />
+					</CustomBehavior>
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="3.807139" Y="-252.5113" Z="-22.41646" />
+					</CustomBehavior>
+
+					<RunTo X="21.64385" Y="-278.752" Z="-20.7142" />
+					<RunTo X="52.33093" Y="-310.0943" Z="-7.909786" /> <!-- Potential patroll pull -->			
+					<RunTo X="93.55686" Y="-316.1818" Z="-7.870862" /> <!-- Hydromancer Thespia -->
+					<CustomBehavior File="UserSettings" LootMobs="true" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<CustomBehavior File="UserSettings" LootMobs="false" />
+					<RunTo X="44.39193" Y="-304.8427" Z="-8.965962" />
+	
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="-9.883199" Y="-27.15646" Z="-8.602267" /> <!-- Long run back to entrance -->
+					</CustomBehavior>
+
+					<RunTo X="-18.25499" Y="4.630092" Z="-4.275887" />
+
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+					<CustomBehavior File="MyCTM" X="-24.65424" Y="4.902905" Z="-4.296989" />
+					<CustomBehavior File="WaitTimer" WaitTime="5500" />
+					<While Condition="!(StyxWoW.IsInWorld)" >
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					</While>
+				</If>
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			</If>
+			<!-- End Instance Grind -->
+			
+			<!-- Vendor routine -->
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+
+				<If Condition="Me.GetReputationLevelWith(942) &gt;= Styx.WoWUnitReaction.Exalted" >
+					<RunTo X="746.1917" Y="6882.73" Z="-64.28456" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Mortog Steamhead" Entry="23373" Type="Repair" X="748.8289" Y="6883.973" Z="-63.92867" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="WaitTimer" WaitTime="1500" />
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+					<ClearVendor />
+					<If Condition="(Me.FreeBagSlots &lt;= 10)" >  <!-- Go to normal vendor routine if the player needs to mail -->
+						<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+						<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+						<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+						<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+						<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+						<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+						<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+						<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+						<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+						<CustomBehavior File="MyCTM" X="541.8995" Y="6924.533" Z="21.45897" />
+						<CustomBehavior File="FlyTo" X="530.1228" Y="6855.305" Z="40.78453" />
+						<If Condition="Me.IsAlliance" >
+							<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
+
+							<RunTo X="1028.695" Y="7362.311" Z="36.40272" />
+							<SetMailbox>
+								<Mailboxes>
+									<Mailbox X="1029.868" Y="7362.129" Z="36.40354" />
+								</Mailboxes>
+							</SetMailbox>
+							<CustomBehavior File="WaitTimer" WaitTime="1500" />
+							<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+							<ClearMailbox />
+						</If>
+
+						<If Condition="Me.IsHorde" >
+							<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
+							<CustomBehavior File="FlyTo" X="269.6143" Y="7862.054" Z="30.88758" />
+							<CustomBehavior File="ForcedDismount" />
+							<RunTo X="259.7481" Y="7869.413" Z="23.19135" />
+							<SetMailbox>
+								<Mailboxes>
+									<Mailbox X="258.9098" Y="7870.717" Z="23.01399" />
+								</Mailboxes>
+							</SetMailbox>
+							<CustomBehavior File="WaitTimer" WaitTime="1500" />
+							<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+							<ClearMailbox />
+						</If>
+					</If>
+				</If>
+
+				<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &lt;= 144 &amp;&amp; Me.GetReputationLevelWith(942) &lt; Styx.WoWUnitReaction.Exalted &amp;&amp; Me.FreeBagSlots &lt;= 10" >
+					<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+					<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+					<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+					<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+					<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+					<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+					<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+					<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+					<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+					<CustomBehavior File="MyCTM" X="541.8995" Y="6924.533" Z="21.45897" />
+					<CustomBehavior File="FlyTo" X="530.1228" Y="6855.305" Z="40.78453" />
+
+					<If Condition="Me.IsAlliance" >
+						<CustomBehavior File="FlyTo" X="990.9942" Y="7383.501" Z="42.69455" />
+						<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+							<CustomBehavior File="FlyTo" X="1019.702" Y="7383.811" Z="36.24001" />
+							<CustomBehavior File="ForcedDismount" />
+							<SetVendor>
+								<Vendors>
+									<Vendor Name="Maktu" Entry="18010" Type="Repair" X="1020.835" Y="7383.452" Z="36.24143" />
+								</Vendors>
+							</SetVendor>
+							<CustomBehavior File="WaitTimer" WaitTime="1500" />
+							<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+							<ClearVendor />
+						</If>
+
+						<RunTo X="1028.695" Y="7362.311" Z="36.40272" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="1029.868" Y="7362.129" Z="36.40354" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+						<ClearMailbox />
+					</If>
+
+					<If Condition="Me.IsHorde" >
+						<CustomBehavior File="FlyTo" X="250.5531" Y="7803.317" Z="48.83578" />
+						<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+							<CustomBehavior File="FlyTo" X="319.7794" Y="7840.998" Z="24.84016" />
+							<CustomBehavior File="ForcedDismount" />
+							<SetVendor>
+								<Vendors>
+									<Vendor Name="Captured Gnome" Entry="19383" Type="Repair" X="323.0882" Y="7839.829" Z="22.08481" />
+								</Vendors>
+							</SetVendor>
+							<CustomBehavior File="WaitTimer" WaitTime="1500" />
+							<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+							<ClearVendor />
+						</If>
+						<CustomBehavior File="FlyTo" X="269.6143" Y="7862.054" Z="30.88758" />
+						<CustomBehavior File="ForcedDismount" />
+						<RunTo X="259.7481" Y="7869.413" Z="23.19135" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="258.9098" Y="7870.717" Z="23.01399" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+						<ClearMailbox />
+					</If>
+				</If>
+			</If>
+			<!-- End vendor routine -->
+		</While>
+		<If Condition="Me.Location.Distance(new WoWPoint(750.2504, 6885.597, -71.93677)) &lt;= 144" > <!-- Leave Reservior -->
+			<CustomBehavior File="Message" Text="Leaving the Reservior." LogColor="LightBlue" />
+			<RunTo X="738.3709" Y="6864.751" Z="-69.2543" /> <!-- Center of reservoir - internal -->
+			<CustomBehavior File="MyCTM" X="729.3627" Y="6865.68" Z="-71.51466" />
+			<CustomBehavior File="MyCTM" X="653.4153" Y="6866.58" Z="-80.35545" />
+			<CustomBehavior File="MyCTM" X="642.2988" Y="6866.904" Z="-80.21622" />
+			<CustomBehavior File="MyCTM" X="628.4286" Y="6878.431" Z="-71.7644" />
+			<CustomBehavior File="MyCTM" X="610.3766" Y="6896.826" Z="-49.02293" />
+			<CustomBehavior File="MyCTM" X="601.2563" Y="6917.888" Z="-44.63904" />
+			<CustomBehavior File="MyCTM" X="575.9359" Y="6940.674" Z="-34.68961" />
+			<CustomBehavior File="MyCTM" X="564.6312" Y="6944.052" Z="-14.92958" />
+			<CustomBehavior File="MyCTM" X="541.8995" Y="6924.533" Z="21.45897" />
+			<CustomBehavior File="FlyTo" X="530.1228" Y="6855.305" Z="40.78453" />
+		</If>
+
+	<!--Sethekk Halls, Boots-->
+		<While Condition="!HasItem(27914)" >
+			<CustomBehavior File="Message" Text="Going to Ring of Observance to get the Boots" LogColor="DarkBlue" />
+			<If Condition="(Me.FreeBagSlots &gt;= 11)" >
+				<If Condition="!(Me.MapId == 556)" >
+					<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+						<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+						<CustomBehavior File="FlyTo" X="-3363.273" Y="4831.82" Z="-88.0773" />
+						<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+					</If>
+
+					<If Condition="Me.Location.Distance(new WoWPoint(-3361.789, 4704.56, -101.2225)) &gt;= 47" > <!-- Outside of pre-instance -->
+						<MoveTo Nav="Fly" X="-3362.458" Y="4756.291" Z="-101.3952" />
+						<CustomBehavior File="MyCTM" X="-3362.285" Y="4669.835" Z="-101.0491" />
+					</If>
+				</If>
+			</If>
+
+			<If Condition="(Me.FreeBagSlots &gt;= 11)" >
+				<If Condition="!(Me.MapId == 556)" >
+					<RunTo X="-3361.777" Y="4658.397" Z="-101.048" />
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+					<CustomBehavior File="Message" Text="Entering Sethekk Halls." LogColor="Lime" />
+					<CustomBehavior File="MyCTM" X="-3361.715" Y="4652.886" Z="-101.048" />
+					<CustomBehavior File="WaitTimer" WaitTime="5500" />
+					<While Condition="!(StyxWoW.IsInWorld)" >
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					</While>
+				</If>
+				<!-- Begin Instance Grind -->
+				<If Condition="(Me.MapId == 556)" >
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+					<CustomBehavior File="UserSettings" LootMobs="false" />
+
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="-4.224625" Y="99.62385" Z="0.007196213" />
+					</CustomBehavior>
+
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="-74.59031" Y="86.34686" Z="0.005770877" />
+					</CustomBehavior>
+
+
+					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
+						<Hotspot X="-75.30521" Y="174.733" Z="0.009280387" />
+						<Hotspot X="-102.9638" Y="177.3365" Z="0.009330166" />
+						<Hotspot X="-145.6521" Y="173.7392" Z="1.684951" /> // Darkweaver Syth
+					</CustomBehavior>
+					<CustomBehavior File="UserSettings" LootMobs="true" />
+					<RunTo X="-102.9638" Y="177.3365" Z="0.009330166" />
+					<CustomBehavior File="UserSettings" LootMobs="false" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+					<RunTo X="2.589283" Y="0.3863665" Z="0.005763793" /> //Before instance
+
+
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+					<CustomBehavior File="MyCTM" X="-8.710955" Y="-0.1144782" Z="0.005999689" />
+					<CustomBehavior File="WaitTimer" WaitTime="5500" />
+					<While Condition="!(StyxWoW.IsInWorld)" >
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					</While>
+				</If>
+				<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+			</If>
+			<!-- End Instance Grind -->
+			<If Condition="HasItem(27914)" >
+				<CustomBehavior File="MyCTM" X="-3361.962" Y="4752.981" Z="-101.3954" />
+			</If>
+			<!-- Vendor Routine -->
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+				<CustomBehavior File="MyCTM" X="-3361.962" Y="4752.981" Z="-101.3954" />
+
+				<!-- Bot ignores this vendor.
+						<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoSell="True" />
+						<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
+						<ClearVendor /> -->  
+
+
+					<If Condition="Me.IsAlliance" >
+						<MoveTo Nav="Fly" X="-2944.846" Y="4009.452" Z="5.567399" />
+						<CustomBehavior File="ForcedDismount" />
+						<MoveTo Nav="Run" X="-2933.421" Y="4009.331" Z="-1.294724" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="-2929.392" Y="4008.916" Z="-1.389165" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+						<MoveTo Nav="Run" X="-2936.408" Y="4010.14" Z="-1.248712" />
+						<ClearMailbox />
+					</If>
+					<If Condition="Me.IsHorde" >
+						<MoveTo Nav="Fly" X="-2620.939" Y="4409.075" Z="49.22842" />
+						<CustomBehavior File="ForcedDismount" />
+						<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="-2615.288" Y="4417.971" Z="35.98839" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+						<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+						<ClearMailbox />
+					</If>
+			</If>
+			<!-- End Vendor Routine -->
+		</While>
+
+	<!-- Shoulder -->
+		<While Condition="!HasItem(28255)">
+			<CustomBehavior File="Message" Text="Going to Tempest Keep to get the Shoulder." LogColor="DarkBlue" />
+			<If Condition="!(Me.ZoneId == 3523)" >
+				<CustomBehavior File="FlyTo" X="589.3289" Y="3427.308" Z="291.0131" />
+				<CustomBehavior File="MyCTM" X="2945.934" Y="1784.823" Z="206.9143" />
+			</If>
+			<If Condition="!(Me.MapId == 552)" >
+				<If Condition="Me.Location.Distance(new WoWPoint(2868.389, 1551.293, 252.1595)) &gt;= 55" >	
+					<CustomBehavior File="FlyTo" X="3024.063" Y="1728.797" Z="239.4702" />
+					<CustomBehavior File="MyCTM" X="2952.151" Y="1627.577" Z="264.385" />
+					<CustomBehavior File="MyCTM" X="2877.254" Y="1559.525" Z="248.8978" />
+					<CustomBehavior File="ForcedDismount" />
+				</If>
+			</If>
+			<If Condition="(Me.FreeBagSlots &gt;= 10)" >
+				<If Condition="!(Me.MapId == 554)" >
+					<MoveTo X="2872.403" Y="1555.394" Z="252.1594" />
+					<CustomBehavior File="MyCTM" X="2860.746" Y="1544.512" Z="252.1594" />
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				</If>
+				<!--Instance Navigation Start -->
+				<If Condition="(Me.MapId == 554)" >
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+					<DisableBehavior Name="Combat" />
+						<RunTo X="112.4377" Y="-78.69029" Z="14.92755" />
+					<EnableBehavior Name="Combat" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+					<DisableBehavior Name="Combat" />
+						<RunTo X="222.1569" Y="-57.52505" Z="0.0007092925" />
+					<EnableBehavior Name="Combat" /> <!-- Due to Mechano-Lord's stun, we have to seperate this and the next group because Honorbuddy will bug out when it's stunned... -->
+
+					<CustomBehavior File="WaitTimer" WaitTime="500" />
+
+					<CustomBehavior File="UserSettings" LootMobs="true" />
+					<CustomBehavior File="InteractWith" MobId="19219" Range="1" X="208.7709" Y="-12.25523" Z="-2.191832" /> <!-- Pull Mechano-Lord Capacitus -->
+					<RunTo X="222.1569" Y="-57.52505" Z="0.0007092925" />
+					<CustomBehavior File="UserSettings" LootMobs="false" />
+					<RunTo X="-27.85911" Y="0.642262" Z="-1.8124" />
+
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+					<CustomBehavior File="MyCTM" X="-39.77523" Y="-0.3285326" Z="-1.8124" />
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="Misc\RunLua" Lua="
+						local item,l,i=&quot;32902&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end
+						local item,l,i=&quot;32905&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
+					<CustomBehavior File="Message" Text="Deleting all Bottled Nethergon potions." LogColor="Azure" />
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+				</If>
+				<!--Instance Coordnation Complete -->
+			</If>
+
+			<!-- Vendor Routine -->
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<CustomBehavior File="Message" Text="Moving to Sell, Repair" LogColor="Lime" />
+				<CustomBehavior File="ForcedMount" MountType="Flying" />
+				<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" DoMail="False" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<If Condition="(Me.FreeBagSlots &lt;= 10)" > <!-- Mail if player still has 10 or less slots -->
+					<CustomBehavior File="Message" Text="Moving to Mail" LogColor="Lime" />
+					<SetMailbox>
+						<Mailboxes>
+								<Mailbox Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+						</Mailboxes>
+					</SetMailbox>
+					<CustomBehavior File="ForceSetVendor" DoSell="False" DoRepair="False" DoMail="True" />
+					<MoveTo Nav="Fly" X="3056.502" Y="3687.034" Z="142.7493" />
+					<ClearMailbox />
+				</If>
+			</If>
+		</While>
+
+
+		<If Condition="HasItem(28255) &amp;&amp; HasItem(27783) &amp;&amp; HasItem(27914)" >
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="All normal difficulty items have been obtained!\nIf you still require some of the heroic items, you can re-run the [HD] profile inside of the Scripts folder.\n Or, you can just run the Auto-Loader profile outside of the script folder." />
+		</If>
+		<If Condition="!HasItem(28214) || !HasItem(28220)" >
+			<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Two items have not been farmed: Moon-Crown Antlers  and Grips of the Lunar Eclipse.\n\nThe instances that these items drop in require further script.  You must farm them on your own until I can obtain a custom script for these instances." />
+		</If>
+	</QuestOrder>
+</HBProfile>

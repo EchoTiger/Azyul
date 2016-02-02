@@ -1,0 +1,119 @@
+<HBProfile>
+<Name>Shadowfang Keep - Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Leonard Porter" Entry="12942" Type="Repair" X="949.8846" Y="-1435.649" Z="62.59014" /> <!-- Chillwind Camp Vendor -->
+		<Vendor Name="Archibald Kava" Entry="2113" Type="Repair" X="1860.848" Y="1568.365" Z="94.31361"/> <!-- Deathknell Vendor-->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="947.6384" Y="-1460.586" Z="62.53422" /> <!-- Chillwind Camp Vendor -->
+		<Mailbox X="1843.379" Y="1584.786" Z="93.73871"/> <!-- Deathknell Mailbox -->
+	</Mailboxes>
+
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+	</AvoidMobs>
+
+	<Blackspots>
+	</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 33)" >
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/> 
+</If>
+
+<TargetingDistance Value="100" />
+<!-- Travel to Shadowfang Keep --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 33)" >
+		<While Condition="(Me.MapId == 0)" >
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+			<CustomBehavior File="Message" Text="Moving to Shadowfang Keep Location." LogColor="Lime" />
+			<MoveTo DestName="Shadowfang Keep" X="-233.8452" Y="1564.721" Z="76.8845" />
+			<CustomBehavior File="ForcedDismount" />
+			<MoveTo X="-233.6329" Y="1564.978" Z="76.88455" />
+			<CustomBehavior File="MyCTM" X="-232.8982" Y="1572.929" Z="76.8845" TerminateWhen="Me.IsInInstance" /> <!-- Enters instance if not already inside -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="Me.IsInInstance" />
+		</While>
+	</If>				
+	<!-- Begin Instance Grind -->
+		<While Condition="(Me.MapId == 33)" >
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" /> 
+			<MoveTo X="-254.7615" Y="2119.887" Z="81.17946" /> <!-- Pull Baron Ashbury -->
+			<MoveTo X="-241.5941" Y="2156.06" Z="90.62415" />
+			<CustomBehavior File="WaitTimer" WaitTime="40000" /> <!-- Wait to make sure gate is open -->
+			<MoveTo X="-264.9323" Y="2293.533" Z="76.08639" /> <!-- Pull Baron Silverlaine -->
+			<MoveTo X="-241.6943" Y="2256.546" Z="100.8921" />
+			<CustomBehavior File="InteractWith" MobId="4278" X="-241.6943" Y="2256.546" Z="100.8921" /> <!-- Pull Commander Springvale -->
+			<MoveTo X="-249.4718" Y="2141.691" Z="100.0293" />
+			<MoveTo X="-246.2508" Y="2125.384" Z="100.0292" />
+			<MoveTo X="-112.6052" Y="2154.604" Z="101.5203" />
+			<MoveTo X="-159.5212" Y="2179.33" Z="128.9438" />
+			<CustomBehavior File="InteractWith" MobId="46963" X="-148.5061" Y="2176.035" Z="128.2008" /> <!-- Pull Lord Walden -->
+			<MoveTo X="-132.132" Y="2167.623" Z="128.9438" />
+			<CustomBehavior File="WaitTimer" WaitTime="25000" /> <!-- Wait to make sure gate is open -->
+			<MoveTo X="-145.3101" Y="2166.139" Z="155.6788" />
+			<MoveTo X="-124.0672" Y="2168.236" Z="155.6788" />
+			<CustomBehavior File="WaitTimer" WaitTime="19000" /> <!-- Wait to make sure gate is open -->
+			<MoveTo X="-82.28765" Y="2157.133" Z="155.7109" /> <!-- Pull Lord Godfrey -->
+			<MoveTo X="-132.978" Y="2167.423" Z="138.697" /> <!-- Shortcut down in boss room -->
+			<CustomBehavior File="MyCTM" X="-151.6853" Y="2175.484" Z="128.2009" />
+			<MoveTo X="-124.1273" Y="2163.387" Z="101.5176" /> <!-- Shortcut down in stairs room -->
+			<CustomBehavior File="MyCTM" X="-139.974" Y="2164.758" Z="94.04194" />
+			<MoveTo X="-183.5272" Y="2164.163" Z="97.39023" /> <!-- Crates to shortcut jump down -->
+			<CustomBehavior File="MyCTM" X="-207.9089" Y="2174.063" Z="79.76516" />
+			<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+			<MoveTo X="-228.3606" Y="2109.246" Z="76.88993" />
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" /> 
+			<CustomBehavior File="MyCTM" X="-230.1028" Y="2103.024" Z="76.8905" TerminateWhen="!Me.IsInInstance" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" TerminateWhen="!Me.IsInInstance" />
+		</While>
+	<!-- End Instance Grind -->
+
+	<!-- Checks if bags are full -->	
+		<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" />
+		<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
+			<CustomBehavior File="WaitTimer" WaitTime="1100" />
+			<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
+		</If>
+			
+		<If Condition="Me.FreeBagSlots &lt;= 15 &amp;&amp; Me.IsAlliance" >
+			<CustomBehavior File="Message" Text="Moving to Chillwind Camp Mailbox" LogColor="Lime" />
+			<CustomBehavior File="FlyTo" DestName="Chillwind Camp" X="947.6384" Y="-1460.586" Z="62.53422" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+		</If>
+
+		<If Condition="Me.FreeBagSlots &lt;= 15 &amp;&amp; Me.IsHorde" >
+			<CustomBehavior File="Message" Text="Moving to Deathknell Mailbox" LogColor="Lime" />
+			<CustomBehavior File="FlyTo" DestName="Deathknell" X="1843.379" Y="1584.786" Z="93.73871" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+		</If>	
+	<!-- End bag check -->
+	
+</While>		
+</QuestOrder>
+</HBProfile>

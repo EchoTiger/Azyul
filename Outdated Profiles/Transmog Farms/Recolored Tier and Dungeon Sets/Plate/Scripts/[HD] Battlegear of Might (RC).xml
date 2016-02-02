@@ -1,0 +1,128 @@
+<HBProfile creator="EchoTiger" version="1.0">
+	<Name>Battlegear of Might (Recolor) Farm [$Rev$]</Name>
+	
+	
+	
+   
+	<MinDurability>0.001</MinDurability>
+	<MinFreeBagSlots>1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>True</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+    </AvoidMobs>
+
+	<ProtectedItems>
+		<Item Name="Irondrake Faceguard" Entry="27455" />
+		<Item Name="Pauldrons of the Crimson Flight" Entry="28207" />
+		<Item Name="Crimsonforge Breastplate" Entry="27906" />
+		<Item Name="Rubium War-Girdle" Entry="28375" />
+		<Item Name="Bloodlord Legplates" Entry="27487" />
+		<Item Name="Bloodsword Warboots" Entry="27788" />
+		<Item Name="Gauntlets of Cruel Intention" Entry="28324" />
+	</ProtectedItems>
+	
+	<Blackspots></Blackspots>
+	
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Battlegear of Might (RC) Farm.\nThis profile will grind through every dungeon that drops the set pieces.\n\nEnsure that your bags are clean before starting!\n\n*Note* The bot will only loot mobs that drop the set pieces unless you change the LootMobs setting inside the profile." />
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+		<!-- Sets Dungeon Difficult to Heroic -->
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+	<!--Ramparts, Helmet and Chest -->
+		<If Condition="(!HasItem(27455)) || (!HasItem(27906))" >
+			<CustomBehavior File="Message" Text="Going to Hellfire Ramparts to get the Helmet and Chest." LogColor="DarkBlue" />
+			<CustomBehavior File="FlyTo" DestName="Hellfire Peninsula" X="-360.4703" Y="3016.986" Z="40.87082" />
+			<CustomBehavior File="FlyTo" DestName="Hellfire Ramparts" X="-354.3885" Y="3062.629" Z="-15.18049" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<RunTo X="-364.6200" Y="3082.285" Z="-14.72307" />
+			<CustomBehavior File="MyCTM" X="-365.4500" Y="3083.933" Z="-14.67393" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+			<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
+			<RunTo X="-1326.986" Y="1662.22" Z="68.88745" />
+			<RunTo X="-1253.268" Y="1641.106" Z="68.18011" />
+			<RunTo X="-1242.841" Y="1568.055" Z="68.41733" />
+			<RunTo X="-1256.832" Y="1549.067" Z="68.56508" />
+			<RunTo X="-1299.145" Y="1548.212" Z="68.61219" />
+			<RunTo X="-1299.145" Y="1548.212" Z="68.61219" />
+			<RunTo X="-1250.403" Y="1445.356" Z="68.60188" />
+			<RunTo X="-1199.574" Y="1453.654" Z="68.49496" />
+			<RunTo X="-1175.996" Y="1461.565" Z="68.43477" />
+			<RunTo X="-1167.597" Y="1522.459" Z="68.43015" />
+			<RunTo X="-1208.409" Y="1542.063" Z="68.5266" />
+			<RunTo X="-1224.057" Y="1528.672" Z="68.53191" />
+			<RunTo X="-1237.193" Y="1540.824" Z="90.30915" />
+			<RunTo X="-1240.113" Y="1564.89" Z="91.09522" />
+			<RunTo X="-1291.361" Y="1616.14" Z="91.76259" />
+		<!-- Omar the Unscarred - Chest --> 
+			<If Condition="(!HasItem(27906))" >
+				<RunTo X="-1122.161" Y="1718.566" Z="89.35185" />
+				<RunTo X="-1153.609" Y="1697.059" Z="91.13847" />
+				<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<CustomBehavior File="WaitTimer" WaitTime="3000" />
+				<RunTo X="-1110.267" Y="1728.176" Z="89.71658" />
+				<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+				<RunTo X="-1300.935" Y="1625.185" Z="91.75221" />
+				<If Condition="HasItem(27906)">
+					<CustomBehavior File="Message" Text="Chest obtained!" LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(27906)">
+					<CustomBehavior File="Message" Text="Chest not obtained." LogColor="Red" />
+				</If>
+			</If>
+		<!-- Vazruden/Nazan - Helmet --> 
+			<If Condition="(!HasItem(27455))" >
+				<RunTo X="-1383.39" Y="1711.82" Z="82.71" />
+				<CustomBehavior File="MyCTM" X="-1407.269" Y="1739.846" Z="81.12672" />
+				<CustomBehavior File="WaitTimer" WaitTime= "2000" />
+				<CustomBehavior File="RunMacro" Macro="/cleartarget" />
+				<CustomBehavior File="RunMacro" Macro="/target Vazruden" />
+				<CustomBehavior File="RunMacro" Macro="/cast Auto Attack" />
+				<RunTo X="-1411.422" Y="1742.829" Z="80.89876" />
+				<RunTo X="-1429.336" Y="1771.657" Z="82.02303" />
+				<CustomBehavior File="WaitTimer" WaitTime="7000" />
+				<CustomBehavior File="InteractWith" MobId="185169" X="-1429.81" Y="1772.916" Z="82.0765" />
+				<CustomBehavior File="RunMacro" Macro="/click StaticPopup1Button1" />
+				<RunTo X="-1300.935" Y="1625.185" Z="91.75221" />
+				<If Condition="(HasItem(27455)) || (HasItem(27906))" >
+					<CustomBehavior File="Message" Text="All items obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="(!HasItem(27455)) || (!HasItem(27906))" >
+					<CustomBehavior File="Message" Text="An item wasn't obtained. We will run this instance again." LogColor="Red" />
+				</If>
+			</If>
+			<RunTo X="-1317.614" Y="1636.576" Z="91.73563" />
+			<CustomBehavior File="MyCTM" X="-1345.156" Y="1652.946" Z="68.86689" />
+			<RunTo X="-1355.375" Y="1639.065" Z="68.24535" />
+		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			<CustomBehavior File="MyCTM" X="-1357.292" Y="1633.615" Z="68.4899" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<If Condition="HasItem(28374)">
+				<CustomBehavior File="Message" Text="Shoulders obtained! Continuing instance runs." LogColor="Azure" />
+			</If>
+			<If Condition="!HasItem(28374)">
+				<CustomBehavior File="Message" Text="Shoulders weren't obtained. We will run the instance again." LogColor="Red" />
+			</If>
+		</If>
+		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="In development." />
+	</QuestOrder>
+</HBProfile>

@@ -1,0 +1,142 @@
+<HBProfile>
+<Name>Mjj23's Molten Core Weekly Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Molten Core
+// Re-built by: EchoTiger
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Transmog/Recipes
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+<TargetElites>True</TargetElites>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Fergus Gravelsmash" Entry="47937" Type="Repair" X="-7093.68" Y="-1268.31" Z="270.485" />
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-7112.238" Y="-1199.937" Z="306.9844" /> <!-- Iron Summit -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 409)" >
+
+		<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/> 
+</If>
+<If Condition="!(Me.MapId == 409)" >
+		<If Condition="(Me.MapId == 0)" >
+		
+		<!-- Enable Loot -->
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+			
+			<!-- Navigation to deal with being inside mountain -->
+			
+						<CustomBehavior File="Message" Text="Moving to Molten Core Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7812.092" Y="-1134.613" Z="222.4833" />
+						<CustomBehavior File="MyCTM" X="-7747.853" Y="-1121.215" Z="218.404" />
+						<CustomBehavior File="MyCTM" X="-7736.496" Y="-1086.391" Z="217.5282" />
+						<CustomBehavior File="MyCTM" X="-7669.704" Y="-1091.817" Z="222.4783" />
+						<CustomBehavior File="MyCTM" X="-7516.03" Y="-1046.301" Z="182.3015" />
+						<CustomBehavior File="ForcedDismount" />
+						<RunTo X="-7509.546" Y="-1040.151" Z="180.9113" />
+						
+		</If>
+</If>
+<If Condition="!(Me.MapId == 409)" >
+
+			<If Condition="(Me.ZoneId != 2717)" >
+						<CustomBehavior File="InteractWith" MobId="14387" NumOfTimes="1" WaitTime="1000" />
+						<CustomBehavior File="RunMacro" Macro="/click GossipTitleButton3\n/click GossipTitleButton2\n/click GossipTitleButton1" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			</If>
+</If>
+			<!-- Molten Core Instance Farm -->
+			
+			<If Condition="(Me.MapId == 409)" >
+					<TargetingDistance Value="100" />
+			
+						<RunTo X="1135.373" Y="-535.4296" Z="-107.1947" />
+						<RunTo X="1141.288" Y="-571.0024" Z="-112.7228" />
+						<RunTo X="1171.529" Y="-562.1083" Z="-112.416" />
+						
+						<RunTo X="1032.922" Y="-785.865" Z="-152.4614" />
+						<RunTo X="949.2805" Y="-934.8061" Z="-185.5758" />
+						<CustomBehavior File="InteractWith" MobId="12118" /> <!-- Pull Lucifron -->
+						<RunTo X="994.1364" Y="-971.6543" Z="-181.1627" /> <!-- Core Hound Pack #1 -->
+						<RunTo X="1035.617" Y="-964.0767" Z="-180.0197" /> <!--Core Hound Pack #2 -->
+						<RunTo X="1072.931" Y="-972.1534" Z="-182.068" /> <!-- Core Hound Pack #3 -->
+						<RunTo X="1107.933" Y="-989.1984" Z="-186.0287" /> <!-- Core Hound Pack #4 -->
+						<RunTo X="1094.139" Y="-1016.994" Z="-186.8083" /> <!-- Core Hound Pack #5 -->
+						<RunTo X="1132.937" Y="-1017.055" Z="-186.4149" />
+						<CustomBehavior File="InteractWith" MobId="11982" /> <!-- Pull Magmadar -->
+						<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
+						<RunTo X="898.7932" Y="-549.5908" Z="-203.8107" />
+						<CustomBehavior File="InteractWith" MobId="12259" /> <!-- Pull Gehennas -->
+						<RunTo X="673.803" Y="-502.5283" Z="-213.4892" />
+						<CustomBehavior File="InteractWith" MobId="12057" /> <!-- Pull Garr -->
+						<RunTo X="661.2715" Y="-813.8049" Z="-208.743" />
+						<CustomBehavior File="InteractWith" MobId="12056" /> <!-- Pull Baron Geddon -->
+						<RunTo X="587.7184" Y="-806.6628" Z="-205.0457" />
+						<CustomBehavior File="InteractWith" MobId="12264" /> <!-- Pull Shazzrah -->
+						<RunTo X="602.7177" Y="-1179.208" Z="-195.9757" />
+						<CustomBehavior File="InteractWith" MobId="12098" /> <!-- Pull Sulfuron Harbinger -->
+						<RunTo X="817.8962" Y="-1131.66" Z="-153.365" />
+						<RunTo X="795.8419" Y="-997.9019" Z="-207.2172" />
+						<CustomBehavior File="InteractWith" MobId="11988" /> <!-- Pull Golemagg the Incinerator -->
+						<RunTo X="752.6776" Y="-1176.209" Z="-118.8567" />
+						<CustomBehavior File="InteractWith" MobId="12018" AuraId="20620" AddId1="11664" AddId2="11663" /> <!-- Pull Majordomo Executus -->
+						<RunTo X="754.4194" Y="-1180.436" Z="-118.4213" />
+						<CustomBehavior File="WaitTimer" WaitTime="30000" TerminateWhen="!Me.Combat" />
+						<CustomBehavior File="InteractWith" MobId="179703" X="756.8968" Y="-1180.698" Z="-118.5964" /> <!-- Loot Cache of the Firelord -->
+						<RunTo X="695.109" Y="-1067.931" Z="-181.7801" />
+						<RunTo X="828.272" Y="-600.5423" Z="-202.593" />
+						<RunTo X="847.6886" Y="-818.2578" Z="-229.775" />
+						<CustomBehavior File="InteractWith" MobId="54404" NumOfTimes="1" WaitTime="1000" /> <!-- Talk to Majordomo to pull Ragnaros -->
+						<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="3" WaitTime="1000" />
+						<CustomBehavior File="WaitTimer" WaitTime="30000" />
+						<CustomBehavior File="WaitTimer" WaitTime="300000" TerminateWhen="!Me.Combat" />
+			<!-- End Molten Core Instance Farm -->
+				
+				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Molten Core Run Complete!\nDid You Get Lucky?" />
+				</If>
+						
+				
+</QuestOrder>
+
+</HBProfile>

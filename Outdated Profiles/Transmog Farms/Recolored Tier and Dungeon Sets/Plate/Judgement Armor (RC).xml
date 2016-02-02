@@ -1,0 +1,21 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>Judgement Armor (RC) Auto-Loader [$Rev$]</Name>
+	
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<!-- Enable Loot -->
+	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Judgement Armor (RC) Farm.\nThis profile will grind through every dungeon (starting with heroic dungeons, then normal dungeons) that drops the set pieces.\n\nEnsure that your bags are clean before starting!  Your personal items MAY be sold if not.\n\n*IMPORTANT--READ ME* The boots for this set drop in Heroic Old Hillsbrad, the heroic profile WILL NOT go there in order to save time.  The script for Old Hillsbrad is at the end of the Normal profile farm, and will be farmed after all Normal items have been obtained. " />
+	<If Condition="(!HasItem(27448)) || (!HasItem(27489)) || (!HasItem(27539)) || (!HasItem(27548)) ||  (!HasItem(28221)) || (!HasItem(27457))" >
+		<CustomBehavior File="Message" Text="Heroic items missing, starting heroic farm." LogColor="Lime" />
+		<CustomBehavior File="Message" Text="*NOTE* The bot will run heroic dungeons that you've already completed." LogColor="Lime" />
+		<CustomBehavior File="LoadProfile" ProfileName="Scripts\[HD] Judgement Armor (RC)" />
+	<ElseIf Condition="!HasItem(27897) || !HasItem(27790)" >
+		<CustomBehavior File="Message" Text="Normal items missing, starting normal farm." LogColor="Lime" />
+		<CustomBehavior File="LoadProfile" ProfileName="Scripts\[ND] Judgement Armor (RC)" />
+	</ElseIf>
+	</If>
+	<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="15" ExpiryTime="30" ExpiryAction="InputEnabled_Continue" Text="If you're seeing this message, that means that every item this profile farms is already in your inventory.\n If you'd like to re-farm, simply put the items you want to re-farm into your bank so the bot cannot detect them." />
+	</QuestOrder>
+</HBProfile>

@@ -1,0 +1,243 @@
+<HBProfile>
+<Name>Frostfever's Escape from Dumholde Endless Farm [$Rev$]</Name>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Frostfever
+// Farm zone: Zul Farrak
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? 
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		<Item Name = "Tyrant's Chestpiece" Entry = "14835"/>
+		<Item Name = "Tyrant's Breastplate" Entry = "14840"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Drix Blackwrench" Entry="32641" Type="Repair"  X="-8368.84" Y="-4059.808" Z="-208.353" />
+		<Vendor Name="Gnimo" Entry="32639" Type="Repair"  X="-8368.84" Y="-4059.808" Z="-208.353" />
+		<Vendor Name="Krinkle Goodsteel" Entry="5411" Type="Repair" X="-7232.01" Y="-3751.71" Z="9.092834" />
+	
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-7082.707" Y="-3851.493" Z="9.774841" />
+	</Mailboxes>
+
+
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+	</AvoidMobs>
+
+	<Blackspots>
+	<Blackspot X="2136.465" Y="161.1374" Z="65.63298" Radius="2.875441" />
+	</Blackspots>
+	
+
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+		
+		<!-- Travel to Escape from Dumholde --> 
+		
+<!-- Start GOTO dungeon code -->
+<While Condition="true" >
+	<If Condition="Me.Location.Distance(new WoWPoint(-8332.700, -4055.250, -207.750)) &gt; 30" >
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="True" LogoutForInactivity="False" />		
+<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8175.918" Y="-4707.365" Z="48.94663" />
+<CustomBehavior File="MyCTM" X="-8175.043" Y="-4720.596" Z="44.30181" />
+<CustomBehavior File="MyCTM" X="-8175.128" Y="-4888.313" Z="40.85376" />
+<CustomBehavior File="MyCTM" X="-8087.97" Y="-4880.237" Z="19.51904" />
+<CustomBehavior File="MyCTM" X="-8098.259" Y="-4838.029" Z="-3.988078" />
+<CustomBehavior File="MyCTM" X="-8153.634" Y="-4874.076" Z="-22.69484" />
+<CustomBehavior File="MyCTM" X="-8112.598" Y="-4918.717" Z="-37.85519" />
+<CustomBehavior File="MyCTM" X="-8066.892" Y="-4880.462" Z="-46.35584" />
+<CustomBehavior File="MyCTM" X="-8068.639" Y="-4826.196" Z="-57.45797" />
+<CustomBehavior File="MyCTM" X="-8192.012" Y="-4556.838" Z="-111.1804" />
+<CustomBehavior File="MyCTM" X="-8518.979" Y="-4651.938" Z="-190.6948" />
+<CustomBehavior File="MyCTM" X="-8488.631" Y="-4361.657" Z="-175.1971" />
+<CustomBehavior File="MyCTM" X="-8432.015" Y="-4082.925" Z="-190.8014" />
+<CustomBehavior File="MyCTM" X="-8352.21" Y="-4059.143" Z="-208.0818" />
+<CustomBehavior File="RunMacro" Macro="/dismount" />
+	</If>
+
+	<While Condition="(Me.FreeBagSlots &gt;= 5) || (Me.LowestDurabilityPercent &gt; 20.0)" >
+				<CustomBehavior File="MyCTM" X="-8332.700" Y="-4055.250" Z="-207.750" />  <!-- moves into instance portal if not already inside -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<!--Instance Navigation Start -->
+				<If Condition="(Me.ZoneId == 2367)" >
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+					<RunTo X="2393.646" Y="1203.664" Z="66.35605" />
+					<RunTo X="2375.554" Y="1178.651" Z="65.38145" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+					<CustomBehavior File="InteractWith" MobId="18723" GossipOptions="1" X="2375.554" Y="1178.651" Z="65.38145" PreInteractMountStrategy="Dismount" />
+					<CustomBehavior File="InteractWith" MobId="18725" GossipOptions="1" X="2382.093" Y="1172.208" Z="66.58888" PreInteractMountStrategy="Dismount" />
+					<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					<RunTo X="2074.597" Y="219.116" Z="64.87225" />
+					<RunTo X="2127.57" Y="202.5355" Z="64.76164" />
+					<CustomBehavior File="MyCTM" X="2148.759" Y="201.5912" Z="52.48769" />
+
+	<!-- Light All Incendiary Bombs -->
+	
+    <RunTo X="2210.344" Y="257.4632" Z="53.80237" />
+    <CustomBehavior File="InteractWith" MobId="182589" NumOfTimes="1" X="2210.344" Y="257.4632" Z="53.80237" CollectionDistance="30" />
+    <RunTo X="2162.297" Y="246.9141" Z="53.84883" />
+    <CustomBehavior File="InteractWith" MobId="182589" NumOfTimes="1" X="2162.297" Y="246.9141" Z="53.84883" CollectionDistance="30" />
+   	<RunTo X="2130.788" Y="184.0817" Z="53.19827" />
+    <RunTo X="2070.11" Y="123.7777" Z="54.44883" />
+    <CustomBehavior File="InteractWith" MobId="182589" NumOfTimes="1" X="2070.11" Y="123.7777" Z="54.44883" CollectionDistance="30" />
+    <RunTo X="2066.501" Y="81.10634" Z="53.99288" />
+    <CustomBehavior File="InteractWith" MobId="182589" NumOfTimes="1" X="2066.501" Y="81.10634" Z="53.99288" CollectionDistance="30" />
+    <RunTo X="2109.771" Y="47.63383" Z="53.83923" />
+    <CustomBehavior File="InteractWith" MobId="182589" NumOfTimes="1" X="2109.771" Y="47.63383" Z="53.83923" CollectionDistance="30" />
+    <RunTo X="2073.3142" Y="65.8149" Z="53.8195"  />
+    <RunTo X="2094.1331" Y="76.3656" Z="53.1032"  />
+	
+	<!-- Wait for First Boss -->
+	
+		<RunTo X="2112.046" Y="99.75153" Z="52.44676" />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		
+	<!-- Run to Thrall -->
+	
+		<CustomBehavior File="MyCTM" X="2126.122" Y="88.24364" Z="54.94569" />
+		<CustomBehavior File="MyCTM" X="2128.848" Y="71.24537" Z="64.41667" />
+		<RunTo X="2146.456" Y="123.3534" Z="76.2877" />
+		<RunTo X="2172.76" Y="150.004" Z="87.89481" />
+		<RunTo X="2207.21" Y="129.0204" Z="87.95661" />
+		<RunTo X="2197.885" Y="110.1913" Z="89.45589" />
+		<RunTo X="2208.03" Y="104.0488" Z="89.45589" />
+		<RunTo X="2216.395" Y="116.4488" Z="89.45589" />
+		<RunTo X="2232.117" Y="108.4614" Z="82.66266" />
+		<RunTo X="2230.106" Y="116.0192" Z="82.29411" />
+					
+		<!-- Protect Thrall Until Captain Skarloc is Dead -->
+		
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="40" KillBetweenHotspots="True" LogoutForInactivity="False" />
+		<CustomBehavior File="RunMacro" Macro="/cleartarget" />
+        <CustomBehavior File="RunMacro" Macro="/target Thrall" />
+		<CustomBehavior File="RunMacro" Macro="/focus" />
+		<CustomBehavior File="InteractWith" MobId="17876" GossipOptions="1" X="2230.275" Y="117.3382" Z="82.29166" />
+		<While Condition="(Me.FocusedUnit.Entry == 17876) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(2062.96, 229.3166, 64.48166)) &gt; 15)" >
+			<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="1" MobState="Alive" MobId="17876" /> 
+			<While Condition="(Me.FocusedUnit.Distance &lt; 5) " >
+				<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="1" MobState="Alive" MobId="17815" MobId2="17860" MobId3="17819" MobId4="17840" MobId5="17833" MobId6="18934" MobId7="17862" MobId8="23177" MobId9="17814" MobId10="23175" MobId11="23179" MobId12="18887" CollectionDistance="15" />	
+			</While>	
+		</While>
+		
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="40" KillBetweenHotspots="True" LogoutForInactivity="False" />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="5" MobState="Alive" MobId="17862" MobId2="17833" MobId3="17860" /> <!-- Make Sure Skarloc is dead -->
+		<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="5" MobState="Alive" MobId="17862" MobId2="17833" MobId3="17860" />
+		
+
+	<!-- Ride with Thrall to Tarren Mill -->
+		<CustomBehavior File="ForcedMount" MountType="Ground" />
+		<CustomBehavior File="InteractWith" MobId="17876" GossipOptions="1,1,1" X="2063.042" Y="229.1765" Z="64.46248" />
+		<While Condition="(Me.FocusedUnit.Entry == 17876) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(2486.877, 624.3095, 57.9062)) &gt; 15)" >
+			<CustomBehavior File="InteractWithEscort" NumOfTimes="1" MobState="Alive" MobId="17876" WaitForNpcs="False" />
+			<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="1" MobState="Alive" MobId="17815" MobId2="17814" CollectionDistance="20" PreInteractMountStrategy="Dismount" />
+		</While>
+		
+		<CustomBehavior File="InteractWith" MobId="17876" GossipOptions="1" X="2486.877" Y="624.3095" Z="57.9062" />
+	
+	<!-- Protect Thrall Until we get to Taretha -->
+	
+		<While Condition="(Me.FocusedUnit.Entry == 17876) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(2660.485, 659.4092, 61.9356)) &gt; 7)" >
+			<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="1" MobState="Alive" MobId="17815" MobId2="17860" MobId3="17819" MobId4="17840" MobId5="17833" MobId6="18934" MobId7="17862" MobId8="23177" MobId9="17814" MobId10="23175" MobId11="23179" MobId13="18093"  MobId14="18094"  MobId15="18092" MobId16="23176"  MobId17="23178" MobId18="23180" CollectionDistance="20" />
+			<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="1" MobState="Alive" MobId="17876" /> 
+		</While>
+		
+		<CustomBehavior File="InteractWith" MobId="18887" GossipOptions="1,1" X="2660.485" Y="659.4092" Z="61.9356" />
+	
+	<!-- Follow Thrall outside for Epoch Hunter encounter -->
+	
+		<CustomBehavior File="RunMacro" Macro="/target Epoch Hunter" />
+		<CustomBehavior File="RunMacro" Macro="/focus" />
+		<While Condition="(Me.CurrentTarget == null) || (Me.CurrentTarget.Entry != 18723)" >
+			<CustomBehavior File="InteractWithEscort" NumOfTimes="1" MobState="Alive" MobId1="18170" MobId2="18171" MobId3="18172" WaitForNpcs="False" />
+			<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="1" MobState="Alive" MobId="17876" />
+			<CustomBehavior File="RunMacro" Macro="/target Erozion" />
+		</While>
+		
+		<CustomBehavior File="InteractWithEscort" WaitForNpcs="False" NumOfTimes="1" MobState="Dead" MobId="18096" /> <!-- Make sure Epoch Hunter is dead -->
+
+		
+
+	   
+
+					
+					<RunTo X="2630.55" Y="731.1841" Z="57.10218" />
+					<RunTo X="2447.886" Y="851.7122" Z="61.11203" />
+					<RunTo X="2383.899" Y="1188.052" Z="67.32617" />
+					<RunTo X="2429.838" Y="1253.634" Z="60.27195" />
+					<RunTo X="2620.675" Y="1209.698" Z="13.66968" />
+					<RunTo X="2713.448" Y="1329.169" Z="15.53902" />
+					<RunTo X="2747.031" Y="1305.154" Z="14.04021" />
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+
+		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+
+			<CustomBehavior File="MyCTM" X="2762.624" Y="1295.292" Z="13.55656" />
+		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		</If>
+		<!--Instance Coordnation Complete -->
+	</While>
+
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+						<CustomBehavior File="ForcedMount" MountType="Flying" />
+						<CustomBehavior File="MyCTM" X="-8440.5986" Y="-4095.0354" Z="-181.6675"  />
+						<CustomBehavior File="MyCTM" X="-8543.5576" Y="-4333.4116" Z="-181.0570"  />
+						<CustomBehavior File="MyCTM" X="-8505.4590" Y="-4678.6484" Z="-179.2077"  />
+						<CustomBehavior File="MyCTM" X="-8212.0020" Y="-4567.1948" Z="-125.8105"  />
+						<CustomBehavior File="MyCTM" X="-8075.8569" Y="-4782.0283" Z="-78.6867"  />
+						<CustomBehavior File="MyCTM" X="-8090.1841" Y="-4913.8018" Z="-41.3302"  />
+						<CustomBehavior File="MyCTM" X="-8150.6406" Y="-4891.4385" Z="-27.1502"  />
+						<CustomBehavior File="MyCTM" X="-8114.2412" Y="-4830.5107" Z="-6.6260"  />
+						<CustomBehavior File="MyCTM" X="-8073.6382" Y="-4877.5894" Z="13.4246"  />
+						<CustomBehavior File="MyCTM" X="-8166.2295" Y="-4899.8926" Z="33.6649"  />							
+						<CustomBehavior File="MyCTM" X="-8175.8115" Y="-4711.5195" Z="54.0525"  />
+						<CustomBehavior File="FlyTo" DestName="Gazgetzan" X="-7232.01" Y="-3751.71" Z="9.092834" />	
+
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Krinkle Goodsteel" Entry="5411" Type="Repair" X="-7232.01" Y="-3751.71" Z="9.092834" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<RunTo X="-7080.707" Y="-3850.493" Z="9.774841" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+		</If>
+	<RunTo X="-7099.36" Y="-3848.29" Z="8.869291" />
+</While>
+</QuestOrder>
+</HBProfile>
+
+

@@ -1,0 +1,97 @@
+<HBProfile>
+<Name>Mjj23's Magtheridon's Lair Weekly Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Magtheridon's Lair
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Transmog items
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Leonard Porter" Entry="12942" Type="Repair" X="949.8846" Y="-1435.649" Z="62.59014" /> <!-- Chillwind Camp Vendor -->
+		<Vendor Name="Archibald Kava" Entry="2113" Type="Repair" X="1860.848" Y="1568.365" Z="94.31361"/> <!-- Deathknell Vendor-->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="947.6384" Y="-1460.586" Z="62.53422" /> <!-- Chillwind Camp Vendor -->
+		<Mailbox X="1843.379" Y="1584.786" Z="93.73871"/> <!-- Deathknell Mailbox -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+	<If Condition="!(Me.MapId == 544)" >
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+</If>
+		
+	<!-- Travel to Magtheridon's Lair --> 
+<While Condition="!(Me.MapId == 544)" >
+	<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+	<CustomBehavior File="Message" Text="Moving to Magtheridon's Lair Location." LogColor="Lime" />
+	<CustomBehavior File="FlyTo" DestName="Magtheridon's Lair" X="-352.7142" Y="3158.335" Z="-99.74287" />
+	<CustomBehavior File="ForcedDismount" />
+	<RunTo X="-312.3775" Y="3087.163" Z="-116.5222" />
+	<CustomBehavior File="MyCTM" X="-312.3775" Y="3081.163" Z="-116.5222" /> <!-- Enters instance if not already inside -->
+	<CustomBehavior File="WaitTimer" WaitTime="15000" />		
+	<!-- Begin Instance Grind -->
+<While Condition="(Me.MapId == 544)" >
+	<RunTo X="188.3688" Y="38.62973" Z="67.95306" />
+	<RunTo X="38.17402" Y="1.638315" Z="45.05407" />
+	<RunTo X="2.207058" Y="66.70269" Z="22.79284" />
+	<RunTo X="-80.49361" Y="1.807161" Z="-0.4057165" />
+	<CustomBehavior File="InteractWith" MobId="17256" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" X="-55.68913" Y="2.17024" Z="0.6309446" /> <!-- Pull Hellfire Channelers  and Magtheridon -->
+<!-- End Instance Grind -->
+	<!-- Hearth out because we're done! -->
+	<While Condition="(Me.ZoneId == 3836)" >
+	<If Condition="HasItem(6948)" >
+		<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />
+		<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+	</If>		
+	<If Condition="HasItem(64488)" >
+	<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="1000" />
+	<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+	</If>	
+	</While>	
+</While>
+</While>		
+
+<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Magtheridon's Lair Run Complete!\nDid You Get Lucky?" />
+				
+				
+</QuestOrder>
+</HBProfile>

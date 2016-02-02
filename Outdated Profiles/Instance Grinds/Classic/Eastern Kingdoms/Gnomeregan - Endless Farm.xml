@@ -1,0 +1,223 @@
+﻿<HBProfile>
+<Name>Mjj23's Gnomeregan Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Gnomeregan
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Large Brilliant Shards/Recipes/Transmog
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<!-- USING TEMPORARY CODE AT BOTTOM -->
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-5201.3" Y="515.7118" Z="387.329" /> <!-- New Tinkertown -->
+		<Mailbox X="12387.6" Y="145.806" Z="2.51911" /> <!-- Grom'Gol Basecamp -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+
+
+	
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 90)" >
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/>  
+</If>
+	<!-- Travel to Gnomeregan --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 90)" >
+
+			<While Condition="(Me.MapId == 0)" >
+				
+				<!-- Navigation to deal with being Gnomergan for Alliance -->
+				<If Condition="Me.Location.Distance(new WoWPoint(-5144.55, 895.2514, 287.3937)) &gt; 10 &amp;&amp; Me.IsAlliance" >
+							<CustomBehavior File="Message" Text="Moving to Gnomeregan Location." LogColor="Lime" />
+							<CustomBehavior File="FlyTo" DestName="Gnomeregan" X="-5184.12" Y="594.8023" Z="407.3157" />
+							<CustomBehavior File="ForcedDismount" />
+							<RunTo X="-5178.035" Y="662.6082" Z="388.3063" />
+							<CustomBehavior File="UseTransport" TransportId="205079"
+											WaitAtX="-5178.035" WaitAtY="662.6082" WaitAtZ="388.3063" 
+											TransportStartX="-5177.976" TransportStartY="673.805" TransportStartZ="389.5476" 
+											StandOnX="-5178.463" StandOnY="671.2391" StandOnZ="388.3029"
+											TransportEndX="-5177.976" TransportEndY="673.805" TransportEndZ="289.4656" 
+											GetOffX="-5175.537" GetOffY="692.3316" GetOffZ="288.0852" />
+							<RunTo X="-5173.387" Y="725.5969" Z="287.3965" />
+							<RunTo X="-5121.412" Y="762.1619" Z="287.3596" />
+							<RunTo X="-5144.55" Y="895.2514" Z="287.3937" />
+				</If>
+				<If Condition="Me.IsAlliance" >
+							<CustomBehavior File="MyCTM" X="-5149.55" Y="900.2514" Z="287.3937" /> <!-- Enters instance if not already inside -->
+							<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				</If>
+
+				<!-- Navigation to Gnomeregan for Horde -->
+				<If Condition="Me.Location.Distance(new WoWPoint(-12401.92, 223.877, 1.52)) &gt; 10 &amp;&amp; Me.IsHorde" >
+					<CustomBehavior File="FlyTo" X="-12568.47" Y="306.5344" Z="107.6187" />
+					<CustomBehavior File="FlyTo" X="-12397.9" Y="218.9149" Z="1.687622" />
+				</If>
+				<If Condition="Me.IsHorde">
+					<CustomBehavior File="RunMacro" Macro="/dismount" />
+					<RunTo X="-12414.1" Y="233.3784" Z="0.9763816" />
+					<CustomBehavior File="MyCTM" X="-12413.36" Y="237.4414" Z="1.803225" />
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				</If>
+			</While>
+	</If>
+ 	<!-- Begin Instance Grind -->
+	<While Condition="(Me.MapId == 90)" >
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+					<RunTo X="-394.8961" Y="51.38895" Z="-154.7998" />
+					<RunTo X="-489.0648" Y="55.94126" Z="-156.9971" />
+					<RunTo X="-513.6445" Y="-135.4224" Z="-152.4943" /> <!-- Move to interact with Blastmaster Emi Shortfuse -->
+					<CustomBehavior File="InteractWith" MobId="7998" X="-514.9355" Y="-138.5439" Z="-152.4822" />
+					<CustomBehavior File="RunMacro" Macro="/script SelectGossipOption(1)\n/script CloseGossip()" NumOfTimes="1" WaitTime="1000" />
+					<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="50" />
+					<CustomBehavior File="EscortGroup" EscortNpcId="7998" EscortCompleteWhen="DestinationReached" EscortMaxFightDistance="5" EscortMaxFollowDistance="3" EscortCompleteMaxRange="5" EscortCompleteX="-519.9" EscortCompleteY="-124.8" EscortCompleteZ="-156.11" />
+
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="InteractWith" MobId="6215" WaitForNpcs="True" NumOfTimes="1" MobState="DontCare" X="-519.9" Y="-124.8" Z="-156.11" CollectionDistance="20" />
+					<RunTo X="-525.946" Y="-92.22378" Z="-155.3971" />
+					<RunTo X="-550.8848" Y="-42.20788" Z="-148.9322" />
+					<RunTo X="-501.5801" Y="65.69812" Z="-154.8012" />
+					<RunTo X="-509.0835" Y="100.0784" Z="-154.7433" />
+					<RunTo X="-494.4452" Y="163.219" Z="-154.6987" />
+					<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="40" />
+					<RunTo X="-536.8687" Y="166.717" Z="-155.2363" />
+					<RunTo X="-533.6793" Y="197.607" Z="-155.2377" />
+					<RunTo X="-568.9233" Y="234.0325" Z="-159.4283" />
+					<RunTo X="-635.5901" Y="152.7847" Z="-183.9085" />
+					<RunTo X="-610.2029" Y="125.5629" Z="-184.446" />
+					<RunTo X="-559.7175" Y="133.547" Z="-202.1474" />
+					<RunTo X="-537.3474" Y="108.68" Z="-204.5151" />
+					<RunTo X="-501.6064" Y="110.0744" Z="-208.8597" />
+					<RunTo X="-442.6956" Y="92.45802" Z="-210.6256" />
+					<CustomBehavior File="InteractWith" MobId="7079" WaitForNpcs="False" MobState="DontCare" X="-440.6621" Y="93.53091" Z="-210.4391" CollectionDistance="100" /> <!-- Pull Viscous Fallout -->
+					<RunTo X="-439.4128" Y="253.7545" Z="-211.5361" />
+					<RunTo X="-534.6802" Y="406.7967" Z="-230.6004" />
+					<RunTo X="-530.7069" Y="590.7743" Z="-230.6004" />
+					<RunTo X="-551.9714" Y="497.5627" Z="-216.81" />
+					<CustomBehavior File="InteractWith" MobId="6235" WaitForNpcs="False" MobState="DontCare"  X="-551.9714" Y="497.5627" Z="-216.81" CollectionDistance="100" /> <!-- Pull Electocutioner 6000 --> 
+					<RunTo X="-630.0443" Y="439.1196" Z="-230.6014" />
+					<RunTo X="-678.2404" Y="403.0165" Z="-273.0628" />
+					<RunTo X="-762.3365" Y="410.7962" Z="-272.5801" />
+					<RunTo X="-892.1783" Y="367.8465" Z="-272.5956" /> <!-- Pull Crowd Pummeler 9-60 -->
+					<RunTo X="-777.2832" Y="284.9013" Z="-272.5977" />
+					<RunTo X="-759.5101" Y="261.8127" Z="-273.08" />
+					
+					<RunTo X="-799.4478" Y="313.1307" Z="-272.5949" /> <!-- Get on elevator -->
+					<CustomBehavior File="UseTransport" TransportId="85556"
+									WaitAtX="-799.4478" WaitAtY="313.1307" WaitAtZ="-272.5949"
+									TransportStartX="-806.8865" TransportStartY="323.9631" TransportStartZ="-271.6593" 
+									StandOnX="-805.5513" StandOnY="321.0675" StandOnZ="-272.6255"
+									TransportEndX="-806.8865" TransportEndY="323.9631" TransportEndZ="-316.1599" 
+									GetOffX="-814.9398" GetOffY="333.7852" GetOffZ="-316.8647" />
+					<RunTo X="-623.9236" Y="693.184" Z="-327.055" /> <!-- Get off elevator -->
+					<CustomBehavior File="InteractWith" MobId="142207" X="-618.6084" Y="691.1178" Z="-327.0491" /> <!-- Open Final Chamber door -->
+					<RunTo X="-534.517" Y="671.218" Z="-325.2682" /> <!-- Pull Mekingeer Thermaplugg -->
+					<RunTo X="-814.9398" Y="333.7852" Z="-316.8647" /> <!-- Get on elevator -->
+					<CustomBehavior File="UseTransport" TransportId="85556"
+									WaitAtX="-814.9398" WaitAtY="333.7852" WaitAtZ="-316.8647"
+									TransportStartX="-806.8865" TransportStartY="323.9631" TransportStartZ="-316.1599" 
+									StandOnX="-805.5513" StandOnY="321.0675" StandOnZ="-316.8647"
+									TransportEndX="-806.8865" TransportEndY="323.9631" TransportEndZ="-271.6593"
+									GetOffX="-799.4478" GetOffY="313.1307" GetOffZ="-272.5949" />
+					<RunTo X="-760.7458" Y="263.9556" Z="-273.0796" /> <!-- Get off elevator -->
+					<CustomBehavior File="InteractWith" MobId="90858" X="-758.5375" Y="260.386" Z="-273.0493" /> <!-- Open Workshop door -->
+					<RunTo X="-733.4819" Y="2.512882" Z="-249.0421" />
+		
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+					
+					<RunTo X="-733.4819" Y="2.512882" Z="-249.0421" />
+					<CustomBehavior File="MyCTM" X="-726.3634" Y="2.68129" Z="-248.05" />
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+	</While>
+					
+	<!-- End Instance Grind -->
+	<If Condition="Me.IsAlliance" >
+		<CustomBehavior File="MyCTM"  X="-4916.505" Y="784.7211" Z="276.1931" />
+		<CustomBehavior File="InteractWith" MobId="205077" X="-4917.348" Y="782.4108" Z="276.2286" />
+		<CustomBehavior File="MyCTM" X="-4916.002" Y="776.4885" Z="276.2001" />
+	</If>
+	<If Condition="Me.IsHorde" >
+		<RunTo X="-12403.39" Y="222.5773" Z="1.629047" />
+	</If>
+	
+	<!-- Checks if bags are full -->	
+	<If Condition="(Me.FreeBagSlots &lt;= 10) &amp;&amp; (Me.IsAlliance)" >
+		<SetVendor>
+			<Vendors>
+				<Vendor Name="Vallo Shinesteel" Entry="42626" Type="Repair" X="-5166.412" Y="470.7014" Z="389.8933" />
+			</Vendors>
+		</SetVendor>
+		<CustomBehavior File="Message" Text="Moving to New Tinkertown Mailbox" LogColor="Lime" />
+		<CustomBehavior File="UseTransport" TransportId="205079"
+							WaitAtX="-5177.019" WaitAtY="681.9368" WaitAtZ="287.7952"
+							TransportStartX="-5177.976" TransportStartY="673.805" TransportStartZ="289.4656" 
+							StandOnX="-5178.463" StandOnY="671.2391" StandOnZ="288.2211"
+							TransportEndX="-5177.976" TransportEndY="673.805" TransportEndZ="389.5476" 
+							GetOffX="-5178.035" GetOffY="662.6082" GetOffZ="388.3063" />
+		<RunTo X="-5185.35" Y="588.926" Z="405.4305" />
+		<CustomBehavior File="FlyTo" DestName="New Tinkertown" X="-5199.398" Y="514.522" Z="387.4294" />
+		<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+		<ClearVendor />
+	</If>
+	
+	<If Condition="(Me.FreeBagSlots &lt;= 10) &amp;&amp; (Me.IsHorde)" >
+		<SetVendor>
+			<Vendors>
+				<Vendor Name="Hragran" Entry="1147" Type="Repair" X="-12410.24" Y="203.675" Z="2.093579" />
+			</Vendors>
+		</SetVendor>
+		<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+		<ClearVendor />
+	</If>
+	
+	<If Condition="Me.Location.Distance(new WoWPoint(-4917.348, 782.4108, 276.2286)) &lt; 10 &amp;&amp; Me.IsAlliance" >
+		<RunTo X="-5144.55" Y="895.2514" Z="287.3937" />
+	</If>
+	
+	<!-- End bag check -->
+	
+</While>
+				
+				
+</QuestOrder>
+
+</HBProfile>

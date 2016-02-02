@@ -1,0 +1,155 @@
+<HBProfile>
+<Name>Frostfever's Endless Magisters' Terrance Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////////////////////////
+// Profile Maker: Frostfever
+// Farm zone: Magisters' Terrace
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Rep: Shattered Sun Offensive/Swift White Hawkstrider/Recipies
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		<Item Name = "Schematic: Mana Potion Injector" Entry = "35311"/>
+		<Item Name = "Design: Rigid Star of Elune" Entry = "35307"/>
+		<Item Name = "Formula: Enchant Boots - Boar's Speed" Entry = "35297"/>
+		<Item Name = "Formula: Enchant Boots - Cat's Swiftness" Entry = "35299"/>
+		<Item Name = "Pattern: Unyielding Bracers" Entry = "35308"/>
+		<Item Name = "Formula: Enchant Cloak - Greater Dodge" Entry = "35756"/>
+		<Item Name = "Design: Solid Star of Elune" Entry = "35304"/>
+		<Item Name = "Design: Brilliant Living Ruby" Entry = "35305"/>
+		<Item Name = "Schematic: Healing Potion Injector" Entry = "35310"/>
+		<Item Name = "Phoenix Hatchling" Entry = "35504"/>
+		<Item Name = "Orb of the Sin'dorei" Entry = "35275"/>
+		<Item Name = "Lightning Steel Ingot" Entry = "94111"/>
+		<Item Name = "Scroll of Wisdom" Entry = "79731"/>
+		<Item Name = "Silkworm Cocoon" Entry = "92960"/>	
+		<Item Name = "Facets of Research" Entry = "90395"/>	
+		<Item Name = "Facets of Research" Entry = "90397"/>
+		<Item Name = "Facets of Research" Entry = "90398"/>
+		<Item Name = "Facets of Research" Entry = "90399"/>
+		<Item Name = "Facets of Research" Entry = "90400"/>
+		<Item Name = "Facets of Research" Entry = "90406"/>
+		<Item Name = "Facets of Research" Entry = "90401"/>
+	</ProtectedItems>
+
+		
+
+	<Mailboxes>
+		<Mailbox X="12792.35" Y="-6967.269" Z="15.45416" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+	<Factions>16</Factions>
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 585)" >
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+</If>
+<!-- Need navigation to Isle of Quel'Danas -->
+<While Condition="true">
+	<If Condition="!(Me.ZoneId == 4131)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(12884.97, -7333.749, 65.48833)) &gt; 10" >		
+			<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+			<CustomBehavior File="Message" Text="Moving to Magisters' Terrace." LogColor="Lime" />
+			<CustomBehavior File="ForcedMount" MountType="Ground" />
+			<CustomBehavior File="MyCTM" X="12743.08" Y="-6948.081" Z="13.40375" />
+			<CustomBehavior File="MyCTM" X="12714.79" Y="-7044.312" Z="19.34387" />
+			<CustomBehavior File="MyCTM" X="12740.85" Y="-7196.603" Z="6.975547" />
+			<CustomBehavior File="MyCTM" X="12819.75" Y="-7234.132" Z="32.16183" />
+			<CustomBehavior File="MyCTM" X="12891.53" Y="-7306.203" Z="65.52151" />
+			<CustomBehavior File="MyCTM" X="12880.39" Y="-7341.651" Z="67.38147" />
+		</If>
+			<CustomBehavior File="MyCTM" X="12880.39" Y="-7341.651" Z="67.38147" /> <!-- Enters instance if not already inside -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="ForcedDismount" />
+	</If>
+				<!-- Begin Instance Grind -->
+	<While Condition="(Me.ZoneId == 4131)" >
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+			<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="15" KillBetweenHotspots="True" LogoutForInactivity="False" />		
+			<RunTo X="124.7295" Y="-9.763638" Z="-2.813337" />
+			<RunTo X="123.6144" Y="15.55122" Z="-2.805324" />
+			<RunTo X="244.7749" Y="-0.02897095" Z="1.826468" />
+			<RunTo X="231.3117" Y="-217.8796" Z="-6.373718" />
+			<RunTo X="200.0766" Y="-235.5133" Z="-9.612024" />
+			<RunTo X="126.8865" Y="-172.2033" Z="-21.4166" />
+			<RunTo X="139.6777" Y="-141.6811" Z="-21.24622" />
+			<RunTo X="122.5949" Y="-106.0079" Z="-21.36168" />	
+			<RunTo X="108.2356" Y="-111.1218" Z="-20.26903" />
+			<RunTo X="113.574" Y="-152.6129" Z="-21.13933" />			
+			<RunTo X="159.78" Y="-19.11" Z="-21.47" />
+			<RunTo X="97.4092" Y="-21.71129" Z="-21.45741" />
+			<RunTo X="162.435" Y="24.89898" Z="-21.37393" />
+			
+			
+			<RunTo X="100.6884" Y="27.3909" Z="-21.40676" />
+			<RunTo X="147.1202" Y="81.65324" Z="-22.23926" />
+			<RunTo X="149.5225" Y="137.1584" Z="-14.38122" /> <!--kills group immediately before Kael'thas (his speech starts when they die) -->
+			<RunTo X="149.38" Y="187.67" Z="-16.73" /> <!-- Runs to Kael'thas -->
+			<CustomBehavior File="WaitTimer" WaitTime="45000" /> <!-- wait 45 seconds for speech + a little more -->
+			<CustomBehavior File="InteractWith" MobId="188173" X="152.1315" Y="204.0669" Z="-11.95795" /> <!-- activates teleporter behind Kael -->
+			<CustomBehavior File="WaitTimer" WaitTime="15000" /> <!-- wait 45 seconds for speech + a little more -->
+		    <CustomBehavior File="MyCTM" X="12927.31" Y="-6871.626" Z="7.496085" />
+			<CustomBehavior File="ForcedMount" MountType="Ground" />
+
+			<CustomBehavior File="MyCTM" X="12897.79" Y="-6900.51" Z="5.946603" />
+			<CustomBehavior File="MyCTM" X="12856.87" Y="-6902.823" Z="9.687179" />
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			<CustomBehavior File="MyCTM" X="12743.08" Y="-6948.081" Z="13.40375" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+	</While>	
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to IoQ Mailbox" LogColor="Lime" />
+	    <CustomBehavior File="MyCTM" X="12737.0771" Y="-6950.0908" Z="13.9526"  />
+	    <CustomBehavior File="MyCTM" X="12713.2588" Y="-6956.7363" Z="16.4909"  />
+	    <CustomBehavior File="MyCTM" X="12682.4873" Y="-6988.8604" Z="15.3755"  />
+	    <CustomBehavior File="MyCTM" X="12664.4492" Y="-6984.6499" Z="14.5438"  />
+		<SetVendor>
+			<Vendors>
+				<Vendor Name="Smith Hauthaa" Entry="25046" Type="Repair" X="12664.15" Y="-6984.873" Z="14.54689" />
+			</Vendors>
+		</SetVendor>
+		<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<ClearVendor />
+	    <CustomBehavior File="MyCTM" X="12684.3105" Y="-6988.7593" Z="15.2453"  />
+	    <CustomBehavior File="MyCTM" X="12712.9775" Y="-6968.8330" Z="17.2083"  />
+	    <CustomBehavior File="MyCTM" X="12791.1816" Y="-6967.0723" Z="15.3999"  />
+	    <CustomBehavior File="ForceSetVendor" DoMail="True" />
+	    <CustomBehavior File="MyCTM" X="12751.4072" Y="-6933.5044" Z="12.2472"  />		
+	</If>
+			
+					
+</While>
+</QuestOrder>
+</HBProfile>					

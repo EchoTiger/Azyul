@@ -1,0 +1,162 @@
+<HBProfile>
+<Name>Mjj23's AQ 20 3 Day Reset Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: AQ 20
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Various Transmog/Nozdormu Rep/Cenarion Hold Rep
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+	
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Vargus" Entry="15176" Type="Repair" X="-6860.931" Y="753.0439" Z="42.47256" />	
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-6838.888" Y="735.251" Z="42.2317" />
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		<Mob Name="Flesh Hunter" Entry="15335"/>
+		</AvoidMobs>
+
+
+<Blackspots>
+	<Blackspot X="1485.6520" Y="807.7772" Z="8.8910" Radius="5" />
+</Blackspots>
+	
+<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="1" KillBetweenHotspots="False" LogoutForInactivity="False" />
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 509)" >	
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+</If>		
+		<!-- Travel to AQ 20 --> 
+	<If Condition="!(Me.MapId == 509)" >	
+		<While Condition="(Me.MapId == 1)" >
+		
+						<CustomBehavior File="Message" Text="Moving to Ahn'Quiraj Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="AQ 20" X="-8414.3" Y="1502.496" Z="30.34866" />
+						<CustomBehavior File="MyCTM" X="-8436.53" Y="1519.17" Z="31.907" />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="ForcedDismount" />
+		</While>
+	</If>
+		<!-- Begin Instance Grind -->	
+		<While Condition="(Me.MapId == 509)" >
+		
+					<RunTo X="-8442.494" Y="1517.209" Z="31.91632" />
+					<RunTo X="-8508.545" Y="1530.383" Z="31.96552" />
+					<RunTo X="-8547.571" Y="1474.066" Z="31.90745" />
+					<RunTo X="-8605.554" Y="1478.61" Z="31.95782" />
+					<RunTo X="-8703.257" Y="1560.783" Z="32.01596" />
+					<RunTo X="-8748.784" Y="1640.923" Z="25.59825" />
+					<RunTo X="-8821.305" Y="1671.628" Z="21.38617" />
+					<RunTo X="-8819.231" Y="1631.788" Z="19.71834" /> <!-- Pull Kurinaxx -->
+					<RunTo X="-8881.413" Y="1606.05" Z="21.38786" />
+					<RunTo X="-8917.125" Y="1561.442" Z="21.38701" />
+					<RunTo X="-8951.648" Y="1550.041" Z="23.16398" />
+		
+		
+		<CustomBehavior File="InteractWith" MobId1="15391" MobId2="15392" MobId3="15389" MobId4="15386" MobId5="15385" MobId6="15388" 
+						NumOfTimes="6" X="-8951.648" Y="1550.041" Z="23.16398" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" /> <!-- Pull Rajaxx Trash -->
+		
+		<CustomBehavior File="InteractWith"  MobId="15341" NumOfTimes="9" X="-8951.648" Y="1550.041" Z="23.16398" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" /> <!-- Pull General Rajaxx -->
+		
+					<RunTo X="-9007.79" Y="1566.148" Z="21.79016" />
+					<RunTo X="-9053.312" Y="1635.509" Z="21.42015" />
+					<RunTo X="-9062.229" Y="1669.397" Z="22.71267" />
+					<RunTo X="-9039.742" Y="1691.484" Z="21.38696" />
+					<RunTo X="-8962.547" Y="1692.318" Z="21.38718" />
+					<RunTo X="-8884.439" Y="1799.856" Z="21.38834" />
+					<RunTo X="-8792.244" Y="1930.754" Z="21.54308" />
+					<RunTo X="-8795.923" Y="2060.234" Z="21.40048" />
+					<RunTo X="-8775.564" Y="2085.02" Z="23.31499" />
+					<RunTo X="-8776.916" Y="2117.08" Z="26.04097" />
+					<RunTo X="-8840.431" Y="2163.375" Z="21.76307" />
+		
+		<CustomBehavior File="InteractWith"  MobId="15340" NumOfTimes="1" X="-8840.431" Y="2163.375" Z="21.76307" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" /> <!-- Pull Moam -->
+		
+					<RunTo X="-8912.243" Y="2271.494" Z="21.45002" />
+					<RunTo X="-8951.384" Y="2240.988" Z="25.75272" />
+					<RunTo X="-8989.515" Y="2206.857" Z="24.0241" />
+					<RunTo X="-8996.877" Y="2182.003" Z="23.95081" />
+					<RunTo X="-9004.58" Y="2159.973" Z="23.7328" />
+					<RunTo X="-9071.375" Y="2183.982" Z="21.38724" />
+					<RunTo X="-9172.484" Y="2082.678" Z="56.84094" />
+					<RunTo X="-9229.492" Y="2025.163" Z="86.94173" />
+					<RunTo X="-9291.493" Y="2004.404" Z="85.5561" />
+					<RunTo X="-9430.126" Y="1998.941" Z="85.91299" />
+		
+		<CustomBehavior File="InteractWith"  MobId="15339" NumOfTimes="1" X="-9430.126" Y="1998.941" Z="85.91299" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" /> <!-- Pull Ossirian the Unscarred -->
+		
+					<RunTo X="-9449.826" Y="1975.167" Z="85.91556" />
+					<RunTo X="-9425.948" Y="1948.28" Z="85.76878" />
+					<RunTo X="-9460.446" Y="1888.168" Z="85.5555" />
+					<RunTo X="-9518.56" Y="1871.398" Z="85.55576" />
+					<RunTo X="-9509.354" Y="1826.345" Z="86.52985" />
+					<RunTo X="-9467.416" Y="1779.232" Z="86.69037" />
+					<RunTo X="-9527.928" Y="1718.264" Z="57.03027" />
+					<RunTo X="-9590.702" Y="1656.407" Z="21.67582" />
+					<RunTo X="-9649.21" Y="1600.541" Z="21.44454" />
+					<RunTo X="-9695.321" Y="1538.549" Z="21.44412" /> <!-- Pull Ayamiss the Hunter -->
+					<RunTo X="-9584.652" Y="1554.799" Z="21.42164" />
+					<RunTo X="-9578.347" Y="1500.405" Z="21.38713" />
+					<RunTo X="-9549.459" Y="1401.1" Z="21.38971" />
+					<RunTo X="-9474.883" Y="1334.02" Z="22.21261" />
+					<RunTo X="-9411.978" Y="1286.725" Z="1.787048" />
+					<RunTo X="-9304.144" Y="1272.916" Z="-62.77206" />
+					<RunTo X="-9274.294" Y="1255.956" Z="-63.75863" />
+		
+		<CustomBehavior File="InteractWith"  MobId="15370" NumOfTimes="1" X="-9274.294" Y="1255.956" Z="-63.75863" CollectionDistance="200" MobState="Alive" WaitForNpcs="False" /> <!-- Pull Buru the Gorger -->
+					
+		</While>
+		<!-- Hearth out because we're done! -->
+				<While Condition="(Me.ZoneId == 3429)" >
+				
+				<If Condition="HasItem(6948)" >
+						<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(6948)" WaitTime="1000" />
+						<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+				</If>
+				
+				<If Condition="HasItem(64488)" >
+						<CustomBehavior File="Misc\RunLua" Lua="UseItemByName(64488)" WaitTime="1000" />
+						<CustomBehavior File="WaitTimer" WaitTime="12000" GoalText="Hearthing to current Hearth location. {TimeRemaining}" />
+				</If>
+						
+				</While>
+				
+				<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="AQ 20 Run Complete!\nDid You Get Lucky?" />
+			
+			
+				
+</QuestOrder>
+
+</HBProfile>

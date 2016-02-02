@@ -1,0 +1,152 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo
+// Farm zone: Grim Batol
+// Farm mobs: Universal Profile -- User's Choice
+///////////////////////////////////////////////////////////////////////
+
+<Name>Grim Batol - Optimized Gold Farms - Medium Pulls [$Rev$]</Name>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+</ProtectedItems>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Net" Entry="42570" /> <!-- Nets holding the dragons at the start. -->
+	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+<QuestOrder>
+
+
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/>
+
+<!-- Activate Hooks -->
+<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]:&quot; + Environment.NewLine + &quot;Item hooks are now activated.&quot; + Environment.NewLine + &quot;Bot will now:&quot; + Environment.NewLine + &quot;   - Open Tiny Treasure Chests.&quot; + Environment.NewLine + &quot;   - Use Potion of Treasure Finding.&quot;);" />
+<CustomBehavior File="Hooks\DoWhen" ItemId="58488" UseWhen="!Me.HasAura(80263) &amp;&amp; HasItem(58488) &amp;&amp; Me.IsInInstance" />
+<CustomBehavior File="Hooks\DoWhen" ActivityName="Open_TChests" UseWhen="HasItem(67539)" AllowUseDuringCombat="true" > <!-- Tiny Treasure Chest -->
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Opening Tiny Treasure Chest.&quot;);" />
+	<CustomBehavior File="UseItem" ItemId="67539" NumOfTimes="500" TerminateWhen="!HasItem(67539)" />
+</CustomBehavior>
+	<If Condition="Me.IsAlliance &amp;&amp; Me.HearthstoneAreaId != 2101" >
+		<CustomBehavior File="FlyTo" X="-5370.68" Y="-2954.063" Z="323.5525" />
+		<CustomBehavior File="ForcedDismount" />
+		<CustomBehavior File="SetHearthstone" MobId="6734" X="-5377.913" Y="-2973.908" Z="323.1691" />
+		<CustomBehavior File="MyCTM" X="-5365.691" Y="-2969.348" Z="326.7807" />
+		<CustomBehavior File="MyCTM" X="-5365.975" Y="-2962.336" Z="326.5025" />
+		<CustomBehavior File="MyCTM" X="-5371.688" Y="-2942.453" Z="326.2382" />
+
+	</If>
+
+	<If Condition="Me.IsHorde &amp;&amp; Me.HearthstoneAreaId != 5138" >
+		<CustomBehavior File="FlyTo" X="-3671.135" Y="-5280.586" Z="41.60145" />
+		<CustomBehavior File="ForcedDismount" />
+		<CustomBehavior File="MyCTM" X="-3663.846" Y="-5248.531" Z="42.13885" />
+		<CustomBehavior File="SetHearthstone" MobId="49762" X="-3663.24" Y="-5246.885" Z="42.13864" />
+		<CustomBehavior File="MyCTM" X="-3668.466" Y="-5265.098" Z="42.1588" />
+		<CustomBehavior File="MyCTM" X="-3672.053" Y="-5276.985" Z="41.8436" />
+	</If>
+
+
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />	
+
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" AllowUseDuringCombat="True" AllowExecutionWhileNotAlive="true" UseWhen="Me.IsGhost" >
+		<DisableBehavior Name="Death" />
+		<DisableBehavior Name="Vendor" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="!(Me.MapId == 670)" />
+		<CustomBehavior File="WaitTimer" WaitTime="1500" /> <!-- Safety Lag -->
+        <CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Red, &quot;Looks like we died, returning to instance.&quot;);" />
+        <RunTo X="-4057.114" Y="-3449.378" Z="281.2569" />
+        <CustomBehavior File="GoThruPortal" Timeout="30000" X="-4052.985" Y="-3448.013" Z="283.4044" />
+		<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 670" />
+		<EnableBehavior Name="Vendor" />
+		<EnableBehavior Name="Death" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="CustomDeathHook" Command="Disable" />
+
+	<While Condition="true"> <!-- Trap bot in da Loop de' Loop -->
+			<If Condition="(Me.FreeBagSlots &lt; 17)" >
+				<CustomBehavior File="FlyTo" X="-4083.552" Y="-3465.485" Z="287.8949" />
+				<If Condition="Me.IsHorde" >
+					<CustomBehavior File="FlyTo" X="-3503.599" Y="-4375.011" Z="210.492" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Provisioner Graka" Nav="Fly" Entry="49775" Type="Repair" X="-3491.58" Y="-4368.721" Z="210.4921" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+					<If Condition="(Me.FreeBagSlots &lt; 20)">
+						<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;You're still under 20 bagslots after selling. Moving to mail.&quot;);" />
+						<CustomBehavior File="FlyTo" X="-3669.523" Y="-5285.55" Z="48.18324" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox Nav="Fly" X="-3666.559" Y="-5278.83" Z="41.7954" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="ForceSetVendor" DoMail="True" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+					</If>
+				</If>
+				<If Condition="Me.IsAlliance" >
+					<CustomBehavior File="FlyTo" X="-4187.616" Y="-4751.438" Z="126.7861" />
+					<SetVendor>
+						<Vendors>
+							<Vendor Name="Brian Terrel" Nav="Fly" Entry="49605" Type="Repair" X="-4187.616" Y="-4751.438" Z="126.7861" />
+						</Vendors>
+					</SetVendor>
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+					<If Condition="(Me.FreeBagSlots &lt; 20)">
+						<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.Orange, &quot;You're still under 20 bagslots after selling. Moving to mail.&quot;);" />
+						<CustomBehavior File="FlyTo" X="-5361.541" Y="-2951.45" Z="324.0776" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox Nav="Fly" X="-5365.623" Y="-2954.108" Z="323.7545" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="ForceSetVendor"  DoMail="True" />
+						<CustomBehavior File="WaitTimer" WaitTime="500" />
+					</If>
+				</If>
+				<CustomBehavior File="Misc\RunLua" Lua="
+					AutoRespond = GetMoney();
+					WhisperStats = math.floor(AutoRespond-ShowRecoveryMessage);
+					vendortotalmoney = math.floor(AutoRespond-ShowKillMessage);
+					print(&quot;|cFF0099FFStatistics so far:|r\nYou've gained &quot;, GetCoinTextureString(WhisperStats), &quot; after selling and repairing.\n&quot;, &quot;So far, you've made &quot;, GetCoinTextureString(vendortotalmoney), &quot; total.&quot;)
+					" /> 
+				<ClearVendor />
+				<ClearMailbox />
+			</If>
+		</While>
+</QuestOrder>
+</HBProfile>

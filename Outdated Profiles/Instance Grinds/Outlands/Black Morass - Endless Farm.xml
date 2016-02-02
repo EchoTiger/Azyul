@@ -1,0 +1,175 @@
+<HBProfile>
+<Name>Frostfever's Black Morass - Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Frostfever
+// Farm zone: Black Morass
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? 
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>false</SellWhite>
+<SellGreen>false</SellGreen>
+<SellBlue>false</SellBlue>
+<SellPurple>false</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	<ProtectedItems>
+		<Item Name = "Pattern: Stylin' Jungle Hat" Entry = "25730"/>
+		<Item Name = "Lightning Steel Ingot" Entry = "94111"/>
+		<Item Name = "Scroll of Wisdom" Entry = "79731"/>
+		<Item Name = "Silkworm Cocoon" Entry = "92960"/>	
+		<Item Name = "Facets of Research" Entry = "90395"/>	
+		<Item Name = "Facets of Research" Entry = "90397"/>
+		<Item Name = "Facets of Research" Entry = "90398"/>
+		<Item Name = "Facets of Research" Entry = "90399"/>
+		<Item Name = "Facets of Research" Entry = "90400"/>
+		<Item Name = "Facets of Research" Entry = "90406"/>
+		<Item Name = "Facets of Research" Entry = "90401"/>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Krinkle Goodsteel" Entry="5411" Type="Repair" X="-7232.01" Y="-3751.71" Z="9.092834" />
+	
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-7082.707" Y="-3851.493" Z="9.774841" />
+	</Mailboxes>
+
+
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		<Mob Name="Sable Jaguar" Entry="18982" />
+		<Mob Name="Darkwater Crocolisk" Entry="17952" />
+		<Mob Name="Blackfang Tarantula" Entry="18983" />
+	</AvoidMobs>
+
+	<Factions>1720</Factions>
+	
+	<Blackspots>
+		<Blackspot X="-1706.046" Y="7148.352" Z="19.48414" Radius="6.013559" />
+		<Blackspot X="-1824.346" Y="7097.896" Z="18.27595" Radius="6.058367" />
+		<Blackspot X="-1994.123" Y="7058.592" Z="18.72889" Radius="4.297377" />
+
+	</Blackspots>
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 733)" >
+
+		<If Condition="Me.MapId != 161" >
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToKalimdor.xml"/> 
+</If>
+</If>
+		<!-- Travel to Escape from Dumholde --> 
+		
+<!-- Start GOTO dungeon code -->
+
+
+
+
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 733)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(-8767.0029, -4165.9390, -210.1310)) &gt; 150" >
+			<CustomBehavior File="FlyTo" DestName="Caverns of Time" X="-8175.918" Y="-4707.365" Z="48.94663" />
+			<CustomBehavior File="MyCTM" X="-8175.043" Y="-4720.596" Z="44.30181" />
+			<CustomBehavior File="MyCTM" X="-8175.128" Y="-4888.313" Z="40.85376" />
+			<CustomBehavior File="MyCTM" X="-8087.97" Y="-4880.237" Z="19.51904" />
+			<CustomBehavior File="MyCTM" X="-8098.259" Y="-4838.029" Z="-3.988078" />
+			<CustomBehavior File="MyCTM" X="-8153.634" Y="-4874.076" Z="-22.69484" />
+			<CustomBehavior File="MyCTM" X="-8112.598" Y="-4918.717" Z="-37.85519" />
+			<CustomBehavior File="MyCTM" X="-8066.892" Y="-4880.462" Z="-46.35584" />
+			<CustomBehavior File="MyCTM" X="-8068.639" Y="-4826.196" Z="-57.45797" />
+			<CustomBehavior File="MyCTM" X="-8192.012" Y="-4556.838" Z="-111.1804" />
+			<CustomBehavior File="MyCTM" X="-8518.979" Y="-4651.938" Z="-190.6948" />
+			<CustomBehavior File="MyCTM" X="-8488.631" Y="-4361.657" Z="-175.1971" />
+			<CustomBehavior File="MyCTM" X="-8659.717" Y="-4264.146" Z="-190.3277" />
+			<CustomBehavior File="MyCTM" X="-8752.916" Y="-4204.811" Z="-209.4982" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+		</If>
+	</If>
+	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
+		<If Condition="!(Me.MapId == 733)" >
+			<RunTo X="-8758.719" Y="-4193.282" Z="-209.501" />
+				<CustomBehavior File="MyCTM" X="-8767.0029" Y="-4165.9390" Z="-210.1310" />  <!-- moves into instance portal if not already inside -->
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+				<!--Instance Navigation Start -->
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+		    <RunTo X="-1500.8127" Y="7096.6104" Z="32.7551"  />
+		    <RunTo X="-1546.8252" Y="7111.7993" Z="32.5227"  />
+		    <CustomBehavior File="InteractWith" MobId="20201" GossipOptions="1" X="-1547.062" Y="7113.633" Z="32.7361" />
+		    <RunTo X="-1635.1172" Y="7113.7925" Z="23.5024"  />
+		    <RunTo X="-1775.9202" Y="7141.4917" Z="18.5920"  />
+		    <RunTo X="-1928.8865" Y="7106.8267" Z="17.4756"  />
+		    <RunTo X="-2013.1619" Y="7120.2080" Z="22.6511"  />
+		    <RunTo X="-1997.402" Y="7094.309" Z="17.48149" />
+		    <CustomBehavior File="WaitTimer" WaitTime="6000" />
+					
+
+			<CustomBehavior File="Aeonus" BossId="17881" AddId1="21104" AddId2="21140" AddId3="21148" AddId4="17839" AddId5="17879" AddId6="17880" AddId7="17835" AddId8="17892" AddId9="18994" AddId10="18995" AddId11="21818" AddId12="21139" AddId13="21136" AddId14="21138" AddId15="21137" />
+			
+			
+			<RunTo X="-1832.4247" Y="7122.1929" Z="17.5981"  />
+		    <RunTo X="-1740.9796" Y="7149.8579" Z="21.9178"  />
+		    <RunTo X="-1637.8198" Y="7104.7666" Z="22.6479"  />
+		    <RunTo X="-1508.5219" Y="7102.5801" Z="32.8156"  />
+		    <RunTo X="-1500.5530" Y="7047.7622" Z="32.8794"  />
+		    <RunTo X="-1500.1003" Y="7040.0908" Z="33.0374"  />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			<CustomBehavior File="MyCTM" X="-1494.671" Y="7028.2757" Z="32.8237" />
+		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+			<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" /> 
+		<!--Instance Coordnation Complete -->
+	</While>
+
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+		<CustomBehavior File="ForcedMount" MountType="Flying" />
+		    <CustomBehavior File="MyCTM" X="-8604.5088" Y="-4289.9844" Z="-184.6925"  />
+		    <CustomBehavior File="MyCTM" X="-8494.3623" Y="-4534.6113" Z="-183.7299"  />
+		    <CustomBehavior File="MyCTM" X="-8542.3242" Y="-4662.3931" Z="-173.5776"  />
+		    <CustomBehavior File="MyCTM" X="-8447.8584" Y="-4648.3247" Z="-165.3057"  />
+		    <CustomBehavior File="MyCTM" X="-8231.9893" Y="-4572.9219" Z="-123.0391"  />
+		    <CustomBehavior File="MyCTM" X="-8084.3735" Y="-4747.0605" Z="-78.2183"  />
+		    <CustomBehavior File="MyCTM" X="-8082.2710" Y="-4908.0879" Z="-41.4833"  />
+		    <CustomBehavior File="MyCTM" X="-8154.2402" Y="-4888.7178" Z="-26.2408"  />
+		    <CustomBehavior File="MyCTM" X="-8105.1987" Y="-4837.6611" Z="-6.3740"  />
+		    <CustomBehavior File="MyCTM" X="-8067.1636" Y="-4862.5801" Z="29.6442"  />
+		    <CustomBehavior File="MyCTM" X="-8173.1865" Y="-4888.6162" Z="38.1586"  />
+		    <CustomBehavior File="MyCTM" X="-8178.6719" Y="-4693.1826" Z="42.4765"  />
+		    <CustomBehavior File="FlyTo" DestName="Gazgetzan" X="-7232.01" Y="-3751.71" Z="9.092834" />	
+
+			<SetVendor>
+				<Vendors>
+					<Vendor Name="Krinkle Goodsteel" Entry="5411" Type="Repair" X="-7232.01" Y="-3751.71" Z="9.092834" />
+				</Vendors>
+			</SetVendor>
+			<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" DoTrain="False" /> <!-- Vendor + Repair -->
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<ClearVendor />
+			<RunTo X="-7080.707" Y="-3850.493" Z="9.774841" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" /> <!-- Send Mail --> 
+		</If>
+		<RunTo X="-7099.36" Y="-3848.29" Z="8.869291" />
+	
+</While>
+</QuestOrder>
+</HBProfile>
+

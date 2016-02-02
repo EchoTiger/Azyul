@@ -1,0 +1,265 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: EchoTiger
+// Farm zone: Halls of Stone
+// Farm mobs: Full Run
+///////////////////////////////////////////////////////////////////////
+
+<Name>Ulduar-Halls of Stone - Endless Farm [$Rev$]</Name>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+</ProtectedItems>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Invis Lightning Stalker" Entry="28130" />
+	<Mob Name="Summon Enabler Stalker" Entry="53488" />
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+
+
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 599)" >
+
+		<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToNorthrend.xml"/>
+
+<!-- ALLIANCE CHECK - RIDING -->
+<If Condition="(!HasSpell(54197))  &amp;&amp; (Me.IsAlliance)" >
+	<CustomBehavior File="Message" Text="Training Riding" LogColor="Cornflowerblue" />
+				
+	<If Condition="Me.Gold &gt;= 401" >
+		<RunTo X="2274.391" Y="5174.106" Z="11.17985" />
+		<CustomBehavior File="InteractWith"  MobId="35133" WaitTime="1000" CollectionDistance="50" X="2274.391" Y="5174.106" Z="11.17985" />
+		<CustomBehavior File="ForceTrainRiding" MobId="35133" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
+	</If>
+</If>
+<!-- HORDE CHECK - RIDING -->
+<If Condition="(!HasSpell(54197)) &amp;&amp; (Me.IsHorde)">
+	<CustomBehavior File="Message" Text="Training Riding" LogColor="Cornflowerblue" />
+
+	<!-- Elevator -->
+	<If Condition="(Me.Z &lt; 190)" >
+		<RunTo X="2869.177" Y="6215.224" Z="104.2853" />
+		<CustomBehavior File="UseTransport" TransportId="188521" 
+					WaitAtX="2869.177" WaitAtY="6215.224" WaitAtZ="104.2853"
+					GetOffX="2880.96" GetOffY="6225.813" GetOffZ="208.7495" 
+					TransportStartX="2877.649" TransportStartY="6223.188" TransportStartZ="104.8859" 
+					TransportEndX="2892.18" TransportEndY="6236.337" TransportEndZ="208.908"
+					StandOnX="2878.604" StandOnY="6223.707" StandOnZ="105.3792"  />
+ 	</If>
+	<If Condition="Me.Gold &gt;= 401" >
+		<RunTo X="2773.588" Y="6144.316" Z="208.7535" />
+		<CustomBehavior File="InteractWith"  MobId="35135" WaitTime="1000" CollectionDistance="50" X="2773.588" Y="6144.316" Z="208.7535" />
+		<CustomBehavior File="ForceTrainRiding" MobId="35135" />
+		<CustomBehavior File="WaitTimer" WaitTime="5000" GoalText="Waiting {TimeRemaining}"  />
+	</If>
+</If>
+
+<!--Flying notification -->
+<If Condition="(!HasSpell(54197))">
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" StopOnContinue="True" Text="You don't have enough gold to train Cold Weather Flying!\nYou must have Cold Weather Flying to continue." />
+</If>
+
+<!-- END OF COLD WEATHER FLYING CHECK -->
+
+</If>
+
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" />				
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+<CustomBehavior File="RunMacro" Macro="/script ResetInstances();" />
+
+<!-- CHOP CHOP :3 -->
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 599)" >
+		<If Condition="Me.Location.Distance(new WoWPoint(8923.021, -997.2937, 1039.452)) &gt;= 50" >	
+			<CustomBehavior File="Message" Text="Navigating to Halls of Stone" LogColor="Lime" />		
+			<CustomBehavior File="FlyTo" X="8913.02" Y="-1138.348" Z="1128.47" />
+			<CustomBehavior File="FlyTo" X="8921.829" Y="-1009.225" Z="1039.561" />
+		</If>
+	</If>
+	<While Condition="(Me.FreeBagSlots &gt;= 10)" >
+	<If Condition="!(Me.MapId == 599)" >
+		<CustomBehavior File="MyCTM" X="8922.668" Y="-964.756" Z="1039.151" />
+		<CustomBehavior File="WaitTimer" WaitTime="15000" />
+	</If>
+		<!--Instance Navigation Start -->
+		<If Condition="(Me.MapId == 599)" >
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+		    <RunTo X="1153.1573" Y="779.6904" Z="195.0447"  />
+		    <RunTo X="1153.4712" Y="749.2190" Z="195.3509"  />
+		    <RunTo X="1161.0121" Y="731.4637" Z="196.2438"  />
+		    <RunTo X="1154.6105" Y="720.6389" Z="196.2438"  />
+		    <RunTo X="1154.4009" Y="718.4545" Z="196.2438"  />
+		    <RunTo X="1154.2452" Y="702.1474" Z="196.2360"  />
+		    <RunTo X="1172.9543" Y="693.9362" Z="196.2350"  />
+		    <RunTo X="1182.2424" Y="664.7104" Z="196.2350"  />
+		    <RunTo X="1167.7653" Y="637.7297" Z="196.2350"  />
+		    <RunTo X="1149.2638" Y="638.7854" Z="196.2350"  />
+		    <RunTo X="1137.9407" Y="644.5960" Z="196.2350"  />
+		    <RunTo X="1126.2446" Y="672.2821" Z="196.2350"  />
+		    <RunTo X="1097.2334" Y="666.9842" Z="202.8713"  />
+		    <RunTo X="1066.8347" Y="667.6390" Z="202.6449"  />
+		    <RunTo X="1044.9243" Y="678.9337" Z="202.3278"  />
+		    <RunTo X="1044.7335" Y="688.4527" Z="202.9941"  />
+		    <RunTo X="1044.5952" Y="718.9739" Z="201.8483"  />
+		    <RunTo X="1042.1754" Y="749.6961" Z="197.0018"  />
+		    <RunTo X="1055.2455" Y="776.7748" Z="191.5462"  />
+		    <RunTo X="1062.1643" Y="805.8734" Z="187.9263"  />
+		    <RunTo X="1057.8868" Y="835.3669" Z="183.9681"  />
+		    <RunTo X="1030.1694" Y="834.3995" Z="185.9177"  />
+		    <RunTo X="1027.6115" Y="836.9715" Z="185.6471"  />
+		    <RunTo X="998.5394" Y="845.7339" Z="186.3374"  />
+		    <RunTo X="971.9208" Y="831.5901" Z="186.7565"  />
+		    <RunTo X="947.8651" Y="811.6408" Z="189.8200"  />
+		    <RunTo X="947.9892" Y="781.6746" Z="196.8835"  />
+		    <RunTo X="955.9137" Y="773.8373" Z="198.0829"  />
+		    <RunTo X="974.8362" Y="768.0798" Z="201.2002"  />
+		    <RunTo X="1008.0708" Y="759.6063" Z="208.5993"  />
+		    <RunTo X="1022.4157" Y="752.3013" Z="211.8297"  />
+		    <RunTo X="1036.8846" Y="741.8389" Z="197.7503"  />
+		    <RunTo X="1047.7892" Y="721.1992" Z="201.4077"  />
+		    <RunTo X="1048.2244" Y="691.0693" Z="202.7509"  />
+		    <RunTo X="1045.7977" Y="667.2446" Z="201.9964"  />
+		    <RunTo X="1033.7502" Y="664.7160" Z="202.2811"  />
+		    <RunTo X="1002.6479" Y="666.9738" Z="202.0249"  />
+		    <RunTo X="972.4664" Y="666.8676" Z="197.7907"  />
+		    <RunTo X="942.0187" Y="666.5298" Z="196.1598"  />
+		    <RunTo X="911.4167" Y="661.6960" Z="196.4108"  />
+		    <RunTo X="905.6237" Y="658.6470" Z="196.4108"  />
+		    <RunTo X="894.3958" Y="667.3049" Z="196.4108"  />
+		    <RunTo X="880.7891" Y="666.8087" Z="193.0309"  />
+		    <RunTo X="849.6342" Y="665.9070" Z="190.0327"  />
+		    <RunTo X="841.2228" Y="666.0146" Z="190.0327"  />
+		    <RunTo X="879.8893" Y="665.7497" Z="192.8018"  />
+		    <RunTo X="909.7852" Y="665.6342" Z="196.4107"  />
+		    <RunTo X="940.4308" Y="665.7666" Z="196.1598"  />
+		    <RunTo X="970.9764" Y="665.8986" Z="197.2511"  />
+		    <RunTo X="1001.3351" Y="666.0299" Z="202.4095"  />
+		    <RunTo X="1031.8680" Y="665.1639" Z="202.5652"  />
+		    <RunTo X="1048.9888" Y="664.2457" Z="201.6720"  />
+		    <RunTo X="1048.2299" Y="639.6174" Z="206.6809"  />
+		    <RunTo X="1048.2704" Y="609.4790" Z="207.3109"  />
+		    <RunTo X="1054.3704" Y="580.0902" Z="206.5202"  />
+		    <RunTo X="1058.9989" Y="578.8268" Z="206.8064"  />
+		    <RunTo X="1036.9559" Y="579.8796" Z="207.0042"  />
+		    <RunTo X="1048.5024" Y="550.5909" Z="207.3103"  />
+		    <RunTo X="1047.7305" Y="520.3081" Z="207.7199"  />
+		    <RunTo X="1036.5159" Y="503.5075" Z="207.7400"  />
+		    <RunTo X="1058.4115" Y="499.5339" Z="207.7345"  />
+		    <RunTo X="1032.3143" Y="475.0043" Z="207.7431"  />
+		    <RunTo X="1051.5225" Y="469.1141" Z="208.7728"  />
+		    <RunTo X="1077.41" Y="474.16" Z="207.73" />
+		    <CustomBehavior File="WaitTimer" WaitTime="500" />
+		    <CustomBehavior File="InteractWith" MobId="28070" GossipOptions="1" X="1077.41" Y="474.16" Z="207.73" />
+		    <CustomBehavior File="Escort" EscortUntil="DestinationReached" MobId="28070" EscortDestX="939.65" EscortDestY="375.49" EscortDestZ="207.42" X="1077.41" Y="474.16" Z="207.73" />
+		    <CustomBehavior File="WaitTimer" WaitTime="1000" />
+		    <RunTo X="899.0149" Y="335.0097" Z="203.7064" />
+		    <CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="RunMacro" Macro="/cleartarget" />
+            <CustomBehavior File="RunMacro" Macro="/target Brann Bronzebeard" />
+			<CustomBehavior File="RunMacro" Macro="/focus" />
+			<CustomBehavior File="InteractWith" MobId="28070" GossipOptions="1" X="939.65" Y="375.49" Z="207.42" />
+		    <RunTo X="899.0149" Y="335.0097" Z="203.7064" />
+		    <CustomBehavior File="WaitTimer" WaitTime="1000" />
+            <While Condition="(Me.FocusedUnit.Entry == 28070) &amp;&amp; (Me.FocusedUnit.Location.Distance(new WoWPoint(916.8772, 352.2491, 203.7065)) &gt; 5)" >
+			<CustomBehavior File="InteractWith" MobId1="27983" MobId2="27984" MobId3="27985" X="932.2344" Y="373.9594" Z="207.4213" NumOfTimes="1" CollectionDistance="50" MobState="Alive" WaitForNpcs="False" />
+			</While>
+			<CustomBehavior File="InteractWith" MobId="28070" GossipOptions="1" X="917.25" Y="351.93" Z="203.71" />
+			<CustomBehavior File="WaitTimer" WaitTime="10000" />
+		    <RunTo X="882.9083" Y="345.4028" Z="203.7064"/>
+		    <CustomBehavior File="InteractWith" MobId="190586" X="880.4065" Y="345.1637" Z="203.7064" />
+		    <RunTo X="939.5222" Y="375.5849" Z="207.4222"  />
+		    <RunTo X="898.6038" Y="334.2802" Z="203.7066"  />
+		    <RunTo X="926.1966" Y="361.1988" Z="203.7066"  />
+		    <RunTo X="939.8492" Y="381.4206" Z="207.4222"  />
+		    <RunTo X="947.1085" Y="411.2562" Z="205.9944"  />
+		    <RunTo X="973.6198" Y="425.5691" Z="205.9944"  />
+		    <RunTo X="1002.1797" Y="436.1895" Z="207.3409"  />
+		    <RunTo X="1021.1459" Y="460.9035" Z="207.7198"  />
+		    <RunTo X="1036.8691" Y="486.8792" Z="208.3559"  />
+		    <RunTo X="1048.3589" Y="516.1077" Z="207.7298"  />
+		    <RunTo X="1049.4788" Y="546.7262" Z="207.3102"  />
+		    <RunTo X="1050.1914" Y="576.8862" Z="206.5204"  />
+		    <RunTo X="1050.7589" Y="607.4962" Z="207.3103"  />
+		    <RunTo X="1051.3872" Y="638.2051" Z="207.1541"  />
+		    <RunTo X="1064.5950" Y="664.9960" Z="202.5653"  />
+		    <RunTo X="1095.1383" Y="664.6216" Z="202.4619"  />
+		    <RunTo X="1123.6932" Y="657.4452" Z="196.2352"  />
+		    <RunTo X="1146.4728" Y="637.4789" Z="196.2352"  />
+		    <RunTo X="1176.8192" Y="640.6318" Z="196.2352"  />
+		    <RunTo X="1196.2776" Y="663.9478" Z="196.2355"  />
+		    <CustomBehavior File="InteractWith" MobId="28070" GossipOptions="1" X="1099.69" Y="667.16" Z="196.24" />
+		    <RunTo X="1256.6980" Y="666.8929" Z="189.6078"  />
+		    <RunTo X="1295.5364" Y="667.2646" Z="189.6078"  />
+		    <RunTo X="1302.1987" Y="667.2125" Z="189.6078"  />
+		    <RunTo X="1190.4946" Y="667.0930" Z="196.2362"  />
+		    <RunTo X="1152.5696" Y="720.2139" Z="196.2419"  />
+		    <RunTo X="1153.4491" Y="796.4148" Z="195.9381"  />
+		    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+		    <CustomBehavior File="MyCTM" X="1153.801" Y="815.0217" Z="195.3505" />
+		    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+		    <CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+		</If>
+		<!-- Instance Coordination Complete -->
+	</While>
+			<!-- Force town sell. -->
+	<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+		<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+		<CustomBehavior File="FlyTo" X="8911.244" Y="-1288.584" Z="1063.501" />
+		<CustomBehavior File="FlyTo" X="8897.434" Y="-1347.713" Z="1031.36" />
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<CustomBehavior File="RunMacro" Macro="/dismount" />
+		<RunTo X="8891.013" Y="-1359.756" Z="1033.76" />
+		<SetVendor>
+			<Vendors>
+				<Vendor Name="Chester Copperpot" Entry="32477" Type="Food" X="8893.612" Y="-1361.069" Z="1033.906" />
+			</Vendors>
+		</SetVendor>
+		<CustomBehavior File="ForceSetVendor" DoSell="True" DoRepair="True" />
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<ClearVendor />
+		<RunTo X="8900.253" Y="-1344.676" Z="1029.835" />
+		<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+			<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+			<CustomBehavior File="FlyTo" X="8452.892" Y="-331.8914" Z="906.7128" />
+			<RunTo X="8442.646" Y="-329.5482" Z="906.6082" />
+			<CustomBehavior File="ForceSetVendor" DoMail="True" />
+			<CustomBehavior File="WaitTimer" WaitTime="1000" />
+			<CustomBehavior File="FlyTo" X="8549.319" Y="-282.6343" Z="926.7976" />
+			<CustomBehavior File="FlyTo" X="8607.005" Y="-458.6642" Z="1092.152" />
+		</If>
+	</If>
+</While>
+</QuestOrder>
+</HBProfile>

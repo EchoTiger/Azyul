@@ -1,0 +1,208 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo Tiger :3
+// Farm zone: Sethekk Halls
+// Farm mobs: Time-Lost Shadowmage + Avian Warhawk
+// Farm set: Boneshredder, modeled after Ghostwalker's Garb.
+///////////////////////////////////////////////////////////////////////
+
+<Name>[Boneshredder] - Ghostwalker Garb [$Rev$]</Name>
+
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>False</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+	<Item Name = "Boneshredder Skullcap" Entry = "24777"/>
+	<Item Name = "Boneshredder Shoulderguards" Entry = "24779"/>
+	<Item Name = "Boneshredder Jerkin" Entry = "24775"/>
+	<Item Name = "Boneshredder Belt" Entry = "24773"/>
+	<Item Name = "Boneshredder Britches" Entry = "24778"/>
+	<Item Name = "Boneshredder Boots" Entry = "24774"/>
+	<Item Name = "Boneshredder Wristguards" Entry = "24780"/>
+	<Item Name = "Boneshredder Gloves" Entry = "24776"/>
+</ProtectedItems>
+
+<Vendors>
+</Vendors>
+
+<Mailboxes>
+</Mailboxes>
+
+<AvoidMobs>
+	<Mob Name="Summon Enabler Stalker" Entry="53488" /> <!-- Hidden mob that coordinates raid/group summons in every dungeon -->
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+
+
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="1" LogoutForInactivity="False" />				
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="45" KillBetweenHotspots="True" />
+<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
+
+
+<While Condition="!HasItem(24777) || !HasItem(24779) || !HasItem(24775) || !HasItem(24773) || !HasItem(24778) || !HasItem(24774) || !HasItem(24780) || !HasItem(24776)">
+	//Navigate to instance hub.
+	<CustomBehavior File="Message" Text="Heading to farm hub." LogColor="Green" />
+	<If Condition="Me.Location.Distance(new WoWPoint(3272.297, 4678.323, 103.5689)) &gt;= 500" >
+		<CustomBehavior File="FlyTo" X="-3272.297" Y="4678.323" Z="103.5689" />
+		<CustomBehavior File="FlyTo" X="-3369.276" Y="4950.699" Z="-37.78986" />
+	</If>
+	<If Condition="Me.Location.Distance(new WoWPoint(3272.297, 4678.323, 103.5689)) &lt; 500" >
+		<CustomBehavior File="FlyTo" X="-3334.668" Y="4905.257" Z="68.60741" />
+		<CustomBehavior File="FlyTo" X="-3369.276" Y="4950.699" Z="-37.78986" />
+	</If>
+
+	//Go to instance.
+	<CustomBehavior File="FlyTo" X="-3361.786" Y="4779.147" Z="-101.3958" />
+	<RunTo X="-3362.211" Y="4687.456" Z="-101.0496" />
+	<RunTo X="-3361.933" Y="4669.278" Z="-101.0489" />
+
+	//Instance codes.
+	<While Condition="(Me.FreeBagSlots &gt;= 11)">
+		<If Condition="Me.MapId != 556" >
+			<CustomBehavior File="MyCTM" X="-3361.963" Y="4653.548" Z="-101.0489" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+		<If Condition="Me.MapId == 556" >
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="28.80862" Y="5.026539" Z="0.005052838" />
+				<Hotspot X="42.25631" Y="8.081618" Z="0.007909536" />
+				<Hotspot X="40.06013" Y="51.45187" Z="0.007511845" />
+			</CustomBehavior>
+
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="57.58349" Y="82.25821" Z="0.1407161" />
+				<Hotspot X="83.86526" Y="113.116" Z="0.3421992" />
+				<Hotspot X="90.35717" Y="104.1417" Z="0.09941198" />
+			</CustomBehavior>
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="50.33276" Y="99.59606" Z="0.1514532" />
+				<Hotspot X="20.51244" Y="81.26177" Z="-0.007673799" />
+				<Hotspot X="12.26486" Y="102.0459" Z="0.4238141" />
+			</CustomBehavior>
+			
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="-56.8562" Y="107.3731" Z="0.008423406" />
+				<Hotspot X="-75.77289" Y="89.08942" Z="0.007205881" />
+				<Hotspot X="-83.7366" Y="113.5909" Z="0.007205881" />
+			</CustomBehavior>
+
+			<RunTo X="-74.78475" Y="172.7141" Z="0.00943929" />
+			<RunTo X="-144.1206" Y="173.7292" Z="1.684897" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="-245.4811" Y="165.2239" Z="0.06831355" />
+				<Hotspot X="-267.9245" Y="183.8003" Z="0.03408399" />
+			</CustomBehavior>
+
+			<RunTo X="-271.7955" Y="144.5944" Z="13.56506" />
+			<RunTo X="-214.6048" Y="147.9542" Z="26.77625" />
+			<RunTo X="-218.077" Y="203.2467" Z="26.72292" />
+			<RunTo X="-241.2717" Y="212.8243" Z="26.74781" />
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="-230.513" Y="330.7416" Z="27.36087" />
+				<Hotspot X="-205.2064" Y="336.4004" Z="26.6362" />
+				<Hotspot X="-171.1446" Y="282.3966" Z="26.61938" />
+			</CustomBehavior>
+
+			<CustomBehavior File="RunLikeHell" AllowCombat="false" >
+				<Hotspot X="-101.0961" Y="301.4583" Z="26.48319" />
+				<Hotspot X="-82.67163" Y="272.8566" Z="26.80794" />//Potential stuck.
+				<Hotspot X="-54.08806" Y="285.7851" Z="26.91606" />
+				<Hotspot X="-61.56638" Y="310.6757" Z="26.97969" />
+			</CustomBehavior>
+
+			<RunTo X="-36.9269" Y="287.3229" Z="26.73096" />
+			<RunTo X="-3.224393" Y="284.4683" Z="26.70474" />
+			<RunTo X="45.41503" Y="287.2091" Z="25.01277" />
+			<RunTo X="44.69421" Y="246.3665" Z="26.65092" />
+			<RunTo X="49.76536" Y="102.4919" Z="0.1508119" />
+			<RunTo X="33.65199" Y="2.067461" Z="0.007633672" />
+			<RunTo X="-4.028891" Y="0.04797367" Z="0.006221115" />
+
+			<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+			<CustomBehavior File="MyCTM" X="-9.161327" Y="0.2362535" Z="0.006221115" />
+			<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</If>
+	</While>
+
+	//Vendor codes.
+	<If Condition="(Me.FreeBagSlots &lt;= 10)">
+		<CustomBehavior File="Message" Text="Moving to Sell and Repair." LogColor="Lime" />
+		<RunTo X="-3362.103" Y="4752.007" Z="-101.3959" />
+		<CustomBehavior File="FlyTo" X="-3363.175" Y="4833.352" Z="-87.24747" />
+		<CustomBehavior File="FlyTo" X="-3478.927" Y="4939.811" Z="-98.96878" />
+		<CustomBehavior File="FlyTo" X="-3513.939" Y="4947.315" Z="-101.3964" />
+		<CustomBehavior File="RunMacro" Macro="/dismount" />
+		<RunTo X="-3519.702" Y="4951.327" Z="-101.3964" />
+		<SetVendor>
+			<Vendors>
+				<Vendor Name="Dealer Tariq" Entry="20986" Type="Food" X="-3521.878" Y="4952.891" Z="-101.3953" />
+			</Vendors>
+		</SetVendor>
+		<CustomBehavior File="ForceSetVendor" DoMail="False" DoSell="True" DoRepair="True" />
+		<CustomBehavior File="WaitTimer" WaitTime="1000" />
+		<ClearVendor />
+		<If Condition="(Me.FreeBagSlots &lt;= 10)">
+			<CustomBehavior File="Message" Text="\nYou're still under 10 bagslots after selling.\nExecuting mail routine.\n\nIf you do not have a MailTo set, you may want to set one now." LogColor="Red" />
+			<CustomBehavior File="FlyTo" X="-3377.456" Y="4914.469" Z="-39.8547" />
+			<CustomBehavior File="FlyTo" X="-3117.23" Y="4614.094" Z="59.72954" />
+			<If Condition="Me.IsAlliance" >
+				<CustomBehavior File="FlyTo" X="-2950.556" Y="4018.087" Z="15.38469" />
+				<CustomBehavior File="FlyTo" X="-2934" Y="4010.503" Z="-1.309498" />
+				<SetMailbox>
+					<Mailbox X="-2929.392" Y="4008.916" Z="-1.389165" />
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="FlyTo" X="-2975.656" Y="4031.518" Z="37.03671" />
+				<ClearMailbox />
+			</If>
+			<If Condition="Me.IsHorde" >
+				<CustomBehavior File="FlyTo" X="-2696.169" Y="4400.25" Z="60.81217" />
+				<CustomBehavior File="FlyTo" X="-2619.675" Y="4415.936" Z="35.49676" />
+				<SetMailbox>
+					<Mailbox X="-2615.288" Y="4417.971" Z="35.98839" />
+				</SetMailbox>
+				<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="False" DoRepair="False" />
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+				<CustomBehavior File="FlyTo" X="-2691.119" Y="4415.262" Z="81.11006" />
+				<ClearMailbox />
+			</If>
+		</If>
+	</If>
+</While>
+
+
+<If Condition="HasItem(24777) &amp;&amp; HasItem(24779) &amp;&amp; HasItem(24775) &amp;&amp; HasItem(24773) &amp;&amp; HasItem(24778) &amp;&amp; HasItem(24774) &amp;&amp; HasItem(24780) &amp;&amp; HasItem(24776)">
+	<CustomBehavior File="Message" Text="It seems that all items have been obtained.\n\nIf you wish to farm the mobs again, put the items of this set into your bank then run the profile again." />
+</If>
+</QuestOrder>
+</HBProfile>

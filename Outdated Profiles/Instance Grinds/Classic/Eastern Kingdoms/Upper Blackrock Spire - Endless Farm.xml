@@ -1,0 +1,165 @@
+<HBProfile>
+<Name>Mjj23's Lower Blackrock Spire Endless Farm [$Rev$]</Name>
+<MinFreeBagSlots>-1</MinFreeBagSlots>
+///////////////////////////////////////////////////////////////////////
+// Profile Maker: Mjj23
+// Farm zone: Upper Blackrock Spire
+// Farm mobs: All
+// Grind Speed: N/A
+// Grind what? Large Brilliant Shards/Recipes/Transmog
+///////////////////////////////////////////////////////////////////////
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>True</MailGreen>
+<MailBlue>True</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<SellBlue>False</SellBlue>
+<SellPurple>False</SellPurple>
+
+	<!-- Protected Items list, can add to these as you see fit, if you are looking for specific items -->
+	
+	<ProtectedItems>
+		
+	</ProtectedItems>
+		
+	<Vendors>
+		<Vendor Name="Fergus Gravelsmash" Entry="47937" Type="Repair" X="-7093.68" Y="-1268.31" Z="270.485" />
+	</Vendors>
+
+	<Mailboxes>
+		<Mailbox X="-7112.238" Y="-1199.937" Z="306.9844" /> <!-- Iron Summit -->
+	</Mailboxes>
+
+
+		<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+		</AvoidMobs>
+
+
+<Blackspots>
+</Blackspots>
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<If Condition="!(Me.MapId == 229)" >
+
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToEasternKingdoms.xml"/>  
+</If>
+	<!-- Travel to Blackrock Mountain --> 
+<While Condition="true" >
+	<If Condition="!(Me.MapId == 229)" >
+		<While Condition="(Me.MapId == 0)" >
+			
+			<!-- Navigation to deal with being inside mountain -->
+			
+			<If Condition="Me.Location.Distance(new WoWPoint(-7533.004, -1228.654, 285.7321)) &gt; 10" >
+						<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="50" KillBetweenHotspots="True" LogoutForInactivity="False" />
+						<CustomBehavior File="Message" Text="Moving to Lower Blackrock Spire Location." LogColor="Lime" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7843.759" Y="-1140.536" Z="208.2344" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7794.918" Y="-1134.368" Z="214.8472" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7745.932" Y="-1117.598" Z="215.0841" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7710.015" Y="-1086.716" Z="217.7014" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7689.18" Y="-1091.725" Z="217.4671" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7537.032" Y="-1206.015" Z="294.143" />
+						<CustomBehavior File="FlyTo" DestName="Blackrock Spire" X="-7533.004" Y="-1213.508" Z="285.4092" />
+						<CustomBehavior File="ForcedDismount" />
+			</If>
+						<RunTo X="-7525.331" Y="-1228.654" Z="285.7321" />
+						<CustomBehavior File="MyCTM" X="-7523.937" Y="-1233.463" Z="285.7379" /> <!-- Enters instance if not already inside -->
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		</While>
+	</If>
+						
+	<!-- Begin Instance Grind -->
+		<While Condition="(Me.MapId == 229)" >
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+						<RunTo X="86.82022" Y="-281.9682" Z="60.63434" />
+						<RunTo X="141.4585" Y="-317.1683" Z="70.95518" />
+						<RunTo X="122.5431" Y="-296.6754" Z="70.92963" />
+						<RunTo X="125.6962" Y="-343.7197" Z="70.92077" />
+						<RunTo X="155.7482" Y="-288.5268" Z="70.94514" />
+						<RunTo X="153.8696" Y="-353.0113" Z="70.90199" />
+						<RunTo X="199.2376" Y="-309.0062" Z="76.93705" />
+						<RunTo X="213.6864" Y="-333.9682" Z="76.85506" />
+						<RunTo X="231.0972" Y="-298.9758" Z="76.93237" />
+						<RunTo X="192.3685" Y="-257.9775" Z="76.92467" />
+						<RunTo X="227.8542" Y="-284.9887" Z="77.0006" />
+						<RunTo X="145.4862" Y="-278.7016" Z="91.35438" />
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<CustomBehavior File="InteractWith" MobId="175706" X="144.445" Y="-280.9415" Z="91.54761" /> <!-- Begin Pyroguard Emberseer event by clicking altar -->
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<RunTo X="161.2598" Y="-276.9145" Z="91.61219" />
+						<RunTo X="144.7727" Y="-260.1471" Z="96.32337" /> <!-- Move to pull Pyroguard Emberseer -->
+						<CustomBehavior File="WaitTimer" WaitTime="50000" /> <!-- Wait for him to become hostile -->
+						<RunTo X="97.51381" Y="-258.5888" Z="91.45435" />
+						<RunTo X="96.47729" Y="-265.6975" Z="91.44992" />
+						<RunTo X="83.14397" Y="-282.0242" Z="91.91732" />
+						<RunTo X="78.46239" Y="-310.9242" Z="91.42333" />
+						<RunTo X="76.04745" Y="-329.5916" Z="91.45981" />
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+						<CustomBehavior File="InteractWith" MobId="175245" X="75.99888" Y="-334.7443" Z="91.51075" /> <!-- Click on Father Flame Altar -->"
+						<CustomBehavior File="WaitTimer" WaitTime="240000" /> <!-- Wait 4 minutes to be absolutely sure we pull Solakar Flamewreath -->
+						<RunTo X="59.19394" Y="-270.4159" Z="93.67129" />
+						<RunTo X="99.37397" Y="-238.4512" Z="106.4356" />
+						<RunTo X="146.7308" Y="-248.3895" Z="110.8483" /> <!-- Pull Goraluk Anvilcrack -->
+						<RunTo X="101.8571" Y="-333.4986" Z="106.4356" />
+						<RunTo X="140.0404" Y="-338.6406" Z="110.9534" />
+						<RunTo X="180.9568" Y="-365.6473" Z="116.8425" />
+						<RunTo X="88.80598" Y="-367.6548" Z="117.3588" />
+						<RunTo X="91.24332" Y="-425.3781" Z="110.9227" />
+						<RunTo X="180.2939" Y="-420.2804" Z="110.4724" /> <!-- Pull Rend Blackhand Trash and Rend-->
+						<CustomBehavior File="InteractWith" MobId="10339" X="180.2939" Y="-420.2804" Z="110.4724" CollectionDistance="5" />
+						<RunTo X="93.63679" Y="-482.8462" Z="116.8424" />
+						<RunTo X="86.95312" Y="-554.4645" Z="110.9242" />
+						<CustomBehavior File="WaitTimer" WaitTime="5000" /> <!-- Wait to make sure we pull The Beast -->
+						<RunTo X="25.89027" Y="-503.9587" Z="110.9495" />
+						<RunTo X="34.24215" Y="-372.0002" Z="110.6879" />
+						<RunTo X="33.13283" Y="-285.8595" Z="110.9477" /> <!-- Pull Drakkisath -->
+						<CustomBehavior File="Message" Text="Moving to Reset Instance" LogColor="Lime" />
+						<RunTo X="77.66439" Y="-223.971" Z="49.84536" />
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+						<CustomBehavior File="MyCTM" X="77.66439" Y="-221.971" Z="49.84536"   />
+						<CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<CustomBehavior File="RunMacro" Macro="/script ResetInstances()" />
+						<!-- End Instance Grind -->
+		</While>
+	<!-- Checks if bags are full -->	
+			<If Condition="HasSpell(61447) || HasSpell(61425)" >
+					<CustomBehavior File="ForceSetVendor" DoMail="False" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsAlliance)" >
+					<CustomBehavior File="Message" Text="Moving to Iron Summit Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7485.027" Y="-1072.944" Z="265.4049" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7444.863" Y="-1060.7" Z="269.4856" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7367.443" Y="-1098.339" Z="277.8398" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+			<If Condition="(Me.FreeBagSlots &lt;= 15) || (Me.LowestDurabilityPercent &gt; 20.0 &amp;&amp; Me.IsHorde)" >
+					<CustomBehavior File="Message" Text="Moving to Iron Summit Mailbox" LogColor="Lime" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7485.027" Y="-1072.944" Z="265.4049" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7444.863" Y="-1060.7" Z="269.4856" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7367.443" Y="-1098.339" Z="277.8398" />
+					<CustomBehavior File="FlyTo" DestName="Iron Summit" X="-7112.238" Y="-1199.937" Z="306.9844" />
+					<CustomBehavior File="ForceSetVendor" DoMail="True" DoRepair="True" DoSell="True" DoTrain="False" />
+			</If>
+			
+	<!-- End bag check -->
+	
+</While>
+				
+</QuestOrder>
+
+</HBProfile>

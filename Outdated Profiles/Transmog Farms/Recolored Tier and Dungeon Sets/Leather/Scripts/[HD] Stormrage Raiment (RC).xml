@@ -1,0 +1,147 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>[HD] Stormrage Raiment (RC) [$Rev$]</Name>
+	
+	
+	
+   
+	<MinFreeBagSlots>-1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>True</MailPurple>
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+    </AvoidMobs>
+
+	<ProtectedItems>
+		<Item Name="Moon-Crown Antlers" Entry="28220" />
+		<Item Name="Lunar-Claw Pauldrons" Entry="28255" />
+		<Item Name="Starry Robes of the Crescent" Entry="27818" />
+		<Item Name="Moonrage Girdle" Entry="27783" />
+		<Item Name="Moonstrider Boots" Entry="27914" />
+		<Item Name="Grips of the Lunar Eclipse" Entry="28214" />
+	</ProtectedItems>
+	
+	<Blackspots></Blackspots>
+	
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" LogoutForInactivity="False" />
+		<CustomBehavior File="Message" Text="STARTING HEROIC DROPS FARM" LogColor="Lime" />
+		<CustomBehavior File="Message" Text="Make sure you've not finished your heroics for today!" LogColor="Lime" />
+		<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+
+		<If Condition="!HasItem(18341)">
+			<CustomBehavior File="Message" Text="Going to Ring of Observance for the Robes." LogColor="DarkBlue" />
+			<If Condition="!(Me.MapId == 557)" >
+				<If Condition="Me.Location.Distance(new WoWPoint(-3392.553, 4960.243, 8.39039)) &gt;= 331.2615" > <!-- Universal Nav-to -->
+					<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="True" PullDistance="30" LogoutForInactivity="False" />
+					<CustomBehavior File="FlyTo" X="-3385.121" Y="4941.416" Z="-54.78403" />  <!-- Mid-Hub -->
+				</If>
+				<If Condition="Me.Location.Distance(new WoWPoint(-3122.694, 4942.846, -101.2213)) &gt;= 46.01732" >
+					<CustomBehavior File="FlyTo" X="-3231.709" Y="4943.628" Z="-93.40585" />
+					<CustomBehavior File="MyCTM" X="-3116.793" Y="4945.298" Z="-101.9928" />
+				</If>
+			</If>
+			<!-- Mana-Tombs (Robe) -->
+			<If Condition="!HasItem(18341)">
+				<CustomBehavior File="Message" Text="Going to Mana-Tombs for the Robes." LogColor="DarkBlue" />
+				<RunTo X="-3080.302" Y="4943.274" Z="-101.0471" />
+				<CustomBehavior File="MyCTM" X="-3070" Y="4943.274" Z="-101.0471" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="(Me.MapId == 557)" >
+
+					<CustomBehavior File="Usersettings" LootMobs="false" />
+
+					<DisableBehavior Name="Combat" />
+						<RunTo X="-68.0435" Y="-136.9184" Z="-0.9722393" /> //Boss
+					<EnableBehavior Name="Combat" />
+					<CustomBehavior File="Usersettings" LootMobs="true" />
+
+					<RunTo X="-0.7623158" Y="1.010749" Z="-0.9534453" />
+
+					<CustomBehavior File="Usersettings" LootMobs="false" />
+					<CustomBehavior File="MyCTM" X="8.765326" Y="0.9056869" Z="-0.9534453" TerminateWhen="!Me.IsInInstance" />
+					<CustomBehavior File="WaitTimer" WaitTime="5500" />
+					<While Condition="!(StyxWoW.IsInWorld)" >
+						<CustomBehavior File="WaitTimer" WaitTime="1000" />
+					</While>
+				</If>
+				<If Condition="HasItem(18341)">
+					<CustomBehavior File="Message" Text="Robe obtained! Continuing instance runs." LogColor="Azure" />
+				</If>
+				<If Condition="!HasItem(18341)">
+					<CustomBehavior File="Message" Text="Robe not obtained. Continuing instance runs." LogColor="Red" />
+				</If>
+				<RunTo X="-3234.764" Y="4942.444" Z="-101.3949" />
+				<CustomBehavior File="FlyTo" X="-3303.953" Y="4945.778" Z="-19.80702" />
+			</If>
+			<!-- Vendor Routine -->
+			<If Condition="(Me.FreeBagSlots &lt;= 10)" >
+				<CustomBehavior File="Message" Text="Moving to Sell, Repair, Mail" LogColor="Lime" />
+				<CustomBehavior File="MyCTM" X="-3361.962" Y="4752.981" Z="-101.3954" />
+
+				<!-- Bot ignores this vendor.
+						<MoveTo Nav="Fly" X="-3521.181" Y="4939.856" Z="-101.3959" />
+						<SetVendor>
+							<Vendors>
+								<Vendor Name="Provisioner Tsaalt" Entry="19718" Type="Food" X="-3523.476" Y="4937.63" Z="-101.3944" />
+							</Vendors>
+						</SetVendor>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoSell="True" />
+						<RunTo X="-3528.487" Y="4943.76" Z="-101.396" />
+						<ClearVendor /> -->  
+
+
+					<If Condition="Me.IsAlliance" >
+						<MoveTo Nav="Fly" X="-2944.846" Y="4009.452" Z="5.567399" />
+						<CustomBehavior File="ForcedDismount" />
+						<MoveTo Nav="Run" X="-2933.421" Y="4009.331" Z="-1.294724" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="-2929.392" Y="4008.916" Z="-1.389165" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+						<MoveTo Nav="Run" X="-2936.408" Y="4010.14" Z="-1.248712" />
+						<ClearMailbox />
+					</If>
+					<If Condition="Me.IsHorde" >
+						<MoveTo Nav="Fly" X="-2620.939" Y="4409.075" Z="49.22842" />
+						<CustomBehavior File="ForcedDismount" />
+						<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+						<SetMailbox>
+							<Mailboxes>
+								<Mailbox X="-2615.288" Y="4417.971" Z="35.98839" />
+							</Mailboxes>
+						</SetMailbox>
+						<CustomBehavior File="WaitTimer" WaitTime="1500" />
+						<CustomBehavior File="ForceSetVendor" DoMail="True" DoSell="True" DoRepair="True" />
+						<MoveTo Nav="Run" X="-2616.162" Y="4417.126" Z="36.2312" />
+						<ClearMailbox />
+					</If>
+			</If>
+			<!-- End Vendor Routine -->
+		</If>
+
+		<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Lime" />
+		<CustomBehavior File="LoadProfile" ProfileName="[ND] Stormrage Raiment (RC)" />
+	</QuestOrder>
+</HBProfile>

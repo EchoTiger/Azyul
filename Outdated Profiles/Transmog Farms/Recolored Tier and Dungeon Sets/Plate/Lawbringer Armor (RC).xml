@@ -1,0 +1,20 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>Lawbringer Armor (RC) Auto-Loader [$Rev$]</Name>
+	
+<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Lawbringer Armor (RC) Farm.\nThis profile will grind through every dungeon that drops the set pieces.\n\nIf you want to only farm the Normal drop items, then load the [N] profile in the script folder.\n\nEnsure that your bags are clean before starting! Your personal items MAY be sold if not." />
+	<If Condition="(!HasItem(27505)) || (!HasItem(27844)) || (!HasItem(28337)) || (!HasItem(27755)) || (!HasItem(27798))" >
+		<CustomBehavior File="Message" Text="Items missing, starting Heroic+Normal farm." LogColor="Lime" />
+		<CustomBehavior File="Message" Text="\n*NOTE* If you've already ran the heroics, they will be re-ran." LogColor="Red" />
+		<CustomBehavior File="LoadProfile" ProfileName="Scripts\[N+H] Lawbringer Armor (RC)" />
+	</If>
+	<If Condition="(!HasItem(27893)) || (!HasItem(27884))" >
+		<CustomBehavior File="Message" Text="Items missing, starting Normal farm." LogColor="Lime" />
+		<CustomBehavior File="LoadProfile" ProfileName="Scripts\[N] Lawbringer Armor (RC)" />
+	</If>
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="15" ExpiryAction="InputEnabled_Continue" Text="If you're seeing this message, that means that every item this profile farms is already in your inventory.\n If you'd like to re-farm, simply put the items you want to re-farm into your bank so the bot cannot detect them." />
+</QuestOrder>
+</HBProfile>

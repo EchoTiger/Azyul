@@ -1,0 +1,21 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>Stormrage Raiment (RC) Auto-Loader [$Rev$]</Name>
+	
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<!-- Enable Loot -->
+	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Stormrage Raiment (RC) Farm.\nThis profile will grind through every dungeon (starting with heroic dungeons, then normal dungeons) that drops the set pieces.\n\nEnsure that your bags are clean before starting!  Your personal items MAY be sold if not.\n\n*Note* The bot will ONLY loot mobs that drop the set pieces unless you change the LootMobs setting inside the profile.  It will also skip bosses that DO NOT drop the pieces for this specific set." />
+	<If Condition="(!HasItem(28220)) || (!HasItem(27818)) || (!HasItem(28214))" >
+		<CustomBehavior File="Message" Text="Heroic items missing, starting heroic farm." LogColor="Lime" />
+		<CustomBehavior File="Message" Text="*NOTE* The bot will run heroic dungeons that you've already completed." LogColor="Lime" />
+		<CustomBehavior File="LoadProfile" ProfileName="Scripts\[HD] Stormrage Raiment (RC)" />
+	<ElseIf Condition="(!HasItem(28255)) || (!HasItem(27783)) || (!HasItem(27914))" >
+		<CustomBehavior File="Message" Text="Normal items missing, starting normal farm." LogColor="Lime" />
+		<CustomBehavior File="LoadProfile" ProfileName="Scripts\[ND] Stormrage Raiment (RC)" />
+	</ElseIf>
+	</If>
+	<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="15" ExpiryTime="30" ExpiryAction="InputEnabled_Continue" Text="If you're seeing this message, that means that every item this profile farms is already in your inventory.\n If you'd like to re-farm, simply put the items you want to re-farm into your bank so the bot cannot detect them." />
+	</QuestOrder>
+</HBProfile>

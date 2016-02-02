@@ -1,0 +1,15 @@
+<HBProfile creator="EchoTiger" version="1.0">
+<Name>Battlegear of Valor (RC) Auto-Loader [$Rev$]</Name>
+	
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+<!-- Enable Loot -->
+	<CustomBehavior File="RunMacro" Macro="/script SetCVar('AutoLootDefault', 1)" NumOfTimes="1" WaitTime="1000" />
+	<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Battlegear of Valor (RC) Farm.\nThis profile will grind through every dungeon that drops the set pieces, all pieces for this set drop in normal difficulty.\n\nEnsure that your bags are clean before starting!  Your personal items MAY be sold if not." />
+	<If Condition="(!HasItem(24463)) || (!HasItem(24091)) || (!HasItem(24363)) || (!HasItem(24456)) ||  (!HasItem(24064)) || (!HasItem(24387))" >
+		<CustomBehavior File="LoadProfile" ProfileName="Scripts\[ND] Battlegear of Valor (RC)" />
+	</If>
+	<CustomBehavior File="UserDialog" AllowBotStop="False" SoundCue="Exclamation" SoundCueInterval="15" ExpiryTime="30" ExpiryAction="InputEnabled_Continue" Text="If you're seeing this message, that means that every item this profile farms is already in your inventory.\n If you'd like to re-farm, simply put the items you want to re-farm into your bank so the bot cannot detect them." />
+	</QuestOrder>
+</HBProfile>

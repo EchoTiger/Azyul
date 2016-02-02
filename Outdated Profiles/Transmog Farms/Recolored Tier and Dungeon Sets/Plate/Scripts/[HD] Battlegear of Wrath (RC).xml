@@ -1,0 +1,331 @@
+<HBProfile creator="EchoTiger" version="1.0">
+	<Name>Battlegear of Wrath (Recolor) Farm [$Rev$]</Name>
+	
+	
+	
+   
+	<MinDurability>0.001</MinDurability>
+	<MinFreeBagSlots>1</MinFreeBagSlots>
+	
+	<MailGrey>False</MailGrey>
+	<MailWhite>False</MailWhite>
+	<MailGreen>False</MailGreen>
+	<MailBlue>False</MailBlue>
+	<MailPurple>True</MailPurple>
+   
+	<SellGrey>True</SellGrey>
+	<SellWhite>True</SellWhite>
+	<SellGreen>True</SellGreen>
+	<SellBlue>True</SellBlue>
+	<SellPurple>False</SellPurple>
+   
+	<TargetElites>True</TargetElites>
+	
+	<AvoidMobs>
+		<Mob Name="Summon Enabler Stalker" Entry="53488" />
+    </AvoidMobs>
+
+	<ProtectedItems>
+		<Item Name="Greathelm of the Unbreakable" Entry="27520" />
+		<Item Name="Fanblade Pauldrons" Entry="27847" />
+		<Item Name="Jade-Skull Breastplate" Entry="28262" />
+		<Item Name="Girdle of the Immovable" Entry="27672" />
+		<Item Name="Greaves of the Shatterer" Entry="27527" />
+		<Item Name="Boots of the Colossus" Entry="27831" />
+		<Item Name="Thatia's Self-Correcting Gauntlets" Entry="28390" />
+	</ProtectedItems>
+	
+	<Blackspots></Blackspots>
+	
+	<QuestOrder>
+<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+catch(Exception) {}"/>
+		<CustomBehavior File="UserDialog" AllowBotStop="True" SoundCue="Exclamation" SoundCueInterval="1" Text="Welcome to the Battlegear of Wrath (RC) Farm.\nThis profile will grind through every dungeon that drops the set pieces.\n\nEnsure that your bags are clean before starting!\n\n*Note* The bot will only loot mobs that drop the set pieces unless you change the LootMobs setting inside the profile." />
+		<CustomBehavior File="UserSettings" FindVendorsAutomatically="False" LootMobs="False" PullDistance="1" KillBetweenHotspotss="False" LogoutForInactivity="False" />
+		<!-- Sets Dungeon Difficult to Heroic -->
+		<CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(2);" />
+<CustomBehavior File="LoadRemoteCode"/>
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/Pookthetook/AzyulBotBase/master/Navigation/ToOutland.xml"/>
+<!-- Go to Zangarmarsh if item(s) aren't detected. -->
+		<If Condition="!HasItem(27672)"> <!--Belt -->
+			<CustomBehavior File="Message" Text="Going to Zangarmarsh to get the Belt" LogColor="DarkBlue" />
+			<CustomBehavior File="FlyTo" DestName="Zangarmarsh" X="511.3972" Y="6927.3" Z="256.1042" />
+			<CustomBehavior File="FlyTo" DestName="Into the drink!!" X="473.400" Y="6892.175" Z="63.8240" />
+	<!-- Navigate into Coilfang -->
+			<CustomBehavior File="MyCTM" X="556.8849" Y="6938.702" Z="19.20102" />
+			<CustomBehavior File="RunMacro" Macro="/dismount" />
+			<CustomBehavior File="MyCTM" X="577.375" Y="6939.144" Z="-38.14312" />
+			<CustomBehavior File="MyCTM" X="597.3696" Y="6923.526" Z="-45.01696" />
+			<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
+			<CustomBehavior File="MyCTM" X="612.003" Y="6896.233" Z="-46.9304" />
+			<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
+			<CustomBehavior File="MyCTM" X="638.8908" Y="6868.389" Z="-79.60629" />
+			<CustomBehavior File="MyCTM" X="731.085" Y="6866.436" Z="-70.52903" />
+	<!-- Go to Slavepens if item is needed -->
+			<If Condition="!HasItem(27672)"> <!-- Belt -->
+				<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
+				<RunTo X="736.5326" Y="6914.593" Z="-65.34555" />
+				<RunTo X="718.8387" Y="6945.226" Z="-68.22695" />
+				<RunTo X="717.5242" Y="7008.884" Z="-74.78161" />
+				<RunTo X="739.0041" Y="7016.778" Z="-71.61855" />
+				<CustomBehavior File="MyCTM" X="741.5869" Y="7014.64" Z="-72.6693" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+				<If Condition="(Me.ZoneId == 3717)">
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+					<CustomBehavior File="Message" Text="Running Slavepens to get the Belt" LogColor="DarkBlue" />
+					<RunTo X="120.1809" Y="-96.50285" Z="-1.590539" />
+					<RunTo X="-86.56674" Y="-2.280397" Z="-7.141338" />
+					<RunTo X="-117.5197" Y="-17.0272" Z="-8.251738" />
+					<RunTo X="-93.94762" Y="-134.1309" Z="-1.530746" />
+					<RunTo X="-60.3061" Y="-154.0939" Z="-1.451761" />
+					<RunTo X="-60.3061" Y="-154.0939" Z="-1.451761" />
+					<RunTo X="-30.19177" Y="-224.8409" Z="-3.187467" />
+					<RunTo X="-32.99349" Y="-237.3908" Z="-2.53826" />
+					<RunTo X="-16.49" Y="-300.4625" Z="2.166786" />
+					<RunTo X="82.48742" Y="-330.3853" Z="3.035571" />
+				<!-- Mennu the Betrayer -->
+					<RunTo X="56.01927" Y="-377.8787" Z="3.035571" />
+					<RunTo X="72.49582" Y="-380.3081" Z="7.151225" />
+					<RunTo X="117.5062" Y="-380.2865" Z="29.06756" />
+					<RunTo X="128.0864" Y="-380.214" Z="30.41502" />
+					<RunTo X="123.1923" Y="-367.6828" Z="30.75201" />
+					<RunTo X="54.20183" Y="-347.2538" Z="42.06043" />
+					<RunTo X="-7.506561" Y="-347.0591" Z="68.25068" />
+					<RunTo X="-49.05335" Y="-364.5901" Z="80.87117" />
+					<RunTo X="-53.972" Y="-382.5562" Z="81.26701" />
+					<RunTo X="-110.3842" Y="-380.5134" Z="80.96881" />
+					<RunTo X="-131.7961" Y="-401.5492" Z="79.1357" />
+					<RunTo X="-131.7961" Y="-401.5492" Z="79.1357" />
+					<RunTo X="-186.2369" Y="-410.9553" Z="55.25392" />
+					<CustomBehavior File="MyCTM" X="-199.6799" Y="-380.4648" Z="6.076795" />
+					<CustomBehavior File="MyCTM" X="-214.7857" Y="-380.3556" Z="8.347872" />
+					<RunTo X="-255.2022" Y="-434.1617" Z="3.036252" />
+					<RunTo X="-166.5885" Y="-454.0945" Z="3.035635" />
+					<RunTo X="-116.8467" Y="-478.4222" Z="-0.9830411" />
+					<RunTo X="-87.93558" Y="-536.6436" Z="-1.590494" />
+					<RunTo X="-84.04312" Y="-564.3766" Z="-0.6026801" />
+					<RunTo X="-99.36099" Y="-580.7571" Z="3.031148" />
+					<RunTo X="-100.5627" Y="-637.8057" Z="20.52802" />
+					<RunTo X="-81.34232" Y="-729.7766" Z="36.66433" />
+					<RunTo X="-122.3082" Y="-755.0233" Z="37.53117" />
+					<RunTo X="-207.9585" Y="-719.6288" Z="36.75572" />
+					<RunTo X="-205.9143" Y="-704.9301" Z="37.10201" />
+					<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="25" KillBetweenHotspotss="False" LogoutForInactivity="False" />
+					<RunTo X="-289.9835" Y="-664.2767" Z="10.02171" />
+					<RunTo X="-199.9805" Y="-709.3547" Z="37.89244" />
+					<RunTo X="-191.2722" Y="-715.4332" Z="37.89233" />
+					<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspotss="False" LogoutForInactivity="False" />
+					<RunTo X="-115.3678" Y="-754.8348" Z="37.45081" />
+					<RunTo X="-82.20103" Y="-724.9862" Z="36.77231" />
+					<RunTo X="-99.61683" Y="-630.7914" Z="18.68803" />
+					<RunTo X="-95.34793" Y="-579.0611" Z="2.195047" />
+					<RunTo X="-81.57756" Y="-561.0357" Z="-0.7476901" />
+					<RunTo X="-92.14455" Y="-516.3754" Z="-1.590709" />
+					<RunTo X="-115.0084" Y="-495.752" Z="-0.3166804" />
+					<RunTo X="-86.93163" Y="-478.8524" Z="-1.567558" />
+					<RunTo X="-85.66241" Y="-442.261" Z="-1.589809" />
+					<CustomBehavior File="MyCTM" X="-84.55711" Y="-334.8687" Z="-3.149709" />
+					<CustomBehavior File="MyCTM" X="-112.2631" Y="-295.9833" Z="-1.59036" />
+					<RunTo X="-113.5039" Y="-238.2288" Z="-1.570821" />
+					<RunTo X="-93.60649" Y="-210.5992" Z="-1.186841" />
+					<RunTo X="-107.2601" Y="-67.75453" Z="-3.763275" />
+					<RunTo X="-116.0224" Y="-13.7616" Z="-9.079736" />
+					<RunTo X="-64.5029" Y="-0.8368289" Z="-3.163103" />
+					<RunTo X="42.58582" Y="-65.8911" Z="-2.593443" />
+					<RunTo X="124.7998" Y="-99.77832" Z="-1.590545" />
+					<RunTo X="125.409" Y="-122.3724" Z="-1.046495" />
+				    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+					<CustomBehavior File="MyCTM" X="117.4674" Y="-138.1203" Z="0.24311" />
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<If Condition="HasItem(27672)">
+						<CustomBehavior File="Message" Text="Shoulders obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(27672)">
+						<CustomBehavior File="Message" Text="Shoulders weren't obtained. We will run the instance again." LogColor="Red" />
+					</If>
+				</If>
+			</If>
+	<!-- Navigating out of Coilfang -->
+			<RunTo X="741.0234" Y="6863.868" Z="-68.84487" />
+			<CustomBehavior File="MyCTM" X="655.8704" Y="6865.183" Z="-83.67981" />
+			<CustomBehavior File="MyCTM" X="632.2728" Y="6871.266" Z="-75.63762" />
+			<CustomBehavior File="MyCTM" X="619.5461" Y="6887.241" Z="-64.32347" />
+			<CustomBehavior File="MyCTM" X="607.8958" Y="6898.224" Z="-49.47136" />
+			<CustomBehavior File="MyCTM" X="594.9378" Y="6930.458" Z="-41.49766" />
+			<CustomBehavior File="MyCTM" X="567.3137" Y="6945.225" Z="-28.22179" />
+			<CustomBehavior File="MyCTM" X="540.6658" Y="6924.646" Z="22.10633" />
+			<CustomBehavior File="MyCTM" X="530.261" Y="6910.107" Z="30.74072" />
+			<CustomBehavior File="FlyTo" X="421.8152" Y="6827.062" Z="141.7544" />
+		</If>
+<!-- Go To: Terokkar Forest - Ring of Observance HIGH-SPOT Checkpoint -->
+		<If Condition="!HasItem(27847) || !HasItem(27813)">
+			<CustomBehavior File="Message" Text="Going to Ring of Observance to get the Shoulder and Boots." LogColor="DarkBlue" />
+			<CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.622" Y="4953.642" Z="201.7199" />
+	<!-- Mana-Tombs (Boots) -->
+			<If Condition="!HasItem(27813)">
+				<CustomBehavior File="Message" Text="Running Mana-Tombs to get the Boots" LogColor="DarkBlue" />
+				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3334.946" Y="4967.088" Z="-33.90321" />
+				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3233.358" Y="4942.496" Z="-97.42279" />
+				<CustomBehavior File="FlyTo" DestName="Mana-Tombs" X="-3166.641" Y="4942.829" Z="-101.0465" />
+				<RunTo X="-3086.819" Y="4950.906" Z="-100.9696" />
+				<RunTo X="-3080.302" Y="4943.274" Z="-101.0471" />
+				<CustomBehavior File="MyCTM" X="-3070" Y="4943.274" Z="-101.0471" />
+				<CustomBehavior File="WaitTimer" WaitTime="15000" />
+		<!-- Mana Tombs - Pandemonius - Boots -->
+				<If Condition="(Me.ZoneId == 3792)">
+					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+					<CustomBehavior File="Message" Text="Running Mana-Tombs to get the Boots." LogColor="DarkBlue" />
+				    <RunTo X="-28.4065" Y="2.1931" Z="-0.9543"  />
+				    <RunTo X="-50.5803" Y="-0.2514" Z="-0.9459"  />
+				    <RunTo X="-65.6778" Y="-14.1470" Z="-0.9465"  />
+				    <RunTo X="-68.2430" Y="-34.6207" Z="-0.9540"  />
+				    <RunTo X="-66.6648" Y="-54.5625" Z="-0.5769"  />
+				    <RunTo X="-73.5416" Y="-66.9011" Z="-0.8246"  />
+				    <RunTo X="-85.5435" Y="-62.5010" Z="-0.9206"  />
+				    <RunTo X="-95.8921" Y="-59.8559" Z="-0.8102"  />
+				    <RunTo X="-98.6740" Y="-77.9908" Z="-1.3716"  />
+				    <RunTo X="-103.9110" Y="-97.7224" Z="-0.8064"  />
+				    <RunTo X="-103.4908" Y="-98.4092" Z="-0.8464"  />
+				    <RunTo X="-103.4908" Y="-98.4092" Z="-0.8464"  />
+				    <RunTo X="-85.4879" Y="-89.9432" Z="-2.0042"  />
+				    <RunTo X="-67.2580" Y="-78.8640" Z="-2.1129"  />
+				    <RunTo X="-47.0136" Y="-80.1990" Z="-2.3028"  />
+				    <RunTo X="-39.1022" Y="-95.9831" Z="-0.8223"  />
+				    <RunTo X="-44.5189" Y="-87.8984" Z="-2.1842"  />
+			    	<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="15" KillBetweenHotspotss="False" LogoutForInactivity="False" />
+				    <RunTo X="-66.9016" Y="-74.7042" Z="-0.8119"  />
+				    <RunTo X="-70.6258" Y="-95.5500" Z="-1.8228"  />
+			    	<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspotss="False" LogoutForInactivity="False" />
+				    <RunTo X="-69.3732" Y="-115.7012" Z="-0.8714"  />
+				    <RunTo X="-69.1811" Y="-119.7377" Z="-1.2144"  />
+				    <RunTo X="-68.3137" Y="-95.5309" Z="-1.4986"  />
+				    <RunTo X="-68.3628" Y="-75.2449" Z="-0.9266"  />
+				    <RunTo X="-67.7237" Y="-54.6604" Z="-0.8798"  />
+				    <RunTo X="-66.6547" Y="-34.2172" Z="-0.9529"  />
+				    <RunTo X="-64.5887" Y="-13.4367" Z="-0.9458"  />
+				    <RunTo X="-48.6035" Y="-0.9104" Z="-0.9499"  />
+				    <RunTo X="-28.3185" Y="-1.4989" Z="-0.9533"  />
+				    <RunTo X="-8.1720" Y="-1.6236" Z="-0.9533"  />
+				    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+					<CustomBehavior File="MyCTM" X="7.8000" Y="0.8978755" Z="-0.9541188" />
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<If Condition="HasItem(27813)">
+						<CustomBehavior File="Message" Text="Boots obtained! Continuing instance runs." LogColor="Azure" />
+					</If>
+					<If Condition="!HasItem(27813)">
+						<CustomBehavior File="Message" Text="Boots weren't obtained. We will run the instance again." LogColor="Red" />
+					</If>
+					<RunTo X="-3234.764" Y="4942.444" Z="-101.3949" />
+					<CustomBehavior File="FlyTo" X="-3303.953" Y="4945.778" Z="-19.80702" />
+				</If>
+			</If>
+		<!-- Auchenai Crypts - Shirrak the Dead Watcher - Shoulder -->
+				<If Condition="!HasItem(27847)">
+					<CustomBehavior File="Message" Text="Running Auchenai Crypts to get the Shoulder." LogColor="DarkBlue" />
+					<CustomBehavior File="MyCTM" X="-3362.1" Y="5135.099" Z="-101.3956" />
+					<CustomBehavior File="MyCTM" X="-3361.986" Y="5227.993" Z="-101.0481" />
+					<CustomBehavior File="MyCTM" X="-3362.05" Y="5232.822" Z="-101.0479" />
+					<CustomBehavior File="WaitTimer" WaitTime="15000" />
+					<If Condition="Me.MapId == 558">
+						<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
+						<RunTo X="3.7551" Y="-0.0715" Z="-0.1206"  />
+					    <RunTo X="23.9291" Y="-0.0715" Z="-0.1206"  />
+					    <RunTo X="43.6386" Y="5.7867" Z="-0.1349"  />
+					    <RunTo X="56.1457" Y="21.5868" Z="-0.1246"  />
+					    <RunTo X="74.9210" Y="28.8081" Z="-0.1203"  />
+					    <RunTo X="95.4776" Y="27.4250" Z="-0.1270"  />
+					    <RunTo X="116.1535" Y="21.9419" Z="-0.1280"  />
+					    <RunTo X="136.2613" Y="24.6994" Z="-0.2286"  />
+					    <RunTo X="156.5215" Y="28.5614" Z="-0.1186"  />
+					    <RunTo X="176.0981" Y="22.5138" Z="-0.1225"  />
+					    <RunTo X="192.1474" Y="9.5363" Z="-0.1218"  />
+					    <RunTo X="211.2793" Y="3.1646" Z="-0.1109"  />
+					    <RunTo X="231.2363" Y="-0.2737" Z="-0.0367"  />
+					    <RunTo X="251.4438" Y="-3.1122" Z="-0.0444"  />
+					    <RunTo X="271.9194" Y="-4.9653" Z="-0.0660"  />
+					    <RunTo X="272.3701" Y="14.1040" Z="8.1807"  />
+					    <RunTo X="269.7145" Y="34.1938" Z="13.4210"  />
+					    <RunTo X="249.8863" Y="36.4409" Z="18.4576"  />
+					    <RunTo X="231.2318" Y="39.5956" Z="26.5935"  />
+					    <RunTo X="211.2124" Y="39.7530" Z="26.5923"  />
+					    <RunTo X="205.0742" Y="20.4353" Z="26.6347"  />
+					    <RunTo X="205.5362" Y="0.2702" Z="26.5956"  />
+					    <RunTo X="206.7100" Y="-20.2412" Z="26.8547"  />
+					    <RunTo X="222.7900" Y="-32.5179" Z="27.1730"  />
+					    <RunTo X="240.2500" Y="-33.5175" Z="26.5959"  />
+					    <RunTo X="240.5431" Y="-41.8993" Z="26.5912"  />
+					    <RunTo X="244.1639" Y="-62.6135" Z="26.5912"  />
+					    <RunTo X="244.3362" Y="-82.6309" Z="26.5912"  />
+					    <RunTo X="243.6860" Y="-103.0395" Z="26.5912"  />
+					    <RunTo X="240.0260" Y="-123.2242" Z="26.5912"  />
+					    <RunTo X="229.3877" Y="-140.6567" Z="26.5912"  />
+					    <RunTo X="215.9280" Y="-156.2859" Z="26.5912"  />
+					    <RunTo X="196.7616" Y="-162.7328" Z="26.5912"  />
+					    <RunTo X="176.1058" Y="-162.5439" Z="26.3841"  />
+					    <RunTo X="156.1979" Y="-162.4657" Z="21.5940"  />
+					    <RunTo X="136.9621" Y="-162.3903" Z="12.6155"  />
+					    <RunTo X="116.4622" Y="-160.6337" Z="13.8839"  />
+					    <RunTo X="95.7318" Y="-162.5202" Z="15.1768"  />
+					    <RunTo X="75.2880" Y="-163.9535" Z="15.4751"  />
+					    <RunTo X="55.1598" Y="-163.8865" Z="15.3112"  />
+					    <RunTo X="35.0910" Y="-163.8110" Z="14.6092"  />
+					    <CustomBehavior File="UserSettings" LootMobs="True" PullDistance="5" KillBetweenHotspotss="False" LogoutForInactivity="False" />
+					    <RunTo X="14.7503" Y="-163.5213" Z="12.8998"  />
+					    <RunTo X="-5.1567" Y="-163.1521" Z="16.7707"  />
+					    <RunTo X="-23.1162" Y="-163.6895" Z="26.0843"  />
+					    <RunTo X="-43.1902" Y="-164.2901" Z="26.2763"  />
+					    <RunTo X="-64.0097" Y="-164.5746" Z="26.4726"  />
+					    <RunTo X="-44.0171" Y="-165.6168" Z="26.2470"  />
+					    <RunTo X="-23.6155" Y="-165.7410" Z="26.1097"  />
+					    <RunTo X="-5.4567" Y="-164.3929" Z="17.0040"  />
+					    <RunTo X="14.1191" Y="-163.4234" Z="12.8390"  />
+					    <RunTo X="34.8705" Y="-162.4125" Z="14.5946"  />
+						<CustomBehavior File="UserSettings" LootMobs="False" PullDistance="1" KillBetweenHotspotss="False" LogoutForInactivity="False" />
+				   		<RunTo X="55.6778" Y="-161.3990" Z="15.3028"  />
+					   	<RunTo X="75.9970" Y="-160.9444" Z="15.4458"  />
+					   	<RunTo X="95.9803" Y="-162.0342" Z="15.1650"  />
+				  	 	<RunTo X="116.0126" Y="-163.1266" Z="13.9610"  />
+					    <RunTo X="136.1636" Y="-164.2255" Z="12.6227"  />
+					    <RunTo X="154.6167" Y="-164.3825" Z="20.3869"  />
+					    <RunTo X="174.3151" Y="-163.3335" Z="26.4110"  />
+					    <RunTo X="195.1786" Y="-162.2224" Z="26.5898"  />
+					    <RunTo X="215.0564" Y="-159.9705" Z="26.5899"  />
+					    <RunTo X="229.1961" Y="-145.6016" Z="26.5899"  />
+					    <RunTo X="239.8385" Y="-127.9489" Z="26.5904"  />
+					    <RunTo X="242.6699" Y="-106.7706" Z="26.5904"  />
+					    <RunTo X="244.3250" Y="-86.1826" Z="26.5904"  />
+					    <RunTo X="243.6669" Y="-65.6481" Z="26.5904"  />
+					    <RunTo X="241.1691" Y="-45.2908" Z="26.5904"  />
+					    <RunTo X="227.0456" Y="-30.4519" Z="27.2370"  />
+					    <CustomBehavior File="MyCTM" X="227.0087" Y="-7.0002" Z="1.4472"  />
+					    <RunTo X="210.1571" Y="3.7526" Z="-0.1107"  />
+					    <RunTo X="191.3748" Y="11.0075" Z="-0.1205"  />
+					    <RunTo X="173.3856" Y="20.2835" Z="-0.8016"  />
+					    <RunTo X="153.7355" Y="26.4486" Z="0.2130"  />
+					    <RunTo X="133.2070" Y="24.9345" Z="0.0539"  />
+					    <RunTo X="113.0262" Y="21.9824" Z="-0.0183"  />
+					    <RunTo X="93.3112" Y="25.4390" Z="0.2445"  />
+					    <RunTo X="72.6898" Y="24.1004" Z="-0.1551"  />
+					    <RunTo X="54.1187" Y="15.6979" Z="1.4520"  />
+					    <RunTo X="38.7802" Y="1.9512" Z="-0.1324"  />
+					    <RunTo X="18.2478" Y="-0.2506" Z="-0.1218"  />
+					    <RunTo X="-2.4795" Y="0.2732" Z="-0.1218"  />
+					    <RunTo X="-22.9458" Y="0.1580" Z="-0.1218"  />
+					    <CustomBehavior File="Misc\InstanceTimer" Timer="Check" WaitTime="369000" />
+					    <CustomBehavior File="MyCTM" X="-28.73179" Y="0.08934584" Z="-0.1205667" />
+					    <CustomBehavior File="WaitTimer" WaitTime="15000" />
+						<If Condition="HasItem(27847)">
+							<CustomBehavior File="Message" Text="Shoulder obtained! Continuing instance runs." LogColor="Azure" />
+						</If>
+						<If Condition="!HasItem(27847)">
+							<CustomBehavior File="Message" Text="Shoulder not obtained. Continuing instance runs." LogColor="Red" />
+						</If>
+					    <RunTo X="-3361.8" Y="5135.414" Z="-101.3957" />
+					    <CustomBehavior File="FlyTo" DestName="Ring of Observance" X="-3375.963" Y="4997.414" Z="-46.46374" />
+					</If>
+				</If>
+		</If>
+	<CustomBehavior File="Message" Text="Heroic Farm Complete!" LogColor="Lime" />
+	<CustomBehavior File="LoadProfile" ProfileName="[ND] Battlegear of Wrath (RC)" />
+	</QuestOrder>
+</HBProfile>
