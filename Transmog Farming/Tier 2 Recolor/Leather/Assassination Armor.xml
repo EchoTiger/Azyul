@@ -34,6 +34,24 @@
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/Extras.xml" /> <!-- Stats, GPH, etc. -->
 
+
+	<CustomBehavior File="RunCode" Type="Definition" > <!-- Code to determine if we're saved to a heroic lock. -->
+	<![CDATA[
+		public bool IsSavedToInstance(string instanceName)
+		{
+			var lua = 
+				"for i=1,GetNumSavedInstances() do " +
+					"local dungeonName = select(1, GetSavedInstanceInfo(i)); " +
+					$"if (dungeonName and strfind(dungeonName, '{instanceName}')) then " +
+						"return select(5, GetSavedInstanceInfo(i)); " +
+					"end "+
+				"end";
+			return Lua.GetReturnVal<bool>(lua, 0);
+		}
+	]]>
+	</CustomBehavior>
+
+
 	<DisableBehavior Name="Loot, Pull" />
 
 	<!-- Should we go to Outlands ? -->
@@ -57,7 +75,7 @@
 	</If>
 
 
-	<If Condition="!HasItem(29248)" > <!-- [H] The Arcatraz, Skyriss, Boots -->
+	<If Condition="!HasItem(29248) &amp;&amp; !IsSavedToInstance(&quot;The Arcatraz&quot;)" > <!-- [H] The Arcatraz, Skyriss, Boots -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Arcatraz to farm the boots.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killZerekth = false;
@@ -147,14 +165,14 @@
 
 
 	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Farming has completed!\n&quot;);" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(29248)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Boots - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Boots - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(29248)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Boots - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Boots - Unknown Error, try reloading the profile.&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(27776)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Shoulder - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Shoulder&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(27509)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Glove - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Glove&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(28414)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Helmet - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Helmet - Heroic Lock, try again tomorrow.&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(27247)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Belt - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Belt - Heroic Lock, try again tomorrow.&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(27908)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Legs - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Legs - Heroic Lock, try again tomorrow.\n&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(28204)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Chest - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Chest - Heroic Lock, try again tomorrow.\n&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(29247)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Belt - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Belt - Heroic Lock, try again tomorrow.\n&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(28414)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Helmet - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Helmet - Unknown Error, try reloading the profile.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(27247)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Belt - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Belt - Unknown Error, try reloading the profile.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(27908)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Legs - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Legs - Unknown Error, try reloading the profile.\n&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(28204)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Chest - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Chest - Unknown Error, try reloading the profile.\n&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(29247)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Belt - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Belt - Unknown Error, try reloading the profile.\n&quot;);}" />
 
 </QuestOrder>
 </HBProfile>
