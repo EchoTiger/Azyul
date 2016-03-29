@@ -32,6 +32,24 @@
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/DefensiveHooks.xml" /> <!-- Activate Defensive Manuvers -->
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/Extras.xml" /> <!-- Stats, GPH, etc. -->
+	
+
+	<CustomBehavior File="RunCode" Type="Definition" > <!-- Code to determine if we're saved to a heroic lock. -->
+	<![CDATA[
+		public bool IsSavedToInstance(string instanceName)
+		{
+			var lua = 
+				"for i=1,GetNumSavedInstances() do " +
+					"local dungeonName = select(1, GetSavedInstanceInfo(i)); " +
+					$"if (dungeonName and strfind(dungeonName, '{instanceName}')) then " +
+						"return select(5, GetSavedInstanceInfo(i)); " +
+					"end "+
+				"end";
+			return Lua.GetReturnVal<bool>(lua, 0);
+		}
+	]]>
+	</CustomBehavior>
+
 
 	<DisableBehavior Name="Loot, Pull" />
 
