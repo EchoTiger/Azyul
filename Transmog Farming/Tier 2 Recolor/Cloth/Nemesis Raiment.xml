@@ -34,20 +34,35 @@
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/Extras.xml" /> <!-- Stats, GPH, etc. -->
 
+
+	<CustomBehavior File="RunCode" Type="Definition" > <!-- Code to determine if we're saved to a heroic lock. -->
+	<![CDATA[
+		public bool IsSavedToInstance(string instanceName)
+		{
+			var lua = 
+				"for i=1,GetNumSavedInstances() do " +
+					"local dungeonName = select(1, GetSavedInstanceInfo(i)); " +
+					$"if (dungeonName and strfind(dungeonName, '{instanceName}')) then " +
+						"return select(5, GetSavedInstanceInfo(i)); " +
+					"end "+
+				"end";
+			return Lua.GetReturnVal<bool>(lua, 0);
+		}
+	]]>
+	</CustomBehavior>
+
+
 	<DisableBehavior Name="Loot, Pull" />
 
 	<!-- Should we go to Outlands ? -->
 	<If Condition="Me.MapId != 530 &amp;&amp; (!HasItem(27781) || !HasItem(27799) || !HasItem(27795) || !HasItem(27821) || !HasItem(27493))" >
-		<If Condition="
-			(!Lua.GetReturnVal&lt;bool&gt;(&quot;for i=1,GetNumSavedInstances() do local dungeonName = select(1, GetSavedInstanceInfo(i)); if (dungeonName and strfind(dungeonName,'The Underbog')) then return true end end&quot;, 0)
-			|| !Lua.GetReturnVal&lt;bool&gt;(&quot;for i=1,GetNumSavedInstances() do local dungeonName = select(1, GetSavedInstanceInfo(i)); if (dungeonName and strfind(dungeonName,'Mana')) then return true end end&quot;, 0)
-			|| !Lua.GetReturnVal&lt;bool&gt;(&quot;for i=1,GetNumSavedInstances() do local dungeonName = select(1, GetSavedInstanceInfo(i)); if (dungeonName and strfind(dungeonName,'Auchenai Crypts')) then return true end end&quot;, 0))" >
+		<If Condition="(!IsSavedToInstance(&quot;The Underbog&quot;) || !IsSavedToInstance(&quot;Mana&quot;) || !IsSavedToInstance(&quot;Auchenai Crypts&quot;))" >
 			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/UniversalNav/ToOutland.xml" />
 		</If>
 	</If>
 
 
-	<If Condition="!HasItem(27781) &amp;&amp; !Lua.GetReturnVal&lt;bool&gt;(&quot;for i=1,GetNumSavedInstances() do local dungeonName = select(1, GetSavedInstanceInfo(i)); if (dungeonName and strfind(dungeonName,'The Underbog')) then return true end end&quot;, 0)" > <!-- [H] The Underbog, The Black Stalker, Belt -->
+	<If Condition="!HasItem(27781) &amp;&amp; !IsSavedToInstance(&quot;The Underbog&quot;)" > <!-- [H] The Underbog, The Black Stalker, Belt -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Underbog to farm the helmet.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killHungarfen = false;
@@ -78,7 +93,7 @@
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/ExitPreDungeon.xml" /> <!-- Leave Coilfang Reservoir -->
 
 
-	<If Condition="!HasItem(27821)  &amp;&amp; !Lua.GetReturnVal&lt;bool&gt;(&quot;for i=1,GetNumSavedInstances() do local dungeonName = select(1, GetSavedInstanceInfo(i)); if (dungeonName and strfind(dungeonName,'Mana')) then return true end end&quot;, 0)" > <!-- [H] The Manatombs, Tavarok, Boots -->
+	<If Condition="!HasItem(27821) &amp;&amp; !IsSavedToInstance(&quot;Mana&quot;)" > <!-- [H] The Manatombs, Tavarok, Boots -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Mana-Tombs to farm the robes.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killPandemonius = false;
@@ -93,7 +108,7 @@
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/ExitPreDungeon.xml" />
 
 
-	<If Condition="!HasItem(27493) &amp;&amp; !Lua.GetReturnVal&lt;bool&gt;(&quot;for i=1,GetNumSavedInstances() do local dungeonName = select(1, GetSavedInstanceInfo(i)); if (dungeonName and strfind(dungeonName,'Auchenai Crypts')) then return true end end&quot;, 0)" > <!-- [H] Auchenai Crypts, Shirrak the Dead Watcher, Gloves -->
+	<If Condition="!HasItem(27493) &amp;&amp; !IsSavedToInstance(&quot;Auchenai Crypts&quot;)" > <!-- [H] Auchenai Crypts, Shirrak the Dead Watcher, Gloves -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Auchenai Crypts to farm the gloves.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killShirrak = true;
