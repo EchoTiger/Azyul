@@ -37,7 +37,7 @@
 	<DisableBehavior Name="Loot, Pull" />
 
 	<!-- Should we go to Outlands ? -->
-	<If Condition="Me.MapId != 530 &amp;&amp; (!HasItem(27831) || !HasItem(27787) || !HasItem(28396) || !HasItem(28214) || !HasItem(27514) || !HasItem(27867))" > <!-- !HasItem(28206) || , black morass -->
+	<If Condition="Me.MapId != 530 &amp;&amp; (!HasItem(27831) || !HasItem(27787) || !HasItem(28396) || !HasItem(28214) || !HasItem(27514) || !HasItem(27867))" > 
 		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/UniversalNav/ToOutland.xml" />
 	</If>
 
@@ -129,6 +129,27 @@
 		</If>
 	</If>
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/ExitPreDungeon.xml" />
+
+
+	<!-- Should we go to Kalimdor? -->
+	<If Condition="!HasItem(28206)" >
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Black Morass to farm the helmet.&quot;);" />
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/UniversalNav/ToKalimdor.xml" />
+	</If>
+
+
+	<If Condition="!HasItem(28206)" > <!-- [N] The Black Morass, Aeonus, Helmet -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Black Morass to farm the helmet.&quot;);" />
+		<CustomBehavior File="RunCode" Type="Definition" Code="
+			bool killDeja = false;
+			bool killTemporus = false;
+			bool killAeonus = true;
+		" />
+		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
+		<While Condition="!HasItem(28206)" >
+			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheBlackMorass.xml" />
+		</While>
+	</If>
 
 
 	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Farming has completed!\n&quot;);" />
