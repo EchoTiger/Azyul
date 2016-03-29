@@ -6,7 +6,7 @@
 	<Item Name="Shoulderpads of Assassination" Entry="27776" />
 	<Item Name="Tunic of Assassination" Entry="28204" />
 	<Item Name="Leggings of Assassination" Entry="27908" />
-	<Item Name="Girdle of the Deathdealer" Entry="27247" />
+	<Item Name="Girdle of the Deathdealer" Entry="29247" />
 	<Item Name="Hangdrips of Assassination" Entry="27509" />
 	<Item Name="Shadowstep Striders" Entry="29248" />
 </ProtectedItems>
@@ -42,9 +42,7 @@
 	</If>
 
 
-	<If Condition="!HasItem(27506) &amp;&amp; !IsSavedToInstance(&quot;Blood Furnace&quot;)" > <!-- [H] Blood Furnace, Kelidan, Robes -->
-
-	<If Condition="!HasItem(28204)" > <!-- [N] The Mechanar, Cache of the Legion, Shoulder -->
+	<If Condition="!HasItem(28204)" > <!-- [N] The Mechanar, Pathaleon the Calculator, Chest -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Mechanar to farm the chest.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killGatewatchers = false;
@@ -59,14 +57,24 @@
 	</If>
 
 
-	<If Condition="!HasItem(28414)" > <!-- [N] The Arcatraz, Skyriss, Helmet -->
-		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Arcatraz to farm the helmet.&quot;);" />
+	<If Condition="!HasItem(29248)" > <!-- [H] The Arcatraz, Skyriss, Boots -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Arcatraz to farm the boots.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killZerekth = false;
 			bool killDalliah = false;
 			bool killSoccothrates = false;
 			bool killSkyriss = true;
 		" />
+		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
+		<If Condition="!HasItem(29248)" >
+			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheArcatraz.xml" />
+		</If>
+	</If>
+
+
+	<If Condition="!HasItem(28414)" > <!-- [N] The Arcatraz, Skyriss, Helmet -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Arcatraz to farm the helmet.&quot;);" />
+		<!-- Booleans set from heroic run -->
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
 		<While Condition="!HasItem(28414)" >
 			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheArcatraz.xml" />
@@ -76,14 +84,14 @@
 	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/ExitPreDungeon.xml" /> <!-- Get awawy from Tempest Keep + Out of Netherstorm -->
 
 
-	<If Condition="!HasItem(27919)" > <!-- [N] Sethekk Halls, Talon King Ikiss, Gloves -->
+	<If Condition="!HasItem(27776)" > <!-- [N] Sethekk Halls, Talon King Ikiss, Shoulders -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Sethekk Halls to farm the shoulders.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killSyth = false;
 			bool killIkiss = true;
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
-		<While Condition="!HasItem(27919)" >
+		<While Condition="!HasItem(27776)" >
 			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/SethekkHalls.xml" />
 		</While>
 	</If>
@@ -107,19 +115,29 @@
 
 
 	<!-- Should we go to Kalimdor? -->
-	<If Condition="!HasItem(27509)" >
+	<If Condition="!HasItem(29247) || !HasItem(27509)" >
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Black Morass to farm the gloves.&quot;);" />
 		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/UniversalNav/ToKalimdor.xml" />
 	</If>
 
 
-	<If Condition="!HasItem(27509)" > <!-- [N] The Black Morass, Chrono Lord Deja, Shoulder -->
-		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Black Morass to farm the gloves.&quot;);" />
+	<If Condition="!HasItem(29247)" > <!-- [H] The Black Morass, Aeonus, Belt -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Black Morass to farm the belt.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killDeja = false;
 			bool killTemporus = false;
 			bool killAeonus = true;
 		" />
+		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
+		<If Condition="!HasItem(29247)" >
+			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheBlackMorass.xml" />
+		</If>
+	</If>
+
+
+	<If Condition="!HasItem(27509)" > <!-- [N] The Black Morass, Aeonus, Gloves -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Black Morass to farm the gloves.&quot;);" />
+		<!-- Booleans set from heroic run -->
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
 		<While Condition="!HasItem(27509)" >
 			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheBlackMorass.xml" />
@@ -128,13 +146,14 @@
 
 
 	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Farming has completed!\n&quot;);" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(29248)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Boots - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Boots&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(29248)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Boots - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Boots - Heroic Lock, try again tomorrow.&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(27776)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Shoulder - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Shoulder&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(27509)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Glove - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Glove&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(28414)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Helmet - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Helmet - Heroic Lock, try again tomorrow.&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(27247)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Belt - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Belt - Heroic Lock, try again tomorrow.&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(27908)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Legs - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Legs - Heroic Lock, try again tomorrow.\n&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(28204)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Chest - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Chest - Heroic Lock, try again tomorrow.\n&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(29247)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Belt - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Belt - Heroic Lock, try again tomorrow.\n&quot;);}" />
 
 </QuestOrder>
 </HBProfile>
