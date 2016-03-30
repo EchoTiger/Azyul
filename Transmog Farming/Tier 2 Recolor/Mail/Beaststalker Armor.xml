@@ -1,0 +1,146 @@
+<HBProfile>
+<Name>Beaststalker Armor, Recolor - Remote Version</Name>
+
+<ProtectedItems>
+	<Item Name="Scorpid-Sting Mantle" Entry="24366" />
+	<Item Name="Tracker's Belt" Entry="24360" />
+	<Item Name="Shamblehide Chestguard" Entry="24465" />
+	<Item Name="Mok'Nathal Beast Mask" Entry="27414" />
+	<Item Name="Boots of the Outlander" Entry="25941" />
+	<Item Name="Scale Leggings of the Skirmisher" Entry="24022" />
+	<Item Name="Bloodstained Ravager Gauntlets" Entry="24090" />
+</ProtectedItems>
+
+<QuestOrder>
+
+	<CustomBehavior File="RunCode" > <!-- Do we have the behaviors? -->
+		<![CDATA[
+			if (!File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs") || !File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs")) {
+				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Downloading quest behaviors... your bot will automatically restart!");
+				System.Net.WebClient Client = new System.Net.WebClient ();
+				Client.DownloadFile("http://enu.li/Snips/LoadRemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs");
+				Client.DownloadFile("http://enu.li/Snips/RemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs");
+				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Restarting bot!");
+				System.Diagnostics.Process.Start(Utilities.AssemblyDirectory + "\\Honorbuddy.exe", "/autostart");
+				TreeRoot.Shutdown();
+			}
+		]]>
+	</CustomBehavior>
+
+	<CustomBehavior File="LoadRemoteCode" />
+
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ProfileSettingsTransmog.xml" /> <!-- Activate Profile Settings -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/DefensiveHooks.xml" /> <!-- Activate Defensive Manuvers -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/Extras.xml" /> <!-- Stats, GPH, etc. -->
+
+
+	<CustomBehavior File="RunCode" Type="Definition" > <!-- Code to determine if we're saved to a heroic lock. -->
+	<![CDATA[
+		public bool IsSavedToInstance(string instanceName)
+		{
+			var lua = 
+				"for i=1,GetNumSavedInstances() do " +
+					"local dungeonName = select(1, GetSavedInstanceInfo(i)); " +
+					$"if (dungeonName and strfind(dungeonName, '{instanceName}')) then " +
+						"return select(5, GetSavedInstanceInfo(i)); " +
+					"end "+
+				"end";
+			return Lua.GetReturnVal<bool>(lua, 0);
+		}
+	]]>
+	</CustomBehavior>
+	
+
+	<DisableBehavior Name="Loot, Pull" />
+
+	<!-- Should we go to Outlands ? -->
+	<If Condition="Me.MapId != 530 &amp;&amp; (!HasItem(24366) || !HasItem(24360) || !HasItem(24465) || !HasItem(27414) || !HasItem(25941) || !HasItem(24022) || !HasItem(24090))" > 
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/UniversalNav/ToOutland.xml" />
+	</If>
+
+
+	<If Condition="(!HasItem(24090) || !HasItem(24022))" > <!-- [H] Hellfire Ramparts, Omor the Unscarred, Gloves + Gargolmar, Legs -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Hellfire Ramparts to farm the gloves and legs.&quot;);" />
+		<CustomBehavior File="RunCode" Type="Definition" Code="
+			bool killGargolmar => !HasItem(24022);
+			bool killOmor => !HasItem(24090);
+			bool killVazruden = false;
+		" />
+		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
+		<While Condition="(!HasItem(24090) || !HasItem(24022))" >
+			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/HellfireRamparts.xml" />
+		</While>
+	</If>
+
+	<If Condition="!HasItem(24465)" > <!-- [N] The Underbog, The Black Stalker, Chest -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Underbog to farm the chest.&quot;);" />
+		<CustomBehavior File="RunCode" Type="Definition" Code="
+			bool killHungarfen = false;
+			bool killGhazan = false;
+			bool killMuselek = false;
+			bool killBlackStalker = true;
+		" />
+		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/EnterCoilfangReservoir.xml" /> <!-- Enter Coilfang Reservoir -->
+		<While Condition="!HasItem(24465)" >
+			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheUnderbog.xml" />
+		</While>
+	</If>
+	<If Condition="(!HasItem(24366) || !HasItem(24360))" > <!-- [N] Slave Pens, Quagmirran, Shoulder + Mennu, Belt -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Slave Pens to farm the shoulder and belt.&quot;);" />
+		<CustomBehavior File="RunCode" Type="Definition" Code="
+			bool killMennu = true;
+			bool killRokmar = false;
+			bool killQuagmirran = true;
+		" />
+		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
+		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/EnterCoilfangReservoir.xml" /> <!-- Enter Location -->
+		<While Condition="(!HasItem(24366) || !HasItem(24360))" >
+			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheSlavePens.xml" />
+		</While>
+	</If>
+
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/ExitPreDungeon.xml" />
+
+
+	<If Condition="!HasItem(27414)" > <!-- [N] Auchenai Crypts, Exarch Maladaar, Helmet -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Auchenai Crypts to farm the helmet.&quot;);" />
+		<CustomBehavior File="RunCode" Type="Definition" Code="
+			bool killShirrak = false;
+			bool killMaladaar = true;
+		" />
+		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
+		<While Condition="!HasItem(27414)" >
+			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/AuchenaiCrypts.xml" />
+		</While>
+	</If>
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/ExitPreDungeon.xml" />
+
+
+	<If Condition="!HasItem(25941)" > <!-- [N] The Manatombs, Pandemonius, Boots -->
+		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Manatombs to farm the boots.&quot;);" />
+		<CustomBehavior File="RunCode" Type="Definition" Code="
+			bool killPandemonius = true;
+			bool killTavarok = false;
+			bool killShaffar = false;
+		" />
+		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
+		<If Condition="!HasItem(25941)" >
+			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheManaTombs.xml" />
+		</If>
+	</If>
+	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/ExitPreDungeon.xml" />
+
+
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Farming has completed!\n&quot;);" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(25941)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Boots - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Boots - Uknown Error, try reloading the profile.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(24366)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Shoulder - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Shoulder - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(24090)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Glove - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Glove - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(27414)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Helmet - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Helmet - Unkown Error, try reloading the profile.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(24360)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Belt - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Belt - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(24022)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Legs - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Legs - Heroic Lock, try again tomorrow.\n&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(24465)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Chest - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Chest - Heroic Lock, try again tomorrow.\n&quot;);}" />
+
+</QuestOrder>
+</HBProfile>
