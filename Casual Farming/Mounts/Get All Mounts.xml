@@ -2125,7 +2125,7 @@ Task.Run (
 		</While>
 	</If>
 
-	<If Condition="!HasItem(63040) &amp;&amp; !Me.KnowsSpell(63043)" > <!-- Vitreous Stone Drake -->
+	<If Condition="!HasItem(63040) &amp;&amp; !Me.KnowsSpell(88746)" > <!-- Vitreous Stone Drake -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Looks like we don't have the Vitreous Stone Drake.. Let's get it!&quot;);" />
 		<If Condition="Me.MapId != 646" >
 			<If Condition="(Me.IsHorde &amp;&amp; Me.MapId != 1) || (Me.IsAlliance &amp;&amp; Me.MapId != 0)" >
@@ -2567,7 +2567,7 @@ Task.Run (
 				<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 				<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 					<CustomBehavior File="WaitTimer" WaitTime="750" />
-					<CustomBehavior File="RunMacro" Macro="/cast ÃÂ¢Ã‘Æ’ÃÂ½ÃÂ´Ã‘â‚¬ÃÂ¾ÃÂ²Ã‘â€¹ÃÂ¹ ÃÂ¼ÃÂ°ÃÂ¼ÃÂ¾ÃÂ½Ã‘â€š ÃÂ¿Ã‘Æ’Ã‘â€šÃÂµÃ‘Ë†ÃÂµÃ‘ÂÃ‘â€šÃÂ²ÃÂµÃÂ½ÃÂ½ÃÂ¸ÃÂºÃÂ°\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast GroÃƒÅ¸es Expeditionsyak\n/cast Ãâ€˜ÃÂ¾ÃÂ»Ã‘Å’Ã‘Ë†ÃÂ¾ÃÂ¹ Ã‘ÂÃÂº ÃÂ´ÃÂ»Ã‘Â ÃÂ¿Ã‘Æ’Ã‘â€šÃÂµÃ‘Ë†ÃÂµÃ‘ÂÃ‘â€šÃÂ²ÃÂ¸ÃÂ¹\n/cast Grand Expedition Yak" />
+					<CustomBehavior File="RunMacro" Macro="/cast ÃƒÂÃ‚Â¢Ãƒâ€˜Ã†â€™ÃƒÂÃ‚Â½ÃƒÂÃ‚Â´Ãƒâ€˜Ã¢â€šÂ¬ÃƒÂÃ‚Â¾ÃƒÂÃ‚Â²Ãƒâ€˜Ã¢â‚¬Â¹ÃƒÂÃ‚Â¹ ÃƒÂÃ‚Â¼ÃƒÂÃ‚Â°ÃƒÂÃ‚Â¼ÃƒÂÃ‚Â¾ÃƒÂÃ‚Â½Ãƒâ€˜Ã¢â‚¬Å¡ ÃƒÂÃ‚Â¿Ãƒâ€˜Ã†â€™Ãƒâ€˜Ã¢â‚¬Å¡ÃƒÂÃ‚ÂµÃƒâ€˜Ã‹â€ ÃƒÂÃ‚ÂµÃƒâ€˜Ã‚ÂÃƒâ€˜Ã¢â‚¬Å¡ÃƒÂÃ‚Â²ÃƒÂÃ‚ÂµÃƒÂÃ‚Â½ÃƒÂÃ‚Â½ÃƒÂÃ‚Â¸ÃƒÂÃ‚ÂºÃƒÂÃ‚Â°\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast GroÃƒÆ’Ã…Â¸es Expeditionsyak\n/cast ÃƒÂÃ¢â‚¬ËœÃƒÂÃ‚Â¾ÃƒÂÃ‚Â»Ãƒâ€˜Ã…â€™Ãƒâ€˜Ã‹â€ ÃƒÂÃ‚Â¾ÃƒÂÃ‚Â¹ Ãƒâ€˜Ã‚ÂÃƒÂÃ‚Âº ÃƒÂÃ‚Â´ÃƒÂÃ‚Â»Ãƒâ€˜Ã‚Â ÃƒÂÃ‚Â¿Ãƒâ€˜Ã†â€™Ãƒâ€˜Ã¢â‚¬Å¡ÃƒÂÃ‚ÂµÃƒâ€˜Ã‹â€ ÃƒÂÃ‚ÂµÃƒâ€˜Ã‚ÂÃƒâ€˜Ã¢â‚¬Å¡ÃƒÂÃ‚Â²ÃƒÂÃ‚Â¸ÃƒÂÃ‚Â¹\n/cast Grand Expedition Yak" />
 					<CustomBehavior File="WaitTimer" WaitTime="2000" />
 					<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 				</If>
@@ -2608,7 +2608,7 @@ Task.Run (
 	<CustomBehavior File="RunCode" Code="if (HasItem(32768) || SpellManager.HasSpell(17481)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Ravenlord - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Ravenlord - Heroic Lock, try again tomorrow.&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(44151) || SpellManager.HasSpell(59996)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Blue-Proto Drake - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Blue-Proto Drake - Heroic Lock, try again tomorrow.&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasItem(63040) || SpellManager.HasSpell(88742)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Drake of the North Wind - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Drake of the North Wind - Unkown Error, try reloading the profile.&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(63040) || SpellManager.HasSpell(63043)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Vitreous Stone Drake - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Vitreous Stone Drake - Unknown Error, try reloading the profile.\n&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(63040) || SpellManager.HasSpell(88746)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Vitreous Stone Drake - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Vitreous Stone Drake - Unknown Error, try reloading the profile.\n&quot;);}" />
 
 </QuestOrder>
 </HBProfile>
