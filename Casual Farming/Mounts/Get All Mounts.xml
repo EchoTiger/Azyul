@@ -2127,7 +2127,7 @@ Task.Run (
 		</While>
 	</If>
 
-	<If Condition="!HasItem(63040) &amp;&amp; !Me.KnowsSpell(88742)" > <!-- Vitreous Stone Drake -->
+	<If Condition="!HasItem(63040) &amp;&amp; !Me.KnowsSpell(63043)" > <!-- Vitreous Stone Drake -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Looks like we don't have the Vitreous Stone Drake.. Let's get it!&quot;);" />
 		<If Condition="Me.MapId != 646" >
 			<If Condition="(Me.IsHorde &amp;&amp; Me.MapId != 1) || (Me.IsAlliance &amp;&amp; Me.MapId != 0)" >
@@ -2604,6 +2604,13 @@ Task.Run (
 
 		</While>
 	</If>
+
+	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Farming has completed!\n&quot;);" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(13335) || SpellManager.HasSpell(17481)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Deathcharger - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Deathcharger - Unknown Error, try reloading the profile.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(32768) || SpellManager.HasSpell(17481)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Ravenlord - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Ravenlord - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(44151) || SpellManager.HasSpell(59996)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Blue-Proto Drake - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Blue-Proto Drake - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(63040) || SpellManager.HasSpell(88742)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Drake of the North Wind - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Drake of the North Wind - Unkown Error, try reloading the profile.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasItem(63040) || SpellManager.HasSpell(63043)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Vitreous Stone Drake - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Vitreous Stone Drake - Unknown Error, try reloading the profile.\n&quot;);}" />
 
 </QuestOrder>
 </HBProfile>
