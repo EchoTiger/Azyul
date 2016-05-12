@@ -1,0 +1,277 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo
+// Farm zone: Pandaria, Townlong Steppes
+// Farm mobs: Zan'vess
+///////////////////////////////////////////////////////////////////////
+
+<Name>[SK-Heavy]Zan'vess [$Rev$]</Name>
+
+<MinFreeBagSlots>5</MinFreeBagSlots>
+<MinDurability>.2</MinDurability>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+	<Item Name="Ghost Iron Lockbox" Entry="88567" />
+</ProtectedItems>
+
+<Vendors>
+	<Vendor Nav="Fly" Name="Deckmender Lu" Entry="67180" Type="Food" X="-1169.771" Y="3207.143" Z="1.322034" />
+</Vendors>
+
+<Mailboxes>
+	<Mailbox Nav="Fly" X="-1119.347" Y="3179.554" Z="5.772613" />
+</Mailboxes>
+
+<AvoidMobs>
+</AvoidMobs>
+
+<Blackspots>
+</Blackspots>
+
+<!-- 
+	
+	Manipulator: 64973
+	Impaler: 64971
+
+-->
+
+<QuestOrder>
+
+
+<CustomBehavior File="LoadRemoteCode"/>
+
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to farm location.&quot;);" />
+	<CustomBehavior File="Misc\RunLua" Lua="
+			starttime = GetTime();
+			currtime = GetTime();
+			beginningmoney = GetMoney();
+			print(&quot;|cFF00CCFFStatter!|r variables have been reset.&quot;);" /> <!-- Reset Lua variables -->
+
+<!-- Activate Hooks -->
+<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]:&quot; + Environment.NewLine + &quot;Item hooks are now activated.&quot; + Environment.NewLine + &quot;Bot will now:&quot; + Environment.NewLine + &quot;   - Open Plundered Treasure Chests.&quot; + Environment.NewLine + &quot;   - Combine Mote of Harmony.&quot; + Environment.NewLine + &quot;   - Use Potion of Luck.&quot;);" />
+<CustomBehavior File="Hooks\DoWhen" ItemId="93351" UseWhen="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" AllowUseDuringCombat="true" /> <!-- Potion of Luck -->
+<CustomBehavior File="Hooks\DoWhen" ActivityName="Open_PChests" UseWhen="HasItem(87391)" AllowUseDuringCombat="true" > <!-- Plundered Treasure Chest -->
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Opening Plundered Treasure Chest.&quot;);" />
+	<CustomBehavior File="UseItem" ItemId="87391" NumOfTimes="500" TerminateWhen="!HasItem(87391)" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ActivityName="Combine_Motes" UseWhen="GetItemCount(89112) &gt;= 10" AllowUseDuringCombat="true" > <!-- Combine Motes -->
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Combining Motes.&quot;);" />
+	<CustomBehavior File="UseItem" ItemId="89112" NumOfTimes="500" TerminateWhen="GetItemCount(89112) &lt;= 9" />
+</CustomBehavior>
+
+<While Condition="true" >
+
+
+
+
+		<While Condition="(Me.Class == WoWClass.Mage)" > <!-- Mage, Ice Lance -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="30455" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Warlock) &amp;&amp; (Me.Specialization == WoWSpec.WarlockDestruction)" > <!-- Warlock, Immolate - Destro -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="true" IgnoreLoSToTarget="false" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="348" WaitForNpcs="false" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+		<While Condition="(Me.Class == WoWClass.Warlock) &amp;&amp; (Me.Specialization == WoWSpec.WarlockAffliction)" > <!-- Warlock, Immolate - Affliction -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="true" IgnoreLoSToTarget="false" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="980" WaitForNpcs="false" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+		<While Condition="(Me.Class == WoWClass.Warlock) &amp;&amp; (Me.Specialization == WoWSpec.WarlockDemonology)" > <!-- Warlock, Corruption - Demo -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="true" IgnoreLoSToTarget="false" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="172" WaitForNpcs="false" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Priest)" > <!-- Priest, Shadow Word: Pain - Needs support for other Disc and Holy -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="589" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Druid)" > <!-- Druid, 8921 *should* be backwards compatible with Sunfire but the behavior acts up, so we're using Wrath instead... -->
+			<While Condition="Me.Specialization == WoWSpec.DruidBalance" >
+				<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="5176" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5 || Me.CurrentEclipse &lt; 0" >
+					<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+					</HuntingGrounds>
+				</CustomBehavior>
+			</While>
+			<While Condition="Me.Specialization == WoWSpec.DruidFeral || Me.Specialization == WoWSpec.DruidGuardian" > <!-- Faerie Fire -->
+				<If Condition="(Me.Specialization == WoWSpec.DruidFeral &amp;&amp; !Me.HasAura(768))" >
+				 	<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(768);" />
+				</If>
+				<If Condition="(Me.Specialization == WoWSpec.DruidGuardian &amp;&amp; !Me.HasAura(5487))" >
+				 	<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(5487);" />
+				</If>
+				<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="770" WaitForNpcs="False" Range="34" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+					<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+					</HuntingGrounds>
+				</CustomBehavior>
+			</While>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Rogue)" > <!-- Rogue, Throw -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="121733" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Monk)" >  <!-- Monk, Storm Earth and Fire -->
+			<DisableBehavior Name="Combat" />
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="137639" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5 || Me.MaxEnergy &lt;= 9" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+
+			<CustomBehavior File="RunMacro" Macro="/cancelaura Storm, Earth and Fire" />
+			<EnableBehavior Name="Combat" />
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Hunter)" >  <!-- Hunter, Arcane Shot -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="3044" WaitForNpcs="False" Range="39" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.MaxFocus &lt;= 14" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Shaman)" >  <!-- Shaman, Chain Lightning -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="403" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.DeathKnight)" >  <!-- Death Knight, Icy Touch - needs to be improved with more spells -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="45477" WaitForNpcs="False" Range="29" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.FrostRuneCount == 0" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Warrior)" > <!-- Warrior, Melee Attack... thanks Blizzard for removing any efficient Ranged for Warriors. -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971"  WaitForNpcs="False" Range="4" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+		<While Condition="(Me.Class == WoWClass.Paladin)" >  <!-- Paladin, Judgment.  Holy needs spell. -->
+			<CustomBehavior File="InteractWith" IgnoreCombat="True" IgnoreLoSToTarget="False" MobState="AliveNotInCombat" MobId1="64973" MobId2="64971" InteractByCastingSpellId="20271" WaitForNpcs="False" Range="9" PreInteractMountStrategy="Dismount" NumOfTimes="3" TerminateWhen="ObjectManager.GetObjectsOfType&lt;WoWUnit&gt;().Where(u =&gt; u.Aggro).Count() &gt;= 10 || Me.HealthPercent &lt;= 30 || Me.ManaPercent &lt;= .5" >
+				<HuntingGrounds WaypointVisitStrategy="Random" >
+					<Hotspot X="-1133.75" Y="4594.054" Z="91.06413" />
+					<Hotspot X="-1153.468" Y="4501.967" Z="108.6951" />
+					<Hotspot X="-1271.576" Y="4587.971" Z="132.6209" />
+					<Hotspot X="-1213.954" Y="4411.631" Z="108.2061" />
+					<Hotspot X="-1155.48" Y="4351.402" Z="81.56293" />
+					<Hotspot X="-1227.579" Y="4249.063" Z="64.95676" />
+				</HuntingGrounds>
+			</CustomBehavior>
+		</While>
+
+</While>
+</QuestOrder>
+</HBProfile>

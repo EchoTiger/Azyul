@@ -1,0 +1,326 @@
+<HBProfile>
+
+///////////////////////////////////////////////////////////////////////
+// Profile Developer: Echo
+// Farm zone: Pandaria, Vale of Eternal Blossoms
+// Farm mobs: Shao-Tien Moguls
+///////////////////////////////////////////////////////////////////////
+
+<Name>[SK-Heavy]Shao-Tien Moguls [$Rev$]</Name>
+
+<MinFreeBagSlots>5</MinFreeBagSlots>
+<MinDurability>.2</MinDurability>
+
+
+
+
+<MailGrey>False</MailGrey>
+<MailWhite>True</MailWhite>
+<MailGreen>False</MailGreen>
+<MailBlue>False</MailBlue>
+<MailPurple>True</MailPurple>
+
+<SellGrey>True</SellGrey>
+<SellWhite>True</SellWhite>
+<SellGreen>True</SellGreen>
+<SellBlue>True</SellBlue>
+<SellPurple>False</SellPurple>
+
+<ProtectedItems>
+	<Item Name="Ghost Iron Lockbox" Entry="88567" />
+</ProtectedItems>
+
+<Vendors>
+	<Vendor Nav="Fly" Name="Tan Shin Tiao" Entry="64605" Type="Repair" X="1453.913" Y="398.1754" Z="548.0798" />
+</Vendors>
+
+<Mailboxes>
+	<Mailbox Nav="Fly" X="720.8524" Y="1578.852" Z="376.0925" />
+</Mailboxes>
+
+<AvoidMobs>
+</AvoidMobs>
+
+<Blackspots>
+	<Blackspot X="1275.012" Y="1820.501" Z="344.7968" Radius="12.92596" />
+	<Blackspot X="1307.325" Y="1859.856" Z="347.9208" Radius="11.63485" />
+	<Blackspot X="1256.473" Y="1815.878" Z="344.7762" Radius="8.134491" />
+	<Blackspot X="1217.509" Y="1806.806" Z="346.0291" Radius="7.240324" />
+	<Blackspot X="1216.601" Y="1851.638" Z="347.409" Radius="6.656412" />
+	<Blackspot X="1247.481" Y="1903.797" Z="349.7562" Radius="9.931524" />
+
+	<Blackspot X="1146.13" Y="2033.978" Z="324.5503" Radius="11.36846" />
+	<Blackspot X="1160.781" Y="2058.901" Z="324.8774" Radius="6.328123" />
+
+	<Blackspot X="1519.272" Y="1926.361" Z="293.6891" Radius="17.9558" />
+</Blackspots>
+
+
+<QuestOrder>
+
+
+<CustomBehavior File="LoadRemoteCode"/>
+
+<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/UNS-Raw/master/AzyulSnips/statter.xml"/>
+	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Moving to farm location.&quot;);" />
+	<CustomBehavior File="FlyTo" X="1309.684" Y="1776.36" Z="414.2991" />
+	<CustomBehavior File="Misc\RunLua" Lua="
+			starttime = GetTime();
+			currtime = GetTime();
+			beginningmoney = GetMoney();
+			print(&quot;|cFF00CCFFStatter!|r variables have been reset.&quot;);" /> <!-- Reset Lua variables -->
+
+<!-- Activate Hooks -->
+<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]:&quot; + Environment.NewLine + &quot;Item hooks are now activated.&quot; + Environment.NewLine + &quot;Bot will now:&quot; + Environment.NewLine + &quot;   - Open Plundered Treasure Chests.&quot; + Environment.NewLine + &quot;   - Combine Mote of Harmony.&quot; + Environment.NewLine + &quot;   - Use Potion of Luck.&quot;);" />
+<CustomBehavior File="Hooks\DoWhen" ItemId="93351" UseWhen="!Me.HasAura(135855) &amp;&amp; HasItem(93351)" AllowUseDuringCombat="true" /> <!-- Potion of Luck -->
+<CustomBehavior File="Hooks\DoWhen" ActivityName="OpenChesthook" AllowUseDuringCombat="True" UseWhen="HasItem(87391)" > <!-- Plundered Treasure Chest -->
+	<CustomBehavior File="UseItem" ItemId="87391" WaitTime="500" NumOfTimes="100" TerminateWhen="!HasItem(87391)" />
+</CustomBehavior>
+<CustomBehavior File="Hooks\DoWhen" ItemId="89112" UseWhen="GetItemCount(89112) &gt;= 10" AllowUseDuringCombat="true" /> <!-- Combine Motes -->
+
+<!-- Methods -->
+<CustomBehavior File="RunCode" Type="Definition">
+<![CDATA[
+	public static int RangedAbilityId()
+	{
+		if (StyxWoW.Me.Class == WoWClass.Mage)
+		{
+			if (SpellManager.CanCast(44425)) return 44425; // Arcane Barrage
+			if (SpellManager.CanCast(157980)) return 157980; // Supernova
+			if (SpellManager.CanCast(114923)) return 114923; // Nether Tempest
+			if (SpellManager.CanCast(30455)) return 30455; // Ice Lance
+			if (SpellManager.CanCast(108853)) return 108853; // Inferno Blast
+			if (SpellManager.CanCast(2136)) return 2136; // Fire Blast
+			if (SpellManager.CanCast(44457)) return 44457; // Living Bomb
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.Hunter)
+		{
+			if (SpellManager.CanCast(53301)) return 53301; // Explosive Shot
+			if (SpellManager.CanCast(3674)) return 3674; // Black Arrow
+			if (SpellManager.CanCast(147362)) return 147362; // Counter Shot, costs no focus.
+			if (SpellManager.CanCast(53209)) return 53209; // Chimaera Shot
+			if (SpellManager.CanCast(117050)) return 117050; // Glaive Toss
+			if (SpellManager.CanCast(3044)) return 3044; // Arcane Shot
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.Rogue)
+		{
+			return 121733; // Throw
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.Shaman)
+		{
+			if (SpellManager.CanCast(8042)) return 8042; // Earth Shock
+			if (SpellManager.CanCast(8050)) return 8050; // Flame Shock
+			if (SpellManager.CanCast(8056)) return 8056; // Frost Shock
+			if (SpellManager.CanCast(57994)) return 57994; // Wind Shear
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.Paladin)
+		{
+			if (SpellManager.CanCast(31935)) return 31935; // Avenger's Shield
+			if (SpellManager.CanCast(20271)) return 20271; // Judgment
+			if (SpellManager.CanCast(62124)) return 62124; // Reckoning
+			if (SpellManager.CanCast(879)) return 879; // Exorcism
+			if (SpellManager.CanCast(20473)) return 20473; // Holy Shock
+			if (SpellManager.CanCast(114165)) return 114165; // Holy Prism
+
+			//114158 Light's Hammer. Needs SpellManager.ClickRemoteLocation support.
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.Warrior)
+		{
+			if (SpellManager.CanCast(57755)) return 57755; // Heroic Throw
+			if (SpellManager.CanCast(355)) return 355; // Taunt
+			if (SpellManager.CanCast(107570)) return 107570; // Storm Bolt
+			if (SpellManager.CanCast(152277)) return 152277; // Ravager			
+			if (SpellManager.CanCast(100)) return 100; // Charge
+
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.Warlock)
+		{
+			if (SpellManager.CanCast(17962)) return 17962; // Conflagrate
+			if (SpellManager.CanCast(17877)) return 17877; // Shadowburn
+			if (SpellManager.CanCast(980)) return 980; // Agony
+			if (SpellManager.CanCast(172)) return 172; // Corruption, may cast Immolate if Destro spec.
+
+			//5740 Rain of Fire.  Needs SpellManager.ClickRemoteLocation support.
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.Priest)
+		{
+			if (SpellManager.CanCast(589)) return 589; // Shadow Word: Pain
+			if (SpellManager.CanCast(127632)) return 127632; // Cascade
+			if (SpellManager.CanCast(204197)) return 204197; // Purge the Wicked
+			if (SpellManager.CanCast(129250)) return 129250; // Power Word: Solace
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.Druid)
+		{
+			if (SpellManager.CanCast(8921)) return 8921; // Moonfire
+			if (SpellManager.CanCast(93402)) return 93402; // Sunfire
+			if (SpellManager.CanCast(106707)) return 106707; // Faerie Swarm
+			if (SpellManager.CanCast(6795)) return 6795; // Growl
+			if (SpellManager.CanCast(102280)) return 102280; // Displacer Beast
+			if (SpellManager.CanCast(102401)) return 102401; // Wild Charge
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.DeathKnight)
+		{
+			if (SpellManager.CanCast(49576)) return 49576; // Death Grip
+			if (SpellManager.CanCast(49184)) return 49184; // Howling Blast
+			if (SpellManager.CanCast(108194)) return 108194; // Asphyxiate
+			if (SpellManager.CanCast(77606)) return 77606; // Dark Simulacrum
+		}
+
+		else if (StyxWoW.Me.Class == WoWClass.Monk)
+		{
+			if (SpellManager.CanCast(115098)) return 115098; // Chi Wave
+			if (SpellManager.CanCast(121253)) return 121253; // Keg Smash
+			if (SpellManager.CanCast(115546)) return 115546; // Provoke
+			return 117952; // Crackling Jade Lightning
+		}
+
+		return 0;
+	}
+	public static async Task CastRangedAbility(WoWUnit castOn)
+	{
+		castOn.Target();
+		await Coroutine.Wait(1000, () => !SpellManager.GlobalCooldown);
+		if (RangedAbilityId() == 0) // Cooldowns, low resource, etc.
+		{
+			Logging.Write(System.Windows.Media.Colors.MediumOrchid, $"[Azyul Aggro]: There's no castable spells to pull {castOn.Name}.  Awaiting task.");
+			castOn.Target();
+			WoWMovement.ClickToMove(castOn.Location); // Trash Navigator's last hop.
+			StyxWoW.Me.ToggleAttack(); //Great for Huntards.
+			await Coroutine.Wait(10000, () => RangedAbilityId() != 0 || castOn.IsDead || castOn.Combat); // We absolutely don't want a return of 0 since we're looping a CanCast.
+		}
+
+		int castSpell = RangedAbilityId();
+
+		if (castSpell == 121733 || castSpell == 117952) // Stop to cast spells.
+		{
+			string castSpellString = "";
+			if (castSpell == 121733) { castSpellString = "Throw"; } else { castSpellString = "Crackling Jade Lightning"; }
+			while (!SpellManager.CanCast(castSpellString, castOn, true, false) && castOn.IsAlive && !castOn.Combat && castOn.Attackable)
+			{
+				Navigator.MoveTo(castOn.Location);
+				await Coroutine.Yield();
+			}
+			if (SpellManager.CanCast(castSpellString, castOn, true, false) && castOn.IsAlive && !castOn.Combat && castOn.Attackable)
+			{
+				await CommonCoroutines.LandAndDismount("Dismouning for ranged attack.", true);
+				if (StyxWoW.Me.CurrentTarget != castOn) { castOn.Target(); }
+				StyxWoW.Me.SetFacing(castOn.Location);
+				await Coroutine.Sleep(350);
+				await CommonCoroutines.StopMoving();
+				SpellManager.Cast(castSpell);
+				await Coroutine.Sleep(650);
+			}
+		}
+		else // Cast while moving spells.
+		{
+			while (!SpellManager.CanCast(castSpell, castOn, true) && castOn.IsAlive && !castOn.Combat && castOn.Attackable)
+			{
+				Navigator.MoveTo(castOn.Location);
+				await Coroutine.Yield();
+			}
+			if (SpellManager.CanCast(castSpell, castOn, true) && castOn.IsAlive && !castOn.Combat && castOn.Attackable)
+			{
+				await CommonCoroutines.LandAndDismount("Dismouning for ranged attack.", true);
+				if (StyxWoW.Me.CurrentTarget != castOn) { castOn.Target(); }
+				StyxWoW.Me.SetFacing(castOn.Location);
+				await Coroutine.Sleep(350);
+				if (castSpell == 121733) { await CommonCoroutines.StopMoving(); }
+				SpellManager.Cast(castSpell);
+				await Coroutine.Wait(1000, () => !StyxWoW.Me.IsCasting);
+			}
+		}
+	}
+
+	public static async Task LootCheck()
+	{
+		var lootList = ObjectManager.GetObjectsOfType<WoWUnit>().Where(unit => unit.IsDead && unit.Lootable && unit.Distance <= 40).OrderBy(unit => Navigator.PathDistance(StyxWoW.Me.Location, unit.Location));
+		if (lootList != null)
+		{
+			foreach (WoWUnit lootMe in lootList)
+			{
+				while (lootMe != null && lootMe.IsValid && lootMe.Distance > 4)
+				{
+					Navigator.MoveTo(lootMe.Location);
+					await Coroutine.Yield();
+				}
+				if (lootMe.Distance <= 4)
+				{
+					await CommonCoroutines.StopMoving();
+					lootMe.Interact();
+					await Coroutine.Sleep(2000);
+				}
+			}
+		}
+	}
+
+	public static async Task AzyulAggro(WoWPoint clearSpot, int scanRadius, bool aggroAll = false)
+	{
+		while (StyxWoW.Me.Location.Distance(clearSpot) >= 40)
+		{
+			Flightor.MoveTo(clearSpot);
+			await Coroutine.Yield();
+		}
+
+		Bots.Grind.LevelBot.BehaviorFlags &= ~Bots.Grind.BehaviorFlags.Combat;
+
+		if (aggroAll) 
+		{
+			var engageList = ObjectManager.GetObjectsOfType<WoWUnit>().Where(unit => unit.Location.Distance(clearSpot) <= scanRadius && !unit.Combat && unit.CreatureType != WoWCreatureType.Critter && unit.Attackable).OrderBy(unit => Navigator.PathDistance(StyxWoW.Me.Location, unit.Location));
+			if (engageList.Count() == 0) 
+			{
+				Logging.Write(System.Windows.Media.Colors.MediumOrchid, $"[Azyul Aggro]: No pullable mobs found within [{scanRadius}] yards of {clearSpot}");
+			}
+			else {
+				await CommonCoroutines.LandAndDismount("Dismouning for ranged attack.", true);
+				Logging.Write(System.Windows.Media.Colors.MediumPurple, $"[Azyul Aggro]: Pulling ~{engageList.Count()}~ mobs around {clearSpot} at a [{scanRadius}] yard radius.");
+
+				foreach (WoWUnit engageUnit in engageList)
+				{
+					if (engageUnit.IsValid && !engageUnit.Combat)
+					{
+						if (!StyxWoW.Me.Combat) { await LootCheck(); } 
+						await CastRangedAbility(engageUnit);
+					}	
+				}
+			}
+		}
+		else {
+			var engageUnit = ObjectManager.GetObjectsOfType<WoWUnit>().OrderBy(x => Navigator.PathDistance(StyxWoW.Me.Location, x.Location)).FirstOrDefault(unit => unit.Location.Distance(clearSpot) <= scanRadius && !unit.Combat && unit.CreatureType != WoWCreatureType.Critter && unit.Attackable);
+			if (engageUnit == null || !engageUnit.IsValid) 
+			{
+				Logging.Write(System.Windows.Media.Colors.MediumOrchid, $"[Azyul Aggro]: No pullable mobs found within [{scanRadius}] yards of {clearSpot}");
+			}
+			else
+			{
+				await CommonCoroutines.LandAndDismount("Dismouning for ranged attack.", true);
+				Logging.Write(System.Windows.Media.Colors.MediumPurple, $"[Azyul Aggro]: Pulling ~{engageUnit.Name}~ at {clearSpot}");
+				await CastRangedAbility(engageUnit);
+			}
+		}
+
+		Bots.Grind.LevelBot.BehaviorFlags |= Bots.Grind.BehaviorFlags.Combat;
+
+	}
+]]>
+</CustomBehavior>
+<!-- END Methods -->
+
+
+<While Condition="true" >
+	<CustomBehavior File="RunCode" Code="await AzyulAggro(new WoWPoint(1342.396, 1675.693, 342.9937), 75, true)" /> <!-- Top-Right  area. -->
+	<CustomBehavior File="RunCode" Code="await AzyulAggro(new WoWPoint(1319.218, 1798.377, 344.1803), 45, true)" /> <!-- Bottom-Right area 1. -->
+	<CustomBehavior File="RunCode" Code="await AzyulAggro(new WoWPoint(1252.42, 1807.721, 344.7766), 45, true)" /> <!-- Bottom-Right area 1. -->
+	<CustomBehavior File="RunCode" Code="await AzyulAggro(new WoWPoint(1466.417, 1817.276, 302.4496), 55, true)" /> <!-- Lake Area - Right -->
+	<CustomBehavior File="RunCode" Code="await AzyulAggro(new WoWPoint(1454.399, 1912.406, 296.6422), 55, true)" /> <!-- Lake Area - Left -->
+</While>
+</QuestOrder>
+</HBProfile>

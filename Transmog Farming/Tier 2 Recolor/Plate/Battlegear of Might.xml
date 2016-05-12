@@ -18,8 +18,8 @@
 			if (!File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs") || !File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs")) {
 				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Downloading quest behaviors... your bot will automatically restart!");
 				System.Net.WebClient Client = new System.Net.WebClient ();
-				Client.DownloadFile("http://enu.li/Snips/LoadRemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs");
-				Client.DownloadFile("http://enu.li/Snips/RemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs");
+				Client.DownloadFile("https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/LoadRemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs");
+				Client.DownloadFile("https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/RemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs");
 				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Restarting bot!");
 				System.Diagnostics.Process.Start(Utilities.AssemblyDirectory + "\\Honorbuddy.exe", "/autostart");
 				TreeRoot.Shutdown();
@@ -29,10 +29,10 @@
 
 	<CustomBehavior File="LoadRemoteCode" />
 
-	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ProfileSettingsTransmog.xml" /> <!-- Activate Profile Settings -->
-	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/DefensiveHooks.xml" /> <!-- Activate Defensive Manuvers -->
-	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
-	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/Snips/Extras.xml" /> <!-- Stats, GPH, etc. -->
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/ProfileSettingsTransmog.xml" /> <!-- Activate Profile Settings -->
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/DefensiveHooks.xml" /> <!-- Activate Defensive Manuvers -->
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/Extras.xml" /> <!-- Stats, GPH, etc. -->
 
 
 	<CustomBehavior File="RunCode" Type="Definition" > <!-- Code to determine if we're saved to a heroic lock. -->
@@ -56,7 +56,7 @@
 
 	<!-- Should we go to Outlands ? -->
 	<If Condition="Me.MapId != 530 &amp;&amp; (!HasItem(27455) || !HasItem(27906) || !HasItem(28375) || !HasItem(27487) || !HasItem(27788) || !HasItem(28324))" > 
-		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/UniversalNav/ToOutland.xml" />
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/UniversalNav/ToOutland.xml" />
 	</If>
 
 
@@ -69,7 +69,7 @@
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
 		<If Condition="(!HasItem(27906) || !HasItem(27455))" >
-			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/HellfireRamparts.xml" />
+			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/HellfireRamparts.xml" />
 		</If>
 	</If>
 
@@ -83,7 +83,7 @@
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
 		<If Condition="(!HasItem(27487) || !HasItem(27788))" >
-			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/BloodFurnace.xml" />
+			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/BloodFurnace.xml" />
 		</If>
 	</If>
 
@@ -99,7 +99,7 @@
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
 		<While Condition="!HasItem(28324)" >
-			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheBotanica.xml" />
+			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/TheBotanica.xml" />
 		</While>
 	</If>
 	<If Condition="!HasItem(28375)" > <!-- [H] The Arcatraz, Zereketh the Unbound, Waist -->
@@ -112,16 +112,16 @@
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
 		<While Condition="!HasItem(28375)" >
-			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheArcatraz.xml" />
+			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/TheArcatraz.xml" />
 		</While>
 	</If>
 
-	<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/ExitPreDungeon.xml" /> <!-- Get awawy from Tempest Keep + Out of Netherstorm -->
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/ExitPreDungeon.xml" /> <!-- Get awawy from Tempest Keep + Out of Netherstorm -->
 
 	<!-- Should we go to Kalimdor? -->
 	<If Condition="!HasItem(28207) " >
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Black Morass to farm the shoulders.&quot;);" />
-		<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/UniversalNav/ToKalimdor.xml" />
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/UniversalNav/ToKalimdor.xml" />
 	</If>
 
 
@@ -134,7 +134,7 @@
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
 		<If Condition="!HasItem(28207)" >
-			<CustomBehavior File="RemoteCode" CodeUrl="http://enu.li/TransmogFull/TheBlackMorass.xml" />
+			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/TheBlackMorass.xml" />
 		</If>
 	</If>
 

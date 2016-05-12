@@ -46,18 +46,7 @@ Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Up
 ProfileManager.LoadNew(ProfileManager.XmlLocation);
 }
 " />
-<CustomBehavior File="RunCode" Code="
-Task.Run (
-	async () =>
-	{
-		while (Styx.CommonBot.TreeRoot.State != TreeRootState.Stopped)
-		{
-			var request = System.Net.HttpWebRequest.Create(&quot;http://enu.li/acount/who-is-online/online.php?c=&quot; + Me.Class + &quot;&amp;ra=&quot; + Me.Race + &quot;&amp;re=&quot; + Me.RealmName + &quot;&amp;l=&quot; + Me.Level + &quot;&amp;s=&quot; + Me.Specialization + &quot;&amp;z=&quot; + Me.ZoneText + &quot;&amp;g=&quot; + Me.Gold + &quot;&amp;gu=&quot; + Me.Guid);
-			var response = await request.GetResponseAsync();
-			response.Close();
-			await Task.Delay(30000);
-		}
-	});" />
+
 
 <If Condition="!IsQuestCompleted(35596)" >
 <If Condition="(Me.MapId != 1116 &amp;&amp; Me.MapId != 1331 &amp;&amp; !Me.IsInInstance) &amp;&amp; !(Me.ZoneId == 7078 || Me.ZoneId == 7004)" >
