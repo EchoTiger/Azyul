@@ -1118,7 +1118,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			</If>
 	</If>
 
-	<If Condition="!HasItem(44151) &amp;&amp; !Me.KnowsSpell(59996) &amp;&amp; !IsSavedToInstance(&quot;Stonecore&quot;)" > <!-- Blue-Proto Drake -->
+	<If Condition="!HasItem(44151) &amp;&amp; !Me.KnowsSpell(59996) &amp;&amp; !IsSavedToInstance(&quot;Utgarde Pinnacle&quot;)" > <!-- Blue-Proto Drake -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Looks like we don't have the Blue Proto-Drake.. Let's get it!&quot;);" />
 		<DisableBehavior Name="FlightPath" />
 
@@ -1539,6 +1539,9 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 						</While>
 						<EnableBehavior Name="Combat" />
 						<EnableBehavior Name="Pull" />
+						<While Condition="Unit(26693, u =&gt; u.Lootable) != null" >
+							<CustomBehavior File="InteractWith" WaitForNpcs="false" InteractByLooting="true" MobId="26693" X="476.2533" Y="-503.8509" Z="104.7238" />
+						</While>
 						<If Condition="(HasItem(37372))" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Throwing away extra harpoons.&quot;);" />
 							<CustomBehavior File="Misc\RunLua" Lua="local item,l,i=&quot;37372&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
