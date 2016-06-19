@@ -33,25 +33,6 @@
 	<While Condition="true" >
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonEnter/HallsOfLightning.xml" /> <!-- Enter Dungeon -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonRun/HallsOfLightning.xml" /> <!-- Run Dungeon -->
-
-		<CustomBehavior File="RunCode" Type="Definition" ><![CDATA[  
-			foreach (WoWItem disenchantMe in StyxWoW.Me.CarriedItems)
-			{
-				if (disenchantMe.Quality == WoWItemQuality.Uncommon && disenchantMe.RequiredEnchantingLevelToDisenchant <= StyxWoW.Me.GetSkill(333).CurrentValue)
-				{
-					await CommonCoroutines.StopMoving();
-					SpellManager.Cast(13262);
-					Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, "[Azyul Disenchanter] ", System.Windows.Media.Colors.LightGreen, $"Disenchanting >  {disenchantMe.Name}");
-					await Coroutine.Sleep(650);
-					disenchantMe.Use();
-					await Coroutine.Wait(2000, () => LootFrame.Instance.IsVisible);
-					LootFrame.Instance.LootAll();
-					await Coroutine.Wait(2000, () => !LootFrame.Instance.IsVisible);
-				}
-			}
-		]]>
-		</CustomBehavior>  
-
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/GuildBank.xml" /> <!-- Guild Bank Stuff -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/DeleteItems.xml" /> <!-- Delete Items -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonExit/HallsOfLightning.xml" /> <!-- Exit Dungeon -->
