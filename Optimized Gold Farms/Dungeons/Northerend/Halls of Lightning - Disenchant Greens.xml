@@ -34,8 +34,8 @@
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonEnter/HallsOfLightning.xml" /> <!-- Enter Dungeon -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonRun/HallsOfLightning.xml" /> <!-- Run Dungeon -->
 
-		<CustomBehavior File="RunCode" Type="Definition" ><![CDATA[  
-			foreach (WoWItem disenchantMe in StyxWoW.Me.CarriedItems)
+		<CustomBehavior File="RunCode" ><![CDATA[  
+			foreach (WoWItem disenchantMe in StyxWoW.Me.BagItems)
 			{
 				if (disenchantMe.Quality == WoWItemQuality.Uncommon && disenchantMe.RequiredEnchantingLevelToDisenchant <= StyxWoW.Me.GetSkill(333).CurrentValue)
 				{

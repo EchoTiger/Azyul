@@ -1,9 +1,10 @@
 <HBProfile>
-<Name>Halls Of Lightning - Remote Version</Name>
+<Name>Gundrak - Remote Version</Name>
 
-<Blackspots>
-	<Blackspot X="8724.726" Y="-735.7791" Z="919.3344" Radius="107.7323" Height="23.22327" /> <!-- Bridge in Stormpeaks -->
-</Blackspots>
+<Blacklist>
+	<Mob Name="Drakkari Frenzy" Id="29834" Flags="Pull,Combat" />
+	<Mob Name="Small Frog" Id="13321" Flags="Pull,Combat" /> 
+</Blacklist>
 
 <QuestOrder>
 
@@ -31,32 +32,16 @@
 
 
 	<While Condition="true" >
-		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonEnter/HallsOfLightning.xml" /> <!-- Enter Dungeon -->
-		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonRun/HallsOfLightning.xml" /> <!-- Run Dungeon -->
-
-		<CustomBehavior File="RunCode" Type="Definition" ><![CDATA[  
-			foreach (WoWItem disenchantMe in StyxWoW.Me.CarriedItems)
-			{
-				if (disenchantMe.Quality == WoWItemQuality.Uncommon && disenchantMe.RequiredEnchantingLevelToDisenchant <= StyxWoW.Me.GetSkill(333).CurrentValue)
-				{
-					await CommonCoroutines.StopMoving();
-					SpellManager.Cast(13262);
-					Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, "[Azyul Disenchanter] ", System.Windows.Media.Colors.LightGreen, $"Disenchanting >  {disenchantMe.Name}");
-					await Coroutine.Sleep(650);
-					disenchantMe.Use();
-					await Coroutine.Wait(2000, () => LootFrame.Instance.IsVisible);
-					LootFrame.Instance.LootAll();
-					await Coroutine.Wait(2000, () => !LootFrame.Instance.IsVisible);
-				}
-			}
-		]]>
-		</CustomBehavior>  
-
+		<EnableBehavior Name="Combat" />
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonEnter/Gundrak.xml" /> <!-- Enter Dungeon -->
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonRun/Gundrak.xml" /> <!-- Run Dungeon -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/GuildBank.xml" /> <!-- Guild Bank Stuff -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/DeleteItems.xml" /> <!-- Delete Items -->
-		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonExit/HallsOfLightning.xml" /> <!-- Exit Dungeon -->
+		<DisableBehavior Name="Combat" />
+		<CustomBehavior File="RunCode" Code="SpellManager.Cast(5215)" />
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonExit/Gundrak.xml" /> <!-- Exit Dungeon -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonVendor/ItemsAndMounts.xml" /> <!-- Vendor by Mounts/Items/Etc -->
-		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonVendor/HallsOfLightning.xml" /> <!-- Vendor by HallsOfLightning Vendors -->
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonVendor/Gundrak.xml" /> <!-- Vendor by Gundrak Vendors -->
 	</While>
 
 </QuestOrder>

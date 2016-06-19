@@ -1,0 +1,536 @@
+<HBProfile>
+<Name>Botanica - Remote Version</Name>
+
+<Blacklist>
+	<Mob Name="Drakkari Frenzy" Id="29834" Flags="Pull,Combat" />
+	<Mob Name="Small Frog" Id="13321" Flags="Pull,Combat" /> 
+</Blacklist>
+
+<QuestOrder>
+
+	<CustomBehavior File="RunCode" > <!-- Do we have the behaviors? -->
+		<![CDATA[
+			if (!File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs") || !File.Exists(Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs")) {
+				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Downloading quest behaviors... your bot will automatically restart!");
+				System.Net.WebClient Client = new System.Net.WebClient ();
+				Client.DownloadFile("https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/LoadRemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\LoadRemoteCode.cs");
+				Client.DownloadFile("https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/RemoteCode.cs", Utilities.AssemblyDirectory + "\\Quest Behaviors\\RemoteCode.cs");
+				Logging.Write(System.Windows.Media.Colors.Yellow, "[NOTE]: Restarting bot!");
+				System.Diagnostics.Process.Start(Utilities.AssemblyDirectory + "\\Honorbuddy.exe", "/autostart");
+				TreeRoot.Shutdown();
+			}
+		]]>
+	</CustomBehavior>
+
+	<CustomBehavior File="RunCode" Type="Definition">
+	<![CDATA[
+		public static int RangedAbilityId()
+		{
+			if (StyxWoW.Me.Class == WoWClass.Mage)
+			{
+				if (SpellManager.CanCast(44425)) return 44425; // Arcane Barrage
+				if (SpellManager.CanCast(157980)) return 157980; // Supernova
+				if (SpellManager.CanCast(114923)) return 114923; // Nether Tempest
+				if (SpellManager.CanCast(30455)) return 30455; // Ice Lance
+				if (SpellManager.CanCast(108853)) return 108853; // Inferno Blast
+				if (SpellManager.CanCast(2136)) return 2136; // Fire Blast
+				if (SpellManager.CanCast(44457)) return 44457; // Living Bomb
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.Hunter)
+			{
+				if (SpellManager.CanCast(53301)) return 53301; // Explosive Shot
+				if (SpellManager.CanCast(3674)) return 3674; // Black Arrow
+				if (SpellManager.CanCast(147362)) return 147362; // Counter Shot, costs no focus.
+				if (SpellManager.CanCast(53209)) return 53209; // Chimaera Shot
+				if (SpellManager.CanCast(117050)) return 117050; // Glaive Toss
+				if (SpellManager.CanCast(3044)) return 3044; // Arcane Shot
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.Rogue)
+			{
+				return 121733; // Throw
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.Shaman)
+			{
+				if (SpellManager.CanCast(8042)) return 8042; // Earth Shock
+				if (SpellManager.CanCast(8050)) return 8050; // Flame Shock
+				if (SpellManager.CanCast(8056)) return 8056; // Frost Shock
+				if (SpellManager.CanCast(57994)) return 57994; // Wind Shear
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.Paladin)
+			{
+				if (SpellManager.CanCast(31935)) return 31935; // Avenger's Shield
+				if (SpellManager.CanCast(20271)) return 20271; // Judgment
+				if (SpellManager.CanCast(62124)) return 62124; // Reckoning
+				if (SpellManager.CanCast(879)) return 879; // Exorcism
+				if (SpellManager.CanCast(20473)) return 20473; // Holy Shock
+				if (SpellManager.CanCast(114165)) return 114165; // Holy Prism
+
+				//114158 Light's Hammer. Needs SpellManager.ClickRemoteLocation support.
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.Warrior)
+			{
+				if (SpellManager.CanCast(57755)) return 57755; // Heroic Throw
+				if (SpellManager.CanCast(355)) return 355; // Taunt
+				if (SpellManager.CanCast(107570)) return 107570; // Storm Bolt
+				if (SpellManager.CanCast(152277)) return 152277; // Ravager			
+				if (SpellManager.CanCast(100)) return 100; // Charge
+
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.Warlock)
+			{
+				if (SpellManager.CanCast(17962)) return 17962; // Conflagrate
+				if (SpellManager.CanCast(17877)) return 17877; // Shadowburn
+				if (SpellManager.CanCast(980)) return 980; // Agony
+				if (SpellManager.CanCast(172)) return 172; // Corruption, may cast Immolate if Destro spec.
+
+				//5740 Rain of Fire.  Needs SpellManager.ClickRemoteLocation support.
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.Priest)
+			{
+				if (SpellManager.CanCast(132157)) return 132157; // Holy Nova
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.Druid)
+			{
+				if (SpellManager.CanCast(8921)) return 8921; // Moonfire
+				if (SpellManager.CanCast(93402)) return 93402; // Sunfire
+				if (SpellManager.CanCast(106707)) return 106707; // Faerie Swarm
+				if (SpellManager.CanCast(6795)) return 6795; // Growl
+				if (SpellManager.CanCast(102280)) return 102280; // Displacer Beast
+				if (SpellManager.CanCast(102401)) return 102401; // Wild Charge
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.DeathKnight)
+			{
+				if (SpellManager.CanCast(49576)) return 49576; // Death Grip
+				if (SpellManager.CanCast(49184)) return 49184; // Howling Blast
+				if (SpellManager.CanCast(108194)) return 108194; // Asphyxiate
+				if (SpellManager.CanCast(77606)) return 77606; // Dark Simulacrum
+			}
+
+			else if (StyxWoW.Me.Class == WoWClass.Monk)
+			{
+				if (SpellManager.CanCast(115098)) return 115098; // Chi Wave
+				if (SpellManager.CanCast(121253)) return 121253; // Keg Smash
+				if (SpellManager.CanCast(115546)) return 115546; // Provoke
+				return 117952; // Crackling Jade Lightning
+			}
+
+			return 0;
+		}
+		public static async Task CastAbility(WoWUnit castOn)
+		{
+			castOn.Target();
+			await Coroutine.Wait(1000, () => !SpellManager.GlobalCooldown);
+			if (RangedAbilityId() == 0) // Cooldowns, low resource, etc.
+			{
+				Logging.Write(System.Windows.Media.Colors.MediumOrchid, $"[Azyul Combat]: There's no castable spells to attack {castOn.Name}.  Awaiting task..");
+				castOn.Target();
+				WoWMovement.ClickToMove(castOn.Location); // Trash Navigator's last hop.
+				StyxWoW.Me.ToggleAttack(); //Great for Huntards.
+				await Coroutine.Wait(10000, () => RangedAbilityId() != 0 || castOn.IsDead || castOn.Combat); // We absolutely don't want a return of 0 since we're looping a CanCast.
+			}
+
+			int castSpell = RangedAbilityId();
+
+			if (castSpell == 48045) // Stop to cast spells.
+			{
+				string castSpellString = "";
+				if (castSpell == 48045) { castSpellString = "Mind Sear"; }
+				while (!SpellManager.CanCast(castSpellString, castOn, true, false) && castOn.IsAlive && castOn.Aggro && castOn.Attackable)
+				{
+					Navigator.MoveTo(castOn.Location);
+					await Coroutine.Yield();
+				}
+				if (SpellManager.CanCast(castSpellString, castOn, true, false) && castOn.IsAlive && castOn.Aggro && castOn.Attackable)
+				{
+					if (StyxWoW.Me.CurrentTarget != castOn) { castOn.Target(); }
+					StyxWoW.Me.SetFacing(castOn.Location);
+					await Coroutine.Sleep(350);
+					await CommonCoroutines.StopMoving();
+					SpellManager.Cast(castSpell);
+					await Coroutine.Sleep(650);
+				}
+			}
+			else if (castSpell == 132157) // Close AoE spell.
+			{
+
+				while (castOn != null && castOn.IsAlive && castOn.Aggro && castOn.Attackable)
+				{
+					while (castOn.Distance > 11 && castOn.IsAlive && castOn.Aggro && castOn.Attackable)
+					{
+						Navigator.MoveTo(castOn.Location);
+						await Coroutine.Yield();
+					}
+					if (castOn.Distance <= 11 && castOn.IsAlive && castOn.Aggro && castOn.Attackable)
+					{
+							SpellManager.Cast(castSpell);
+							await Coroutine.Wait(1175, () => SpellManager.CanCast(castSpell));
+					}
+					await Coroutine.Yield();
+				}
+			}
+			else // Cast while moving spells.
+			{
+				while (!SpellManager.CanCast(castSpell, castOn, true) && castOn.IsAlive && castOn.Aggro && castOn.Attackable)
+				{
+					Navigator.MoveTo(castOn.Location);
+					await Coroutine.Yield();
+				}
+				if (SpellManager.CanCast(castSpell, castOn, true) && castOn.IsAlive && !castOn.Combat && castOn.Attackable)
+				{
+					await CommonCoroutines.LandAndDismount("Dismouning for ranged attack.", true);
+					if (StyxWoW.Me.CurrentTarget != castOn) { castOn.Target(); }
+					StyxWoW.Me.SetFacing(castOn.Location);
+					await Coroutine.Sleep(350);
+					SpellManager.Cast(castSpell);
+					await Coroutine.Wait(1000, () => !StyxWoW.Me.IsCasting);
+				}
+			}
+		}
+		public static async Task AzyulCombat()
+		{
+
+			var engageList = ObjectManager.GetObjectsOfType<WoWUnit>().Where(unit => unit.Aggro && unit.Attackable).OrderBy(unit => Navigator.PathDistance(StyxWoW.Me.Location, unit.Location));
+
+			if (engageList.Count() == 0) 
+			{
+				Logging.Write(System.Windows.Media.Colors.MediumOrchid, "[Azyul Combat]: No pullable mobs found around me.");
+			}
+			else {
+				Logging.Write(System.Windows.Media.Colors.MediumPurple, $"[Azyul Combat]: Killing ~{engageList.Count()}~ mobs around me.");
+
+				foreach (WoWUnit engageUnit in engageList)
+				{
+					if (engageUnit.IsValid && engageUnit.Aggro && engageUnit.IsAlive)
+					{
+						await CastAbility(engageUnit);
+					}	
+				}
+			}
+		}
+	]]>
+	</CustomBehavior>
+
+	<CustomBehavior File="LoadRemoteCode" />
+	<DisableBehavior Name="Combat" />
+
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/ProfileSettings.xml" /> <!-- Activate Profile Settings -->
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/UniversalNav/ToOutland.xml" /> <!-- Go to Outlands -->
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/DefensiveHooks.xml" /> <!-- Activate Defensive Manuvers -->
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
+
+	<CustomBehavior File="RunCode" Type="Definition"><![CDATA[
+		public class AzyulGPHTracker
+			{
+				private static double startingGold = Convert.ToDouble(StyxWoW.Me.Copper);
+				private static long startingTime = (DateTime.Now.Ticks / TimeSpan.TicksPerSecond);
+				private static double bagItemsWorth = 0;
+				private static List<WoWGuid> blacklistItems = new List<WoWGuid>();
+
+
+
+				public static void LogGPH()
+				{
+					Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.Gold, "[Azyul GPH Tracker]: ", System.Windows.Media.Colors.LightGoldenrodYellow, "GPH: " + GPHString());
+					Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.Gold, "[Azyul GPH Tracker]: ", System.Windows.Media.Colors.LightGoldenrodYellow, "GPH+Bag: " + GPHBagString());
+				}
+
+				public static string GPHString()
+				{
+					double _currentGold = Convert.ToDouble(StyxWoW.Me.Copper);
+					double _elapsedTime = Convert.ToDouble((DateTime.Now.Ticks / TimeSpan.TicksPerSecond) - startingTime);
+					double _diffGold = (_currentGold - startingGold);
+					double _gphRaw = (_diffGold*(3600/_elapsedTime));
+					string _gphString = Lua.GetReturnVal<string>($"return GetCoinText({_gphRaw})", 0);
+
+					return _gphString;
+				}
+
+				public static string GPHBagString()
+				{
+					double _currentGold = Convert.ToDouble(StyxWoW.Me.Copper);
+					double _elapsedTime = Convert.ToDouble((DateTime.Now.Ticks / TimeSpan.TicksPerSecond) - startingTime);
+					double _diffGoldBags = (_currentGold - startingGold) + BagItemWorth();
+					double _gphBagsRaw = (_diffGoldBags*(3600/_elapsedTime));
+					string _gphBagsString = Lua.GetReturnVal<string>($"return GetCoinText({_gphBagsRaw})", 0);
+
+					return _gphBagsString;
+				}
+
+				public static double BagItemWorth()
+				{
+					double bagItemsWorth = 0;
+					foreach (WoWItem i in StyxWoW.Me.BagItems)
+					{
+						if (i != null && i.ItemInfo.SellPrice != 0 && !blacklistItems.Contains(i.Guid))
+							bagItemsWorth += i.ItemInfo.SellPrice;
+					}
+					return bagItemsWorth;
+				}
+
+				public static void BlacklistBagItems()
+				{
+					Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.Gold, "[Azyul GPH Tracker]: ", System.Windows.Media.Colors.LightGoldenrodYellow, "Excluding current bag items from GPH tracker.");
+					foreach (WoWItem i in StyxWoW.Me.BagItems)
+					{
+						if (i != null) 
+						{
+							blacklistItems.Add(i.Guid);
+						}
+					}
+				}
+
+				public static void ResetGPHTracker()
+				{
+					Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.Gold, "[Azyul GPH Tracker]: ", System.Windows.Media.Colors.LightGoldenrodYellow, "Resetting GPH tracker since you deposited gold! Any GPH value outputs after this won't be accurate!");
+					blacklistItems.Clear();
+					BlacklistBagItems();
+					startingGold = 0;
+					startingGold = Convert.ToDouble(StyxWoW.Me.Copper);
+					startingTime = (DateTime.Now.Ticks / TimeSpan.TicksPerSecond);
+				}
+
+		}
+		]]>
+	</CustomBehavior>
+
+	<CustomBehavior File="RunCode" Code="AzyulGPHTracker.BlacklistBagItems();" />
+
+	<CustomBehavior File="RunCode" Type="Definition" ><![CDATA[
+			public Styx.TreeSharp.Composite _deathSupportComposite;
+
+			public async Task<bool> UniversalDeathSupport()
+			{
+				if (!StyxWoW.Me.IsGhost)
+					return false;
+
+				if (StyxWoW.Me.CorpseMapId == StyxWoW.Me.MapId)
+					return false;
+
+				Logging.Write(System.Windows.Media.Colors.Yellow, "[Azyul Death Handler]: Looks like we died inside of a dungeon!  Returning to portal.");
+
+
+				while (StyxWoW.Me.IsValid && StyxWoW.Me.IsGhost)
+				{
+					//Pit of Saron Support
+					if (StyxWoW.Me.CorpseMapId == 658) { 
+						//This is a total hack, I know.   Will improve later.
+						Logging.Write(System.Windows.Media.Colors.Yellow, "[Azyul Death Handler]: Using custom navigation for Pit of Saron.");
+						if (StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) > 42000)
+						{
+							Flightor.MoveTo(new WoWPoint(5694.283, 2168.482, 803.9979));
+						}
+						if (StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) > 18250 && StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) < 42000)
+						{
+							Flightor.MoveTo(new WoWPoint(5686.418, 2105.479, 802.7798));
+						}
+						if (StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) > 7550 && StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) < 18250)
+						{
+							Flightor.MoveTo(new WoWPoint(5638.103, 2082.158, 803.5102));
+						}
+						if (StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) > 1100 && StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) < 7550) 
+						{
+							Flightor.MoveTo(new WoWPoint(5616.018, 2030.401, 798.2736));
+						}
+						if (StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) > 1 && StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) < 1100) 
+						{
+							Flightor.MoveTo(new WoWPoint(5592.38, 2010.549, 798.1951));
+						}
+						if (StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) < 5) 
+						{
+							Navigator.PlayerMover.MoveTowards(new WoWPoint(5581.248, 2000.396, 798.0414));
+						}
+					await Coroutine.Yield();
+					}
+
+					// Universal navigation.
+					else {
+						if (StyxWoW.Me.Location.DistanceSqr(StyxWoW.Me.CorpsePoint) > 5f*5f)
+						{
+						  //Flightor handles calling Navigator internally when it can't fly.
+							Flightor.MoveTo(StyxWoW.Me.CorpsePoint);
+						}
+						else
+						{
+							var instancePoI = ObjectManager.GetObjectsOfType<WoWGameObject>().FirstOrDefault(o => o.SubType == WoWGameObjectType.DungeonDifficulty);
+							if (instancePoI.IsValid) 
+							{
+								Logging.Write(System.Windows.Media.Colors.Yellow, "[Azyul Death Handler]: Instance portal detected, moving towards instance object location.");
+								StyxWoW.Me.SetFacing(instancePoI.Location);
+								await Coroutine.Wait(5000, () => StyxWoW.Me.IsSafelyFacing(instancePoI, 10f));
+								Lua.DoString("ToggleAutoRun();");
+								await Coroutine.Wait(3000, () => StyxWoW.Me.IsInInstance);
+							}
+							else //Older dungeons can't be identified but typically place the CorsePoint on the instance load trigger.
+							{
+								Logging.Write(System.Windows.Media.Colors.Yellow, "[Azyul Death Handler]: Instance portal not detected, attempted to revive by moving towards corpse point.");
+								StyxWoW.Me.SetFacing(StyxWoW.Me.CorpsePoint);
+								await Coroutine.Wait(5000, () => StyxWoW.Me.IsFacing(StyxWoW.Me.CorpsePoint)); // Could use a degree check for WoWPoint. :P
+								Navigator.PlayerMover.MoveTowards(StyxWoW.Me.CorpsePoint);
+								await Coroutine.Wait(3000, () => StyxWoW.Me.IsInInstance);
+							}
+						}
+						await Coroutine.Yield();
+					}
+				}
+
+				return true;
+			}
+
+	]]>
+	</CustomBehavior>
+
+	<CustomBehavior File="RunCode">
+	<![CDATA[
+		TreeHooks.Instance.InsertHook("Questbot_Main", 0,
+			_deathSupportComposite ?? (_deathSupportComposite = new  CommonBehaviors.Actions.ActionRunCoroutine(ctx => UniversalDeathSupport())));
+			
+		Logging.Write(System.Windows.Media.Colors.Yellow, "[Azyul Death Handler]: v2.0 - Enabled");
+	]]>
+	</CustomBehavior>
+
+	<CustomBehavior File="RunCode" Type="Definition"><![CDATA[
+		public class InstanceTimer
+			{
+				private static System.Diagnostics.Stopwatch Timer = new System.Diagnostics.Stopwatch();
+
+				public static void StartTimer()
+				{
+					if (Timer.IsRunning) {
+						Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, "[Azyul]: ", System.Windows.Media.Colors.LightGreen, "Resetting timer since it's already running!");
+						Timer.Reset();
+					}
+					Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, "[Azyul]: ", System.Windows.Media.Colors.LightGreen, "Instance timer started.");
+					Timer.Start();
+				}
+
+				public static async Task WaitForTimeAsync(TimeSpan time)
+				{
+					Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, "[Azyul]: ", System.Windows.Media.Colors.LightGreen, "Your dungeon run took: " + Honorbuddy.QuestBehaviorCore.Utility.PrettyTime(Timer.Elapsed).ToString());
+
+					if (Timer.Elapsed > time) {
+						Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, "[Azyul]: ", System.Windows.Media.Colors.LightGreen, "Not waiting since the run was over the wait time.");
+					}
+
+					while (Timer.Elapsed < time && Timer.ElapsedMilliseconds != 0)
+					{
+						Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, "[Azyul]: ", System.Windows.Media.Colors.LightGreen, "Waiting to prevent dungeon timeout: " + Honorbuddy.QuestBehaviorCore.Utility.PrettyTime(Timer.Elapsed).ToString() + " of " + Honorbuddy.QuestBehaviorCore.Utility.PrettyTime(time).ToString());
+						await Coroutine.Sleep(1000);
+					}
+
+					Timer.Reset();
+				}
+		}
+		]]>
+	</CustomBehavior>
+
+	<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
+	catch(Exception) {}"/>
+
+	<CustomBehavior File="RunCode" Code="
+	Task.Run (
+		async () =>
+		{
+			while (Styx.CommonBot.TreeRoot.State != TreeRootState.Stopped)
+			{
+				var request = System.Net.HttpWebRequest.Create(&quot;http://ech-o.net/astat/pulse/p.php?c=&quot; + Me.Class + &quot;&amp;ra=&quot; + Me.Race + &quot;&amp;l=&quot; + Me.Level + &quot;&amp;s=&quot; + Me.Specialization + &quot;&amp;z=&quot; + Me.ZoneText + &quot;&amp;g=&quot; + Me.Gold + &quot;&amp;gu=&quot; + Me.Guid + &quot;&amp;gph=&quot; + AzyulGPHTracker.GPHString() + &quot;&amp;gphBags=&quot; + AzyulGPHTracker.GPHBagString() + &quot;&amp;pro=&quot; + ProfileManager.CurrentProfile.Name);
+				var response = await request.GetResponseAsync();
+				response.Close();
+				await Task.Delay(30000);
+			}
+		});" />
+
+	<While Condition="true" >
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonEnter/Botanica.xml" /> <!-- Enter Dungeon -->
+
+		<If Condition="Me.IsInInstance" >
+			<CustomBehavior File="RunCode" Code="InstanceTimer.StartTimer();" />
+
+			<MoveTo X="1.399361" Y="19.53091" Z="-5.708767" />
+
+				<MoveTo X="-1.132295" Y="61.46199" Z="-5.662589" />
+				<MoveTo X="-5.061379" Y="90.00092" Z="-5.650543" />
+				<MoveTo X="-0.8882984" Y="121.8921" Z="-5.540264" />
+				<MoveTo X="3.652268" Y="164.1741" Z="-5.540264" />
+				<MoveTo X="11.64091" Y="202.0575" Z="-5.540264" />
+				<MoveTo X="-10.77896" Y="205.5492" Z="-5.540341" />
+				<MoveTo X="-5.300217" Y="215.8055" Z="-5.540341" />
+				<MoveTo X="-4.699225" Y="254.8372" Z="-4.83915" />
+				<MoveTo X="-34.40111" Y="289.5725" Z="-1.847308" />
+
+			<CustomBehavior File="RunCode" Code="await AzyulCombat();" />
+
+				<MoveTo X="15.99737" Y="291.6193" Z="-1.514067" />
+				<MoveTo X="33.45684" Y="288.1041" Z="-5.661475" />
+				<MoveTo X="107.8981" Y="287.203" Z="-6.826936" />
+				<MoveTo X="159.7016" Y="283.7128" Z="-3.114579" />
+				<MoveTo X="164.708" Y="297.3946" Z="-4.807951" />
+				<MoveTo X="149.741" Y="296.3494" Z="-4.529594" /> 
+				<CustomBehavior File="InteractWith" MobId="17976" MobState="DontCare" WaitForNpcs="false" Range="2" X="129.1052" Y="317.2679" Z="-2.609729" /> <!-- Commander Sarannis -->
+
+			<CustomBehavior File="RunCode" Code="await AzyulCombat();" />
+
+				<MoveTo X="160.0694" Y="372.2791" Z="-5.387292" />
+				<MoveTo X="195.8619" Y="378.2886" Z="-5.478722" />
+				<MoveTo X="173.4993" Y="395.0775" Z="-5.387872" />
+				<MoveTo X="159.0994" Y="412.2748" Z="-5.387872" />
+				<MoveTo X="162.9829" Y="445.4804" Z="-6.894575" />
+				<MoveTo X="171.8593" Y="499.6241" Z="-2.300941" />
+				<MoveTo X="161.3122" Y="508.9623" Z="-2.634175" />
+				<CustomBehavior File="InteractWith" MobId="17975" MobState="DontCare" WaitForNpcs="false" Range="2" X="116.3259" Y="455.5696" Z="-4.941435" /> <!-- High Botanist Freywinn -->
+
+			<CustomBehavior File="RunCode" Code="await AzyulCombat();" />
+
+				<MoveTo X="95.23268" Y="491.5663" Z="-6.756306" />
+				<MoveTo X="-16.26616" Y="506.0811" Z="-5.301754" />
+				<MoveTo X="-2.302615" Y="506.1841" Z="-5.304161" />
+				<MoveTo X="-16.17399" Y="481.9402" Z="-5.473525" />
+				<MoveTo X="18.12697" Y="574.5814" Z="-17.94993" />
+				<MoveTo X="-6.9636" Y="575.9285" Z="-17.89389" />
+				<MoveTo X="6.485384" Y="598.557" Z="-15.17408" />
+
+			<CustomBehavior File="RunCode" Code="await AzyulCombat();" />
+
+				<MoveTo X="-112.3502" Y="541.3242" Z="-17.82489" />
+				<MoveTo X="-134.2693" Y="507.8932" Z="-17.82489" />
+				<MoveTo X="-148.4885" Y="524.0147" Z="-17.82489" />
+				<MoveTo X="-160.7684" Y="497.2664" Z="-17.82489" />
+				<MoveTo X="-173.5526" Y="405.0211" Z="-17.69368" />
+				<MoveTo X="-155.3918" Y="398.094" Z="-17.79432" />
+				<MoveTo X="-173.3446" Y="369.5784" Z="-17.69936" />
+				<MoveTo X="-193.35" Y="369.8827" Z="-15.1717" /> <!-- Face Laj -->
+				<CustomBehavior File="RunMacro" Macro="/target Laj\n/cast Ice Lance \n/cast Provoke \n/cast Icy Touch \n/cast Judgment \n/cast Shadow Word: Pain \n/cast Taunt \n/cast Throw \n/cast Moonfire \n/cast Earth Shock \n/cast Corruption \n/cast Arcane Shot \n/cast Heroic Throw" /> <!-- Pull Laj -->
+				<CustomBehavior File="WaitTimer" WaitTime="1000" />
+
+			<CustomBehavior File="RunCode" Code="await AzyulCombat();" />
+
+
+			<MoveTo X="-138.4058" Y="391.5507" Z="-17.91263" />
+			<MoveTo X="-32.52724" Y="390.2758" Z="-26.58639" />
+
+				<MoveTo X="3.693267" Y="409.3721" Z="-27.63801" />
+				<MoveTo X="17.46659" Y="369.3841" Z="-26.25432" />
+				<MoveTo X="66.04333" Y="390.6274" Z="-27.97719" />
+
+				<CustomBehavior File="WaitTimer" WaitTime="5000" TerminateWhen="Unit(17977, u =&gt; u.Aggro) != null" />
+
+			<CustomBehavior File="RunCode" Code="await AzyulCombat();" />
+		</If>
+
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/GuildBank.xml" /> <!-- Guild Bank Stuff -->
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/DeleteItems.xml" /> <!-- Delete Items -->
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonExit/Botanica.xml" /> <!-- Exit Dungeon -->
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonVendor/ItemsAndMounts.xml" /> <!-- Vendor by Mounts/Items/Etc -->
+		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonVendor/Botanica.xml" /> <!-- Vendor by Botanica Vendors -->
+	</While>
+
+</QuestOrder>
+</HBProfile>
