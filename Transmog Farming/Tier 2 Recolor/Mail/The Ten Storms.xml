@@ -29,6 +29,7 @@
 	<CustomBehavior File="LoadRemoteCode" />
 
 	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/ProfileSettingsTransmog.xml" /> <!-- Activate Profile Settings -->
+	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/ExtensionMethods.xml" /> <!-- Activate Profile Settings -->
 	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/DefensiveHooks.xml" /> <!-- Activate Defensive Manuvers -->
 	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/ArraySniffer.xml" /> <!-- To sniff the arrays! -->
 	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/Extras.xml" /> <!-- Stats, GPH, etc. -->
@@ -54,11 +55,11 @@
 	<DisableBehavior Name="Loot, Pull" />
 
 	<!-- Should we go to Outlands ? -->
-	<If Condition="Me.MapId != 530 &amp;&amp; (!HasItem(27759) || !HasItem(27826) || !HasItem(27912) || !HasItem(27835) || !HasItem(27458) || !HasItem(27549))" > 
+	<If Condition="Me.MapId != 530 &amp;&amp; (!HasAppearance(27759) || !HasAppearance(27826) || !HasAppearance(27912) || !HasAppearance(27835) || !HasAppearance(27458) || !HasAppearance(27549))" > 
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/UniversalNav/ToOutland.xml" />
 	</If>
 
-	<If Condition="!HasItem(27458) &amp;&amp; !IsSavedToInstance(&quot;Ramparts&quot;)" > <!-- [H] Hellfire Ramparts, Vazruden, Legs -->
+	<If Condition="!HasAppearance(27458) &amp;&amp; !IsSavedToInstance(&quot;Ramparts&quot;)" > <!-- [H] Hellfire Ramparts, Vazruden, Legs -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Hellfire Ramparts to farm the legs.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killGargolmar = false;
@@ -66,13 +67,13 @@
 			bool killVazruden = true;
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
-		<If Condition="!HasItem(27458)" >
+		<If Condition="!HasAppearance(27458)" >
 			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/HellfireRamparts.xml" />
 		</If>
 	</If>
 
 
-	<If Condition="!HasItem(27759) &amp;&amp; !IsSavedToInstance(&quot;The Underbog&quot;)" > <!-- [H] The Underbog, Ghazan, Helmet -->
+	<If Condition="!HasAppearance(27759) &amp;&amp; !IsSavedToInstance(&quot;The Underbog&quot;)" > <!-- [H] The Underbog, Ghazan, Helmet -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Underbog to farm the helmet.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killHungarfen = false;
@@ -82,11 +83,11 @@
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/EnterCoilfangReservoir.xml" /> <!-- Enter Coilfang Reservoir -->
-		<If Condition="!HasItem(27759)" >
+		<If Condition="!HasAppearance(27759)" >
 			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/TheUnderbog.xml" />
 		</If>
 	</If>
-	<If Condition="!HasItem(27806)" > <!-- [N] The Steamvault, Warlord Kalithresh, Gloves -->
+	<If Condition="!HasAppearance(27806)" > <!-- [N] The Steamvault, Warlord Kalithresh, Gloves -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Steamvault to farm the gloves.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killHydromancer = false;
@@ -95,11 +96,11 @@
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/EnterCoilfangReservoir.xml" /> <!-- Enter Coilfang Reservoir -->
-		<While Condition="!HasItem(27806)" >
+		<While Condition="!HasAppearance(27806)" >
 			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/TheSteamvault.xml" />
 		</While>
 	</If>
-	<If Condition="!HasItem(27549) &amp;&amp; !IsSavedToInstance(&quot;Slave Pens&quot;)" > <!-- [H] Slave Pens, Rokmar the Crackler, Boots -->
+	<If Condition="!HasAppearance(27549) &amp;&amp; !IsSavedToInstance(&quot;Slave Pens&quot;)" > <!-- [H] Slave Pens, Rokmar the Crackler, Boots -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Slave Pens to farm the boots.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killMennu = false;
@@ -108,7 +109,7 @@
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/EnterCoilfangReservoir.xml" /> <!-- Enter Location -->
-		<If Condition="!HasItem(27549)" >
+		<If Condition="!HasAppearance(27549)" >
 			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/TheSlavePens.xml" />
 		</If>
 	</If>
@@ -116,22 +117,22 @@
 	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/ExitPreDungeon.xml" />
 
 
-	<If Condition="(!HasItem(27826) || !HasItem(27835))  &amp;&amp; !IsSavedToInstance(&quot;Mana&quot;)" > <!-- [H] The Manatombs, Tavarok, Shoulders + Nexus-Prince Shaffar, Belt -->
+	<If Condition="(!HasAppearance(27826) || !HasAppearance(27835))  &amp;&amp; !IsSavedToInstance(&quot;Mana&quot;)" > <!-- [H] The Manatombs, Tavarok, Shoulders + Nexus-Prince Shaffar, Belt -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to The Manatombs to farm the shoulder and belt.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killPandemonius = false;
-			bool killTavarok => !HasItem(27826);
-			bool killShaffar => !HasItem(27835);
+			bool killTavarok => !HasAppearance(27826);
+			bool killShaffar => !HasAppearance(27835);
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(2);" />
-		<If Condition="(!HasItem(27826) || !HasItem(27835))" >
+		<If Condition="(!HasAppearance(27826) || !HasAppearance(27835))" >
 			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/TheManaTombs.xml" />
 		</If>
 	</If>
 	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/ExitPreDungeon.xml" />
 
 
-	<If Condition="!HasItem(27912)" > <!-- [N] Shadow Labyrinth, Murmur, Chest -->
+	<If Condition="!HasAppearance(27912)" > <!-- [N] Shadow Labyrinth, Murmur, Chest -->
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Going to Shadow Labyrinth to farm the chest.&quot;);" />
 		<CustomBehavior File="RunCode" Type="Definition" Code="
 			bool killHellmaw = false;
@@ -140,7 +141,7 @@
 			bool killMurmur = true;
 		" />
 		<CustomBehavior File="Misc\RunLua" Lua="SetDungeonDifficultyID(1);" />
-		<While Condition="!HasItem(27912)" >
+		<While Condition="!HasAppearance(27912)" >
 			<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/TransmogFull/TheShadowLabyrinth.xml" />
 		</While>
 	</If>
@@ -148,13 +149,13 @@
 
 
 	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Farming has completed!\n&quot;);" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(27549)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Boots - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Boots - Heroic Lock, try again tomorrow.&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(27826)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Shoulder - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Shoulder - Heroic Lock, try again tomorrow.&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(27806)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Glove - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Glove - Unknown Error, try reloading the profile.&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(27759)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Helmet - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Helmet - Heroic Lock, try again tomorrow.&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(27835)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Belt - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Belt - Heroic Lock, try again tomorrow.&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(27458)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Legs - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Legs - Heroic Lock, try again tomorrow.&quot;);}" />
-	<CustomBehavior File="RunCode" Code="if (HasItem(27912)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Chest - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Chest - Unkown Error, try reloading the profile.\n&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasAppearance(27549)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Boots - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Boots - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasAppearance(27826)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Shoulder - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Shoulder - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasAppearance(27806)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Glove - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Glove - Unknown Error, try reloading the profile.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasAppearance(27759)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Helmet - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Helmet - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasAppearance(27835)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Belt - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Belt - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasAppearance(27458)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Legs - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Legs - Heroic Lock, try again tomorrow.&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasAppearance(27912)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Chest - Obtained\n&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Chest - Unkown Error, try reloading the profile.\n&quot;);}" />
 
 </QuestOrder>
 </HBProfile>
