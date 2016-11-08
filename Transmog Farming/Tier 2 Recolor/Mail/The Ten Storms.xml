@@ -34,18 +34,10 @@
 	<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/Extras.xml" /> <!-- Stats, GPH, etc. -->
 
 
-	<CustomBehavior File="RunCode" Type="Definition" > <!-- Code to determine if we're saved to a heroic lock. -->
-	<![CDATA[
-		public bool IsSavedToInstance(string instanceName)
+	<CustomBehavior File="RunCode"><![CDATA[
+		bool HasAppearance(int itemId)
 		{
-			var lua = 
-				"for i=1,GetNumSavedInstances() do " +
-					"local dungeonName = select(1, GetSavedInstanceInfo(i)); " +
-					$"if (dungeonName and strfind(dungeonName, '{instanceName}')) then " +
-						"return select(5, GetSavedInstanceInfo(i)); " +
-					"end "+
-				"end";
-			return Lua.GetReturnVal<bool>(lua, 0);
+			return Lua.GetReturnVal<bool>($"return C_TransmogCollection.PlayerHasTransmog({itemId});");
 		}
 	]]>
 	</CustomBehavior>
