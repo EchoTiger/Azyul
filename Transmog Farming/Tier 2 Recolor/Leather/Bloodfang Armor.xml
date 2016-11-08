@@ -62,7 +62,7 @@
 	<DisableBehavior Name="Loot, Pull" />
 
 	<!-- Should we go to Outlands ? -->
-	<If Condition="Me.MapId != 530 &amp;&amp; (!HasAppearance(27831) || !HasAppearance(27787) || !HasAppearance(28396) || !HasAppearance(28214) || !HasAppearance(27514) || !HasAppearance(27867))" > 
+	<If Condition="Me.MapId != 530 &amp;&amp; (!HasAppearance(27787) || !HasAppearance(28396) || (!HasAppearance(27514) &amp;&amp; !IsSavedToInstance(&quot;Blood Furnace&quot;)) || (!HasAppearance(27867) &amp;&amp; !IsSavedToInstance(&quot;Auchenai Crypts&quot;)) || (!HasAppearance(27831)  &amp;&amp; !IsSavedToInstance(&quot;Mana&quot;)) || (!HasAppearance(28124) &amp;&amp; !IsSavedToInstance(&quot;Slave Pens&quot;)))" > 
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/UniversalNav/ToOutland.xml" />
 	</If>
 
@@ -179,7 +179,7 @@
 
 
 	<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Farming has completed!\n&quot;);" />
-	<CustomBehavior File="RunCode" Code="if (HasAppearance(27867)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Boots - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Boots&quot;);}" />
+	<CustomBehavior File="RunCode" Code="if (HasAppearance(27867)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Boots - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Boots - Heroic Lock, try again tomorrow.\n&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasAppearance(27831)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Shoulder - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Shoulder&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasAppearance(28396)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Glove - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Glove&quot;);}" />
 	<CustomBehavior File="RunCode" Code="if (HasAppearance(28206)) {Logging.Write(System.Windows.Media.Colors.Lime, &quot;      Helmet - Obtained&quot;);} else {Logging.Write(System.Windows.Media.Colors.Red, &quot;      Helmet - Heroic Lock, try again tomorrow.&quot;);}" />
