@@ -242,7 +242,7 @@
 
 	public static async Task LootCheck()
 	{
-		var lootList = ObjectManager.GetObjectsOfType<WoWUnit>().Where(unit => unit.IsDead && unit.Lootable && unit.Distance <= 40).OrderBy(unit => Navigator.PathDistance(StyxWoW.Me.Location, unit.Location));
+		var lootList = ObjectManager.GetObjectsOfType<WoWUnit>().Where(unit => unit.IsDead && unit.Lootable && unit.Distance <= 40).OrderBy(unit => unit.DistanceSqr);
 		if (lootList != null)
 		{
 			foreach (WoWUnit lootMe in lootList)
@@ -274,7 +274,7 @@
 
 		if (aggroAll) 
 		{
-			var engageList = ObjectManager.GetObjectsOfType<WoWUnit>().Where(unit => unit.Location.Distance(clearSpot) <= scanRadius && !unit.Combat && unit.CreatureType != WoWCreatureType.Critter && unit.Attackable).OrderBy(unit => Navigator.PathDistance(StyxWoW.Me.Location, unit.Location));
+			var engageList = ObjectManager.GetObjectsOfType<WoWUnit>().Where(unit => unit.Location.Distance(clearSpot) <= scanRadius && !unit.Combat && unit.CreatureType != WoWCreatureType.Critter && unit.Attackable).OrderBy(unit => unit.DistanceSqr);
 			if (engageList.Count() == 0) 
 			{
 				Logging.Write(System.Windows.Media.Colors.MediumOrchid, $"[Azyul Aggro]: No pullable mobs found within [{scanRadius}] yards of {clearSpot}");
@@ -294,7 +294,7 @@
 			}
 		}
 		else {
-			var engageUnit = ObjectManager.GetObjectsOfType<WoWUnit>().OrderBy(x => Navigator.PathDistance(StyxWoW.Me.Location, x.Location)).FirstOrDefault(unit => unit.Location.Distance(clearSpot) <= scanRadius && !unit.Combat && unit.CreatureType != WoWCreatureType.Critter && unit.Attackable);
+			var engageUnit = ObjectManager.GetObjectsOfType<WoWUnit>().OrderBy(x => x.DistanceSqr).FirstOrDefault(unit => unit.Location.Distance(clearSpot) <= scanRadius && !unit.Combat && unit.CreatureType != WoWCreatureType.Critter && unit.Attackable);
 			if (engageUnit == null || !engageUnit.IsValid) 
 			{
 				Logging.Write(System.Windows.Media.Colors.MediumOrchid, $"[Azyul Aggro]: No pullable mobs found within [{scanRadius}] yards of {clearSpot}");
