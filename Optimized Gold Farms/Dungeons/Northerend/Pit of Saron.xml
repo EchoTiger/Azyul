@@ -31,6 +31,24 @@
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonRun/PitOfSaron.xml" /> <!-- Run Dungeon -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/GuildBank.xml" /> <!-- Guild Bank Stuff -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/Snips/DeleteItems.xml" /> <!-- Delete Items -->
+
+		<If Condition="SpellManager.CanCast(50977)" > <!-- Checks if we're a Death Knight and spell is fully learnt+castable -->
+			<CustomBehavior File="ForcedDismount" />
+			<While Condition="Me.MapId != 0" >
+				<CustomBehavior File="Misc\RunLua" Lua="CastSpellByID(50977);" WaitTime="500" />
+				<CustomBehavior File="WaitTimer" WaitTime="50000" TerminateWhen="Me.MapId == 0 || !Me.IsCasting || Object(190942) != null" />
+				<CustomBehavior File="InteractWith" MobId="190942" WaitForNpcs="false" />
+			</While>
+		</If>
+
+
+
+
+
+
+
+
+
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonExit/PitOfSaron.xml" /> <!-- Exit Dungeon -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonVendor/ItemsAndMounts.xml" /> <!-- Vendor by Mounts/Items/Etc -->
 		<CustomBehavior File="RemoteCode" CodeUrl="https://raw.githubusercontent.com/EchoTiger/AzyulSource/master/DungeonVendor/PitOfSaron.xml" /> <!-- Vendor by PitOfSaron Vendors -->
