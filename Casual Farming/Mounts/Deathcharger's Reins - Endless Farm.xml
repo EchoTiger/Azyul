@@ -465,7 +465,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		</If>
 	<!-- Begin Instance Grind -->
 		<If Condition="(Me.MapId == 329)" >
-			<CustomBehavior File="UserSettings" LootMobs="false" />
+			<DisableBehavior Name="Loot" />
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
 			<!-- Run to first necropolis -->
@@ -570,14 +570,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 
 			<!-- Finale -->
 			<RunTo X="4032.853" Y="-3362.603" Z="115.0517" />
-			<CustomBehavior File="InteractWith" MobId="45412" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
-			<While Condition="Unit(45412, u =&gt; u.CanLoot) != null" >
-				<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Rivendare still seems lootable.  Enabling failsafe.&quot;);" />
-				<CustomBehavior File="UserSettings" LootMobs="true" />
-				<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(45412, u =&gt; !u.CanLoot) != null" />
-				<CustomBehavior File="UserSettings" LootMobs="false" />
-				<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="false" InteractByLooting="true" WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
-			</While>
+			<CustomBehavior File="KillUntilComplete" MobId="45412" X="4035.828" Y="-3336.308" Z="115.0599" TerminateWhen="Unit(45412) == null || Unit(45412, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
 			<RunTo X="4032.699" Y="-3412.439" Z="115.8689" />
 
 

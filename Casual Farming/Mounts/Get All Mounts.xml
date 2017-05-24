@@ -477,7 +477,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</If>
 			<!-- Begin Instance Grind -->
 				<If Condition="(Me.MapId == 329)" >
-					<CustomBehavior File="UserSettings" LootMobs="false" />
+					<DisableBehavior Name="Loot" />
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
 
 					<!-- Run to first necropolis -->
@@ -583,17 +583,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 
 					<!-- Finale -->
 					<RunTo X="4032.853" Y="-3362.603" Z="115.0517" />
-					<While Condition="Unit(45412, u =&gt; u.IsAlive) != null" >
-						<CustomBehavior File="InteractWith" MobId="45412" IgnoreCombat="true" MobState="Alive" WaitForNpcs="false" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
-					</While>
-					<CustomBehavior File="WaitTimer" WaitTime="1500" />
-					<CustomBehavior File="InteractWith" MobId="45412" WaitForNpcs="false" InteractByLooting="true" NumOfTimes="5" TerminateWhen="!Unit(45412).Lootable != null"  WaitTime="1500" Range="1" X="4035.828" Y="-3336.308" Z="115.0599" />
-					<If Condition="Unit(45412).CanLoot != null" >
-						<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Rivendare still seems lootable.  Enabling failsafe.&quot;);" />
-						<CustomBehavior File="UserSettings" LootMobs="true" />
-						<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(45412, u =&gt; !u.CanLoot) != null" />
-						<CustomBehavior File="UserSettings" LootMobs="false" />
-					</If>
+					<CustomBehavior File="KillUntilComplete" MobId="45412" X="4035.828" Y="-3336.308" Z="115.0599" TerminateWhen="Unit(45412) == null || Unit(45412, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
 					<RunTo X="4032.699" Y="-3412.439" Z="115.8689" />
 
 
@@ -1012,7 +1002,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				</If>
 				<!-- Begin Instance Grind -->
 				<If Condition="(Me.MapId == 556)" >
-					<CustomBehavior File="UserSettings" LootMobs="False" />
+					<DisableBehavior Name="Loot" />
 
 					<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 						<Hotspot X="-4.224625" Y="99.62385" Z="0.007196213" />
@@ -1038,9 +1028,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 					</CustomBehavior>
 
 					<MoveTo X="-122.1009" Y="286.8453" Z="26.76291" />
-					<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="false" X="-89.20406" Y="287.9736" Z="26.48323" />
-					<CustomBehavior File="WaitTimer" WaitTime="1000" />
-					<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="false" InteractByLooting="true" NumOfTimes="5"  Range="1" X="-89.20406" Y="287.9736" Z="26.48322" />
+					<CustomBehavior File="KillUntilComplete" MobId="23035" X="-89.20406" Y="287.9736" Z="26.48322" TerminateWhen="Unit(23035) == null || Unit(23035, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
 					<MoveTo X="-30.23629" Y="284.8479" Z="26.73051" />
 
 
@@ -1539,15 +1527,13 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 						</While>
 						<EnableBehavior Name="Combat" />
 						<EnableBehavior Name="Pull" />
-						<While Condition="Unit(26693, u =&gt; u.Lootable) != null" >
-							<CustomBehavior File="InteractWith" WaitForNpcs="false" InteractByLooting="true" MobId="26693" X="476.2533" Y="-503.8509" Z="104.7238" />
-						</While>
 						<If Condition="(HasItem(37372))" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Throwing away extra harpoons.&quot;);" />
 							<CustomBehavior File="Misc\RunLua" Lua="local item,l,i=&quot;37372&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
 							<CustomBehavior File="WaitTimer" WaitTime="1000" />
 						</If>
-						<CustomBehavior File="InteractWith" MobId="26693" WaitForNpcs="false" InteractByLooting="true" NumOfTimes="5" TerminateWhen="!Unit(26693).Lootable != null"  Range="1" X="477.9009" Y="-510.1298" Z="104.7232" />
+						<MoveTo X="477.9009" Y="-510.1298" Z="104.7232" />
+						<CustomBehavior File="KillUntilComplete" MobId="26693" X="477.9009" Y="-510.1298" Z="104.7232" TerminateWhen="Unit(26693) == null || Unit(26693, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
 						<RunTo X="478.0739" Y="-516.3156" Z="104.7221" /> <!-- Incase bot chased down strays -->
 					    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
 						<If Condition="(HasItem(44151))" >
@@ -2086,7 +2072,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				<!-- -1250.4404,  72.1284  before boss-->
 				<RunTo X="-1197.9132" Y="56.4448" Z="734.1751"  />
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="InteractWith" MobId="43873" WaitForNpcs="false" InteractByLooting="true" NumOfTimes="5" TerminateWhen="!Unit(43873).Lootable != null"  Range="1" X="-1192.84" Y="54.5626" Z="734.1742" />
+				<CustomBehavior File="KillUntilComplete" MobId="43873" X="-1192.84" Y="54.5626" Z="734.1742" TerminateWhen="Unit(43873) == null || Unit(43873, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
 				<RunTo X="-1207.4271" Y="82.9884" Z="734.1751"  />
 				<RunTo X="-1196.497" Y="110.3023" Z="740.7074" />
 				<CustomBehavior File="MyCTM" X="-1189.816" Y="127.4594" Z="706.5384" TerminateWhen="Me.Z &lt; 734" />
@@ -2476,7 +2462,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 				<!-- Begin Instance Grind -->
 				<If Condition="(Me.MapId == 725) &amp;&amp; Me.IsAlive" >
 					<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-					<CustomBehavior File="UserSettings" LootMobs="False" />
+					<DisableBehavior Name="Loot" />
 					<DisableBehavior Name="Pull" />
 
 						<RunTo X="899.8765" Y="980.8341" Z="316.8646" />
@@ -2487,14 +2473,15 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 						<RunTo X="1263.269" Y="1207.495" Z="247.363" /> <!-- Go all the way to Slabhide -->
 
 						<EnableBehavior Name="Pull" />
-						<CustomBehavior File="UserSettings" LootMobs="True" />
+						<EnableBehavior Name="Loot" />
 						<CustomBehavior File="WaitTimer" WaitTime="2500" />
-						<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="True" InteractByLooting="true" NumOfTimes="5" TerminateWhen="!Unit(43214).Lootable != null"  X="1292.352" Y="1226.478" Z="247.6368" />
+						<CustomBehavior File="KillUntilComplete" MobId="43214" X="1292.352" Y="1226.478" Z="247.6368" TerminateWhen="Unit(43214) == null || Unit(43214, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
+
 						<If Condition="Unit(43214).CanLoot != null" >
 							<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Slabhide still seems lootable.  Enabling failsafe.&quot;);" />
-							<CustomBehavior File="UserSettings" LootMobs="true" />
+							<EnableBehavior Name="Loot" />
 							<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(43214, u =&gt; !u.CanLoot) != null" />
-							<CustomBehavior File="UserSettings" LootMobs="false" />
+							<DisableBehavior Name="Loot" />
 						</If>
 					
 					<While Condition="Me.Combat" > <!-- Clear Rock Borers since Combat Routine won't.-->

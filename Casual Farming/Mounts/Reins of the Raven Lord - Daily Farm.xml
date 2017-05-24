@@ -461,7 +461,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		</If>
 		<!-- Begin Instance Grind -->
 		<If Condition="(Me.MapId == 556)" >
-			<CustomBehavior File="UserSettings" LootMobs="False" />
+			<DisableBehavior Name="Loot" />
 
 			<CustomBehavior File="RunLikeHell" AllowCombat="false" NumOfTimes="1">
 				<Hotspot X="-4.224625" Y="99.62385" Z="0.007196213" />
@@ -489,7 +489,8 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 			<MoveTo X="-122.1009" Y="286.8453" Z="26.76291" />
 			<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="false" X="-89.20406" Y="287.9736" Z="26.48323" />
 			<CustomBehavior File="WaitTimer" WaitTime="1000" />
-			<CustomBehavior File="InteractWith" MobId="23035" WaitForNpcs="false" InteractByLooting="true" NumOfTimes="5"  Range="1" X="-89.20406" Y="287.9736" Z="26.48322" />
+			<CustomBehavior File="KillUntilComplete" MobId="23035" X="-89.20406" Y="287.9736" Z="26.48322" TerminateWhen="Unit(23035) == null || Unit(23035, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
+
 			<MoveTo X="-30.23629" Y="284.8479" Z="26.73051" />
 
 

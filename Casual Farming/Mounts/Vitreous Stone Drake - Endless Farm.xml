@@ -404,7 +404,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		<!-- Begin Instance Grind -->
 		<If Condition="(Me.MapId == 725) &amp;&amp; Me.IsAlive" >
 			<CustomBehavior File="Misc\InstanceTimer" Timer="Start" />
-			<CustomBehavior File="UserSettings" LootMobs="False" />
+			<DisableBehavior Name="Loot" />
 			<DisableBehavior Name="Pull" />
 
 			<If Condition="Me.IsAlive" >
@@ -437,12 +437,13 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 
 			<If Condition="Me.IsAlive" >
 				<CustomBehavior File="WaitTimer" WaitTime="1000" />
-				<CustomBehavior File="InteractWith" MobId="43214" IgnoreCombat="true" InteractByLooting="true" NumOfTimes="5" TerminateWhen="Unit(43214) == null || Unit(43214, u =&gt; !u.Lootable) != null"  X="1292.352" Y="1226.478" Z="247.6368" />
+				<CustomBehavior File="KillUntilComplete" MobId="43214" X="1292.352" Y="1226.478" Z="247.6368" TerminateWhen="Unit(43214) == null || Unit(43214, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
+
 				<If Condition="Unit(43214, u =&gt; u.CanLoot) != null" >
 					<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Slabhide still seems lootable.  Enabling failsafe.&quot;);" />
-					<CustomBehavior File="UserSettings" LootMobs="true" />
+					<EnableBehavior Name="Loot" />
 					<CustomBehavior File="WaitTimer" WaitTime="10000" TerminateWhen="Unit(43214, u =&gt; !u.CanLoot) != null" />
-					<CustomBehavior File="UserSettings" LootMobs="false" />
+					<DisableBehavior Name="Loot" />
 				</If>
 				<RunTo X="1307.165" Y="1232.391" Z="247.2243" />
 			</If>
@@ -488,7 +489,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		<CustomBehavior File="RunCode" Code="Bots.Professionbuddy.PBLog.Log(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: &quot;, System.Windows.Media.Colors.LightGreen, &quot;Moving to Sell, Repair and Mail.&quot;);" />
 		<If Condition="Me.KnowsSpell(61425) || Me.KnowsSpell(61447) || Me.KnowsSpell(122708)" >
 			<CustomBehavior File="WaitTimer" WaitTime="750" />
-			<CustomBehavior File="RunMacro" Macro="/cast Тундровый мамонт путешественника\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast Großes Expeditionsyak\n/cast Большой як для путешествий\n/cast Grand Expedition Yak" />
+			<CustomBehavior File="RunMacro" Macro="/cast Ð¢ÑƒÐ½Ð´Ñ€Ð¾Ð²Ñ‹Ð¹ Ð¼Ð°Ð¼Ð¾Ð½Ñ‚ Ð¿ÑƒÑ‚ÐµÑˆÐµÑÑ‚Ð²ÐµÐ½Ð½Ð¸ÐºÐ°\n/cast Traveler's Tundra Mammoth\n/cast Tundramammut des Reisenden\n/cast GroÃŸes Expeditionsyak\n/cast Ð‘Ð¾Ð»ÑŒÑˆÐ¾Ð¹ ÑÐº Ð´Ð»Ñ Ð¿ÑƒÑ‚ÐµÑˆÐµÑÑ‚Ð²Ð¸Ð¹\n/cast Grand Expedition Yak" />
 			<CustomBehavior File="WaitTimer" WaitTime="2000" />
 			<CustomBehavior File="ForceSetVendor" DoSell="true" DoRepair="true" />
 		</If>

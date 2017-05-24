@@ -470,7 +470,7 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 <If Condition="Lua.GetReturnValues(&quot;return LootBossOnly&quot;)[0] == &quot;1&quot;" >
 	<CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: The bot will now only loot Kael'thas.&quot;);" />
 	<DisableBehavior Name="Pull" />
-	<CustomBehavior File="UserSettings" LootMobs="false" />
+	<DisableBehavior Name="Loot" />
 </If>
 
 <!--CHOP CHOP -->
@@ -530,8 +530,9 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		<RunTo X="725.7923" Y="-46.91607" Z="46.77836" />
 		<RunTo X="788.7073" Y="-1.289466" Z="48.72859" />
 		<CustomBehavior File="WaitTimer" WaitTime="480000" TerminateWhen="Unit(19622, u => u.IsDead) != null" />
-		<CustomBehavior File="UserSettings" LootMobs="true" />
-		<CustomBehavior File="InteractWith" MobId="19622" InteractByLooting="true" MobState="Dead" NumOfTimes="5" Range="1" X="791.5931" Y="-0.4094737" Z="48.72853" />
+		<EnableBehavior Name="Loot" />
+		<MoveTo X="791.5931" Y="-0.4094737" Z="48.72853" />
+		<CustomBehavior File="KillUntilComplete" MobId="19622" X="791.5931" Y="-0.4094737" Z="48.72853" TerminateWhen="Unit(19622) == null || Unit(19622, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
 	</If>
 </QuestOrder>
 </HBProfile>

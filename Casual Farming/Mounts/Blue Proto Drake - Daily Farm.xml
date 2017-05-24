@@ -417,7 +417,9 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 					<CustomBehavior File="Misc\RunLua" Lua="local item,l,i=&quot;37372&quot; for b=0,4 do for s=1,GetContainerNumSlots(b)do l=GetContainerItemLink(b,s)i=l and l:match(&quot;item:(%d+)&quot;)if i==item then PickupContainerItem(b,s)DeleteCursorItem()end end end" />
 					<CustomBehavior File="WaitTimer" WaitTime="1000" />
 				</If>
-				<CustomBehavior File="InteractWith" MobId="26693" WaitForNpcs="false" InteractByLooting="true" NumOfTimes="5" TerminateWhen="!Unit(26693).Lootable != null"  Range="1" X="477.9009" Y="-510.1298" Z="104.7232" />
+				<MoveTo X="477.9009" Y="-510.1298" Z="104.7232" />
+				<CustomBehavior File="KillUntilComplete" MobId="26693" X="477.9009" Y="-510.1298" Z="104.7232" TerminateWhen="Unit(26693) == null || Unit(26693, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
+
 				<RunTo X="478.0739" Y="-516.3156" Z="104.7221" /> <!-- Incase bot chased down strays -->
 			    <RunTo X="309.9807" Y="-481.2166" Z="104.7388"  />
 				<If Condition="(HasItem(44151))" >

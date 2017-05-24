@@ -46,20 +46,6 @@
 
 
 <QuestOrder>
-<CustomBehavior File="RunCode" Code="try { var webRequest = (System.Net.HttpWebRequest)System.Net.WebRequest.Create(&quot;http://azyul.com/azyultracking.php&quot;); webRequest.Referer = ProfileManager.CurrentProfile.Name; webRequest.GetResponse(); }
-catch(Exception) {}"/>
-<CustomBehavior File="RunCode" Code="
-System.Net.WebClient webClient = new System.Net.WebClient();
-string remoteData = webClient.DownloadString(&quot;https://raw.githubusercontent.com/EchoTiger/Azyul/master/Casual%20Farming/Mounts/Drake%20of%20the%20North%20Wind%20-%20Endless%20Farm.xml&quot;);
-string localData = File.ReadAllText(ProfileManager.XmlLocation);
-if (localData == remoteData) { Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: No new profile updates detected, continuing profile.&quot;); }
-else {
-Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: A newer version of this profile is availible.  Applying update...&quot;);
-File.WriteAllText(ProfileManager.XmlLocation, remoteData);
-Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul Updater]: Update Complete! Reloading profile...&quot;);
-ProfileManager.LoadNew(ProfileManager.XmlLocation);
-}
-" />
 
 <CustomBehavior File="RunCode" Code="Logging.Write(System.Windows.Media.Colors.DeepSkyBlue, &quot;[Azyul]: Welcome to the Drake of the North Wind Farm.&quot;);" />
 <CustomBehavior File="RunMacro" Macro="/script SetDungeonDifficultyID(1);" />
@@ -590,7 +576,8 @@ ProfileManager.LoadNew(ProfileManager.XmlLocation);
 		<!-- -1250.4404,  72.1284  before boss-->
 		<RunTo X="-1197.9132" Y="56.4448" Z="734.1751"  />
 		<CustomBehavior File="WaitTimer" WaitTime="1000" />
-		<CustomBehavior File="InteractWith" MobId="43873" WaitForNpcs="false" InteractByLooting="true" NumOfTimes="5" Range="1" X="-1192.84" Y="54.5626" Z="734.1742" />
+		<CustomBehavior File="KillUntilComplete" MobId="43873" X="-1192.84" Y="54.5626" Z="734.1742" TerminateWhen="Unit(43873) == null || Unit(43873, u =&gt; u.IsDead &amp;&amp; !u.Lootable) != null" />
+
 		<RunTo X="-1207.4271" Y="82.9884" Z="734.1751"  />
 		<RunTo X="-1196.497" Y="110.3023" Z="740.7074" />
 		<RunTo X="-1196.497" Y="110.3023" Z="740.7074" />
